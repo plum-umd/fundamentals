@@ -18,8 +18,8 @@ design.
 
 @subsection[#:style 'unnumbered]{Acknowledgements}
 
-We are grateful to Matthias Felleisen and the Northeastern students we
-had the privilege of teaching in Spring 2011.
+We are grateful to Dan Brown, Matthias Felleisen, and the Northeastern
+students we had the privilege of teaching in Spring 2011.
 
 @include-section["chapter01.scrbl"]
 @include-section["chapter02.scrbl"]
