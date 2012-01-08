@@ -1,4 +1,11 @@
 #lang class4
+
+;; Rubric:  100 pts total
+
+;; 35% for implementation of Person interface.
+;; 35% for courtship!
+;; 30% for Java re-write
+
 ;; A Person implements:
 (define-interface person<%>
   [name ; -> String
@@ -126,9 +133,7 @@
                                ms)
                      (loop))]))]
     (loop)))
-  
-  
-  
+
 (define alan (person% "Alan"))
 (define bob (person% "Bob"))
 (define charles (person% "Chuck"))

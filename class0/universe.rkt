@@ -13,27 +13,29 @@
 	 (send/apply w on-event args))
       (λ (w . _) w)))
 
+(define (wrap v)
+  (if (bundle? v) v (make-bundle v empty empty)))
+
 (define (universe* o)
   (let ((i (object-interface o)))
     (universe o
               (on-new 
                (if (method-in-interface? 'on-new i)
                    (λ (u iw)
-                     (send u on-new iw))
+                     (wrap (send u on-new iw)))
                    (error "Must supply an on-new method.")))
               
               (on-msg
                (if (method-in-interface? 'on-msg i)
                    (λ (u iw msg)
-                     (send u on-msg iw msg))
+                     (wrap (send u on-msg iw msg)))
                    (error "Must supply an on-msg method.")))
               
               (on-tick
                (if (method-in-interface? 'on-tick i)                   
                    (λ (u)
-                     (send u on-tick))
-                   (λ (u)
-                     (make-bundle u empty empty)))
+                     (wrap (send u on-tick)))
+                   wrap)
                (if (method-in-interface? 'tick-rate i)
                    (send o tick-rate)
                    (if (method-in-interface? 'on-tick i)
@@ -43,7 +45,7 @@
               (on-disconnect
                (if (method-in-interface? 'on-disconnect i)
                    (λ (u iw)
-                     (send u on-disconnect iw))
+                     (wrap (send u on-disconnect iw)))
                    (λ (u iw)
                      (make-bundle u empty empty))))
               

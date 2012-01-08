@@ -273,7 +273,7 @@
   (fields num-players players)
   (define/public (on-new iw)
     (cond [(= 1 (num-players)) 
-           (let* ((br (random-board (if BIG-BOARD? big-board sample-board)))
+           (let* ((br (if BIG-BOARD? big-board sample-board))
                   (ps (hash-set (players) iw (make-player iw (num-players))))
                   (n->p (for/hash ([(iw p) ps])
                           (values (p . number) p)))                                   
@@ -286,7 +286,8 @@
                                             (b . serialize)
                                             br))))
                   (t (for/first ([(iw p) ps])
-                       (make-mail iw 'turn))))
+                       (begin (sleep 4)
+                              (make-mail iw 'turn)))))
              
              (make-bundle (playing% ps b)
                           (append ms (list t))
@@ -310,6 +311,10 @@
   (define/public (valid-index? n)
     (and (integer? n)
          (<= 0 n (sub1 (length ((board) . regions))))))
+  
+  #;
+  (define/public (on-disconnect iw)
+    (make-bundle (start% 2) empty empty))                 
   
   (define/public (on-msg iw msg)
     (let ()
@@ -341,22 +346,24 @@
                   (not (equal? cur (dst-r . player)))
                   (member dst (src-r . neighbors)))
              (let ([result ((board) . do-attack src dst)])
-               (make-bundle (playing% (players)
-                                      (result . new-board))
-                            (for/list ([(iw p) (players)])
-                              (make-mail iw
-                                       `(attack ,src ,(result . offense) 
-                                                ,dst ,(result . defense) 
-                                                ,(result . new-board . serialize))))
-                            empty))]
+               (begin (sleep 1)
+                      (make-bundle (playing% (players)
+                                             (result . new-board))
+                                   (for/list ([(iw p) (players)])
+                                     (make-mail iw
+                                                `(attack ,src ,(result . offense) 
+                                                         ,dst ,(result . defense) 
+                                                         ,(result . new-board . serialize))))
+                                   empty)))]
             [else 
              (make-bundle this
                           (list (make-mail (cur . iworld) 'illegal))
                           empty)])))
   
   ;; -> [Bundle Playing]
-  (define/public (next-turn)
+  (define/public (next-turn)    
     (let ()
+      (sleep 1)
       (define new-board ((board) . allocate-dice . rotate-players))
       (define next (new-board . current-player))
       (define new-playing (playing% (players) new-board))
@@ -554,12 +561,12 @@
 (check-expect (largest-connected (b1 . regions) p1) 3)
 (check-expect (largest-connected (b1 . regions) p2) 3)
 
-(define (fuck-the-server f)
+(define (fudge-the-server f)
   (launch-many-worlds (universe (start% 2))
                       (big-bang (gen-player f false false empty))
                       (big-bang (gen-player f false false empty))))
 
-;(fuck-the-server (generate-term L good-msg))
+;(fudge-the-server (generate-term L good-msg))
 
 (define (go)
   (launch-many-worlds (universe (start% 2))
@@ -571,6 +578,14 @@
   (launch-many-worlds (universe (start% 2))
                       (big-bang (gen-player (generate-term L good-msg) false false empty))))
 
+#;
 (launch-many-worlds (universe (start% 2))
                     (big-bang (better-player false false false empty))
                     (big-bang (better-player false false false empty)))
+
+#;
+(launch-many-worlds
+ (universe (start% 2))
+ (big-bang (better-player false false false empty)))
+
+(universe (start% 2))

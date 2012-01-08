@@ -1,6 +1,19 @@
 #lang class1
 (provide (all-defined-out))
 
+;; ==========================================================
+;; Run program, run!
+(define (play)
+  (big-bang
+   (new world%
+        (new player% (/ WIDTH 2) (/ HEIGHT 2))
+        (build-loz (+ 10 (random 20))
+                   (λ (_)
+                     (new live-zombie% 
+                          (random WIDTH)
+                          (random HEIGHT))))
+        (new mouse% 0 0))))
+
 ;; RUBRIC
 ;; ========================================================
 
@@ -464,20 +477,6 @@
                         (f i)
                         (loop (add1 i)))]))]
     (loop 0)))
-
-
-;; ==========================================================
-;; Run program, run!
-(define (play)
-  (big-bang
-   (new world%
-        (new player% (/ WIDTH 2) (/ HEIGHT 2))
-        (build-loz (+ 10 (random 20))
-                   (λ (_)
-                     (new live-zombie% 
-                          (random WIDTH)
-                          (random HEIGHT))))
-        (new mouse% 0 0))))
 
 
 ;; ==========================================================
