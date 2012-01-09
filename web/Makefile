@@ -16,12 +16,12 @@ clean: clean-class clean-web
 class: clean-class copy-doc
 	(cd .. && raco pack \
 		-v --at-plt --replace \
-		++setup class0 \
-		++setup class1 \
-		++setup class2 \
-		++setup class3 \
-		++setup class4 \
-		++setup class5 \
+		++setup class/0 \
+		++setup class/1 \
+		++setup class/2 \
+		++setup class/3 \
+		++setup class/4 \
+		++setup class/5 \
 		++setup scribblings/main \
 		$(CLASS) \
 		class0/ class1/ class2/ class3/ class4/ class5/)
