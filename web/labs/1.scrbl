@@ -23,7 +23,7 @@
 @lab:section{Subversion test run: Assignment 0}
 
 @exercise{
-  Find your @seclink["Initial_partnership_assignments"]{homework partner}
+  Find your @seclink["partners1"]{homework partner}
 }
 
 @exercise{

@@ -62,8 +62,8 @@ web:
 		--redirect-main http://docs.racket-lang.org/ \
 		--style 2510.css \
 		2510.scrbl
-	cp -r assignments/ 2510/
-	cp -r labs/ 2510/
+	cp -r assignments/*.html 2510/
+	cp -r labs/*.html 2510/
 
 web-students:
 	env STUDENTS=1 make web

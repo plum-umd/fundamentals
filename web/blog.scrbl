@@ -4,9 +4,19 @@
 @(require (for-label class/0))
 @(require (for-label class/universe))
 
+
 @title*{Blog}
 
-@section*{Initial partner assignments}
+@section*{Assignment 1 posted}
+
+@tt{Mon Jan  9 15:40:38 EST 2012} 
+
+@seclink["assign01"]{Assignment 1} has been posted.
+
+
+@section*[#:tag "partners1"]{Initial partner assignments}
+
+@tt{Sun Jan  8 19:39:16 EST 2012} 
 
 If your username is not listed, please contact the instructors right away.
 

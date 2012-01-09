@@ -68,11 +68,23 @@ You will need to install our @seclink["class"]{course software} into
 DrRacket. In the DrRacket @tt{File} menu, select @tt{Install PLT File}, and then
 enter the url
 
-@indented[@tt[class-system-latest]]
+@centered[@tt[class-system-latest]]
 
 
 You will use @secref{Subversion} to work on your homework sets, to
 keep track of revisions, and to submit your homework.
+
+@section*{Bug Reports}
+
+This course relies on several peices of software including the
+@seclink["class"]{class system}, the @seclink["book"]{book}, and this
+web page.  You can follow the development of this software on Github:
+
+@centered{@tt{@url{https://github.com/dvanhorn/dpc}}}
+
+and you should submit bugs by creating a new
+"@link["https://github.com/dvanhorn/dpc/issues"]{issue}".  Your help
+in improving the software and book are greatly needed and appreciated.
 
 @section*{Problem Sets}
 

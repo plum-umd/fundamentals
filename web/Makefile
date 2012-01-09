@@ -40,7 +40,7 @@ copy-doc:
 #
 
 web:
-	ln -sf $(CLASS) $(CLASS_LATEST)
+	# ln -sf $(CLASS) $(CLASS_LATEST)
 	env CLASS=$(CLASS) raco make 2510H.scrbl
 	raco scribble --htmls \
 		++extra fonts/kulminoituva-webfont.eot \
