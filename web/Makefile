@@ -14,7 +14,7 @@ clean: clean-class clean-web
 
 .PHONY: class
 class: clean-class copy-doc
-	raco pack -v --collect --at-plt --replace $(CLASS) class
+	raco pack -v ++setup class --collect --at-plt --replace $(CLASS) class
 
 clean-class:
 	find ../class* -name compiled -type d | xargs rm -fr
