@@ -40,7 +40,7 @@ copy-doc:
 #
 
 web:
-	# ln -sf $(CLASS) $(CLASS_LATEST)
+	ln -sf $(CLASS) $(CLASS_LATEST)
 	env CLASS=$(CLASS) raco make 2510H.scrbl
 	raco scribble --htmls \
 		++extra fonts/kulminoituva-webfont.eot \
@@ -73,7 +73,7 @@ clean-web:
 # web-scp
 #
 
-web-scp: clean-web web-students	
+web-scp: clean-web class web-students	
 	scp -r 2510H/* $(CCS):$(CCS_PATH)
 	make web-perms
 
