@@ -13,41 +13,41 @@ This syllabus will evolve throughout the semester so check it often.
             (string-append "0" r)]
            [else r])))
 
-@(define WEEK-REVEALED (if-internal 15 10))
+@(define WEEK-REVEALED (if-internal 15 0))
 
 @(define assign-dates
-   (list "1/12"
-	 "1/19"
-	 "1/26"
-	 "2/2"
-	 "2/9"
-	 "2/18 (Non-standard day)"
-	 "2/25 (Non-standard day)"
-	 "3/2 Spring break"
-	 "3/9"
-	 "3/16"
-	 "3/23"
-	 "3/30"
-	 "4/6"
-	 "4/13"
-	 "4/20"))
-
-@(define lab-dates
-   (list "1/10"
-	 "1/17 MLK"
-	 "1/24"
-	 "1/31"
-	 "2/7"
-	 "2/14"
-	 "2/21 Presidents"
-	 "2/28 Spring break"
+   (list "1/11"
+	 "1/18"
+	 "1/25"
+	 "2/1"
+	 "2/8"
+	 "2/15"
+	 "2/22"
+	 "Spring break"
 	 "3/7"
 	 "3/14"
 	 "3/21"
 	 "3/28"
 	 "4/4"
 	 "4/11"
-	 "4/18 Patriots"))
+	 "4/28"))
+
+@(define lab-dates
+   (list "1/9"
+	 "1/16 MLK"
+	 "1/23"
+	 "1/30"
+	 "2/6"
+	 "2/13"
+	 "2/20 Presidents"
+	 "2/27 Spring break"
+	 "3/5"
+	 "3/12"
+	 "3/19"
+	 "3/26"
+	 "4/2"
+	 "4/9"
+	 "4/16 Patriots"))
 	 
 
 @(define (syllabus-row i reading)
@@ -63,12 +63,12 @@ This syllabus will evolve throughout the semester so check it often.
 	     (list-ref assign-dates (sub1 i)))))
 
 @(define reading-list
-   (append (list "HtDC: Ch. 1, 2, 10."
-		 "HtDC: Ch. 3, 4, 5."
-		 "HtDC: Ch. 6, 11, 12."
-		 "Universe docs."
-		 "HtDC: Sec. 20."
-		 "HtDP: Part VII.")
+   (append (list "DPC: Ch. 1; HtDC: Ch. 1, 2, 10."
+		 "DPC: Ch. 2; HtDC: Ch. 3, 4, 5."
+		 "DPC: Ch. 3, 4; HtDC: Ch. 6, 11, 12."
+		 "DPC: Ch. 5, 6; Universe docs."
+		 "DPC: Ch: 7, 8; HtDC: Sec. 20."
+		 "DPC: Ch: 9, 10; HtDP: Part VII.")
 	   (make-list 9 "??")))	 
 
 @(tabular (apply list 
