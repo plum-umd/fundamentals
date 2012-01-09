@@ -10,24 +10,25 @@
 and 
 @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn}.
 
-@bold{TA:} @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dbrown/"]{Dan Brown}
+@bold{TA:} @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
 
 TAs teach labs, supervise the grading of homework sets, hold office
 hours, and occasionally substitute in lectures. In general, they are
 apprentice teachers and are here to learn how to run a course.
 
-@bold{Tutors:} Nikko Patten, Trevor Sontag, Alex Lee, Jim Shargo
+@bold{Tutors:} Spencer Florence, Ryan Plessner, Sarah Laplante
 
 @section*{Office Hours}
 
 @indented[@tabular[
-  (list (list "Sam Tobin-Hochstadt" (tt "samth") "WVH308 " "Monday" "2:00pm-4:00pm")
-        (list "David Van Horn" (tt "dvanhorn") "WVH350" "Thursday " "2:00pm-4:00pm")
-        (list "Dan Brown" (tt "dbrown") "WVH308" "Tuesday " "4:00pm-6:00pm")
-	(list "Nikko Patten" (tt "npatten")"WVH102" "Wednesday" "11:00am-noon")
-	(list "Trevor Sontag" (tt "tasontag") "WVH102" "Wednesday" "7:00pm-8:00pm")
-	(list "Alex Lee" (tt "lee") "WVH102" "Wednesday" "10:00pm-11:00pm")
-	(list "Jim Shargo" (tt "shargoj") "WVH102" "Monday" "4:00pm-5:00pm"))]]
+  (list (list "Sam Tobin-Hochstadt" (tt "samth") "WVH358 " "Monday" "3:00pm-5:00pm")
+        (list "David Van Horn" (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")
+        (list "Asumu Takikawa" (tt "asumu") "WVH308" "Wednesday/Friday " "3:30pm-4:30pm")
+	(list "Spencer Florence" (tt "florence")"WVH102" "??" "??")
+	(list "Ryan Plessner" (tt "rpless") "WVH102" "??" "??")
+	(list "Sarah Laplante" (tt "laplante") "WVH102" "??" "??")
+	)]]
+
 
 @bold{Communication}: Use CCIS email (@tt["@ccs.neu.edu"]) to reach
 any of the course staff; usernames are given above.
@@ -36,7 +37,7 @@ any of the course staff; usernames are given above.
 @bold{Class:} Class consists of lecture (CS2510H) and lab (CS2511H)
 sections.
 
-@bold{Lectures:} Mon, Thu 11:45–1:25pm WVH 108
+@bold{Lectures:} Mon, Thu 11:45–1:25pm Shillman 415
 
 @bold{Labs:} Mon 6:00–7:40pm WVH 210
 
@@ -58,7 +59,7 @@ sections.
 @section*{Computing Environment}
 
 We will use @link[#:style "plainlink"
-"http://racket-lang.org/"]{DrRacket} v5.0.2.  DrRacket is installed on
+"http://racket-lang.org/"]{DrRacket} v5.2.  DrRacket is installed on
 the CCS computers. It is also freely available on the web in case you
 wish install it on your own computer.
 
@@ -99,8 +100,8 @@ the satisfaction of both, you @emph{must} switch roles.
 @section*{Exams}
 
 @itemlist[
-  @item{Exam 1: 2/15 at 6-9 PM in @bold{110 WVH}}
-  @item{Exam 2: 3/22 at 6-9 PM}]
+  @item{Exam 1: 2/13 at 6-9 PM}
+  @item{Exam 2: 3/26 at 6-9 PM}]
 
 @section*{Projects}
 

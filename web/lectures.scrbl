@@ -106,3 +106,5 @@ There is no lecture on 3/8 since it is during Spring break.
 
 @section[#:tag "lec28"]{4/12: Slack}
 
+@section[#:tag "lec29"]{4/16: Holiday (Patriot's Day)}
+There is no lecture on 3/8 since it is Patriot's Day.
