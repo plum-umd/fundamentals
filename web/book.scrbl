@@ -4,8 +4,15 @@
 
 @title*[#:tag "book" #:style '(toc)]{Book}
 
+@centered{@emph{Designing Programs with Class}}
+
+This book introduces the fundamental elements of class-based program
+design.
+
+
 @local-table-of-contents[]
 
+@include-section[(lib "book/chapter00.scrbl")]
 @include-section[(lib "book/chapter01.scrbl")]
 @include-section[(lib "book/chapter02.scrbl")]
 @include-section[(lib "book/chapter03.scrbl")]

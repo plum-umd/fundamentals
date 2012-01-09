@@ -6,7 +6,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab10"]{3/14: A little Java}
+@title[#:tag "lab10"]{3/12: A little Java}
 
 @itemlist[
   @item{Recall the Java basics we covered in lecture @secref["lec17"].}

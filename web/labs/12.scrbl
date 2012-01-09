@@ -3,12 +3,12 @@
 @(require "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label class5/universe
+          (for-label class/universe
                      2htdp/image))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab12"]{3/28: Mixins, sources, sinks, and projectiles}
+@title[#:tag "lab12"]{3/26: Mixins, sources, sinks, and projectiles}
 
 @exercise{
   Start with this code: @url["source-sink.rkt"]. It creates a @tt{World} with a

@@ -5,21 +5,21 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class2 define-struct)
+          (for-label (except-in class/2 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
-                     class1/universe))
+                     class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class2))
+    (the-eval '(require class/2))
     ;(the-eval '(require 2htdp/image))
-    ;(the-eval '(require class1/universe))
+    ;(the-eval '(require class/universe))
     the-eval))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab05"]{2/07: Dictionaries}
+@title[#:tag "lab05"]{2/06: Dictionaries}
 
 A @emph{dictionary} is a commonly used data structure that maps @emph{keys} to
 @emph{values}. Like an actual dictionary on your bookshelf, the central

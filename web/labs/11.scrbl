@@ -6,10 +6,10 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab11"]{3/21: Blobs, eating}
+@title[#:tag "lab11"]{3/19: Blobs, eating}
 
 @exercise{
-  Install @url["class4-blobs.plt"] to get the the @racket[class4/blobs] module.
+  Install @url["class4-blobs.plt"] to get the the @racket[class/4/blobs] module.
 }
 
 @lab:section{Blobs}
@@ -46,7 +46,7 @@
   @racket[random-color] never returns anything greyscale, so feel free to rely
   on that to distinguish the player from the enemies.
 
-  Here are a few random functions from @racket[class4/blobs] that you might find
+  Here are a few random functions from @racket[class/4/blobs] that you might find
   helpful:
 
   @#reader scribble/comment-reader

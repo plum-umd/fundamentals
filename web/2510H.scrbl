@@ -2,7 +2,7 @@
 @(require "utils.rkt"
           "unnumbered.rkt")
 
-@title{Fundies II (Honors)
+@title{Fundamentals II (Honors)
        @linebreak[]
        Introduction to Class-based Program Design}
 
@@ -30,8 +30,8 @@ to practical hands-on programming.
 
 @include-section["general.scrbl"]
 @include-section["texts.scrbl"]
+@include-section[(lib "book/dpc.scrbl")]
 @include-section["syllabus.scrbl"]
-@include-section["book.scrbl"]
 @include-section["lectures.scrbl"]
 @include-section["labs.scrbl"]
 @include-section["assignments.scrbl"]

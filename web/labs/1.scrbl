@@ -18,7 +18,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab01"]{1/10: Classes and objects}
+@title[#:tag "lab01"]{1/9: Classes and objects}
 
 @lab:section{Subversion test run: Assignment 0}
 

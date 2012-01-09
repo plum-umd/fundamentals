@@ -5,21 +5,21 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class1 define-struct)
+          (for-label (except-in class/1 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
-                     class1/universe))
+                     class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class1))
+    (the-eval '(require class/1))
     (the-eval '(require 2htdp/image))
-    ;(the-eval '(require class1/universe))
+    ;(the-eval '(require class/universe))
     the-eval))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab04"]{1/31: Universe}
+@title[#:tag "lab04"]{1/30: Universe}
 
 @; TODO Elaborate or rewrite
 
@@ -35,8 +35,8 @@
 
 @#reader scribble/comment-reader
 (racketmod
-class1
-(require class1/universe)
+class/1
+(require class/universe)
 (require 2htdp/image)
 
 (define WIDTH  500)

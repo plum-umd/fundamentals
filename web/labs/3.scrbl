@@ -5,21 +5,21 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class1 define-struct)
+          (for-label (except-in class/1 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
-                     class1/universe))
+                     class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class1))
+    (the-eval '(require class/1))
     (the-eval '(require 2htdp/image))
-    ;(the-eval '(require class1/universe))
+    ;(the-eval '(require class/universe))
     the-eval))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab03"]{1/24: Interfaces and inheritance}
+@title[#:tag "lab03"]{1/23: Interfaces and inheritance}
 
 @lab:section{Update your class system}
 
@@ -53,9 +53,9 @@ animation. An @racket[Invader], for now, is either a @racket[Ball] or a
 
 @#reader scribble/comment-reader
 (racketmod
-class1
+class/1
 (require 2htdp/image)
-(require class1/universe)
+(require class/universe)
 
 (define WIDTH  500)
 (define HEIGHT 500)

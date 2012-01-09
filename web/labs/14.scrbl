@@ -6,7 +6,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab14"]{4/11: A little Ruby}
+@title[#:tag "lab14"]{4/9: A little Ruby}
 
 To get us oriented, here is an example Ruby program:
 

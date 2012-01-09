@@ -31,7 +31,8 @@ apprentice teachers and are here to learn how to run a course.
 
 
 @bold{Communication}: Use CCIS email (@tt["@ccs.neu.edu"]) to reach
-any of the course staff; usernames are given above.
+any of the course staff; usernames are given above.  Read the
+@secref{Blog} on a daily basis for course announcements.
 
 
 @bold{Class:} Class consists of lecture (CS2510H) and lab (CS2511H)

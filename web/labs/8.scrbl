@@ -5,26 +5,26 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class3 define-struct)
+          (for-label (except-in class/3 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
-                     class1/universe
+                     class/universe
                      (only-in racket/string string-join)
                      (only-in racket/base   display)))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class3))
+    (the-eval '(require class/3))
     ;(the-eval '(require 2htdp/image))
-    ;(the-eval '(require class3/universe))
+    ;(the-eval '(require class/universe))
     the-eval))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab09"]{3/07: Scraping HTML with visitors}
+@title[#:tag "lab08"]{2/27: Scraping HTML with visitors}
 
 @exercise{
-  Install @url["class3-html.plt"]. It adds the @racket[class3/html] module that
+  Install @url["class3-html.plt"]. It adds the @racket[class/3/html] module that
   we'll be using in this lab to interact with html.
 }
 
@@ -32,8 +32,8 @@ Consider the following program:
 
 @#reader scribble/comment-reader
 (racketmod
-class3
-(require class3/html)
+class/3
+(require class/3/html)
 (require (only-in racket/string string-join))
 (require (only-in racket/base display))
 

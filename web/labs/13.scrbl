@@ -3,12 +3,12 @@
 @(require "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label class5/universe
+          (for-label class/universe
                      2htdp/image))
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab13"]{4/04: The minority game}
+@title[#:tag "lab13"]{4/02: The minority game}
 
 Here is a state-transition diagram for a simple @math{n}-player game:
 
