@@ -2,7 +2,7 @@
 @(require #;"utils.rkt"
           #;"unnumbered.rkt")
 
-@title{Fundies II
+@title{Fundamentals II
        @linebreak[]
        Introduction to Class-based Program Design}
 
@@ -37,3 +37,20 @@ practical applications, and gives us an opportunity to discuss the
 strengths and weaknesses of languages and paradigms.
 
 @include-section{general.scrbl}
+@include-section{texts.scrbl}
+@include-section{syllabus.scrbl}
+
+@section[#:style 'unnumbered]{Labs}
+
+@itemlist[
+ @item{@link["Lab1.html"]{Lab 1}}]
+
+@section[#:style 'unnumbered]{Assignments}
+
+@itemlist[
+ @item{@link["Assignment1.html"]{Assignment 1}}]
+
+
+@include-section{../subversion.scrbl}
+@include-section{../pair-programming.scrbl}
+@include-section{blog.scrbl}
