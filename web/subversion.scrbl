@@ -49,7 +49,7 @@ assignments, and (2) submit your assignments for grading. If you are in pair
 number @emph{P}, then your repository is located at
 
 @indented[
-  @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2011/pairP/}
+  @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2012/pairP/}
 ]
 
 You should @tt{svn checkout} the above URL to create your local working
@@ -77,7 +77,7 @@ You could then verify the current state of your work for assignment 1, for
 instance, by pointing your browser to
 
 @indented[
-  @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2011/pairP/assn1/}
+  @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2012/pairP/assn1/}
 ]
 
 Just like the design recipe asks you to run tests at the end of a design cycle,
