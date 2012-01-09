@@ -78,3 +78,6 @@ web-scp: clean-web web-students
 
 web-perms:
 	ssh $(CCS) chmod -Rf g+w $(CCS_PATH) || true
+
+clean: clean-web
+	-rm *log pict*png *~ *out scribble-common.js scribble.css scribble-style.css
