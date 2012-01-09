@@ -6,6 +6,7 @@
 
 @local-table-of-contents[]
 
+@include-section[(lib "class/universe.scrbl")]
 @include-section[(lib "class/0/0.scrbl")]
 @include-section[(lib "class/1/1.scrbl")]
 @include-section[(lib "class/2/2.scrbl")]

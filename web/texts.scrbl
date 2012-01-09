@@ -15,5 +15,4 @@
 @section*{Recommended Reading}
 
 @itemlist[
- @item{@emph{A Little Java, A Few Patterns} by Felleisen and Friedman. MIT Press, 2000.}
- @item{@emph{Programming Ruby (3rd edition): The Pragmatic Programmers' Guide}, by Dave Thomas.  Pragmatic Bookshelf, 2009.}]
+ @item{@emph{A Little Java, A Few Patterns} by Felleisen and Friedman. MIT Press, 2000.}]
