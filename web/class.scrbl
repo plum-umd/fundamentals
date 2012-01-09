@@ -2,16 +2,16 @@
 @(require "unnumbered.rkt"
           "utils.rkt")
 
-@title*[#:tag "class" #:style 'toc]{Class system}
+@title*[#:tag "class" #:style '(toc)]{Class system}
 
 @local-table-of-contents[]
 
-@include-section["class/class0.scrbl"]
-@include-section["class/class1.scrbl"]
-@include-section["class/class2.scrbl"]
-@include-section["class/class3.scrbl"]
-@include-section["class/class4.scrbl"]
-@include-section["class/class5.scrbl"]
+@include-section[(lib "class/0/0.scrbl")]
+@include-section[(lib "class/1/1.scrbl")]
+@include-section[(lib "class/2/2.scrbl")]
+@include-section[(lib "class/3/3.scrbl")]
+@include-section[(lib "class/4/4.scrbl")]
+@include-section[(lib "class/5/5.scrbl")]
 
 The latest class system is:
 

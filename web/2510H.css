@@ -7,6 +7,8 @@
    As you read the rest of the file, remember to double-check here to
    see if any font is set. */
 
+/* #B2248F is the new purple */
+
 /* Monospace: */
 .maincolumn, .refpara, .tocset, .stt, .hspace {
   font-family: monospace;
@@ -55,7 +57,7 @@ table p {
 
 body {
   color: black;
-  background-color: #DDDDEE; 
+  background-color: #C2E0D1;
 }
 
 table td {
@@ -83,12 +85,12 @@ table td {
 
 .navsettop {
   margin-bottom: 1.5em;
-  border-bottom: 2px solid purple /* #e0e0c0; */
+  border-bottom: 2px solid #B2248F /* #e0e0c0; */
 }
 
 .navsetbottom {
   margin-top: 2em;
-  border-top: 2px solid purple /* #e0e0c0; */
+  border-top: 2px solid #B2248F /* #e0e0c0; */
 }
 
 .navleft {
@@ -104,7 +106,7 @@ table td {
   white-space: nowrap;
 }
 .nonavigation {
-  color: purple; /* #e0e0e0; */
+  color: #B2248F; /* #e0e0e0; */
 }
 
 .searchform {
@@ -194,13 +196,13 @@ table td {
 
 .toclink {
   text-decoration: none;
-  color: purple;
+  color: #B2248F;
   font-size: 85%;
 }
 
 .toptoclink {
   text-decoration: none;
-  color: purple; /* #880308; */
+  color: #B2248F; /* #880308; */
   font-weight: bold;
 }
 
@@ -229,7 +231,7 @@ table td {
 }
 
 .tocsubseclink {
-  color: purple; /* #880308; */
+  color: #B2248F; /* #880308; */
 }
 
 .tocviewlist, .tocsublist {
@@ -263,12 +265,12 @@ table td {
 
 .tocviewlink {
   text-decoration: none;
-  color: purple; /* #880308; */
+  color: #B2248F; /* #880308; */
 }
 
 .tocviewselflink {
   text-decoration: none;
-  color: purple; /* blue; */
+  color: #B2248F; /* blue; */
 }
 
 .tocviewtoggle {
@@ -372,7 +374,7 @@ i {
 
 .plainlink {
   text-decoration: underline;
-  color: purple; /* blue; */
+  color: #B2248F; /* blue; */
 }
 
 .techoutside       { text-decoration: underline; color: #b0b0b0; }

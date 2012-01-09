@@ -6,7 +6,7 @@
        @linebreak[]
        Introduction to Class-based Program Design}
 
-@larger{@bold{Spring, 2011}}
+@larger{@bold{Spring, 2012}}
 
 The course studies the class-based program design and the design
 of abstractions that support the design of reusable software and
@@ -31,10 +31,11 @@ to practical hands-on programming.
 @include-section["general.scrbl"]
 @include-section["texts.scrbl"]
 @include-section["syllabus.scrbl"]
-@include-section["lectures.scrbl"]
-@include-section["labs.scrbl"]
+@include-section["book.scrbl"]
+@;include-section["lectures.scrbl"]
+@;include-section["labs.scrbl"]
 @include-section["assignments.scrbl"]
-@include-section["solutions.scrbl"]
+@;include-section["solutions.scrbl"]
 @include-section["subversion.scrbl"]
 @include-section["pair-programming.scrbl"]
 @include-section["style.scrbl"]

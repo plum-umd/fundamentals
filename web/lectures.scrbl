@@ -4,12 +4,12 @@
 	  scribble/eval
           racket/sandbox
           (for-label lang/htdp-intermediate-lambda)
-          #;(for-label class0))
+          #;(for-label class/0))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
     (the-eval '(require lang/htdp-intermediate-lambda))
-   ;(the-eval '(require class0))
+   ;(the-eval '(require class/0))
     (call-in-sandbox-context 
      the-eval 
      (lambda () ((dynamic-require 'htdp/bsl/runtime 'configure)

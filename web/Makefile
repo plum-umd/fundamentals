@@ -1,4 +1,4 @@
-CLASS=class-system-03-28.plt
+CLASS=class-system-01-08.plt
 CLASS_LATEST=class-system-latest.plt
 CCS=login.ccs.neu.edu
 CCS_PATH=/course/cs2510h/.www/
@@ -14,35 +14,25 @@ clean: clean-class clean-web
 
 .PHONY: class
 class: clean-class copy-doc
-	(cd .. && raco pack \
-		-v --at-plt --replace \
-		++setup class/0 \
-		++setup class/1 \
-		++setup class/2 \
-		++setup class/3 \
-		++setup class/4 \
-		++setup class/5 \
-		++setup scribblings/main \
-		$(CLASS) \
-		class0/ class1/ class2/ class3/ class4/ class5/)
+	raco pack -v --collect --at-plt --replace $(CLASS) class
 
 clean-class:
 	find ../class* -name compiled -type d | xargs rm -fr
 	rm -fr ../class-system-*.plt
 
 copy-doc:
-	rm -fr ../class5/scribblings/
-	rm -fr ../class4/scribblings/
-	rm -fr ../class3/scribblings/
-	rm -fr ../class2/scribblings/
-	rm -fr ../class1/scribblings/
-	rm -fr ../class0/scribblings/
-	cp -r ./class/ ../class5/scribblings/
-	cp -r ./class/ ../class4/scribblings/
-	cp -r ./class/ ../class3/scribblings/
-	cp -r ./class/ ../class2/scribblings/
-	cp -r ./class/ ../class1/scribblings/
-	cp -r ./class/ ../class0/scribblings/
+	# rm -fr ../class/5/scribblings/
+	# rm -fr ../class/4/scribblings/
+	# rm -fr ../class/3/scribblings/
+	# rm -fr ../class/2/scribblings/
+	# rm -fr ../class/1/scribblings/
+	# rm -fr ../class/0/scribblings/
+	# cp -r ./class/ ../class/5/scribblings/
+	# cp -r ./class/ ../class/4/scribblings/
+	# cp -r ./class/ ../class/3/scribblings/
+	# cp -r ./class/ ../class/2/scribblings/
+	# cp -r ./class/ ../class/1/scribblings/
+	# cp -r ./class/ ../class/0/scribblings/
 
 
 #
@@ -50,8 +40,7 @@ copy-doc:
 #
 
 web:
-	ln -sf ../$(CLASS) $(CLASS)
-	ln -sf ../$(CLASS) $(CLASS_LATEST)
+	ln -sf $(CLASS) $(CLASS_LATEST)
 	env CLASS=$(CLASS) raco make 2510H.scrbl
 	raco scribble --htmls \
 		++extra fonts/kulminoituva-webfont.eot \
@@ -60,16 +49,17 @@ web:
 		++extra fonts/kulminoituva-webfont.woff \
 		++extra $(CLASS) \
 		++extra $(CLASS_LATEST) \
-		++extra ../notes/notes.pdf \
-		++extra ../notes/notes-2up.pdf \
-		++extra labs/9/class3-html.plt \
-		++extra labs/11/class4-blobs.plt \
-		++extra labs/12/source-sink.rkt \
-		++extra labs/13/state-diagram.png \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		--style 2510H.css \
 		2510H.scrbl
+
+#++extra ../notes/notes.pdf \
+#++extra ../notes/notes-2up.pdf \
+#++extra labs/9/class3-html.plt \
+#++extra labs/11/class4-blobs.plt \
+#++extra labs/12/source-sink.rkt \
+#++extra labs/13/state-diagram.png \
 
 web-students:
 	env STUDENTS=1 make web
