@@ -18,53 +18,91 @@
 
 @title*[#:style 'toc]{Lectures}
 
-In this section, you'll find notes and code from 
-each lecture.
+In this section, you'll find brief notes from each lecture.
 
 @local-table-of-contents[#:style 'immediate-only]
 
-@include-section["lectures/lec01.scrbl"]
-@include-section["lectures/lec02.scrbl"]
+@section[#:tag "lec01"]{1/9: Objects}
 
-@section[#:tag "lec03"]{1/17: Holiday (MLK Day)}
-There is no lecture on 1/17 since it is Martin Luther King, Jr. Day.
+@itemlist[
+ @item{Announcements
+   @itemlist[
+     @item{Course staff introductions.}
+     @item{Basic class mechanics.}
+     @item{On the experimental nature of this course.}
+     @item{The @seclink["assign01"]{first assignment}
+           is due @bold{this} Wednesday.}
+     @item{The @seclink["lab01"]{first lab} is @bold{tonight}.}
+     @item{Partners have already been assigned.  See the @seclink["Blog"]{blog}.
 
-@include-section["lectures/lec04.scrbl"]
-@include-section["lectures/lec05.scrbl"]
-@include-section["lectures/lec06.scrbl"]
-@include-section["lectures/lec07.scrbl"]
-@include-section["lectures/lec08.scrbl"]
-@include-section["lectures/lec09.scrbl"]
-@include-section["lectures/lec10.scrbl"]
-@include-section["lectures/lec11.scrbl"]
-@include-section["lectures/lec12.scrbl"]
+     Make sure to check your CCIS username is correct in the pair
+     assignments on the blog.  Make sure your partner exists.}     
+     @item{Questions?}]}
+ @item{Basics of objects
+   @itemlist[
+     @item{New paradigm.  Open your mind and embrace it (or you will be miserable).}
+     @item{Rocket, designed in functional style.}
+     @item{Rocket, designed in object-oriented style.}
+     @item{Landing and take off.}
+     @item{Moon.}]}]
 
-@section[#:tag "lec13"]{2/21: Holiday (Presidents Day)}
-There is no lecture on 2/21 since it is Presidents Day.
+@section[#:tag "lec02"]{1/12: Classes}
 
-@include-section["lectures/lec14.scrbl"]
+@section[#:tag "lec03"]{1/16: Holiday (MLK Day)}
+There is no lecture on 1/16 since it is Martin Luther King, Jr. Day.
 
-@section[#:tag "lec15"]{2/28: Holiday (Spring break)}
+@section[#:tag "lec04"]{1/19: Interfaces}
 
-There is no lecture on 2/28 since it is during Spring break.
+[Sam will be in California.]
 
-@section[#:tag "lec16"]{3/03: Holiday (Spring break)}
+@section[#:tag "lec05"]{1/23: Zombies}
 
-There is no lecture on 3/3 since it is during Spring break.
+@section[#:tag "lec06"]{1/26: Universe}
 
-@include-section["lectures/lec15.scrbl"]
-@include-section["lectures/lec16.scrbl"]
+@section[#:tag "lec07"]{1/30: Delegation}
 
-@include-section["lectures/lec19.scrbl"]
-@include-section["lectures/lec20.scrbl"]
-@include-section["lectures/lec21.scrbl"]
-@include-section["lectures/lec22.scrbl"]
-@include-section["lectures/lec23.scrbl"]
-@section[#:tag "lec24"]{3/31: Project Intro}
-@include-section["lectures/lec25.scrbl"]
-@include-section["lectures/lec26.scrbl"]
-@section[#:tag "lec27"]{4/11: Ruby}
-@section[#:tag "lec28"]{4/14: TBD}
-@section[#:tag "lec29"]{4/18: Holiday (Patriots Day)}
+@section[#:tag "lec08"]{2/2: Inheritance}
 
-There is no lecture on 4/18 since it is Patriots Day.
+@section[#:tag "lec09"]{2/6: Invariants, Data Structures, Testing}
+
+@section[#:tag "lec10"]{2/9: Constructors}
+
+@section[#:tag "lec11"]{2/13: Mutation}
+
+@section[#:tag "lec12"]{2/16: Visitors}
+
+@section[#:tag "lec13"]{2/20: Holiday (Presidents Day)}
+There is no lecture on 2/20 since it is Presidents Day.
+
+@section[#:tag "lec14"]{2/23: Slack}
+
+@section[#:tag "lec15"]{2/27: Java I: Syntax and Semantics}
+
+@section[#:tag "lec16"]{3/1: Java II: Types}
+
+@section[#:tag "lec17"]{3/5: Holiday (Spring Break)}
+There is no lecture on 3/5 since it is during Spring break.
+
+@section[#:tag "lec18"]{3/8: Holiday (Spring Break)}
+There is no lecture on 3/8 since it is during Spring break.
+
+@section[#:tag "lec19"]{3/12: Project Intro}
+
+@section[#:tag "lec20"]{3/15: Operating Systems}
+
+@section[#:tag "lec21"]{3/19: Overriding}
+
+@section[#:tag "lec22"]{3/22: Functions}
+
+@section[#:tag "lec23"]{3/26: Equality}
+
+@section[#:tag "lec24"]{3/29: Data Structures and Algorithmics}
+
+@section[#:tag "lec25"]{4/2: Java III: Libraries}
+
+@section[#:tag "lec26"]{4/5: Implementing OO}
+
+@section[#:tag "lec27"]{4/9: Mixins and Prototypes}
+
+@section[#:tag "lec28"]{4/12: Slack}
+
