@@ -5,14 +5,14 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class0 define-struct)
+          (for-label (except-in class/0 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
-                     class0/universe))
+                     class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class0))
+    (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
     the-eval))
 
@@ -38,33 +38,33 @@
   ]
 }
 
-@lab:section{Setting up @racket[class0]}
+@lab:section{Setting up @racket[class/0]}
 
 To write object-oriented programs we will use a special dialect of Racket called
-@racket[class0] that includes support for classes and objects. Just like we
+@racket[class/0] that includes support for classes and objects. Just like we
 progressed through BSL, ISL, and ASL last semester, we will progress from
-@racket[class0] on to richer object-oriented dialects as we learn more about how
+@racket[class/0] on to richer object-oriented dialects as we learn more about how
 to program with objects.
 
-To install the @racket[class0] language in DrRacket, go to @tt{File → Install
+To install the @racket[class/0] language in DrRacket, go to @tt{File → Install
 .plt File... → Web} and copy in this URL:
 
 @indented{
   @tt[class-system-latest]
 }
 
-Once installed, use the @racket[class0] language by selecting @tt{Language →
+Once installed, use the @racket[class/0] language by selecting @tt{Language →
 Choose Language... → Use the language declared in the source}. Then start your
 file with the following lines:
 
 @#reader scribble/comment-reader
 (racketmod
-class0
+class/0
 (require 2htdp/image)
-(require class0/universe)
+(require class/universe)
 )
 
-The @tt{#lang} line tells Racket to use the @racket[class0] language, and the
+The @tt{#lang} line tells Racket to use the @racket[class/0] language, and the
 two @racket[require] lines load the image and universe libraries that we'll use
 to create images and interactive programs.
 

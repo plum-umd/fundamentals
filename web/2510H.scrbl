@@ -33,7 +33,7 @@ to practical hands-on programming.
 @include-section["syllabus.scrbl"]
 @include-section["book.scrbl"]
 @include-section["lectures.scrbl"]
-@;include-section["labs.scrbl"]
+@include-section["labs.scrbl"]
 @include-section["assignments.scrbl"]
 @;include-section["solutions.scrbl"]
 @include-section["subversion.scrbl"]

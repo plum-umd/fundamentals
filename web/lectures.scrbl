@@ -46,6 +46,9 @@ In this section, you'll find brief notes from each lecture.
      @item{Landing and take off.}
      @item{Moon.}]}]
 
+If you don't have a CCIS account, you need to get one TODAY.  Make
+sure we have your CCIS username on the @seclink{Blog}.
+
 @section[#:tag "lec02"]{1/12: Classes}
 
 @section[#:tag "lec03"]{1/16: Holiday (MLK Day)}
