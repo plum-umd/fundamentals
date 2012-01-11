@@ -3,7 +3,7 @@ CCS_PATH=/course/cs2510/.www/
 
 scrbls := $(wildcard *.scrbl)
 
-all:   clean 2510
+all:   clean web
 push:  clean web-scp web-perms
 
 clean: clean-web
@@ -12,6 +12,8 @@ clean: clean-web
 # web
 #
 
+web: 2510
+ 
 2510: $(scrbls)
 	raco make 2510.scrbl
 	raco scribble --htmls \
