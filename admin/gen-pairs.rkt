@@ -3,17 +3,25 @@
 
 (define x (shuffle (file->lines "student-list")))
 
-(define one (first x))
-(define others (rest x))
+(define class-size (length x))
+(define num-pairs (quotient class-size 2))
 
-(define pairs (map list (take others 20) 
-                   (drop  others 20)))
+(define one (first x))
+(define others (if (odd? class-size) 
+                   (rest x)
+                   x))
+
+
+(define pairs (map list (take others num-pairs) 
+                   (drop  others num-pairs)))
 
 (define (get-username s) (second (regexp-match ".*?([a-z_0-9]+)$" s)))
 
 (define pairs*
-  (cons (cons one (first pairs))
-        (rest pairs)))
+  (if (odd? class-size)
+      (cons (cons one (first pairs))
+        (rest pairs))
+      pairs))
 
 (define all-users (map (λ (l) (map get-username l)) pairs*))
 
