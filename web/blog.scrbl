@@ -7,6 +7,14 @@
 
 @title*{Blog}
 
+@section*{Book PDF link fixed}
+
+@tt{Wed Jan 11 01:03:16 EST 2012}
+
+The link to the PDF for @seclink["book"]{@emph{Designing Programs with
+Class}} has been fixed.  Remember: the book is updated on a regular
+basis so be sure you're reading the latest version.
+
 @section*{Assignment 1 posted}
 
 @tt{Mon Jan  9 15:40:38 EST 2012} 

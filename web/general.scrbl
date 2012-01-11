@@ -1,46 +1,68 @@
 #lang scribble/manual
+@(require racket/list)
 @(require "unnumbered.rkt" "utils.rkt")
+
+@(define instructors
+  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/samth/"]{Sam Tobin-Hochstadt}
+	      (tt "samth") "WVH358 " "Monday " "3:00pm-5:00pm")
+        (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn} 
+	      (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")))
+
+@(define tas
+  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
+	      (tt "asumu") "WVH308" "Wednesday " "4:00pm-6:00pm")))
+
+@(define tutors
+  (list	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "9:00pm-11:00pm")
+        (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
+        (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
+
+@; commas : [List X] -> [List (U X String)]
+@(define (commas xs)
+   (cond [(= 2 (length xs)) (list (first xs) " and " (second xs))]
+         [else (add-between xs ", ")]))
 
 @title*{General}
 
 @section*{People}
 
-@bold{Instructors:} 
-@link[#:style "plainlink" "http://www.ccs.neu.edu/home/samth/"]{Sam Tobin-Hochstadt}
-and 
-@link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn}.
+@indented{
+@bold{Instructors:} @(apply elem (commas (map first instructors))).
 
-@bold{TA:} @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
+Instructors design and implement this class.  They lecture and create
+the labs, assignments, and exams.  They are here to
+@link["http://worrydream.com/SomeThoughtsOnTeaching/"]{teach from
+life}.
+
+@bold{TAs:} @(apply elem (commas (map first tas))).
 
 TAs teach labs, supervise the grading of homework sets, hold office
 hours, and occasionally substitute in lectures. In general, they are
 apprentice teachers and are here to learn how to run a course.
 
-@bold{Tutors:} Spencer Florence, Ryan Plessner, Sarah Laplante
+@bold{Tutors:} @(apply elem (commas (map first tutors))).
+
+Tutors have, in the past year or two, mastered the material of this
+course; they help in labs, hold office hours, grade assignments, and 
+can remember what it's like to be lost.  They are here to gain a
+deeper understanding by teaching what they know to others.
+
+}
 
 @section*{Office Hours}
 
-@indented[@tabular[
-  (list (list "Sam Tobin-Hochstadt" (tt "samth") "WVH358 " "Monday" "3:00pm-5:00pm")
-        (list "David Van Horn" (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")
-        (list "Asumu Takikawa" (tt "asumu") "WVH308" "Wednesday/Friday " "3:30pm-4:30pm")
-	(list "Spencer Florence" (tt "florence")"WVH102" "??" "??")
-	(list "Ryan Plessner" (tt "rpless") "WVH102" "??" "??")
-	(list "Sarah Laplante" (tt "laplante") "WVH102" "??" "??")
-	)]]
+@indented[@tabular[(append instructors tas tutors)]]
 
+@bold{Communication}
 
-@bold{Communication}: Use CCIS email (@tt["@ccs.neu.edu"]) to reach
-any of the course staff; usernames are given above.  Read the
-@secref{Blog} on a daily basis for course announcements.
+@indented{Use CCIS email (@tt["@ccs.neu.edu"]) to reach
+any of the course staff; usernames are given above.}
 
+@bold{Lectures} 
+@indented{Monday and Thursday 11:45–1:25pm in Shillman 415.}
 
-@bold{Class:} Class consists of lecture (CS2510H) and lab (CS2511H)
-sections.
-
-@bold{Lectures:} Mon, Thu 11:45–1:25pm Shillman 415
-
-@bold{Labs:} Mon 6:00–7:40pm WVH 210
+@bold{Labs}  
+@indented{Monday 6:00–7:40pm in WVH 210.}
 
 
 @section*{Policies}
@@ -52,14 +74,21 @@ sections.
   @item{Academic honesty: we will strictly enforce Northeastern's
   @link[#:style "plainlink"
   "http://www.northeastern.edu/osccr/academichonesty.html"]{academic
-  integrity policy}.  You may discuss problems with other students,
-  but you should not share or show code to anyone other than your
-  assigned partner.  Violations of academic integrity will be reported
-  to OSCCR and will have a negative impact on your grade.}]
+integrity policy}.  All programs must be completed strictly by you and
+your partner.  You are free to discuss the problem sets with others,
+so long as you acknowledge discussants.  However, @emph{you may not
+share code in any way}.  Submitting code that is not your own will be
+considered a violation of the University's Academic Integrity
+Policy (pages 38---40 of the @link[#:style "plainlink"
+"http://www.northeastern.edu/osccr/pdfs/Code%20of%20Conduct/2011_2012_Code_of_Co.pdf"]{2011-2012
+Underaduate Student Handbook}).  Violations of academic integrity will
+be reported to @link[#:style "plainlink"
+"http://www.northeastern.edu/osccr/"]{OSCCR} and will have a negative
+impact on your grade.}]
 
 @section*{Computing Environment}
 
-We will use @link[#:style "plainlink"
+@indented{We will use @link[#:style "plainlink"
 "http://racket-lang.org/"]{DrRacket} v5.2.  DrRacket is installed on
 the CCS computers. It is also freely available on the web in case you
 wish install it on your own computer.
@@ -72,11 +101,11 @@ enter the url
 
 
 You will use @secref{Subversion} to work on your homework sets, to
-keep track of revisions, and to submit your homework.
+keep track of revisions, and to submit your homework.}
 
 @section*{Bug Reports}
 
-This course relies on several peices of software including the
+@indented{This course relies on several peices of software including the
 @seclink["class"]{class system}, the @seclink["book"]{book}, and this
 web page.  You can follow the development of this software on Github:
 
@@ -84,20 +113,20 @@ web page.  You can follow the development of this software on Github:
 
 and you should submit bugs by creating a new
 "@link["https://github.com/dvanhorn/dpc/issues"]{issue}".  Your help
-in improving the software and book are greatly needed and appreciated.
+in improving the software and book are greatly needed and appreciated.}
 
 @section*{Problem Sets}
 
-There will be weekly problem sets. 
+@indented{There will be weekly problem sets. 
 
 We will drop the homework grade with the worst impact on your final
 grade from consideration for the final grade. Thus, if you just don't
 get it one week, nothing is lost. The story is different for the
-second or third or ... time.
+second or third or ... time.}
 
 @section*{Pair Programming}
 
-You must work on your problem sets in pairs. Your lab TA will assign
+@indented{You must work on your problem sets in pairs. Your lab TA will assign
 you a partner. Every few weeks, you will get a new partner.
 
 Pair programming means that you and your partner work on the problem
@@ -109,6 +138,7 @@ individuals in programming. The rough idea is this: One of you plays
 keyboard and explains aloud what is going on; it is the co-pilot's
 responsibility to question everything. After a problem is solved to
 the satisfaction of both, you @emph{must} switch roles.
+}
 
 @section*{Exams}
 
@@ -118,13 +148,13 @@ the satisfaction of both, you @emph{must} switch roles.
 
 @section*{Projects}
 
-There will be a substantial class project implemented over the last
-several weeks of the course.
+@indented{There will be a substantial class project implemented over the last
+several weeks of the course.}
 
 @section*{Grades}
 
-You will get a gpa for your homework (including the project) and for
+@indented{You will get a gpa for your homework (including the project) and for
 your exams. You must have both a passing homework gpa and a passing
 gpa to pass the course. For the final grade, we will assign a weight
 of 40% to the homework grade and a weight of 55% to the two exams. The
-remaining 5% are up to the instructors' whim.
+remaining 5% are up to the instructors' whim.}

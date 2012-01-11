@@ -3,6 +3,8 @@ CLASS_LATEST=class-system-latest.plt
 CCS=login.ccs.neu.edu
 CCS_PATH=/course/cs2510h/.www/
 
+scrbls := $(wildcard *.scrbl)
+
 all:   clean class web
 push:  clean class web-scp
 
@@ -13,33 +15,23 @@ clean: clean-class clean-web
 #
 
 .PHONY: class
-class: clean-class copy-doc
+class: clean-class
 	raco pack -v ++setup class --collect --at-plt --replace $(CLASS) class
 
 clean-class:
 	find ../class* -name compiled -type d | xargs rm -fr
 	rm -fr ../class-system-*.plt
 
-copy-doc:
-	# rm -fr ../class/5/scribblings/
-	# rm -fr ../class/4/scribblings/
-	# rm -fr ../class/3/scribblings/
-	# rm -fr ../class/2/scribblings/
-	# rm -fr ../class/1/scribblings/
-	# rm -fr ../class/0/scribblings/
-	# cp -r ./class/ ../class/5/scribblings/
-	# cp -r ./class/ ../class/4/scribblings/
-	# cp -r ./class/ ../class/3/scribblings/
-	# cp -r ./class/ ../class/2/scribblings/
-	# cp -r ./class/ ../class/1/scribblings/
-	# cp -r ./class/ ../class/0/scribblings/
-
-
 #
 # web
 #
 
-web:
+web: 2510H 2510H/dpc.pdf
+
+2510H/dpc.pdf: dpc.scrbl
+	raco scribble --pdf --dest 2510H/ dpc.scrbl
+
+2510H: $(scrbls)
 	ln -sf $(CLASS) $(CLASS_LATEST)
 	env CLASS=$(CLASS) raco make 2510H.scrbl
 	raco scribble --htmls \
@@ -55,13 +47,6 @@ web:
 		--style 2510H.css \
 		2510H.scrbl
 
-#++extra ../notes/notes.pdf \
-#++extra ../notes/notes-2up.pdf \
-#++extra labs/9/class3-html.plt \
-#++extra labs/11/class4-blobs.plt \
-#++extra labs/12/source-sink.rkt \
-#++extra labs/13/state-diagram.png \
-
 web-students:
 	env STUDENTS=1 make web
 
@@ -73,7 +58,7 @@ clean-web:
 # web-scp
 #
 
-web-scp: clean-web class web-students	
+web-scp: clean-web class web-students
 	scp -r 2510H/* $(CCS):$(CCS_PATH)
 	make web-perms
 
