@@ -19,11 +19,12 @@
   (list	(list "James Grammatikos" (tt "jgramm") "WVH102" "Thursday " "noon-2:00pm")
 	(list "Trevor Sontag" (tt "tasontag") "WVH102 " "Tuesday " "6:00pm-8:00pm")
 	(list "Scott Lindeman" (tt "lindeman") "WVH102" "Friday " "9:00am-11:00am")
-	(list "David Silva" (tt "dmsilva") "WVH102" "Monday " "5:00-7:00pm")
-	(list "Joshua Coates" (tt "jccoates") "WVH102" "Tuesday " "6:00-8:00pm")
+	(list "David Silva" (tt "dmsilva") "WVH102" "Monday " "5:00pm-7:00pm")
+	(list "Joshua Coates" (tt "jccoates") "WVH102" "Tuesday " "6:00pm-8:00pm")
+	(list "Theresa Aristarco" (tt "aristar") "WVH102" "Friday" "3:15pm-5:15pm")
 	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "9:00pm-11:00pm")
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
-        (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
+        (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00pm-5:00pm")))
 
 @; commas : [List X] -> [List (U X String)]
 @(define (commas xs)
