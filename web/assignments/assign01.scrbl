@@ -119,7 +119,7 @@ rectangle (using the graphics coordinates system).
 ;; bottom-right : Rect -> Posn
 (define (bottom-right r)
   (make-posn (+ (rect-x r) (/ (rect-w r) 2))
-             (- (rect-y r) (/ (rect-h r) 2))))
+             (+ (rect-y r) (/ (rect-h r) 2))))
 
 ;; overlap? : Rect Rect -> Boolean
 (define (overlap? r1 r2)
