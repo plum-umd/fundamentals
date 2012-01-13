@@ -1,11 +1,80 @@
 #lang scribble/manual
 @(require "unnumbered.rkt")
 
-@(require (for-label class/0))
+@(require (for-label (except-in class/0 check-expect)))
+@(require (for-label (only-in lang/htdp-intermediate-lambda check-expect)))
 @(require (for-label class/universe))
 
 
 @title*{Blog}
+
+@section*{Revised @racketmodname[class/0]}
+@tt{Fri Jan 13 14:13:15 EST 2012}
+
+We've decided to make some different design choices for
+@racketmodname[class/0].  These changes are backwards compatible, so any
+programs you've already written should still work in the new
+@racketmodname[class/0].
+
+We have added the ability to write @racket[check-expect]s within a
+class definition so that tests can be closer to code.  It's important
+to keep in mind that these tests really exists @emph{outside} of the
+class and any of its instances, so you cannot refer to @racket[this]
+or access any fields.  Think of it purely as a convenience for writing
+tests near method definitions; the are lifted out to the top-level of
+a program by our implementation.
+
+We made the mistake of introducing the notion of "visibility" too
+early by including @racket[define/public] and @racket[define/private]
+in @racketmodname[class/0].  Visibility, which is a mechanism for enforcing
+invariants of objects, is something that we don't need to worry about
+until later in the semester.  We have therefore made it possible to
+define methods using @racket[define], which has the same meaning as
+@racket[define/public], and @racket[define/public] and
+@racket[define/private], while still available, should be considered
+deprecated.
+
+Thus the following new kind of program can be written: 
+
+@#reader scribble/comment-reader
+(racketmod
+class/0
+;; A Posn is a (new posn% Number Number)
+(define-class posn%
+  (fields x y)
+  ;; dist : Posn -> Number
+  ;; Euclidean distance from this posn to that posn.
+  (check-expect (send (new posn% 3 4) dist (new posn% 0 0)) 5)
+  (define (dist that)
+    (sqrt (+ (sqr (- (send that x) (field x)))
+	     (sqr (- (send that y) (field y)))))))
+)
+
+which is equivalent to this one:
+
+@#reader scribble/comment-reader
+(racketmod
+class/0
+;; A Posn is a (new posn% Number Number)
+(define-class posn%
+  (fields x y)
+  ;; dist : Posn -> Number
+  ;; Euclidean distance from this posn to that posn.
+  (define/public (dist that)
+    (sqrt (+ (sqr (- (send that x) (field x)))
+	     (sqr (- (send that y) (field y)))))))
+
+(check-expect (send (new posn% 3 4) dist (new posn% 0 0)) 5)
+)
+
+You are still free to use @racket[define/public] although we'd prefer
+you use @racket[define] moving forward.
+
+The documentation for @racketmodname[class/0] has been updated to reflect
+these changes.
+
+To access the new features, you should install the new @tt{.plt} file
+as described on the @secref{class} page.
 
 @section*{Assignment 2 posted}
 @tt{Thu Jan 12 12:10:33 EST 2012}
