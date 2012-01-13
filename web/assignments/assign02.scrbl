@@ -42,5 +42,9 @@ Language: @racketmodname[class/0].
 	(A ternary tree is like a binary tree, except nodes have
 	@emph{three} subtrees instead of two.)
 
+	In this representation, values are stored at @emph{both} nodes
+	and leaves, and there are no empty trees.  Note that this
+	means that trees with two or three values cannot be represented.
+
         Implement the methods @tt{size}, @tt{sum},
 	@tt{prod}, @tt{contains?}, @tt{map}, and @tt{max}.}  ]
