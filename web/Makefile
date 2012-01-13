@@ -14,8 +14,10 @@ clean: clean-class clean-web
 # class
 #
 
-.PHONY: class
-class: clean-class
+.PHONY: clean-class
+class: $(CLASS) clean-class
+
+$(CLASS): 
 	raco pack -v ++setup class --collect --at-plt --replace $(CLASS) class
 
 clean-class:
@@ -32,7 +34,7 @@ web: 2510H 2510H/dpc.pdf
 	raco scribble --latex --dest 2510H/ dpc.scrbl
 	cd 2510H; xelatex dpc.tex
 
-2510H: $(scrbls)
+2510H: $(CLASS) $(scrbls)
 	ln -sf $(CLASS) $(CLASS_LATEST)
 	env CLASS=$(CLASS) raco make 2510H.scrbl
 	raco scribble --htmls \
