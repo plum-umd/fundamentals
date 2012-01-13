@@ -10,7 +10,7 @@ otherwise noted.
 @local-table-of-contents[]
 
 @include-section["assignments/assign01.scrbl"]
-@;include-section["assignments/assign02.scrbl"]
+@include-section["assignments/assign02.scrbl"]
 @;include-section["assignments/assign03.scrbl"]
 @;include-section["assignments/assign04.scrbl"]
 @;include-section["assignments/assign05.scrbl"]

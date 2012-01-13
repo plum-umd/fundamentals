@@ -7,8 +7,12 @@
 
 @title*{Blog}
 
-@section*{Partnerships updated}
+@section*{Assignment 2 posted}
+@tt{Thu Jan 12 12:10:33 EST 2012}
 
+@seclink["assign02"]{Assignment 2} has been posted.
+
+@section*{Partnerships updated}
 @tt{Wed Jan 11 11:10:16 EST 2012}
 
 The initial partnerships, listed below, have been updated for one parternship

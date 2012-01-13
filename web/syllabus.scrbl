@@ -13,7 +13,7 @@ This syllabus will evolve throughout the semester so check it often.
             (string-append "0" r)]
            [else r])))
 
-@(define WEEK-REVEALED (if-internal 15 0))
+@(define WEEK-REVEALED (if-internal 15 1))
 
 @(define assign-dates
    (list "1/11"

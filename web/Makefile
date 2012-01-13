@@ -3,7 +3,7 @@ CLASS_LATEST=class-system-latest.plt
 CCS=login.ccs.neu.edu
 CCS_PATH=/course/cs2510h/.www/
 
-scrbls := $(wildcard *.scrbl)
+scrbls := $(wildcard *.scrbl) $(wildcard assignments/*.scrbl)
 
 all:   clean class web
 push:  clean class web-scp
@@ -28,8 +28,9 @@ clean-class:
 
 web: 2510H 2510H/dpc.pdf
 
-2510H/dpc.pdf: dpc.scrbl
-	raco scribble --pdf --dest 2510H/ dpc.scrbl
+2510H/dpc.pdf: dpc.scrbl	
+	raco scribble --latex --dest 2510H/ dpc.scrbl
+	cd 2510H; xelatex dpc.tex
 
 2510H: $(scrbls)
 	ln -sf $(CLASS) $(CLASS_LATEST)
