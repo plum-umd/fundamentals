@@ -7,7 +7,7 @@
 Assignment are due on a weekly basis, Wednesday at midnight, unless
 otherwise noted.
 
-@local-table-of-contents[]
+@local-table-of-contents[#:style 'immediate-only]
 
 @include-section["assignments/assign01.scrbl"]
 @include-section["assignments/assign02.scrbl"]
