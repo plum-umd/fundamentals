@@ -1,0 +1,213 @@
+[groups]
+
+[cs2510spring2012:/pair000]
+dc93 = rw
+bfaller = rw
+
+[cs2510spring2012:/pair001]
+agimmi00 = rw
+lind = rw
+
+[cs2510spring2012:/pair002]
+swazi = rw
+iboehman = rw
+
+[cs2510spring2012:/pair003]
+hartmand = rw
+sasia = rw
+
+[cs2510spring2012:/pair004]
+tedlin = rw
+7591 = rw
+
+[cs2510spring2012:/pair005]
+seebert = rw
+afasulo = rw
+
+[cs2510spring2012:/pair006]
+marcs = rw
+maggiec = rw
+
+[cs2510spring2012:/pair007]
+lahirud = rw
+shryock = rw
+
+[cs2510spring2012:/pair008]
+cmcelear = rw
+mostrow = rw
+
+[cs2510spring2012:/pair009]
+yujian = rw
+slindberg = rw
+
+[cs2510spring2012:/pair010]
+patcinc = rw
+andrewm = rw
+
+[cs2510spring2012:/pair011]
+mccoy = rw
+elisef = rw
+
+[cs2510spring2012:/pair012]
+dohertyc = rw
+jfahy = rw
+
+[cs2510spring2012:/pair013]
+eabraham = rw
+mckinnon = rw
+
+[cs2510spring2012:/pair014]
+jbrooks2 = rw
+hamuchea = rw
+
+[cs2510spring2012:/pair015]
+evannoyz = rw
+jkreell = rw
+
+[cs2510spring2012:/pair016]
+jacobsr = rw
+chlacher = rw
+
+[cs2510spring2012:/pair017]
+conorao = rw
+mclamp = rw
+
+[cs2510spring2012:/pair018]
+rstrass = rw
+ggoode = rw
+
+[cs2510spring2012:/pair019]
+dciatto = rw
+akaz = rw
+
+[cs2510spring2012:/pair020]
+spatel91 = rw
+bmccabe4 = rw
+
+[cs2510spring2012:/pair021]
+eromeiro = rw
+byoshi92 = rw
+
+[cs2510spring2012:/pair022]
+lyaunzbe = rw
+billyguo = rw
+
+[cs2510spring2012:/pair023]
+obrienjj = rw
+vkonen = rw
+
+[cs2510spring2012:/pair024]
+sm0ss117 = rw
+kaelanc = rw
+
+[cs2510spring2012:/pair025]
+millarj = rw
+dforman = rw
+
+[cs2510spring2012:/pair026]
+cmentzer = rw
+thu = rw
+
+[cs2510spring2012:/pair027]
+adamwigs = rw
+patcha = rw
+
+[cs2510spring2012:/pair028]
+tmacieik = rw
+lmarelic = rw
+
+[cs2510spring2012:/pair029]
+klebsh = rw
+kkotosky = rw
+
+[cs2510spring2012:/pair030]
+mhill = rw
+kbriskin = rw
+
+[cs2510spring2012:/pair031]
+kohlerjp = rw
+aedgett = rw
+
+[cs2510spring2012:/pair032]
+lopeza = rw
+kleinjm = rw
+
+[cs2510spring2012:/pair033]
+benuhl = rw
+seydi = rw
+
+[cs2510spring2012:/pair034]
+slee = rw
+jordanre = rw
+
+[cs2510spring2012:/pair035]
+pietdan = rw
+ascholl = rw
+
+[cs2510spring2012:/pair036]
+riley = rw
+rysull = rw
+
+[cs2510spring2012:/pair037]
+emilytx = rw
+bswords = rw
+
+[cs2510spring2012:/pair038]
+slynch = rw
+ferland = rw
+
+[cs2510spring2012:/pair039]
+tylere = rw
+soelgary = rw
+
+[cs2510spring2012:/pair040]
+toder13 = rw
+thurston = rw
+
+[cs2510spring2012:/pair041]
+zlyford = rw
+shivam = rw
+
+[cs2510spring2012:/pair042]
+cookid = rw
+abarba = rw
+
+[cs2510spring2012:/pair043]
+ascherj = rw
+ntinsley = rw
+
+[cs2510spring2012:/pair044]
+paelv99 = rw
+cyvuong = rw
+
+[cs2510spring2012:/pair045]
+jnanni = rw
+rimipat5 = rw
+
+[cs2510spring2012:/pair046]
+kvinagro = rw
+kandebo = rw
+
+[cs2510spring2012:/pair047]
+cpaszul = rw
+sking19 = rw
+
+[cs2510spring2012:/pair048]
+strandl = rw
+olinaba = rw
+
+[cs2510spring2012:/pair049]
+ravert1 = rw
+mrodrig = rw
+
+[cs2510spring2012:/pair050]
+joshs = rw
+pburden = rw
+
+[cs2510spring2012:/pair051]
+johndrew = rw
+hlavin = rw
+
+[cs2510spring2012:/pair052]
+kmiao91 = rw
+
