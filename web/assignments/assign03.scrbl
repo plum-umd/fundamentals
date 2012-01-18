@@ -1,7 +1,176 @@
 #lang scribble/manual
 @(require "../utils.rkt"
-          (for-label class1))
+          (for-label class/0))
 
+
+@title[#:tag "assign03"]{1/25: Playing Animations}
+
+Due: 1/25.
+
+@itemlist[#:style 'ordered
+ @item{@bold{Animation player}
+
+Language: @racketmodname[class/0].
+
+In this assignment, we'll build a video player for animations.  The
+player will support play, pause, fast-forward, and rewind.  A player
+will interact with an @racket[Animation] solely through the following
+interface: 
+
+@verbatim{
+;; An Animation implements:
+;; next : -> Animation
+;; prev : -> Animation
+;; render : -> Scene
+}
+
+
+@itemlist[#:style 'ordered
+@item{@bold{The Player user interface}
+
+The user can interact with a player through the keyboard: @racket["p"] plays, @racket["f"] fast-forwards, @racket["r"] rewinds, and @racket["s"] stops playing.
+
+The fast-forward mode should skip every other frame of the animation.  The rewind should go back through the animation, @emph{without} recomputing each frame.  }
+
+@item{@bold{Animations}
+
+An animation is anything that implements the above interface.  You
+need to implement several kinds of animations.  First, an animation
+that simply counts up and displays a number. Second, an animation that
+consists of a list of @racket[Scene].  Third, an animation that
+consists of a function from a number to a frame.  Fourth, you should
+implement some other class that implments the @racket[Animation]
+interface with an interesting animation.  
+}]
+
+}]
+
+@;{
+
+
+#lang class/0
+(require 2htdp/image)
+(require class/universe)
+
+(define WIDTH 200) ; Animation dimension in PX.
+(define HEIGHT 200)
+
+(define TRIANGLE-SIZE (/ WIDTH 10))
+(define play (rotate -90 (triangle TRIANGLE-SIZE "solid" "blue")))
+(define (bar c) (rectangle (/ TRIANGLE-SIZE 4) TRIANGLE-SIZE "solid" c))
+(define pause (beside play (bar "blue") (bar "white") (bar "blue")))
+(define (mk-button img)
+ (overlay img (rectangle (/ WIDTH 3) (/ WIDTH 3) "solid" "white")))
+
+(define PLAY-IMAGE (mk-button play))
+(define PAUSE-IMAGE (mk-button pause))
+(define FF-IMAGE (mk-button (beside play play)))
+(define FR-IMAGE (mk-button (beside (rotate 180 play) (rotate 180 play))))
+
+;; An Animation implements:
+;; next : -> Animation
+;; prev : -> Animation
+;; render : -> Scene
+
+(define-class count-animation%
+ (fields n)
+ (define (next)
+   (new count-animation% (add1 (send this n))))
+ (define (prev)
+   (new count-animation% (max 0 (sub1 (send this n)))))
+ (define (render)
+   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black")
+            (empty-scene WIDTH HEIGHT))))
+
+;; A Player is implements
+;; -  > : -> Player
+;; - << : -> Player
+;; - >> : -> Player
+;; - render : -> Scene
+;; - next : -> Player
+
+
+(define-class play% ; implements Player
+ (fields anim)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PAUSE-IMAGE FF-IMAGE)))
+ (define (next) (new play% (send (send this anim) next)))
+ (define (>)  (new pause% (send this anim)))
+ (define (<<) (new fr% (send this anim) 2))
+ (define (>>) (new ff% (send this anim) 2)))
+
+(define-class pause% ; implements Player
+ (fields anim)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next) this)
+ (define (>)  (new play% (send this anim)))
+ (define (<<) (new fr% (send this anim) 2))
+ (define (>>) (new ff% (send this anim) 2)))
+
+(define-class ff% ; implement Player
+ (fields anim factor)
+ (define (play)
+   (new play% (send this anim)))
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next)
+   (send this jump (send this factor)))
+
+ (define (jump n)
+   (cond [(zero? n) this]
+         [else
+          (send (new ff%
+                     (send (send this anim) next)
+                     (send this factor))
+                jump
+                (sub1 n))]))
+
+ (define (>) (new play% (send this anim)))
+ (define (>>) (new ff% (send this anim) (* 2 (send this factor))))
+ (define (<<) (new fr% (send this anim) 2)))
+
+(define-class fr% ; implements Player
+ (fields anim factor)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next)
+   (send this jump (send this factor)))
+
+ (define (jump n)
+   (cond [(zero? n) this]
+         [else
+          (send (new fr%
+                     (send (send this anim) prev)
+                     (send this factor))
+                jump
+                (sub1 n))]))
+
+ (define (>) (new play% (send this anim)))
+ (define (>>) (new ff% (send this anim) 2))
+ (define (<<) (new fr% (send this anim) (* 2 (send this factor)))))
+
+
+(define-class world%
+ (fields player)
+ (define (on-tick) (new world% (send (send this player) next)))
+ (define (to-draw) (send (send this player) render))
+ (define (on-key ke)
+   (cond [(key=? ke "p") (new world% (send (send this player) >))]
+         [(key=? ke ">") (new world% (send (send this player) >>))]
+         [(key=? ke "<") (new world% (send (send this player) <<))]
+         [else this])))
+
+(define w0 (new world% (new play% (new count-animation% 20))))
+(big-bang w0)
+					
+}
+
+@;{
 @title[#:tag "assign03"]{1/26: Zombie, redux}
 
 Due: 1/26.
@@ -155,3 +324,4 @@ of the @racket[cons] @emph{method}, you can use the name @racket[ls:cons].
 
 }]
 
+}
