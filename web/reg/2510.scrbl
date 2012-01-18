@@ -43,12 +43,14 @@ strengths and weaknesses of languages and paradigms.
 @section[#:style 'unnumbered]{Labs}
 
 @itemlist[
- @item{@link["Lab1.html"]{Lab 1}}]
+ @item{@link["Lab1.html"]{Lab 1}}
+ @item{@link["Lab2.html"]{Lab 2}}]
 
 @section[#:style 'unnumbered]{Assignments}
 
 @itemlist[
- @item{@link["Assignment1.html"]{Assignment 1}}]
+ @item{@link["Assignment1.html"]{Assignment 1}}
+ @item{@link["Assignment2.html"]{Assignment 2}}]
 
 
 @include-section{../subversion.scrbl}

@@ -22,6 +22,7 @@
 	(list "David Silva" (tt "dmsilva") "WVH102" "Monday " "5:00pm-7:00pm")
 	(list "Joshua Coates" (tt "jccoates") "WVH102" "Tuesday " "6:00pm-8:00pm")
 	(list "Theresa Aristarco" (tt "aristar") "WVH102" "Friday" "3:15pm-5:15pm")
+	(list "Liam Fratturo" (tt "mechanik") "WVH102" "Wednesday" "5:00pm-7:00pm")
 	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "9:00pm-11:00pm")
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
         (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00pm-5:00pm")))
