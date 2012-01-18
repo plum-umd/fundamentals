@@ -36,12 +36,29 @@ The fast-forward mode should skip every other frame of the animation.  The rewin
 
 An animation is anything that implements the above interface.  You
 need to implement several kinds of animations.  First, an animation
-that simply counts up and displays a number. Second, an animation that
-consists of a list of @racket[Scene].  Third, an animation that
-consists of a function from a number to a frame.  Fourth, you should
-implement some other class that implments the @racket[Animation]
-interface with an interesting animation.  
-}]
+that consists of a list of @racket[Scene]s.  Second, an animation that
+consists of a function from a number to a frame.  Third, you should
+create an implementation of @racket[Animation] that wraps an object
+with @racket[on-tick] and @racket[to-draw] methods.
+
+Finally, you should use the third implementation to play an animation
+of a playing animation.  You should demonstrate this in your solution
+with one of your other animations.  }]
+
+Here is an example implementation of an @racket[Animation] that
+displays a sequence of numbers:
+
+@codeblock{#lang class/0
+(define WIDTH 200) ; Animation dimension in PX.
+(define-class count-animation%
+ (fields n)
+ (define (next)
+   (new count-animation% (add1 (send this n))))
+ (define (prev)
+   (new count-animation% (max 0 (sub1 (send this n)))))
+ (define (render)
+   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black"))))
+}
 
 }]
 
