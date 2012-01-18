@@ -30,7 +30,7 @@ interface:
 
 The user can interact with a player through the keyboard: @racket["p"] plays, @racket["f"] fast-forwards, @racket["r"] rewinds, and @racket["s"] stops playing.
 
-The fast-forward mode should skip every other frame of the animation.  The rewind should go back through the animation, @emph{without} recomputing each frame.  }
+The fast-forward mode should skip every other frame of the animation.  The rewind should go back through the animation.  }
 
 @item{@bold{Animations}
 
