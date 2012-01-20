@@ -6,7 +6,7 @@
 
 @title*{Blog}
 
-@section*{Small revisions to Assignment 2, SVN guide}
+@section*{Small revisions to Assignment 2, SVN guide, Code style}
 @tt{Fri Jan 20 15:41:20 EST 2012}
 
 We've made some small adjustments to
@@ -19,6 +19,9 @@ Jonathan Schuster has put together a nice
 instructions for Windows, Macs, and Linux machines.  It also tells you
 how to organize your code and how to set up Eclipse to work with the
 repository.
+
+We've also added a note on @seclink["Code_style"]{proper code style}
+that you should use for all the code you write in this class.
 
 @section*{Programming is like Cooking}
 @tt{Wed Jan 11 11:05:34 EST 2012}

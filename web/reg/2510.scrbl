@@ -54,5 +54,6 @@ strengths and weaknesses of languages and paradigms.
 
 
 @include-section{subversion.scrbl}
+@include-section{style.scrbl}
 @include-section{../pair-programming.scrbl}
 @include-section{blog.scrbl}
