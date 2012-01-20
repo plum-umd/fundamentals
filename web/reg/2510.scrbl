@@ -53,6 +53,6 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Assignment2.html"]{Assignment 2}}]
 
 
-@include-section{../subversion.scrbl}
+@include-section{subversion.scrbl}
 @include-section{../pair-programming.scrbl}
 @include-section{blog.scrbl}

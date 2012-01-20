@@ -6,6 +6,20 @@
 
 @title*{Blog}
 
+@section*{Small revisions to Assignment 2, SVN guide}
+@tt{Fri Jan 20 15:41:20 EST 2012}
+
+We've made some small adjustments to
+@link["Assignment2.html"]{assignment 2}, so be sure to read the latest
+version.  (You should reload the page in your browser if you've
+visited it recently.)
+
+Jonathan Schuster has put together a nice
+@seclink["Subversion"]{guide} on using Subversion that includes
+instructions for Windows, Macs, and Linux machines.  It also tells you
+how to organize your code and how to set up Eclipse to work with the
+repository.
+
 @section*{Programming is like Cooking}
 @tt{Wed Jan 11 11:05:34 EST 2012}
 
