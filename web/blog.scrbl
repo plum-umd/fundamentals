@@ -8,6 +8,14 @@
 
 @title*{Blog}
 
+@section*{Class diagram for Invader}
+@tt{Sat Jan 21 13:52:03 EST 2012}
+
+Here is the simple Space Invader @link["Invader01.pdf"]{class diagram}
+presented in class on Thursday.  Your design doesn't have to follow
+this one, but we just wanted to share the design we used.
+
+
 @section*{Problem with .plt file}
 @tt{Fri Jan 20 16:10:42 EST 2012}
 

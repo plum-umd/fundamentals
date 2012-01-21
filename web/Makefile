@@ -44,6 +44,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra fonts/kulminoituva-webfont.woff \
 		++extra $(CLASS) \
 		++extra $(CLASS_LATEST) \
+		++extra misc/Invader01.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect http://www.ccs.neu.edu/course/cs2510h/ \
 		--style 2510H.css \
