@@ -8,6 +8,16 @@
 
 @title*{Blog}
 
+@section*{Problem with .plt file}
+@tt{Fri Jan 20 16:10:42 EST 2012}
+
+When posting the latest assignment, somehow an old .plt file got
+copied to the web site which didn't have the @racketmodname[class/0]
+modifications discussed below.
+
+That problem has been fixed, so please try to re-install the latest
+.plt file.  Sorry for the mixup.
+
 @section*{Revised @racketmodname[class/0]}
 @tt{Fri Jan 13 14:13:15 EST 2012}
 
