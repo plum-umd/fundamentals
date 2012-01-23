@@ -30,6 +30,7 @@ web: 2510
 	cp -r labs/*.java 2510/
 	cp -r labs/*.jar 2510/
 	cp -r labs/*.txt 2510/
+	cp -r blog/*.java 2510/
 
 web-students:
 	env STUDENTS=1 make 2510

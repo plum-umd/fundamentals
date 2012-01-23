@@ -6,6 +6,12 @@
 
 @title*{Blog}
 
+@section*{Shark code from last lecture}
+@tt{Mon Jan 23 08:00:46 EST 2012}
+
+Here's the @link["Shark.java"]{shark code} we've been developing in
+class.
+
 @section*{Small revisions to Assignment 2, SVN guide, Code style}
 @tt{Fri Jan 20 15:41:20 EST 2012}
 
