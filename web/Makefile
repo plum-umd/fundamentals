@@ -3,7 +3,7 @@ CLASS_LATEST=class-system-latest.plt
 CCS=login.ccs.neu.edu
 CCS_PATH=/course/cs2510h/.www/
 
-scrbls := $(wildcard *.scrbl) $(wildcard assignments/*.scrbl)
+scrbls := $(wildcard *.scrbl) $(wildcard assignments/*.scrbl) $(wildcard labs/*.scrbl)
 
 all:   clean class web
 push:  clean class web-scp

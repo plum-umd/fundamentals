@@ -48,7 +48,7 @@ Information about the latest version is always available at @secref["class"].
 In this lab, we're going to clean up all the junk in space, both
 asteroids and satellites, which are littering the galaxy.
 
-Let's start with a basic animation of this problem, in need of abstraction. A @racket[World]
+Let's start with a basic animation of this problem. A @racket[World]
 consists of @racket[Junk], each of which has a location (@racket[x],
 @racket[y]), can @racket[draw] itself, and can @racket[step] itself through an
 animation. An @racket[Object], for now, is either a @racket[Asteroid] or a
@@ -69,12 +69,12 @@ class/0
 
   ; -> World
   ; Advance the World
-  (define/public (on-tick)
+  (define (on-tick)
     (new world% (map (λ (c) (send c step)) (send this objects))))
 
   ; -> Image
   ; Draw the World
-  (define/public (to-draw)
+  (define (to-draw)
     (foldr (λ (c scn) (place-image (send c draw)
                                    (send c x)
                                    (send c y)
@@ -119,26 +119,27 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
 
   ; -> Number
   ; The x-coordinate of the Satellite
-  (define/public (x)
+  (define (x)
     (real-part (send this location)))
 
   ; -> Number
   ; The y-coordinate of the Satellite
-  (define/public (y)
+  (define (y)
     (imag-part (send this location)))
 
   ; -> Image
   ; The image representing the Satellite
-  (define/public (draw)
+  (define (draw)
     (circle (send this radius) "solid" (send this color)))
 
   ; -> Satellite
   ; The next Satellite in the animation sequence
-  (define/public (step)
+  (define (step)
     (new satellite%
          (send this radius)
          (send this color)
-         (+ (send this velocity) (send this location)))))
+         (+ (send this velocity) (send this location))
+	 (send this velocity))))
 
 (check-expect (send (new satellite% 5 "red" 50+10i 0+1i) x) 50)
 (check-expect (send (new satellite% 5 "red" 50-10i 0+1i) x) 50)
@@ -159,27 +160,28 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
 
   ; -> Number
   ; The x-coordinate of the Asteroid
-  (define/public (x)
+  (define (x)
     (real-part (send this location)))
 
   ; -> Number
   ; The y-coordinate of the Asteroid
-  (define/public (y)
+  (define (y)
     (imag-part (send this location)))
 
   ; -> Image
   ; The image representing the Asteroid
-  (define/public (draw)
+  (define (draw)
     (rectangle (send this width) (send this height) "solid" (send this color)))
 
   ; -> Asteroid
   ; The next Asteroid in the animation sequence
-  (define/public (step)
+  (define (step)
     (new asteroid%
          (send this width)
          (send this height)
          (send this color)
-         (+ (send this velocity) (send this location)))))
+         (+ (send this velocity) (send this location))
+	 (send this velocity))))
 
 (check-expect (send (new asteroid% 10 20 "blue"  50+60i 0+1i) x) 50)
 (check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) x) -50)
@@ -207,15 +209,20 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
 When you run this, you should see satellites and asteroids moving. (Simple
 beginnings...)
 
+@exercise{
+Write a function that produces a random initial world, and runs the animation.
+}
+
 As we said above, an Junk is something that has a @racket[location] along
 with convenience methods for its @racket[x] and @racket[y] coordinates, can
 @racket[draw] itself, and can @racket[step] itself through an animation.
 
 @exercise{
-  Introduce an @racket[junk<%>] interface for the behaviors common to both
-  @racket[satellite%] and @racket[asteroid%].
+  Add a description of the interface of @racket[Junk] for the
+  behaviors common to both @racket[satellite%] and @racket[asteroid%].
 }
 
+@;{
 The convenience methods @racket[x] and @racket[y] are useful in the World's
 @racket[to-draw] method where it needs to use the x- and y-coordinates
 separately, but notice that the methods are implemented in the same way for
@@ -223,13 +230,16 @@ Satellites and Asteroids. Also notice that both classes have a @racket[location]
 
 @exercise{
   Use delegation to abstract the @racket[location] field and the @racket[x] and
-  @racket[y] methods into a common class, @racket[junk%].
+  @racket[y] methods into a common class, @racket[point%].
 }
+
 
 Also, the two @racket[step] methods for Satellites and Asteroids are trying to do the
 same thing---move one step with the appropriate direction---but they aren't expressed in a way
 that we can abstract.
+}
 
+@;{
 @exercise{
   Refactor the @racket[step] methods. In each of @racket[satellite%] and
   @racket[asteroid%], define a @racket[move] method that takes a location
@@ -241,10 +251,11 @@ that we can abstract.
   know how to say @racket[(new asteroid% ...)], and @racket[step] can remain
   oblivious to which kind of object it's working on.
 
-  Abstract @racket[step] into racket[junk%].
+  @; Abstract @racket[step] into racket[junk%].
 
   (Aside: the letter @math{z} is typically used for complex numbers, just as
   @math{x} and @math{y} are typically used for real numbers.)
+}
 }
 
 @lab:section{Escape}
@@ -290,9 +301,10 @@ on these last four behaviors---but we currently lack an interface to codify it.
   @racket[escaped?].
 
   Of your classes, which should implement which interfaces?---note that a class
-  can implement multiple interfaces.
+  might implement multiple interfaces.
 }
 
+@;{
 Now compare your @racket[ship%] class with your @racket[junk%] class:
 @racket[junk%] has a @racket[location] field with @racket[x] and @racket[y]
 methods reading from it, and the @racket[ship%] class you just defined should
@@ -302,6 +314,7 @@ look very similar.
   Abstract the @racket[location] field and the @racket[x] and @racket[y] methods
   out of @racket[ship%] and @racket[junk%] and into a common superclass,
   @racket[drawable%].
+}
 }
 
 @exercise{
@@ -362,7 +375,7 @@ If a Banana falls in a forest...
 }
 
 @exercise{
-  Add a @racket[zapped?] method to @racket[Junk] and @racket[junk%]
+  Add a @racket[zapped?] method to @racket[Junk] @; and @racket[junk%]
   that takes a list of Bananas as input and tests whether the Junk has been
   hit by any of them. Each tick, remove all Junk from the World that are
   being zapped by a Banana.
@@ -371,6 +384,43 @@ If a Banana falls in a forest...
   the Banana is contained in the Junk. (For added realism, try drawing your
   Bananas as very small dots. Or if you really want to try proper shape
   intersection, try something shaped not like a banana.)
+}
+
+@exercise{
+Finally, we can win the game!  Add a counter to your world, which
+counts how many seconds it takes until all the junk is gone from your
+screen.  The goal of the game is to clear the junk in the smallest
+amount of time.  
+
+Note that by default, there are 28 ticks per second.
+}
+
+@lab:section{Abstraction and Helper Classes}
+
+You've probably noticed at this point that a number of your classes
+have some very similar code.  For example, @racket[Asteroid] and
+@racket[Satellite] contain very similar @racket[move] methods.  
+
+One technique for refactoring this is to create helper classes that
+encapsulate a certain kind of behavior.  For example, we can create
+a @racket[Location] data defintion and @racket[location%] class to
+encapsulate points that can move.  
+
+
+@exercise{
+The convenience methods @racket[x] and @racket[y] are useful in the World's
+@racket[to-draw] method where it needs to use the x- and y-coordinates
+separately, but notice that the methods are implemented in the same way for
+Satellites and Asteroids. Also notice that both classes have a @racket[location] field.
+
+  Use delegation to abstract the @racket[location] field and the @racket[x] and
+  @racket[y] methods into a common class, @racket[location%].
+}
+
+
+@exercise{
+Similarly, various kinds of things are drawable.  Perform further
+refactoring to remove duplicated drawing code.
 }
 
 @lab:section{Go, banana}
