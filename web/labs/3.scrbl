@@ -51,7 +51,7 @@ asteroids and satellites, which are littering the galaxy.
 Let's start with a basic animation of this problem. A @racket[World]
 consists of @racket[Junk], each of which has a location (@racket[x],
 @racket[y]), can @racket[draw] itself, and can @racket[step] itself through an
-animation. An @racket[Object], for now, is either a @racket[Asteroid] or a
+animation. An @racket[Junk], for now, is either a @racket[Asteroid] or a
 @racket[Satellite]. @racket[Satellite]s are round, and @racket[Asteroid]s are rectangular.
 
 @#reader scribble/comment-reader
@@ -63,14 +63,14 @@ class/0
 (define WIDTH  500)
 (define HEIGHT 500)
 
-; A World is a (new world% [Listof Object])
+; A World is a (new world% [Listof Junk])
 (define-class world%
-  (fields objects)
+  (fields junks)
 
   ; -> World
   ; Advance the World
   (define (on-tick)
-    (new world% (map (λ (c) (send c step)) (send this objects))))
+    (new world% (map (λ (c) (send c step)) (send this junks))))
 
   ; -> Image
   ; Draw the World
@@ -80,9 +80,9 @@ class/0
                                    (send c y)
                                    scn))
            (empty-scene WIDTH HEIGHT)
-           (send this objects))))
+           (send this junks))))
 
-; An Object is one of:
+; An Junk is one of:
 ;  - Asteroid
 ;  - Satellite
 
