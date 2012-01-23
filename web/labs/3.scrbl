@@ -5,14 +5,14 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class/1 define-struct)
-                     2htdp/image
-                     (only-in lang/htdp-intermediate-lambda define-struct)
+          (for-label (except-in class/0 define-struct check-expect)
+                     (except-in 2htdp/image color)
+                     (only-in lang/htdp-intermediate-lambda define-struct check-expect)
                      class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class/1))
+    (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
     ;(the-eval '(require class/universe))
     the-eval))
