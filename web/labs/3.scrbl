@@ -19,7 +19,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab03"]{1/23: Interfaces and inheritance}
+@title[#:tag "lab03"]{1/23: Interfaces in Space!}
 
 @lab:section{Update your class system}
 
@@ -43,31 +43,34 @@ update to the latest version.
 
 Information about the latest version is always available at @secref["class"].
 
-@lab:section{Invaders}
+@lab:section{Space!}
 
-Let me start you with a basic animation in need of abstraction. A @racket[World]
-consists of @racket[Invaders], each of which has a location (@racket[x],
+In this lab, we're going to clean up all the junk in space, both
+asteroids and satellites, which are littering the galaxy.
+
+Let's start with a basic animation of this problem, in need of abstraction. A @racket[World]
+consists of @racket[Junk], each of which has a location (@racket[x],
 @racket[y]), can @racket[draw] itself, and can @racket[step] itself through an
-animation. An @racket[Invader], for now, is either a @racket[Ball] or a
-@racket[Block].
+animation. An @racket[Object], for now, is either a @racket[Asteroid] or a
+@racket[Satellite]. @racket[Satellite]s are round, and @racket[Asteroid]s are rectangular.
 
 @#reader scribble/comment-reader
 (racketmod
-class/1
+class/0
 (require 2htdp/image)
 (require class/universe)
 
 (define WIDTH  500)
 (define HEIGHT 500)
 
-; A World is a (new world% [Listof Invader])
+; A World is a (new world% [Listof Object])
 (define-class world%
-  (fields invaders)
+  (fields objects)
 
   ; -> World
   ; Advance the World
   (define/public (on-tick)
-    (new world% (map (λ (c) (send c step)) (field invaders))))
+    (new world% (map (λ (c) (send c step)) (field objects))))
 
   ; -> Image
   ; Draw the World
@@ -77,13 +80,14 @@ class/1
                                    (send c y)
                                    scn))
            (empty-scene WIDTH HEIGHT)
-           (field invaders))))
+           (field objects))))
 
-; An Invader is one of:
-;  - Ball
-;  - Block
+; An Object is one of:
+;  - Asteroid
+;  - Satellite
 
 ; A Location is a Complex where (x,y) is represented as the complex number x+yi
+; A Velocity is a Complex where (x,y) is represented as the complex number x+yi
 )
 
 ---complex numbers? We're going to use a trick for working with 2D geometry:
@@ -109,150 +113,151 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
 (racketblock
 ; A Non-Negative is a non-negative Number
 ; A Color is a String
-
-; A Ball is a (new ball% Location Non-Negative Color)
-(define-class ball%
-  (fields radius color location)
+; A Satellite is a (new satellite% Non-Negative Color Location Velocity)
+(define-class satellite%
+  (fields radius color location velocity)
 
   ; -> Number
-  ; The x-coordinate of the Ball
+  ; The x-coordinate of the Satellite
   (define/public (x)
     (real-part (field location)))
 
   ; -> Number
-  ; The y-coordinate of the Ball
+  ; The y-coordinate of the Satellite
   (define/public (y)
     (imag-part (field location)))
 
   ; -> Image
-  ; The image representing the Ball
+  ; The image representing the Satellite
   (define/public (draw)
     (circle (field radius) "solid" (field color)))
 
-  ; -> Ball
-  ; The next Ball in the animation sequence
+  ; -> Satellite
+  ; The next Satellite in the animation sequence
   (define/public (step)
-    (new ball%
+    (new satellite%
          (field radius)
          (field color)
-         (+ 0+1i (field location)))))
+         (+ (field velocity) (field location)))))
 
-(check-expect (send (new ball% 5 "red" 50+10i) x) 50)
-(check-expect (send (new ball% 5 "red" 50-10i) x) 50)
-(check-expect (send (new ball% 5 "red" 50+10i) y) 10)
-(check-expect (send (new ball% 5 "red" 50-10i) y) -10)
-(check-expect (send (new ball% 5 "red" 50+10i) draw)
+(check-expect (send (new satellite% 5 "red" 50+10i 0+1i) x) 50)
+(check-expect (send (new satellite% 5 "red" 50-10i 0+1i) x) 50)
+(check-expect (send (new satellite% 5 "red" 50+10i 0+1i) y) 10)
+(check-expect (send (new satellite% 5 "red" 50-10i 0+1i) y) -10)
+(check-expect (send (new satellite% 5 "red" 50+10i 0+1i) draw)
               (circle 5 "solid" "red"))
-(check-expect (send (new ball% 5 "red" 50+10i) step)
-              (new ball% 5 "red" 50+11i))
-(check-expect (send (new ball% 5 "red" 50-10i) step)
-              (new ball% 5 "red" 50-9i))
+(check-expect (send (new satellite% 5 "red" 50+10i 0+1i) step)
+              (new satellite% 5 "red" 50+11i 0+1i))
+(check-expect (send (new satellite% 5 "red" 50-10i 0+1i) step)
+              (new satellite% 5 "red" 50-9i 0+1i))
+(check-expect (send (new satellite% 5 "red" 50-10i 1+0i) step)
+              (new satellite% 5 "red" 51-10i 1+0i))
 
-; A Block is a (new block% Location Non-Negative Non-Negative Color)
-(define-class block%
-  (fields width height color location)
+; A Asteroid is a (new asteroid% Location Non-Negative Non-Negative Color Velocity)
+(define-class asteroid%
+  (fields width height color location velocity)
 
   ; -> Number
-  ; The x-coordinate of the Block
+  ; The x-coordinate of the Asteroid
   (define/public (x)
     (real-part (field location)))
 
   ; -> Number
-  ; The y-coordinate of the Block
+  ; The y-coordinate of the Asteroid
   (define/public (y)
     (imag-part (field location)))
 
   ; -> Image
-  ; The image representing the Block
+  ; The image representing the Asteroid
   (define/public (draw)
     (rectangle (field width) (field height) "solid" (field color)))
 
-  ; -> Block
-  ; The next Block in the animation sequence
+  ; -> Asteroid
+  ; The next Asteroid in the animation sequence
   (define/public (step)
-    (new block%
+    (new asteroid%
          (field width)
          (field height)
          (field color)
-         (+ 0+1i (field location)))))
+         (+ (field velocity) (field location)))))
 
-(check-expect (send (new block% 10 20 "blue"  50+60i) x) 50)
-(check-expect (send (new block% 10 20 "blue" -50+60i) x) -50)
-(check-expect (send (new block% 10 20 "blue"  50+60i) y) 60)
-(check-expect (send (new block% 10 20 "blue" -50+60i) y) 60)
-(check-expect (send (new block% 10 20 "blue" -50+60i) draw)
+(check-expect (send (new asteroid% 10 20 "blue"  50+60i 0+1i) x) 50)
+(check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) x) -50)
+(check-expect (send (new asteroid% 10 20 "blue"  50+60i 0+1i) y) 60)
+(check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) y) 60)
+(check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) draw)
               (rectangle 10 20 "solid" "blue"))
-(check-expect (send (new block% 10 20 "blue" 50+60i) step)
-              (new block% 10 20 "blue" 50+61i))
-(check-expect (send (new block% 10 20 "blue" -50+60i) step)
-              (new block% 10 20 "blue" -50+61i))
+(check-expect (send (new asteroid% 10 20 "blue" 50+60i 0+1i) step)
+              (new asteroid% 10 20 "blue" 50+61i 0+1i))
+(check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) step)
+              (new asteroid% 10 20 "blue" -50+61i 0+1i))
 
-(big-bang (new world% (list (new ball%   5    "red"   50+10i)
-                            (new ball%  10    "red"  150+10i)
-                            (new ball%  20    "red"  250+10i)
-                            (new ball%  10    "red"  350+10i)
-                            (new ball%   5    "red"  450+10i)
-                            (new block% 30 20 "blue"  50+60i)
-                            (new block% 15 10 "blue" 150+60i)
-                            (new block%  5  5 "blue" 250+60i)
-                            (new block% 15 10 "blue" 350+60i)
-                            (new block% 30 20 "blue" 450+60i))))
+(big-bang (new world% (list (new satellite%   5    "red"   50+10i 0+1i)
+                            (new satellite%  10    "red"  150+10i 1+1i)
+                            (new satellite%  20    "red"  250+10i 1-1i)
+                            (new satellite%  10    "red"  350+10i 1+0i)
+                            (new satellite%   5    "red"  450+10i 2+1i)
+                            (new asteroid% 30 20 "blue"  50+60i 1-1i)
+                            (new asteroid% 15 10 "blue" 150+60i 2+1i)
+                            (new asteroid%  5  5 "blue" 250+60i 2-1i)
+                            (new asteroid% 15 10 "blue" 350+60i 0+2i)
+                            (new asteroid% 30 20 "blue" 450+60i 1+0i))))
 )
 
-When you run this, you should see balls and blocks falling. (Simple
+When you run this, you should see satellites and asteroids moving. (Simple
 beginnings...)
 
-As we said above, an Invader is something that has a @racket[location] along
+As we said above, an Junk is something that has a @racket[location] along
 with convenience methods for its @racket[x] and @racket[y] coordinates, can
 @racket[draw] itself, and can @racket[step] itself through an animation.
 
 @exercise{
-  Introduce an @racket[invader<%>] interface for the behaviors common to both
-  @racket[ball%] and @racket[block%].
+  Introduce an @racket[junk<%>] interface for the behaviors common to both
+  @racket[satellite%] and @racket[asteroid%].
 }
 
 The convenience methods @racket[x] and @racket[y] are useful in the World's
 @racket[to-draw] method where it needs to use the x- and y-coordinates
 separately, but notice that the methods are implemented in the same way for
-Balls and Blocks. Also notice that both classes have a @racket[location] field.
+Satellites and Asteroids. Also notice that both classes have a @racket[location] field.
 
 @exercise{
-  Use inheritance to abstract the @racket[location] field and the @racket[x] and
-  @racket[y] methods into a common superclass, @racket[invader%].
+  Use delegation to abstract the @racket[location] field and the @racket[x] and
+  @racket[y] methods into a common class, @racket[junk%].
 }
 
-Also, the two @racket[step] methods for Balls and Blocks are trying to do the
-same thing---move the Invader down by 1---but they aren't expressed in a way
+Also, the two @racket[step] methods for Satellites and Asteroids are trying to do the
+same thing---move one step with the appropriate direction---but they aren't expressed in a way
 that we can abstract.
 
 @exercise{
-  Refactor the @racket[step] methods. In each of @racket[ball%] and
-  @racket[block%], define a @racket[move] method that takes a location
-  @racket[dz] and updates the Ball's (or Block's) @racket[location] by
+  Refactor the @racket[step] methods. In each of @racket[satellite%] and
+  @racket[asteroid%], define a @racket[move] method that takes a location
+  @racket[dz] and updates the Satellite's (or Asteroid's) @racket[location] by
   translating by @racket[dz].
 
-  This way, the @racket[ball%] @racket[move] method will know how to say
-  @racket[(new ball% ...)] and the @racket[block%] @racket[move] method will
-  know how to say @racket[(new block% ...)], and @racket[step] can remain
+  This way, the @racket[satellite%] @racket[move] method will know how to say
+  @racket[(new satellite% ...)] and the @racket[asteroid%] @racket[move] method will
+  know how to say @racket[(new asteroid% ...)], and @racket[step] can remain
   oblivious to which kind of object it's working on.
 
-  Abstract @racket[step] into the superclass.
+  Abstract @racket[step] into racket[junk%].
 
   (Aside: the letter @math{z} is typically used for complex numbers, just as
   @math{x} and @math{y} are typically used for real numbers.)
 }
 
-@lab:section{Invasion}
+@lab:section{Escape}
 
 @exercise{
-  End the game when any Invader successfully invades. Use an @racket[invaded?]
-  method on Invaders to test whether the Invader has reached the bottom of the
-  screen, and end the game when any has done so.
+  End the game when all the space junk escapes. Use an @racket[escaped?]
+  method on Junk to test whether the Junk has it outside of the
+  screen, and end the game when all of it has done so.
 }
 
-When an Invader reaches the bottom of the screen, you lose---but for this to be
+When all the Junk escapes the screen, the game is over---but for this to be
 any fun, we need a way to win! Next we will add a spaceship to the bottom of the
-screen to defend against the invaders:
+screen to destroy the space junk:
 
 @elem[@image["labs/3/spaceship.png"] #:style "center"]
 
@@ -273,51 +278,50 @@ How much did you have to change your @racket[to-draw] method in @racket[world%]?
 If your answer isn't ``very little'', then pause and reconsider your Ship
 design.
 
-A Ship isn't an Invader since it doesn't @racket[step] and never needs to answer
-@racket[invaded?], but it does @racket[draw] and have an @racket[x], @racket[y],
+A @racket[Ship] isn't a @racket[Junk] since it doesn't @racket[step] and never needs to answer
+@racket[escaped?], but it does @racket[draw] and have an @racket[x], @racket[y],
 and @racket[location]. Moreover, @racket[to-draw] in @racket[world%] only relies
 on these last four behaviors---but we currently lack an interface to codify it.
 
 @exercise{
-  Split the @racket[invader<%>] interface into two: a @racket[drawable<%>]
+  Split the @racket[Junk] interface into two: a @racket[Drawable]
   interface to support the needs of @racket[to-draw], and a simpler
-  @racket[invader<%>] interface that just includes @racket[step] and
-  @racket[invaded?].
+  @racket[Junk] interface that just includes @racket[step] and
+  @racket[escaped?].
 
   Of your classes, which should implement which interfaces?---note that a class
-  can implement multiple interfaces (even though it can only have one
-  superclass).
+  can implement multiple interfaces.
 }
 
-Now compare your @racket[ship%] class with your @racket[invader%] class:
-@racket[invader%] has a @racket[location] field with @racket[x] and @racket[y]
+Now compare your @racket[ship%] class with your @racket[junk%] class:
+@racket[junk%] has a @racket[location] field with @racket[x] and @racket[y]
 methods reading from it, and the @racket[ship%] class you just defined should
 look very similar.
 
 @exercise{
   Abstract the @racket[location] field and the @racket[x] and @racket[y] methods
-  out of @racket[ship%] and @racket[invader%] and into a common superclass,
+  out of @racket[ship%] and @racket[junk%] and into a common superclass,
   @racket[drawable%].
 }
 
 @exercise{
-  Now you have a variety of interfaces, classes, and inheritance relationships.
+  Now you have a variety of interfaces and classes.
   Take a moment to sanity check each of them. Which classes should implement
-  which interfaces? Which superclasses exist only to be inherited from?
+  which interfaces?
 }
 
 @lab:section{Surviving invasion}
 
-To survive the invasion, the Ship must shoot some kind of projectile at the
-Invaders: bullets, lasers, bananas---your choice.
+To clean up the junk, the Ship must shoot some kind of projectile at the
+Junk: bullets, lasers, bananas---your choice.
 
 @exercise{
   Define a class for your projectile. For the sake of concreteness, I'll assume
   you chose Banana. Bananas must (1) have a location, (2) know how to draw
   themselves, and (3) step upward over time.
 
-  Which of the superclasses can you inherit from to save yourself work? Which
-  aren't appropriate to inherit from?
+  Which of the classes can you reuse from to save yourself work? Which
+  aren't appropriate to reuse?
 
   Which interfaces do Bananas implement?
 }
@@ -348,23 +352,23 @@ Too many Bananas!
 If a Banana falls in a forest...
 
 @exercise{
-  Add a @racket[contains?] method to the @racket[invader<%>] interface that
+  Add a @racket[contains?] method to the @racket[Junk] interface that
   takes a Location and computes whether the location is within the spatial
-  extent of the Invader.
+  extent of the @racket[Junk].
 
-  Implement @racket[contains?] appropriately for each of @racket[ball%] and
-  @racket[block%]. Note that circles and rectangles occupy different parts of
+  Implement @racket[contains?] appropriately for each of @racket[satellite%] and
+  @racket[asteroid%]. Note that circles and rectangles occupy different parts of
   space...
 }
 
 @exercise{
-  Add a @racket[zapped?] method to @racket[invader<%>] and @racket[invader%]
-  that takes a list of Bananas as input and tests whether the Invader has been
-  hit by any of them. Each tick, remove all Invaders from the World that are
+  Add a @racket[zapped?] method to @racket[Junk] and @racket[junk%]
+  that takes a list of Bananas as input and tests whether the Junk has been
+  hit by any of them. Each tick, remove all Junk from the World that are
   being zapped by a Banana.
 
   For the purposes of detecting a collision, just test to see if the center of
-  the Banana is contained in the Invader. (For added realism, try drawing your
+  the Banana is contained in the Junk. (For added realism, try drawing your
   Bananas as very small dots. Or if you really want to try proper shape
   intersection, try something shaped not like a banana.)
 }
@@ -376,10 +380,10 @@ If a Banana falls in a forest...
   left is a few splashes of creativity. Below are a few ideas---and remember: a
   little randomness can substitute for a lot of complexity.
   @itemlist[
-    @item{Add new shapes of Invaders}
-    @item{Give Invaders more complicated movement}
-    @item{Let Invaders shoot back}
+    @item{Add new shapes of Junk}
+    @item{Give Junk more complicated movement}
+    @item{Let Junk shoot back}
     @item{Increase the difficulty by using keyboard instead of mouse control}
-    @item{Spawn new Invaders over time}
+    @item{Spawn new Junk over time}
   ]
 }
