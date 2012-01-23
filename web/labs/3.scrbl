@@ -70,7 +70,7 @@ class/0
   ; -> World
   ; Advance the World
   (define/public (on-tick)
-    (new world% (map (λ (c) (send c step)) (field objects))))
+    (new world% (map (λ (c) (send c step)) (send this objects))))
 
   ; -> Image
   ; Draw the World
@@ -80,7 +80,7 @@ class/0
                                    (send c y)
                                    scn))
            (empty-scene WIDTH HEIGHT)
-           (field objects))))
+           (send this objects))))
 
 ; An Object is one of:
 ;  - Asteroid
@@ -120,25 +120,25 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
   ; -> Number
   ; The x-coordinate of the Satellite
   (define/public (x)
-    (real-part (field location)))
+    (real-part (send this location)))
 
   ; -> Number
   ; The y-coordinate of the Satellite
   (define/public (y)
-    (imag-part (field location)))
+    (imag-part (send this location)))
 
   ; -> Image
   ; The image representing the Satellite
   (define/public (draw)
-    (circle (field radius) "solid" (field color)))
+    (circle (send this radius) "solid" (send this color)))
 
   ; -> Satellite
   ; The next Satellite in the animation sequence
   (define/public (step)
     (new satellite%
-         (field radius)
-         (field color)
-         (+ (field velocity) (field location)))))
+         (send this radius)
+         (send this color)
+         (+ (send this velocity) (send this location)))))
 
 (check-expect (send (new satellite% 5 "red" 50+10i 0+1i) x) 50)
 (check-expect (send (new satellite% 5 "red" 50-10i 0+1i) x) 50)
@@ -160,26 +160,26 @@ arithmetic, but we can get a long way with just the basics. Now where were we?
   ; -> Number
   ; The x-coordinate of the Asteroid
   (define/public (x)
-    (real-part (field location)))
+    (real-part (send this location)))
 
   ; -> Number
   ; The y-coordinate of the Asteroid
   (define/public (y)
-    (imag-part (field location)))
+    (imag-part (send this location)))
 
   ; -> Image
   ; The image representing the Asteroid
   (define/public (draw)
-    (rectangle (field width) (field height) "solid" (field color)))
+    (rectangle (send this width) (send this height) "solid" (send this color)))
 
   ; -> Asteroid
   ; The next Asteroid in the animation sequence
   (define/public (step)
     (new asteroid%
-         (field width)
-         (field height)
-         (field color)
-         (+ (field velocity) (field location)))))
+         (send this width)
+         (send this height)
+         (send this color)
+         (+ (send this velocity) (send this location)))))
 
 (check-expect (send (new asteroid% 10 20 "blue"  50+60i 0+1i) x) 50)
 (check-expect (send (new asteroid% 10 20 "blue" -50+60i 0+1i) x) -50)
