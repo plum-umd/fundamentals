@@ -8,6 +8,11 @@
 
 @title*{Blog}
 
+@section*{Interface chapter written}
+@tt{Mon Jan 23 19:10:10 EST 2012}
+
+An @secref{Interfaces} chapter has been added to the book.
+
 @section*{Class diagram for Invader}
 @tt{Sat Jan 21 13:52:03 EST 2012}
 
