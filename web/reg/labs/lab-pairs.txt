@@ -217,3 +217,7 @@ albeht0a = rw
 [cs2510spring2012:/pair054]
 alexj = rw
 nathanl = rw
+
+[cs2510spring2012:/pair055]
+albeht0a = rw
+gary2546 = rw
