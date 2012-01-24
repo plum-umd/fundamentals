@@ -18,7 +18,7 @@ sasia = rw
 
 [cs2510spring2012:/pair004]
 tedlin = rw
-7591 = rw
+mhmdfy = rw
 
 [cs2510spring2012:/pair005]
 seebert = rw
@@ -37,8 +37,8 @@ cmcelear = rw
 mostrow = rw
 
 [cs2510spring2012:/pair009]
-yujian = rw
-slindberg = rw
+luoyj = rw
+slindber = rw
 
 [cs2510spring2012:/pair010]
 patcinc = rw
@@ -110,7 +110,7 @@ thu = rw
 
 [cs2510spring2012:/pair027]
 adamwigs = rw
-patcha = rw
+patchca = rw
 
 [cs2510spring2012:/pair028]
 tmacieik = rw
@@ -177,7 +177,7 @@ ascherj = rw
 ntinsley = rw
 
 [cs2510spring2012:/pair044]
-paelv99 = rw
+patelv99 = rw
 cyvuong = rw
 
 [cs2510spring2012:/pair045]
@@ -211,3 +211,9 @@ hlavin = rw
 [cs2510spring2012:/pair052]
 kmiao91 = rw
 
+[cs2510spring2012:/pair053]
+albeht0a = rw
+
+[cs2510spring2012:/pair054]
+alexj = rw
+nathanl = rw
