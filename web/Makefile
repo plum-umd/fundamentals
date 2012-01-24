@@ -46,7 +46,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra $(CLASS_LATEST) \
 		++extra misc/Invader01.pdf \
 		++xref-in setup/xref load-collections-xref \
-		--redirect http://www.ccs.neu.edu/course/cs2510h/ \
+		--redirect-main http://docs.racket-lang.org/ \
 		--style 2510H.css \
 		2510H.scrbl
 
