@@ -47,10 +47,9 @@ web page:
   )
 }
 
-These dangling parentheses for the code in the right column are
-considered @bold{extremely bad style}. You will lose @bold{all} style points for
-using it even once.
-}
+These dangling parentheses in the second code excerpt are considered
+@bold{extremely bad style}. You will lose @bold{all} style points for
+using it even once.  }
 
 @item{Do not embed images in the primary source files of your
 projects.  Doing so defeats the benefits of using revision control
