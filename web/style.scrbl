@@ -50,7 +50,27 @@ web page:
 These dangling parentheses for the code in the right column are
 considered @bold{extremely bad style}. You will lose @bold{all} style points for
 using it even once.
-}]
+}
+
+@item{Do not embed images in the primary source files of your
+projects.  Doing so defeats the benefits of using revision control
+software such as @tt{svn} since it requires the entire file to be
+encoded in a non-human readable format.  Instead, if you need to embed
+images, create a file @tt{image-constants.rkt} which embeds all the
+images you need and gives them names.  At the top of this file,
+write @racket[(provide (all-defined-out))].  There should be no
+other code in the file other than the image definitions.  Then in the
+files that need to @emph{use} the images, add the following to the
+top: @racket[(require "image-constants.rkt")].  You should then be
+able to use any of the names defined in @tt{image-constants.rkt}.}
+
+@item{Place short and informative test cases between the method
+signature and implementation.  (A single test written between the
+signature and code should not be longer than 3 lines.) Place longer
+and more complicated test cases at the bottom of your program.  The
+test suite should be organized around which classes and behaviors that
+are being tested and there should be comments that make it easy to
+discern the organization of the test suite.}]
 
 Not observing these very basic guidelines leads to unreadable code and
 to loss of points.

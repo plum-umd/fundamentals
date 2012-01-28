@@ -9,6 +9,15 @@
 
 @title*{Blog}
 
+@section*{Style guide additions}
+@tt{Sat Jan 28 14:19:49 EST 2012}
+
+We have added a couple more style guides to @secref{style} having to
+do with where test cases should be placed and how to write programs
+that need to embed images.  You should follow these additional
+guidelines starting with assignment 4.
+
+
 @section*{Partner requests due by 2/1 at midnight}
 @tt{Sat Jan 28 11:37:40 EST 2012}
 
