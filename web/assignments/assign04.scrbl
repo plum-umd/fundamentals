@@ -1,70 +1,58 @@
 #lang scribble/manual
 @(require "../utils.rkt"
-          (for-label class1))
+          (for-label class/0))
 
-@title[#:tag "assign04"]{2/2: Tron}
+@title[#:tag "assign04"]{2/1: Full Invader}
 
-Due: 2/2.
+Due: 2/1, midnight.
 
+Language: @racketmodname[class/0].
 
- For this assignment, you will design and develop the Tron Lightcycle game.
- The basic idea of this game, if you haven't seen the movie, is that
- two players move around the screen, leaving a trail of where each of the
- players has been.  If a player runs into the trail that they or the
- other player has left behind, or into a wall, they lose.  If the two
- players simultaneously hit each other, or both hit a wall or trail at
- the same time, the game is a tie.
+Revise your solution to @secref{assign02}.  You should incorporate any
+feedback given to you by your graders and make any improvements to the
+code you'd like to make.
 
- Here's a screenshot of playing the game:
+You will then need to add the following features:
 
- @image["assignments/tron1.png"]
+@itemlist[#:style 'ordered
 
- Here's a
- @link["http://www.classicgamesarcade.com/game/21670/Tron-Game.html"]{flash
- game} where you can play the game yourself online.  
+@item{Have at least three different kinds of invaders.  They should
+appear different and be worth different amounts when destroyed.  For
+faithfulness to the original, one kind should be worth 10, another 20,
+and another 30 points each.}
 
-@itemlist[#:style 'ordered 
- @item{@bold{Distributed Tron}
- 
- The first version of Tron you will develop is a distributed one,
- using the @racketmodname[class1/universe] library.  You will need to
- design two separate parts of the program:
+@item{Animate the invaders as they move across the screen; don't have
+them render as a single static image.}
 
- The server: this will accept connections from two clients,
- communicate with the clients via messages indicating the directions
- the clients want to move, and then send back updated information
- about the positions of both players and the trails on the board.  
+@item{Invaders with no invaders below them may now shoot back at the
+player.  Invaders should shoot randomly at some frequency.}
 
- The client: you should only need to @emph{implement} one client, but you
- will @emph{run} two of them, one for each player.  The client will
- draw the world to the screen, recieve messages from the server and
- update the world state in response, allow the user to input their
- desired direction (probably via the arrow keys) and communicate this
- direction to the server.  
+@item{If all the invaders are dead, a new level should start.  The new
+level should be more difficult in that invaders should shoot with a
+higher frequency than the previous level.  There should be no limit on
+the number of levels played in a game.}
 
- Once you've implemented both the server and client, you'll be able to
- play against your friends and classmates over the network.  
+@item{The laser should be able to shoot only one shot at a time; it
+cannot shoot again until the shot it fired hits something or reaches
+the top of the screen.}
 
- }
+@item{Maintain and display a running score for the player.}
 
- @item{@bold{Computer Tron}
+@item{Include a ``mystery'' invader that periodically flies
+horizontally across the top of the screen.  If hit, it is worth either
+100, 150, or 300 points, chosen randomly.}
 
- Language: @racketmodname[class1]. 
+@item{A player should start with 3 lives.  Every time their laser is
+hit by an invader's shot, they lose a life.  The game is now over when
+the player has no lives or the invaders make it to the ground.  The
+game should display how many lives the player has left.}
 
- In this part of the assignment, you'll implement a new kind of
- client---a computer player.  This player will, like the regular
- client, display the world as well as send and recieve messages to and
- from the server.  However, it won't take input from the user; instead
- it will make decisions itself based on the state of the board.  
-
- There is no requirement for any particular behavior for your computer
- player---you can have it behave randomly, behave dumbly, or be the
- world's best tron player.  We won't grade your assignment based on
- its playing choices, but we encourage you to go wild with your
- choices of how the computer player behaves.  
-
- }	   
+@item{The game should start with three protective bunkers that sit in
+between the invaders and the laser, providing partial coverage of the
+laser.  Once shot 5 times, either by the invaders or the player, the
+bunker is destroyed.}]
 
 
-]
+
+
 
