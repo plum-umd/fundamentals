@@ -1,5 +1,6 @@
 #lang scribble/manual
 @(require "unnumbered.rkt")
+@(require "utils.rkt")
 
 @(require (for-label (except-in class/0 check-expect)))
 @(require (for-label (only-in lang/htdp-intermediate-lambda check-expect)))
@@ -7,6 +8,26 @@
 
 
 @title*{Blog}
+
+@section*{Partner requests due by 2/1 at midnight}
+@tt{Sat Jan 28 11:37:40 EST 2012}
+
+Partner requests are now being accepted for assignment 5.  In order to
+request a partner you must send an email to Prof. Van Horn listing the
+partners, their CCIS usernames, and the subject ``Partner Request'';
+for example:
+
+@indented[@verbatim|{
+To: dvanhorn@ccs....
+Subject: Partner Request
+
+George Dickel, gdickel
+John Jameson, jjameson
+}|]
+
+If we don't receive your request before midnight on 2/1, we will
+assign you randomly to a partner.  You may request to continue working
+with your current partner.
 
 @section*{Interface chapter written}
 @tt{Mon Jan 23 19:10:10 EST 2012}
