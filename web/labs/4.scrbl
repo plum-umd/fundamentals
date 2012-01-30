@@ -5,14 +5,14 @@
           "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          (for-label (except-in class/1 define-struct)
+          (for-label (except-in class/0 define-struct)
                      2htdp/image
                      (only-in lang/htdp-intermediate-lambda define-struct)
                      class/universe))
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    (the-eval '(require class/1))
+    (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
     ;(the-eval '(require class/universe))
     the-eval))
@@ -24,8 +24,7 @@
 @; TODO Elaborate or rewrite
 
 @exercise{
-  Is your class system up to date? It changes week to week---in the last few
-  hours we even fixed some bugs with dot notation.
+  Is your class system up to date?
 
   Refer to @seclink["lab03"]{the previous lab} if you don't remember how to
   update it.
@@ -35,7 +34,7 @@
 
 @#reader scribble/comment-reader
 (racketmod
-class/1
+class/0
 (require class/universe)
 (require 2htdp/image)
 
