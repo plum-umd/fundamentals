@@ -6,6 +6,12 @@
 
 @title*{Blog}
 
+@section*{Bookstore code}
+@tt{Tue Jan 31 17:21:51 EST 2012}
+
+Here is the worked out @link["BookstoreAbstract.java"]{bookstore code}
+from class.
+
 @section*{Shark code from last lecture}
 @tt{Mon Jan 23 08:00:46 EST 2012}
 
