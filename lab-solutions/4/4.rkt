@@ -270,10 +270,12 @@
       (this . with-ships (dict-remove (field ships) iw))))
 
   (define/public (on-msg iw acc)
-    (just-universe
-      (this . with-ships (dict-update (field ships)
-                                      iw
-                                      (λ (s) (s . with-acc acc))))))
+   (if (complex? acc)
+       (just-universe
+        (this . with-ships (dict-update (field ships)
+           		 iw
+           		 (λ (s) (s . with-acc acc)))))
+       (just-universe this)))
 
   (define/public (on-tick)
     (local [(define tick (λ (x) (send x tick)))]
