@@ -13,7 +13,8 @@
         (list "Jonathan Schuster" (tt "schuster") "WVH308" "Thursday " "10:30am-12:30pm")
         (list "Justin Slepak" (tt "jrslepak") "WVH308" "Monday " "3:00pm-5:00pm")
         (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
-	      (tt "asumu") "WVH308" "Wednesday " "4:00pm-6:00pm")))
+	      (tt "asumu") "WVH308" "Wednesday " "4:00pm-6:00pm")
+	(list "Nikko Patten" (tt "npatten") "WVH102" "Tuesday " "2:00pm-4:00pm")))
 
 @(define tutors
   (list	(list "James Grammatikos" (tt "jgramm") "WVH102" "Thursday " "noon-2:00pm")
@@ -75,9 +76,9 @@ any of the course staff; usernames are given above.}
 
 @bold{Labs} are held Tuesday in 212 WVH at
 @itemlist[#:style 'ordered
-  @item{9:50-11:30am}
-  @item{11:45am-1:25pm}
-  @item{1:35pm-3:15pm}]
+  @item{9:50-11:30am, Nikko, Asumu, David, Joshua}
+  @item{11:45am-1:25pm, Jonathan, James, Trevor}
+  @item{1:35pm-3:15pm, Justin Jonathan, Scott}]
 
 @section*{Policies}
 
