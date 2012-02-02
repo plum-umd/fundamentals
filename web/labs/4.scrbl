@@ -113,6 +113,10 @@ Notice that your acceleration stays constant until you send a new one...
 }
 
 @exercise{@bold{(Open ended)}
+  WRITE ANOTHER EXERCISE HERE.
+}
+
+@exercise{@bold{(Open ended)}
   The Universe gives you the location (and velocity) of every Rock in play, and
   yours is always the first in the list. Design an @emph{automated} control
   scheme that avoids other Rocks.
