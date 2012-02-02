@@ -9,6 +9,21 @@
 
 @title*{Blog}
 
+@section*{New .plt file and @racketmodname[class/1]}
+@tt{Thu Feb  2 12:28:20 EST 2012}
+
+There is a new @tt{.plt} file for the class, which includes the new
+language level @racketmodname[class/1] that we will now be using.
+
+@section*{Zombie code}
+@tt{Thu Feb  2 12:13:16 EST 2012}
+
+There is now a solution to the @seclink["Zombie_"]{Zombie exercise} in
+the book.
+
+We will post the simple universe server and client later.
+
+
 @section*{Style guide additions}
 @tt{Sat Jan 28 14:19:49 EST 2012}
 
