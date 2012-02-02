@@ -1,10 +1,45 @@
 #lang scribble/manual
-@(require "../unnumbered.rkt")
+@(require "../unnumbered.rkt" "../utils.rkt")
 
 @(require (for-label class/0))
 @(require (for-label class/universe))
 
 @title*{Blog}
+
+@section*{Room for Exam Review: 201MU}
+@tt{Thu Feb  2 11:57:24 EST 2012}
+
+The exam review will be in
+@link["http://www.northeastern.edu/campusmap/map/qad5.html"]{201 Mugar
+Life Sciences Building (MU)} from 6pm-8pm on 2/7.  Be sure to come
+prepared with questions for Nikko and Scott.
+
+@section*{Question on homehork}
+@tt{Thu Feb  2 08:07:50 EST 2012}
+
+Here is a question we got on the current homework:
+
+@indented{
+I am currently working on completing the @tt{directionTo} method in
+the second problem of the homework, but was not sure what the method
+should return if the two points are the same.  Should I assume that
+they're always different points, or should it return @racket{"Same Position"}, 
+or maybe even throw an exception?  I figured I would ask
+since the problem didn't really explain that particular scenario and I
+just wanted to make sure that I implemented the method properly.}
+
+Good question.
+
+When the customer does not specify something it is Ok for the
+programmer to design a reasonable solution and document the choices
+he/she has made.
+
+I think returning the String @racket["Same Position"] sounds
+reasonable, especially considering that as of this homework we know
+nothing about exceptions, and that we really do not want the program
+to crash, just because for a short while during our trip we take a
+break for lunch and stay in the same place
+
 
 @section*{Bookstore code}
 @tt{Tue Jan 31 17:21:51 EST 2012}
