@@ -1,14 +1,13 @@
 #lang scribble/manual
 @(require "../utils.rkt"
-          (for-label class/0))
+          (for-label class/0 class/universe))
 
 
 @title[#:tag "assign03"]{1/25: Playing Animations}
 
 Due: 1/25.
 
-@itemlist[#:style 'ordered
- @item{@bold{Animation player}
+@section{Animation player}
 
 Language: @racketmodname[class/0].
 
@@ -24,26 +23,11 @@ interface:
 ;; render : -> Scene
 }
 
+The @racket[next] and @racket[prev] methods work on @emph{all}
+@racket[Animation]s.  In particular, the @racket[prev] method on the
+first frame of an animation should stay at the first frame, and
+@racket[next] of the last frame should stay on the last frame.
 
-@itemlist[#:style 'ordered
-@item{@bold{The Player user interface}
-
-The user can interact with a player through the keyboard: @racket["p"] plays, @racket["f"] fast-forwards, @racket["r"] rewinds, and @racket["s"] stops playing.
-
-The fast-forward mode should skip every other frame of the animation.  The rewind should go back through the animation.  }
-
-@item{@bold{Animations}
-
-An animation is anything that implements the above interface.  You
-need to implement several kinds of animations.  First, an animation
-that consists of a list of @racket[Scene]s.  Second, an animation that
-consists of a function from a number to a frame.  Third, you should
-create an implementation of @racket[Animation] that wraps an object
-with @racket[on-tick] and @racket[to-draw] methods.
-
-Finally, you should use the third implementation to play an animation
-of a playing animation.  You should demonstrate this in your solution
-with one of your other animations.  }]
 
 Here is an example implementation of an @racket[Animation] that
 displays a sequence of numbers:
@@ -57,10 +41,53 @@ displays a sequence of numbers:
  (define (prev)
    (new count-animation% (max 0 (sub1 (send this n)))))
  (define (render)
-   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black"))))
+   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black")
+            (empty-scene 200 200))))
 }
 
-}]
+
+@itemlist[#:style 'ordered
+@item{@bold{The Player user interface}
+
+The user can interact with a player through the keyboard: @racket["p"]
+plays, @racket["f"] fast-forwards, @racket["r"] rewinds, and
+@racket["s"] stops playing.
+
+The fast-forward mode should skip every other frame of the animation.
+The rewind should go back through the animation.  }
+
+@item{@bold{Animations}
+
+An animation is anything that implements the above interface.  You
+need to implement several ways to construct animations.
+
+@itemlist[  
+@item{First, animations that are constructed from lists of @racket[Scene]s.} 
+
+@item{Second, animations that consists of a function from a number to
+a frame.  For example, when given the following function, your
+animation creator should produce the animation as the example above:
+@racketblock[
+(lambda (i) (overlay (text (number->string i) 50 "black")
+                     (empty-scene 200 200)))
+]}
+
+@item{Third, you should
+create an implementation of @racket[Animation] that wraps an object
+with @racket[on-tick] and @racket[to-draw] methods.  That is, the
+constructor should take an object that supports the following
+@racket[World] interface:
+@codeblock{
+;; A World implements
+;;  to-draw : -> Scene
+;;  on-tick : -> World
+}
+and it should render the @racket[Scene]s that the @racket[World]
+produces.  } ]
+
+Finally, you should use the third implementation to play an animation
+of a playing animation.  You should demonstrate this in your solution
+with one of your other animations.  }]
 
 @;{
 

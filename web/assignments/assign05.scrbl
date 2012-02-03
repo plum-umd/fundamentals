@@ -61,6 +61,20 @@ Design the method @racket[has-peon?] that determines if this employee
 has a peon with the given name (a string).
 }
 
+@item{
+Design a data representation for river systems (see the related
+problem on p. 46 of How to Design Classes).  A @racket[River] ends in a
+@racket[Mouth]. Above the @racket[Mouth], a @racket[River] will be formed by
+the @racket[Confluence] of two other @racket[River]s.  A
+@racket[River] starts at a @racket[Source].  
+
+Design the method @racket[count-sources].  Then extend your data
+definition to record how far it is along each river segment.  Design
+the method @racket[river-length], which is the @emph{longest} distance
+from any source of the river to the mouth of the river.
+}
+
+
 @item{Here is a data definition for a time of day:
 
 @#reader scribble/comment-reader
@@ -115,11 +129,75 @@ accumulator.  Once you have the helper method, make sure the
 definition of @racket[reverse] is identical in all the classes that
 represent lists, then define a new super class of these classes and
 lift this duplicated, identical definition to it.  Thus you should now
-have a single definition of @racket[reverse].}
+have a single definition of @racket[reverse].
+
+@bold{Note:} you may @emph{not} use lists from last semester, i.e. those
+constructed with @racket[cons] and @racket[empty].}
 
 @item{Revisit your solution to @racket[free-time].  Did you use an
 accumulator desgin?  (You probably should have.)  If you didn't,
 redesign the program with an accumulator and lift any identical method
 definitions to super classes.}
+
+@item{
+Here is a data defintion for a @racket[Shape]:
+
+@#reader scribble/comment-reader
+(racketblock
+;; A Shape is one of:
+;; - (new circle% radius)
+;; - (new rectangle% width height)
+)
+
+Define the appropriate classes, and design the methods @racket[size],
+which computes the area of a shape, and @racket[draw], which takes a
+@racket[Color] and produces and image of the shape in that color.
+
+Extend your data defintion to support overlayed shapes, and add an
+@racket[overlay] method to the interface that all @racket[Shape]s
+support.  
+
+Now extend your classes to support the @racket[underlay] method.  Can
+you write this method just once?
+}
+
+@item{
+Design a representation for a @tt{Population}.  This consists of
+children, adults, and retired people.  In this society, everyone
+becomes an adult at 25, retires at 65, and dies at 90.  Then, design
+the following methods:
+@itemlist[
+@item{@tt{age-all}, which makes everyone a year older,}
+@item{@tt{max-age}, which computes the age of the oldest member,}
+@item{@tt{half-working}, which ages the population until there are
+half as many adults as there were to start with.}
+]
+}
+
+@item{
+Design a representation for simple @emph{organic molecules}.  An
+organic molecule is either a carbon atom, or a carbon atom connected
+to additional carbon atoms via bonds.  A connection between two carbon
+atoms can be either a single, double, or triple bond.  The total
+number of bonds attached to a single carbon atom is at most 4.  
+
+Define @tt{butane} as an example, which is just 4 carbons in a line,
+with all single bonds.  You can see a diagram of butane
+@link["http://en.wikipedia.org/wiki/Butane"]{here}. 
+
+Design the method @tt{count-carbons}, which starting from a carbon
+atom, counts all the carbon atoms connected to it (including the
+starting atom).
+
+Design the method @tt{valid?}, which determines if every attached
+carbon atom has at most 4 bonds.
+
+It turns out that all of the gaps, i.e. the possible bonds that aren't
+connected to another carbon atom, are actually connected to hydrogen
+atoms.  Design the method @tt{count-hydrogens} which counts the number
+of hydrogen atoms reachable starting from a carbon atom (i.e., counts
+all of the gaps).
+
+}
 
 ]
