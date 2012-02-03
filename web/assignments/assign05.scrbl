@@ -182,9 +182,9 @@ children, adults, and retired people.  In this society, everyone
 becomes an adult at 25, retires at 65, and dies at 90.  Then, design
 the following methods:
 @itemlist[
-@item{@tt{age-all}, which makes everyone a year older,}
-@item{@tt{max-age}, which computes the age of the oldest member,}
-@item{@tt{half-working}, which ages the population until there are
+@item{@racket[age-all], which makes everyone a year older,}
+@item{@racket[max-age], which computes the age of the oldest member,}
+@item{@racket[half-working], which ages the population until there are
 half as many adults as there were to start with.}
 ]
 }
@@ -196,20 +196,20 @@ to additional carbon atoms via bonds.  A connection between two carbon
 atoms can be either a single, double, or triple bond.  The total
 number of bonds attached to a single carbon atom is at most 4.  
 
-Define @tt{butane} as an example, which is just 4 carbons in a line,
+Define @racket[butane] as an example, which is just 4 carbons in a line,
 with all single bonds.  You can see a diagram of butane
 @link["http://en.wikipedia.org/wiki/Butane"]{here}. 
 
-Design the method @tt{count-carbons}, which starting from a carbon
+Design the method @racket[count-carbons], which starting from a carbon
 atom, counts all the carbon atoms connected to it (including the
 starting atom).
 
-Design the method @tt{valid?}, which determines if every attached
+Design the method @racket[valid?], which determines if every attached
 carbon atom has at most 4 bonds.
 
 It turns out that all of the gaps, i.e. the possible bonds that aren't
 connected to another carbon atom, are actually connected to hydrogen
-atoms.  Design the method @tt{count-hydrogens} which counts the number
+atoms.  Design the method @racket[count-hydrogens] which counts the number
 of hydrogen atoms reachable starting from a carbon atom (i.e., counts
 all of the gaps).
 
