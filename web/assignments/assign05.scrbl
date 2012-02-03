@@ -117,5 +117,9 @@ represent lists, then define a new super class of these classes and
 lift this duplicated, identical definition to it.  Thus you should now
 have a single definition of @racket[reverse].}
 
+@item{Revisit your solution to @racket[free-time].  Did you use an
+accumulator desgin?  (You probably should have.)  If you didn't,
+redesign the program with an accumulator and lift any identical method
+definitions to super classes.}
 
 ]
