@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require "../utils.rkt"
 	  "../unnumbered.rkt"
-          (for-label (except-in class/1 append)))
+          (for-label (except-in class/1 append reverse)))
 
 @title[#:tag "assign05"]{2/7: Fundamentals}
 
@@ -105,4 +105,17 @@ scheduled in this schedule.  You may assume this schedule is good for
 @racket[scheduled-time].  Design the method @racket[free-time], which
 computes a schedule of events named @racket["Free time"] that are all
 times @emph{not} scheduled in this schedule.  You may assume this
-schedule is good for @racket[free-time].}  ]
+schedule is good for @racket[free-time].}  
+
+@item{Develop data and class definitions for representing lists of
+numbers.  Design the @racket[reverse] method that consumes no
+arguments and produces the list of this list's elements in reverse
+order.  You should design the method using a helper method with an
+accumulator.  Once you have the helper method, make sure the
+definition of @racket[reverse] is identical in all the classes that
+represent lists, then define a new super class of these classes and
+lift this duplicated, identical definition to it.  Thus you should now
+have a single definition of @racket[reverse].}
+
+
+]
