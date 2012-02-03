@@ -151,7 +151,7 @@ constructed with @racket[cons] and @racket[empty].}
 
 @item{Revisit your solution to @racket[free-time].  Did you use an
 accumulator desgin?  (You probably should have.)  If you didn't,
-redesign the program with an accumulator and lift any identical method
+redesign the program with an accumulator.  Lift any identical method
 definitions to super classes.}
 
 @item{
