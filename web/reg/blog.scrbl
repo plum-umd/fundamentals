@@ -6,6 +6,17 @@
 
 @title*{Blog}
 
+@section*{Past exams}
+@tt{Thu Feb  2 20:28:08 EST 2012}
+
+Here are the past exams:
+@itemlist[
+@item{@link["exam1-sol-sp10.pdf"]{Exam 1, Spring 2010 (Version 1)}}
+@item{@link["exam1v2-sol-sp10.pdf"]{Exam 1, Spring 2010 (Version 2)}}
+@item{@link["exam1-sol-su10.pdf"]{Exam 1, Summer 2010}}
+@item{@link["exam1-sol-fl10.pdf"]{Exam 1, Fall 2010}}
+]
+
 @section*{Room for Exam Review: 201MU}
 @tt{Thu Feb  2 11:57:24 EST 2012}
 
