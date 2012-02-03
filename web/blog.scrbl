@@ -9,6 +9,11 @@
 
 @title*{Blog}
 
+@section*{Assignment 5 is out}
+@tt{Fri Feb  3 00:45:34 EST 2012}
+
+@seclink["assign05"]{Assignment 5} is now available.
+
 @section*{New .plt file and @racketmodname[class/1]}
 @tt{Thu Feb  2 12:28:20 EST 2012}
 
