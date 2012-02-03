@@ -61,6 +61,7 @@ Design the method @racket[has-peon?] that determines if this employee
 has a peon with the given name (a string).
 }
 
+@;{
 @item{
 Design a data representation for river systems (see the related
 problem on p. 46 of How to Design Classes).  A @racket[River] ends in a
@@ -73,7 +74,21 @@ definition to record how far it is along each river segment.  Design
 the method @racket[river-length], which is the @emph{longest} distance
 from any source of the river to the mouth of the river.
 }
+}
 
+@item{
+A football game consists of a series of Posessions.  Each Posession
+starts at a location on the field (a yard from 0 to 100), ends at a
+specific location on the field, either with a score (of either 3 or 7
+points), and a kick to the other team, causing them to start at a new
+location on the field.  
+
+Design a data defintion for football games.  Then design the method
+@racket[total-offense], which records the number of yards gained by
+the team that @emph{started} with the ball first.  Design the method
+@racket[total-score], which records the total number of points scored
+by @emph{both} teams.
+}
 
 @item{Here is a data definition for a time of day:
 
