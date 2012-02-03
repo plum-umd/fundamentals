@@ -34,7 +34,7 @@ Here is a question we got on the current homework:
 I am currently working on completing the @tt{directionTo} method in
 the second problem of the homework, but was not sure what the method
 should return if the two points are the same.  Should I assume that
-they're always different points, or should it return @racket{"Same Position"}, 
+they're always different points, or should it return @racket["Same Position"], 
 or maybe even throw an exception?  I figured I would ask
 since the problem didn't really explain that particular scenario and I
 just wanted to make sure that I implemented the method properly.}
@@ -49,7 +49,7 @@ I think returning the String @racket["Same Position"] sounds
 reasonable, especially considering that as of this homework we know
 nothing about exceptions, and that we really do not want the program
 to crash, just because for a short while during our trip we take a
-break for lunch and stay in the same place
+break for lunch and stay in the same place.
 
 
 @section*{Bookstore code}
