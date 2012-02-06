@@ -83,6 +83,13 @@ list of key-value pairs.
 ; and implements [Dict V]
 )
 
+One thing to note is that the assumptions on methods are part of the
+interface that classes have to implement. If an assumption is impossible
+to meet for a given case, then this method does not need to be
+implemented. For example, does the @racket[lookup] method make sense for
+an @racket[ld-empty%]? Consider a concrete example like
+@racket[(send (new ld-empty%) lookup 5)].
+
 @exercise{
   Define the classes @racket[ld-empty%] and @racket[ld-cons%].
 }
