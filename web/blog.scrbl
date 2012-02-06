@@ -9,6 +9,14 @@
 
 @title*{Blog}
 
+@section*{Bootstrap} 
+@tt{Mon Feb  6 12:38:18 EST 2012}
+
+If you're interested in volunteering for
+@link["http://bootstrapworld.org"]{Bootstrap}, which is a program for
+teaching middle-schoolers programming using video games in DrRacket,
+then you should email @link["vicki@bootstrapworld.org"]{Vicki} to volunteer.  
+
 @section*{New partner assignments}
 
 Here are the new partner assignments that are in effect now (for
@@ -59,6 +67,7 @@ the book.
 We will post the simple universe server and client later.
 
 
+>>>>>>> .r544
 @section*{Style guide additions}
 @tt{Sat Jan 28 14:19:49 EST 2012}
 
