@@ -166,6 +166,7 @@ use a less ambiguous representation to avoid the issue in the first place.
 ; A [SortedListDict V] is one of:
 ;  - (sld-empty%)
 ;  - (sld-cons Key V [SortedListDict V])
+; and implements [Dict V]
 ;
 ; Invariant: The keys are sorted (increasing).
 )
@@ -239,6 +240,7 @@ dictionary.
 ; A [TreeDict V] is one of:
 ;  - (td-leaf%)
 ;  - (td-node% Key V [TreeDict V] [TreeDict V])
+; and implements [Dict V]
 ;
 ; Invariant: The keys form a BST.
 )
