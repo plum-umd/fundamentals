@@ -54,23 +54,19 @@ Before we build anything, we should first specify what a dictionary is.
 (racketblock
 ; A Key is a Nat
 
-; An [IDict V] implements:
-(define-interface dict<%>
-  [; Key -> Boolean
-   ; Does the given key exist?
-   has-key?
+; An [Dict V] implements:
+; has-key : Key -> Boolean
+; Does the given key exist?
 
-   ; Key -> V
-   ; The value mapped to by the given key
-   ; Assumption: the key exists
-   lookup
+; lookup : Key -> V
+; The value mapped to by the given key
+; Assumption: the key exists
 
-   ; Key V -> [IDict V]
-   ; Set the given key-value mapping
-   set])
+; set : Key V -> [Dict V]
+; Set the given key-value mapping
 )
 
-Notice that a dictionary @tt{[IDict V]} is parameterized by the type of its
+Notice that a dictionary @tt{[Dict V]} is parameterized by the type of its
 values, @tt{V}. This enables us to give precise contracts to the methods.
 
 @lab:section{Dictionaries as lists of pairs}
@@ -84,6 +80,7 @@ list of key-value pairs.
 ; A [ListDict V] is one of:
 ;  - (ld-empty%)
 ;  - (ld-cons% Key V [ListDict V])
+; and implements [Dict V]
 )
 
 @exercise{
@@ -119,7 +116,7 @@ How good are your tests?---make sure you pass this one:
   @racket[v], if you ask @racket[has-key? k] after setting the mapping
   @racket[k] → @racket[v], then you should always get @racket[true].
 
-  Write this property down as a function that takes an @tt{[IDict V]}, a
+  Write this property down as a function that takes an @tt{[Dict V]}, a
   @tt{Key}, a @tt{V}, and returns @racket[true] if the property is satisfied by
   the particular inputs given. (If it ever returns @racket[false], then the
   property is invalid!)
@@ -176,7 +173,7 @@ use a less ambiguous representation to avoid the issue in the first place.
 }
 
 How about randomized testing? The properties we wrote above are generic over any
-@tt{IList}s, so we can reuse them to test our @tt{SortedListDict}s.
+@tt{Dict}s, so we can reuse them to test our @tt{SortedListDict}s.
 
 @exercise{
   Define a function @racket[random-sorted-list-dict], similar to
@@ -186,7 +183,7 @@ How about randomized testing? The properties we wrote above are generic over any
 }
 
 @exercise{
-  Randomly test your @tt{IList} properties on random @tt{SortedListDict}s.
+  Randomly test your @tt{Dict} properties on random @tt{SortedListDict}s.
 }
 
 The methods you wrote for @tt{SortedListDict} should preserve its sorting
@@ -201,9 +198,9 @@ organize the rest of our code, too.
 @exercise{
   Split your code into separate modules:
   @itemlist[
-    @item{@racket["dict.rkt"] contains and @racket[provide]s the @tt{IDict}
-          interface}
-    @item{@racket["list-dict.rkt"] @racket[require]s @racket["dict.rkt"],
+    @;{@item{@racket["dict.rkt"] contains and @racket[provide]s the @tt{Dict}
+          interface}}
+    @item{@racket["list-dict.rkt"]
           contains the @tt{ListDict} implementation, and @racket[provide]s only
           an empty @tt{ListDict}}
     @item{@racket["sorted-list-dict.rkt"] @racket[require]s @racket["dict.rkt"],
@@ -215,8 +212,8 @@ organize the rest of our code, too.
   ]
 }
 
-The @tt{IDict} interface stands alone, ready for other modules to implement or
-use it. The @tt{ListDict} implementation follows the @tt{IDict} interface and
+The @tt{Dict} interface stands alone, ready for other modules to implement or
+use it. The @tt{ListDict} implementation follows the @tt{Dict} interface and
 tests its individual methods. The @tt{SortedListDict} implementation does the
 same. And the randomized testing code acts as our ``client'': it lives outside
 the module boundaries of each implementation and thus can only interact with
@@ -256,7 +253,7 @@ Two points to be careful about:
 }
 
 @exercise{
-  Define @tt{IDict} methods on @tt{TreeDict}s. Know your invariant!---make sure
+  Define @tt{Dict} methods on @tt{TreeDict}s. Know your invariant!---make sure
   you both preserve and exploit it.
 }
 
@@ -267,7 +264,7 @@ Two points to be careful about:
 }
 
 @exercise{
-  Randomly test your @tt{IList} properties on random @tt{TreeDict}s.
+  Randomly test your @tt{Dict} properties on random @tt{TreeDict}s.
 }
 
 @lab:section{More useful dictionaries}
@@ -276,7 +273,7 @@ Dictionaries tend to have many more behaviors than the three we've been playing
 with so far.
 
 @exercise{
-  Add a method @racket[has-value?] to @tt{IDict}s that tests whether a given
+  Add a method @racket[has-value?] to @tt{Dict}s that tests whether a given
   value is present. (Invariants won't help you here!)
 
   Specify and randomly test a property relating @racket[set] and
@@ -284,7 +281,7 @@ with so far.
 }
 
 @exercise{
-  Add a method @racket[update] to @tt{IDict}s that takes a key @racket[k] and an
+  Add a method @racket[update] to @tt{Dict}s that takes a key @racket[k] and an
   update function @racket[f : V -> V], and updates @racket[k]'s value by
   applying @racket[f] to it. The method should assume that the key @racket[k]
   already exists in the dictionary.
@@ -294,7 +291,7 @@ with so far.
 }
 
 @exercise{
-  Add a method @racket[extend] to @tt{IDict}s that takes another @tt{IDict} (who
+  Add a method @racket[extend] to @tt{Dict}s that takes another @tt{Dict} (who
   knows which kind!) and combines all of its mappings with this' mappings. What
   if the mappings from the two dictionaries overlap?---pick an
   easy-to-understand policy and document it in your contract/purpose.
