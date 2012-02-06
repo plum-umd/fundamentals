@@ -110,10 +110,10 @@ How good are your tests?---make sure you pass this one:
 
 @#reader scribble/comment-reader
 (racketblock
-(check-expect ((ld-empty%) #,dot set 1 "one"
-                           #,dot set 2 "two"
-                           #,dot set 1 "uno"
-                           #,dot lookup 1)
+(check-expect ((new ld-empty%) #,dot set 1 "one"
+                               #,dot set 2 "two"
+                               #,dot set 1 "uno"
+                               #,dot lookup 1)
               "uno")
 )
 
