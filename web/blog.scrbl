@@ -9,8 +9,14 @@
 
 @title*{Blog}
 
+@section*{Homework Due Date}
+@tt{Tue Feb  7 16:32:03 EST 2012}
+
+There was a mistake in the date listed for Assignment 5; it is due on
+Wednesday at midnight, as usual.
+
 @section*{Bootstrap} 
-@tt{Mon Feb  6 12:38:18 EST 2012}
+t@t{Mon Feb  6 12:38:18 EST 2012}
 
 If you're interested in volunteering for
 @link["http://bootstrapworld.org"]{Bootstrap}, which is a program for

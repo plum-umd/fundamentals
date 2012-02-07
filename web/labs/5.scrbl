@@ -211,7 +211,7 @@ organize the rest of our code, too.
     @item{@racket["list-dict.rkt"]
           contains the @tt{ListDict} implementation, and @racket[provide]s only
           an empty @tt{ListDict}}
-    @item{@racket["sorted-list-dict.rkt"] @racket[require]s @racket["dict.rkt"],
+    @item{@racket["sorted-list-dict.rkt"] 
           contains the @tt{SortedListDict} implementation, and @racket[provide]s
           only an empty @tt{SortedListDict}}
     @item{@racket["random-tests.rkt"] @racket[require]s all the other modules,

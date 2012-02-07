@@ -3,9 +3,9 @@
 	  "../unnumbered.rkt"
           (for-label (except-in class/1 append reverse)))
 
-@title[#:tag "assign05"]{2/7: Fundamentals}
+@title[#:tag "assign05"]{2/8: Fundamentals}
 
-Due: 2/7.
+Due: 2/8.
 
 Language: @racketmodname[class/1].
 
