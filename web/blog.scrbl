@@ -9,6 +9,41 @@
 
 @title*{Blog}
 
+@section*{Exam 1}
+@tt{Wed Feb  8 07:55:50 EST 2012}
+
+Exam 1 will be held @bold{Monday, 2/13 from 6-9pm in
+@link["http://www.northeastern.edu/campusmap/map/qad5.html"]{103
+Churchill Hall (CH)}}.  Yes, it conflicts with lab; don't go to lab,
+go to 103 Churchill Hall and take the exam.
+
+The exam is open book, open notes; closed computational devices except
+for the one in between your ears.
+
+There has only been one instance of this course before, so we only
+have one exam to give you for preparation: @link["exam1.pdf"]{Exam 1,
+Spring 2011}.  (You may recognize problem 1!)
+
+There are a couple minor differences with the language used on the
+exam compared with the language we have been using: 
+
+@itemize[
+@item{It uses @racket[define/public] instead of @racket[define].  They
+mean the same thing.}
+
+@item{It mentions @racket[define-interface], a feature we abandoned;
+don't worry about it.}
+
+@item{It leaves off @racket[new] when constructing objects; just
+imagine it didn't.}
+]
+
+There will be a @bold{review session} led by Spencer and Ryan who were
+nice enough to volunteer to run the review.  The review session will
+be @bold{Sunday, 2/12 from 6-8pm}.  We are working on reserving a room
+now and will post the location as soon as we have one.
+
+
 @section*{Homework Due Date}
 @tt{Tue Feb  7 16:32:03 EST 2012}
 
@@ -16,7 +51,7 @@ There was a mistake in the date listed for Assignment 5; it is due on
 Wednesday at midnight, as usual.
 
 @section*{Bootstrap} 
-t@t{Mon Feb  6 12:38:18 EST 2012}
+@tt{Mon Feb  6 12:38:18 EST 2012}
 
 If you're interested in volunteering for
 @link["http://bootstrapworld.org"]{Bootstrap}, which is a program for
