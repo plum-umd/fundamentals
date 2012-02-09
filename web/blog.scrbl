@@ -9,6 +9,22 @@
 
 @title*{Blog}
 
+@section*{Marathon code}
+@tt{Thu Feb  9 17:45:44 EST 2012}
+
+@link["marathon.rkt"]{Here} is a slightly cleaned up version of the
+Boston marathon code we wrote in class today.  You should try
+implementing the @tt{Gender} interface yourself, but if you want,
+@link["gender.rkt"]{here's} the one we used.
+
+
+@section*{Exam 1 review session}
+@tt{Thu Feb  9 17:44:39 EST 2012}
+
+The exam 1 review session will be in @bold{108 WVH} on Sunday 2/12
+from 6-8pm.
+
+
 @section*{Exam 1}
 @tt{Wed Feb  8 07:55:50 EST 2012}
 
