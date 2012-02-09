@@ -48,7 +48,7 @@ clean-web:
 #
 
 web-scp: clean-web web-students	
-	scp -r 2510/* $(CCS):$(CCS_PATH)
+	rsync -avz 2510/* $(CCS):$(CCS_PATH)
 	make web-perms
 
 web-perms:
