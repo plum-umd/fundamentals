@@ -9,6 +9,12 @@
 
 @title*{Blog}
 
+@section*{No Homework this week}
+@tt{Fri Feb 10 10:34:28 EST 2012}
+
+There is no homework for this coming week.  We encourage you to work
+through the problems from the last exam.
+
 @section*{Marathon code}
 @tt{Thu Feb  9 17:45:44 EST 2012}
 
