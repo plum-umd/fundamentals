@@ -129,39 +129,44 @@ Extra & & ? \\ \hline
 % \newpage
 \begin{problem}\pts{17} % same as on the previous exam :)
 
-A \emph{range} represents a set of numbers between two endpoints.  To
-start with, you only need to consider ranges that \emph{include} the
-smaller endpoint and \emph{exclude} the larger endpoint---such ranges
-are called \emph{half-open}.  For example, the range $[3,4.7)$
-includes all of the numbers between $3$ and $4.7$, including $3$ but
-\emph{not} including $4.7$. So $4$ and $3.0000001$ are both in the
-range, but $5$ is not.  In the notation used here, the $[$ means
-include, and the $)$ means exclude.
+Here is a data definition for a class of objects.  It intentionally
+uses meaningless names to test whether you've sufficiently
+internalized the data-driven development process we've talked about
+since the Fall.
 
-\smallskip
+\begin{verbatim}
+;; A P is one of:          
+;; - A                  ;; An A is a (new a% String)
+;; - B                  ;; A  B is a (new b% String A)
+;; - C                  ;; A  C is a (new c% P)
+
+(define-class a% (fields cookoo))
+(define-class b% (fields gaga bang))
+(define-class c% (fields doodle))
+\end{verbatim}
 
 \noindent
+Design the following methods for \verb|P|s:
+
 \begin{enumerate}
-\item Design a representation for ranges and implement the
-  \texttt{in-range?} method, which determines if a number is in the
-  range.  For example, the range $[3,7.2)$ includes the numbers $3$
-  and $5.0137$, but not the numbers $-17$ or $7.2$.
 
-\item Extend the data definition and implementation of ranges to
-  represent ranges that \emph{exclude} the low end of the range and
-  \emph{include} the high end, written $(lo,hi]$.  
+\item \verb|size| - the size of an \verb|A| is $5$; the size of a
+  \verb|B| is $8$, regardless of what's inside; and the size of a
+  \verb|C| contributes $1$ to the size of the \verb|P| inside.
 
-\item Add a \texttt{union} method to the interface for ranges and
-  implement it in all range classes.  This method should consume a
-  range and produces a new range that includes all the numbers in this
-  range \emph{and} all the numbers in the given range.
+\item \verb|replace-gaga| - produces a \verb|P| with the \verb|gaga|
+  field of any \verb|B| within this \verb|P| with a given string.
 
-  You may extend your data definition for ranges to
-  support this method.
+\item \verb|same-gaga-cookoo?| - produces true for any \verb|P| which
+  contains a \verb|B| whose \verb|gaga| is equal to a given string and
+  whose \verb|bang| is an \verb|A| whose \verb|cookoo| is equal to
+  another given string.  Produces false otherwise.
 
-  You may apply the abstraction recipe, but you are not required to do
-  so; you will not be marked down for duplicated code on this problem.
 \end{enumerate}
+
+Be sure to define any interfaces you need so that your program and say
+which classes implement which interfaces so that your program treats
+all values according to their interface.
 
 \newpage
 \ifrubric\else
@@ -173,76 +178,39 @@ include, and the $)$ means exclude.
 
 \begin{solution}
 \begin{verbatim}
-;; Part 1:
 
-;; A Range is one of
-;; - (new range% Number Number)                         [1pt]
-;; Interp: represents the range between `lo' and `hi'
-;;         including `lo', but *not* including `hi'
-;; and implements IRange:
+;; A P implements:
+;; - size : -> Number
+;;   Size of this P.
+;; - replace-gaga : String -> P
+;;   Replace gaga field (if any) of this P with given string.
+;; - same-gaga-cookoo? : String String -> Boolean
+;;   Is there a B within this P with given gaga field and cookoo field?
 
-;; The IRange interface includes:
-;; - in-range? : Number -> Boolean                      [1pt]
-;; determine if the given number is in this range
-;; - union : Range -> Range                             [1pt]
-;; produce the range containing this and the given range
+;; An A implements:
+;; - cookoo : -> String
+;;   Get the cookoo string.
 
-(define-class range%                                    [1pt]
-  (fields lo hi)
-  (check-expect ((range% 0 1) . in-range? 0) true)      [1pt]
-  (check-expect ((range% 0 1) . in-range? 1) false)
-  (define/public (in-range? n)                          [2pt]
-    (and (>= n (field lo)) (< n (field hi))))
-    
-  (define/public (union r)
-    (union-range% this r)))
+;; In a%:
+(define (size) 5)
+(define (replace-gaga str) this)
+(define (same-gaga-cookoo? g c) false)
 
-;; Part 2:
+;; In b%:
+(define (size) 8)
+(define (replace-gaga str)
+  (new b% str (this . bang)))
+(define (same-gaga-cookoo? g c)
+  (and (string=? g (this . gaga))
+       (string=? c (this . bang . cookoo))))
 
-;; A Range is also:
-;; - (new hi-range% Number Number)                      [1pt]
-;; Interp: represents the range between `lo' and `hi'
-;;         including `hi', but *not* including `lo'
+;; In c%:
+(define (size) (add1 (this . doodle . size)))
+(define (replace-gaga str)
+  (new c% (this . doodle . replace-gaga str)))
+(define (same-gaga-cookoo? g c)
+  (this . doodle . same-gaga-cookoo? g c))
 
-
-(define-class hi-range%                                 [1pt]
-  (fields lo hi)
-  (check-expect ((hi-range% 0 1) . in-range? 0) false)  [1pt]
-  (check-expect ((hi-range% 0 1) . in-range? 0.5) true)
-  (check-expect ((hi-range% 0 1) . in-range? 1) true)
-  (define/public (in-range? n)                          [1pt]
-    (and (> n (field lo)) (<= n (field hi))))
-    
-  (define/public (union r)
-    (union-range% this r)))
-
-;; Part 3:
-
-;; A Range is also:
-;; - (new union-range% Range Range)                     [1pt]
-;; Interp: including all the numbers in both ranges
-
-(define-class union-range%                              [1pt]
-  (fields left right)
-  (define/public (in-range? n)                          [2pt]
-    (or ((field left) . in-range? n)
-        ((field right) . in-range? n)))
-
-  ;; Point is for all the union methods together
-  (define/public (union r)                              [1pt]
-    (union-range% this r)))
-
-(define r1 (range% 0 1))
-(define r2 (hi-range% 0 1))
-(define r3 (range% 2 4))
-
-;; union + in-range? test                               [1pt]
-(check-expect (r1 . union r2 . union r3 . in-range? 3) 
-              true)
-
-;; testing all the union methods                        [1pt]
-(check-expect (r1 . union r2 . in-range? 1) true)
-(check-expect (r2 . union r1 . in-range? 0) true)
 \end{verbatim}
 \end{solution}
 \end{problem}
@@ -658,7 +626,9 @@ either zero, or one more than a natural number.)
 
 It will be helpful to define the helper methods \verb|add1| and
 \verb|plus|.  Also, remember that $n + m = (n-1) + m + 1$ and that $n
-\cdot m = (n-1) \cdot m + n$.  
+\cdot m = (n-1) \cdot m + n$.  Don't overlook the slightly weird
+specification for \verb|sub1|: $0-1 = 0$; this weirdness is common
+amongst mathematicians when working with natural numbers.
 
 \ifrubric
 \else
