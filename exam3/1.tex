@@ -78,9 +78,7 @@ Student Id (last 4 digits):  & \rule{174pt}{1pt} \\[.5cm]
   may write just the method and indicate the appropriate class name
   rather than re-write the entire class definition.
 
-\item We expect data \emph{and} interface definitions
-  (although interfaces may be defined in comments rather than
-  with \code{define-interface}).
+\item We expect data \emph{and} interface definitions.
 
 \item If an interface is given to you, you do not need to repeat the
   contract and purpose statements in your implementations.  Likewise,
@@ -605,38 +603,46 @@ Virtual Line for its launch later this semester:
 Last night, Asumu was up late improving the {\tt class} languages.
 Unfortunately, he was too tired to test his work, and his last commit
 broke the numeric system.
-
+%
 This puts us in the dire position of no longer being able to calculate
 the factorial of large numbers, and we turn to you for help.
 
-This is the definition of a class with a {\tt fact} method:
+This is the definition of a class of functional objects
+with a {\tt fact} method:
 
 \begin{verbatim}
-;; A Fact is (new fact%)
+;; A Fact is (new fact%) and implements 
+;; - fact : Natural -> Natural
+;;   Compute n!.
 (define-class fact%
   (define (fact n)
     (cond [(zero? n) 1]
           [else (* n (this . fact (sub1 n)))])))
 \end{verbatim}
 
-We need to rewrite this method, using the \verb|Natural| interface,
-which has the following methods:
+Since we can no longer rely on built in numbers to represent
+\verb|Natural|s, we will represent \verb|Natural|s with objects and
+then rewrite the \verb|fact| method to operate over this new kind of
+data.
+
+Here is the \verb|Natural| interface:
 
 \begin{verbatim}
 ;; A Natural implements:
 ;; - zero? : -> Boolean
-;; is this Natural the zero value?
+;;   is this Natural the zero value?
 ;; - sub1 : -> Natural
-;; produce a Natural one less than this one 
-;; (or zero if this one is zero)
+;;   produce a natural one less than this natural 
+;;   (or zero if this natural is zero)
 ;; - times : Natural -> Natural
-;; multiply this Natural by the given one
+;;   multiply this natural by the given natural
 \end{verbatim}
 
-Write a new definition of the \verb|fact%| class using \verb|Natural|,
+\newpage
+Write a new definition of the \verb|fact| method using \verb|Natural|,
 and \emph{not} using the built-in numbers of the class system or
-DrRacket.  You can use the constant \verb|one|, which is a \verb|Natural|
-representing $1$.
+DrRacket.  You can assume there is a defined constant \verb|one|,
+which is a \verb|Natural| object representing $1$.
 
 \ifrubric
 \else
@@ -645,8 +651,10 @@ representing $1$.
 \newpage
 
 Now, design a data defintion that implements \verb|Natural|, and
-supports the methods \verb|zero?|, \verb|sub1|, and \verb|times|.  Define the
-constant \verb|one|.
+supports the methods \verb|zero?|, \verb|sub1|, and \verb|times|.
+Define the constant \verb|one|.  (\emph{Hint}: remember that the
+natural numbers can be seen as a recursive union; a natural number is
+either zero, or one more than a natural number.)
 
 It will be helpful to define the helper methods \verb|add1| and
 \verb|plus|.  Also, remember that $n + m = (n-1) + m + 1$ and that $n
@@ -715,18 +723,19 @@ help, expressed in the following data definitions.
 \begin{verbatim}
 ;; A Bool implements:
 ;; - branch : [Action X] [Action X] -> X
-;; run the first action if this is true, otherwise run the second action
+;;   run the first action if this bool is true, 
+;;   otherwise run the second action
 
 ;; An [Action X] implements:
 ;; - run : -> X
-;; do this action
+;; run this action
 
 
 \end{verbatim}
 
 Following these interface definitions, design data and class
 defintions for implementations of the \verb|Bool| interface, and
-reimplement the \verb|fact%| class to use them.
+reimplement the \verb|fact| method to use them.
 You may modify your natural number implementation if neccessary for
 your solution.
 
@@ -746,7 +755,7 @@ your solution.
 \begin{verbatim}
 (define-class fact%
   (define (fact n)
-    (n . zero? . branch (new const% 0) (new recur% n))))
+    (n . zero? . branch (new const% one) (new recur% n))))
 (define-class const%
   (fields run))
 (define-class recur%
