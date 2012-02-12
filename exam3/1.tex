@@ -385,18 +385,19 @@ doesn't bear looking at.  All you have to go on is that the \verb|Set|
 data structure obeys the following interface:
 
 \begin{verbatim}
-;; empty-set is a set
+;; empty-set is a Set value containing no elements
 
 ;; A Set implements:
 ;; - insert : String -> Set
-;; adds the given string to the set, if it isn't already there
+;;   adds given string to this set, if it isn't already there
+;;   (otherwise does nothing)
 ;; - remove : String -> Set
-;; removes the given string from the set
-;; if the given string is not in the set, produce the original set
+;;   removes given string from this set, if it's already there
+;;   (otherwise does nothing)
 ;; - size : -> Number
-;; count the elements of the set
-;; - has : String -> Boolean
-;; is the given String in the set?
+;;   count the elements of this set
+;; - has? : String -> Boolean
+;;   is the given String in this set?
 \end{verbatim}
 \noindent
 \verb|Set|s should satisfy the following property, called the
@@ -404,7 +405,7 @@ data structure obeys the following interface:
 set:
 
 \begin{quote}
-If we insert an element into a set, then the resulting set is the
+If we insert any element into any set, then the resulting set is the
 same size as the original set \emph{if} the element was already in the
 set, and the resulting set is one larger than the original set
 if the element was \emph{not} already in the set.
@@ -416,15 +417,22 @@ if the element was \emph{not} already in the set.
   predicate you have defined.
 \end{enumerate}
 
+\newpage
+\ifrubric\else
+[Here is some more space for the previous problem.]
+
+
+\newpage
 \noindent
 The College wants to be really sure that their sets are correct, and
 they've come up with another property that they think is true, called
 the ``insert-remove'' property:
 
 \begin{quote}
-If we insert element $a$ into a set, and then remove element $b$ from
-the resulting set, the result has the same size as if we do the two
-operations in the reverse order.
+If we insert element any element $a$ into any set, and then remove any
+element $b$ from the resulting set, the result has the same size as if
+we do the two operations in the reverse order, i.e., remove $b$, then
+insert $a$.
 \end{quote}
 
 \noindent
@@ -467,9 +475,6 @@ The College is considering adding this to the test suite as well.
 \end{solution}
 \end{problem}
 
-\newpage
-\ifrubric\else
-[Here is some more space for the previous problem.]
 \newpage
 [Here is some more space for the previous problem.]
 \newpage
