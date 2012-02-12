@@ -71,9 +71,9 @@ Student Id (last 4 digits):  & \rule{174pt}{1pt} \\[.5cm]
 \item You may use the usual primitives and expression forms of any of
   the \code{class} languages; for everything else, define it.
 
-\item You may write {\tt {\slshape c} $\rightarrow$ {\slshape e}} for
-  {\tt (check-expect {\slshape c e})} and $\lambda$ for
-  \code{lambda} to save time writing.
+\item You may write {\tt {\slshape c} $\rightarrow$ {\slshape e}} as
+  shorthand for
+  {\tt (check-expect {\slshape c e})}.
 
 \item To add a method to an existing class definition, you
   may write just the method and indicate the appropriate class name
@@ -90,8 +90,14 @@ Student Id (last 4 digits):  & \rule{174pt}{1pt} \\[.5cm]
 % \item You may obtain a maximum of 55 points: 50 for the first six
 % problems; and five extra-credit points for the final problem.
 
+\item The extra credit problem is \emph{all or nothing};  no partial
+  credit will be awarded.
+
+\item Unless specifically requested, templates and super classes are
+  \emph{not} required.
+
 \item Some basic test taking advice: Before you start answering
-any problems, read \emph{every} problem, so your brain can be thinking
+any problems, read \emph{every} problem, so your brain can  think
 about the harder problems in background while you knock off the easy ones.
 \end{itemize}
 
@@ -102,13 +108,13 @@ about the harder problems in background while you knock off the easy ones.
 \rule{1cm}{0pt}\begin{tabular}{|c|l|@{/}r|}
 \hline
 {\bf Problem} & Points & out of \\ \hline
-1 & & ?\\ \hline
-2 & & ?\\ \hline
-3 & & ?\\ \hline
-4 & & ?\\ \hline
-5 & & ?\\ \hline
-Extra & & ? \\ \hline
-{\bf Total} & & 83 \\ \hline
+1 & & 18\\ \hline
+2 & & 10\\ \hline
+3 & & 15\\ \hline
+4 & & 18\\ \hline
+%5 & & 5\\ \hline
+Extra & & 5 \\ \hline
+{\bf Total} & & 61+5 \\ \hline
 %{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
 \end{tabular}
 \end{minipage}
@@ -128,7 +134,7 @@ Extra & & ? \\ \hline
 
 
 % \newpage
-\begin{problem}\pts{17} % same as on the previous exam :)
+\begin{problem}\pts{18} % same as on the previous exam :)
 
 Here is a data definition for a class of objects.  It intentionally
 uses meaningless names to test whether you've sufficiently
@@ -179,7 +185,7 @@ all values according to their interface.
 
 \begin{solution}
 \begin{verbatim}
-
+;;> [6 pts -- contract and purpose for each method]
 ;; A P implements:
 ;; - size : -> Number
 ;;   Size of this P.
@@ -188,16 +194,17 @@ all values according to their interface.
 ;; - same-gaga-cookoo? : String String -> Boolean
 ;;   Is there a B within this P with given gaga field and cookoo field?
 
+;;> [0 pts -- not required, but write something]
 ;; An A implements:
 ;; - cookoo : -> String
 ;;   Get the cookoo string.
 
-;; In a%:
+;;> [2 pts] In a%: 
 (define (size) 5)
 (define (replace-gaga str) this)
 (define (same-gaga-cookoo? g c) false)
 
-;; In b%:
+;;> [3 pts] In b%:
 (define (size) 8)
 (define (replace-gaga str)
   (new b% str (this . bang)))
@@ -205,12 +212,15 @@ all values according to their interface.
   (and (string=? g (this . gaga))
        (string=? c (this . bang . cookoo))))
 
-;; In c%:
+;;> [4 pts] In c%:
 (define (size) (add1 (this . doodle . size)))
 (define (replace-gaga str)
   (new c% (this . doodle . replace-gaga str)))
 (define (same-gaga-cookoo? g c)
   (this . doodle . same-gaga-cookoo? g c))
+
+;; tests
+;;> [3 pts -- 1 per method]
 
 \end{verbatim}
 \end{solution}
@@ -220,7 +230,7 @@ all values according to their interface.
 %\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}\pts{18}
+\begin{problem}\pts{10}
 
 Here are data, class, and interface definitions for a list of numbers:
 \begin{alltt}
@@ -274,10 +284,17 @@ the appropriate \verb|super| declaration in \verb|mt%| and
 
 \begin{solution}
 \begin{verbatim}
+
+;; [2 pts% -- class def]
 (define-class list%
+  ;; [2 pts -- contract and purpose]
+  ;; sum-sqrs : -> Number
+  ;; compute the sum of the squares of the numbers in this list
+  ;; [4 pts -- implementation]
   (define (sum-sqrs)
     ((this . sqrs) . sum)))
 
+;; [2 pts -- tests]
 (check-expect ((new mt%) . sum-sqrs) 0)
 \end{verbatim}
 \end{solution}
@@ -290,89 +307,10 @@ the appropriate \verb|super| declaration in \verb|mt%| and
 
 \end{problem}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem}\pts{12}
-
-One perspective that unifies the paradigms of programming with
-functions and programming with objects is to view a ``function'' as an
-object that understands a method called \code{apply}.  With that in
-mind, we can define an interface for functions-as-objects:
-
-\begin{verbatim}
-;; A [IFun X Y] implements:
-;; apply : X -> Y
-;; Apply this function to the given input.
-\end{verbatim}
-
-Here we are representing a \code{X -> Y} function as an object that
-has an \code{apply} method that consumes an \code{X} and produces a
-\code{Y}.
-
-\begin{enumerate}
-\item Design a class that wraps a real function with contract \code{(X
-  -> Y)} to implement \code{[IFun X Y]}.
-
-\item Using your wrapper class, construct the objects representing the
-  ``add 1'' function and ``sub 1'' function.
-
-\item Another useful operation on functions is composition.  Here is
-  the interface for a \code{compose} method that composes two functions
-  represented as objects:
-
-\begin{verbatim}
-;; [IFun X Y] also implements:
-;; compose : [IFun Y Z] -> [IFun X Z]
-;; Produce a function that applies this function to its input, 
-;; then applies the given function to that result.
-\end{verbatim}
-
-For example, if \code{addone} and \code{subone} refer to the objects
-you constructed in part 2, the following check should succeed:
-
-\begin{verbatim}
-(check-expect ((addone . compose subone) . apply 5) 5)
-(check-expect ((addone . compose addone) . apply 5) 7)
-\end{verbatim}
-
-Implement the \code{compose} method for your wrapper class.
-\end{enumerate}
-
-\begin{solution}
-
-\begin{verbatim}
-;; Part 1 [5pt]
-(define-class fun%
-  (fields f)
-  (define/public (apply x)
-    ((field f) x)))
-
-;; Part 2 [2pt]
-(define addone (fun% add1))
-(define subone (fun% sub1))
-
-;; Part 3 [5pt]
-(define-class fun%
-  (fields f)
-  (define/public (compose g)
-    (fun% (lambda (x)
-            (g . apply (apply x))))))
-\end{verbatim}
-
-\end{solution}
-
-\newpage
-\ifrubric\else
-[Here is some more space for the previous problem.]
-\newpage
-[Here is some more space for the previous problem.]
-\newpage
-\fi
-
-\end{problem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{21}
+\begin{problem} \pts{15}
 
 In order to manage class scheduling, the College decided that they
 needed to create a new implementation of the \verb|Set| data
@@ -390,10 +328,10 @@ data structure obeys the following interface:
 ;; A Set implements:
 ;; - insert : String -> Set
 ;;   adds given string to this set, if it isn't already there
-;;   (otherwise does nothing)
+;;   (otherwise produces this set)
 ;; - remove : String -> Set
 ;;   removes given string from this set, if it's already there
-;;   (otherwise does nothing)
+;;   (otherwise produces this set)
 ;; - size : -> Number
 ;;   count the elements of this set
 ;; - has? : String -> Boolean
@@ -417,10 +355,10 @@ if the element was \emph{not} already in the set.
   predicate you have defined.
 \end{enumerate}
 
-\newpage
 \ifrubric\else
+\newpage
 [Here is some more space for the previous problem.]
-
+\fi
 
 \newpage
 \noindent
@@ -452,36 +390,44 @@ The College is considering adding this to the test suite as well.
 
 \begin{solution}
 \begin{verbatim}
+;; [1 pt -- contract & purpose]
 ;; pred1 : Set String -> Boolean
 ;; check the "insert-size" property
+;; [4 pts -- code]
 (define (pred1 s i)
   (or (and (s . has i) (= (s . insert i . size) (s . size)))
       (and (not (s . has i))
            (= (s . insert i . size) (add1 (s . size))))))
 
+;; [2 pts -- test case]
 (check-expect (pred1 empty-set "hi") true)
 
+;; [1 pt -- contract & purpose]
 ;; pred2 : Set String -> Boolean
 ;; check the "remove-insert" property
+;; [3 pts -- code]
 (define (pred2 s a b)
   (= (s . insert a . remove b . size)
      (s . remove b . insert a . size))
 
-(check-expect (pred2 empty-set "yes" "no"))
+;; [1 pt -- successful test]
+(check-expect (pred2 empty-set "yes" "no") true)
 
 ;; counter-example
-(check-expect (pred2 empty-set "yes" "yes"))
+;; [3 pts -- failing test]
+(check-expect (pred2 empty-set "yes" "yes") true) ;; either true or false
 \end{verbatim}
 \end{solution}
-\end{problem}
 
 \newpage
+\ifrubric\else
 [Here is some more space for the previous problem.]
 \newpage
 \fi
+\end{problem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{15}
+\begin{problem} \pts{18}
 Last night, Asumu was up late improving the {\tt class} languages.
 Unfortunately, he was too tired to test his work, and his last commit
 broke the numeric system.
@@ -500,6 +446,9 @@ with a {\tt fact} method:
   (define (fact n)
     (cond [(zero? n) 1]
           [else (* n (this . fact (sub1 n)))])))
+
+(check-expect ((new fact%) . fact 0) 1)
+(check-expect ((new fact%) . fact 5) 120)
 \end{verbatim}
 
 Since we can no longer rely on built in numbers to represent
@@ -526,9 +475,10 @@ and \emph{not} using the built-in numbers of the class system or
 DrRacket.  You can assume there is a defined constant \verb|one|,
 which is a \verb|Natural| object representing $1$.
 
-\ifrubric
-\else
-\fi
+\begin{verbatim}
+(check-expect ((new fact%) . fact one) one)
+(check-expect ((new fact%) . fact (one . sub1)) one)
+\end{verbatim}
 
 \newpage
 
@@ -554,20 +504,20 @@ amongst mathematicians when working with natural numbers.
 
 \begin{solution}
 \begin{verbatim}
-
-
-;; Part 1: N Points
+;; Part 1: [2 pts]
 (define-class fact%
   (define (fact n)
     (cond [(n . zero?) one]
           [else (n . times (this . fact (n . sub1)))])))
 
 
-;; Part 2: M points
+;; Part 2:
+;; [2 pts -- data defintion]
 ;; A Natural is one of
 ;; - (new zero%)
 ;; - (new succ% Natural)
 (define-class zero%
+  ;; [4 pts -- methods in zero%]
   (define (sub1) this)
   (define (plus n) n)
   (define (add1) (new succ% this))
@@ -576,15 +526,18 @@ amongst mathematicians when working with natural numbers.
 
 (define-class succ%
   (fields pred)
+  ;; [7 pts -- methods in succ%]
   (define (zero?) false)
   (define (add1) (new succ% this))
   (define (plus n) (this . pred . plus n . add1))
   (define (times n) (this . pred . times n . plus n))
   (define (sub1) (this . pred)))
 
-(define one (new succ% (new zero%)))
 (define zero (new zero%))
+;; [1 pt -- define one]
+(define one (new succ% (new zero%)))
 
+;; [3 pts -- tests]
 (check-expect (one . zero?) false)
 (check-expect (one . sub1) zero)
 (check-expect ((new succ% one) . sub1) one)
@@ -594,7 +547,7 @@ amongst mathematicians when working with natural numbers.
 \newpage
 \end{solution}
 
-\begin{problem}
+\begin{problem}\pts{5}
 
 \textbf{Extra Credit}
 \\
@@ -602,7 +555,7 @@ amongst mathematicians when working with natural numbers.
 After Van Horn discovered the problems with numbers, he attempted to
 fix them.  Unfortunately, not only did he not fix them, he broke
 booleans as well.  Fortunately, we have an idea about how you can
-help, expressed in the following data definitions.  
+help, expressed in the following interface definitions.  
 
 \begin{verbatim}
 ;; A Bool implements:
@@ -636,6 +589,7 @@ You will need to provide new defintions for \verb|true| and
 
 \begin{solution}
 \begin{verbatim}
+;; [5 pts -- get it right]
 (define-class fact%
   (define (fact n)
     (n . zero? . branch (new const% one) (new recur% n))))
@@ -650,8 +604,7 @@ You will need to provide new defintions for \verb|true| and
 (define-class f%
   (define (branch t e) (e . run)))
 
-(define true (new t%))
-(define false (new f%))
+(define true (new t%)) (define false (new f%))
 \end{verbatim}
 \end{solution}
 \end{problem}
