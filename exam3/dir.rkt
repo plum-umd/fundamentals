@@ -43,6 +43,14 @@
 (define B/ (new dir% "B" (new cons% b mt)))
 (define A/ (new dir% "A" (new cons% a (new cons% B/ mt))))
 
+#|
+├── A
+│   ├── a.txt
+│   └── B
+│       └── b.rkt
+└── C
+   └── c.c
+|#
 (check-expect 
  ((new dir% "/" (new cons% A/ (new cons% C/ mt))) . list-files)
  (new cons% a (new cons% b (new cons% c mt))))
