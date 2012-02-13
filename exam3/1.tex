@@ -147,9 +147,9 @@ since the Fall.
 ;; - B                  ;; A  B is a (new b% String A)
 ;; - C                  ;; A  C is a (new c% P)
 
-(define-class a% (fields cookoo))
-(define-class b% (fields gaga bang))
-(define-class c% (fields doodle))
+(define-class a% (fields w))
+(define-class b% (fields x y))
+(define-class c% (fields z))
 \end{verbatim}
 
 \noindent
@@ -161,13 +161,14 @@ Design the following methods for \verb|P|s:
   \verb|B| is $8$, regardless of what's inside; and the size of a
   \verb|C| contributes $1$ to the size of the \verb|P| inside.
 
-\item \verb|replace-gaga| - produces a \verb|P| like this one, but
-  with any \verb|gaga| field replaced by the given string.
+\item \verb|replace-x| - produces a \verb|P| like this one, but
+  with any \verb|x| field replaced by the given string.
 
-\item \verb|same-gaga-cookoo?| - produces true for any \verb|P| which
-  contains a \verb|B| whose \verb|gaga| is equal to a given string and
-  whose \verb|bang| is an \verb|A| whose \verb|cookoo| is equal to
-  another given string.  Produces false otherwise.
+\item \verb|same-x-and-w?| - given two strings, produce true if this
+  \verb|P| contains a \verb|B| whose \verb|x| is equal to the
+  first given string and whose \verb|y| is an \verb|A| whose
+  \verb|w| is equal to the second given string.  Produces false
+  otherwise.
 
 \end{enumerate}
 
@@ -189,35 +190,35 @@ according to their interface.
 ;; A P implements:
 ;; - size : -> Number
 ;;   Size of this P.
-;; - replace-gaga : String -> P
-;;   Replace gaga field (if any) of this P with given string.
-;; - same-gaga-cookoo? : String String -> Boolean
-;;   Is there a B within this P with given gaga field and cookoo field?
+;; - replace-x : String -> P
+;;   Replace x field (if any) of this P with given string.
+;; - same-x-and-w? : String String -> Boolean
+;;   Is there a B within this P with given x field and w field?
 
 ;;> [0 pts -- not required, but write something]
 ;; An A implements:
-;; - cookoo : -> String
-;;   Get the cookoo string.
+;; - w : -> String
+;;   Get the w string.
 
 ;;> [2 pts] In a%: 
 (define (size) 5)
-(define (replace-gaga str) this)
-(define (same-gaga-cookoo? g c) false)
+(define (replace-x str) this)
+(define (same-x-and-w? g c) false)
 
 ;;> [3 pts] In b%:
 (define (size) 8)
-(define (replace-gaga str)
-  (new b% str (this . bang)))
-(define (same-gaga-cookoo? g c)
-  (and (string=? g (this . gaga))
-       (string=? c (this . bang . cookoo))))
+(define (replace-x str)
+  (new b% str (this . y)))
+(define (same-x-and-w? g c)
+  (and (string=? g (this . x))
+       (string=? c (this . y . w))))
 
 ;;> [4 pts] In c%:
-(define (size) (add1 (this . doodle . size)))
-(define (replace-gaga str)
-  (new c% (this . doodle . replace-gaga str)))
-(define (same-gaga-cookoo? g c)
-  (this . doodle . same-gaga-cookoo? g c))
+(define (size) (add1 (this . z . size)))
+(define (replace-x str)
+  (new c% (this . z . replace-x str)))
+(define (same-x-and-w? g c)
+  (this . z . same-x-and-w? g c))
 
 ;; tests
 ;;> [3 pts -- 1 per method]
@@ -300,10 +301,6 @@ the appropriate \verb|super| declaration in \verb|mt%| and
 \end{solution}
 
 \newpage
-\ifrubric\else
-[Here is some more space for the previous problem.]
-\newpage
-\fi
 
 \end{problem}
 
@@ -318,13 +315,11 @@ structure.  They went with the lowest bidder, which
 turned out to be a bunch of BU students.  Now, having paid for this
 code, the College needs to test it, and they turn to you.  
 
-Unfortunately, code the BU students produced is so convoluted that it
-doesn't bear looking at.  All you have to go on is that the \verb|Set|
-data structure obeys the following interface:
+Unfortunately, the code the BU students produced is so convoluted that
+it doesn't bear looking at.  All you have to go on is that the
+\verb|Set| data structure obeys the following interface:
 
 \begin{verbatim}
-;; empty-set is a Set value containing no elements
-
 ;; A Set implements:
 ;; - insert : String -> Set
 ;;   adds given string to this set, if it isn't already there
@@ -336,6 +331,8 @@ data structure obeys the following interface:
 ;;   count the elements of this set
 ;; - has? : String -> Boolean
 ;;   is the given String in this set?
+
+;; empty-set is a Set value containing no elements
 \end{verbatim}
 \noindent
 \verb|Set|s should satisfy the following property, called the
@@ -395,9 +392,9 @@ The College is considering adding this to the test suite as well.
 ;; check the "insert-size" property
 ;; [4 pts -- code]
 (define (pred1 s i)
-  (or (and (s . has i) (= (s . insert i . size) (s . size)))
-      (and (not (s . has i))
-           (= (s . insert i . size) (add1 (s . size))))))
+  (= (s . insert i . size)
+     (cond [(s . has? i) (add1 (s . size))]
+           [else               (s . size)])))
 
 ;; [2 pts -- test case]
 (check-expect (pred1 empty-set "hi") true)
@@ -470,10 +467,11 @@ Here is the \verb|Natural| interface:
 \end{verbatim}
 
 \newpage
-Write a new definition of the \verb|fact| method using \verb|Natural|,
-and \emph{not} using the built-in numbers of the class system or
-DrRacket.  You can assume there is a defined constant \verb|one|,
-which is a \verb|Natural| object representing $1$.
+Write a new definition of the \verb|fact| method using the
+\verb|Natural| interface definition given above, and \emph{not} using
+the built-in numbers of the class system or DrRacket.  You can assume
+there is a defined constant \verb|one|, which is a \verb|Natural|
+object representing $1$.
 
 \begin{verbatim}
 (check-expect ((new fact%) . fact one) one)
@@ -581,11 +579,6 @@ You will need to provide new defintions for \verb|true| and
 [Here is some more space for the previous problem.]
 \fi
 
-
-\ifrubric\else
-\newpage
-[Here is some more space for the previous problem.]
-\fi
 
 \begin{solution}
 \begin{verbatim}
