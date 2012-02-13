@@ -111,10 +111,10 @@ about the harder problems in the background while you knock off the easy ones.
 1 & & 18\\ \hline
 2 & & 10\\ \hline
 3 & & 15\\ \hline
-4 & & 18\\ \hline
-%5 & & 5\\ \hline
+4 & & 15\\ \hline
+5 & & 18\\ \hline
 Extra & & 5 \\ \hline
-{\bf Total} & & 61+5 \\ \hline
+{\bf Total} & & 76+5 \\ \hline
 %{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
 \end{tabular}
 \end{minipage}
@@ -422,6 +422,127 @@ The College is considering adding this to the test suite as well.
 \newpage
 \fi
 \end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem} \pts{15}
+
+Here are data and class definitions for representing the files and
+directories of a computer:
+
+\begin{verbatim}
+;; An Elem is one of
+;; - (new file% String Number)
+;; - (new dir% String LoElem)
+(define-class file% (fields name size))
+(define-class dir% (fields name elems))
+
+;; A LoElem is one of
+;; - (new mt%)
+;; - (new cons% Elem LoElem)
+(define-class mt%)
+(define-class cons% (fields first rest))    
+\end{verbatim}
+
+
+\noindent
+Here is an example of a directory tree and its representation as an
+\verb|Elem|:
+\begin{verbatim}
+#|
+ User
+   +-- A
+   |   +-- a.txt
+   |   +-- B
+   |       +-- b.rkt
+   +-- C
+       +-- c.c
+|#
+
+(define mt (new mt%))
+(define a (new file% "a.txt" 5))
+(define b (new file% "b.rkt" 10))
+(define c (new file% "c.c" 1000))
+
+(define C/ (new dir% "C" (new cons% c mt)))
+(define B/ (new dir% "B" (new cons% b mt)))
+(define A/ (new dir% "A" (new cons% a (new cons% B/ mt))))
+(define User/ (new dir% "/" (new cons% A/ (new cons% C/ mt))))
+\end{verbatim}
+
+\newpage
+\noindent
+Your job is to implement one of the main tasks of the common Unix
+utility \verb|find|, which gives a list of all the files within an
+element.  To do so, add a \verb|list-files| method of \verb|Elem|
+which produces a list of files.  So for example, we expect:
+\begin{verbatim}
+(check-expect (User/ . list-files) 
+              (new cons% a (new cons% b (new cons% c mt))))
+\end{verbatim}
+\emph{Hint}: it may come in handy to be able to concatenate two
+\verb|LoElem| together.
+
+\ifrubric
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+\begin{solution}
+\begin{verbatim}
+;;> [1pts -- interfaces, contracts, purpose]
+;; An Elem implements
+;; - list-files : -> LoElem
+;;   List all files within this element.
+
+;;> [2pts -- interfaces, contracts, purpose]
+;; A LoElem implements
+;; - list-files : -> LoElem
+;;   List all files within this list of elements.
+;; - append : LoElem -> LoElem
+;;   Append this list of elements to given list.
+
+;;> [1pt -- code]
+;; in dir%
+(define (list-files)
+  (this . elems . list-files))
+
+;;> [1pt -- code]
+;; in file%
+(define (list-files)
+  (new cons% this (new mt%)))
+
+;;> [2pt -- code]
+;; in mt%
+(define (append loe) loe)
+(define (list-files) this)
+
+;;> [4pt -- code]
+;; in cons%
+(define (append loe)
+  (new cons% (this . first) (this . rest . append loe)))
+(define (list-files)
+  (this . first . list-files . append (this . rest . list-files)))
+
+;;> [1pt -- sanity]
+
+;;> [3pts -- tests]
+;; tests
+(check-expect (mt . append (new cons% a mt)) (new cons% a mt))
+(check-expect ((new cons% a mt) . append (new cons% b mt))
+              (new cons% a (new cons% b mt)))
+
+(check-expect (mt . list-files) mt)
+(check-expect ((new cons% a (new cons% b mt)) . list-files)
+              (new cons% a (new cons% b mt)))
+
+(check-expect (a . list-files) (new cons% a mt))
+\end{verbatim}
+\end{solution}
+
+\end{problem}
+\newpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem} \pts{18}
