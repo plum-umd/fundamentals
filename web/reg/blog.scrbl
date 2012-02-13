@@ -6,6 +6,260 @@
 
 @title*{Blog}
 
+@section*{Marathon code}
+@tt{Mon Feb 13 11:19:36 EST 2012}
+
+Here is the @link["Marathon.java"]{code} we've developed so far for
+the Boston Marathon.
+
+Here are a couple things worth trying to do:
+
+@itemlist[
+  @item{Sort the list of runners in alphabetic order.}
+  @item{Compare the code for @tt{all} and @tt{any} to @tt{andmap} and @tt{ormap}
+        from last semester.}
+  @item{Try to develop the Java analogue of @tt{filter}.}
+  @item{More challenging: develop @tt{winner} which produces the
+  runner with the best time.}
+  @item{Develop a variation on @tt{winner} that produces the runner
+  with the lowest bib number.}
+]
+
+	
+
+
+@section*{Current homework partners}
+@tt{Sat Feb 11 13:17:27 EST 2012}
+
+Here are the current homework partners:
+
+@verbatim{
+[cs2510spring2012:/pair055]
+iboehman = rw
+agimmi00 = rw
+
+[cs2510spring2012:/pair056]
+luoyj = rw
+mostrow = rw
+
+[cs2510spring2012:/pair057]
+tedlin = rw
+evannoyz = rw
+
+[cs2510spring2012:/pair058]
+mhmdfy = rw
+albeht0a = rw
+
+[cs2510spring2012:/pair059]
+lahirud = rw
+spatel91 = rw
+
+[cs2510spring2012:/pair060]
+jacobsr = rw
+vkonen = rw
+
+[cs2510spring2012:/pair061]
+dforman = rw
+mclamp = rw
+
+[cs2510spring2012:/pair062]
+rstrass = rw
+billyguo = rw
+
+[cs2510spring2012:/pair063]
+kleinjam = rw
+alexj = rw
+
+[cs2510spring2012:/pair064]
+nathanl = rw
+eromeiro = rw
+
+[cs2510spring2012:/pair065]
+millarj = rw
+lmarelic = rw
+
+[cs2510spring2012:/pair066]
+ggoode = rw
+slynch = rw
+
+[cs2510spring2012:/pair067]
+bmccabe4 = rw
+kbriskin = rw
+
+[cs2510spring2012:/pair068]
+byoshi92 = rw
+johndrew = rw
+
+[cs2510spring2012:/pair069]
+lyaunzbe = rw
+kohlerjp = rw
+
+[cs2510spring2012:/pair070]
+aedgett = rw
+kvinagro = rw
+
+[cs2510spring2012:/pair071]
+lahirud = rw
+spatel91 = rw
+
+[cs2510spring2012:/pair072]
+kkotosky = rw
+adamwigs = rw
+
+[cs2510spring2012:/pair073]
+klebsh = rw
+eabraham = rw
+
+[cs2510spring2012:/pair074]
+patchca = rw
+conorao = rw
+
+[cs2510spring2012:/pair075]
+hlavin = rw
+obrienjj = rw
+
+[cs2510spring2012:/pair076]
+mhill = rw
+butlerch = rw
+
+[cs2510spring2012:/pair077]
+tmacieik = rw
+dc93 = rw
+
+[cs2510spring2012:/pair078]
+benuhl = rw
+pietdan = rw
+
+[cs2510spring2012:/pair079]
+seydi = rw
+riley = rw
+
+[cs2510spring2012:/pair080]
+emilytx = rw
+ferland = rw
+
+[cs2510spring2012:/pair081]
+slee = rw
+toder13 = rw
+
+[cs2510spring2012:/pair082]
+bswords = rw
+ascherj = rw
+
+[cs2510spring2012:/pair083]
+sking19 = rw
+ascholl = rw
+
+[cs2510spring2012:/pair084]
+ntinsley = rw
+thurston = rw
+
+[cs2510spring2012:/pair085]
+pburden = rw
+kandebo = rw
+
+[cs2510spring2012:/pair086]
+patelv99 = rw
+tylere = rw
+
+[cs2510spring2012:/pair087]
+cyvuong = rw
+soelgary = rw
+
+[cs2510spring2012:/pair088]
+ravert1 = rw
+mrodrig = rw
+
+[cs2510spring2012:/pair089]
+joshs = rw
+abarba = rw
+
+[cs2510spring2012:/pair090]
+slindber = rw
+rysull = rw
+
+[cs2510spring2012:/pair091]
+cpaszul = rw
+andrewm = rw
+
+[cs2510spring2012:/pair092]
+seebert = rw
+elisef = rw
+
+[cs2510spring2012:/pair093]
+shryock = rw
+mccoy = rw
+
+[cs2510spring2012:/pair094]
+thu = rw
+hartmand = rw
+
+[cs2510spring2012:/pair095]
+swazi = rw
+jkreell = rw
+
+[cs2510spring2012:/pair096]
+lind = rw
+jfahy = rw
+
+[cs2510spring2012:/pair097]
+lopeza = rw
+akaz = rw
+
+[cs2510spring2012:/pair098]
+jordanre = rw
+cmcelear = rw
+
+[cs2510spring2012:/pair099]
+marcs = rw
+cookid = rw
+
+[cs2510spring2012:/pair100]
+hamuchea = rw
+chlacher = rw
+
+[cs2510spring2012:/pair101]
+mckinnon = rw
+dohertyc = rw
+
+[cs2510spring2012:/pair102]
+rimipat5 = rw
+sm0ss117 = rw
+
+[cs2510spring2012:/pair103]
+dciatto = rw
+kleinjm = rw
+
+[cs2510spring2012:/pair104]
+jbrooks2 = rw
+shivam = rw
+
+[cs2510spring2012:/pair105]
+bfaller = rw
+strandl = rw
+
+[cs2510spring2012:/pair106]
+jnanni = rw
+cmentzer = rw
+
+[cs2510spring2012:/pair107]
+gary2546 = rw
+maggiec = rw
+
+[cs2510spring2012:/pair108]
+patcinc = rw
+sasia = rw
+
+[cs2510spring2012:/pair109]
+afasulo = rw
+zlyford = rw
+
+[cs2510spring2012:/pair110]
+olinaba = rw
+kaelanc = rw
+}
+
+
 @section*{Past exams}
 @tt{Thu Feb  2 20:28:08 EST 2012}
 
