@@ -9,6 +9,12 @@
 
 @title*{Blog}
 
+@section*{New class system released}
+@tt{Mon Feb 13 19:46:02 EST 2012}
+
+There is a new @tt{.plt} file for the class, which includes the new
+language level @racketmodname[class/2] that we will now be using.
+
 @section*{No Homework this week}
 @tt{Fri Feb 10 10:34:28 EST 2012}
 
