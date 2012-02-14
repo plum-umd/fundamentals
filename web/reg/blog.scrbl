@@ -20,7 +20,7 @@ Here are a couple things worth trying to do:
         from last semester.}
   @item{Try to develop the Java analogue of @tt{filter}.}
   @item{More challenging: develop @tt{winner} which produces the
-  runner with the best time.}
+  runner with the best time.  (What should you do if there are no runners?)}
   @item{Develop a variation on @tt{winner} that produces the runner
   with the lowest bib number.}
 ]
