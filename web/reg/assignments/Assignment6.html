@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Assignment 6 - Function Objects</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012:Assignment 6 - Function Objects</h1>
+
+
+
+<h4>Practice Problems</h4>
+
+<p>Work out as the following exercises from the textbook. Do not add them
+to your assignment submission, though you should keep them in your
+electronic portfolio in your own <em>svn</em> repository.</p> 
+
+<p><strong>Problems:</strong></p>
+
+<ol>
+
+<li><p>Include the solution of the Lab 6 in your portfolio.</p></li>
+
+<li><p>Add a few more examples of tests in the <tt>Examples</tt> class.</p></li>
+
+<li><p>Define a class <tt>ImageSmallerThanAndGivenKind</tt> that
+implements the <tt>ISelectImageFile</tt> interface with a method that
+selects image files that are small and of the given kind. Allow the
+user to decide how small should the images be (measuring the size as
+the number of pixels in the image) and allowing the user to choose the
+<tt>kind</tt> of images that should be selected. (All selected images
+must be of the same <tt>kind</tt>.)
+
+Test your class definition on several examples before you use it in
+your <tt>allSuch</tt>, <tt>anySuch</tt>, and <tt>filter</tt>
+methods.</p></li> 
+
+<li><p>Add test cases that will test the methods <tt>allSuch</tt>,
+<tt>anySuch</tt>, and <tt>filter</tt> with several instances of the
+<tt>ImageSmallerThanAndGivenKind</tt> predicate. </p></li>
+</ol>
+  
+<hr></hr>
+
+<h4>Pair Programming Assignment</h4>
+
+
+
+<p><strong>Problem 1</strong></p>
+
+<p>The goal of this problem set is to see in practice the design and
+use of function objects, as well as get more practice with the
+<em>design recipe</em> and with using accumulators when needed. We
+strongly encourage you to include templates in all classes. They are
+<strong>required</strong> in the classes that represent <em>cons
+list</em> of books and the <em>node</em> of the binary search
+tree.</p>
+
+<ul><li>
+  
+<P>Create a project with the name <tt>HW06Problem1</tt>. Download the file <a
+  href="Assignment6.zip">Assignment6.zip</a> and import the <em>.java</em>
+  files defined there.</p></li>
+
+<li><p>Define the following interface in your project:</p>
+
+<pre>
+// interface to represent a method compare for books
+public interface ICompareBooks{
+  
+  // does b1 come before b2 in this ordering?
+  public boolean compare(Book b1, Book b2);
+}
+</pre></li>
+
+<li><p>Define three classes that implement this interface, ordering the
+books by the length of the book title (class
+<tt>BookOrderByTitleLength</tt>), author's names (class
+<tt>BookOrderByAutor</tt>), and one more criterion of your
+choice. <em>Remember to follow the design recipe.</em></p></li>
+
+<li><p>Design the method <tt>sort</tt> for the classes that represent
+a list of <tt>Book</tt>s that uses an instance of a class that
+implements the  <tt>ICompareBooks</tt> interface to define the
+appropriate ordering of the books and produces the list in the
+correctly sorted order.</p></li> 
+
+<li><p>Design the method <tt>isSorted</tt> for the classes that
+represent a list of <tt>Book</tt>s that uses an instance of a class
+that implements the  <tt>ICompareBooks</tt> interface to determine
+whether a list of <tt>Book</tt>s is sorted correctly.</p>
+
+<p><strong>Make sure your tests use all three ways of comparing
+books.</strong></p>
+
+<p><em>Note</em>: Remember the one task one method rule.</p>
+<p><em>Note</em>: This is something you have already done several
+times - just slightly modified.</p>
+</li>
+
+</ul>
+
+
+<hr></hr>
+<p><strong>Problem 2</strong></p>
+
+<p>You will work with a binary search tree that represents a
+collection of <tt>Book</tt> objects. It is similar (with a slight
+change) to the binary search trees that had only integer data.</p>
+
+<p>The following class diagram on the next page should help you.</p>
+
+<pre>
+                 +---------------------+
+                 | abstract class ABST |
+                 +---------------------+
+      +----------| ICompareBooks order |
+      |          +---------------------+
+      |                 / \
+      |                 ---
+      |                  |
+      |      -----------------     
+      |      |               |
+      |   +------+   +------------+
+      |   | Leaf |   | Node       |
+      |   +------+   +------------+
+      |              | Book data  |--------+
+      |              | ABST left  |        |
+      |              | ABST right |        |
+      |              +------------+        |
+      |                                    v
+      v                                 +---------------+
++------------------------------------+  | Book          |
+| ICompareBooks                      |  +---------------+
++------------------------------------+  | String title  |
+| boolean isBefore(Book b1, Book b2) |  | String author |
++------------------------------------+  | int price     |
+                                        +---------------+
+</pre>
+
+<ol>
+
+<li><p>Design the method <tt>insert</tt> that produces a new binary
+  search tree with the given item inserted in the correct
+  place.</p></li>
+  
+<li><p>Design the method  <tt>getFirst</tt> that produces the first
+  <tt>Book</tt> in the binary search tree (as given by the appropriate
+  <tt>ICompareBooks</tt>.</p> 
+
+<p>In the <tt>Leaf</tt> class this method should have the following
+  body:</p> 
+
+<pre>
+throw new RuntimeException("No first in an empty tree");
+</pre>
+  </p></li>
+
+  <li><p>Design the method  <tt>getRest</tt> that produces a new
+  binary search tree with the first <tt>Book</tt> removed.</p> 
+
+<p>In the <tt>Leaf</tt> class this method should have the following
+  body:</p> 
+
+<pre>
+throw new RuntimeException("No rest of an an empty tree");
+</pre>
+  </p></li>
+
+  
+<li><p>Design the method <tt>sameTree</tt> that determines whether
+  this binary search tree is the same as the given one (i.e., has
+  matching structure and matching data in all nodes).</p></li> 
+
+<li><p>Design the method <tt>sameData</tt> that determines whether
+  this binary search tree contains the same books as the given
+  tree.</p>
+
+  <p><em>Note:</em> Given the following three trees:
+
+  <pre>
+bstA:       bstB:       bstC:       bstD:       
+     b3          b3          b2          b3
+    /  \        /  \        /  \        /  \
+   b2  b4      b2  b4      b1   b4     b1   b4
+  /           /                /             \ 
+b1           b1               b3              b5
+</pre>
+
+  <ul>
+  <li><tt>bstA</tt> is the same tree as <tt>bstB</tt></li>
+  <li><tt>bstA</tt> is not the same tree as <tt>bstC</tt></li>
+  <li><tt>bstA</tt> is not the same tree as <tt>bstD</tt></li>
+  
+  <li><tt>bstA</tt> has the same data as <tt>bstB</tt></li>
+  <li><tt>bstA</tt> has the same data as <tt>bstC</tt></li>
+  <li><tt>bstA</tt> does not have the same data as <tt>bstD</tt></li>
+  </ul>
+
+  </li> 
+
+<li><p>We would like to know whether a binary search tree of books
+  contains the same data as a list of books. Design the method
+  <tt>sameAsList</tt> that
+  allows us to make this comparison.</p> 
+
+<p>Write a short explanation of your design.</p>
+
+<p><tt>Note:</tt> You are allowed to introduce new classes or
+  interfaces to solve this problem.</p></li> 
+
+
+<li><p>Design a new <tt>bstSort</tt> method for the classes that
+  represent a list of books, that first builds a binary search tree
+  from the data in this list, then converts the binary search tree
+  into a sorted list.</p>  
+
+<p>Write a short explanation of your design.</p></li>
+</ol>
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Tue Feb 14 18:44:04 EST 2012 <!-- hhmts end -->
+</body> </html>
