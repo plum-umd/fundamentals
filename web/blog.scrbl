@@ -141,8 +141,6 @@ the book.
 
 We will post the simple universe server and client later.
 
-
->>>>>>> .r544
 @section*{Style guide additions}
 @tt{Sat Jan 28 14:19:49 EST 2012}
 
