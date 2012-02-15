@@ -9,6 +9,12 @@
 
 @title*{Blog}
 
+@section*{Exam 1 solution}
+@tt{Wed Feb 15 00:39:40 EST 2012}
+
+Here is a @link["soln1.pdf"]{solution} to the first exam.
+
+
 @section*{New class system released}
 @tt{Mon Feb 13 19:46:02 EST 2012}
 

@@ -48,6 +48,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/exam1.pdf \
 		++extra misc/marathon.rkt \
 		++extra misc/gender.rkt \
+		++extra misc/soln1.pdf \
 		++extra assignments/Employees.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
