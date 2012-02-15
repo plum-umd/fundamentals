@@ -9,6 +9,7 @@
 \usepackage{alltt,times,comment,amsmath}
 \usepackage{alltt}
 \usepackage{ct} % tight CM font for \tt
+\usepackage[usenames,dvipsnames]{xcolor}
 \newexercise{exercise}{Exercise}[subsection]
 
 \makeatletter
@@ -34,7 +35,7 @@
 %\def\pts#1{\relax}
 
 \ifrubric
-\newenvironment{solution}{}{}
+\newenvironment{solution}{\color{Red}}{}
 \else
 \excludecomment{solution}
 \fi
@@ -50,14 +51,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \vspace*{-1.5cm}
-\ifrubric
-\centerline{\Large CSU2510H Exam 1 Rubric -- Spring 2012}
-
-\else
-\centerline{\Large CSU2510H Exam 1 -- Spring 2012}
+\centerline{\Large CSU2510H Exam 1 \ifrubric (SOLUTION) \fi-- Spring 2012}
 
 \vspace{0.5cm}
 
+\ifrubric\relax\else
 \begin{center}
 \begin{tabular}{l@{\qquad}l}
 Name:                        & \rule{174pt}{1pt} \\[.5cm]
@@ -65,6 +63,7 @@ Student Id (last 4 digits):  & \rule{174pt}{1pt} \\[.5cm]
 %Section (morning, honors or afternoon):           & \rule{174pt}{1pt} \\[.5cm]
 \end{tabular}
 \end{center}
+\fi
 
 \noindent\begin{minipage}{8cm}\sloppy
 \begin{itemize}
@@ -122,7 +121,7 @@ Extra & & 5 \\ \hline
 \vfill\thispagestyle{empty}
 \newpage
 
-\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -185,8 +184,8 @@ according to their interface.
 \fi
 
 \begin{solution}
-\begin{verbatim}
-;;> [6 pts -- contract and purpose for each method]
+\begin{alltt}
+\rubricpts{6 pts -- contract and purpose for each method}
 ;; A P implements:
 ;; - size : -> Number
 ;;   Size of this P.
@@ -195,17 +194,19 @@ according to their interface.
 ;; - same-x-and-w? : String String -> Boolean
 ;;   Is there a B within this P with given x field and w field?
 
-;;> [0 pts -- not required, but write something]
+\rubricpts{0 pts -- not required, but write something}
 ;; An A implements:
 ;; - w : -> String
 ;;   Get the w string.
 
-;;> [2 pts] In a%: 
+\rubricpts{2 pts}
+;; In a%: 
 (define (size) 5)
 (define (replace-x str) this)
 (define (same-x-and-w? g c) false)
 
-;;> [3 pts] In b%:
+\rubricpts{3 pts}
+;; In b%:
 (define (size) 8)
 (define (replace-x str)
   (new b% str (this . y)))
@@ -213,7 +214,8 @@ according to their interface.
   (and (string=? g (this . x))
        (string=? c (this . y . w))))
 
-;;> [4 pts] In c%:
+\rubricpts{4 pts}
+;; In c%:
 (define (size) (add1 (this . z . size)))
 (define (replace-x str)
   (new c% (this . z . replace-x str)))
@@ -221,9 +223,24 @@ according to their interface.
   (this . z . same-x-and-w? g c))
 
 ;; tests
-;;> [3 pts -- 1 per method]
-
-\end{verbatim}
+\rubricpts{3 pts -- 1 per method}
+(define a (new a% "a"))
+(define b (new b% "b" a))
+(define c (new c% b))
+(define d (new c% a))
+(check-expect (a . size) 5)
+(check-expect (b . size) 8)
+(check-expect (c . size) 6)
+(check-expect (d . size) 9)
+(check-expect (a . replace-x "*") a)
+(check-expect (b . replace-x "*") (new b% "*" a))
+(check-expect (c . replace-x "*") (new c% (new b% "*" a)))
+(check-expect (d . replace-x "*") d)
+(check-expect (a . same-x-and-w? "b" "a") false)
+(check-expect (b . same-x-and-w? "b" "a") true)
+(check-expect (c . same-x-and-w? "b" "a") true)
+(check-expect (d . same-x-and-w? "b" "a") false)
+\end{alltt}
 \end{solution}
 \end{problem}
 %\ifrubric\bigskip\else
@@ -284,20 +301,19 @@ the appropriate \verb|super| declaration in \verb|mt%| and
 \verb|cons%| for partial credit.
 
 \begin{solution}
-\begin{verbatim}
-
-;; [2 pts% -- class def]
+\begin{alltt}
+\rubricpts{2 pts% -- class def}
 (define-class list%
-  ;; [2 pts -- contract and purpose]
+  \rubricpts{2 pts -- contract and purpose}
   ;; sum-sqrs : -> Number
   ;; compute the sum of the squares of the numbers in this list
-  ;; [4 pts -- implementation]
+  \rubricpts{4 pts -- implementation}
   (define (sum-sqrs)
     ((this . sqrs) . sum)))
 
-;; [2 pts -- tests]
+\rubricpts{2 pts -- tests}
 (check-expect ((new mt%) . sum-sqrs) 0)
-\end{verbatim}
+\end{alltt}
 \end{solution}
 
 \newpage
@@ -386,34 +402,35 @@ The College is considering adding this to the test suite as well.
 \end{enumerate}
 
 \begin{solution}
-\begin{verbatim}
-;; [1 pt -- contract & purpose]
-;; pred1 : Set String -> Boolean
-;; check the "insert-size" property
-;; [4 pts -- code]
-(define (pred1 s i)
+\begin{alltt}
+\rubricpts{1 pt -- contract & purpose}
+;; check-insert-size : Set String -> Boolean
+;; check the "insert-size" property on s and i.
+\rubricpts{4 pts -- code}
+(define (check-insert-size s i)
   (= (s . insert i . size)
      (cond [(s . has? i) (add1 (s . size))]
            [else               (s . size)])))
 
-;; [2 pts -- test case]
-(check-expect (pred1 empty-set "hi") true)
+\rubricpts{2 pts -- test case}
+(check-expect (check-insert-size empty-set "hi") true)
 
-;; [1 pt -- contract & purpose]
-;; pred2 : Set String -> Boolean
-;; check the "remove-insert" property
-;; [3 pts -- code]
-(define (pred2 s a b)
+\rubricpts{1 pt -- contract & purpose}
+;; check-remove-insert : Set String -> Boolean
+;; check the "remove-insert" property on s, a, and b.
+\rubricpts{3 pts -- code}
+(define (check-remove-insert s a b)
   (= (s . insert a . remove b . size)
      (s . remove b . insert a . size))
 
-;; [1 pt -- successful test]
-(check-expect (pred2 empty-set "yes" "no") true)
+\rubricpts{1 pt -- successful test}
+(check-expect (check-remove-insert empty-set "yes" "no") true)
 
-;; counter-example
-;; [3 pts -- failing test]
-(check-expect (pred2 empty-set "yes" "yes") true) ;; either true or false
-\end{verbatim}
+;; Property does not hold.
+;; Counter-example (failing test):
+\rubricpts{3 pts -- failing test}
+(check-expect (check-remove-insert empty-set "yes" "yes") true)
+\end{alltt}
 \end{solution}
 
 \newpage
@@ -489,44 +506,44 @@ which produces a list of files.  So for example, we expect:
 \fi
 
 \begin{solution}
-\begin{verbatim}
-;;> [1pts -- interfaces, contracts, purpose]
+\begin{alltt}
+\rubricpts{1pts -- interfaces, contracts, purpose}
 ;; An Elem implements
 ;; - list-files : -> LoElem
 ;;   List all files within this element.
 
-;;> [2pts -- interfaces, contracts, purpose]
+\rubricpts{2pts -- interfaces, contracts, purpose}
 ;; A LoElem implements
 ;; - list-files : -> LoElem
 ;;   List all files within this list of elements.
 ;; - append : LoElem -> LoElem
 ;;   Append this list of elements to given list.
 
-;;> [1pt -- code]
+\rubricpts{1pt -- code}
 ;; in dir%
 (define (list-files)
   (this . elems . list-files))
 
-;;> [1pt -- code]
+\rubricpts{1pt -- code}
 ;; in file%
 (define (list-files)
   (new cons% this (new mt%)))
 
-;;> [2pt -- code]
+\rubricpts{2pt -- code}
 ;; in mt%
 (define (append loe) loe)
 (define (list-files) this)
 
-;;> [4pt -- code]
+\rubricpts{4pt -- code}
 ;; in cons%
 (define (append loe)
   (new cons% (this . first) (this . rest . append loe)))
 (define (list-files)
   (this . first . list-files . append (this . rest . list-files)))
 
-;;> [1pt -- sanity]
+\rubricpts{1pt -- sanity}
 
-;;> [3pts -- tests]
+\rubricpts{3pts -- tests}
 ;; tests
 (check-expect (mt . append (new cons% a mt)) (new cons% a mt))
 (check-expect ((new cons% a mt) . append (new cons% b mt))
@@ -537,7 +554,7 @@ which produces a list of files.  So for example, we expect:
               (new cons% a (new cons% b mt)))
 
 (check-expect (a . list-files) (new cons% a mt))
-\end{verbatim}
+\end{alltt}
 \end{solution}
 
 \end{problem}
@@ -599,6 +616,18 @@ object representing $1$.
 (check-expect ((new fact%) . fact (one . sub1)) one)
 \end{verbatim}
 
+
+\begin{solution}
+\begin{alltt}
+\rubricpts{2 pts}
+(define-class fact%
+  (define (fact n)
+    (cond [(n . zero?) one]
+          [else (n . times (this . fact (n . sub1)))])))
+
+\end{alltt}
+\end{solution}
+
 \newpage
 
 Now, design data and class defintions that implement \verb|Natural|, and
@@ -622,47 +651,38 @@ amongst mathematicians when working with natural numbers.
 \end{problem}
 
 \begin{solution}
-\begin{verbatim}
-;; Part 1: [2 pts]
-(define-class fact%
-  (define (fact n)
-    (cond [(n . zero?) one]
-          [else (n . times (this . fact (n . sub1)))])))
-
-
-;; Part 2:
-;; [2 pts -- data defintion]
+\begin{alltt}
+\rubricpts{2 pts -- data defintion}
 ;; A Natural is one of
 ;; - (new zero%)
-;; - (new succ% Natural)
+;; - (new add1% Natural)
 (define-class zero%
-  ;; [4 pts -- methods in zero%]
+  \rubricpts{4 pts -- methods in zero%}
   (define (sub1) this)
+  (define (zero?) true)
+  (define (add1) (new add1% this))
   (define (plus n) n)
-  (define (add1) (new succ% this))
-  (define (times n) this)
-  (define (zero?) true))
+  (define (times n) this))
 
-(define-class succ%
-  (fields pred)
-  ;; [7 pts -- methods in succ%]
+(define-class add1%
+  (fields sub1)
+  \rubricpts{7 pts -- methods in add1%}
   (define (zero?) false)
-  (define (add1) (new succ% this))
-  (define (plus n) (this . pred . plus n . add1))
-  (define (times n) (this . pred . times n . plus n))
-  (define (sub1) (this . pred)))
+  (define (add1) (new add1% this))
+  (define (plus n) (this . sub1 . plus n . add1))
+  (define (times n) (this . sub1 . times n . plus n)))
 
 (define zero (new zero%))
-;; [1 pt -- define one]
-(define one (new succ% (new zero%)))
+\rubricpts{1 pt -- define one}
+(define one (new add1% (new zero%)))
 
-;; [3 pts -- tests]
+\rubricpts{3 pts -- tests}
 (check-expect (one . zero?) false)
 (check-expect (one . sub1) zero)
-(check-expect ((new succ% one) . sub1) one)
+(check-expect ((new add1% one) . sub1) one)
 (check-expect (zero . zero?) true)
 (check-expect (zero . sub1) zero)
-\end{verbatim}
+\end{alltt}
 \newpage
 \end{solution}
 
@@ -702,24 +722,34 @@ You will need to provide new defintions for \verb|true| and
 
 
 \begin{solution}
-\begin{verbatim}
-;; [5 pts -- get it right]
+\begin{alltt}
+\rubricpts{5 pts -- get it right}
 (define-class fact%
   (define (fact n)
     (n . zero? . branch (new const% one) (new recur% n))))
+
 (define-class const%
   (fields run))
+
 (define-class recur%
   (fields n)
-  (define (run) ((new fact%) . fact (this . n . sub1) . times (this . n))))
+  (define (run) 
+    ((new fact%) . fact (this . n . sub1) . times (this . n))))
 
 (define-class t%
   (define (branch t e) (t . run)))
 (define-class f%
   (define (branch t e) (e . run)))
 
-(define true (new t%)) (define false (new f%))
-\end{verbatim}
+(define true (new t%)) 
+(define false (new f%))
+
+(check-expect ((new fact%) . fact zero) one)                  ; 0! = 1
+(check-expect ((new fact%) . fact one) one)                   ; 1! = 1
+(check-expect ((new fact%) . fact (one . add1)) (one . add1)) ; 2! = 2
+(check-expect ((new fact%) . fact (one . add1 . add1))        ; 3! = 6
+              (one . add1 . add1 . add1 . add1 . add1))
+\end{alltt}
 \end{solution}
 \end{problem}
 \end{document}

@@ -1,8 +1,8 @@
 .SUFFIXES: .ps .pdf $(.SUFFIXES)
 
-all: exam1.pdf rubric1.pdf
+all: exam1.pdf rubric1.pdf soln1.pdf
 
-rubric1.dvi exam1.dvi:   1.tex
+rubric1.dvi exam1.dvi soln1.dvi:   1.tex
 
 # A "make clean" shouldn't flush the pdfs & dvis. A "make superclean" removes
 # *everything* that can be recreated.
