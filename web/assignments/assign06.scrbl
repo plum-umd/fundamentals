@@ -1,44 +1,61 @@
 #lang scribble/manual
 @(require "../utils.rkt"
 	  "../unnumbered.rkt"
-          (for-label class1))
+          (for-label class/2 class/universe))
 
-@title[#:tag "assign06"]{2/25: Intelligent Connect 4}
+@title[#:tag "assign06"]{2/22: Nesting Worlds}
 
-Due: 2/25 (In @bold{2} weeks).
+Due: 2/22.
 
-In this assignment, you will write an intelligent computer player for Connect
-4, using the techniques we've seen in class. 
+Language: @racketmodname[class/2]
 
-You should work on this assignment in several parts, but since they
-all go together, there's only one piece to turn in. 
+In this problem set, we'll be implementing operating systems---very
+simple ones, but operating systems none-the-less.
 
-@itemlist[
-@item{Improve your original Connect 4 game from last week as you see
-fit. Perhaps you incorporate ideas from the official solution, or from
-discussions in class, or perhaps you just add more tests for the
-corner cases you missed before.}
+@section{A boxed @tt{world}}
 
-@item{Improve your game so that you can play repeatedly against the
-same opponent, and keep track of how many times each player has won.}
+In this problem, you will implement a wrapper around worlds, which
+will display a world with a big border around it.
 
-@item{Develop a computer player.  This will be a @tt{World} just like the
-human player, but with a faster response time.  Your computer player
-doesn't need to do anything intelligent yet.}
+A @tt{World} implements the following interface:
 
-@item{Have your computer player evaluate the moves it has available,
-and pick an intelligent one based on the current state of the board.}
+@codeblock{
+;; on-tick : -> World
+;; to-draw : -> Image
+;; on-key : KeyEvent -> World
+;; on-mouse : MouseEvent Number Number -> World
+}
 
-@item{Have your computer player remember each board position and each
-evaluation it makes, and use old ones when they're available.}
+Every @tt{World} must produce a 200 by 200 image from the @tt{to-draw}
+method.  
 
-@item{Have your computer player change its assessment of moves that
-caused it to lose.  Note that a forced move that results in a loss is
-a losing move.  }
+Your wrapper around @tt{World}s will be a class that contains a
+@tt{World}.  You should then implement a @r[big-bang] program that
+displays the wrapped @tt{World} and provides tick, key, and mouse
+events to the wrapped @tt{World}. The world should be displayed with a
+50 pixel border on all sides.  
 
-@item{Introduce randomness into your computer player's behavior.  Run
-two computer players against each other.  How often does the player
-that goes first win?  How long does it take before your computer
-players get good at the game?  Provide empirical data on this in your
-solution.}
-]
+Your world should provide tick events to the nested world at the rate
+of @racket[(/ 1 28)].  Your world should provide all @tt{KeyEvent}s to
+the nested world, @emph{except} the event @racket["q"], which should
+end the entire @r[big-bang] program.
+
+Your world should provide mouse events to the nested world, but
+@emph{only} when the mouse is located over the 200 by 200 area showing
+the nested world.  Your mouse events should be translated to the the
+coordinates that the nested world expects.  This means that when the
+mouse is over the top left corner of the @emph{nested} world, the
+mouse events should have coordinates 0 and 0, not 50 and 50.
+
+@section{A pair of boxed @tt{world}s}
+
+Now, you should extend your implementation to handle two worlds,
+side-by-side.  Note that these can be two @emph{different} nested
+worlds.  Again, the worlds have a fixed size of 200 by 200.  Mouse
+events should be passed to the world the mouse is over, translated so
+that the coordinates are appropriate for that world.    Key events
+should be passed to both worlds, and both worlds should tick at the
+same rate.  
+
+Again, the @racket["q"] key should quit the entire @racket[big-bang]
+program.  
