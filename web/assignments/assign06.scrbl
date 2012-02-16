@@ -143,19 +143,18 @@ we're used to, so for example, these tests should all pass if
 So now let's talk about Van Horn's idea.
 
 Van Horn thinks if instead of representing a list as a ``list of
-elements'' you could do better by representing a list as a ``forrest
+elements'' you could do better by representing a list as a ``forest
 of trees of elements''.  Moreover, the trees will get bigger and
-bigger as you go deeper into the forrest, and the trees will always be
+bigger as you go deeper into the forest, and the trees will always be
 @emph{full}, meaning if a tree has a left and right subtree, both will
 be the same size and full. (For the moment, don't worry about
 @emph{why} this makes @racket[list-ref] fast---think about that after
 you've implemented Van Horn's idea.)
 
-So here are the key invariants of a @emph{quick list}, which is
-represented as a forest of trees:
+So here are the key invariants of a @emph{quick list}:
 
 @itemlist[
-  @item{A quick list is a forrest of increasingly large full binary trees.}
+  @item{A quick list is a forest of increasingly large full binary trees.}
   @item{With the possible exception of the first two trees, every
     successive tree is @emph{strictly} larger.}
 ]
@@ -171,16 +170,16 @@ lists, will be the top element.
 Now, @racket[length].  If the forest is empty, the list has length
 @racket[0].  If a forest has a tree, the length of the list is the
 size of the tree plus the size of the rest of the forest.  (It's
-useful to store the size of a tree seperately from a tree so that you
+useful to store the size of a tree separately from a tree so that you
 don't have to compute it every time you need it.)
 
 The @racket[list-ref] method works as follows: if the index is
 @racket[0], the list must be non-empty, so take the first element,
-i.e. the top element of the first tree in the forrest.  If the index
+i.e. the top element of the first tree in the forest.  If the index
 is non-zero, there are two case: if it's less than the size of the
-first tree, the element is in the tree, so fetch it from the tree.  If
-it's larger, adjust the index, and look in the next tree in the
-forrest.
+first tree, the element is in that tree, so fetch it from the first
+tree.  If it's larger, adjust the index, and look in the remaining
+trees of the forest.
 
 To fetch an element from a tree: if the index is zero, the element is
 the top element.  Otherwise, if the index is less than half the size,
@@ -197,4 +196,20 @@ When an element is @racket[cons]ed, if there at least two trees in the
 forest and the first two are the same size, then make a new tree out
 of these two and with the given element on top (notice how this tree
 is definitely @emph{full}).  Otherwise just make a new tree with one
-element and make it the first tree in the forrest.
+element and make it the first tree in the forest.
+
+To take the @racket[rest] of a list, there must be at least one tree
+in the forest (since the list is non-empty).  We want to split this
+tree into its left and right and make these the first two trees in the
+forest.  The element that was on top is dropped on the floor and
+we're left with a representation of the rest of the list.
+
+And that's that.  When writing your code you want to make sure the
+invariants are always true.  Good code should make this fact obvious;
+bad code, not so much.
+
+This is a nice little exercise in data structure design and
+implementation, and although Van Horn @emph{wishes} this were really
+his idea, he actually got it from reading a book by Chris Okasaki, who
+has designed a bunch of these kinds of data structures.  Go forth, and
+may your @racket[list-ref] never be slow again.
