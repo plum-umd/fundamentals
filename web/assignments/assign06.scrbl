@@ -52,6 +52,11 @@ coordinates that the nested world expects.  This means that when the
 mouse is over the top left corner of the @emph{nested} world, the
 mouse events should have coordinates 0 and 0, not 50 and 50.
 
+You do not need to generate any additional @racket["mouse-enter"] or
+@racket["mouse-leave"] events.  This means that the nested worlds will
+receive somewhat fewer mouse events they they would if they were not
+nested.
+
 @section{A pair of boxed @tt{world}s}
 
 Now, you should extend your implementation to handle two worlds,
@@ -64,6 +69,12 @@ same rate.
 
 Again, the @racket["q"] key should quit the entire @racket[big-bang]
 program.  
+
+
+Again, you do not need to generate any additional
+@racket["mouse-enter"] or @racket["mouse-leave"] events.  This means
+that the nested worlds will receive somewhat fewer mouse events they
+they would if they were not nested.
 
 @section{Quick Lists}
 
