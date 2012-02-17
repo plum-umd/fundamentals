@@ -19,7 +19,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab06"]{2/13: Mutation and cyclic data}
+@title[#:tag "lab08"]{2/13: Mutation and cyclic data}
 
 @lab:section{Meditate}
 
