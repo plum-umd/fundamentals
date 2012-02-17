@@ -9,6 +9,12 @@
 
 @title*{Blog}
 
+@section*{Assignment 6 is up}
+@tt{Thu Feb 16 20:05:03 EST 2012}
+
+@seclink["assign06"]{Assignment 6} is now up.
+
+
 @section*{Exam 1 solution}
 @tt{Wed Feb 15 00:39:40 EST 2012}
 

@@ -107,7 +107,7 @@ the list interface we want:
 ;; - rest : -> [List X]
 ;;   Get the rest of this (only defined on non-empty lists).
 ;; - list-ref : Natural -> X
-;;   Get the ith element of this list (only defined for lists of i+1 elements).
+;;   Get the ith element of this list (only defined for lists of i+1 or more elements).
 ;; - length : -> Natural
 ;;   Compute the number of elements in this list.
 
