@@ -12,7 +12,7 @@
 @section*{Assignment 6 is up}
 @tt{Thu Feb 16 20:05:03 EST 2012}
 
-@seclink["assign06"]{Assignment 6} is now up.
+@seclink["assign07"]{Assignment 6} is now up.
 
 
 @section*{Exam 1 solution}

@@ -14,6 +14,13 @@ otherwise noted.
 @include-section["assignments/assign03.scrbl"]
 @include-section["assignments/assign04.scrbl"]
 @include-section["assignments/assign05.scrbl"]
+@section*[#:tag "assign06"]{No assignment}
+
+There is no assignment this week.  Study for the exam.
+
+If you're looking for the assignment due on 2/22, it's
+@seclink["assign07"]{assignment 6}.
+
 @include-section["assignments/assign06.scrbl"]
 @;section[#:tag "assign07"]{No assignment}
 @;section[#:tag "assign08"]{No assignment}

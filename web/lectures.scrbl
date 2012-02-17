@@ -49,35 +49,38 @@ In this section, you'll find brief notes from each lecture.
 If you don't have a CCIS account, you need to get one TODAY.  Make
 sure we have your CCIS username on the @seclink{Blog}.
 
-@section[#:tag "lec02"]{1/12: Classes}
+@section[#:tag "lec02"]{1/12: Data definitions and functionality with classes}
 
 @section[#:tag "lec03"]{1/16: Holiday (MLK Day)}
 There is no lecture on 1/16 since it is Martin Luther King, Jr. Day.
 
-@section[#:tag "lec04"]{1/19: Interfaces}
+@section[#:tag "lec04"]{1/19: Interfaces and Space Invader design}
 
 [Sam will be in California.]
 
 @section[#:tag "lec05"]{1/23: Zombies}
 
-@section[#:tag "lec06"]{1/26: Universe}
+@section[#:tag "lec06"]{1/26: Delegation, Zombies II}
 
-@section[#:tag "lec07"]{1/30: Delegation}
+@section[#:tag "lec07"]{1/30: Universe and accumulator invariants}
 
 @section[#:tag "lec08"]{2/2: Inheritance}
 
-@section[#:tag "lec09"]{2/6: Invariants, Data Structures, Testing}
+@section[#:tag "lec09"]{2/6: Properties and random testing}
 
-@section[#:tag "lec10"]{2/9: Constructors}
+@section[#:tag "lec10"]{2/9: Function objects and parameterized data
+definitions}
 
-@section[#:tag "lec11"]{2/13: Mutation}
+@section[#:tag "lec11"]{2/13: Overrriding and default worlds and
+universes}
 
-@section[#:tag "lec12"]{2/16: Visitors}
+@section[#:tag "lec12"]{2/16: Black-box testing, invariants, amortized
+analysis, and function constructors}
 
 @section[#:tag "lec13"]{2/20: Holiday (Presidents Day)}
 There is no lecture on 2/20 since it is Presidents Day.
 
-@section[#:tag "lec14"]{2/23: Slack}
+@section[#:tag "lec14"]{2/23: Constructors and visitors}
 
 @section[#:tag "lec15"]{2/27: Java I: Syntax and Semantics}
 

@@ -5,7 +5,7 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign06"]{2/22: Nesting Worlds and Quick Lists}
+@title[#:tag "assign07"]{2/22: Nesting Worlds and Quick Lists}
 
 Due: 2/22.
 
