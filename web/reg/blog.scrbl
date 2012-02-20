@@ -6,6 +6,12 @@
 
 @title*{Blog}
 
+@section*{Note on problem 2, part 6}
+@tt{Mon Feb 20 15:03:46 EST 2012}
+
+Note: You may want to build a BST from the nodes in the given list.
+
+
 @section*{Marathon code}
 @tt{Mon Feb 13 11:19:36 EST 2012}
 
