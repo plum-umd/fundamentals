@@ -6,6 +6,14 @@
 
 @title*{Blog}
 
+
+@section*{Global constants}
+@tt{Wed Feb 22 08:26:11 EST 2012}
+
+Here are some @link["GlobalConstants.html"]{notes} on how to use
+global constants.
+
+
 @section*{Note on problem 2, part 6}
 @tt{Mon Feb 20 15:03:46 EST 2012}
 

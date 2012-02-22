@@ -13,7 +13,7 @@ clean: clean-web
 #
 
 web: 2510
- 
+
 2510: $(scrbls)
 	raco make 2510.scrbl
 	raco scribble --htmls \
@@ -36,6 +36,7 @@ web: 2510
 	cp -r labs/*.txt 2510/
 	cp -r labs/*.png 2510/
 	cp -r blog/*.java 2510/
+	cp -r blog/*.html 2510/
 	cp -r exams/*.pdf 2510/
 
 web-students:

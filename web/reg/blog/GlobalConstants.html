@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Global Constants</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012: Global Constants</h1>
+
+<p>When we are designing games, the size of the game display remains the
+same regardless of how many times we play the game. It is also
+desirable that the various objects in the game know the size of the
+game display, so that they can implement easily the methods that verify
+whether the object is within bounds, or close to the bounds, or
+methods that place a new object close to the game display boundary.</p>
+
+<p>That means we want to define some game constants that will never
+change and make them available to any objects interested in using
+these constants. Java allows us to do this by defining an
+<code>interface</code> whose sole purpose is to make immutable
+constants available to any class that implements this
+<code>interface</code>.
+
+The following example illustrates this technique:
+
+<pre>
+// to represent game width and height
+interface GameConstants{
+  public int WIDTH = 600;
+  public int HEIGHT = 400;
+}
+// to represent a game of shark catching fish
+class OceanWorld implements GameConstants extends World{
+  Shark shark;
+  Fish fish;
+...
+
+  WorldImage makeImage(){
+    return new RectangleImage(new Posn(0, 0), WIDTH, HEIGHT,
+                              Color.blue).
+           overlayImages(this.shark.makeImage(),
+    this.fish.makeImage());
+  }
+...
+}
+
+// to represent a fish in the ocean world game
+class Fish implements GameConstants{
+  Posn loc;
+  int radius;
+...
+
+  // move fish to the left, replace with a new one
+  // if it managed to escape 
+  Fish moveFish(){
+  // if fish escaped, replace it with a new one
+  if (loc.x - 3 < 0)
+    return
+    new Fish(new Posn(random.nextInt(20, Height - 20),
+                      WIDTH - 5),
+             this.radius);
+  else
+    return new Fish(new Posn(loc.x - 3, loc.y), this.radius);
+  }
+...
+}
+
+// to represent a shark in the ocean world game
+class Shark implements GameConstants{
+  int y;
+  int lives;
+...
+
+  // move the shark in response to the key press
+  Shark move(String ke){
+    if (ke.equals("up") && (this.y - 3 > 0))
+      return new Shark(this.y - 3, lives);
+    else if (ke.equals("down") && (this.y + 3 < HEIGHT))
+      return new Shark(this.y + 3, this.lives);
+    else
+      return this;
+  }    
+</pre>
+
+<p>As you can see, every class has access to these constants and the
+design of methods that refer to the size of the game display is
+simplified.</p>
+
+<p><em>Note:</em> As you can see, we use upper case names for these
+constants. This is a convention that indicates to the programmer that
+these constants represent fiixed values that will never change during
+the program run. Furthermore, notice that we do not refer to these
+constants as <code>this.WIDTH</code> or <code>this.HEIGHT</code>. The
+values of these constants are not a specific property of one
+particular object in this class (<code.this</code> shark, or
+<code>this</code> fish), all objects in this class refer to the same
+value, common to all.</p>
+
+<hr></hr>
+
+<p>Two more things. Can one class implement several interfaces? Can an
+interface <em>implement</em> another interface?</p>
+
+<ul>
+<li><p>One class can implement several interfaces. For example, if we had
+defined an interface <code>Drawable</code> with the method that
+produces the image of the object, the definition of the class
+<code>Shark</code> may begin as follows:</p>
+
+<pre>
+class Shark implements GameConstants, Drawable{...}
+</pre>
+  </li>
+
+<li><p>One interface can declare that it extends the obligations required
+by another interface as follows:</p>
+
+<pre>
+interface ILoFish extends GameConstants{...}
+</pre>
+
+<p>Any class that implements <code>ILoFish</code> is now required to
+implement all methods declared in that interface, and has access to
+all constants defined in the <code>GameConstants</code> interface. If
+the <code>GameConstants</code> had declared additional methods, the
+class that extends <code>ILoFish</code> would have to implement those
+methods as well.</p></li>
+</ul>
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Mon Feb 20 11:35:58 EST 2012 <!-- hhmts end -->
+</body> </html>
