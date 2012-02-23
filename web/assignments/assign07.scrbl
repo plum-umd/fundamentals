@@ -189,3 +189,38 @@ Now implement the following two visitors:
 
 Implement at least one @tt{[Fun Number String]} and one @tt{[Question
 String]} to use for testing @racket[filter%] and @racket[map%].
+
+
+@subsection*{Folds vs Visitors}
+
+We can also implements @emph{folds} over lists, in both for both kinds
+of lists.  Extend your implementation of lists (both kinds) to support
+the @racket[fold] method:
+@codeblock{
+;; A [List X] implements ...
+;; - fold : [ListFold X Y]
+;;   Accept given fold and process this list's data.
+
+;; A [ListFold X Y] implements
+;; - fold-mt : -> Y
+;;   Process an empty list.
+;; - fold-cons : X Y -> Y
+;;   Process a cons lists.
+}
+
+Now revise your implementations of the @racket[filter%] and
+@racket[map%] to implement folds as well as visitors.  Be sure to
+specify what interfaces they implement.  
+
+Finally, implement the class @racket[list-ref%]:
+@codeblock[#:keep-lang-line? #f]{
+#lang class/2
+;; A (new list-ref% Number) implements [ListVisitor X X]
+;; and [ListFold X X].
+;; Retrieves the element at the specified index.
+}
+
+Which implementation, the fold or the visitor, is more elegant?  Which
+was more elegant for @racket[map%] and @racket[filter%]?
+
+@section{Universe Setup}
