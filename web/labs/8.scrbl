@@ -1,273 +1,291 @@
 #lang scribble/manual
 
-@(require scribble/eval
-          racket/sandbox
-          "../lab.rkt"
+@(require "../lab.rkt"
           "../unnumbered.rkt"
-          "../utils.rkt"
-          (for-label (except-in class/3 define-struct)
-                     2htdp/image
-                     (only-in lang/htdp-intermediate-lambda define-struct)
-                     class/universe
-                     (only-in racket/string string-join)
-                     (only-in racket/base   display)))
-
-@(define the-eval
-  (let ([the-eval (make-base-eval)])
-    (the-eval '(require class/3))
-    ;(the-eval '(require 2htdp/image))
-    ;(the-eval '(require class/universe))
-    the-eval))
+          "../utils.rkt")
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab08"]{2/27: Scraping HTML with visitors}
+@title[#:tag "lab8"]{2/27: Java, Dictionaries, and the Internet}
+
+@itemlist[
+  @item{Download @tt{prima-1.2.3.jar} from
+        @url{http://code.google.com/p/nutester}.}
+]
+
+@lab:section{Warmup: same data, different language}
+
+Think back to lab 5, in which we built several implementations of the
+Dictionary interface. In case you don't remember, here's the interface
+again, but in Java:
+
+@indented{@verbatim|{
+  // A Key is a String
+  //
+  // A Dict<V> implements
+  //
+  // has-key : Key -> Boolean
+  // Does the given key exist?
+  //
+  // lookup : Key -> V
+  // The value mapped to by the given key
+  //
+  // set : Key V -> Dict<V>
+  // Set the given key-value mapping
+}|}
+
+Note that we have removed the assumption for lookup that the key is
+in the dictionary. It turns out that, unlike in @racket{class/0},
+Java forces us to implement @tt{lookup} for all classes that implement
+the @tt{Dict} interface.
+
+Instead of leaving the method unimplemented, you can just define
+the method to return an error when there is no key. In Java, you
+can return an error with a statement like this:
+@verbatim|{throw new RuntimeException("Error message");}|
 
 @exercise{
-  Install @url["class3-html.plt"]. It adds the @racket[class/3/html] module that
-  we'll be using in this lab to interact with html.
+  Implement a @tt{Dict} in Java using the SortedListDict design from lab 5.
+  Make sure to translate the data definition to the Java syntax first.
+
+  You may find the @tt{compareTo} method on Strings useful for this exercise.
+
+  (NB: you could easily do any of the designs from lab 5, but we'll use
+       SortedListDicts later)
 }
 
-Consider the following program:
+There are several other operations that you might want in a
+good library for dictionaries. For example, you may want to be able
+to extract just the keys or values contained in a dictionary:
 
-@#reader scribble/comment-reader
-(racketmod
-class/3
-(require class/3/html)
-(require (only-in racket/string string-join))
-(require (only-in racket/base display))
-
-; HtmlElement -> String
-; Scrape text from html
-(define (scrape-text html)
-  (html #,dot visit (text-scraper%)))
-
-; Visitor to scrape text from html
-; Implements [HtmlVisitor String]
-(define-class text-scraper%
-
-  ; String -> String
-  ; Leave text as it is
-  (define/public (visit-text t)
-    t)
-
-  ; Attrs [Listof String] -> String
-  ; For elements, concatenate the text scraped from their children
-  (define/public (visit-element attrs lo-text)
-    (string-join lo-text " ")))
-
-(display (scrape-text (parse-html (fetch-url "http://racket-lang.org"))))
-)
-
-When you run it, it @racket[display]s the text from @tt{racket-lang.org} with
-none of the html structure or formatting. It achives this not by decomposing the
-html returned by @racket[parse-html], but by constructing an @tt{HtmlVisitor}:
-
-@#reader scribble/comment-reader
-(racketblock
-; An [HtmlVisitor X] implements:
-;
-;   visit-text : String -> X
-;   Produce an X from text
-;
-;   visit-element : Attrs [Listof X] -> X
-;   Produce an X from an element's attributes and the Xs from its children
-;
-; and for any html tag <tag>, it may also implement:
-;
-;   visit-<tag> : Attrs [Listof X] -> X
-;   Produce an X from a <tag>'s attributes and the Xs made by its children.
-;   If visit-<tag> exists, call it instead of visit-element for <tag> elements.
-)
-
-In fact, all it knows about @tt{HtmlElement}s is that each has a @racket[visit]
-method:
-
-@#reader scribble/comment-reader
-(racketblock
-; An HtmlElement implements:
-;
-;   visit : [HtmlVisitor X] -> X
-;   Produce an X from this element using the given visitor
-)
-
-and that html attributes support a dictionary-like lookup interface:
-
-@#reader scribble/comment-reader
-(racketblock
-; An Attrs implements:
-;
-;   get : String -> (or String false)
-;   Get the value of the given attribute, or false if it doesn't exist
-)
+@indented{@verbatim|{
+  // keys : -> ListOf<Key>
+  // return the keys in the dictionary
+  //
+  // values : -> ListOf<V>
+  // return the values in the dictionary
+}|}
 
 @exercise{
-  In html, links are encoded as @tt{a} elements with an @tt{href} attribute:
-
-  @indented{
-    @tt{Check out <a href="http://racket-lang.org">this sweet language</a>!}
-  }
-
-  Write a visitor @racket[link-scraper%] and a function @racket[scrape-links]
-  @tt{: HtmlElement -> [Listof URL]}, where @tt{URL = String}, that scrapes the
-  urls of the links on a page.
-
-  To do this, @racket[link-scraper%] needs the two required methods
-  @racket[visit-text] and @racket[visit-element], but you should also give it
-  the optional method @racket[visit-a] to specialize its behavior on @tt{a}
-  elements.
-
-  Your @racket[link-scraper%] visitor should implement @tt{[HtmlVisitor X]} for
-  some @tt{X}---what would be a good choice of @tt{X}?
+  Implement the @tt{keys} and @tt{values} methods above.
 }
+
+Another thing you might want to do is run a function to update the value mapped
+by a particular key (instead of just providing the new value). Since Java
+doesn’t have higher-order functions, we will simulate them with objects. Here’s
+an interface defintion for a unary function from X to Y:
+
+@indented{@verbatim|{
+  // A Fun<X,Y> implements:
+  //
+  // call : X -> Y
+  // Call this function on its X input and produce a Y
+}|}
+
+Let's use this to define a new method for dictionaries.
+
+@indented{@verbatim|{
+  // Dict<V> also implements:
+  //
+  // update : Key Fun<V, V> -> Dict<V>
+  // run the given function to get a new value for key
+}|}
+
+One problem with the data definition above is that it only lets you
+use keys that are @tt{Nat}s. Since the only operation that we need
+for the key is that it lets us check if two keys are equal, let's
+build that into our data definitions:
+
+@indented{@verbatim|{
+  // An Eq implements
+  //
+  // equals : Eq -> Boolean
+}|}
+
+We chose the name @tt{equals} because all of the built-in classes
+like @tt{Integer} and @tt{String} in Java implements it.
+
+@indented{@verbatim|{
+  // A EqDict<V> implements
+  //
+  // has-key : Eq -> Boolean
+  // Does the given key exist?
+  //
+  // lookup : Eq -> V
+  // The value mapped to by the given key
+  // Assumption: the key exists
+  //
+  // set : Eq V -> Dict<V>
+  // Set the given key-value mapping
+}|}
 
 @exercise{
-  Images are encoded as @tt{img} elements with a @tt{src} attribute:
-
-  @indented{
-    @tt{Here is a cool google doodle: <img
-    src="http://gmsearchscripts.googlecode.com/files/lego.JPG"></img>}
-  }
-
-  Write a visitor @racket[image-scraper%] and a function @racket[scrape-images]
-  @tt{: HtmlElement -> [Listof URL]} that scrapes the urls of the images on a
-  page.
-
-  Again, what would be a good choice of @tt{X}?
+  Create a new dictionary that uses this new data definition.
 }
 
-If you want to find out how something is encoded in html, most browsers have a
-@emph{View Source} command, typically in the right-click context menu. With this
-you can inspect the html of anything you see on the web.
+@lab:section{Another kind of dictionary}
+
+We've seen various implementations of dictionaries, but are they good for
+representing real dictionaries like the Merriam-Webster Dictionary that store
+words? You might think that since these dictionaries are specialized to
+work with words, you could design a faster data structure for them.
+
+Well, it turns out you can. We will design a data structure called a "trie"
+(pronounced "tree" or "try") that is highly efficient for storing words.
+Here is the data definition for a trie:
+
+@indented{@verbatim|{
+  // A Trie<V> is one of
+  //  - new NoValue(SortedListDict<Trie<V>>)
+  //  - new Node(V, SortedListDict<Trie<V>>)
+  // and implements Dict<V>
+  //
+  // where the keys in the SortedListDict are all single-character strings
+}|}
+
+As you can see from the data definition, each trie node stores a dictionary of
+its child nodes keyed by single characters.  Imagine each connection from a
+node to its child as representing one character in a string. When you lookup a
+string in a trie, you look at the first character in the string and continue to
+lookup in the corresponding sub-trie. The path you take down the tree will
+spell out the string you are looking up.
+
+NB: the children can be stored in any Dict<V> unless you care about them
+being sorted. It turns out we need that for a later exercise.
+
+The advantage of this representation is that the time it takes to lookup
+any string is proportional to the length of the string. This is faster than
+a binary search tree in general.
 
 @exercise{
-  Javascript code (which is not actually related to java in any meaningful
-  sense) is included into html in various ways, one of which is using
-  @tt{script} elements with a @tt{type="text/javascript"} attribute and a
-  @tt{src} attribute specifying the location of the code:
-
-  @indented{
-    @tt{<script type="text/javascript" src="/js/jquery-1.4.4.js"></script>}
-  }
-
-  Write a visitor @racket[js-scraper%] and a function @racket[scrape-js] @tt{:
-  HtmlElement -> [Listof URL]} that scrapes the urls of javascript files loaded
-  into a page.
+  Implement Trie and all of its methods.
 }
+
+One of the operations that a trie makes very fast is searching for all key/value
+pairs that matches a certain prefix of a key (a prefix is just a substring of
+a string that includes the beginning). This kind of operation is useful if you
+want to search through a dictionary.
+
+Here is a contract for a function that search the dictionary based on a prefix:
+
+@indented{@verbatim|{
+  // matchPrefix : String -> ListOf<String>
+  // Finds all keys that match the given prefix
+}|}
 
 @exercise{
-  One of java's early hits was applets: you compile some java gui code, make the
-  @tt{.class} file visible on the web, link to it with an @tt{applet} tag, and
-  then your page includes a little pane running a graphical java program.
-
-  But applets are so 90's! Write a visitor @racket[applet-detector%] and a
-  function @racket[applets?] @tt{: HtmlElement -> Boolean} that inspects a page
-  to determine whether it includes any applets.
-
-  What would be good choice for @tt{X}?
+  Implement @tt{matchPrefix}.
 }
+
+Another application of tries is a fast sorting algorithm on strings. Let's
+say you have a data definition of a List of Strings that supports lexicographical
+sorting:
+
+@indented{@verbatim|{
+  // An LoS is one of
+  //  - new MTList()
+  //  - new Cons(String, LoS)
+  // and implements
+  //
+  // sort : -> LoS
+  // returns a sorted list in lexicographic order
+}|}
+
+One way to implement @tt{sort} is to insert each of the list items into a trie
+and then do a so-called "pre-order" fold over the trie ("pre-order" just means
+that the fold visits the node first, then visits its children from left to
+right). Since the children of a trie node are represented using a SortedListDict,
+let's first write a method to fold over it.
+
+@indented{@verbatim|{
+  // A SortedListDict<V> also implements
+  //
+  // fold<X> : Fun2<V, X, X> X -> X
+  // fold over this list
+}|}
+
+Remember the @tt{Fun} interface from earlier? We can do the
+same thing for binary functions:
+
+@indented{@verbatim|{
+  // A Fun2<X,Y,Z> implements:
+  //
+  // call : X Y -> Z
+  // Call this function on its X and Y inputs and produce a Z
+}|}
 
 @exercise{
-  When you click a link with someone's email address, it's similar to a normal
-  link except the email address is made into a url by adding the @tt{"mailto:"}
-  prefix:
-
-  @indented{
-    @tt{Send all complaints to <a href="mailto:dvanhorn@"@"ccs.neu.edu">this
-    guy</a>.}
-  }
-
-  Write a visitor @racket[email-scraper%] and function @racket[scrape-emails]
-  that scrapes all the email addresses from a page. (Step 2: Sell them to
-  spammers. Step 3: Mourn for your cold, black heart.)
+  Implement the fold operation on sorted lists.
 }
+
+Now let's define a method for folding over the trie:
+
+@indented{@verbatim|{
+  // A Trie<V> also implements:
+  //
+  // preOrder<X> : Fun2<V, X, X> X -> X
+  // do a pre-order fold over the trie
+}|}
 
 @exercise{
-  When browsing around for research papers, I often encounter pages that include
-  a bunch of .pdf files, and I want to batch-download all of them. Or maybe it's
-  a bunch of .png charts. Or maybe some .mp3 audio.
-
-  Write a visitor @racket[file-ext-scraper%], and a function
-  @racket[scrape-file-ext] @tt{ : String HtmlElement -> [Listof URL]} that takes
-  a file extension (like @racket["pdf"] or @racket["png"]) and some html and
-  finds all the urls that link to files with the given file extension.
+  Implement the @tt{preOrder} method. You'll need to use the @tt{fold}
+  method you defined on lists earlier.
 }
+
+Now you can implement the @tt{sort} method on lists of strings by delegating
+to a trie.
 
 @exercise{
-  The title you see in the titlebar of a web page is specified by a @tt{title}
-  tag:
-
-  @indented{
-    @tt{<title>My first geocities home page (under construction!)</title>}
-  }
-
-  Write a scraper that extracts the title text from a page. You may either
-  assume that there is only one @tt{title} element, or simply concatenate the
-  text from multiple @tt{title}s that you find.
-
-  ...This is a little trickier than it sounds. When you're in the
-  @racket[visit-title] method, you can't simply ask for its text, and when
-  you're in @racket[visit-text], you can't simply ask whether the text belongs
-  to a @tt{title} element.
-
-  And the answer isn't @racket[set-field!]. You can do it with only what you
-  learned in Fundies 1.
+  Implement @tt{sort} via delegation to a trie.
 }
 
-@exercise{
-  Another way to add javascript code to the web is to write it inline in your
-  html:
+At this point, you might be thinking this was a roundabout way of defining
+sorting. After all, don't we already have a way to sort lists using the
+SortedListDict? While that's true, sorting using a trie can be much faster.
+The fastest known algorithm for sorting strings, called Burstsort, is based
+on tries.
 
-  @indented{@tt{
-    <script type="text/javascript"> @linebreak{}
-    alert("Welome to my awesome geocities home page!"); @linebreak{}
-    </script>
-  }}
+@lab:section{Tries and the Internet}
 
-  Write a scraper that extracts all @emph{inline} javascript code from a page.
-}
+Changing gears, let's talk about the Internet. The Internet is run by a stack
+of many protocols like IP, TCP, UDP, DNS, and so on. These protocols define
+an interface for interacting with services and websites on the internet.
 
-@exercise{
-  As you move from page to page, the web has various ways to remember things
-  about you, like what you put in your shopping cart or the zipcode you typed in
-  for food delivery. One of them is for the server to include ``hidden inputs''
-  in the html it gives you. For example, if I enter my zipcode into a form and
-  the server sends me to a new page, it could remember my zipcode by including
-  in the new page as:
+@indented{@verbatim|{
+  // A Bit is an Integer that's either 0 or 1
+  //
+  // A BitList is one of
+  //  - new BitMt()
+  //  - new BitCons(Bit, BitList)
+  // and implements
+  //
+  // toInteger : -> Integer
+}|}
 
-  @indented{
-    @tt{<input type="hidden" name="zipcode" value="02446"></input>}
-  }
+@indented{@verbatim|{
+  // A Quad is an Integer
+  //
+  // A IPAddress is a
+  //  - new IPAddress(Quad, Quad, Quad, Quad)
+  // and implements
+  //
+  // getQuad : Integer -> Integer
+  // where the argument is between 0 and 3
+  //
+  // toList : -> BitList
+}|}
 
-  Then, when I submit another form from the next page, the information
-  @tt{zipcode="02446"} will be sent along with it.
+As you load this lab webpage on your computer, the web server at Northeastern
+and your computer are sending packets back and forth using TCP & IP. How do
+these packets get to your computer? The machines in between "route" incoming
+packets to you and outgoing packets to the server.
 
-  I'm always curious what information is being piped around. Write a scraper
-  that finds all the @tt{name}-@tt{value} pairs for each hidden input in a page.
-}
+To perform this task, servers store a @emph{routing table} that tells the
+server how to route each packet. Since storing every possible address
+(4,294,967,296 for IP version 4) is a bad idea, servers store routes by
+"prefix". That is, addresses that share the same beginning are routed the
+same way.
 
-@exercise{
-  The web has many, many ways of making text bold, underlined, red, small, etc.
-  One common way to emphasize text is with the @tt{b} or @tt{strong} tags for
-  bold (they have the same behavior), and with the @tt{i} or @tt{em} tags for
-  italics.
-
-  Write a scraper that extracts all important text---text in bold or
-  italics---from a page.
-}
-
-@exercise{
-  Page headings are encoded with one of the tags @tt{h1}, @tt{h2}, @tt{h3},
-  @tt{h4}, @tt{h5}, or @tt{h6}, depending on how deeply the heading is nested
-  beneath other headings. (So an @tt{h4} would be a sub-sub-sub-heading.)
-
-  Write a scraper that extracts the list of headings from a page. This is very a
-  crude outline of the content on the page, as structured by the headings (if
-  any).
-}
-
-@exercise{@bold{(Challenge)}
-  Write a scraper that extracts a better outline. Extract the headings as
-  before, but present them not just as a flat list but as some data of your own
-  design that preserves the nesting structure.
-}
+Tries can be used to represent these tables since a trie allows routes
+that share prefixes to use the same space. This requires specializing
+the trie data definition for IP prefixes.
