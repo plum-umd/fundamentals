@@ -224,3 +224,90 @@ Which implementation, the fold or the visitor, is more elegant?  Which
 was more elegant for @racket[map%] and @racket[filter%]?
 
 @section{Universe Setup}
+
+Many universe programs are really two-party communication protocols.
+In other words, the server always expects to communicate with exactly
+two worlds.  Writing the code to manually handle connections can be
+annoying, and so we'll abstract it.
+
+@subsection{Guess my number}
+
+First, set up the guess-my-number game for two players from
+@secref["guess-my-number"]{Guess my number}, and improve the code as
+you see fit.
+
+@subsection{Startup}
+
+Design a class that implements the usual @racket[universe] interface,
+and takes exactly one constructor argument.  That constructor argument
+must be an object that supports the following method:
+
+@codeblock{
+;; startup : IWorld IWorld -> Universe
+;; start this universe server, connected to the given iworlds
+}
+
+Your setup universe should replace itself with the universe produced
+by the @racket[startup] method.  
+
+Use your startup universe to simplify your implementation of
+guess-my-number. 
+
+@subsection{Wrapping}
+
+There's still more cruft that we could abstract out.  For example, are
+you rejecting extra worlds that try to join?  Also, we still have to
+check which player sent which message.
+
+Design a new, wrapping universe.  This should wrap (i.e., take as a
+constructor argument) a @racket[GameServer] object with the following interface:
+
+@codeblock{
+; A GameServer implements:
+; on-tick : -> GameServerResult
+; The universe ticked
+; player1-join : -> GameServerResult
+; Player one joined
+; player2-join : -> GameServerResult
+; Player two joined
+; player1-message : Sexp -> GameServerResult
+; Player one sent the given message
+; player2-message : Sexp -> GameServerResult
+; Player two sent the given message
+; player1-disconnect : -> GameServerResult
+; Player one disconnected
+; player2-disconnect : -> GameServerResult
+; Player two disconnected
+
+; A GameServerResult implements:
+; player1-messages : -> [Listof Sexp]
+; The messages to be sent to player one
+; player2-messages : -> [Listof Sexp]
+; The messages to be sent to player two
+; new-server : -> GameServer
+; The new value of the server
+; stop? : -> Boolean
+; Should the universe end now?
+}
+
+When the universe that you implement receives an event, it should pass
+that event on to game server.  Player 1 is the first player to
+connect, player 2 is the second player to connect.  Because we've
+distinguished the messages by the method that's called, there's no
+need for the game server to know about @tt{iworld}s at all.
+
+A @racket[GameServerResult] tells you how the game server wants the
+universe to change.  All of the messages in the list produced by
+@racket[player1-messages] should be sent to player 1, and similarly
+for the messages in @racket[player2-messages].  The new state of the
+game server is the result of @racket[new-server].  
+
+Your universe server should automatically disconnect any excess worlds
+that join, without telling the game server about this.
+
+Your universe server should end the universe (using
+@racket[stop-when]) if the @tt{GameServerResult} ever produces
+@racket[true] from @racket[stop?].  
+
+Reimplement guess-my-number as a @racket[GameServer].  Make sure it
+still works with the old clients.  
