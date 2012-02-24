@@ -22,7 +22,7 @@ If you're looking for the assignment due on 2/22, it's
 @seclink["assign07"]{assignment 6}.
 
 @include-section["assignments/assign06.scrbl"]
-@;section[#:tag "assign07"]{No assignment}
+@include-section["assignments/assign07.scrbl"]
 @;section[#:tag "assign08"]{No assignment}
 @;section[#:tag "assign09"]{No assignment}
 @;section[#:tag "assign10"]{No assignment}

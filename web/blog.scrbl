@@ -9,6 +9,14 @@
 
 @title*{Blog}
 
+@section*{Assignment 7 is up}
+@tt{Thu Feb 23 20:19:26 EST 2012}
+
+
+@seclink["assign08"]{Assignment 7} is now up, along with a revised
+class system, which you will need.
+
+
 @section*{Assignment 6 is up}
 @tt{Thu Feb 16 20:05:03 EST 2012}
 

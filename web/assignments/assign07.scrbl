@@ -11,6 +11,8 @@ Due: 2/29.
 
 Language: @racketmodname[class/2]
 
+You will need to update your copy of the @seclink["class"]{class system} to solve this assignment.
+
 @section{Quick Visits}
 
 This problem builds on the @emph{quick lists} problem from last week.
@@ -191,7 +193,7 @@ Implement at least one @tt{[Fun Number String]} and one @tt{[Question
 String]} to use for testing @racket[filter%] and @racket[map%].
 
 
-@subsection*{Folds vs Visitors}
+@subsection{Folds vs Visitors}
 
 We can also implements @emph{folds} over lists, in both for both kinds
 of lists.  Extend your implementation of lists (both kinds) to support
@@ -233,7 +235,7 @@ annoying, and so we'll abstract it.
 @subsection{Guess my number}
 
 First, set up the guess-my-number game for two players from
-@secref["guess-my-number"]{Guess my number}, and improve the code as
+@secref["guess-my-number"], and improve the code as
 you see fit.
 
 @subsection{Startup}
