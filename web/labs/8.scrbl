@@ -335,3 +335,11 @@ Here is a contract for a function that search the dictionary based on a prefix:
 @exercise{
   Implement @racket[matchPrefix].
 }
+
+This prefix matching algorithm is actually an important one as it
+is one part of the procedure that routers on the Internet use to decide how
+to route traffic from one computer to another. Algorithms for IP routing
+use tries, albeit with much more complicated data definitions, to avoid
+storing the routing information for every single address. Instead, groups of
+IP addresses are assigned the same information when they share a prefix of their
+addresses.
