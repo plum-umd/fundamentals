@@ -218,11 +218,10 @@ Finally, implement the class @racket[list-ref%]:
 @codeblock[#:keep-lang-line? #f]{
 #lang class/2
 ;; A (new list-ref% Number) implements [ListVisitor X X]
-;; and [ListFold X X].
 ;; Retrieves the element at the specified index.
 }
 
-Which implementation, the fold or the visitor, is more elegant?  Which
+Could you implement this using the @racket[ListFold] interface?  Which
 was more elegant for @racket[map%] and @racket[filter%]?
 
 @section{Universe Setup}
@@ -232,10 +231,10 @@ In other words, the server always expects to communicate with exactly
 two worlds.  Writing the code to manually handle connections can be
 annoying, and so we'll abstract it.
 
-@subsection{Guess my number}
+@subsection{Number Guessing}
 
 First, set up the guess-my-number game for two players from
-@secref["guess-my-number"], and improve the code as
+@secref["guess-my-number-book"], and improve the code as
 you see fit.
 
 @subsection{Startup}
