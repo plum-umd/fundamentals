@@ -2,7 +2,10 @@
 
 @(require "../lab.rkt"
           "../unnumbered.rkt"
-          "../utils.rkt")
+          "../utils.rkt"
+          slideshow/pict
+          unstable/gui/pict
+          unstable/gui/ppict)
 
 @(define exercise (exercise-counter))
 
@@ -189,13 +192,131 @@ string in a trie, you look at the first character in the string and continue to
 lookup in the corresponding sub-trie. The path you take down the tree will
 spell out the string you are looking up.
 
-The advantage of this representation is that the time it takes to lookup
-any string is proportional to the length of the string. This is faster than
-a binary search tree in general.
+For example, you could use a trie to store the frequencies of some given words
+in a document. Here is an example trie that stores numbers at each node to
+represent frequencies:
+
+@(define node-width 35)
+@(define (make-node s1 s2)
+   (ct-superimpose (vc-append (blank 0 3) (text s2))
+                   (cb-superimpose (colorize (vc-append (text s1) (blank 0 3)) "blue")
+                                   (circle node-width))))
+@(ppict-do (blank 300 300)
+  #:go (coord 0.5 0.10)
+  (tag-pict (make-node "" "") 'A)
+  #:go (coord 0.5 0.30)
+  (tag-pict (make-node "20" "a") 'B)
+  #:go (coord 0.7 0.5)
+  (tag-pict (make-node "7" "an") 'C)
+  #:go (coord 0.5 0.5)
+  (tag-pict (make-node "" "ac") 'F)
+  #:go (coord 0.3 0.5)
+  (tag-pict (make-node "" "ap") 'D)
+  #:go (coord 0.5 0.7)
+  (tag-pict (make-node "1" "ace") 'H)
+  #:go (coord 0.1 0.7)
+  (tag-pict (make-node "3" "ape") 'E)
+  #:go (coord 0.3 0.7)
+  (tag-pict (make-node "30" "api") 'G)
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "a") 10 p
+      (find-tag p 'A) cb-find
+      (find-tag p 'B) ct-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "n") 10 p
+      (find-tag p 'B) rb-find
+      (find-tag p 'C) lt-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "c") 10 p
+      (find-tag p 'B) cb-find
+      (find-tag p 'F) ct-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "p") 10 p
+      (find-tag p 'B) lb-find
+      (find-tag p 'D) rt-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "e") 10 p
+      (find-tag p 'F) cb-find
+      (find-tag p 'H) ct-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "e") 10 p
+      (find-tag p 'D) lb-find
+      (find-tag p 'E) rt-find))
+  #:set
+  (let ([p ppict-do-state])
+    (pin-arrow-label-line
+      (text "i") 10 p
+      (find-tag p 'D) cb-find
+      (find-tag p 'G) ct-find)))
+
+This tree stores the words "a", "ape", "api" (maybe it's from a programming book
+that mentions apes), "ace", and "an". Note that this trie doesn't store "ap" or "ac"
+because there are no values (no numbers) at these nodes, since neither are considered
+words in many documents.
+
+The advantage of this representation is that the time it takes to lookup any
+string is proportional to the length of the string. This can be
+faster than using a binary search tree, which takes time proportional to the
+length times the logarithm of the height of the tree in the worst case.
 
 @exercise{
-  Implement @tt{has-key}, @tt{lookup}, and @tt{set} for tries.
+  Write down the @racket{Trie<V>} interface and the classes that implement it.
+
+  Implement @racket[has-key], @racket[lookup], and @racket[set] for tries.
 }
+
+There are a few other operations we might want on tries. For example, we might be
+interested in determining its size. This isn't as simple as it sounds, because we
+only want to count strings that have a value in the trie, not just a node. In
+the example trie above, a @racket[size] method should return 5.
+
+@indented{@verbatim|{
+  // A Trie<V> also implements:
+  //
+  // size -> Integer
+  // find the size of a trie
+}|}
+
+@exercise{
+  Implement @racket[size] for tries.
+}
+
+Your trie implementation should be able to encode the trie example above. Here
+is some code that will build the example trie:
+
+@indented{@verbatim|{
+  class TrieExamples {
+    Trie<V> exampleTrie;
+    public TrieExamples() {
+      // replace emptyTrie with your empty trie
+      Trie<V> exampleTrie =
+        emptyTrie.set("a", 20).set("ape", 3)
+                 .set("api", 30).set("ace", 1)
+                 .set("an", 7);
+    }
+
+    public boolean test1(Tester t) {
+      return t.checkExpect(exampleTrie.hasKey("api"), true);
+    }
+
+    public boolean test2(Tester t) {
+      return t.checkExpect(exampleTrie.size(), 5);
+    }
+  }
+}|}
+
 
 One of the operations that a trie makes very fast is searching for all key/value
 pairs that matches a certain prefix of a key (a prefix is just a substring of
@@ -205,10 +326,12 @@ want to search through a dictionary.
 Here is a contract for a function that search the dictionary based on a prefix:
 
 @indented{@verbatim|{
-  // matchPrefix : String -> ListOf<String>
+  // A Trie<V> also implements:
+  //
+  // matchPrefix : String -> List<String>
   // Finds all keys that match the given prefix
 }|}
 
 @exercise{
-  Implement @tt{matchPrefix}.
+  Implement @racket[matchPrefix].
 }
