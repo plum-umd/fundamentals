@@ -15,6 +15,11 @@
 
 @lab:section{Warmup: same data, different language}
 
+In this lab, we'll be introducing you to designing interface, data,
+and class definitions in Java. If you follow the design recipe, the
+process is mostly the same, though you may have to think about types
+and Java syntax.
+
 Think back to lab 5, in which we built several implementations of the
 Dictionary interface. In case you don't remember, here's the interface
 again, but in Java:
@@ -35,9 +40,9 @@ again, but in Java:
 }|}
 
 Note that we have removed the assumption for lookup that the key is
-in the dictionary. It turns out that, unlike in @racket{class/0},
-Java forces us to implement @tt{lookup} for all classes that implement
-the @tt{Dict} interface.
+in the dictionary. It turns out that, unlike in @racket[class/0],
+Java forces us to implement @racket[lookup] for all classes that implement
+the @racket[Dict] interface.
 
 Instead of leaving the method unimplemented, you can just define
 the method to return an error when there is no key. In Java, you
@@ -45,10 +50,14 @@ can return an error with a statement like this:
 @verbatim|{throw new RuntimeException("Error message");}|
 
 @exercise{
-  Implement a @tt{Dict} in Java using any of the designs from lab 5.
+  Implement a @racket[Dict] in Java using any of the designs from lab 5.
   Make sure to translate the data definition to the Java syntax first.
 
-  You may find the @tt{compareTo} method on Strings useful for this exercise.
+  You may find the @racket[compareTo] method on Strings useful for this exercise.
+  The @racket[compareTo] method takes an object that implements the @racket[Comparable]
+  interface (many built-in Java objects) and returns an @racket[int]. This number
+  is negative, zero, and postive respectively when the given object is less than,
+  equal to, or greater than @racket[this].
 }
 
 There are several other operations that you might want in a
@@ -56,12 +65,41 @@ good library for dictionaries. For example, you may want to be able
 to extract just the keys or values contained in a dictionary:
 
 @indented{@verbatim|{
-  // keys : -> ListOf<Key>
+  // keys : -> List<Key>
   // return the keys in the dictionary
   //
-  // values : -> ListOf<V>
+  // values : -> List<V>
   // return the values in the dictionary
 }|}
+
+@tt{List<X>} above is an interface for a generic kind of list. Since
+Java has support for generic types, let's take advantage of that and
+write down one data and class definition we can use for the results of
+both the @tt{keys} and @tt{values} methods.
+
+@indented{@verbatim|{
+  // A List<X> is one of:
+  //  - new Empty<X>()
+  //  - new Cons<X>(X, List<X>)
+  //
+  // and implements:
+  //
+  // length : -> Integer
+  // The length of the list
+  //
+  // first : -> X
+  // The first element in the list (assumes list is non-empty)
+  //
+  // rest : -> List<X>
+  // The rest of the list (assumes list is non-empty)
+}|}
+
+@exercise{
+  Define the @racket[List<X>] interface and the @racket[Empty<X>] and
+  @racket[Cons<X>] classes that implement it.
+}
+
+Now using the class definitions for lists, let's flesh out our dictionaries.
 
 @exercise{
   Implement the @tt{keys} and @tt{values} methods above.
@@ -87,6 +125,10 @@ Let's use this to define a new method for dictionaries.
   // update : Key Fun<V, V> -> Dict<V>
   // run the given function to get a new value for key
 }|}
+
+@exercise{
+  Implement the @tt{update} method.
+}
 
 One problem with the data definition above is that it only lets you
 use keys that are @tt{Nat}s. Since the only operation that we need
@@ -152,7 +194,7 @@ any string is proportional to the length of the string. This is faster than
 a binary search tree in general.
 
 @exercise{
-  Implement Trie and all of its methods.
+  Implement @tt{has-key}, @tt{lookup}, and @tt{set} for tries.
 }
 
 One of the operations that a trie makes very fast is searching for all key/value
