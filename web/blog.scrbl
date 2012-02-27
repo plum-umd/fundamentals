@@ -9,6 +9,13 @@
 
 @title*{Blog}
 
+@section*{Java code from class today}
+@tt{Mon Feb 27 17:20:11 EST 2012}
+
+Here is the @link["First.java"]{first} Java program we wrote in class
+today.  Here is the @link["Trees.java"]{rest}.
+
+
 @section*{Assignment 7 is up}
 @tt{Thu Feb 23 20:19:26 EST 2012}
 
