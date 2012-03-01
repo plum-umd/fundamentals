@@ -6,6 +6,23 @@
 
 @title*{Blog}
 
+@section*{Homework up, past exams, exam review}
+@tt{Wed Feb 29 23:45:57 EST 2012}
+
+The current assignment is @link["Assignment8.html"]{posted} and is due
+(with your current partners) on the Wednesday after break, 3/14.
+
+Here are some past exam 2s from 
+@link["exam2-v1-sp10.pdf"]{Spring 2010 (A)} and
+@link["exam2-v2-sp10.pdf"]{(B)},
+@link["exam2-su10-sol.pdf"]{Summer 2010}, 
+@link["exam2-fl10-sol.pdf"]{Fall
+2010}, and @link["exam2-sp11.pdf"]{Spring 2011}.
+Note that not all of the exams include solutions.
+
+There will be an exam review session Tuesday 3/13 currently scheduled
+for 10BK.  We will advise if this room changes (the date and time are
+firm).
 
 @section*{Global constants}
 @tt{Wed Feb 22 08:26:11 EST 2012}
