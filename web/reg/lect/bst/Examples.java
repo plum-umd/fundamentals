@@ -8,15 +8,15 @@ class Examples {
     IBT<Integer> n4 = new Node<Integer>(1, mt, mt);
     IBT<Integer> n5 = new Node<Integer>(4, n3, n1);
 
-    Boolean testSize(Tester t) {
-	return t.checkExpect(n1.size(), 1) 
-	    && t.checkExpect(n2.size(), 3)
-	    && t.checkExpect(n5.size(), 5);
+    void testSize(Tester t) {
+	t.checkExpect(n1.size(), 1);
+	t.checkExpect(n3.size(), 3);
+	t.checkExpect(n5.size(), 5);
     }
 
-    Boolean testSizeVisitor(Tester t) {
-	return t.checkExpect(n1.accept(new Size<Integer>()), 1)
-	    && t.checkExpect(n2.accept(new Size<Integer>()), 3)
-	    && t.checkExpect(n5.accept(new Size<Integer>()), 5);
+    void testSizeVisitor(Tester t) {
+	t.checkExpect(n1.accept(new Size<Integer>()), 1);
+        t.checkExpect(n3.accept(new Size<Integer>()), 3);
+	t.checkExpect(n5.accept(new Size<Integer>()), 5);
     }
 }

@@ -6,6 +6,12 @@
 
 @title*{Blog}
 
+@section*{Cleaned up BT code from lecture}
+@tt{Thu Mar  1 08:45:34 EST 2012}
+
+@link["bt.zip"]{Here} is the cleaned up binary tree code from last
+lecture.
+
 @section*{Homework up, past exams, exam review}
 @tt{Wed Feb 29 23:45:57 EST 2012}
 
