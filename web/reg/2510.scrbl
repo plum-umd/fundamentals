@@ -61,7 +61,8 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Assignment4.html"]{Assignment 4}}
  @item{@link["Assignment5.html"]{Assignment 5}}
  @item{@link["Assignment6.html"]{Assignment 6}}
- @item{@link["Assignment7.html"]{Assignment 7}}]
+ @item{@link["Assignment7.html"]{Assignment 7}}
+ @item{@link["Assignment8.html"]{Assignment 8}}]
 
 
 @include-section{subversion.scrbl}
