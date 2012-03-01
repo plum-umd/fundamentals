@@ -173,3 +173,14 @@ contains a binary tree that is not sorted.
 
 To the extent possible, your code should re-use functionality
 developed earlier in this problem.
+
+@section{Trie, trie again}
+
+Van Horn spent a bunch of time talking about Java in lab on Monday, so
+there wasn't much time to finish the lab. So you'll do that in
+homework.  
+
+Implement the @tt{Trie<V>} interface, including the @tt{size} and
+@tt{matchPrefix} methods.  The details of tries, as well as the
+required methods, can be found in @elemref["lab-trie"]{the lab
+instructions}.

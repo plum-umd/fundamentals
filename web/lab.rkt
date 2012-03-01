@@ -1,7 +1,7 @@
 #lang racket
 (provide exercise-counter
          lab:section)
-(require scribble/base)
+(require scribble/base scribble/core scribble/html-properties)
 
 (define (exercise-counter)
   (let [(i 0)]
@@ -14,6 +14,5 @@
 
 (define (lab:section . args)
   ; TODO Report bug: #:style has no effect with section
-  ; OR   Did I stupidly confuse "lab-heading" with "labheading"...?
-  ;(apply section #:style "lab-heading" args)
+  #;(apply section #:style (style "labheading" (list (css-addition "2510H.css"))) args)
   (elem (first args) #:style "labheading"))

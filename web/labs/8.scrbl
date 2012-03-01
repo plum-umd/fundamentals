@@ -165,7 +165,7 @@ like @tt{Integer} and @tt{String} in Java implements it.
   Create a new dictionary that uses this new data definition.
 }
 
-@lab:section{Another kind of dictionary}
+@lab:section{@elemtag["lab-trie"]{Another kind of dictionary}}
 
 We've seen various implementations of dictionaries, but are they good for
 representing real dictionaries like the Merriam-Webster Dictionary that store
