@@ -23,6 +23,7 @@ If you're looking for the assignment due on 2/22, it's
 
 @include-section["assignments/assign06.scrbl"]
 @include-section["assignments/assign07.scrbl"]
+@include-section["assignments/assign08.scrbl"]
 @;section[#:tag "assign08"]{No assignment}
 @;section[#:tag "assign09"]{No assignment}
 @;section[#:tag "assign10"]{No assignment}

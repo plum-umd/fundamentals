@@ -9,6 +9,12 @@
 
 @title*{Blog}
 
+@section*{Corrected Exam Date}
+@tt{Thu Mar  1 10:35:30 EST 2012}
+
+The second exam date has been corrected, it will be on @bold{Tuesday,
+March 27}. 
+
 @section*{Java code from class today}
 @tt{Mon Feb 27 17:20:11 EST 2012}
 

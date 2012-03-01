@@ -144,7 +144,7 @@ the satisfaction of both, you @emph{must} switch roles.
 
 @itemlist[
   @item{Exam 1: 2/13 at 6-9 PM}
-  @item{Exam 2: 3/26 at 6-9 PM}]
+  @item{Exam 2: 3/27 at 6-9 PM}]
 
 @section*{Projects}
 
