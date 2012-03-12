@@ -9,6 +9,17 @@
 
 @title*{Blog}
 
+
+@section*{Deadline extended for current homework}
+@tt{Mon Mar 12 11:07:42 EDT 2012}
+
+The deadline has been extended to Friday for the current homework.
+
+If you need some guidance with Java and Eclipse, please see the notes
+from @link["http://www.ccs.neu.edu/course/cs2510/Lab2.html"]{lab 2} of
+the regular course.
+
+
 @section*{Corrected Exam Date}
 @tt{Thu Mar  1 10:35:30 EST 2012}
 

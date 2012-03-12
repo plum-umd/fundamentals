@@ -189,7 +189,7 @@ Now implement the following two visitors:
 ;; Maps visited list to produce a list of results of applying the function.
 }
 
-Implement at least one @tt{[Fun Number String]} and one @tt{[Question
+Implement at least one @tt{[Fun Natural String]} and one @tt{[Question
 String]} to use for testing @racket[filter%] and @racket[map%].
 
 

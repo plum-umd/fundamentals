@@ -13,7 +13,7 @@
 	      (tt "asumu") "WVH308" "Wed./Fri. " "5:00pm-6:00pm/4:00-5:00pm")))
 
 @(define tutors
-  (list	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "9:00pm-11:00pm")
+  (list	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "8:00pm-10:00pm")
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
         (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
 
