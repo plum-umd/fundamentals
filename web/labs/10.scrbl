@@ -2,7 +2,10 @@
 
 @(require "../lab.rkt"
           "../unnumbered.rkt"
-          "../utils.rkt")
+          "../utils.rkt"
+          racket/runtime-path)
+
+@(define-runtime-path skip-list "skip-list.png")
 
 @(define exercise (exercise-counter))
 
@@ -74,7 +77,7 @@ so that the bottom list is a normal linked list.
 
 Here is a picture from Wikipedia of what a skip list might look like:
 
-@image["skip-list.png"]
+@image[skip-list]
 
 We will implement a variant of a skip list that is never empty, so the
 constructor takes an initial key and value to start out with. This makes the

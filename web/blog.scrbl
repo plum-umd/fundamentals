@@ -9,7 +9,6 @@
 
 @title*{Blog}
 
-
 @section*{Deadline extended for current homework}
 @tt{Mon Mar 12 11:07:42 EDT 2012}
 
@@ -19,6 +18,11 @@ If you need some guidance with Java and Eclipse, please see the notes
 from @link["http://www.ccs.neu.edu/course/cs2510/Lab2.html"]{lab 2} of
 the regular course.
 
+
+@section*{Assignment 8 is up}
+@tt{Thu Mar  1 14:31:51 EST 2012}
+
+@seclink["assign09"]{Assignment 8} is now up.
 
 @section*{Corrected Exam Date}
 @tt{Thu Mar  1 10:35:30 EST 2012}
