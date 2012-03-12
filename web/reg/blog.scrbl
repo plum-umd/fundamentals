@@ -6,6 +6,13 @@
 
 @title*{Blog}
 
+@section*{Room for exam review}
+@tt{Mon Mar 12 08:56:42 EDT 2012}
+
+The room for the exam review is @bold{108SN} (not 10BK as previously
+noted).  It is Tuesday 3/13 from 6-9pm.
+
+
 @section*{Cleaned up BT code from lecture}
 @tt{Thu Mar  1 08:45:34 EST 2012}
 
@@ -27,8 +34,7 @@ Here are some past exam 2s from
 Note that not all of the exams include solutions.
 
 There will be an exam review session Tuesday 3/13 currently scheduled
-for 10BK.  We will advise if this room changes (the date and time are
-firm).
+for @bold{108SN} (corrected) from 6-9pm.
 
 @section*{Global constants}
 @tt{Wed Feb 22 08:26:11 EST 2012}
