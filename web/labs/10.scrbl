@@ -26,6 +26,7 @@ later.
   // returns the element at the given index
   //
   // set : Integer V -> Void
+  // Effect: updates the element in-place
   // sets the element at the given index
 }|}
 
@@ -90,6 +91,7 @@ The initial element will show up at all levels.
   // and implements
   //
   // insert : Integer V -> Void
+  // Effect: updates the list with a new element
   // add an element with the given integer key
   //
   // search : Integer -> V
@@ -120,12 +122,14 @@ To implement the skip list, we will use an auxillary data definition.
   // get the value at this node
   //
   // setValue : Integer V -> Void
+  // Effect: updates the value in-place
   // sets the value for this node
   //
   // getNext : Integer -> Node<V>
   // gets the next node linked at the given level
   //
   // setNext : Integer Node<V> -> Void
+  // Effect: updates the next node in-place
   // sets the next node linked at the given level
 }|}
 
