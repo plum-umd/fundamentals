@@ -6,242 +6,188 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab10"]{3/12: A little Java}
+@title[#:tag "lab10"]{3/12: Skip lists}
 
-@itemlist[
-  @item{Recall the Java basics we covered in lecture @secref["lec17"].}
-  @item{Download @tt{prima-1.2.3.jar} from
-        @url{http://code.google.com/p/nutester}.}
-]
+@lab:section{Imperative lists}
 
-@lab:section{Same data, different language}
-
-Here are data and interface definitions for lists of integers in Java. Notice
-that it's not much different than what we'd write in Racket.
+If you remember back to lecture, we started looking at ways to build
+lists using a different style of programming using @emph{mutation}.
+The main goal of this lab will be to develop a new kind of data structure,
+but first we will need to define mutable lists that we will be using
+later.
 
 @indented{@verbatim|{
-  // An IntList is one of:
-  //  - new EmptyIntList()
-  //  - new ConsIntList(Integer, IntList)
+  // A List<V> implements
   //
-  // and implements:
+  // ref : Integer -> V
+  // returns the element at the given index
   //
-  // length : -> Integer
-  // The length of the list
-  //
-  // first : -> Integer
-  // The first element in the list (assumes list is non-empty)
-  //
-  // rest : -> IntList
-  // The rest of the list (assumes list is non-empty)
-  //
-  // filterEvens : -> IntList
-  // Just the even numbers
-  //
-  // squares : -> IntList
-  // Square every number in the list
-  //
-  // sum : -> Integer
-  // Sum the numbers in the list
+  // set : Integer V -> Void
+  // sets the element at the given index
 }|}
 
 @exercise{
-  Define the @racket[IntList] interface and the @racket[EmptyIntList] and
-  @racket[ConsIntList] classes that implement it.
-
-  In the @racket[first] and @racket[rest] methods for @racket[EmptyIntList], you
-  can say @tt{throw new Exception("blah blah")} to signal an error.
+  Write down a data definition that implements the above interface.
 }
 
-Let's do it again, but without committing ourselves to @racket[Integer]s.
+@exercise{
+  Implement the data defintion you wrote down and implement both of
+  the @racket[ref] and @racket[set] methods.
+}
+
+@lab:section{Another day, another data structure}
+
+Think back to all the ways that we have come up with so far for storing a
+sorted collection of data. We have used sorted lists and balanced search trees.
+Both of these implement the interface of an ordered (or sorted) set. However,
+both of these data structures have their own issues.
+
+With sorted lists, insertion and search of an element of the set takes
+time proportional to the entire length of the list in the worst case since
+you can end up traversing the whole list.
+
+Binary search trees are much better in that these operations are both
+logarithmic in the number of elements. On the other hand, they are more
+complicated than lists and can take up a significant amount of memory
+on your computer.
+
+Could we do even better? It turns out you can, for some definition of "better".
+We will look at a data structure called a @emph{skip list} that uses
+randomization to provide the same @emph{expected} running time as a binary
+search tree, but using a data structure that is simpler and potentially uses
+less memory ("expected" here means that over a large number of trials we will
+get that running time on average).
+
+@lab:section{Building skip lists}
+
+A skip list is essentially a stack of linked lists that are constructed in a
+specific way. The stack has some fixed maximum level (let's say @racket[5] for
+this lab).
+
+Each element in the skip list will participate in some number of the linked
+lists (up to the max level). For each element you want to add, you flip a coin
+for each level and the number of heads tells you how many of the lists this
+element will be included in. The effect of this is that elements are less
+likely to show up in higher levels of the skip list and more likely to show up
+at the bottom. The one exception is that all elements are in the bottom list,
+so that the bottom list is a normal linked list.
+
+Here is a picture from Wikipedia of what a skip list might look like:
+
+@image["skip-list.png"]
+
+We will implement a variant of a skip list that is never empty, so the
+constructor takes an initial key and value to start out with. This makes the
+implementation a little bit simpler (there is no "header" from that picture).
+The initial element will show up at all levels.
 
 @indented{@verbatim|{
-  // A List<X> is one of:
-  //  - new Empty<X>()
-  //  - new Cons<X>(X, List<X>)
+  // A SkipList<V> is a
+  //   new SkipList<V>(Integer, V)
+  // and implements
   //
-  // and implements:
+  // insert : Integer V -> Void
+  // add an element with the given integer key
   //
-  // length : -> Integer
-  // The length of the list
-  //
-  // first : -> X
-  // The first element in the list (assumes list is non-empty)
-  //
-  // rest : -> List<X>
-  // The rest of the list (assumes list is non-empty)
+  // search : Integer -> V
+  // look up the element matching the given key
 }|}
 
-@exercise{
-  Define the @racket[List<X>] interface and the @racket[Empty<X>] and
-  @racket[Cons<X>] classes that implement it.
-}
+The @racket[new SkipList<V>(n, v)] expression creates a new skip list with a
+single element. Notice that the contract for @racket[insert] states that the
+result is @racket[Void].  We are going to implement this skip list using
+mutation because it is a data structure that is easier to implement in this
+style.
 
-@exercise{
-  Your @racket[List<X>], @racket[Empty<X>], and @racket[Cons<X>] should be very
-  similar to your @racket[IntList], @racket[EmptyIntList], and
-  @racket[ConsIntList]. Eliminate the redundancy by changing @racket[IntList]s
-  to inherit from @racket[List<Integer>]s: the @racket[IntList] interface should
-  inherit from the @racket[List<Integer>] interface, and the
-  @racket[EmptyIntList] and @racket[ConsIntList] classes should inherit from the
-  @racket[Empty<Integer>] and @racket[Cons<Integer>] classes, respectively.
-
-  Recall that, in Java, an interface @racket[extends] another interface to
-  inherit from it, a class @racket[extends] another class to inherit from it,
-  and a class @racket[implements] an interface to implement it.
-
-  Since the @racket[length], @racket[first], and @racket[rest] methods are now
-  inherited, remove the unnecessary definitions from @racket[IntList],
-  @racket[EmptyIntList], and @racket[ConsIntList].
-}
-
-Java doesn't have higher-order functions, but we can simulate them with objects.
-Here's an interface defintion for a unary function from @tt{X} to @tt{Y}:
+To implement the skip list, we will use an auxillary data definition.
 
 @indented{@verbatim|{
-  // A Fun<X,Y> implements:
+  // A Node<V> is one of
+  //   new MTNode()
+  //   new Element(Integer, V, Integer)
+  // and implements
   //
-  // call : X -> Y
-  // Call this function on its X input and produce a Y
+  // isEmpty : -> Boolean
+  // specify whether this is the end
+  //
+  // getKey : -> Integer
+  // get the key at this node
+  //
+  // getValue : -> V
+  // get the value at this node
+  //
+  // setValue : Integer V -> Void
+  // sets the value for this node
+  //
+  // getNext : Integer -> Node<V>
+  // gets the next node linked at the given level
+  //
+  // setNext : Integer Node<V> -> Void
+  // sets the next node linked at the given level
 }|}
 
-And a sub-interface for unary predicates:
+A @racket[Node] is a data definition and interface for the elements in the
+list. The end of the list is marked by @racket[MTNode] while the elements
+in between are @racket[Element]s. Since @racket[MTNode] shouldn't do anything,
+you can just implement stubs for its methods or return errors.
 
-@indented{@verbatim|{
-  // A Pred<X> implements Fun<X,Boolean>
-}|}
+For each @racket[Element], you should use the @racket[List] implementation that
+you defined earlier to track the nodes linked to from this node. There will be
+a link for every level that this node is contained in. Its constructor takes
+the initial key and value (@racket[Integer] and @racket[V] types respectively)
+and also the height of this node.
+
+The algorithm for the @racket[search] method is easier, so we will start with
+that.
+
+To search a skip list, start at the very top level and keep going right.
+When you either hit the end (an @racket[MTNode]) or you hit a key that is
+bigger than the one you're looking for, you go down a level. It will probably
+be helpful to write this as a helper function that recurs on the level of the
+skip list.
+
+For example, if you are looking for the key @racket[4] in the example
+skip list in the picture above, you would start at the top and immediately
+see that you end up at the end. Then you start at the second level from the
+top and find a node with @racket[4], so you're done.
+
+If you were looking for @racket[5], you would go to @racket[4] and then find
+that the next node is @racket[6], so you go down again. Since the next node
+is still @racket[6], you will go down again. Finally, the next node is
+@racket[5] at the bottom row so you're done (now you might see why it's called
+a "skip" list).
 
 @exercise{
-  Define the @racketidfont{Fun<X,Y>} and @racket[Pred<X>] interfaces, and add
-  the following method to @racket[List<X>]s:
-
-  @indented{@verbatim|{
-    // filter : Pred<X> -> List<X>
-    // Only the elements satisfying the predicate
-  }|}
-
-  Simplify @racket[filterEvens] on @racket[IntList]s by reimplementing it in
-  terms of the inherited @racket[filter] method.
-
-  Instead of writing down a little @racket[λ] to construct your even predicate,
-  you'll need to define a new class at the top level and then construct an
-  instance of it to get your predicate object. (Java does have a better way to
-  do this, but it would be too much of a digression to explain it. Many other
-  languages---including C#---just give you @racket[λ].)
+  Implement the @racket[search] method and test it with a one-element
+  skip list.
 }
 
+For insertion, the code is very similar. However, this time you have to keep
+track of an extra thing. Every time you go down a level while searching, you
+have to record the links that you need to update when you add the new node.
+
+If the node with the key already exists in the tree, just find it and then
+update its value.
+
+If the node does not yet exist, use the same technique you used to search
+through the tree, but keep storing the right-most node that you looked at in a
+list. At the very end, use @racket[setNext] to set the next node for the new
+node to the next nodes for the nodes you kept track of in your list.  Then
+update their next elements to be the new node that you are adding into the
+list.
+
 @exercise{
-  Add the following method to @racket[List<X>]s:
-
-  @indented{@verbatim|{
-    // map : Fun<X,Y> -> List<Y>
-    // The list where every element has been mapped through the given function
-  }|}
-
-  Simplify @racket[squares] on @racket[IntList]s with @racket[map]. You'll again
-  need to define a new top-level class for the squaring function.
+  Implement the @racket[insert] method. Now you can write better tests
+  for the @racket[search] method using @racket[insert] to build bigger
+  skip lists.
 }
 
-Here's an interface definition for binary functions:
-
-@indented{@verbatim|{
-  // A Fun2<X,Y,Z> implements:
-  //
-  // call : X Y -> Z
-  // Call this function on its X and Y inputs and produce a Z
-}|}
+Now that you've implemented the basic functionality, try to think of how
+you would implement a delete method. First of all, what should its contract
+be?
 
 @exercise{
-  Add the following method to @racket[List<X>]s:
+  Write down the changes you need to your interface to support @racket[delete].
 
-  @indented{@verbatim|{
-    // foldr : Fun2<X,Y,Y> Y -> Y
-    // Fold the list from the right
-  }|}
-
-  Simplify @racket[sum] on @racket[IntList]s with @racket[foldr]. (Again, you'll
-  need a top-level class for the adding function.)
-}
-
-@racket[ConsIntList] and @racket[EmptyIntList] are currently the only kinds of
-@racket[IntList], but it's not necessary to keep it that way. Here's another
-kind of @racket[IntList] that keeps itself sorted as you @racket[insert]
-elements into it:
-
-@indented{@verbatim|{
-  // A SortedIntList is one of:
-  //  - new SortedEmptyIntList()
-  //  - new SortedConsIntList(Integer, SortedIntList)
-  // such that:
-  //   Invariant: numbers occur in non-decreasing order
-  //
-  // A SortedIntList implements IntList, in addition to:
-  //
-  // insert : Integer -> SortedIntList
-  // Insert the given number
-}|}
-
-@exercise{
-  Define the @racket[SortedIntList] interface and the
-  @racket[SortedEmptyIntList] and @racket[SortedConsIntList] classes. Your
-  @racket[SortedIntList] interface should extend the @racket[IntList] interface,
-  and your classes should implement the @racket[SortedIntList] interface.
-
-  Be sure to maintain the @racket[SortedIntList] invariant!
-
-  To avoid writing unnecessary code, have your two classes inherit from
-  @racket[EmptyIntList] and @racket[ConsIntList], respectively. Do you need to
-  overload any of the inherited methods to avoid violating the sorting
-  invariant?
-}
-
-@exercise{
-  Add the following method to (unsorted) @racket[IntList]s:
-
-  @indented{@verbatim|{
-    // isElement : Integer -> Boolean
-    // Whether the given element is present in the list
-  }|}
-
-  @racket[SortedIntList]s inherit this method for free, but we can write a
-  better one if we take advantage of the sorting invariant. Override
-  @racket[isElement] for @racket[SortedIntList]s so that they can stop searching
-  partway through the list.
-}
-
-The sorting invariant above is somewhat helpful, but when we want to get serious
-about searching data we need to move away from linear structures and consider
-something tree shaped, like this new kind of @racket[SortedIntList]:
-
-@indented{@verbatim|{
-  // An IntBST (integer binary search tree) is one of:
-  //  - new Leaf()
-  //  - new Node(Integer, IntBST, IntBST)
-  // such that:
-  //   Invariant: no number on the left is bigger than any number on the right
-  //
-  // an IntBST implements SortedIntList.
-  //
-  // A BST represents a list as follows:
-  //  - the first element in the list is the left-most element in the tree
-  //  - the rest of the list is everything but the left-most element in the tree
-}|}
-
-The advantage of the tree representation is that methods like @racket[isElement]
-can be implemented more intelligently: instead of examining every element, we
-can rely on the search-tree invariant to ignore entire branches of the tree as
-we descend down it looking for the given element.
-
-@exercise{
-  Define the @racket[IntBST] interface and the @racket[Leaf] and @racket[Node]
-  classes. The @racket[IntBST] interface should inherit from the
-  @racket[SortedIntList] interface, but there's nothing useful for the
-  @racket[Leaf] and @racket[Node] classes to inherit from, so you have a bit of
-  work to do to implement all the required methods.
-
-  Be sure you take advantage of the search-tree invariant when implementing
-  @racket[isElement].
-
-  Implementing @racket[first] and @racket[rest] is slightly tricky: consider
-  adding an @racket[isLeaf] method to @racket[IntBST]s to help you here.
+  Now implement the method. Its structure should be very similar to @racket[insert].
 }
