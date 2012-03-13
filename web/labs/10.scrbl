@@ -178,10 +178,16 @@ update its value.
 
 If the node does not yet exist, use the same technique you used to search
 through the tree, but keep storing the right-most node that you looked at in a
-list. At the very end, use @racket[setNext] to set the next node for the new
+list. Then build a new node. For the new node, you will want to randomly
+flip a coin up to @racket[maxLevel - 1] (so 4) times. When you see the first
+tails, the number of heads so far plus one is the height of the new node (this means
+that taller nodes are less likely).
+
+At the very end, use @racket[setNext] to set the next node for the new
 node to the next nodes for the nodes you kept track of in your list.  Then
 update their next elements to be the new node that you are adding into the
-list.
+list. You @emph{only} need to update the next links up to the height of the
+new node.
 
 @exercise{
   Implement the @racket[insert] method. Now you can write better tests
