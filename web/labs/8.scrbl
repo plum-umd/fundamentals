@@ -186,11 +186,13 @@ Here is the data definition for a trie:
 }|}
 
 As you can see from the data definition, each trie node stores a dictionary of
-its child nodes keyed by single characters.  Imagine each connection from a
-node to its child as representing one character in a string. When you lookup a
-string in a trie, you look at the first character in the string and continue to
-lookup in the corresponding sub-trie. The path you take down the tree will
-spell out the string you are looking up.
+its child nodes keyed by single characters. Note: it will be helpful if your
+@racket[Dict] implements the @racket[values] method from earlier.
+
+Imagine each connection from a node to its child as representing one character
+in a string.  When you lookup a string in a trie, you look at the first
+character in the string and continue to lookup in the corresponding sub-trie.
+The path you take down the tree will spell out the string you are looking up.
 
 For example, you could use a trie to store the frequencies of some given words
 in a document. Here is an example trie that stores numbers at each node to
@@ -275,6 +277,10 @@ length times the logarithm of the height of the tree in the worst case.
   Write down the @racket{Trie<V>} interface and the classes that implement it.
 
   Implement @racket[has-key], @racket[lookup], and @racket[set] for tries.
+
+  Since Java strings are not implemented as a data definition like a list,
+  where you can take the @racket[first] and @racket[rest], you will probably
+  want to use the @racket[substring] method.
 }
 
 There are a few other operations we might want on tries. For example, we might be
