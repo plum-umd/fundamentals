@@ -6,6 +6,13 @@
 
 @title*{Blog}
 
+@section*{Homework extension due to power outage}
+@tt{Wed Mar 14 18:58:06 EDT 2012}
+
+The deadline for the current homework assignment as been extended for
+an additional 24 hours due to the power outage.
+
+
 @section*{Room for exam review}
 @tt{Mon Mar 12 08:56:42 EDT 2012}
 
