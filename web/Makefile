@@ -51,6 +51,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/soln1.pdf \
 		++extra misc/First.java \
 		++extra misc/Trees.java \
+		++extra misc/Book.java \
 		++extra assignments/Employees.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \

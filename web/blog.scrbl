@@ -1,13 +1,19 @@
 #lang scribble/manual
 @(require "unnumbered.rkt")
-@(require "utils.rkt")
+@(require "utils.rkt" racket/runtime-path)
 
 @(require (for-label (except-in class/0 check-expect)))
 @(require (for-label (only-in lang/htdp-intermediate-lambda check-expect)))
 @(require (for-label class/universe))
 
-
 @title*{Blog}
+
+@section*{Java code from class today}
+@tt{Thu Mar 15 17:03:22 EDT 2012}
+
+Here is the @link["Book.java"]{Java code} we wrote in class
+today.  
+
 
 @section*{Deadline extended for current homework}
 @tt{Mon Mar 12 11:07:42 EDT 2012}
