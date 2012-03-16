@@ -6,6 +6,69 @@
 
 @title*{Blog}
 
+@section*{New Homework partners}
+@tt{Fri Mar 16 12:37:13 EDT 2012}
+
+Here are the new homework partner assignments, which are now in effect:
+
+@verbatim{
+112	patelv99 klebsh
+113	bswords kvinagro
+114	nathanl patchca
+115	seebert akaz
+116	cpaszul zlyford
+117	benuhl sking19
+118	evannoyz dc93
+119	shryock jkreell
+120	mhill butlerch
+121	riley kandebo
+122	eromeiro lyaunzbe
+123	mclamp thu
+124	obrienjj byoshi92
+125	mostrow luoyj
+126	cookid conorao
+127	strandl dciatto
+128	adamwigs kkotosky
+129	mccoy dforman
+130	lmarelic kbriskin
+131	elisef lahirud
+132	chlacher vkonen
+133	dohertyc rysull
+134	agimmi00 iboehman
+135	gary2546 maggiec
+136	jbrooks2 lind
+137	jordanre olinaba
+138	tmacieik jnanni
+139	sasia hartmand
+140	hlavin patcinc
+141	ntinsley ascherj
+142	andrewm billyguo
+143	kohlerjp bfaller
+144	tedlin swazi
+145	mckinnon eabraham
+146	seydi pburden
+147	ggoode slynch
+148	slindber cmcelear
+149	ascholl ferland
+150	tylere soelgary
+151	mhmdfy albeht0a
+152	rimipat5 thurston
+153	rstrass ravert1
+154	marcs jfahy
+155	spatel91 lopeza
+156	pietdan johndrew
+157	aedgett shivam
+158	cyvuong mrodrig
+159	slee toder13
+160	cmentzer hamuchea
+161	jacobsr afasulo
+162	millarj bmccabe4
+163	alexj kleinjm
+164	joshs abarba
+165	emichel emilytx
+}
+
+
 @section*{Homework extension due to power outage}
 @tt{Wed Mar 14 18:58:06 EDT 2012}
 
