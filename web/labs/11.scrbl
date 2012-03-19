@@ -148,7 +148,11 @@ where you used sorted lists to represent dictionaries. Now let's just implement
 a general sorted list class that follows this interface:
 
 @indented{@verbatim|{
-  // A SortedList<V> implements Iterable<V> and
+  // A SortedList<V> implements Iterable<V>
+  //
+  // where V implements Comparable<V>
+  //
+  // and SortedList<V> also implements:
   //
   // add : V -> Void
   // Add the element to the list
