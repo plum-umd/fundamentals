@@ -172,7 +172,7 @@ a general sorted list class that follows this interface:
 }
 
 @exercise{
-  Modify your list so that it also implements @racket[ListIterator<V>]
+  Modify your list so that it produces a @racket[ListIterator<V>] instead.
 }
 
 @lab:section{Making collections out of iterators}
