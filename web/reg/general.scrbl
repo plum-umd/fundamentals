@@ -13,7 +13,7 @@
         (list "Jonathan Schuster" (tt "schuster") "WVH308" "Thursday " "10:30am-12:30pm")
         (list "Justin Slepak" (tt "jrslepak") "WVH308" "Monday " "3:00pm-5:00pm")
         (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
-	      (tt "asumu") "WVH308" "Wednesday " "4:00pm-6:00pm")
+	      (tt "asumu") "WVH308" "Wed./Fri." "5:00pm-6:00pm/4:00pm-5:00pm")
 	(list "Nikko Patten" (tt "npatten") "WVH102" "Tuesday " "2:00pm-4:00pm")))
 
 @(define tutors
