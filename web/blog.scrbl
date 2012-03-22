@@ -8,6 +8,13 @@
 
 @title*{Blog}
 
+@section*{Exam 2}
+@tt{Thu Mar 22 10:30:48 EDT 2012}
+
+The second exam will be on Tuesday, in 130 Hurtig Hall.
+
+Last year's second exam is available @link[""]{here}.
+
 @section*{5 Under 25; Tonight}
 @tt{Thu Mar 22 08:31:56 EDT 2012}
 

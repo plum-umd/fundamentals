@@ -46,6 +46,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra $(CLASS_LATEST) \
 		++extra misc/Invader01.pdf \
 		++extra misc/exam1.pdf \
+		++extra misc/old-exam2.pdf \
 		++extra misc/marathon.rkt \
 		++extra misc/gender.rkt \
 		++extra misc/soln1.pdf \
