@@ -8,6 +8,35 @@
 
 @title*{Blog}
 
+@section*{New partner assignments}
+
+Here are the new partner assignments that are in effect now (for
+assignment 8).
+
+@verbatim{
+pair040: pletchst, erenn16
+pair041: aloud, iredpath
+pair042: colemanm, taldrich
+pair043: mlhamlin, gloden
+pair044: tlunter, dcalacci
+pair045: cmoss, lestille
+pair046: kevrcav, gchan93
+pair047: rmacnz, wjj
+pair048: cclark, ckohler
+pair049: bsoohoo, rramsey
+pair050: stoye, gwong
+pair051: asdjkl, ronbrz
+pair052: ajhorst, jgoode
+pair053: ksoldau, mullinsk
+pair054: jkantor, nhahn
+pair055: ajacks, manning
+pair056: 11bowerj, mechanik
+pair057: kingm, jgoode
+}
+
+We have asked Systems to add these pairs to the Subversion repository,
+but it may be a little while (less than a day) before you can commit.
+
 @section*{Exam 2}
 @tt{Thu Mar 22 10:30:48 EDT 2012}
 
