@@ -6,6 +6,67 @@
 
 @title*{Blog}
 
+@section*{5 Under 25; Tonight}
+@tt{Thu Mar 22 08:31:56 EDT 2012}
+
+Here is an email from Fundies II alum Mike Amirault about tonight's 5
+Under 25 event.  Hope you can make it.
+
+@;image[#:scale .1 #:suffixes '(".png")]{CCISFlyer.jpg}
+
+Hello Prof. Van Horn,
+
+My name is Mike Amirault and I am a member of the Student Alumni
+Association (SAA) and also am in the class of 2013 here in CCIS. I was
+in your Fundies 2 class way back in the spring of 2009 and also have
+tutored Fundies 1 for you the following year.  I wanted to take the
+opportunity to inform you of an upcoming networking series that the
+Student Alumni Association and the Office of Alumni Relations hosts
+that will be beneficial for your students.
+
+The program is called 5 Under 25, and it is a panel series that gives
+current students a glimpse of where their education and experiences at
+Northeastern can take them. The 5 panelists are all recent CCIS
+graduates who are under 25 years old. The program gives students the
+opportunity to ask questions and hear about co-op experiences, class
+schedules, student involvement, job searches and their emerging
+careers.
+
+This month, the Student Alumni Association will be hosting 5 Under 25
+for the College of Computer & Information Science on Thursday, March
+22nd at 6:30pm in the Alumni Center (716 Columbus Ave, 6th floor,
+across from Squashbusters). There will be free pizza, drinks and
+dessert served.
+
+The panel will include :
+
+Brian Correia – Technology Support Specialist
+
+Dan Gonyea – Software Development Engineer
+
+Lauren Siegert – Product Software Engineer
+
+Phil Kelly - Systems Administrator
+
+Jeff Cumplido - TBA
+
+I would greatly appreciate it if you could let your CCIS students know
+of this event so they may have the opportunity to hear alumni success
+stories and make key contacts. If you have any questions about the
+program, please contact me at amirault.m at husky.neu.edu.
+
+Best,
+
+Mike
+
+What: 5 Under 25, College of Computer & Information Sciences
+Where: Alumni Center, 6th floor, 716 Columbus Ave (across from Squash Busters)
+When: Thursday, March 22nd at 6:30pm
+Who: All students interested in networking with successful young alumni and learning more information
+about the CCIS classes, student groups, co-ops, careers and more.
+
+
+
 @section*{New Homework partners}
 @tt{Fri Mar 16 12:37:13 EDT 2012}
 

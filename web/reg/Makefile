@@ -21,6 +21,7 @@ web: 2510
 		++extra ../fonts/kulminoituva-webfont.svg \
 		++extra ../fonts/kulminoituva-webfont.ttf \
 		++extra ../fonts/kulminoituva-webfont.woff \
+		++extra CCISFlyer.jpg \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		--style 2510.css \
