@@ -179,7 +179,7 @@ a general sorted list class that follows this interface:
 
 Now you have some experience building iterators and iterable things.  Java
 provides a convenient way to turn anything with an iterator into a full-blown
-collection using its built-in abstract classes.
+collection using its built-in @emph{abstract} classes.
 
 The way to do it is to extend the @racket[AbstractCollection] class and
 define the following two methods: @racket[size] and @racket[iterator].
