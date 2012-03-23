@@ -8,6 +8,12 @@
 
 @title*{Blog}
 
+@section*{Assignment 9}
+@tt{Fri Mar 23 11:30:59 EDT 2012}
+
+The @seclink["assign10"]{new homework assignment} is now up.  It is due one
+week from today.
+
 @section*{New partner assignments}
 
 Here are the new partner assignments that are in effect now (for
@@ -42,7 +48,7 @@ but it may be a little while (less than a day) before you can commit.
 
 The second exam will be on Tuesday, in 130 Hurtig Hall.
 
-Last year's second exam is available @link[""]{here}.
+Last year's second exam is available @link["old-exam2.pdf"]{here}.
 
 @section*{5 Under 25; Tonight}
 @tt{Thu Mar 22 08:31:56 EDT 2012}
