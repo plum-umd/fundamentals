@@ -4,12 +4,14 @@
 \documentclass[12pt]{article}                   % -*- latex -*-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz} 
+\usepackage{qtree} 
 \usepackage{./exam}
 \usepackage{type1cm} % We are using scalable fonts. Really.
 \usepackage{alltt,times,comment,amsmath}
 \usepackage{alltt}
 \usepackage{ct} % tight CM font for \tt
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{xcolor}
 \newexercise{exercise}{Exercise}[subsection]
 
 \makeatletter
@@ -51,7 +53,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \vspace*{-1.5cm}
-\centerline{\Large CSU2510H Exam 1 \ifrubric (SOLUTION) \fi-- Spring 2012}
+\centerline{\Large CSU2510H Exam 2 \ifrubric (SOLUTION) \fi-- Spring 2012}
 
 \vspace{0.5cm}
 
@@ -125,55 +127,39 @@ about the harder problems in the background while you knock off the easy ones.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \noindent
-% {\bf Home on the Range}
-
-% Come up with funny story here.
-
-
-
-% \newpage
 \begin{problem}\pts{18} % same as on the previous exam :)
 
-Here is a data definition for a class of objects.  It intentionally
-uses meaningless names to test whether you've sufficiently
-internalized the data-driven development process we've talked about
-since the Fall.
 
-\begin{verbatim}
-;; A P is one of:          
-;; - A                  ;; An A is a (new a% String)
-;; - B                  ;; A  B is a (new b% String A)
-;; - C                  ;; A  C is a (new c% P)
+  While trying to manage the grade database, Asumu hit upon a new idea
+  for a data structure: the 2/3-tree.  A 2/3-tree is either a leaf
+  (which holds a {\tt String} value), a 2-node, or a 3-node.  A 2-node
+  has two children, and a 3-node has three children.  The twist is
+  that a 2-node can't have any 2-nodes as children, and a 3-node can't
+  have any 3-nodes as children.
 
-(define-class a% (fields w))
-(define-class b% (fields x y))
-(define-class c% (fields z))
-\end{verbatim}
 
-\noindent
-Design the following methods for \verb|P|s:
+
+Here's an example of a 2/3-tree:
+
+\vspace*{8mm}
+\bigskip
+
+\Tree [. {\tt "Cat"} {\tt "Hat"} [. {\tt "Zebra"} {\tt "Rhino"}  ] !{\qbalance} ]
+
+\bigskip
+\bigskip
 
 \begin{enumerate}
 
-\item \verb|size| - the size of an \verb|A| is $5$; the size of a
-  \verb|B| is $8$, regardless of what's inside; and the size of a
-  \verb|C| contributes $1$ to the size of the \verb|P| inside.
+\item Design data, class, and interface definitions, in Java, to
+  represent 2/3-trees.  Construct the above example using your
+  definitions.
 
-\item \verb|replace-x| - produces a \verb|P| like this one, but
-  with any \verb|x| field replaced by the given string.
-
-\item \verb|same-x-and-w?| - given two strings, produce true if this
-  \verb|P| contains a \verb|B| whose \verb|x| is equal to the
-  first given string and whose \verb|y| is an \verb|A| whose
-  \verb|w| is equal to the second given string.  Produces false
-  otherwise.
+\item Design the {\tt height} method, which computes the height of the
+  tree (i.e., the maximum distance from the root to a leaf).  The
+  example tree has a height of 3.
 
 \end{enumerate}
-
-Be sure to define any interfaces you need and say which classes
-implement which interfaces so that your program treats all values
-according to their interface.
 
 \newpage
 \ifrubric\else
@@ -185,61 +171,7 @@ according to their interface.
 
 \begin{solution}
 \begin{alltt}
-\rubricpts{6 pts -- contract and purpose for each method}
-;; A P implements:
-;; - size : -> Number
-;;   Size of this P.
-;; - replace-x : String -> P
-;;   Replace x field (if any) of this P with given string.
-;; - same-x-and-w? : String String -> Boolean
-;;   Is there a B within this P with given x field and w field?
-
-\rubricpts{0 pts -- not required, but write something}
-;; An A implements:
-;; - w : -> String
-;;   Get the w string.
-
-\rubricpts{2 pts}
-;; In a%: 
-(define (size) 5)
-(define (replace-x str) this)
-(define (same-x-and-w? g c) false)
-
-\rubricpts{3 pts}
-;; In b%:
-(define (size) 8)
-(define (replace-x str)
-  (new b% str (this . y)))
-(define (same-x-and-w? g c)
-  (and (string=? g (this . x))
-       (string=? c (this . y . w))))
-
-\rubricpts{4 pts}
-;; In c%:
-(define (size) (add1 (this . z . size)))
-(define (replace-x str)
-  (new c% (this . z . replace-x str)))
-(define (same-x-and-w? g c)
-  (this . z . same-x-and-w? g c))
-
-;; tests
-\rubricpts{3 pts -- 1 per method}
-(define a (new a% "a"))
-(define b (new b% "b" a))
-(define c (new c% b))
-(define d (new c% a))
-(check-expect (a . size) 5)
-(check-expect (b . size) 8)
-(check-expect (c . size) 6)
-(check-expect (d . size) 9)
-(check-expect (a . replace-x "*") a)
-(check-expect (b . replace-x "*") (new b% "*" a))
-(check-expect (c . replace-x "*") (new c% (new b% "*" a)))
-(check-expect (d . replace-x "*") d)
-(check-expect (a . same-x-and-w? "b" "a") false)
-(check-expect (b . same-x-and-w? "b" "a") true)
-(check-expect (c . same-x-and-w? "b" "a") true)
-(check-expect (d . same-x-and-w? "b" "a") false)
+\rubricpts{? pts}
 \end{alltt}
 \end{solution}
 \end{problem}
