@@ -1,8 +1,6 @@
 .SUFFIXES: .ps .pdf $(.SUFFIXES)
 
-all: exam2.pdf rubric2.pdf soln2.pdf
-
-rubric2.dvi exam2.dvi soln2.dvi:   2.tex
+all: exam2.pdf rubric2.pdf soln2.pdf 2.tex
 
 # A "make clean" shouldn't flush the pdfs & dvis. A "make superclean" removes
 # *everything* that can be recreated.
@@ -20,16 +18,8 @@ superclean: clean
           for e in pdf dvi ps ; do \
 	    rm -f $$b.$$e ; done ; done
 
-.tex.dvi:
-	latex $<
-	latex $<
+.tex.pdf: 
+	xelatex $<
+	xelatex $<
 
-.dvi.ps:
-	dvips -Pcmz -o $@ $<
-
-#.ps.pdf:
-#	ps2pdf $< $@
-
-.dvi.pdf:
-	dvipdfm $<
 
