@@ -136,32 +136,36 @@ hash codes when you only have one @racket[hashCode] method. We can
 use a trick with random numbers to do this:
 
 @indented{@verbatim|{
-  import java.util.random;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
-  public class HashGenerator {
-    // hashCode : Object Integer Integer -> List<Integer>
-    // produces k hashCodes for the given object
-    public static List<Integer> hashCodes(Object o, Integer k, Integer m) {
-      ArrayList<Integer> keys = new ArrayList<Integer>();
+public class HashGenerator {
+  // hashCode : Object Integer Integer -> List<Integer>
+  // produces k hashCodes for the given object
+  public static List<Integer> hashCodes(Object o, Integer k, Integer m) {
+        Random rand = new Random(o.hashCode());
+    ArrayList<Integer> keys = new ArrayList<Integer>();
 
-      return hashCodesAccum(o, k, m, keys);
+    return hashCodesAccum(o, k, m, keys, rand);
+  }
+
+  // hashCodesAccum : Object Integer Integer List<Integer> -> List<Integer>
+  // accumulator helper for the function above
+  // Invariant: lst is the list of keys generated so far
+  private static List<Integer> hashCodesAccum(Object o, Integer k, Integer m,
+                  List<Integer> keys, Random rand) {
+    Integer next = rand.nextInt(m);
+
+    if (k == 0) {
+      return keys;
     }
-
-    // hashCodesAccum : Object Integer Integer List<Integer> -> List<Integer>
-    // accumulator helper for the function above
-    // Invariant: lst is the list of keys generated so far
-    private static List<Integer> hashCodesAccum(Object o, Integer k, Integer m, List<Integer> lst) {
-      Random rand = new Random(o.hashCode);
-      Integer next = rand.nextInt(m);
-
-      if (k == 0) {
-        return lst;
-      }
-      else {
-        return hashCodesAccum(o, k - 1, m, keys.add(next));
-      }
+    else {
+      keys.add(next);
+      return hashCodesAccum(o, k - 1, m, keys, rand);
     }
   }
+}
 }|}
 
 Using the @racket[hashCodes] method defined above, you can generate @racket[k]
