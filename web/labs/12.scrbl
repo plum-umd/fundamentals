@@ -33,7 +33,8 @@ The key thing about sets is they let you check if an element is in it.
 That matches up with how sets are defined in mathematics.
 
 Sets are important enough that Java comes with a
-@hyperlink[@racket[Set] "http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Set.html"]
+@hyperlink["http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Set.html"
+           @racket[Set]]
 interface.
 
 Before we move on, can you implement a @racket[Set] with any of the
@@ -112,7 +113,7 @@ Okay, back to bloom filters. Here is the data definition:
   //   new BloomFilter<T>(Integer k, Integer m)
   //
   // and implements Set<T>
-}
+}|}
 
 A bloom filter is built with a bit vector of size @racket[m]. How a
 bit vector works is that when you add an element to it, you use
@@ -161,7 +162,7 @@ use a trick with random numbers to do this:
       }
     }
   }
-}
+}|}
 
 Using the @racket[hashCodes] method defined above, you can generate @racket[k]
 hash codes based on the result of any object's @racket[hashCode] method.
