@@ -174,9 +174,9 @@ public class HashGenerator {
 }
 }|}
 
-Using the @racket[hashCodes] method defined above, you can generate @racket[k]
-bit vector positions based on the result of any object's @racket[hashCode]
-method.
+Using the @racket[HashGenerator.hashCodes] method defined above, you can
+generate @racket[k] bit vector positions based on the result of any object's
+@racket[hashCode] method.
 
 @exercise{
   Using bit vectors and hash codes, implement a @racket[BloomFilter].
@@ -193,7 +193,20 @@ if you increase the number of elements?
 }
 
 We should note that the method we used to generate @racket[k] hash codes
-above is not very good at all because it's not guaranteed to give you well
+above is not very good because it's not guaranteed to give you well
 distributed hash codes. It turns out that there are much better hashing
 mechanisms such as
 @hyperlink["http://en.wikipedia.org/wiki/Murmurhash"]{MurmurHash}.
+
+We have provided an implementation of MurmurHash (based on a public domain
+implementation by Derek Young
+@hyperlink["http://dmy999.com/article/50/murmurhash-2-java-port"]{here})
+which you can get @hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510/MurmurHash2.java"]{here}.
+
+It implements the same interface as the @racket[HashGenerator] above but
+you'll have to invoke @racket[MurmurHash2.hashCodes] instead.
+
+@exercise{
+  Use the MurmurHash implementation in your bloom filter. Does it do
+  any better than your original for false positives?
+}
