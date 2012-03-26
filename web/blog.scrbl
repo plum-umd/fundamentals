@@ -15,6 +15,7 @@ The @seclink["assign10"]{new homework assignment} is now up.  It is due one
 week from today.
 
 @section*{New partner assignments}
+@tt{Thu Mar 22 12:00:30 EDT 2012}
 
 Here are the new partner assignments that are in effect now (for
 assignment 8).
