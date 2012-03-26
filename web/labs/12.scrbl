@@ -41,23 +41,29 @@ Before we move on, can you implement a @racket[Set] with any of the
 data structures you have implemented so far using delegation?
 
 @exercise{
+  Optional:
   Design a data definition and class definition that implements the
   @racket[Set] interface. You should delegate to a data structure you
   have already designed in a previous lab or assignment.
   (e.g., lists, dictionaries, etc.)
+
+  NB: If you feel that you know this material well enough already or
+  if it is taking too much time, move on to the next non-optional exercise.
 }
 
 It would also be handy to be able to iterate over the elements of a set.
 
 @exercise{
+  Optional:
   Update your @racket[Set] class to implement @racket[Iterable].
 }
 
 @lab:section{Bloom filters}
 
 Since in class we have been discussing hash tables and hash codes, we will
-look at a hash-based implementation of the @racket[Set] interface. Bloom
-filters are an efficient way to represent sets that is @emph{probabilistic}.
+look at a hash-based implementation of the @racket[Set] interface.
+@hyperlink["http://en.wikipedia.org/wiki/Bloom_filter"]{Bloom filter}s
+are an efficient way to represent sets that are @emph{probabilistic}.
 That is, sometimes it will lie and tell you that an element is in the
 set when it is not. However, it will never lie that an element is @emph{not}
 in the set.
@@ -169,7 +175,8 @@ public class HashGenerator {
 }|}
 
 Using the @racket[hashCodes] method defined above, you can generate @racket[k]
-hash codes based on the result of any object's @racket[hashCode] method.
+bit vector positions based on the result of any object's @racket[hashCode]
+method.
 
 @exercise{
   Using bit vectors and hash codes, implement a @racket[BloomFilter].
@@ -188,4 +195,5 @@ if you increase the number of elements?
 We should note that the method we used to generate @racket[k] hash codes
 above is not very good at all because it's not guaranteed to give you well
 distributed hash codes. It turns out that there are much better hashing
-mechanisms such as MurmurHash.
+mechanisms such as
+@hyperlink["http://en.wikipedia.org/wiki/Murmurhash"]{MurmurHash}.
