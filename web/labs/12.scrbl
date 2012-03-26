@@ -2,87 +2,185 @@
 
 @(require "../lab.rkt"
           "../unnumbered.rkt"
-          "../utils.rkt"
-          (for-label class/universe
-                     2htdp/image))
+          "../utils.rkt")
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab12"]{3/26: Mixins, sources, sinks, and projectiles}
+@title[#:tag "lab12"]{3/26: Hashes and bloom filters}
+
+@lab:section{Warmup with sets}
+
+We know you're sick of dictionaries, so we're going to talk about a
+new kind of data structure that's not a dictionary. We're going to talk about
+sets.
+
+Many of you have taking a discrete mathematics course, so you probably have
+an idea of how pervasive sets are in computer science. Many algorithms depend
+on having a set data structure around. They provide an interface like this:
+
+@indented{@verbatim|{
+  // A Set<T> implements
+  //
+  // add : -> Void
+  // Adds an element to the set
+  // Effect: updates the set
+  //
+  // contains : -> Boolean
+  // Check if an element is in the set
+}|}
+
+The key thing about sets is they let you check if an element is in it.
+That matches up with how sets are defined in mathematics.
+
+Sets are important enough that Java comes with a
+@hyperlink[@racket[Set] "http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Set.html"]
+interface.
+
+Before we move on, can you implement a @racket[Set] with any of the
+data structures you have implemented so far using delegation?
 
 @exercise{
-  Start with this code: @url["source-sink.rkt"]. It creates a @tt{World} with a
-  @tt{Source} and a @tt{Sink} (the circles), along with a few @tt{Projectiles}
-  (the triangles).
+  Design a data definition and class definition that implements the
+  @racket[Set] interface. You should delegate to a data structure you
+  have already designed in a previous lab or assignment.
+  (e.g., lists, dictionaries, etc.)
+}
 
-  Read over the code and understand how it works. Note the use of the
-  @racket[point-mixin] to abstract the common behavior involving location,
-  velocity, and acceleration.
+It would also be handy to be able to iterate over the elements of a set.
+
+@exercise{
+  Update your @racket[Set] class to implement @racket[Iterable].
+}
+
+@lab:section{Bloom filters}
+
+Since in class we have been discussing hash tables and hash codes, we will
+look at a hash-based implementation of the @racket[Set] interface. Bloom
+filters are an efficient way to represent sets that is @emph{probabilistic}.
+That is, sometimes it will lie and tell you that an element is in the
+set when it is not. However, it will never lie that an element is @emph{not}
+in the set.
+
+The way that you implement a bloom filter is by using a @emph{bit vector}.
+A bit vector is like a @racket[List] where each position represents a single bit
+(true or false, 1 or 0, etc.) and you can either get, set, or flip bits in
+your vector. It implements this interface:
+
+@indented{@verbatim|{
+  // A BitVector is a
+  //   new BitVector(Integer size)
+  // and implements
+  //
+  // get : Integer -> Boolean
+  // Produce the bit at the given position
+  //
+  // set : Integer -> Void
+  // Set the bit to true at the given position
+  // Effect: updates the vector
+  //
+  // flip : Integer -> Boolean
+  // Flip a bit at the position (only if already set)
+  // Effect: updates the vector
+}|}
+
+@exercise{
+  Implement a bit vector.
+}
+
+As an aside, here is an application of bit vectors: a neat algorithm for
+sorting that uses bit vectors.  Suppose you're sorting several million distinct
+integers and you know the maximum size of any given integer you're sorting.
+You may not want to use a typical sorting algorithm because it will
+allocate a bunch of intermediate data structures into your computer's RAM.
+
+Instead, you can build a single bit vector that's as long as the maximum size.
+Then, when you see an integer just set the bit with the integer as the
+position.  After processing all of your integers, just read off all of the
+positions setto true in your bit vectors in order, which gives you the sorted
+list. This is guaranteed to work if your integers are all distinct.
+
+@exercise{
+  Optional: Implement the bit vector sorting algorithm explained above.
+
+  Test it with a random list of a few million distinct integers.
+}
+
+Okay, back to bloom filters. Here is the data definition:
+
+@indented{@verbatim|{
+  // A BloomFilter<T> is a
+  //   new BloomFilter<T>(Integer k, Integer m)
+  //
+  // and implements Set<T>
+}
+
+A bloom filter is built with a bit vector of size @racket[m]. How a
+bit vector works is that when you add an element to it, you use
+@racket[k] different hash codes to give you @racket[k] positions
+to set in your bit vector.
+
+When you do a lookup, you will compute the same @racket[k] hash codes.
+If the bits at all positions are @emph{not} set, then you know that
+the element is definitely not in the set. However, if they @emph{are}
+set, then you only know that it might be in the set.
+
+The reason you don't know if the element is actually in the set is
+because there's a chance another element would have the same positions
+because of how you modulo the hash codes. If you increase both @racket[k]
+and @racket[m] it is much less likely that you will get these false
+positives.
+
+One thing you might be wondering is how you obtain @racket[k] different
+hash codes when you only have one @racket[hashCode] method. We can
+use a trick with random numbers to do this:
+
+@indented{@verbatim|{
+  import java.util.random;
+
+  public class HashGenerator {
+    // hashCode : Object Integer Integer -> List<Integer>
+    // produces k hashCodes for the given object
+    public static List<Integer> hashCodes(Object o, Integer k, Integer m) {
+      ArrayList<Integer> keys = new ArrayList<Integer>();
+
+      return hashCodesAccum(o, k, m, keys);
+    }
+
+    // hashCodesAccum : Object Integer Integer List<Integer> -> List<Integer>
+    // accumulator helper for the function above
+    // Invariant: lst is the list of keys generated so far
+    private static List<Integer> hashCodesAccum(Object o, Integer k, Integer m, List<Integer> lst) {
+      Random rand = new Random(o.hashCode);
+      Integer next = rand.nextInt(m);
+
+      if (k == 0) {
+        return lst;
+      }
+      else {
+        return hashCodesAccum(o, k - 1, m, keys.add(next));
+      }
+    }
+  }
+}
+
+Using the @racket[hashCodes] method defined above, you can generate @racket[k]
+hash codes based on the result of any object's @racket[hashCode] method.
+
+@exercise{
+  Using bit vectors and hash codes, implement a @racket[BloomFilter].
 }
 
 @exercise{
-  Add a @racket[contains?] @tt{: Location -> Boolean} method to @tt{Source} that
-  tests whether the given point is within the circle represented by the
-  @tt{Source}.
+  Randomly test your @racket[BloomFilter] by adding many (try 10s, then 100s,
+of elements) random elements and testing if they're in the set. The elements
+can be @racket[Integer]s or anything else you can randomly generate.
+
+  You should notice that for small bloom filters and good values of @racket[k]
+and @racket[m] that your bloom filter will rarely lie. Does it keep working
+if you increase the number of elements?
 }
 
-@exercise{
-  We will want to add and remove @tt{Projectile}s over time. Add two methods,
-  @racket[add-projectile!] @tt{: Projectile -> Void} and
-  @racket[remove-projectile!] @tt{: Projectile -> Void} to @tt{World}. Use
-  intensional equality (@racket[eq?]) to decide which @tt{Projectile} to remove.
-}
-
-@exercise{
-  Add a @racket[on-mouse] method to @tt{World}. When the user clicks on the
-  @tt{Source} object, add a new @tt{Projectile} to the @tt{World} at the
-  @tt{Source}'s location, with a random (fast) velocity.
-}
-
-@exercise{
-  Add the @racket[contains?] to @tt{Sink}s---abstract the common behavior out
-  into a @racket[circle-mixin].
-}
-
-@exercise{
-  Modify @tt{World}'s @racket[on-tick] method so that @tt{Projectile}s that
-  collide with the @tt{Sink} are removed from the @tt{World}.
-
-  Since @tt{Projectile}s are triangles, we won't do real collision detection
-  here---just test whether the @tt{Projectile}'s location is within the
-  @tt{Sink}'s circle.
-}
-
-@exercise{
-  As it stands @tt{Projectile}s wander around rather aimlessly. But note that
-  we've given both @tt{Projectile}s and the @tt{Sink} a @racket[mass] field...
-
-  Abstract these two @racket[mass] fields into a @racket[mass-mixin]. Define
-  something to implement @tt{Massful} when it has a @racket[mass] (field or
-  method).
-
-  Add an @racket[add-mass!] @tt{: Mass -> Void} method to @racket[mass-mixin]
-  that increments our @racket[mass] by the given amount.
-
-  Add a @racket[gravity] @tt{: Massful -> Acceleration} method to
-  @racket[mass-mixin] that computes the acceleration that one @tt{Massful}
-  object induces on another.
-
-  Finally, in @tt{World}'s @racket[on-tick] method, update the acceleration for
-  each @tt{Projectile} so that they gravitate toward the @tt{Sink}.
-}
-
-@exercise{
-  Let's loosen up a little: let's make the @tt{Sink} pulse its color over time,
-  the @tt{Source} pulse its size over time, and the @tt{Projectile}s rotate over
-  time. This won't actually be very difficult.
-
-  Add a @racket[time-mixin] to all three classes. The mixin should add a
-  @racket[time] field and hook into the @racket[tick!] method to increment
-  @racket[time] by the @racket[TICK-RATE]. (You'll have to modify all your
-  @racket[random-]@emph{foo} methods to initialize @racket[time] to something,
-  like @racket[0].)
-
-  Then modify the appropriate @racket[color], @racket[radius], or @racket[draw]
-  methods to modulate their output based on the @racket[time].
-}
+We should note that the method we used to generate @racket[k] hash codes
+above is not very good at all because it's not guaranteed to give you well
+distributed hash codes. It turns out that there are much better hashing
+mechanisms such as MurmurHash.
