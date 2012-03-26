@@ -338,7 +338,7 @@ t3.visit(new LongestVisitor()) -> "Rhinocerous"
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{15}
+\begin{problem} \pts{??}
 
 In mathematics, an {\bf unordered} pair is a pair of values in which
 the order of the elements does not matter.  So for example, if
@@ -390,318 +390,65 @@ for \emph{why}.  If it is not, give a counter-example to the law of
 \end{problem}
 \newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{15}
+\begin{problem} \pts{??}
 
-Here are data and class definitions for representing the files and
-directories of a computer:
+Lists are nice, but sometimes it would be better to have a list
+without an end.  For example, we might want to model the days of the
+week as a list that wraps around at the end so that Monday follows
+Sunday.  To do so, we need lists that are \emph{circular}, and in
+order to make circular lists, we need to use mutation.  Here's an idea
+for a list method that makes is possible to create cyclic lists:
 
 \begin{verbatim}
-;; An Elem is one of
-;; - (new file% String Number)
-;; - (new dir% String LoElem)
-(define-class file% (fields name size))
-(define-class dir% (fields name elems))
-
-;; A LoElem is one of
-;; - (new mt%)
-;; - (new cons% Elem LoElem)
-(define-class mt%)
-(define-class cons% (fields first rest))    
+interface List<X> {
+   // EFFECT: set the rest of the last cons in this list
+   // to the given list.
+   void setTail(List<X> ls);
+}
 \end{verbatim}
-
 
 \noindent
-Here is an example of a directory tree and its representation as an
-\verb|Elem|:
+It works as follows:
+
 \begin{verbatim}
-#|
- User
-   +-- A
-   |   +-- a.txt
-   |   +-- B
-   |       +-- b.rkt
-   +-- C
-       +-- c.c
-|#
+List<Integer> waltz =
+  new Cons<Integer>(1,
+    new Cons<Integer>(2,
+      new Cons<Integer>(3,
+        new MT<Integer>())));
 
-(define mt (new mt%))
-(define a (new file% "a.txt" 5))
-(define b (new file% "b.rkt" 10))
-(define c (new file% "c.c" 1000))
+\end{verbatim}
+At this point, {\tt waltz} is just a list of three elements {\tt 1, 2,
+  3}.  To make the list circular we can call {\tt setTail} giving {\tt
+  waltz} as the new tail:
 
-(define C/ (new dir% "C" (new cons% c mt)))
-(define B/ (new dir% "B" (new cons% b mt)))
-(define A/ (new dir% "A" (new cons% a (new cons% B/ mt))))
-(define User/ (new dir% "/" (new cons% A/ (new cons% C/ mt))))
+\begin{verbatim}
+waltz.setTail(waltz);
 \end{verbatim}
 
-\newpage
 \noindent
-Your job is to implement one of the main tasks of the common Unix
-utility \verb|find|, which gives a list of all the files within an
-element.  To do so, add a \verb|list-files| method of \verb|Elem|
-which produces a list of files.  So for example, we expect:
-\begin{verbatim}
-(check-expect (User/ . list-files) 
-              (new cons% a (new cons% b (new cons% c mt))))
-\end{verbatim}
-\emph{Hint}: it may come in handy to be able to concatenate two
-\verb|LoElem| together.
+Now {\tt waltz} is a list of elements: {\tt 1, 2, 3, 1, 2, 3, 1, 2, 3,
+  \dots}, and so on, \emph{ad infinitum}.
 
-\ifrubric
-\else
-\newpage
-[Here is some more space for the previous problem.]
-\fi
-
-\begin{solution}
-\begin{alltt}
-\rubricpts{1pts -- interfaces, contracts, purpose}
-;; An Elem implements
-;; - list-files : -> LoElem
-;;   List all files within this element.
-
-\rubricpts{2pts -- interfaces, contracts, purpose}
-;; A LoElem implements
-;; - list-files : -> LoElem
-;;   List all files within this list of elements.
-;; - append : LoElem -> LoElem
-;;   Append this list of elements to given list.
-
-\rubricpts{1pt -- code}
-;; in dir%
-(define (list-files)
-  (this . elems . list-files))
-
-\rubricpts{1pt -- code}
-;; in file%
-(define (list-files)
-  (new cons% this (new mt%)))
-
-\rubricpts{2pt -- code}
-;; in mt%
-(define (append loe) loe)
-(define (list-files) this)
-
-\rubricpts{4pt -- code}
-;; in cons%
-(define (append loe)
-  (new cons% (this . first) (this . rest . append loe)))
-(define (list-files)
-  (this . first . list-files . append (this . rest . list-files)))
-
-\rubricpts{1pt -- sanity}
-
-\rubricpts{3pts -- tests}
-;; tests
-(check-expect (mt . append (new cons% a mt)) (new cons% a mt))
-(check-expect ((new cons% a mt) . append (new cons% b mt))
-              (new cons% a (new cons% b mt)))
-
-(check-expect (mt . list-files) mt)
-(check-expect ((new cons% a (new cons% b mt)) . list-files)
-              (new cons% a (new cons% b mt)))
-
-(check-expect (a . list-files) (new cons% a mt))
-\end{alltt}
-\end{solution}
-
-\end{problem}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{18}
-Last night, Asumu was up late improving the {\tt class} languages.
-Unfortunately, he was too tired to test his work, and his last commit
-broke the numeric system.
-%
-This puts us in the dire position of no longer being able to calculate
-the factorial of large numbers, and we turn to you for help.
-
-This is the definition of a class of functional objects
-with a {\tt fact} method:
+Of course, it's also possible to use {\tt setTail} to update a list in
+a non-circular way.  Imagine instead we had just done:
 
 \begin{verbatim}
-;; A Fact is (new fact%) and implements 
-;; - fact : Natural -> Natural
-;;   Compute n!.
-(define-class fact%
-  (define (fact n)
-    (cond [(zero? n) 1]
-          [else (* n (this . fact (sub1 n)))])))
-
-(check-expect ((new fact%) . fact 0) 1)
-(check-expect ((new fact%) . fact 5) 120)
+waltz.setTail(new Cons<Integer>(4, new MT<Integer>()));
 \end{verbatim}
 
-Since we can no longer rely on built in numbers to represent
-\verb|Natural|s, we will represent \verb|Natural|s with objects and
-then rewrite the \verb|fact| method to operate over this new kind of
-data.
-
-Here is the \verb|Natural| interface:
-
-\begin{verbatim}
-;; A Natural implements:
-;; - zero? : -> Boolean
-;;   is this Natural the zero value?
-;; - sub1 : -> Natural
-;;   produce a natural one less than this natural 
-;;   (or zero if this natural is zero)
-;; - times : Natural -> Natural
-;;   multiply this natural by the given natural
-\end{verbatim}
-
-\newpage
-Write a new definition of the \verb|fact| method using the
-\verb|Natural| interface definition given above, and \emph{not} using
-the built-in numbers of the class system or DrRacket.  You can assume
-there is a defined constant \verb|one|, which is a \verb|Natural|
-object representing $1$.
-
-\begin{verbatim}
-(check-expect ((new fact%) . fact one) one)
-(check-expect ((new fact%) . fact (one . sub1)) one)
-\end{verbatim}
-
-
-\begin{solution}
-\begin{alltt}
-\rubricpts{2 pts}
-(define-class fact%
-  (define (fact n)
-    (cond [(n . zero?) one]
-          [else (n . times (this . fact (n . sub1)))])))
-
-\end{alltt}
-\end{solution}
-
-\newpage
-
-Now, design data and class defintions that implement \verb|Natural|, and
-supports the methods \verb|zero?|, \verb|sub1|, and \verb|times|.
-Define the constant \verb|one|.  (\emph{Hint}: remember that the
-natural numbers can be seen as a recursive union; a natural number is
-either zero, or one more than a natural number.)
-
-It will be helpful to define the helper methods \verb|add1| and
-\verb|plus|.  Also, remember that $n + m = (n-1) + m + 1$ and that $n
-\cdot m = (n-1) \cdot m + m$.  Don't overlook the slightly weird
-specification for \verb|sub1|: $0-1 = 0$; this weirdness is common
-amongst mathematicians when working with natural numbers.
-
-\ifrubric
-\else
-\newpage
-[Here is some more space for the previous problem.]
-\newpage
-\fi
-\end{problem}
-
-\begin{solution}
-\begin{alltt}
-\rubricpts{2 pts -- data defintion}
-;; A Natural is one of
-;; - (new zero%)
-;; - (new add1% Natural)
-(define-class zero%
-  \rubricpts{4 pts -- methods in zero%}
-  (define (sub1) this)
-  (define (zero?) true)
-  (define (add1) (new add1% this))
-  (define (plus n) n)
-  (define (times n) this))
-
-(define-class add1%
-  (fields sub1)
-  \rubricpts{7 pts -- methods in add1%}
-  (define (zero?) false)
-  (define (add1) (new add1% this))
-  (define (plus n) (this . sub1 . plus n . add1))
-  (define (times n) (this . sub1 . times n . plus n)))
-
-(define zero (new zero%))
-\rubricpts{1 pt -- define one}
-(define one (new add1% (new zero%)))
-
-\rubricpts{3 pts -- tests}
-(check-expect (one . zero?) false)
-(check-expect (one . sub1) zero)
-(check-expect ((new add1% one) . sub1) one)
-(check-expect (zero . zero?) true)
-(check-expect (zero . sub1) zero)
-\end{alltt}
-\newpage
-\end{solution}
-
-\begin{problem}\pts{5}
-
-\textbf{Extra Credit}
-\\
 \noindent
-After Van Horn discovered the problems with numbers, he attempted to
-fix them.  Unfortunately, not only did he not fix them, he broke
-booleans as well.  Fortunately, we have an idea about how you can
-help, expressed in the following interface definitions.  
+In this case, {\tt waltz} is now just {\tt 1, 2, 3, 4}.
 
-\begin{verbatim}
-;; A Bool implements:
-;; - branch : [Action X] [Action X] -> X
-;;   run the first action if this bool is true, 
-;;   otherwise run the second action
-
-;; An [Action X] implements:
-;; - run : -> X
-;; run this action
-
-
-\end{verbatim}
-
-Following these interface definitions, design data and class
-defintions for implementations of the \verb|Bool| interface, and
-reimplement the \verb|fact| method to use them.
-You will need to provide new defintions for \verb|true| and
-\verb|false|, since they were broken by this catastrophe as well.
-
-\ifrubric\else
 \newpage
-[Here is some more space for the previous problem.]
-\fi
+Design an implementation of {\tt setTail} that works as described.
+Revise the {\tt List<X>} interface with any methods you need to add to
+make {\tt setTail} work.  (You'll notice that the effect statement for
+{\tt setTail} implies that this list cannot be empty; if you try to
+{\tt setTail} on an empty list, you may raise an exception.)
 
-
-\begin{solution}
-\begin{alltt}
-\rubricpts{5 pts -- get it right}
-(define-class fact%
-  (define (fact n)
-    (n . zero? . branch (new const% one) (new recur% n))))
-
-(define-class const%
-  (fields run))
-
-(define-class recur%
-  (fields n)
-  (define (run) 
-    ((new fact%) . fact (this . n . sub1) . times (this . n))))
-
-(define-class t%
-  (define (branch t e) (t . run)))
-(define-class f%
-  (define (branch t e) (e . run)))
-
-(define true (new t%)) 
-(define false (new f%))
-
-(check-expect ((new fact%) . fact zero) one)                  ; 0! = 1
-(check-expect ((new fact%) . fact one) one)                   ; 1! = 1
-(check-expect ((new fact%) . fact (one . add1)) (one . add1)) ; 2! = 2
-(check-expect ((new fact%) . fact (one . add1 . add1))        ; 3! = 6
-              (one . add1 . add1 . add1 . add1 . add1))
-\end{alltt}
-\end{solution}
 \end{problem}
+
 \end{document}
 
 
