@@ -38,6 +38,13 @@ class Examples {
 					     new Cons<Integer>(2,
 							       new MT<Integer>())));
 	t.checkExpect(((Cons)one).rest == two, true);
+
+	List<Integer> three = new Cons<Integer>(3, new MT<Integer>());
+	one.setTail(three);
+	t.checkExpect(one, new Cons<Integer>(1,
+					     new Cons<Integer>(2,
+							       new Cons<Integer>(3,
+										 new MT<Integer>()))));
     }
     void testSetTailCycle(Tester t) {
 	List<Integer> ones = new Cons<Integer>(1, new MT<Integer>());
