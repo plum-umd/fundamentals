@@ -111,11 +111,11 @@ about the harder problems in the background while you knock off the easy ones.
 {\bf Problem} & Points & out of \\ \hline
 1 & & 15\\ \hline
 2 & & 22\\ \hline
-3 & & ??\\ \hline
-4 & & ??\\ \hline
+3 & & 15\\ \hline
+4 & & 15\\ \hline
 5 & & 20\\ \hline
 %% Extra & & 5 \\ \hline
-{\bf Total} & & ?? \\ \hline
+{\bf Total} & & 87 \\ \hline
 %{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
 \end{tabular}
 \end{minipage}
@@ -233,8 +233,9 @@ t2.height() -> 3
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}\pts{22}
-
-Design a \verb|TreeVisitor| interface for 2/3-trees, and implement the
+\
+\begin{enumerate}
+\item Design a \verb|TreeVisitor| interface for 2/3-trees, and implement the
 \verb|visit| method in all of your classes from the previous problem.
 Make sure you design the interfaces and methods so that a visitor can
 return any type of data.
@@ -281,7 +282,7 @@ interface TreeVisitor<T> {
 \fi
 
 
-Design the \verb|CountVisitor| class, which counts the number of
+\item Design the \verb|CountVisitor| class, which counts the number of
 leaves in a 2/3-tree (there are 6 in the given example.)
 
 \begin{solution}
@@ -304,9 +305,10 @@ t3.visit(new CountVisitor()) -> 6
 
 \newpage
 
-Design the \verb|LongestVisitor| class, which produces the longest
+\item Design the \verb|LongestVisitor| class, which produces the longest
 \verb|String| in a 2/3-tree.  The longest string in the example is
 \verb|"Rhinocerous"|.  
+\end{enumerate}
 
 \begin{solution}
 \begin{verbatim}
@@ -345,7 +347,7 @@ t3.visit(new LongestVisitor()) -> "Rhinocerous"
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{??}
+\begin{problem} \pts{15}
 
 In mathematics, an {\bf unordered} pair is a pair of values in which
 the order of the elements does not matter.  So for example, if
@@ -380,24 +382,24 @@ class UnPair<X> {
 \end{verbatim}
 
 \newpage
-\noindent
-Part (A): Implement the omitted {\tt same} method that compares this
-unordered pair to a given unordered pair.  This method should work
-regardless of the order of the pair, so for example {\tt new
-  UnPair<Integer>(3,4)} is the same (according to {\tt same}) as {\tt
-  new UnPair<Integer>(4,3)}.
+\begin{enumerate}
+\item Implement the omitted {\tt same} method that compares this
+  unordered pair to a given unordered pair.  This method should work
+  regardless of the order of the pair, so for example {\tt new
+    UnPair<Integer>(3,4)} is the same (according to {\tt same}) as
+  {\tt new UnPair<Integer>(4,3)}.
 
 \newpage
-\noindent
-Part (B): Assuming {\tt same} and {\tt equals} work as expected, is
+\item Assuming {\tt same} and {\tt equals} work as expected, is
 the given {\tt hashCode} method valid?  That is, does it satisfy or
 violate the law of {\tt hashCode}?  If it is valid, give an argument
 for \emph{why}.  If it is not, give a counter-example to the law of
 {\tt hashCode}.
+\end{enumerate}
 \end{problem}
 \newpage
 
-\begin{problem} \pts{??}
+\begin{problem} \pts{15}
 
 Lists are nice, but sometimes it would be better to have a list
 without an end.  For example, we might want to model the days of the
@@ -454,6 +456,10 @@ make {\tt setTail} work.  (You'll notice that the effect statement for
 {\tt setTail} implies that this list cannot be empty; if you try to
 {\tt setTail} on an empty list, you may raise an exception.)
 
+\newpage
+[Here is some more space for the previous problem.]
+
+
 \end{problem}
 
 \newpage 
@@ -463,12 +469,13 @@ make {\tt setTail} work.  (You'll notice that the effect statement for
 
 Iterators are an extremely useful concept.  In particular, they aren't
 limited to iterating over the contents of data structures such as {\tt
-ArrayList}s.  We can also construct iterators directly, for sequences
+  ArrayList}s.  We can also construct iterators directly for sequences
 we are interested in.
 
 \bigskip
 
-Design the class {\tt RangeIterator}, which takes two {\tt Integer}s
+\begin{enumerate}
+\item Design the class {\tt RangeIterator}, which takes two {\tt Integer}s
 as constructor arguments, and iterates over all of the {\tt Integer}s
 between them, including \emph{both} end points.  {\tt RangeIterator}
 must implement the {\tt Iterator} interface, given below.
@@ -477,10 +484,13 @@ must implement the {\tt Iterator} interface, given below.
 interface Iterator<T> {
   Boolean hasNext();
   T next();
-  // The Java definition of Iterator includes the remove method.
-  // You do *not* need to implement remove.
+  // Java requires an Iterator to define remove,
+  // but you do *not* need to implement remove.
 }
 \end{verbatim}
+
+\newpage
+[Here is some more space for the previous problem.]
 
 \begin{solution}
 \begin{verbatim}
@@ -510,7 +520,7 @@ ri.hasNext() -> false
 \end{solution}
 \newpage
 
-\noindent
+\item
 Recall our definition of function objects:
 \begin{verbatim}
 interface Function<T,U> {
@@ -538,7 +548,7 @@ s.call(0) -> 0
 \fi
 
 
-Using this interface, design and implement the {\tt MapIterator}
+\item Using this interface, design and implement the {\tt MapIterator}
 class, which takes a \verb|Function| and an \verb|Iterator| as
 arguments, and iterates over the values produced by applying the
 function to each result produced by the iterator.
@@ -573,7 +583,7 @@ i.hasNext() -> true
 \newpage
 
 \noindent
-Now design the method \verb|sumSquares|, which takes two
+\item Now design the method \verb|sumSquares|, which takes two
 \verb|Integer|s, and uses the classes you've just defined, along with
 a \verb|for| or \verb|while| loop, to compute the sum of the squares
 of all the numbers between the given \verb|Integer|s, inclusive.
@@ -602,7 +612,7 @@ sumSquares(10,10) -> 100
 \newpage
 [Here is some more space for the previous problem.]
 \fi
-
+\end{enumerate}
 \end{problem}
 
 \end{document}
