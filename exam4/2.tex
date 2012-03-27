@@ -158,7 +158,9 @@ Here's an example of a 2/3-tree:
 
 \item Design the {\tt height} method, which computes the height of the
   tree (i.e., the maximum distance from the root to a leaf).  The
-  example tree has a height of 4.
+  example tree has a height of 4. You may find the function
+  \verb|Math.max| useful; it takes two numbers and produces the
+  largest.
 
 \end{enumerate}
 
@@ -188,6 +190,7 @@ interface ThreeTree extends Tree {}
 //> 3pts for method definitions
 class Leaf implements TwoTree, ThreeTree {
   String val;
+  Leaf(String v) { val = v; }
 
   Integer height() { return 1; }
 }
@@ -195,8 +198,9 @@ class Leaf implements TwoTree, ThreeTree {
 class TwoNode implements TwoTree {
   ThreeTree left;
   ThreeTree right;
+  TwoNode(ThreeTree l, ThreeTree r) { left = l; right = r; }
 
-  Integer height() { return max(this.left.height(), this.right.height()); }
+  Integer height() { return Math.max(this.left.height(), this.right.height()); }
 }
 
 class ThreeNode implements ThreeTree {
@@ -204,18 +208,18 @@ class ThreeNode implements ThreeTree {
   TwoTree mid;
   TwoTree right;
 
-  Integer height() { return max(this.left.height(),
-                                this.mid.height(),
-                                this.right.height()); }
+  TwoNode(ThreeTree l, ThreeTree r) { left = l; right = r; }
+
+  Integer height() { return Math.max(this.left.height(),
+                                     Math.max(this.mid.height(),
+                                              this.right.height())); }
 }
-
-Tree r = new Leaf("Rhinocerous");
-Tree h = new Leaf("Hat");
-Tree b = new Leaf("Bread");
-Tree t1 = new ThreeNode(new Leaf("Zebra"),new Leaf("Dog"),new Leaf("Cat"));
-Tree t2 = new TwoNode(t1,r);
+ThreeTree r = new Leaf("Rhinocerous");
+TwoTree h = new Leaf("Hat");
+TwoTree b = new Leaf("Bread");
+ThreeTree t1 = new ThreeNode(new Leaf("Zebra"),new Leaf("Dog"),new Leaf("Cat"));
+TwoTree t2 = new TwoNode(t1,r);
 Tree t3 = new ThreeNode(b,h,t2);
-
 //> 3pts for tests
 t3.height() -> 4
 r.height() -> 1
@@ -242,14 +246,14 @@ return any type of data.
 interface TreeVisitor<T> {
   T visitLeaf(String s);
   T visitTwoNode(ThreeTree l, ThreeTree r);
-  T visitThreeNode(TwoTree l, TwoTree r);
+  T visitThreeNode(TwoTree l, TwoTree m, TwoTree r);
 }
 
 //> 2pts overall for getting types right
 //> 3pts overall for getting impls right
 
 // in Tree:
-  <T> T visit(TreeVisitor<T> v);
+<T> T visit(TreeVisitor<T> v);
 
 // in Leaf:
 <T> T visit(TreeVisitor<T> v) { 
@@ -286,8 +290,8 @@ leaves in a 2/3-tree (there are 6 in the given example.)
 //> 2pts implementations
 class CountVisitor implements TreeVisitor<Integer> {
   Integer visitLeaf(String s) { return 1; }
-  Integer visitTwoNode(Tree l, Tree r) { return l.visit(this) + r.visit(this); }
-  Integer visitThreeNode(Tree l, Tree m, Tree r) { 
+  Integer visitTwoNode(ThreeTree l, ThreeTree r) { return l.visit(this) + r.visit(this); }
+  Integer visitThreeNode(TwoTree l, TwoTree m, TwoTree r) { 
      return l.visit(this) + r.visit(this) + m.visit(this);
   }
 }
@@ -310,12 +314,12 @@ Design the \verb|LongestVisitor| class, which produces the longest
 // 3pts methods
 class LongestVisitor implements TreeVisitor<String> {
   String visitLeaf(String s) { return s; }
-  String visitTwoNode(Tree l, Tree r) { 
+  String visitTwoNode(ThreeTree l, ThreeTree r) { 
      String s1 = l.visit(this);
      String s2 = r.visit(this);
      return (s1.length() > s2.length())?s1:s2;
   }
-  String visitThreeNode(Tree l, Tree m, Tree r) { 
+  String visitThreeNode(TwoTree l, TwoTree m, TwoTree r) { 
      String s1 = l.visit(this);
      String s2 = r.visit(this);
      String s3 = m.visit(this);
@@ -324,7 +328,7 @@ class LongestVisitor implements TreeVisitor<String> {
      else if (s2.length() > s3.length())
        return s2;
      else
-       returns s3;
+       return s3;
   }
 }
 //> 2pts tests
