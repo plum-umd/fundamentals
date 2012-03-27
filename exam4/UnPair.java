@@ -1,28 +1,28 @@
 import tester.*;
 
 class UnPair<X> {
-  X left;
-  X right;
-  UnPair(X left, X right) {
-    this.left = left;
-    this.right = right;
-  }
+    X left;
+    X right;
+    UnPair(X left, X right) {
+	this.left = left;
+	this.right = right;
+    }
 
-  public int hashCode() {
-    return left.hashCode();
-  }
+    public int hashCode() {
+	return left.hashCode();
+    }
 
-  public boolean same(UnPair<X> p) {
-     return (this.left.equals(p.left) &&
-             this.right.equals(p.right))
-         || (this.left.equals(p.right) &&
-             this.right.equals(p.left));
-  }
+    public boolean same(UnPair<X> p) {
+	return (this.left.equals(p.left) &&
+		this.right.equals(p.right))
+	    || (this.left.equals(p.right) &&
+		this.right.equals(p.left));
+    }
 
-  public boolean equals(Object that) {
-    return (that instanceof UnPair)
-        && this.same((UnPair<X>)that);
-  }
+    public boolean equals(Object that) {
+	return (that instanceof UnPair)
+	    && this.same((UnPair<X>)that);
+    }
 }
 
 class Examples {
