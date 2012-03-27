@@ -52,7 +52,8 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Lab7.html"]{Lab 7}}
  @item{@link["Lab8.html"]{Lab 8}}
  @item{@link["Lab9.html"]{Lab 9}}
- @item{@link["Lab10.html"]{Lab 10}}]
+ @item{@link["Lab10.html"]{Lab 10}}
+ @item{@link["Lab11.html"]{Lab 11}}]
 
 @section[#:style 'unnumbered]{Assignments}
 
@@ -66,7 +67,8 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Assignment7.html"]{Assignment 7}}
  @item{@link["Assignment8.html"]{Assignment 8}}
  @item{@link["Assignment9.html"]{Assignment 9}}
- @item{@link["Assignment10.html"]{Assignment 10}}]
+ @item{@link["Assignment10.html"]{Assignment 10}}
+ @item{@link["Assignment11.html"]{Assignment 11}}]
 
 
 @include-section{subversion.scrbl}
