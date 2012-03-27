@@ -31,7 +31,7 @@ web: 2510
 	cp -r assignments/*.rtf 2510/
 	cp -r assignments/*.zip 2510/
 	cp -r labs/*.html 2510/
-	cp -r labs/Lab10/ 2510/Lab10/
+	-cp -r labs/Lab10/ 2510/Lab10/
 	cp -r labs/*.zip 2510/
 	cp -r labs/*.java 2510/
 	cp -r labs/*.jar 2510/
