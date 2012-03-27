@@ -449,6 +449,150 @@ make {\tt setTail} work.  (You'll notice that the effect statement for
 
 \end{problem}
 
+\newpage 
+
+\begin{problem}
+\pts{???}
+
+Iterators are an extremely useful concept.  In particular, they aren't
+limited to iterating over the contents of data structures such as {\tt
+ArrayList}s.  We can also construct iterators directly, for sequences
+we are interested in.
+
+\bigskip
+
+Design the class {\tt RangeIterator}, which takes two {\tt Integer}s
+as constructor arguments, and iterates over all of the {\tt Integer}s
+between them, including \emph{both} end points.  {\tt RangeIterator}
+must implement the {\tt Iterator} interface, given below.
+
+\begin{verbatim}
+interface Iterator<T> {
+  Boolean hasNext();
+  T next();
+  // The Java definition of Iterator includes the remove method.
+  // You do *not* need to implement remove.
+}
+\end{verbatim}
+
+\begin{solution}
+\begin{verbatim}
+class RangeIterator implements Iterator<Integer> {
+  Integer lo;
+  Integer hi;
+  
+  RangeIterator (Integer lo, Integer hi) { 
+    this.lo = lo; this.hi = hi; 
+  }
+
+  Boolean hasNext() { return this.lo <= this.hi; }
+
+  Integer next() { this.lo = this.lo + 1; return this.lo - 1; }
+}
+
+// Tests
+RangeIterator ri = new RangeIterator(0,2);
+ri.hasNext() -> true
+ri.next() -> 0
+ri.next() -> 1
+ri.hasNext() -> true
+ri.next() -> 2
+ri.hasNext() -> false
+\end{verbatim}
+\end{solution}
+\newpage
+
+\noindent
+Recall our definition of function objects:
+\begin{verbatim}
+interface Function<T,U> {
+  U call(T x);
+}
+\end{verbatim}
+\noindent
+Define the {\tt Square} class, which is a \verb|Function| that squares
+\verb|Integer|s.
+
+\ifrubric
+\begin{solution}
+\begin{verbatim}
+class Square implements Function<Integer,Integer> {
+  Integer call(Integer x) { return x * x; }
+} 
+Square s = new Square();
+s.call(3) -> 9
+s.call(0) -> 0
+\end{verbatim}
+\end{solution}
+\else
+\newpage
+\fi
+
+
+Using this interface, design and implement the {\tt MapIterator}
+class, which takes a \verb|Function| and an \verb|Iterator| as
+arguments, and iterates over the values produced by applying the
+function to each result produced by the iterator.
+
+\ifrubric
+\begin{solution}
+\begin{verbatim}
+class MapIterator<T,U> implements Iterator<U> {
+  Function<T,U> f;
+  Iterator<T> i;
+  MapIterator<T,U>(Function<T,U> f, Iterator<T> i) {
+   this.f = f; this.i = i;
+  }
+
+  boolean hasNext() { return i.hasNext(); }
+  U next() { return f.call(i.next()); }
+}
+
+//tests
+Iterator<Integer> i = new MapIterator<Integer,Integer>(new Square(), 
+                           new RangeIterator(1,5));
+i.next() -> 1
+i.next() -> 4
+i.next() -> 9
+i.hasNext() -> true
+
+\end{verbatim}
+\end{solution}
+\else
+\fi
+\newpage
+
+\noindent
+Now design the method \verb|sumSquares|, which takes two
+\verb|Integer|s, and uses the classes you've just defined, along with
+a \verb|for| or \verb|while| loop, to compute the sum of the squares
+of all the numbers between the given \verb|Integer|s, inclusive.
+
+\ifrubric
+\begin{solution}
+\begin{verbatim}
+class Test {
+  Integer sumSquares(Integer a, Integer b) {
+    Iterator<Integer> i = new MapIterator<Integer,Integer>(new Square(), 
+                             new RangeIterator(a,b));
+    Integer sum = 0;
+    while (i.hasNext()) { sum += i.next(); }
+    return sum;
+  }
+}
+
+sumSquares(1,2) -> 5
+sumSquares(0,0) -> 0
+sumSquares(10,10) -> 100
+\end{verbatim}
+\end{solution}
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+\end{problem}
+
 \end{document}
 
 

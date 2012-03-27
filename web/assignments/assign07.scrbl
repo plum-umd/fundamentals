@@ -73,7 +73,7 @@ visitors:
 
 @codeblock{
 ;; A [List X] implements ...
-;; - accept : [ListVisitor X Y]
+;; - accept : [ListVisitor X Y] -> Y
 ;;   Accept given visitor and visit this list's data.
 
 ;; A [ListVisitor X Y] implements
@@ -200,7 +200,7 @@ of lists.  Extend your implementation of lists (both kinds) to support
 the @racket[fold] method:
 @codeblock{
 ;; A [List X] implements ...
-;; - fold : [ListFold X Y]
+;; - fold : [ListFold X Y] -> Y
 ;;   Accept given fold and process this list's data.
 
 ;; A [ListFold X Y] implements
