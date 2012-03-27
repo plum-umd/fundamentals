@@ -113,7 +113,7 @@ about the harder problems in the background while you knock off the easy ones.
 2 & & 22\\ \hline
 3 & & ??\\ \hline
 4 & & ??\\ \hline
-5 & & ??\\ \hline
+5 & & 20\\ \hline
 %% Extra & & 5 \\ \hline
 {\bf Total} & & ?? \\ \hline
 %{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
@@ -217,9 +217,9 @@ Tree t2 = new TwoNode(t1,r);
 Tree t3 = new ThreeNode(b,h,t2);
 
 //> 3pts for tests
-t3.height -> 4
-r.height -> 1
-t2.height -> 3
+t3.height() -> 4
+r.height() -> 1
+t2.height() -> 3
 \end{verbatim}
 \end{solution}
 \end{problem}
@@ -247,6 +247,9 @@ interface TreeVisitor<T> {
 
 //> 2pts overall for getting types right
 //> 3pts overall for getting impls right
+
+// in Tree:
+  <T> T visit(TreeVisitor<T> v);
 
 // in Leaf:
 <T> T visit(TreeVisitor<T> v) { 
@@ -452,7 +455,7 @@ make {\tt setTail} work.  (You'll notice that the effect statement for
 \newpage 
 
 \begin{problem}
-\pts{???}
+\pts{20}
 
 Iterators are an extremely useful concept.  In particular, they aren't
 limited to iterating over the contents of data structures such as {\tt
@@ -477,6 +480,7 @@ interface Iterator<T> {
 
 \begin{solution}
 \begin{verbatim}
+//> 4pts
 class RangeIterator implements Iterator<Integer> {
   Integer lo;
   Integer hi;
@@ -485,12 +489,12 @@ class RangeIterator implements Iterator<Integer> {
     this.lo = lo; this.hi = hi; 
   }
 
-  Boolean hasNext() { return this.lo <= this.hi; }
+  public boolean hasNext() { return this.lo <= this.hi; }
 
-  Integer next() { this.lo = this.lo + 1; return this.lo - 1; }
+  public Integer next() { this.lo = this.lo + 1; return this.lo - 1; }
 }
 
-// Tests
+//> Tests 2pts
 RangeIterator ri = new RangeIterator(0,2);
 ri.hasNext() -> true
 ri.next() -> 0
@@ -516,8 +520,9 @@ Define the {\tt Square} class, which is a \verb|Function| that squares
 \ifrubric
 \begin{solution}
 \begin{verbatim}
+//> 3pts
 class Square implements Function<Integer,Integer> {
-  Integer call(Integer x) { return x * x; }
+  public Integer call(Integer x) { return x * x; }
 } 
 Square s = new Square();
 s.call(3) -> 9
@@ -537,6 +542,7 @@ function to each result produced by the iterator.
 \ifrubric
 \begin{solution}
 \begin{verbatim}
+//> 4pts
 class MapIterator<T,U> implements Iterator<U> {
   Function<T,U> f;
   Iterator<T> i;
@@ -544,11 +550,11 @@ class MapIterator<T,U> implements Iterator<U> {
    this.f = f; this.i = i;
   }
 
-  boolean hasNext() { return i.hasNext(); }
-  U next() { return f.call(i.next()); }
+  public boolean hasNext() { return i.hasNext(); }
+  public U next() { return f.call(i.next()); }
 }
 
-//tests
+//tests 2pts
 Iterator<Integer> i = new MapIterator<Integer,Integer>(new Square(), 
                            new RangeIterator(1,5));
 i.next() -> 1
@@ -571,6 +577,7 @@ of all the numbers between the given \verb|Integer|s, inclusive.
 \ifrubric
 \begin{solution}
 \begin{verbatim}
+//> 4pts
 class Test {
   Integer sumSquares(Integer a, Integer b) {
     Iterator<Integer> i = new MapIterator<Integer,Integer>(new Square(), 
@@ -581,6 +588,7 @@ class Test {
   }
 }
 
+//> Tests 1pt
 sumSquares(1,2) -> 5
 sumSquares(0,0) -> 0
 sumSquares(10,10) -> 100
