@@ -37,7 +37,7 @@ class TwoNode implements TwoTree {
 	return v.visitTwoNode(this.left, this.right);
     }
 
-    public Integer height() { return Math.max(this.left.height(), this.right.height()); }
+    public Integer height() { return 1+Math.max(this.left.height(), this.right.height()); }
 }
 
 class ThreeNode implements ThreeTree {
@@ -50,7 +50,7 @@ class ThreeNode implements ThreeTree {
     public <T> T visit(TreeVisitor<T> v) { 
 	return v.visitThreeNode(this.left, this.mid, this.right);
     }
-    public Integer height() { return Math.max(this.left.height(),
+    public Integer height() { return 1+Math.max(this.left.height(),
 					      Math.max(this.mid.height(),
 						       this.right.height())); }
 }
