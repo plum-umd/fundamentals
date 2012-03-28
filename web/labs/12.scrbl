@@ -14,18 +14,18 @@ We know you're sick of dictionaries, so we're going to talk about a
 new kind of data structure that's not a dictionary. We're going to talk about
 sets.
 
-Many of you have taking a discrete mathematics course, so you probably have
+Many of you are taking a discrete mathematics course, so you probably have
 an idea of how pervasive sets are in computer science. Many algorithms depend
 on having a set data structure around. They provide an interface like this:
 
 @indented{@verbatim|{
   // A Set<T> implements
   //
-  // add : -> Void
+  // add : T -> Void
   // Adds an element to the set
   // Effect: updates the set
   //
-  // contains : -> Boolean
+  // contains : T -> Boolean
   // Check if an element is in the set
 }|}
 
@@ -85,8 +85,8 @@ your vector. It implements this interface:
   // Set the bit to true at the given position
   // Effect: updates the vector
   //
-  // flip : Integer -> Boolean
-  // Flip a bit at the position (only if already set)
+  // flip : Integer -> Void
+  // Flip a bit at the position
   // Effect: updates the vector
 }|}
 
@@ -127,8 +127,8 @@ bit vector works is that when you add an element to it, you use
 to set in your bit vector.
 
 When you do a lookup, you will compute the same @racket[k] hash codes.
-If the bits at all positions are @emph{not} set, then you know that
-the element is definitely not in the set. However, if they @emph{are}
+If a bit at any position is @emph{not} set, then you know that
+the element is definitely not in the set. However, if all bits @emph{are}
 set, then you only know that it might be in the set.
 
 The reason you don't know if the element is actually in the set is
@@ -201,7 +201,7 @@ mechanisms such as
 We have provided an implementation of MurmurHash (based on a public domain
 implementation by Derek Young
 @hyperlink["http://dmy999.com/article/50/murmurhash-2-java-port"]{here})
-which you can get @hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510/MurmurHash2.java"]{here}.
+which you can get @hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510h/MurmurHash2.java"]{here}.
 
 It implements the same interface as the @racket[HashGenerator] above but
 you'll have to invoke @racket[MurmurHash2.hashCodes] instead.
