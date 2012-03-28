@@ -8,6 +8,13 @@
 
 @title*{Blog}
 
+@section*{Tester documentation}
+@tt{Mon Mar 26 19:16:05 EDT 2012}
+
+If you'd like to read more about how the tester works and how to use its
+advanced features, take a look at the documentation here:
+@url["http://www.ccs.neu.edu/javalib/Tester/"]
+
 @section*{Assignment 9}
 @tt{Fri Mar 23 11:30:59 EDT 2012}
 
