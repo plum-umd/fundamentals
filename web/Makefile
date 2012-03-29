@@ -17,7 +17,7 @@ clean: clean-class clean-web
 .PHONY: clean-class
 class: $(CLASS) clean-class
 
-$(CLASS): 
+$(CLASS):
 	raco pack -v ++setup class --collect --at-plt --replace $(CLASS) class
 
 clean-class:
@@ -30,7 +30,7 @@ clean-class:
 
 web: 2510H 2510H/dpc.pdf
 
-2510H/dpc.pdf: dpc.scrbl	
+2510H/dpc.pdf: dpc.scrbl
 	raco scribble --latex --dest 2510H/ dpc.scrbl
 	cd 2510H; xelatex dpc.tex
 
@@ -53,6 +53,7 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/First.java \
 		++extra misc/Trees.java \
 		++extra misc/Book.java \
+		++extra misc/Traverse.java \
 		++extra assignments/Employees.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
