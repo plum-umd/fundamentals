@@ -1,12 +1,51 @@
 #lang scribble/manual
 @(require "unnumbered.rkt")
-@(require "utils.rkt" racket/runtime-path)
+@(require "utils.rkt"
+	  racket/runtime-path
+	  scribble/eval
+          racket/sandbox)
 
 @(require (for-label (except-in class/0 check-expect)))
 @(require (for-label (only-in lang/htdp-intermediate-lambda check-expect)))
 @(require (for-label class/universe))
 
+@(define the-eval
+  (let ([the-eval (make-base-eval)])
+    (the-eval '(require (only-in lang/htdp-intermediate-lambda local sqr / + sqrt make-posn posn-x posn-y posn?)))
+    (the-eval '(require 2htdp/image))
+   ;(the-eval '(require lang/htdp-intermediate-lambda))
+    (the-eval '(require class/2))
+    #;(call-in-sandbox-context
+     the-eval
+     (lambda () ((dynamic-require 'htdp/bsl/runtime 'configure)
+                 (dynamic-require 'htdp/isl/lang/reader 'options))))
+    the-eval))
+
 @title*{Blog}
+
+@section*{GCD versus LCM in assignment}
+@tt{Thu Mar 29 15:34:17 EDT 2012}
+
+There is a bug in the write-up of the @seclink["assign10"]{current
+assignment}: it states that the @racket[lcm] function will be useful,
+when in fact it is the @racket[gcd] function that will be useful.
+Moreover, it is only the @racket[gcd] function in the most recent
+DrRacket that will be the most useful since it works even for
+fractional inputs.  If you're stuck with a version that only works for
+integers, you can construct the more useful version as follows:
+
+@defexamples[#:eval the-eval
+@code:comment{Rational Rational -> Rational}
+@code:comment{Generalizes integer gcd to rational numbers.}
+(define (gcd-rational r1 r2)
+   (/ (gcd (numerator r1) (numerator r2))
+      (lcm (denominator r1) (denominator r2))))
+(gcd-rational 3 4)
+(gcd-rational 9 12)
+(gcd-rational 1/3 1/4)
+(gcd-rational 1/4 5/4)
+]
+
 
 @section*{Tester documentation}
 @tt{Mon Mar 26 19:16:05 EDT 2012}
@@ -14,6 +53,17 @@
 If you'd like to read more about how the tester works and how to use its
 advanced features, take a look at the documentation here:
 @url["http://www.ccs.neu.edu/javalib/Tester/"]
+
+
+@section*{Code on traversing, review session}
+@tt{Sat Mar 24 12:29:46 EDT 2012}
+
+Here is the @link["Traverse.java"]{code} we've been developing
+over the last few lectures on loops, traversals, and iterators.
+
+There will be a review session immediately after lab on Monday.  The
+location is still being determined, but we will announce it in class
+and on the blog on Monday.
 
 @section*{Assignment 9}
 @tt{Fri Mar 23 11:30:59 EDT 2012}
