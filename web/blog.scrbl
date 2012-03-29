@@ -23,6 +23,14 @@
 
 @title*{Blog}
 
+@section*{Code from today}
+@tt{Thu Mar 29 16:35:49 EDT 2012}
+
+Here's the code from today: 
+@link["Today1.java"]{one} 
+@link["Today2.java"]{two} 
+@link["Today3.java"]{three}.
+
 @section*{GCD versus LCM in assignment}
 @tt{Thu Mar 29 15:34:17 EDT 2012}
 

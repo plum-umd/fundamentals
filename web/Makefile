@@ -54,6 +54,9 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/Trees.java \
 		++extra misc/Book.java \
 		++extra misc/Traverse.java \
+		++extra misc/Today1.java \
+		++extra misc/Today2.java \
+		++extra misc/Today3.java \
 		++extra assignments/Employees.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
