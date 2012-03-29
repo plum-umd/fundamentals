@@ -1,0 +1,126 @@
+Java Collections Framework Library:
+-----------------------------------
+
+HashMap<K, V>
+
+K represents the type of data used as a key
+V represents the type of data used as a value
+
+We look up the data values by providing its associated key.
+So, for example, a person's id may be the key and the values may be the 
+instances of the class Person (with name, date of birth, address, 
+or any relevant information we would like to record).
+
+The following methods allow us to work with HashMap data structure:
+
+The Constructor:
+HashMap()
+
+// Effect: remove all information stored in the hashmap
+void clear() 
+
+// Returns true if this hashmap contains the given key
+boolean containsKey(Object key)
+
+// Returns true if this hashmap maps one or more keys to the given value
+boolean containsValue(Object value)
+
+// Returns the value to which the specified key is mapped, 
+// or null if this map contains no mapping for the given key
+V get(Object key)
+
+// Returns true if this hashmap contains no key-value mappings
+boolean isEmpty()
+
+// Effect: associates the given value with the given key in this map
+// Returns the previous value associated with key, 
+// or null if there was no mapping for key. 
+// (A null return can also indicate that the map 
+// previously associated null with key.)
+V put(K key, V value)
+
+// Effect: Removes the mapping for the specified key from this map 
+// if present.
+// Returns the previous value associated with key, 
+// or null if there was no mapping for key. 
+// (A null return can also indicate that the map 
+// previously associated null with key.)
+V remove(Object key)
+
+// Returns the number of key-value mappings in this map.
+int size()
+
+Examples of use:
+----------------
+
+import tester.*;
+import java.util.*;
+
+/*
++-------------+
+| Person      |
++-------------+
+| int id      |
+| String name |
+| int age     |
++-------------+
+*/
+class Person{
+  int id;
+  String name;
+  int age;
+  
+  Person(int id, String name, int age){
+    this.id = id;
+    this.name = name;
+    this.age = age;
+  }  
+}
+
+class ExamplesHashMap{
+
+  Person pete1 = new Person(123, "Pete", 20);
+  Person pete2 = new Person(254, "Pete", 20);
+  Person pete3 = new Person(666, "Pete", 30);
+
+  HashMap<Integer, Person> hashmap= new HashMap<Integer, Person>();
+
+  void testhashMap(Tester t){
+  	// the map is empty at the start
+    t.checkExpect(this.hashmap.isEmpty(), true);
+    
+    // put one association in the map and check its size
+    this.hashmap.put(123, pete1);
+    t.checkExpect(this.hashmap.size(), 1);
+
+    // put the second association into the map, check for the first key
+    this.hashmap.put(254, this.pete2);
+    t.checkExpect(this.hashmap.get(123), this.pete1);
+    t.checkExpect(this.hashmap.size(), 2);
+
+    // put the third association into the map, check for the second key
+    this.hashmap.put(this.pete3.id, this.pete3);
+    t.checkExpect(this.hashmap.get(254), this.pete2);
+    t.checkExpect(this.hashmap.size(), 3);
+
+    // remove the first association, check that you get the correct value
+    Person pete4 = this.hashmap.remove(123);
+    t.checkExpect(pete4, this.pete1);
+    
+    // check the current contents and the size of the ma
+    t.checkExpect(this.hashmap.containsKey(123), false);
+    t.checkExpect(this.hashmap.containsKey(666), true);-
+    t.checkExpect(this.hashmap.containsValue(this.pete1), false);
+    t.checkExpect(this.hashmap.containsValue(this.pete2), true);
+    t.checkExpect(this.hashmap.size(), 2);
+
+    // try to remove the first association again - check that you get null
+    Person nobody = this.hashmap.remove(123);
+    t.checkExpect(nobody, null);
+    
+    // check that the size of the hashmap remained the same 
+    // after a failed removal
+    t.checkExpect(this.hashmap.size(), 2);
+  }
+
+}
