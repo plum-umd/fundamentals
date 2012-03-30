@@ -53,7 +53,7 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Lab8.html"]{Lab 8}}
  @item{@link["Lab9.html"]{Lab 9}}
  @item{@link["Lab10.html"]{Lab 10}}
- @item{@link["lab11.html"]{Lab 11}}
+ @item{@link["Lab11.html"]{Lab 11}}
  @item{@link["Lab12.html"]{Lab 12}}]
 
 @section[#:style 'unnumbered]{Assignments}

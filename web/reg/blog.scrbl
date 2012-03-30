@@ -6,6 +6,13 @@
 
 @title*{Blog}
 
+@section*{Macbeth.txt}
+@tt{Fri Mar 30 10:37:30 EDT 2012}
+
+The current homework mentions but does not provide a
+@link["Macbeth.txt"]{Macbeth.txt}, which is now available.
+
+
 @section*{5 Under 25; Tonight}
 @tt{Thu Mar 22 08:31:56 EDT 2012}
 

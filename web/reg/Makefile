@@ -28,6 +28,7 @@ web: 2510
 		2510.scrbl
 	cp -r assignments/*.html 2510/
 	cp -r assignments/*.java 2510/
+	cp -r assignments/*.txt 2510/
 	cp -r assignments/*.jar 2510/
 	cp -r assignments/*.rtf 2510/
 	cp -r assignments/*.zip 2510/
