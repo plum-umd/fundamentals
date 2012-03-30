@@ -23,6 +23,21 @@
 
 @title*{Blog}
 
+@section*{@racket[AbstractCollection]s}
+@tt{Fri Mar 30 16:27:00 EDT 2012}
+
+There has been some confusion on how exactly to implement a @racket[Collection]
+using an @racket[AbstractCollection]. If you look at the
+@hyperlink["http://docs.oracle.com/javase/6/docs/api/java/util/AbstractCollection.html"]
+          {documentation}
+you'll notice that all you need to implement for an immutable or unmodifiable
+collection are the @racket[iterator] and @racket[size] methods. For a modifiable one,
+you just need to override the @racket[add] method (also the iterator has to implement
+certain methods).
+
+What you don't need to do is implement all of the @racket[Collection] methods
+manually.
+
 @section*{Code from today}
 @tt{Thu Mar 29 16:35:49 EDT 2012}
 
@@ -53,7 +68,6 @@ integers, you can construct the more useful version as follows:
 (gcd-rational 1/3 1/4)
 (gcd-rational 1/4 5/4)
 ]
-
 
 @section*{Tester documentation}
 @tt{Mon Mar 26 19:16:05 EDT 2012}
