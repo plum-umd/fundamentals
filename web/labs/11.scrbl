@@ -199,7 +199,7 @@ define the following two methods: @racket[size] and @racket[iterator].
 }
 
 @exercise{
-  Follow the instructions in the @racket[Collection] interface documentation
+  Follow the instructions in the @racket[AbstractCollection] documentation
   to implement the optional operations as well. Now test these operations
   too.
 }
