@@ -10,11 +10,10 @@
 
 @lab:section{Building an application}
 
-Throughout most of this class, we have programmed small components that would
-be part of a larger system. For example, tries could be used in a program that
+Throughout most of this class, we have programmed small components that we could
+use as part of a larger system. For example, tries could be used in a program that
 manipulates text, bloom filters are
-@hyperlink["http://blog.alexyakunin.com/2010/03/nice-bloom-filter-application.html"]
-          {used in Chrome}
+@hyperlink["http://blog.alexyakunin.com/2010/03/nice-bloom-filter-application.html"]{used in Chrome}
 to decide if a website is malicious, and skip lists are used in well-known
 programs like @hyperlink["http://redis.io/"]{Redis}.
 
@@ -33,32 +32,83 @@ To make things simple for now, we will share a class Twitter account.
 The account name is @racket[CS2510HSpring12] and the password will be
 written on the whiteboard in the lab.
 
-Now download the following Java jar files:
+Now download the following Java jar files and add them to your project:
 
-...
+@itemlist[
+  @item{@hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510h/fundies-twitter.jar"]{fundies-twitter.jar}}
+  @item{@hyperlink["http://www.winterwell.com/software/jtwitter/jtwitter.jar"]{jtwitter.jar}}
+  @item{@hyperlink["http://oauth-signpost.googlecode.com/files/signpost-core-1.2.1.1.jar"]{signpost-core-1.2.1.1.jar}}
+  @item{@hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510h/commons-codec-1.6.jar"]{commons-codec-1.6.jar}}
+]
 
-The @racket[FundiesTwitter.jar] package contains classes that will let you
-easily connect to Twitter. The package includes a @racket[FundiesTwitter] class
-that gives you the following interface:
+The @racket[fundies-twitter.jar] package contains classes that will let you
+easily connect to Twitter. The package includes a @racket[TwitterFactory] class
+that has the following class and interface definition:
 
 @indented{@verbatim|{
-  // A FundiesTwitter is a
-  //   new FundiesTwitter()
+  // A TwitterFactory is a
+  //   new TwitterFactory()
   //
   // and implements:
+  //
+  // makeTwitter : -> Twitter
+  // Produces an object that lets you talk to Twitter
+  // Effect: sets up a Twitter connection
+}|}
+
+This implements the
+@hyperlink["http://en.wikipedia.org/wiki/Factory_pattern"]{factory pattern},
+which is a way to produce objects that implement some interface, but hiding the
+details of how that object is produced. In this case, the factory just hides
+the details of connecting to Twitter.
+
+The class that the factory produces implements the following interface:
+
+@indented{@verbatim|{
+  // ITwitter implements
+  //
+  // getHomeTimeline : -> List<Status>
+  // Gets the top 20 of your follower tweets
+  // Effect: fetches tweets from Twitter
+  //
+  // getUserTimeline : -> List<Status>
+  // Gets the top 20 public tweets
+  // Effect: connects to Twitter
+  //
+  // getUserTimeline : String -> List<Status>
+  // Gets the top 20 public tweets for the given user
+  // Effect: connects to Twitter
   //
   // getPublicTimeline : -> List<Status>
   // Gets the top 20 public tweets
   // Effect: connects to Twitter
   //
+  // getScreenName : -> String
+  // Produces your screen name
+  //
   // getStatus : -> Status
   // Fetches your status
-  // Effect: connects to Twitter
+  // Effect: fetches status from server
   //
-  // setStatus : String -> Void
-  // Sets your status
-  // Effect: connects to Twitter
+  // retweet : Status -> Status
+  // Retweets the given status
+  // Effect: sends the retweet
+  //
+  // search : String -> List<Status>
+  // Searches Twitter for the given term
+  // Effect: searches Twitter
+  //
+  // setStatus : String -> Status
+  // Sets your status to the given string
+  // Effect: sets your status on the server
+  //
+  // users : -> Twitter_Users
+  // Produces an object useful for interacting with users
 }|}
+
+An impressive list of methods. We won't need all of them in the
+lab (and there are more we could have added), but it's nice to
+be able to use many of Twitter's features.
 
 The class described above also uses a @racket[Status] class, which
 implements the following interface:
@@ -82,6 +132,11 @@ implements the following interface:
   // Produces the user who wrote this tweet
 }|}
 
+@racket[Status] actually implements more methods, but these are the
+ones that you will probably care about. If you want to see what else is
+available, take a look at
+@hyperlink["http://www.winterwell.com/software/jtwitter/javadoc/winterwell/jtwitter/Status.html"]{this page}.
+
 To get started, implement a @racket[Driver] class that will start up your
 application. Recall from lecture that a driver has a static main method
 like the following:
@@ -94,14 +149,12 @@ like the following:
 }|}
 
 @exercise{
-  Write a basic application that uses the @racket[FundiesTwitter] class
+  Write a basic application that uses the @racket[TwitterFactory] class
   to set your class account's status to the string provided at the command-line.
 
-  To provide command-line arguments from Eclipse, go to "Run Configurations"
-  and click on the "Arguments" tab. Enter text in the "Program arguments:"
-  box.
-
-  Make sure you set the status to the whole string, not just the first part of it.
+  If you're using Eclipse, you can provide command-line arguments by going to
+  "Run Configurations" and clicking on the "Arguments" tab. Enter text in the
+  "Program arguments:" box.
 }
 
 We could like to be able to do more than just set the account's status.
@@ -121,13 +174,29 @@ tweets in the public timeline.
 }
 
 This approach works, but sometimes you want to be able to specify multiple
-options or commands.
+options or commands. If you're used to using Linux or Unix machines from
+the command-line, you've seen how commands can take flags. For example,
+the @tt{du} command (shows disk usage) can be invoked like @tt{du -sh}
+where @tt{s} means "summarize" and @tt{h} means "human-readable".
 
-EXPAND EXPAND EXPAND
+There are many libraries that simplify the process of parsing complex
+command-line options like this. One of these is the Apache Commons CLI
+library. There is a tutorial on its usage
+@hyperlink["http://commons.apache.org/cli/usage.html"]{here}.
+
+You can download it here:
+@hyperlink["http://www.ccs.neu.edu/home/asumu/cs2510h/commons-cli-1.2.jar"]{commons-cli-1.2.jar}
+
+Of course, you could write your own code to parse command-line arguments using,
+for example, the
+@hyperlink["http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html"]{Scanner}
+class. Sometimes it is nice to be able to use someone else's code if it is
+already high-quality though.
 
 @exercise{
-  Optional: Use the Apache Commons CLI library to parse complicated command-line
-  arguments for your program.
+  Optional: Using the Apache Commons CLI library, set up your Twitter client
+  so that it can take multiple actions (like both setting the status and
+  printing out the public timeline) using command-line flags.
 }
 
 @lab:section{Now back to the World}
@@ -162,7 +231,9 @@ constructor so that you can make new @racket[World]s.
 }
 
 For the next exercise, you will want to familiarize yourself with the
-@racket[TextImage] class so that you can draw tweets to the screen.
+@racket[TextImage] class so that you can draw tweets to the screen. If
+there's anything in the Java library that is unclear from the documentation,
+ask one of the tutors or TAs.
 
 You may be wondering how you can integrate World (which does not usually use
 effects) with your Twitter code which uses a bunch of effects, like
@@ -174,8 +245,8 @@ World state.
   Now write a big-bang program that continuously shows updates from
   the class Twitter account.
 
-  You will want to set the speed to something like 30 seconds or 60 seconds like
-  @racket[big-bang(500, 300, 30)] so that your application doesn't try to access
+  You will want to set the speed to something like 10 seconds like
+  @racket[big-bang(500, 300, 10)] so that your application doesn't try to access
   Twitter too often.
 }
 
@@ -201,17 +272,17 @@ simplified quite a bit. It only lets you connect to one account and hides all th
 details of connecting to an account. In reality, connecting to a web service
 is much more complicated.
 
-The @racket[FundiesTwitter] class actually provides a more complicated
-interface to connect to any account. This uses a different constructor:
+The @racket[TwitterFactory] class actually provides more methods
+that let you connect to any account. This uses a different factory method:
 
 @indented{@verbatim|{
-  // A FundiesTwitter is one of
-  //   - new FundiesTwitter()
-  //   - new FundiesTwitter(User, Key, Secret)
+  // A TwitterFactory also implements
   //
-  // where User, Key, and Secret are String
+  // makeTwitter : User Key Secret -> ITwitter
+  // Produces an object for the given Twitter account
+  // Effect: connects to Twitter
   //
-  // ...
+  // where User, Key, and Secret are Strings
 }|}
 
 To make sure that accounts are secure, Twitter uses a complicated system
@@ -225,7 +296,7 @@ someone's account. The service then asks the user if this access should be
 allowed. If the access is granted, then the application can receive
 an @emph{access key} from the service for the account.
 
-If you use the second constructor to @racket[FundiesTwitter], you can
+If you use the alternate factory method in @racket[TwitterFactory], you can
 request access to the given user's Twitter account using your application
 key and secret.
 
@@ -240,4 +311,17 @@ You can obtain an application key and secret from Twitter's website
   You should be redirected to a web page asking you if you want to grant access.
   At the same time, Java will show a dialog asking you to enter a PIN to
   allow access.
+}
+
+Internally, @racket[TwitterFactory] is using the
+@hyperlink["http://www.winterwell.com/software/jtwitter.php"]{JTwitter} library
+to authorize itself with Twitter and provide you with an interface with which
+to send status updates and so on. It takes some work to set up a working
+connection, which we've encapsulated in the factory class for you. However,
+it's not too much work to do it on your own.
+
+@exercise{
+  Optional: Following the documentation on the JTwitter website, write your own
+  code that connects to Twitter that doesn't use the simplified functionality provided by
+  @racket[TwitterFactory].
 }
