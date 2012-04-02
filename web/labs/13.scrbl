@@ -2,149 +2,242 @@
 
 @(require "../lab.rkt"
           "../unnumbered.rkt"
-          "../utils.rkt"
-          (for-label class/universe
-                     2htdp/image))
+          "../utils.rkt")
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab13"]{4/02: The minority game}
+@title[#:tag "lab13"]{4/02: Off to the web we go}
 
-Here is a state-transition diagram for a simple @math{n}-player game:
+@lab:section{Building an application}
 
-  @elem[@image["labs/13/state-diagram.png"] #:style "center"]
+Throughout most of this class, we have programmed small components that would
+be part of a larger system. For example, tries could be used in a program that
+manipulates text, bloom filters are
+@hyperlink["http://blog.alexyakunin.com/2010/03/nice-bloom-filter-application.html"]
+          {used in Chrome}
+to decide if a website is malicious, and skip lists are used in well-known
+programs like @hyperlink["http://redis.io/"]{Redis}.
 
-@itemlist[
-  @item{In the ``Join'' state players gather. At some arbitrary point it is
-  decided to start the game with the current set of players.}
-  @item{In the ``Vote'' state each player chooses to vote either A or B. After
-  everyone has placed a vote, play advances.}
-  @item{In the ``Win/Lose'' state everyone is notified whether they've won or
-  lost the game. After everyone sees their result, play restarts in the ``Join''
-  state, where players can come and go before another round starts.}
-]
+While these components are important, as a programmer in the real world you
+will probably at some point build applications that interact with real users,
+connect to the Internet, and use libraries that someone else has developed.
 
-The rules are very simple: players in the minority win. So if three people vote
-A and two vote B, then the three lose and the two win. If there are six players,
-three of which vote A and three of which vote B, then everyone loses because
-there is no minority. If there's only one player then they can never win because
-they will never be in the (empty) minority. Also, with two players no one ever
-wins. So it's really only interesting in groups of three or more.
+To give you some experience with building an application, we will investigate
+what it takes to develop a @hyperlink["http://www.twitter.com"]{Twitter}
+client. You will take advantage of many things you've already learned like
+programming to interfaces, using iterators, and so on.
 
-This game sounds pretty dull but, like many other seemingly dull games, it's
-useful in the field of @emph{game theory} to analyze complex behaviors among
-large groups of interacting agents, be they people in social situations,
-entities in financial markets, or even matter in physical systems. This
-particular game is called a ``minority game'' and you can read
-@link["http://news.softpedia.com/news/Minority-Games-38625.shtml"]{more}
-@link["http://en.wikipedia.org/wiki/Minority_game#Minority_Game"]{about}
-@link["http://www.google.com/search?q=minority+game"]{it} if you're curious.
+@lab:section{Preliminaries}
 
-Our interest in this game isn't its game-theoretic properties, but how we can
-code it up using @tt{World}s and @tt{Universe}s. In particular, we'll see a way
-to model state-transition systems by mapping each state down to its own class,
-with objects transitioning from one state to the next by morphing into new kinds
-of objects.
+To make things simple for now, we will share a class Twitter account.
+The account name is @racket[CS2510HSpring12] and the password will be
+written on the whiteboard in the lab.
+
+Now download the following Java jar files:
+
+...
+
+The @racket[FundiesTwitter.jar] package contains classes that will let you
+easily connect to Twitter. The package includes a @racket[FundiesTwitter] class
+that gives you the following interface:
+
+@indented{@verbatim|{
+  // A FundiesTwitter is a
+  //   new FundiesTwitter()
+  //
+  // and implements:
+  //
+  // getPublicTimeline : -> List<Status>
+  // Gets the top 20 public tweets
+  // Effect: connects to Twitter
+  //
+  // getStatus : -> Status
+  // Fetches your status
+  // Effect: connects to Twitter
+  //
+  // setStatus : String -> Void
+  // Sets your status
+  // Effect: connects to Twitter
+}|}
+
+The class described above also uses a @racket[Status] class, which
+implements the following interface:
+
+@indented{@verbatim|{
+  // A Status implements:
+  //
+  // getId : -> BigInteger
+  // Produces the ID of the tweet
+  //
+  // getLocation : -> String
+  // Produces the location of the tweet
+  //
+  // getMentions : -> List<String>
+  // Produces a list of mentions
+  //
+  // getText : -> String
+  // Produces the contents of the tweet
+  //
+  // getUser : -> String
+  // Produces the user who wrote this tweet
+}|}
+
+To get started, implement a @racket[Driver] class that will start up your
+application. Recall from lecture that a driver has a static main method
+like the following:
+
+@indented{@verbatim|{
+  // A Driver implements
+  //
+  // static main : String[] -> Void
+  // Kicks off the program
+}|}
 
 @exercise{
-  The @tt{Universe} will be responsible for coordinating the players, gathering
-  their votes, and determining which players win and lose.
+  Write a basic application that uses the @racket[FundiesTwitter] class
+  to set your class account's status to the string provided at the command-line.
 
-  Create three @tt{Universe} classes, @racket[join-universe%],
-  @racket[vote-universe%], and @racket[win-lose-universe%], one for each state
-  in the transition system.
+  To provide command-line arguments from Eclipse, go to "Run Configurations"
+  and click on the "Arguments" tab. Enter text in the "Program arguments:"
+  box.
 
-  @itemlist[
-    @item{@racket[join-universe%]: Listen for new players for a moment, and then
-    send a message to all known players to announce that voting will begin. The
-    announcement doesn't need to contain any meaningful information. Incoming
-    messages can be ignored.}
+  Make sure you set the status to the whole string, not just the first part of it.
+}
 
-    @item{@racket[vote-universe%]: Wait for all players to place a vote
-    (@racket["A"] or @racket["B"]). After all votes are in, notify each player
-    whether they've won (@racket[true]) or lost (@racket[false]) and advance to
-    the next state. If a player places multiple votes, ignore all but the last
-    one. Players that try to join during the voting phase can be ignored.}
+We could like to be able to do more than just set the account's status.
+What we will do is make the Twitter application accept several kinds of commands.
+For example, if the arguments are @tt{status "Fundies 2 forever"} then your
+app should update the status. If it's @tt{timeline}, it should produce the
+tweets in the public timeline.
 
-    @item{@racket[win-lose-universe%]: Give the players a moment to accept their
-    defeat or celebrate their victory, then start the game over in the Join
-    state and notify the players of this. Again, this message doesn't have to
-    contain meaningful information. New players and incoming messages can be
-    ignored in this state.} ]
+@exercise{
+  Have your program operate differently based on the command-line arguments.
+  The @tt{status} command should either set or get the status depending on if
+  there is another string in the arguments. The @tt{timeline} command should
+  print out the timeline.
 
-  A few limitations to mind:
-  @itemlist[
-    @item{Even though we have multiple @tt{Universe}s, there can only be one
-    @racket[tick-rate] and, if you want to specify it, it must be defined on the
-    initial @tt{Universe}.}
+  To print a value to the command-line, use the @racket[System.out.println]
+  static method. Make sure you format tweets from the timeline nicely.
+}
 
-    @item{Each @tt{Universe} can have its own methods like @racket[on-tick],
-    @racket[on-disconnect], etc., but if they aren't defined on the initial
-    @tt{Universe} then the system won't know to look for it on subsequent
-    @tt{Universe}s. If necessary, you can define ``do-nothing'' methods on your
-    initial @tt{Universe} that leave everything unchanged.}
-  ]
+This approach works, but sometimes you want to be able to specify multiple
+options or commands.
+
+EXPAND EXPAND EXPAND
+
+@exercise{
+  Optional: Use the Apache Commons CLI library to parse complicated command-line
+  arguments for your program.
+}
+
+@lab:section{Now back to the World}
+
+Okay, so you've developed a command-line Twitter client. Most people prefer to
+use a graphical interface for their tweets though. Since Java user interface
+toolkits are incredibly complicated, we will go back to an old friend:
+the World library.
+
+There is a Java version of World that is provided
+@hyperlink["http://www.ccs.neu.edu/javalib/FunWorld/"]{here}. It works just
+like the @racket[Racket] version of World for the most part.
+
+To get started, you will want to extend the @racket[World] class like this:
+
+@indented{@verbatim|{
+  class MyWorld extends World {
+    ...
+  }
+}|}
+
+You will need to define methods like @racket[makeImage] (@racket[to-draw] from
+Racket), @racket[onKeyEvent] (@racket[on-key]), @racket[onTick]
+(@racket[on-tick]), and so on.
+
+To pass the World's data at each tick, you will want to define your own
+constructor so that you can make new @racket[World]s.
+
+@exercise{
+  Acquaint yourself with Java's World and write a simple program that
+  draws a rocket (or any other vehicle) that travels across the screen.
+}
+
+For the next exercise, you will want to familiarize yourself with the
+@racket[TextImage] class so that you can draw tweets to the screen.
+
+You may be wondering how you can integrate World (which does not usually use
+effects) with your Twitter code which uses a bunch of effects, like
+communicating on the Internet. One way to handle this is to call the Twitter
+code in @racket[onTick] and use the output from Twitter to create your next
+World state.
+
+@exercise{
+  Now write a big-bang program that continuously shows updates from
+  the class Twitter account.
+
+  You will want to set the speed to something like 30 seconds or 60 seconds like
+  @racket[big-bang(500, 300, 30)] so that your application doesn't try to access
+  Twitter too often.
 }
 
 @exercise{
-  The @tt{World} will represent a player and is reponsible for connecting to the
-  universe, picking a vote, and reporting the outcome.
-
-  Create three @tt{World} classes, @racket[join-world%], @racket[vote-world%],
-  and @racket[win-lose-world%], one for each state in the transition system.
-
-  @itemlist[
-    @item{@racket[join-world%]: Register with the @tt{Universe} and wait to be
-    notified that voting has begun. As above, the notification won't contain any
-    meaningful information.}
-
-    @item{@racket[vote-world%]: Let the player choose their vote and send it to
-    the @tt{Universe} (@racket["A"] or @racket["B"]). Listen for the message
-    indicating whether we've won (@racket[true]) or lost (@racket[false]), and
-    then advance to the next state.}
-
-    @item{@racket[win-lose-world%]: Report the player's fate and wait to be
-    notified that the game is restarting. As above, the incoming message won't
-    contain meaningful information.}
-  ]
-
-  @tt{World}s have the same limitations as @tt{Universe}s described above.
-}
-
-Does your game work properly? Try playing with your neighbors---if you followed
-the spec above, you should all be speaking the same protocol.
-
-@exercise{
-  I bet you have some repeated code. Since each @tt{Universe} must have
-  @racket[on-new] and @racket[on-msg] methods, There should be a few places in
-  your three @tt{Universe} classes where you wanted to ignore new connections or
-  incoming messages, and you had to define do-nothing methods to appease the
-  @racket[universe] system.
-
-  Define @racket[ignore-new-mixin] @tt{: Class -> Class} that adds a do-nothing
-  @racket[on-new] method to a class to make it more @tt{Universe} compliant.
-
-  Define @racket[ignore-msg-mixin] @tt{: Class -> Class} that adds a do-nothing
-  @racket[on-msg] method to a class to make it more @tt{Universe} compliant.
-
-  Use these two mixins to clean up your @tt{Universe} classes.
+  Optional: Figure out a good way to set your own status from the keyboard
+  and/or mouse.
 }
 
 @exercise{
-  If you used @racket[on-key] or @racket[on-mouse] to input the player's vote,
-  you'll have a similar problem where you defined do-nothing methods on all but
-  one of your @tt{World} classes.
-
-  Clean up your @tt{World} classes by defining a mixin, similar to the two
-  above.
+  Optional: If you're feeling more ambitious, create buttons in your World
+  that lets you switch from the public timeline to only the accounts you
+  are following.
 }
 
 @exercise{
-  If a player tries to join during the Vote or Win/Lose state they will be
-  ignored---that's pretty rude!
+  Optional: Also add whatever other features you feel like adding.
+}
 
-  Change your @racket[vote-universe%] and @racket[win-lose-universe%] so that
-  they queue up incoming players and pass them off to the
-  @racket[join-universe%] when the next round starts. To avoid repeated code,
-  define and use a @racket[queueing-mixin] to achieve this.
+@lab:section{Going further with Twitter}
+
+The Twitter interface that we have provided in this lab so far has been
+simplified quite a bit. It only lets you connect to one account and hides all the
+details of connecting to an account. In reality, connecting to a web service
+is much more complicated.
+
+The @racket[FundiesTwitter] class actually provides a more complicated
+interface to connect to any account. This uses a different constructor:
+
+@indented{@verbatim|{
+  // A FundiesTwitter is one of
+  //   - new FundiesTwitter()
+  //   - new FundiesTwitter(User, Key, Secret)
+  //
+  // where User, Key, and Secret are String
+  //
+  // ...
+}|}
+
+To make sure that accounts are secure, Twitter uses a complicated system
+to ensure that apps only have access to accounts that are actually okay
+with giving that permission. As part of that system, Twitter uses an
+authentication protocol called OAuth.
+
+With OAuth, an application writer users his/her API key and secret
+to sign a request to the service (e.g., Twitter) asking for access to
+someone's account. The service then asks the user if this access should be
+allowed. If the access is granted, then the application can receive
+an @emph{access key} from the service for the account.
+
+If you use the second constructor to @racket[FundiesTwitter], you can
+request access to the given user's Twitter account using your application
+key and secret.
+
+You can obtain an application key and secret from Twitter's website
+@hyperlink["https://dev.twitter.com/apps/new"]{here}.
+
+@exercise{
+  Optional: Either obtain your own Twitter application credentials or
+  ask the TA for the class account's key and try using the alternative
+  constructor to connect to your Twitter account (if you have one).
+
+  You should be redirected to a web page asking you if you want to grant access.
+  At the same time, Java will show a dialog asking you to enter a PIN to
+  allow access.
 }
