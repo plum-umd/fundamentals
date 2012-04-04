@@ -23,6 +23,14 @@
 
 @title*{Blog}
 
+@section*{Assignment 10}
+@tt{Wed Apr  4 19:53:09 EDT 2012}
+
+
+The @seclink["assign11"]{new homework assignment} is now up.  It is due one
+week from today.
+
+
 @section*{@racket[AbstractCollection]s}
 @tt{Fri Mar 30 16:27:00 EDT 2012}
 
