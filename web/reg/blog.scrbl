@@ -6,6 +6,14 @@
 
 @title*{Blog}
 
+@section*{Another practice exam}
+@tt{Thu Apr  5 12:11:06 EDT 2012}
+
+Here is the @link["exam2H-sp12.pdf"]{honors exam 2} from this
+semester, which may also be useful in preparing for this class's exam
+3.
+
+
 @section*{Exam location}
 @tt{Thu Apr  5 12:01:35 EDT 2012}
 
