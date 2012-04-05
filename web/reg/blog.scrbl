@@ -6,6 +6,14 @@
 
 @title*{Blog}
 
+
+@section*{Assignment 13 posted}
+@tt{Thu Apr  5 12:50:11 EDT 2012}
+
+@link["Assignment13.html"]{Assignment 13}, the final project, has now
+been posted.  Start working on it early because it is a large project.
+
+
 @section*{Another practice exam}
 @tt{Thu Apr  5 12:11:06 EDT 2012}
 
