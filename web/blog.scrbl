@@ -36,8 +36,7 @@ week from today.
 
 There has been some confusion on how exactly to implement a @racket[Collection]
 using an @racket[AbstractCollection]. If you look at the
-@hyperlink["http://docs.oracle.com/javase/6/docs/api/java/util/AbstractCollection.html"]
-          {documentation}
+@hyperlink["http://docs.oracle.com/javase/6/docs/api/java/util/AbstractCollection.html"]{documentation}
 you'll notice that all you need to implement for an immutable or unmodifiable
 collection are the @racket[iterator] and @racket[size] methods. For a modifiable one,
 you just need to override the @racket[add] method (also the iterator has to implement
