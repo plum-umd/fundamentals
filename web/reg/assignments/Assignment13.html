@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Assignment 13 - The Final Project</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012:Assignment  13 - The Final Project</h1>
+
+
+<h3>Project goals and logistics</h3>
+
+<p>The goal of this assignment is to give you the opportunity to use all
+the concepts we have learned in the design and implementation of a
+small project. The project will involve user interactions, but the
+core is the design of the functionality, following the design recipes,
+building abstractions, and using the existing libraries. Good design
+and a simple user interaction part is much more valuable than a flashy
+user interactions with poor design of the program that drives it.</p>
+
+<p>You should finish the design and most of the implementation of your project by
+the morning of Tuesday, April 17th. The project presentation will be
+done during the regular lab times on Tuesday, April 17th (from 9:00 am
+till 4:10 pm) and during the regular lecture times on Wednesday, April
+18th (i.e. 9:15 am - 10:20 am and 1:35 pm - 2:40 pm). All
+presentations will be done in the lab in 212 WVH.</p>
+
+<p>You can then use the rest of the time on Tuesday and Wednesday to finish the
+project, incorporate the suggestions given during the project review,
+and check your final version into your pair's SVN repository by
+the due date, which is WEDNESDAY 4/18/2012 at 11:59pm.</p>
+
+
+<h3>Project naming requirements</h3>
+
+<p>The names of the project and some of the project files must be
+exactly the same as specified in the assignment. Failure to do so
+makes it impossible for the graders to run your submission and results
+in immediate loss of at least 50% of the homework credit.</p>
+
+<p>Every file you submit must have a header that identifies you and the
+problem it solves.</p>
+
+<pre>
+// Assignment 13 Final Project
+// Partner Name1
+// partner1username
+// Partner Name2
+// partner2username
+// 18 April 2012
+</pre>
+
+<p>Submit your <em>Design Document</em> and your <em>User's Guide</em>
+as a <em>.doc</em>, <em>.docx</em> or a 
+<em>.pdf</em> file. Open source equivalent of <em>.docx</em> is also
+acceptable. Name these files <strong><em>DesignDoc.xxx</em></strong>
+and <strong><em>UsersGuide.xxx</em></strong></p>
+
+
+<p>Name the class that contains the tests and the <code>main</code>
+method that runs your tests and the project
+<em>ExamplesProject.java</em></p>
+
+<hr></hr>
+
+<h3>Project details</h3>
+
+<p>To design this project you should use the <em>impsoundworld</em>
+library that supports the design of interactive games using imperative
+style (instead of creating a new <em>world</em> after each tick, key
+event, or a mouse click, the state of the <em>world</em>
+changes). Additionally, the <em>tunes</em> library allows you to
+create musical background music, or simple sound effects. The web
+pages for these libraries provide the documentation, explanation of
+how the library can be used, and several sample programs you can use
+as guides.</p>
+
+<p>Here are the links to some of these resources.</p>
+
+<ul>
+  <li><a href="http://www.ccs.neu.edu/javalib">javalib</a> the main
+  website for the <em>javalib</em> collection of libraries</li>
+
+  <li><a href="http://www.ccs.neu.edu/javalib/SoundLib">SoundLib</a> the main
+  website for the older version of the sound library, but with
+  up-to-date details
+  about creating music, musical effects, and sound effects.</li> 
+
+  <li><a href="http://www.ccs.neu.edu/javalib/SoundWorld">SoundWorld</a> the 
+  website for the current version of the sound library.</li> 
+
+  <li><a href="http://www.ccs.neu.edu/javalib/AppletWorld">AppletWorld</a> the 
+  website for the imperative library that describes in a greater
+  detail the
+  creation of Applets.</li>
+
+  <li><a href="http://www.ccs.neu.edu/javalib/ImpWorld">ImpWorld</a> the 
+  website for the current version of the imperative world library that
+  describes in detail how the images are created in the imperative
+  style (and describes the overall design of the games in imperative style).</li>
+
+  <li><a href="jpt.jar">jpt.jar</a> a library that supports the design
+  of GUIs (used for the <em>Travel Advisor USA</em> option).</li>
+  
+</ul>
+
+<hr></hr>
+
+<h3>Project options</h3>
+
+<p>Choose one of the three options for the project. Choose the
+option you feel most competent to tackle, and that interests you the
+most.</p>
+
+<p>Here is a brief overview of the three options:</p>
+
+<h3>Option 1: Musical Frogger Game</h3>
+
+<p>Design an interactive <em>frogger</em> game with sound effects,
+using the <em>impsoundworld</em> library.</p>
+
+<p>A frog is trying to cross the road with several lines of cars
+moving in both directions, then cross the stream by hopping onto lily
+pads floating in the river, making sure not to fall into the raging
+stream to get to its home on the other bank. You may give the frog
+several chances to try to reach its home. Play a background music, add
+sound effects when bad or good things happen to the frog.</p>
+
+<h3>Option 2: Musical Marion Game</h3>
+
+<p>Design an interactive <em>mario</em> game with sound effects,
+using the <em>impsoundworld</em> library.</p>
+
+<p>Marion is a little guy (or a little girl) walking along from left to
+right. Or it seems so. Because while Marion is always at the same
+horizontal distance from the left, obstacles she has to avoid or use to
+jump from move from right to left. She needs to jump over obstacles
+(the player uses keys to prod her along), may get a boost when jumping
+from some special ones, have several lives, count the distance
+traveled, etc.  Play a background music, add
+sound effects when bad or good things happen to Marion.</p>
+
+
+<h3>Option 3: Travel Advisor USA</h3>
+
+<p>Design a travel advisor that will show the user how to find a route
+from one US state to another - with animated graphical displays as well
+as written directions. A framework for this project is already in
+place. Your job is to implement the three graph traversal algorithms
+(<em>the Breadth First Search or BFS, the Depth First Search or DFS,
+and the Shortest Path or SP algorithm</em>), to display the progress
+of the algorithm, and to provide the directions for each leg of the
+journey as text (e.g. <em>go 130 miles West from Boston to
+Albany</em>). The only sound effects you need to add would be a ping
+as each edge changes color to indicate that the algorithm looked at it
+and took some actions. Of course, you can use any of the <em>Java
+Collection Framework</em> classes to manage your data.</p>
+
+<p>The details for this project with a number of <em>starter
+files</em> can be found <a
+href="GraphProject/GraphAlgorithmResources.html">here</a>.</p> 
+
+<hr></hr>
+
+<h3>Project Requirements and Assessment</h3>
+
+<p>The project grade will cover the following:</p>
+
+<ul>
+<li>The design document</li>
+
+<li>The design of the program model</li>
+
+<li>The user's guide</li>
+
+<li>The design of the user's interactions</li>
+
+<li>The project presentation</li>
+
+</ul>
+
+<p>Of course, the design of appropriate tests is an integral part of the
+design of any program (<em>just in case you have not yet realized
+this</em>).</p> 
+
+<h4>The design document</h4>
+
+<p>One part of the credit for this assignment will be given for a design
+document that describes the data, the organization of the program, the
+key program components, and the design of tests. Imagine you want
+someone to keep improving your program --- provide a road map that
+explains what your program does and how does it do it. This document
+should complement the Javadoc generated web pages. A separate document
+will give you a more detailed guidelines for what we expect.</p>
+
+<h4>The design of the program model</h4>
+
+<p>One part of the credit for this assignment is for the model part: the
+design of the behavior of the program apart from the user interfaces.</p>
+
+<h4>The user's guide</h4>
+
+<p>The user of your program needs to know the rules of the game, how to
+run the algorithm animation, or what are the features of your musical
+exploration program. You need to create a user's guide that will
+explain concisely what to expect of your program and how to interact
+with it.</p>
+
+<h4>The design of the user's interactions</h4>
+
+<p>You will also get credit is for the user interactions (view) ---
+grading both the design 
+of the user views and the design of the program that drives it. A
+small bonus may be earned for exceptionally well designed display or
+interactions. It is better if the user interaction is simple, but is
+well designed and documented, than if a fancy 
+GUI display is driven by a code that another programmer cannot understand
+and maintain.</p>
+
+<h4>Project presentation</h4>
+
+<p>You will present your project (both partners together) during the lecture
+on Thursday. Each partner should be able to 
+describe any part of the code in the project, regardless of <em>who
+    wrote it</em>, as we expect that both partners work on the project
+together. More information about the presentations will be provided
+shortly.</p>
+
+<hr></hr>
+
+
+<h3>The Advice</h3>
+
+<p>The design part of each project typically takes the greatest amount of
+time. the more time you spend thinking things through, the easier it
+is to actually write the code.</p>
+
+<p>Make sure you think the whole framework through before you start
+programming. Spend some time researching the Java libraries to see
+what tasks can be done using the existing tools. Write sample adapters
+to see how the existing class can be used in your setting.</p>
+
+<p>Then design the key component by specifying their interfaces --- the
+method headers, the interfaces that various classes must implement or
+use to get information from others.</p>
+
+<p>For now, you have not learned about various tools and techniques to
+support such design process --- other than class diagrams. Any
+description that you find helpful in clarifying the roles of the
+different classes and interfaces in your program is acceptable.</p>
+
+<p>The design document you produce should include a brief user's guide,
+give a general overview of the 
+project organization as well as describe all data definitions and the
+key methods. The Javadocs supplement this with detailed information
+about the actual implementation.</p>   
+ 
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Tue Apr  3 12:57:41 EDT 2012 <!-- hhmts end -->
+</body> </html>
