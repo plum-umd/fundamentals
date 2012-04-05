@@ -6,6 +6,19 @@
 
 @title*{Blog}
 
+@section*{Past exams}
+@tt{Thu Apr  5 08:57:07 EDT 2012}
+
+Don't forget: there is an out-of-class exam from 6-9pm on Tuesday
+4/10.  (Be sure to eat dinner before arriving!)
+
+Here are the past exams from @link["exam3-fl09-sol.pdf"]{Fall 2009},
+@link["exam3-fl10-no-sol.pdf"]{Fall 2010},
+@link["exam3-sp10-sol.pdf"]{Spring 2010},
+@link["exam3-sp11-sol.pdf"]{Spring 2011}, and
+@link["exam3-su10.pdf"]{Summer 2010}.
+
+
 @section*{Macbeth.txt}
 @tt{Fri Mar 30 10:37:30 EDT 2012}
 
