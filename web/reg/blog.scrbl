@@ -6,6 +6,12 @@
 
 @title*{Blog}
 
+@section*{Exam location}
+@tt{Thu Apr  5 12:01:35 EDT 2012}
+
+The exam will be held in 20 West Village F.
+
+
 @section*{Past exams}
 @tt{Thu Apr  5 08:57:07 EDT 2012}
 
