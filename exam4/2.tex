@@ -237,7 +237,7 @@ t2.height() -> 3
 \
 \begin{enumerate}
 \item Design a \verb|TreeVisitor| interface for 2/3-trees, and implement the
-\verb|visit| method in all of your classes from the previous problem.
+\verb|accept| method in all of your classes from the previous problem.
 Make sure you design the interfaces and methods so that a visitor can
 return any type of data.
 
@@ -390,12 +390,38 @@ class UnPair<X> {
     UnPair<Integer>(3,4)} is the same (according to {\tt same}) as
   {\tt new UnPair<Integer>(4,3)}.
 
+\begin{solution}
+\begin{verbatim}
+public boolean same(UnPair<X> p) {
+  return (this.left.equals(p.left) &&
+          this.right.equals(p.right))
+      || (this.left.equals(p.right) &&
+          this.right.equals(p.left));
+}
+
+{5,7}.equals({5,7}) --> true
+{5,7}.equals({7,5}) --> true
+{5,5}.equals({5,7}) --> false
+\end{verbatim}
+\end{solution}
+
+
 \newpage
 \item Assuming {\tt same} and {\tt equals} work as expected, is
 the given {\tt hashCode} method valid?  That is, does it satisfy or
 violate the law of {\tt hashCode}?  If it is valid, give an argument
 for \emph{why}.  If it is not, give a counter-example to the law of
 {\tt hashCode}.
+
+\begin{solution}
+\begin{verbatim}
+It is not valid.
+
+Counterexample:
+{5,7}.equals({7,5}) but 5.hashCode() does not equal
+7.hashCode()
+\end{verbatim}
+\end{solution}
 \end{enumerate}
 \end{problem}
 \newpage
@@ -456,6 +482,41 @@ Revise the {\tt List<X>} interface with any methods you need to add to
 make {\tt setTail} work.  (You'll notice that the effect statement for
 {\tt setTail} implies that this list cannot be empty; if you try to
 {\tt setTail} on an empty list, you may raise an exception.)
+
+\begin{solution}
+\begin{verbatim}
+interface List<X> {
+    void setTail(List<X> ls);
+    void setTailAcc(List<X> ls, Cons<X> last);
+}
+
+class MT<X> implements List<X> {
+    public void setTail(List<X> ls) {
+        throw new RuntimeException("setTail on MT");
+    }
+    public void setTailAcc(List<X> ls, Cons<X> last) {
+        last.rest = ls;
+    }
+}
+
+class Cons<X> implements List<X> {
+    X first;
+    List<X> rest;
+    Cons(X first, List<X> rest) {
+        this.first = first;
+        this.rest = rest;
+    }
+    public void setTail(List<X> ls) {
+        this.rest.setTailAcc(ls, this);
+    }
+    public void setTailAcc(List<X> ls, Cons<X> last) {
+        this.rest.setTailAcc(ls, this);
+    }
+}
+
+// Plus tests
+\end{verbatim}
+\end{solution}
 
 \newpage
 [Here is some more space for the previous problem.]
