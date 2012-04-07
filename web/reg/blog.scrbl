@@ -6,6 +6,13 @@
 
 @title*{Blog}
 
+@section*{Review session time and location}
+@tt{Sat Apr  7 11:00:21 EDT 2012}
+
+The review session for exam 3 will be held Monday 4/9 from 6-8pm in
+135 Shillman Hall and will be led by Nikko Patten and Scott Lindeman.
+Come prepared with questions.
+
 
 @section*{Assignment 13 posted}
 @tt{Thu Apr  5 12:50:11 EDT 2012}
