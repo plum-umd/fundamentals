@@ -23,6 +23,12 @@
 
 @title*{Blog}
 
+@section*{Code from this week}
+@tt{Sun Apr  8 16:22:39 EDT 2012}
+
+The code from @link["misc/class-impl1.rkt"]{Monday} and
+@link["misc/class-impl1.rkt"]{Thursday} is now available.
+
 @section*{Assignment 10}
 @tt{Wed Apr  4 19:53:09 EDT 2012}
 

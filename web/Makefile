@@ -57,6 +57,8 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/Today1.java \
 		++extra misc/Today2.java \
 		++extra misc/Today3.java \
+		++extra misc/class-impl1.rkt \
+		++extra misc/class-impl2.rkt \
 		++extra assignments/Employees.pdf \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
