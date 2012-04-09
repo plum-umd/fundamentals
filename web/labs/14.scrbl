@@ -3,7 +3,8 @@
 @(require "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
-          slideshow/pict)
+          slideshow/pict
+          unstable/gui/pict)
 
 @(define (cell-> c1 c2)
    (hc-append c1
@@ -18,9 +19,9 @@
          hc-append
          (for/list ([cell row])
            (if (eq? 'live cell)
-               (cc-superimpose (rectangle 30 30)
+               (cc-superimpose (rectangle/border 30 30 #:border-width 1)
                                (standard-fish 15 15 #:color "green"))
-               (rectangle 30 30)))))))
+               (rectangle/border 30 30 #:border-width 1)))))))
 
 @(define exercise (exercise-counter))
 
@@ -145,7 +146,7 @@ When you think about it, there's really no reason to hardcode these rules into t
 game though. What if we abstracted and made the liveness rules parameters of the game?
 
 @exercise{
-  Add parameters to your @racket[World] via its constructor that controls how the
+  Add parameters to your @racket[World] via its constructor that control how the
   rules of the game work.
 
   For example, you should be able to set the thresholds at which a cell becomes
