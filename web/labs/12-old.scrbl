@@ -3,8 +3,20 @@
 @(require "../lab.rkt"
           "../unnumbered.rkt"
           "../utils.rkt"
+          slideshow/pict
           (for-label class/universe
                      2htdp/image))
+
+@(define (draw-cells lst)
+   (apply
+     vc-append
+     (for/list ([row lst])
+       (apply
+         hc-append
+         (for/list ([cell lst])
+           (if (eq? 'live cell)
+               (filled-rectangle 30 30)
+               (rectangle 30 30)))))))
 
 @(define exercise (exercise-counter))
 
