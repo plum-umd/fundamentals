@@ -106,8 +106,8 @@ Here are some examples (you can use these for tests later):
   Design an interface, data definition, and class definition for a @racket[Cell].
 
   You should be able to figure out if a cell is live or dead. Cells should keep track
-  of its neighbors and neighbor liveness. You also should be able to either update
-  the cell's liveness or produce a new cell with the updated liveness.
+  of its neighbors and neighbor liveness. You should also be able to update
+  the cell's liveness and neighbors.
 
   You may also want to have a method that draws a @racket[Cell] for later when you
   build a @racket[World].
@@ -121,10 +121,18 @@ the world over the size of the board.
   cells in the game. At each tick, all cells should update their live or dead state
   appropriately.
 
+  One option for designing this is to use @racket[ArrayList]s containing @racket[ArrayList]s
+  to represent rows and columns. You may want to use a @racket[ListIterator] to update the
+  board and set up @racket[Cell]s. When setting up the board, you will want to make sure
+  that @racket[Cell]s actually keep track of their neighbors.
+
   For now, have your world start out with some default set of cells live.
 }
 
-Make sure that your cells update correctly.
+Make sure that your cells update correctly. In particular, be careful that you don't
+accidentally use the wrong values of neighbors when updating liveness. A @racket[Cell]
+should only change its state based on the @emph{current} states and not the future states
+of neighbors (you may need to keep track of extra information to do this).
 
 @exercise{
   Add GUI buttons or add key shortcuts to your world that will start, pause,
