@@ -40,7 +40,7 @@ to complex behavior despite their simplicity.
 If you've heard of @hyperlink["http://en.wikipedia.org/wiki/Turing_machine"]{Turing machine}s
 or the @hyperlink["http://en.wikipedia.org/wiki/Lambda_calculus"]{lambda calculus}, cellular
 automata can actually be powerful enough to model these too. Theoretically speaking, you can
-build automata that can compute anything you could compute using computer. Then again,
+build automata that can compute anything you could compute using your computer. Then again,
 you can do the same thing with
 @hyperlink["http://en.wikipedia.org/wiki/Billiard-ball_computer"]{billiard-balls} so maybe
 that's not that special.
