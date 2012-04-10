@@ -9,8 +9,9 @@
 @section*{Code from Review Session}
 @tt{Tue Apr 10 09:22:33 EDT 2012}
 
-Here is the code from last night's review session.  The instructors
-make @emph{no claim of correctness} of this code.
+Here is the @link["Review.zip"]{code} from last night's review
+session.  The instructors make @emph{no claim of correctness} of this
+code.
 
 @section*{Review session time and location}
 @tt{Sat Apr  7 11:00:21 EDT 2012}
