@@ -27,9 +27,9 @@
 @tt{Tue Apr 10 00:07:03 EDT 2012}
 
 In case you weren't able to complete the lab on Monday, a sample implementation
-using FunWorld is available @link["labs/14/Life.java"]{here}. Play with it and
-see if you can find any interesting patterns. The spacebar pauses the
-simulation.
+using FunWorld is available @link["Life.java"]{here}. Play with it and see
+if you can find any interesting patterns or make any improvements. The spacebar
+pauses the simulation.
 
 If you want to see how far you can go with cellular automata,
 @hyperlink["http://www.youtube.com/watch?v=QtJ77qsLrpw"]{here} is
@@ -38,8 +38,8 @@ a recursive Game of Life for inspiration.
 @section*{Code from this week}
 @tt{Sun Apr  8 16:22:39 EDT 2012}
 
-The code from @link["misc/class-impl1.rkt"]{Monday} and
-@link["misc/class-impl1.rkt"]{Thursday} is now available.
+The code from @link["class-impl1.rkt"]{Monday} and
+@link["class-impl1.rkt"]{Thursday} is now available.
 
 @section*{Assignment 10}
 @tt{Wed Apr  4 19:53:09 EDT 2012}
