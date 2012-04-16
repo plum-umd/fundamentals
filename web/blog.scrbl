@@ -39,7 +39,7 @@ a recursive Game of Life for inspiration.
 @tt{Sun Apr  8 16:22:39 EDT 2012}
 
 The code from @link["class-impl1.rkt"]{Monday} and
-@link["class-impl1.rkt"]{Thursday} is now available.
+@link["class-impl2.rkt"]{Thursday} is now available.
 
 @section*{Assignment 10}
 @tt{Wed Apr  4 19:53:09 EDT 2012}
