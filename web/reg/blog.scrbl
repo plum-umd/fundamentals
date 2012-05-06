@@ -6,6 +6,13 @@
 
 @title*{Blog}
 
+@section*{Project presentation info}
+@tt{Wed Apr 18 00:57:26 EDT 2012}
+
+Here some @link["ProjectPresentations.html"]{info} on project
+presentations.
+
+
 @section*{Code from Review Session}
 @tt{Tue Apr 10 09:22:33 EDT 2012}
 
