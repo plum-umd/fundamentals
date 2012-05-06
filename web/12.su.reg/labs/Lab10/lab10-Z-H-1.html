@@ -1,0 +1,91 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!--
+
+Generated from lab10.tex by tex2page, v 20070609
+(running on Racket 5.2, unix), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+-->
+<head>
+<title>
+lab10
+</title>
+<link rel="stylesheet" type="text/css" href="lab10-Z-S.css" title=default>
+<meta name="robots" content="index,follow">
+</head>
+<body>
+<div id=slidecontent>
+<div align=right class=navigation>[Go to <span><a href="lab10.html">first</a>, <a href="lab10.html">previous</a></span><span>, <a href="lab10-Z-H-2.html">next</a></span> page]</div>
+<p><span class=scriptsize></p>
+<pre class=verbatim>   TEMPLATE - ANALYSIS: 
+   --------------------
+   return-type method-name(Traversal tr){
+                            +--------------------+
+   // invoke the methodAcc: | acc &lt;-- BASE-VALUE |
+                            +--------------------+
+      method-name-acc(Traversal tr, BASE-VALUE);
+    }
+    
+    return-type method-name-acc(Traversal tr, return-type acc)
+    ... tr.isEmpty() ...                       -- boolean     ::PREDICATE
+    if true: 
+    ... acc                                    -- return-type ::BASE-VALUE
+    if false:
+       +---------------+  
+    ...| tr.getFirst() | ...                   -- E           ::CURRENT
+       +---------------+  
+    
+    ... update(T, return-type)                 -- return-type ::UPDATE
+             +----------------------------+
+    i.e.: ...| update(tr.getFirst(), acc) | ...
+             +----------------------------+         
+        +--------------+  
+    ... | tr.getRest() |                       -- Traversal&lt;T&gt; ::ADVANCE
+        +--------------+  
+    
+    ... method-name(tr.getRest(), return-type)  -- return-type  
+    i.e.: ... method-name-acc(tr.getRest(), update(tr.getFirst(), acc)) 
+</pre><p></p>
+<p>
+Based on this analysis, we can now design a template for the entire
+problem &#8212; with the solution divided into three methods as follows:</p>
+<p>
+</p>
+<pre class=verbatim>    COMPLETE METHOD TEMPLATE:
+    -------------------------
+    &lt;T&gt; return-type method-name(Traversal&lt;T&gt; tr){
+                                   +------------+
+      method-name-acc(Traversal tr,| BASE-VALUE |);
+                                   +------------+
+    }
+     
+    &lt;T&gt; return-type method-name(Traversal&lt;T&gt; tr, return-type acc){
+          +--------------+
+      if (| tr.isEmpty() |) 
+          +--------------+
+       return acc;
+     else
+                              +--------------+ 
+       return method-name-acc(| tr.getRest() |,
+                              +--------------+
+                              +----------------------------+
+                              | update(tr.getFirst(), acc) |);
+                              +----------------------------+
+     }
+     
+     &lt;T&gt; return-type update(T t, return-type acc){ ... 
+     } 
+</pre><p>
+</p>
+<p>
+</p>
+<div class=smallskip></div>
+<p style="margin-top: 0pt; margin-bottom: 0pt">
+<div align=right class=navigation>[Go to <span><a href="lab10.html">first</a>, <a href="lab10.html">previous</a></span><span>, <a href="lab10-Z-H-2.html">next</a></span> page]</div>
+</p>
+<p></p>
+</div>
+</body>
+</html>

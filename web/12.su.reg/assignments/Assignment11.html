@@ -1,0 +1,522 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Assignment 11 - HashMap; Equals; Images; Text
+Compression; JUnit</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012:Assignment  11 - HashMap; Equals; Images; Text
+Compression; JUnit</h1>
+
+
+<h4>Practice Problems</h4>
+
+<p>Work out as the following exercises from the textbook. Do not add them
+to your assignment submission, though you should keep them in your
+electronic portfolio in your own <em>svn</em> repository.</p> 
+
+<p><strong>Problem: Color Processing</strong></p>
+
+<p>Start a new project for this portfolio, name it <em>Images</em>.</p>
+
+<p>Download the file <a
+href="ImageProcessor.zip">ImageProcessor.zip</a> and import all
+<em>.java</em> files into it. Save all image files (<em>.png</em>
+files) in the same directory in your <em>EclipseWorkspace</em> where
+your <em>src</em> and <em>bin</em> files for this project are
+located.</p>
+
+<p>Examine the files that are given to understand what they do. Here
+is a brief overview of their design.</p>
+
+<p>The class <tt>ImageReader</tt> allows you to read any <em>.bmp</em> or
+<em>.png</em> file and analyze the individual pixels. The constructor
+expects the name of the file to be read. It reads the file and
+initializes the value of the <tt>width</tt> and <tt>height</tt> fields
+for the given image.</p>
+
+<p>The method <tt>Color getColorPixel(int x, int y)</tt> returns the
+color value of the pixel at the given location. You can extract the
+red, blue, and green component of the color as integers using the
+methods</p>
+
+<pre>
+   c.getRed()
+   c.getGreen()
+   c.getBlue()
+</pre>
+
+
+<p>Try the following tasks that will allow you to manipulate color
+images:</p>
+
+<p>Create a negative of the given <em>Flowers.png</em> image. Explore
+other ways of manipulating the images and document your exploration.</p>
+
+<p>To create new images and save then as <em>.png</em> files, use the
+given class <tt>ImageBuilder</tt>. It works as follows:</p>
+
+<ul>
+<li><p>The constructor also initializes the field <tt>BufferedImage
+  image</tt> that is ready to receive the data needed to represent the
+  resulting image. You need to supply the height and the width of the
+  image.</p></li>
+
+<li><p>The method <tt>setColorPixel (x, y, r, g, b)</tt> sets the color
+  of the given pixel in the <tt>image</tt> to the specified RGB shade.</p></li>
+
+<li><p>The method <tt>public void saveImage(String filename)</tt> saves
+  the image you have created in the <em>.png</em> format --- it adds the
+  <em>.png</em> to the filename you specify.</p></li>
+</ul>
+
+  </li>
+
+<p><em>Note:</em> The class <tt>ImageBuilder2</tt> works the
+same way as <tt>ImageBuilder</tt>, but in addition it displays the
+image as it is created in a <em>Canvas</em>. To use this class you
+need to import the world libraries: <a
+  href="impworld.jar">impworld.jar</a>,  <a
+  href="geometry.jar">geometry.jar</a>, and <a
+  href="colors.jar">colors.jar</a>.</p>     
+    
+
+
+  
+  
+
+<hr></hr>
+
+<h4>Pair Programming Assignment</h4>
+
+<p>These problems should be checked into your pair's SVN repository
+by the due date.</p>
+
+<p><strong>Project naming requirements</strong></p>
+<p>The names of the projects and some of the project files must be
+exactly the same as specified in the assignment. Failure to do so
+makes it impossible for the graders to run your submission and results
+in immediate <strong>loss of at least 50%</strong> of the homework
+credit.</p>
+
+<p>Every file you submit must have a header that identifies you and
+the problem it solves. So, for the first problem the header should
+look like this:</p>
+
+<pre>
+// Assignment 1 Problem 1
+// Partner Name1
+// partner1username
+// Partner Name2
+// partner2username
+// 2 April 2012
+</pre>
+
+
+<h3>Problem 1 Shakespeare</h3>
+
+
+
+<p><strong>Introduction</strong></p>
+
+<p>Have you ever wondered about the size of Shakespeare's vocabulary? For
+this assignment you will write a program that reads its input from a
+text file and lists the words that occur most frequently, together
+with a count of how many different words occur in the file. If this
+program were to run on a file that contains all of Shakespeare's
+works, it would tell you the approximate size of his vocabulary, and
+how often he uses the most common words.</p>
+
+<p><em>Hamlet</em>, for example, contains about 4542 distinct words, and
+the word <it>king</em> occurs 202 times, while the play
+<em>Macbeth</em> contains about 3201 distinct words, and  
+the word <em>macbeth</em> occurs 288 times.</p>
+
+<p>Researchers use this kind of techniques to verify authenticity of
+some disputed texts.</p>
+
+<p><strong>The Problem</strong></p>
+
+<P>Create a project with the name <tt>HW11Problem1</tt>. Download the
+file <a href="Assignment11.zip">Assignment11.zip</a> unzip it and 
+add the files to the project. Run the project, to make sure you
+have all pieces in place. The <tt>ExamplesWords</tt> class uses the
+<em>tester</em> package as we have done before.</p>
+
+
+<p>The text file <a href="Macbeth.txt">Macbeth.txt</a></em> contains the entire
+text of the play <em>Macbeth</em> and a file <tt>StringIterator.java</tt> 
+contains code that generates <tt>Word</tt>s from a file (e.g.,
+<em>Macbeth.txt</em>) one at a time. Save the file <em>Macbeth.txt</em> in
+the <em>Eclipse</em> project directory (where you find the
+subdirectories <em>src</em> and <em>bin</em>). The <tt>Examples</tt> class
+includes a code that invokes the processing of the complete text of
+the play <tt>Macbeth</tt>.</p>
+
+<p><em>Note:</em> Here you will use the imperative <tt>Iterator</tt>
+  interface that is a part of Java Standard Library. Make sure to look
+  up the documentation for this interface and understand how it
+  works.</p>
+
+<p>The files that are provided form a skeleton of your project - you
+only have to add the missing parts.</p>
+
+<p><em>Note:</em> You may use any Java Collections Framework classes
+that may help you solve this problem -- and we encourage you to do
+so.</p>
+
+<p>So, here is what you need to do:</p>
+
+<ol>
+
+<li><p>Design the class <tt>Word</tt> that represents one word of
+  Shakespeare's vocabulary together with its <em>frequency
+    counter</em>. The constructor takes only the <tt>String</tt> (for
+  example the word "king") and starts the <em>counter</em> at 1
+  (one).</p>
+
+  <p>Two <tt>Word</tt> instances are equal to each other if they represent
+  the same <tt>String</tt>, regardless of their frequency counters. That
+  means that you have to override the <tt>equals()</tt> and
+  <tt>hashCode()</tt> methods.</p></li>
+
+<li><p>Implement a <tt>toString</tt> method for <tt>Word</tt> that returns
+  the word <tt>String</tt> and its frequency.</p></li>
+
+<li><p>Implement the method <tt>increment()</tt>
+  that increments the <tt>Word</tt>s frequency.</p></li>
+
+<li><p>Design a class <tt>WordsByFreq</tt> that implements the
+  <tt>Comparator</tt> interface, so that the words can be sorted
+  <em>by frequencies</em>. (Be careful!) When you are done, place this
+  class definition as the last part of the class definition of the
+  class <tt>Word</tt>. This is called an <strong>inner class</strong>. </p></li>
+
+  <p><em>Note:</em> In this program there will be two ways of comparing
+    the instances of the Word class - by the String that it represents
+    and by the counter for the word that this instance represents.</p></li>
+
+<li><p>Design the class <tt>WordCounter</tt> that keeps track of all the
+  words we have seen so far. It should include the following methods:</p>
+
+<pre>
+   // Record the Word objects generated by the given Iterator
+   //   and update the number of ocurrences
+   void countWords(Iterator<Word> it) { ... }
+
+   // How many different Words has this WordCounter recorded?
+   int words(){ ... }
+
+   // Prints the n most common words and their frequencies.
+   void printWords(int n) { ... }
+</pre></li>
+
+</ol>
+
+
+<p>Here are additional details:</p>
+
+<ul>
+<li><p><tt>countWords</tt> consumes a <tt>Word</tt> iterator that generates
+  the words and builds the collection of the appropriate <tt>Word</tt>
+  instances, with the correct frequencies. This collection is then
+  used by the next two method to show the results of our text
+  analysis.</p></li>
+
+<li><p><tt>words</tt> produces the number of different words that have
+  been counted. </p></li>
+
+<li><p><tt>printWords</tt> consumes an integer <tt>n</tt> and prints the
+  top <tt>n</tt> words with the highest frequencies (using the
+  <tt>toString</tt> method defined in the class <tt>Word</tt>). </p></li>
+
+</ul>
+
+
+ <p><em>Note:</em>  The given code expects that you implement the classes
+as given, with the same names and methods. It will then check whether
+your program works correctly. That does not mean you do not need to
+design tests.</p>
+
+
+<p><strong>Testing of the Shakespeare Project</strong></p>
+
+<p>Of course, you need to test all methods as you are designing
+them. Design the tests in two stages:</p>
+
+<ol>
+
+<li><p>For the class <tt>Word</tt> and the the class <tt>WordCounter</tt>
+  use a technique similar to what was done in the past assignments,
+  i.e. design a class <tt>ExamplesWords</tt> with the necessary sample data
+  and all tests.  \textit{We've astarted you off... just keep going</tt>.</p></li>
+
+<li><p>Convert all tests into <tt>JUnit</tt> tests. Hand in both
+  versions.</li></p>
+
+</ol>
+
+
+
+<p><strong>Documentation</strong></p>
+
+<p>The projects should contain <tt>Javadoc</tt> documentation that should
+produce the documentation pages \textbf{without any warnings}. You do
+not need to submit the documentation pages to the repository.</p>
+
+<hr></hr>
+
+<h3>Problem 2</h3>
+
+<P>Create a project with the name <tt>HW011Problem2</tt>.
+Define the class <tt>Algorithms</tt> and the class
+<tt>ExamplesHuffman</tt>.</p>  
+
+<p>Imagine that we want to define the most efficient way for encoding the
+letters of alphabet using only sequences of bits (values <tt>0</tt> and
+<tt>1</tt>). David Huffman designed an algorithm that maake this
+possible.</p> 
+
+
+<p>We start by looking at the text we want to encode. Assume it is
+represented as a single <tt>String</tt>. For example, the text may be
+the following 45 characters:
+
+<pre>
+In the midst of the word he was trying to say
+....x....x....x....x....x....x....x....x....x
+</pre>
+
+<p>Or, you can use a smaller (20 character) <tt>String</tt> from a
+well known song:</p> 
+
+<pre>
+oh, say, can you see
+....x....x....x....x
+</pre>
+
+<ol>
+<li><p>Your first task is to produce a histogram that records the
+  frequencies of each letter (including space) that occurs in the given
+  <tt>String</tt>.</p>
+
+  <p>For each letter the histogram records how many times the letter
+  occurred in the typical text we plan to encode and decode. We use
+  instances of the class <tt>LF</tt> to encode the frequency of each
+  letter.  Our histogram is then an <tt>ArrayList< LF>.</tt> </p>
+
+  <p> This is very similar the the Shakespeare problem in
+  your current homework assignment.</p>
+
+<pre>
+       +---------------+
+       | LF            |
+       +---------------+
+       | String letter |
+       | int freq      |
+       +---------------+
+</pre>
+
+<p>In the class <tt>ExamplesHuffman</tt> make an example of the
+  histogram you would get from the shorter text given
+  previously.</p></li> 
+
+
+<li><p>IN the class <tt>Algorithms</tt> design the method
+  <tt>computeHisto</tt> that computes the histogram for a given
+  <tt>String</tt> of text.</p> 
+
+  <p>You can use any type of Java loop to implement this method. See
+  if <em>for-each</em> loop woud work for you.</p></li>
+
+<li><p>Given the letter frequencies, we can build a binary-tree that
+  represents the optimal encoding for each letter in our
+  <tt>String</tt>.  We first show examples of the trees that represent
+  such encodings.
+
+  The <tt>KeyTree</tt> class hierarchy is defined as:
+
+<pre>
+              +-------------------------+
+              |  +--------------------+ |
+              v  v                    | |
+          +----------+                | |
+          | KeyTree  |                | |
+          +----------+                | |
+          | int freq |                | |
+          +----+-----+                | |
+              / \                     | |
+             +---+                    | |
+               |                      | |
+           +---+-----------+          | |
+           |               |          | |
+ +---------------+  +---------------+ | |
+ |  Leaf         |  |     Node      | | |
+ +---------------+  +---------------+ | |
+ | String letter |  | KeyTree left  |-+ |
+ +---------------+  | KeyTree right |---+
+                    +---------------+
+</pre>
+
+<p>The code that defines these classes is given below:</p>
+
+<pre>
+  // to represent a Huffman Tree
+  abstract class KeyTree{
+     // the frequency of this character or collection
+     int freq;
+
+     KeyTree(int freq){
+        this.freq = freq;
+     }
+  }
+
+  // to represent a single character
+  class Leaf extends KeyTree{
+     String letter;
+    
+     Leaf(String letter, int freq){
+        super(freq);
+        this.letter = letter;
+     }
+  }
+  // to represent a splitting node in the KeyTree
+  class Node extends KeyTree{
+     KeyTree left;
+     KeyTree right;
+  
+     Node(KeyTree left, KeyTree right){
+        super(left.freq + right.freq);
+        this.left = left;
+        this.right = right;
+     }
+  }
+</pre>
+
+
+<p>In the class <tt>ExamplesHuffmna</tt> make examples of the
+  following two trees. The first one represents the 
+optimal encoding for the <tt>String</tt> <em>cat at bat</em>, the second
+one represents the optimal encoding for the <tt>String</tt> <em>here
+  there</em> (the number next to the each <tt>Leaf</tt> is it's frequency):</p>
+
+<pre>
+                10                   10
+              /    \               /    \
+             6      4             4      6
+            / \    / \           / \    / \
+           a3 t3  2  sp2        h2 r2  e4  2
+                 / \                      / \
+                c1 b1                    t1 sp1
+</pre>
+</li>
+
+<li><p>To construct our encoding we can save the histogram data in a
+  priority queue of <tt>KeyTree</tt>s, where the highest priority item
+  is the one with the <em>lowest frequency</em>.  This means we first
+  need a <tt>Comparator<KeyTree></tt> that compares using
+  <tt>freq</tt>.</p> 
+
+<p>Design the comparator <tt>ByFreq</tt>.</p></li>
+ 
+
+<li><p>The encoding for the character <tt>"t"</tt> in our first example
+  is the <tt>String</tt> <tt>"01"</tt>, but in the second example it is
+  <tt>"110"</tt>.  Notice that the numbers <tt>0</tt> and <tt>1</tt> tell us
+  whether we should choose the <tt>left</tt> or <tt>right</tt> tree.</p>
+
+ <p>Design the method <tt>findPath</tt> for the <tt>KeyTree</tt> classes
+  that consumes a character and produces a <tt>String</tt> representing
+  this encoding, ending with the given character.</p>
+
+ <p>So, for the input <tt>"t"</tt> the first tree would produce
+  <tt>"01t"</tt>, and the second tree would produce <tt>"110t"</tt>.</p></li>
+
+<li><p>In the class <tt>Algorithms</tt> design the method
+  <tt>encodeString</tt> that consumes a <tt>KeyTree</tt> 
+  and a <tt>String</tt> that consists only of the characters encoded in
+  the given <tt>KeyTree</tt> and produces the <tt>String</tt> of <tt>0</tt>s
+  and <tt>1</tt>s that represents the encoding of the given
+  <tt>String</tt>.</p>
+
+ <p><em>Note:</em> In a real application each character <tt>0</tt> or
+  <tt>1</tt> in the encoding would be represented as a single
+  <em>bit</em>. Considering that the encoding of every character in a
+  <tt>String</tt> usually requires 8 or 16 <em>bits</em>, this is typically a
+  serious improvement.</p></li>
+
+<li><p>Design the method <tt>nextLetter</tt> for the <tt>KeyTree</tt> classes
+  that consumes a <tt>String</tt> of <tt>0</tt>s and <tt>1</tt>s and
+  produces the letter that the encoding represents (in the form of a
+  <tt>String</tt>  of length 1). The method
+  should throw an exception if the given <tt>String</tt> is not a valid
+  encoding.</p>
+
+ <p>So, in the first tree the input <tt>"01"</tt>, would produce
+  <tt>"t"</tt>, in the second tree the input <tt>"110"</tt> would produce
+  <tt>"t"</tt>.</p></li>
+
+<li><p>Design the method <tt>decode</tt> for the <tt>KeyTree</tt> classes
+  that consumes a <tt>String</tt> that represents an encoding of a
+  sequence of characters and produces a <tt>String</tt> that the
+  encoding represents. The method should throw an exception if the
+  given <tt>String</tt> is not a valid encoding.</p>
+
+ <p>So, in the first tree the input <tt>"1000001"</tt>, would produce the
+  <tt>"cat"</tt>, and in the second tree <tt>"1100010"</tt> would produce
+  <tt>"the"</tt>.  The second tree would fail for the <tt>"001"</tt>.</p></li>
+
+<li><p>Design the method <tt>buildTree</tt> as follows:</p>
+
+
+  <p>Use the method <tt>buildPQ</tt> shown below to build the
+  initial priority queue (of <tt>Leafs</tt>) from the <tt>LF</tt> data.</p>
+
+<pre>
+   // insert the frequency data into a priority queue
+   // produce an priority queue of KeyTree data
+   public PriorityQueue< KeyTree> buildPQ(ArrayList< LF> lfList){
+      PriorityQueue< KeyTree> pq =
+           new PriorityQueue< KeyTree>(lfList.size(), new ByFreq());    
+      for(LF lf : lfList){
+          pq.offer(new Leaf(lf.c, ch.occurs));
+      }   
+      return pq;
+   }
+</pre>
+
+  <p>Now design the method <tt>buildTree</tt> that consumes a priority
+  queue you built and produces the <tt>KeyTree</tt> that represents the
+  encoding.  It works as follows:</p>
+  
+ <ul>
+
+  <li>if the priority queue is empty, no tree can be built and we
+    should throw an exception.</li>
+
+  <li>if the size of the priority queue is 1, it contains a single
+    <tt>KeyTree</tt>, so the tree is removed and returned.</li>
+
+  <li>otherwise, the method removes the two <tt>KeyTree</tt>s with the
+    highest priority (lowest frequencies) and adds a new
+    <tt>KeyTree</tt> to the queue that has the removed items as its
+    <tt>left</tt> and <tt>right</tt> subtrees. It then recurs,
+    consuming the updated priority queue.</li>
+
+  </ul>
+
+  <p>Look up the documentation for the methods for the Java
+  <tt>PriorityQueue</tt> in the <em>Java Collections Library</em>.</p>
+</li>
+
+</ol>
+
+
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Thu Mar 29 17:03:46 EDT 2012 <!-- hhmts end -->
+</body> </html>

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Assignment 8 - Binary Trees and Binary Search Trees</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012:Assignment  8 - Binary Trees and Binary Search Trees</h1>
+
+
+<h4>Practice Problems</h4>
+
+<p>Complete part 3
+of <a href="http://www.ccs.neu.edu/course/cs2510/Lab8.html">Lab
+8</a>. You do not need to add this to your assignment submission,
+though you should keep them in your electronic portfolio in your
+own <em>svn</em> repository.  This problem is good practice for the
+upcoming exam.</p>
+
+<hr/>
+
+<h3>Pair Programming Assignment</h3>
+
+<p>
+These problems should be checked into your pair's SVN repository by
+the due date, which is WEDNESDAY 3/14/2012 at 11:59pm.
+</p>
+
+<h3>Project naming requirements</h3>
+
+The names of the projects and some of the project files must be
+exactly the same as specified in the assignment. Failure to do so
+makes it impossible for the graders to run your submission and results
+in immediate loss of at least 50% of the homework credit.
+
+Every file you submit must have a header that identifies you and the
+problem it solves. So, for the first problem the header should look
+like this:
+
+<pre>
+// Assignment 8 Problem 1
+// Partner Name1
+// partner1username
+// Partner Name2
+// partner2username
+// 14 March 2012
+</pre>
+
+<h2>Problem 1: Parameterized Types</h2>
+
+<p>
+Create a project with the name HW08Problem1.
+</p>
+
+<p>
+Complete part 1 of <a href="http://www.ccs.neu.edu/course/cs2510/Lab8.html">Lab 8</a>.
+</p>
+
+<h2>Problem 2: User-Defined Exceptions</h2>
+
+<p>
+Create a project with the name HW08Problem2.
+</p>
+
+<p>
+Complete part 2 of <a href="http://www.ccs.neu.edu/course/cs2510/Lab8.html">Lab 8</a>.
+</p>
+
+<h2>Problem 3: Binary Trees and their Visitors</h2>
+
+<p>
+Create a project with the name HW08Problem3.
+</p>
+
+<p>
+Here is the class diagram for binary trees parameterized over the type
+of their elements:
+<pre>
+          +-------------+
+          |  IBT&lt;T&gt;     |<----------+
+          +-------------+<--------+ |
+            /_\   /_\             | |
+             |     |              | |
++--------------+  +-----------+   | |
+| Node&lt;T&gt;      |  | Leaf&lt;T&gt;   |   | |
++--------------+  +-----------+   | |
+| T val        |                  | |
+| IBT&lt;T&gt; left  |------------------+ |
+| IBT&lt;T&gt; right |--------------------+
++--------------+
+</pre>
+</p>
+
+<p>(This may be a slightly different representation of binary trees
+than you saw in class.  The important point is that a <tt>Leaf</tt>
+has no data, which let's us represent empty binary trees, as well
+trees with only two values; neither of which is possible if
+a <tt>Leaf</tt> contains a value.)</p>
+
+
+<p>Give class and interface definitions for the diagram above, then
+implement the visitor pattern for binary trees.  Visitors should be
+parameteric in both the type of elements in the tree they
+visit <emph>and</emph> the type of result they compute.</p>
+
+<p>Design the following two implementations of a binary tree visitor:
+
+<ul>
+
+<li><tt>LeftMost</tt> : produces the leftmost value of the tree it
+visits (if there is one).  If there is no leftmost value (for example,
+if the tree is just a <tt>Leaf</tt>), the visitor should signal a
+run-time exception.
+
+<li><tt>RightMost</tt> : produces the rightmost value of the tree it
+visits (if there is one).  If there is no rightmost value (for
+example, if the tree is just a <tt>Leaf</tt>), the visitor should signal
+a run-time exception.
+</ul>
+
+It may be useful to design two helper visitors, <tt>LeftMostAcc</tt>
+and <tt>RightMostAcc</tt>, which accumulate the leftmost (or
+rightmost) element seen so far.
+</p>
+
+<p>Binary trees are particularly useful when their elements
+are <emph>sorted</emph> according to some ordering.  For example, you
+can find out if a given element is contained in a sorted binary tree
+must faster than you in one which is not.  Of course, whether a given
+binary tree is sorted or not depends on the ordering of elements we
+have in mind.  For example, recalling our discussion of the Boston
+Marathon, a binary tree of runners that is sorted by runners' finish
+times is probably not the same as if we sorted by runners' bib number.
+So the question "is the tree sorted?" depends on the ordering we'd
+like to impose on the elements.
+</p>
+
+<p>Since ordering elements is such a fundamental operation, and since
+orders exist independently of elements (for example runners may be
+ordered by bib number, finish time, age, etc.), Java has an interface
+for comparisons defined by
+the <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><tt>Comparator&lt;T&gt;</tt></a>
+interface.  A <tt>Comparator&lt;T&gt;</tt> which are represented by a
+functional object that has a method:
+<pre>
+  // Produces a negative integer if t1 is "less than" t2.
+  // Produces a positive integer if t1 is "greater than" t2.
+  // Produces zero if t1 is "equal to" t2.
+  int compare(T t1, T t2);
+</pre>
+
+Using the following representation of runners:
+<pre>
+// Represents a runner with name, age (in years), bib number, and time
+// (in minutes).
+class Runner {
+    String name;
+    Integer age;
+    Integer bib;
+    Integer time;
+    Runner(String name, Integer age, Integer bib, Integer time) {
+        this.name = name;
+        this.age = age;
+        this.bib = bib;
+        this.time = time;
+    }
+}
+</pre>
+design a <tt>Comparator&lt;Runner&gt;</tt> that orders runners by
+increasing age; design a <tt>Comparator&lt;Runner&gt;</tt> that
+orders runners by decreasing bib number.
+</p>
+
+<p>
+Design a <tt>Comparator&lt;String&gt;</tt> that orders strings by
+reverse alphabetic order.
+</p>
+
+<p>
+Now design a binary tree visitor <tt>IsSorted&lt;T&gt;</tt> that is
+given a <tt>Comparator&lt;T&gt;</tt> when constructed, and uses it to
+determine if the binary tree it visits is sorted or not according to
+the ordering of the comparator.
+<p>
+
+
+<p>This discussion suggests that a binary <emph>search</emph> tree is
+just a binary tree that is sorted according to some comparison.
+Design a representation of binary search trees according to the
+following class diagram:
+
+<pre>
+  +-----------+
+  | IBST&lt;T&gt;   |
+  +-----------+
+      /_\
+       |
++--------------------+
+| BST&lt;T&gt;             |
++--------------------+
+| Comparator&lt;T&gt; comp |
+| IBT&lt;T&gt; bt          |
++--------------------+
+</pre>
+
+The <tt>bt</tt> field should contain a binary tree that we assume is
+sorted acording to the <tt>comp</tt> ordering.
+</p>
+
+<p>
+The <tt>IBST&lt;T&gt;</tt> interface should include the following
+methods:
+
+<pre>
+// Insert given element into this binary search tree.
+// (The resulting tree must be sorted.)
+IBST&lt;T&gt; insert(T elem);
+
+// Get the smallest element in this binary search tree.
+// (Raise a run-time exception if there is no such element.)
+T min();
+
+// Get the largest element in this binary search tree.
+// (Raise a run-time exception if there is no such element.)
+T max();
+</pre>
+
+In addition to the above methods, <tt>IBST&lt;T&gt;</tt> should also
+implement the <tt>IBT&lt;T&gt;</tt> interface, since after all, a
+binary search tree is just a kind of binary tree, and thus should
+implement all the behavior of binary trees in addition to that of
+binary search trees.
+
+Finally, the fact that the <tt>bt</tt> field is assumed to be sorted
+is not a valid assumption if users of the <tt>BST&lt;T&gt;</tt> class
+can construct a <tt>BST</tt> with an arbitrary <tt>IBT&lt;T&gt;</tt>
+and <tt>Comparator&lt;T&gt;</tt>.  Redesign the <tt>IBST&lt;T&gt;</tt>
+class to ensure the integrity of the data it contains.  That is, have
+the public constructor for <tt>IBST&lt;T&gt;</tt> <emph>check</emph>
+that the given binary tree is sorted according to <tt>comp</tt>.  If
+it isn't, you can either raise an exception, or sort the given tree.
+In either case, it should be impossible to construct a binary search
+tree that contains a binary tree that is not sorted.
+</p>
+
+<p>
+To the extent possible, your code should re-use functionality
+developed earlier in this problem.</p>
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Mon Feb 20 10:12:09 EST 2012 <!-- hhmts end -->
+</body> </html>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>CS 2510 Spring 2012: Assignment 4 - Methods for Unions;
+Abstracting over Data Definitions</title>
+</head>
+
+
+<h3>copyright 2012 Felleisen, Proulx, et. al.</h3>
+
+<body>
+<h1>CS 2510 Spring 2012: Assignment 4 - Methods for Unions;
+Abstracting over Data Definitions</h1>
+
+
+<h4>Practice Problems</h4>
+
+<p>Work out as the following exercises from the textbook. Do not add them
+to your assignment submission, though you should keep them in your
+electronic portfolio in your own <em>svn</em> repository.</p> 
+
+<p><strong>Problems:</strong></p>
+
+
+  
+
+<p>Problem 15.8 on page 175</p>
+
+<p><em>Note:</em> Of course, to do this problem you need to also
+define the classes that represent this problem and make examples of
+data - though all of that is already shown in the textbook.</p>
+
+<hr></hr>
+
+<h4>Pair Programming Assignment</h4>
+
+<p>These problems should be checked into your pair's SVN repository
+by the due date.</p>
+
+<p><strong>Project naming requirements</strong></p>
+<p>The names of the projects and some of the project files must be
+exactly the same as specified in the assignment. Failure to do so
+makes it impossible for the graders to run your submission and results
+in immediate <strong>loss of at least 50%</strong> of the homework
+credit.</p>
+
+<p>Every file you submit must have a header that identifies you and
+the problem it solves. So, for the first problem the header should
+look like this:</p>
+
+<pre>
+// Assignment 4 Problem 1
+// Partner Name1
+// partner1username
+// Partner Name2
+// partner2username
+// 31 January 2012
+</pre>
+
+
+<h3>Problem 1</h3>
+
+<P>Create a project with the name <tt>HW04Problem1</tt>.</p>
+
+<p>You are trying to organize the file directories on your
+computer. Your friend gave you a start by designing the data
+definitions given in
+the <tt><a href="FilesDirectories.java">FilesDirectories.java</a></tt>
+file. She even gave you some examples of data. Import this file into
+your project and run it to see what is going on.</p>
+
+<ol>
+<li><p>Make an additional example(s) of data that allows us to
+  represent the following directory and its contents:</p>
+  
+<pre>
+Directory Pages
+  contains the following:
+      file index.html
+      file pictures.html
+      directory Pictures
+      directory Quotations
+Directory Pictures
+  contains the files:
+      home.jpeg,
+      friend.jpeg.
+      brother.jpeg
+Directory Quotations
+  contains the files:
+      twain.txt,
+      cervantes.txt
+</pre>
+  
+<p>Choose any sizes for these files. Assume the sizes are given in
+  kiloBytes.</p></li>
+
+<li><p>Design the method <tt>totalSize</tt> that computes the size of the
+  directory by adding the sizes of all files in it. Additionally,
+  every directory needs 4 kiloBytes for keeping track of its list of
+  files and subdirectories.</p></li>
+
+  
+<li><p>Design the method <tt>allFiles</tt> that produces a list of all
+  files of the given kind in the directory (and the names of all files
+  in any of its subdirectories, sub-subdirectories...).</p>
+  
+<p><strong>Note:</strong> You must include the templates for all
+  classes in this problem, except the interfaces and classes that
+  represent empty lists.</p>
+  
+<p><em>Note:</em> Use helper method where appropriate.</p></li>
+
+</ol>
+
+<h3>Problem 2</h3>
+
+<P>Create a project with the name <tt>HW04Problem2</tt>. Your
+<tt>java</tt> file must be named <tt>CartPt.java</tt> and the 
+<em>Examples</em> class inside this file must be named
+<tt>ExamplesCartPt</tt>.</p> 
+
+<ol>
+<li><p>Copy the following class into the file <em>CartPt.java</em>:
+
+  <pre>
+// to represent a location on the canvas
+class Posn{
+  int x;
+  int y;
+
+  Posn(int x, int y){
+    this.x = x;
+    this.y = y;
+  }
+}
+ </pre>
+
+<p>Next week, this class will be a part of the library that supports the
+  design of interactive games. That means, we cannot add anything to
+  it, and if we need to add new behavior, we need to <em>extend</em>
+  this class.</p></li>  
+
+
+<li><p>Design the class <tt>CartPt</tt> that extends the library class
+  <tt>Posn</tt>. We will not add any new fields, but by extending the
+  library class we can add new methods to it.</p></li> 
+
+<p>Design the following methods for the class <tt>CartPt</tt>:</p>
+
+<li>Method <tt>distTo</tt> that computes the distance from this point
+  to the given one.</p></li> 
+
+<li><p>Method <tt>directionTo</tt> that produces a <tt>String</tt>
+  that tells us in which direction do we have to travel from this
+  point to the given one. Make sure you cover the following
+  possibilities:</p> 
+
+<p>going North, East, West, South, Northwest, Northeast, Southwest,
+  and Southeast.</p> </li>  
+</ol>
+
+
+<hr></hr>
+
+<h3>Problem 3</h3>
+
+<p>Work out the last problem from Lab 4: <strong>Abstracting over data definitions:
+Lifting fields, lifting methods.</strong>
+
+<hr></hr>
+<address></address>
+<!-- hhmts start -->Last modified: Tue Jan 31 17:53:43 EST 2012 <!-- hhmts end -->
+</body> </html>
