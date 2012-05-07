@@ -49,7 +49,7 @@ assignments, and (2) submit your assignments for grading. If you are in pair
 number @emph{P}, then your repository is located at
 
 @indented[
-  @tt{https://trac.ccs.neu.edu/svn/cs2510spring2012/pairP/}
+  @tt{https://trac.ccs.neu.edu/svn/cs2510summer2012/pairP/}
 ]
 
 @section*{Subversion Set-up}
@@ -111,7 +111,7 @@ and check in that folder.
 @section*{Windows Instructions}
 
 Open the file explorer and navigate to the Z: drive. If you're not on a CCIS machine (and therefore don't have a Z: drive), just navigate to your home folder. Right-click on a blank area in the folder and select "SVN Checkout...". This will bring up the checkout dialog. Here you need to enter your repository URL (where the repository lives) and the checkout directory (where your local copy of the repository will be stored). For the repository directory, type:
-https://trac.ccs.neu.edu/svn/cs2510spring2012/pairXYZ
+https://trac.ccs.neu.edu/svn/cs2510summer2012/pairXYZ
 
 where "XYZ" is your pair number. For the checkout directory, enter
 "Z:\classes" (the folder doesn't have to be called "classes", but this
@@ -141,7 +141,7 @@ Utilities). This should start you at your home directory, but if not,
 just type "cd" and hit enter. Then, to check out a working copy of the
 repository, type the following:
 
-@verbatim{svn co https://trac.ccs.neu.edu/svn/cs2510spring2012/pairXYZ classes}
+@verbatim{svn co https://trac.ccs.neu.edu/svn/cs2510summer2012/pairXYZ classes}
 
 where "XYZ" is your pair number. This will create a directory called
 "classes" to act as your working copy of your svn repository. You
