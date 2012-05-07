@@ -1,5 +1,5 @@
 CCS=login.ccs.neu.edu
-CCS_PATH=/course/cs2510/.www/
+CCS_PATH=/course/cs2510su12/.www/
 
 scrbls := $(wildcard *.scrbl)
 

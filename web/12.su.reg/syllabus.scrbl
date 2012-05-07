@@ -71,21 +71,162 @@ This syllabus will evolve throughout the semester so check it often.
 		 "HtDP: Part VII.")
 	   (make-list 9 "??")))	 
 
-@verbatim{
-	1.	1/9	1/10	Review; inexact; accumulators (DrRacket all)
-	2.	1/11, 17	1/18	Data, classses, unions; Eclipse intro
-	3.	1/19, 23, 24	1/25	Complex data, methods conditionals, dispatch; inexact tests
-	4.	1/25, 26, 30	1/31	Methods for complex data, World, Type checking errors
-	5.	2/1, 2, 6	2/7	Abstract classes, constructors, exceptions, privacy; File read helper
-	6.	2/8, 9, 13	2/14	Equality, Function objects, Singleton pattern?
-	7.	2/15, 16	2/21	Circular data, methods, State change; fromStringData
-	8.	2/22, 23, 27	2/28	More imperative methods, generics, designing to interfaces, getters, setters, predicates; (Lab: stacks, lists w. generics)
-	9.	2/29, 3/1, 12	3/13	Traversals, Collections, Traversals with effects; ArrayList
-	10.	3/14, 15, 19	3/20	Loops, ADT's, Visitors; (Lab: ArrayList, sorting in place)
-	11.	3/21, 22, 37	3/28	Map, HashMap, Equality; Array
-	12.	3/29, 30, 4/2	4/3	Big Oh and Algorithms (introduce some standard ones); (Lab: Time trials, more algorithms)
-	13.	4/4, 5, 9	4/10	More algorithms (e.g.graph traversals, union/find, …); I/O, GUIs (Lab: GUI interactions, maybe more…)
-	14.	4/11, 12	4/17, 18	Q&A: what does it all mean; Lab: project presentations
+@section*{Week 1: 5/7-10}
+
+Read Part I of @emph{HtDC} and the New York Times article about
+Jacques Pépin on the @secref{Blog}.
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Administration, Overview, Review}
+@item{@seclink["assign01"]{Assignment 1} due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Data Definitions}
+@item{ Lab 1}]
+
+@subsection*{Wednesday}
+
+@itemlist[
+@item{Methods}]
+
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 1}
+@item{Lab 2}]
+
+
+@;{
+
+@section*{Week 2: 5/14-17}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{More Methods for Unions: Binary trees}
+@item{Assignment 2 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lists and Sorting}
+@item{Lab 3}]
+
+@subsection*{Wednesday}
+
+@itemlist[
+@item{Inheritance and abstract classes}]
+
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 2}
+@item{Lab 4}]
+
+@section*{Week 3: 5/21-24}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Assignment 3 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lab 5}]
+
+@subsection*{Wednesday}
+
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 3}
+@item{Lab 6}]
+
+@section*{Week 4: 5/28-31}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Assignment 4 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lab 7}]
+
+@subsection*{Wednesday}
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 4}
+@item{Lab 8}]
+
+@section*{Week 5: 6/4-7}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Assignment 5 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lab 9}]
+
+@subsection*{Wednesday}
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 5}
+@item{Lab 10}]
+
+@section*{Week 6: 6/11-14}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Assignment 6 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lab 11}]
+
+@subsection*{Wednesday}
+
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 6}
+@item{Lab 12}]
+
+@section*{Week 7: 6/18-21}
+
+@subsection*{Monday}
+
+@itemlist[
+@item{Assignment 7 due}]
+
+@subsection*{Tuesday}
+
+@itemlist[
+@item{Lab 13}]
+
+@subsection*{Wednesday}
+
+@subsection*{Thursday}
+
+@itemlist[
+@item{Exam 7}
+@item{Lab 14}]
+
+@section*{Week 8: 5/18-21}
+
+Final project due.
+
 }
-
-

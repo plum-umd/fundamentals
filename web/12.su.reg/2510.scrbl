@@ -6,7 +6,7 @@
        @linebreak[]
        Introduction to Class-based Program Design}
 
-@larger{@bold{Spring, 2012}}
+@larger{@bold{Summer, 2012}}
 
 The course studies the class-based program design and the design
 of abstractions that support the design of reusable software and
@@ -39,24 +39,10 @@ strengths and weaknesses of languages and paradigms.
 @include-section{general.scrbl}
 @include-section{texts.scrbl}
 @include-section{syllabus.scrbl}
+@include-section{labs.scrbl}
+@include-section{assignments.scrbl}
 
-@section[#:style 'unnumbered]{Labs}
-
-@itemlist[
- @item{@link["Lab1.html"]{Lab 1}}
- @item{@link["Lab2.html"]{Lab 2}}
- @item{@link["Lab3.html"]{Lab 3}}
- @item{@link["Lab4.html"]{Lab 4}}
- @item{@link["Lab5.html"]{Lab 5}}
- @item{@link["Lab6.html"]{Lab 6}}
- @item{@link["Lab7.html"]{Lab 7}}
- @item{@link["Lab8.html"]{Lab 8}}
- @item{@link["Lab9.html"]{Lab 9}}
- @item{@link["Lab10.html"]{Lab 10}}
- @item{@link["Lab11.html"]{Lab 11}}
- @item{@link["Lab12.html"]{Lab 12}}
- @item{@link["Lab13.html"]{Lab 13}}]
-
+@;{
 @section[#:style 'unnumbered]{Assignments}
 
 @itemlist[
@@ -73,7 +59,7 @@ strengths and weaknesses of languages and paradigms.
  @item{@link["Assignment11.html"]{Assignment 11}}
  @item{@link["Assignment12.html"]{Assignment 12}}
  @item{@link["Assignment13.html"]{Assignment 13}}]
-
+}
 
 @include-section{subversion.scrbl}
 @include-section{style.scrbl}
