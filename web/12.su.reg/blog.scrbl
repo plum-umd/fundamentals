@@ -6,6 +6,31 @@
 
 @title*{Blog}
 
+@section*{Ian Johnson}
+@tt{Tue May  8 09:39:07 EDT 2012}
+
+Ian Johnson has signed on as the head TA for our course.  Ian is a PhD
+student in programming languages and does hairy research on automated
+reasoning about programs with Profs. Van Horn and Shivers.
+
+Check out the @secref{General} page for his office hours.
+
+@section*{Don't have a CCIS username?}
+@tt{Mon May  7 13:21:56 EDT 2012}
+
+If you do not have a CCIS account, you should see the Systems office
+on the third floor of WVH @emph{today!}  It takes two days to process
+the request so you may not have an account by the time tonight's
+homework is due.  If that's the case, please submit the CCIS username
+you requested and indicate in your submission that the account is
+still pending.
+
+
+@section*{Code from today's lecture}
+@tt{Mon May  7 13:21:56 EDT 2012}
+
+Here is the @link["5-7.rkt"]{code} from today's lecture.
+
 @section*{Welcome to CS2510}
 @tt{Sun May  6 23:04:12 EDT 2012}
 
