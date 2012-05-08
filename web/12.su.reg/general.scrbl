@@ -9,8 +9,7 @@
 	      (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")))
 
 @(define tas
-  (list #;(list "TBA" (tt "tba") "WVH3??" "TBA" "TBA")
-        #;(list "Jonathan Schuster" (tt "schuster") "WVH308" "Thursday " "10:30am-12:30pm")))
+  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/ianj/"]{Ian Johnson} (tt "ianj") "WVH308" "Friday " "1:00pm-3:00pm")))
 
 @(define tutors
   (list	#;(list "TBA" (tt "tba") "WVH3??" "TBA" "TBA")
@@ -33,11 +32,11 @@ the labs, assignments, and exams.  They are here to
 @link["http://worrydream.com/SomeThoughtsOnTeaching/"]{teach from
 life}.
 
-@; @bold{TAs:} @(apply elem (commas (map first tas))).
+@bold{TAs:} @(apply elem (commas (map first tas))).
 
-@; TAs teach labs, supervise the grading of homework sets, hold office
-@; hours, and occasionally substitute in lectures. In general, they are
-@; apprentice teachers and are here to learn how to run a course.
+TAs teach labs, supervise the grading of homework sets, hold office
+hours, and occasionally substitute in lectures. In general, they are
+apprentice teachers and are here to learn how to run a course.
 
 @; @bold{Tutors:} @(apply elem (commas (map first tutors))).
 
