@@ -47,6 +47,7 @@ web: 2510
 	cp -r blog/*.html 2510/
 	cp -r blog/*.pdf 2510/
 	cp -r blog/*.zip 2510/
+	cp -r blog/*.rkt 2510/
 	cp -r exams/*.pdf 2510/
 
 web-students:
