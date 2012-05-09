@@ -6,6 +6,41 @@
 
 @title*{Blog}
 
+@section*{Past exams}
+@tt{Wed May  9 00:59:17 EDT 2012}
+
+
+Here is a complete set of recent exams from Fundamentals II.  Much of
+this material is not relevant for Thursday exam, since it will only
+cover what we have studied in class, lab, homeworks, and course
+readings so far.  However, some of these problems may prove useful in
+preparing for Thursday's exam.  The remaining material will become
+more useful as the semester goes on.
+
+@itemlist[
+@item{Exam 1: @link["exam1-sol-sp10.pdf"]{Spring 2010 (A)}.}
+@item{Exam 1: @link["exam1v2-sol-sp.pdf"]{Spring 2010 (B)}.}
+@item{Exam 1: @link["exam1-sol-su10.pdf"]{Summer 2010}.}
+@item{Exam 1: @link["exam1-sol-fl10.pdf"]{Fall 2010}.}
+@item{Exam 1: @link["exam1a.pdf"]{Spring 2012 (A)}.}
+@item{Exam 1: @link["exam1bx.pdf"]{Spring 2012 (B)}.}
+
+@item{Exam 2: @link["exam2-su10-sol.pdf"]{Summer 2010}.}
+@item{Exam 2: @link["exam2-v1-sp10.pdf"]{Spring 2010 (A)}.}
+@item{Exam 2: @link["exam2-v2-sp10.pdf"]{Spring 2010 (B)}.}
+@item{Exam 2: @link["exam2-fl10-sol.pdf"]{Fall 2010}.}
+@item{Exam 2: @link["exam2-sp11.pdf"]{Spring 2011}.}
+@item{Exam 2: @link["exam2a.pdf"]{Spring 2012 (A)}.}
+@item{Exam 2: @link["exam2b.pdf"]{Spring 2012 (B)}.}
+@item{Exam 2: @link["exam2H-sp12.pdf"]{Spring 2012 (H)}.}
+
+@item{Exam 3: @link["exam3-fl09-sol.pdf"]{Fall 2009}.}
+@item{Exam 3: @link["exam3-sp10-no-sol.pdf"]{Spring 2010}.}
+@item{Exam 3: @link["exam3-fl10-no-sol.pdf"]{Fall 2010}.}
+@item{Exam 3: @link["exam3-sp11-sol.pdf"]{Spring 2011}.}
+@item{Exam 3: @link["exam3.pdf"]{Spring 2012}.}
+]
+
 @section*{Ian Johnson}
 @tt{Tue May  8 09:39:07 EDT 2012}
 

@@ -85,13 +85,13 @@ Jacques Pépin on the @secref{Blog}.
 @subsection*{Tuesday}
 
 @itemlist[
-@item{Data Definitions}
-@item{ Lab 1}]
+@item{Data Definitions and Methods}
+@item{@seclink["lab01"]{Lab 1}}]
 
 @subsection*{Wednesday}
 
 @itemlist[
-@item{Methods}]
+@item{Recursive Unions and their Methods}]
 
 @subsection*{Thursday}
 
