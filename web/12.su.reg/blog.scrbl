@@ -6,6 +6,42 @@
 
 @title*{Blog}
 
+@section*{Homework partners}
+@tt{Wed May  9 17:41:37 EDT 2012}
+
+Here are the initial partner assignments.  If something isn't right,
+email @tt{dvanhorn} immediately.
+
+@verbatim|{
+pair01: acalo joejeno
+pair02: kevin08 kmiao
+pair03: sripley7 ajacks
+pair04: merylas bjliuy
+pair05: michng goodwin
+pair06: guom dsimond
+pair07: jcaron jwall
+pair08: deema psanshi
+pair09: schwarta gabriel
+pair10: jbrooks2 ascherj
+pair11: bmccabe4 jkosof
+pair12: cungtran gudosha
+pair13: yusuf.m nnamdi93
+pair14: jinwow gudosha
+}|
+
+
+@section*{Tester library}
+@tt{Wed May  9 08:56:37 EDT 2012}
+
+We will use the @link["http://www.ccs.neu.edu/javalib/Tester/"]{Tester
+Library} developed here at NEU by Prof. Proulx in order to test our
+Java programs.
+
+To use the library, you'll need to download the tester
+@link["http://www.ccs.neu.edu/javalib/Downloads/v1.4.1/tester1_4_1.jar"]{jar
+file}.
+
+
 @section*{Past exams}
 @tt{Wed May  9 00:59:17 EDT 2012}
 
