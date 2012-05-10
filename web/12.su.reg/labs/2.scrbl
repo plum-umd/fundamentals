@@ -131,7 +131,7 @@ a decision about what to do.  Let's simplify things and say life is
 really series of situations in which you can either do or not do
 something.  For example, ``do you go to college?'', ``do you brush
 your teeth?'', ``do you step out on to Hungtington without looking
-both ways?''.  You choice influences the remaining questions you will
+both ways?''.  Your choice influences the remaining questions you will
 face; if go to college, for example, you will probably face choices
 such as ``should I go to lecture to today?'', whereas this situation
 doesn't present itself if you chose not to go to college; instead
