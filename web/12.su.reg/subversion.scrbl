@@ -56,43 +56,23 @@ number @emph{P}, then your repository is located at
 
 To make things easier on the graders this semester, we will be
 enforcing a strict directory structure in your Subversion (aka svn)
-repository. This may be different from what you set up in the lab in
-week 2, so consider this page to be the official, canonical way to set
-up your repository. For each partner pair, the layout in Subversion
+repository. The layout in Subversion
 will look something like this:
 
-@verbatim{
-pairXYZ
-  \--EclipseWorkspace
-    \--HW01Problem1
-    \--HW01Problem2
-    .
-    .
-    .
-}
+@verbatim|{
+pairNN
+  |--assign1
+  |  |--foo.java
+  |  |--blah.java
+  |--assign2
+  .  |--bar.java
+  .  .
+  .  .
+     .
+}|
 
-The important thing to note is that your Eclipse workspace should be
-called "EclipseWorkspace", and it should be located directly below the
-pairXYZ directory (in other words, at the root of your Subversion
-repository).
-
-Additionally, each homework problem directory will look something like
-this:
-
-@verbatim{
-HW01Problem1
-  \--src
-    \--Foo.java
-    \--Bar.java
-    .
-    .
-    .
-}
-
-The main thing is to make sure all of your *.java files are under src,
-and that src and everything under it gets checked in. However, be sure
-to read each assignment carefully in case there are any changes to
-this structure.
+The important thing to note is that you only commit Java source code.
+No Eclipse workspaces, no class files, no jar files, etc.
 
 There's an easy way to check what you actually have in Subversion:
 just open your repository URL in a browser. That will show you the
@@ -103,14 +83,17 @@ Google Chrome if you run into issues).
 You only need to create the above structure in Subversion once, but
 you will need to check out a new working copy of the repository on
 each different machine you work on (with the exception of CCIS
-machines that use your same home directory). You can use the
-instructions below for both cases: if you've already set up an
-EclipseWorkspace folder in Subversion, just skip the steps that create
-and check in that folder.
+machines that use your same home directory).
 
 @section*{Windows Instructions}
 
-Open the file explorer and navigate to the Z: drive. If you're not on a CCIS machine (and therefore don't have a Z: drive), just navigate to your home folder. Right-click on a blank area in the folder and select "SVN Checkout...". This will bring up the checkout dialog. Here you need to enter your repository URL (where the repository lives) and the checkout directory (where your local copy of the repository will be stored). For the repository directory, type:
+Open the file explorer and navigate to the Z: drive. If you're not on
+a CCIS machine (and therefore don't have a Z: drive), just navigate to
+your home folder. Right-click on a blank area in the folder and select
+"SVN Checkout...". This will bring up the checkout dialog. Here you
+need to enter your repository URL (where the repository lives) and the
+checkout directory (where your local copy of the repository will be
+stored). For the repository directory, type:
 https://trac.ccs.neu.edu/svn/cs2510summer2012/pairXYZ
 
 where "XYZ" is your pair number. For the checkout directory, enter
@@ -123,13 +106,13 @@ repository. You can think of this folder as mapping directly to your
 "pairXYZ" folder in svn - everything that's under pairXYZ in svn will
 be checked out under this folder.
 
-Now, open up the classes folder and create a new folder inside it
+@;{Now, open up the classes folder and create a new folder inside it
 called "EclipseWorkspace" (all one word). This will be your Eclipse
 workspace, where Eclipse stores all of your projects throughout the
 semester. Right-click the folder and select "Tortoise SVN" >
 "Add...". Make sure the folder is checked and hit OK. Right-click the
 folder again and select "SVN Commit...". Type in a commit message like
-"Added Eclipse workspace" and click OK.
+"Added Eclipse workspace" and click OK.}
 
 Finally, to change your Eclipse workspace to point at this new folder,
 see the instructions @seclink["Eclipse"]{below}.
@@ -149,30 +132,6 @@ don't have to call it classes, but that's the name we used in the
 lab. You can think of this folder as mapping directly to your
 "pairXYZ" folder in svn - everything that's under pairXYZ in svn will
 be checked out under this folder.
-
-Next, we need to create the Eclipse workspace, which is where Eclipse
-stores all of your projects throughout the semester. We want to create
-the Eclipse workspace in the new classes folder, so type each of the
-following commands:
-
-@verbatim{
-cd classes
-mkdir EclipseWorkspace
-svn add EclipseWorkspace
-svn ci -m "Added folder for Eclipse workspace."
-}
-
-This navigates to the classes directory, creates the workspace
-directory, adds it to Subversion, and checks in your change. The final
-step is to update your Eclipse workspace (see the next section).
-
-@section*[#:tag "Eclipse"]{Setting Eclipse Workspace}
-
-To set your Eclipse workspace, open Eclipse and select "Switch
-Workspace" > "Other..." from the File menu. Select the
-EclipseWorkspace folder you created in the working copy of your
-repository. Eclipse will automatically restart once you hit OK. That's
-it!
 
 @section*{More Information}
 

@@ -43,9 +43,9 @@ recursive data definitions and their methods.
 @item{Give this class a method
 
 @verbatim|{
-    Boolean testSomeStuff(Tester t) {
-      return t.checkExpect(true, true)   // Clearly passes
-          && t.checkExpect(true, false); // Clearly fails
+    void testSomeStuff(Tester t) {
+      t.checkExpect(true, true)   // Clearly passes
+      t.checkExpect(true, false); // Clearly fails
     }
 }|
 }
@@ -80,7 +80,7 @@ order to track changes to code written for labs and homeworks and we
 will use it as the mechanism for turing in and receiving feedback on
 assignments.
 
-@exercise{Read the course notes on @secref{Subversion}.}
+@exercise{Skim the course notes on @secref{Subversion}.}
 
 Subversion is available on all the lab machines, but you may also want
 to install a Subversion client (there are several to choose from) on
