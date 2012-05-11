@@ -10,6 +10,7 @@ otherwise noted.
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section["assignments/assign01.scrbl"]
+@include-section["assignments/assign02.scrbl"]
 
 @;{
 @include-section["assignments/assign02.scrbl"]

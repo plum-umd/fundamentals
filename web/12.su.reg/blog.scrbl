@@ -6,6 +6,14 @@
 
 @title*{Blog}
 
+@section*{Assignment 2 is up}
+@tt{Thu May 10 20:32:12 EDT 2012}
+
+@seclink["assign02"]{Assignment 2} is finally up.  It's due date has
+been moved back to Tuesday at midnight so that we can show you how to
+use @tt{svn} to submit your homework in lab on Tuesday.
+
+
 @section*{Homework partners}
 @tt{Wed May  9 17:41:37 EDT 2012}
 
