@@ -15,9 +15,8 @@
 
 @title[#:tag "lab03"]{5/15: Subversion, Redux; Moar Recursive Methods with XML}
 
-The goal of this lab is to introduce more aspects of our work
-environment: the Subversion revision control system and the Tester
-library. In the second part of the lab, you will practice writing some
+The goal of this lab is to get Subversion revision control system
+working. In the second part of the lab, you will practice writing more
 recursive data definitions and their methods.
 
 @lab:section{Getting started with Subversion}
