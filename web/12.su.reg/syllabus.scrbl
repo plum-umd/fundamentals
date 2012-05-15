@@ -71,7 +71,7 @@ This syllabus will evolve throughout the semester so check it often.
 		 "Universe docs."
 		 "HtDC: Sec. 20."
 		 "HtDP: Part VII.")
-	   (make-list 9 "??")))	 
+	   (make-list 9 "??")))
 
 @section*{Week 1: 5/7-10}
 
