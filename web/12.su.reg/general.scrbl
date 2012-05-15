@@ -3,17 +3,15 @@
 @(require "../unnumbered.rkt" "../utils.rkt")
 
 @(define instructors
-  (list #;(list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/vkp/"]{Viera K. Proulx} 
-	      (tt "vkp") "WVH322 " "Tuesday " "3:30pm-5:30pm")
-        (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn} 
-	      (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")))
+  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn}
+	      (tt "dvanhorn") "WVH350" "Thursday " "3:30pm-5:30pm")))
 
 @(define tas
   (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/ianj/"]{Ian Johnson} (tt "ianj") "WVH308" "Friday " "1:00pm-3:00pm")))
 
 @(define tutors
-  (list	#;(list "TBA" (tt "tba") "WVH3??" "TBA" "TBA")
-        #;(list "Jonathan Schuster" (tt "schuster") "WVH308" "Thursday " "10:30am-12:30pm")))
+  (list	(list "Jason Shrand" (tt "jshrand") "WVH102" "Monday " "2:00pm-4:00pm")
+        (list "James Grammatikos" (tt "jgramm") "WVH102" "???" "???")))
 
 @; commas : [List X] -> [List (U X String)]
 @(define (commas xs)
@@ -38,12 +36,12 @@ TAs teach labs, supervise the grading of homework sets, hold office
 hours, and occasionally substitute in lectures. In general, they are
 apprentice teachers and are here to learn how to run a course.
 
-@; @bold{Tutors:} @(apply elem (commas (map first tutors))).
+@bold{Tutors:} @(apply elem (commas (map first tutors))).
 
-@; Tutors have, in the past year or two, mastered the material of this
-@; course; they help in labs, hold office hours, grade assignments, and 
-@; can remember what it's like to be lost.  They are here to gain a
-@; deeper understanding by teaching what they know to others.
+Tutors have, in the past year or two, mastered the material of this
+course; they help in labs, hold office hours, grade assignments, and
+can remember what it's like to be lost.  They are here to gain a
+deeper understanding by teaching what they know to others.
 
 }
 
@@ -59,13 +57,13 @@ any of the course staff; usernames are given above.}
 @item{Read the course blog on a daily basis.}]
 
 @bold{Lectures} are held Monday, Tuesday, and Wednesday at
-9:50am-11:00am in Shillman Hall 215.
+9:50am-11:30am in Shillman Hall 215.
 
 @bold{Exams} are held Thursday at
-9:50am-11:00am in Shillman Hall 215.
+9:50am-11:30am in Shillman Hall 215.
 
 @bold{Labs} are held Tuesday and Thursday at
-1:30-3:30pm in 211 WVH.
+1:30-3:10pm in 211 WVH.
 
 @bold{Assignments} are due on Monday at
 midnight in svn.

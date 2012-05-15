@@ -7,6 +7,8 @@
 
 This syllabus will evolve throughout the semester so check it often.
 
+@local-table-of-contents[]
+
 @(define (number->string2 n)
    (let ((r (number->string n)))
      (cond [(= (string-length r) 1)
@@ -76,13 +78,13 @@ This syllabus will evolve throughout the semester so check it often.
 Read Part I of @emph{HtDC} and the New York Times article about
 Jacques Pépin on the @secref{Blog}.
 
-@subsection*{Monday}
+@subsection*[#:tag "w1m"]{Monday}
 
 @itemlist[
 @item{Administration, Overview, Review}
 @item{@seclink["assign01"]{Assignment 1} due}]
 
-@subsection*{Tuesday}
+@subsection*[#:tag "w1t"]{Tuesday}
 
 @itemlist[
 @item{Data Definitions and Methods}
@@ -93,43 +95,47 @@ Jacques Pépin on the @secref{Blog}.
 @itemlist[
 @item{Recursive Unions and their Methods}]
 
-@subsection*{Thursday}
+@subsection*[#:tag "w1r"]{Thursday}
 
 @itemlist[
-@item{Exam 1}
-@item{Lab 2}]
-
-
-@;{
+@item{@link["exam1.pdf"]{Exam 1}}
+@item{@seclink["lab02"]{Lab 2}}]
 
 @section*{Week 2: 5/14-17}
 
-@subsection*{Monday}
+Read Part II of @emph{HtDC}.
+
+@subsection*[#:tag "w2m"]{Monday}
 
 @itemlist[
 @item{More Methods for Unions: Binary trees}
-@item{Assignment 2 due}]
+@item{Abstracting Identical Data & Methods}
+]
 
-@subsection*{Tuesday}
+@subsection*[#:tag "w2t"]{Tuesday}
 
 @itemlist[
 @item{Lists and Sorting}
+@item{@seclink["assign02"]{Assignment 2} due}
 @item{Lab 3}]
 
-@subsection*{Wednesday}
+@subsection*[#:tag "w2w"]{Wednesday}
 
 @itemlist[
-@item{Inheritance and abstract classes}]
+@item{Inheritance}]
 
-@subsection*{Thursday}
+@subsection*[#:tag "w2r"]{Thursday}
 
 @itemlist[
 @item{Exam 2}
 @item{Lab 4}]
 
+@;{
+
+
 @section*{Week 3: 5/21-24}
 
-@subsection*{Monday}
+@subsection*[#:tag "w3m"]{Monday}
 
 @itemlist[
 @item{Assignment 3 due}]

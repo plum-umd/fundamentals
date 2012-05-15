@@ -6,6 +6,29 @@
 
 @title*{Blog}
 
+@section*{No need to interleave}
+@tt{Tue May 15 09:41:02 EDT 2012}
+
+The @tt{interleave} problem of the current assignment requires you to
+use concepts we haven't covered in class.  You should try to solve the
+problem and see what goes wrong, but the @tt{interleave} part of the
+assignment will not be graded.
+
+
+@section*{Two new 2510 tutors and CCIS tutors}
+@tt{Mon May 14 09:01:51 EDT 2012}
+
+We've added James Grammatikos and Jason Shrand to the course staff as
+tutors.  James and Jason will be holding office hours throughout the
+week and are here to help you.  Be sure to visit them.  See the
+@secref{General} page for details.
+
+In addition to the dedicated 2510 tutors, there are CCIS tutors
+available that can also help.  There schedule is:
+@itemlist[
+@item{Monday 5:15-7:15pm Dan King, 102WVH}
+@item{Wednesday: 1-3pm Stephanie Lund, 102WVH}]
+
 @section*{Assignment 2 is up}
 @tt{Thu May 10 20:32:12 EDT 2012}
 
