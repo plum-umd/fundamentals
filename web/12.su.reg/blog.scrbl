@@ -6,6 +6,28 @@
 
 @title*{Blog}
 
+@section*{Today's code}
+@tt{Tue May 15 12:50:39 EDT 2012}
+
+Here is today's Java @link["05.15.2012.java"]{code} from class.  Also,
+remember to think about how to translate our accumulator design of
+@tt{reverse} from ISL to Java:
+
+@verbatim{
+;; Reverse the given list of integers
+;; LoI -> LoI
+(define (my-reverse lon)
+  (reverse/acc lon empty))
+
+;; LoI LoI -> LoI
+;; ACCUM: rev represents list of elements we've seen so far, in reverse order.
+(define (reverse/acc lon rev)
+  (cond [(empty? lon) rev]
+        [(cons? lon)
+         (reverse/acc (rest lon)
+                      (cons (first lon) rev))]))
+}
+
 @section*{No need to interleave}
 @tt{Tue May 15 09:41:02 EDT 2012}
 
