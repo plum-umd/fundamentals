@@ -117,7 +117,7 @@ Read Part II of @emph{HtDC}.
 @itemlist[
 @item{Lists and Sorting}
 @item{@seclink["assign02"]{Assignment 2} due}
-@item{Lab 3}]
+@item{@seclink["lab03"]{Lab 3}}]
 
 @subsection*[#:tag "w2w"]{Wednesday}
 
