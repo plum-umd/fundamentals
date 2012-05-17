@@ -122,13 +122,14 @@ Read Part II of @emph{HtDC}.
 @subsection*[#:tag "w2w"]{Wednesday}
 
 @itemlist[
-@item{Inheritance}]
+@item{Abstraction with Function Objects}
+@item{Parameterized data definitions}]
 
 @subsection*[#:tag "w2r"]{Thursday}
 
 @itemlist[
 @item{Exam 2}
-@item{Lab 4}]
+@item{@seclink["lab04"]{Lab 4}}]
 
 @;{
 
