@@ -126,7 +126,7 @@ i.e. it is some tag, some list of attributes and values, and some XML.
 
 This leads to a pretty straightforward (recursive) data definition.
 Unfortunately, it's not quite adequate for the examples we've written.
-In particular, we want to following, which is valid XML, to be
+In particular, we want the following, which is valid XML, to be
 representable:
 
 @verbatim{
