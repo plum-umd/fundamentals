@@ -1,9 +1,6 @@
 #lang scribble/manual
 @(require "../unnumbered.rkt" "../utils.rkt")
 
-@(require (for-label class/0))
-@(require (for-label class/universe))
-
 @title*{Blog}
 
 @section*{Grammatikos office hours, Assignment 3 finalized}
