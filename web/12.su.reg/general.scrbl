@@ -11,7 +11,7 @@
 
 @(define tutors
   (list	(list "Jason Shrand" (tt "jshrand") "WVH102" "Monday " "2:00pm-4:00pm")
-        (list "James Grammatikos" (tt "jgramm") "WVH102" "???" "???")))
+        (list "James Grammatikos" (tt "jgramm") "WVH102" "Tuesday" "11:30am-1:30pm")))
 
 @; commas : [List X] -> [List (U X String)]
 @(define (commas xs)

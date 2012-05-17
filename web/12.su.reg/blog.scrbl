@@ -6,6 +6,17 @@
 
 @title*{Blog}
 
+@section*{Grammatikos office hours, Assignment 3 finalized}
+@tt{Thu May 17 09:37:31 EDT 2012}
+
+James Grammatikos has finalized his @seclink["General"]{office hours},
+which will be held between class and lab on Tuesday, i.e., 11:30am to
+1:30pm.
+
+@seclink["assign03"]{Assignment 3} has been finalized by adding some
+book problems.
+
+
 @section*{Today's code}
 @tt{Tue May 15 12:50:39 EDT 2012}
 
