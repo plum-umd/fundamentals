@@ -7,7 +7,7 @@
 	      (tt "dvanhorn") "WVH350" "Thursday " "3:30pm-5:30pm")))
 
 @(define tas
-  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/ianj/"]{Ian Johnson} (tt "ianj") "WVH308" "Friday " "1:00pm-3:00pm")))
+  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/ianj/"]{Ian Johnson} (tt "ianj") "WVH308" "Friday " "1:30pm-3:30pm")))
 
 @(define tutors
   (list	(list "Jason Shrand" (tt "jshrand") "WVH102" "Monday " "2:00pm-4:00pm")

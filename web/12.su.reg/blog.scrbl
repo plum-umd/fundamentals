@@ -3,8 +3,29 @@
 
 @title*{Blog}
 
+@section*{Code from today}
+@tt{Mon May 21 15:17:33 EDT 2012}
+
+Here is the @link["05.21.2012.java"]{code} from today's lecture on
+sorting with comparison functions and using folds.
+
+
+@section*{Bug in homework, change for Ian's office hours}
+@tt{Mon May 21 09:41:58 EDT 2012}
+
+There is a bug in @emph{How to Design Classes} that affects the
+current homework.  In exercise 12.3 it says, ``Design an extension for
+the classes in figures 47 and 48 that deals with equilateral right
+triangles.''  After a moment's thought, you'll realize there is no
+such thing as an equilateral right triangle.  Instead you should
+design an extension for a isoscoles right triangle.
+
+Ian Johnson has shifted his office hours back by a half an hour.  His
+office hours are now held Friday from 1:30-3:30pm as noted on the
+@seclink{General} page.
+
 @section*{Grammatikos office hours, Assignment 3 finalized}
-@tt{Thu May 17 09:37:31 EDT 2012}
+@tt{Thu May 17 09:37:30 EDT 2012}
 
 James Grammatikos has finalized his @seclink["General"]{office hours},
 which will be held between class and lab on Tuesday, i.e., 11:30am to
