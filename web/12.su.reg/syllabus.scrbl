@@ -128,23 +128,23 @@ Read Part II of @emph{HtDC}.
 @subsection*[#:tag "w2r"]{Thursday}
 
 @itemlist[
-@item{Exam 2}
+@item{@link["exam2.pdf"]{Exam 2}}
 @item{@seclink["lab04"]{Lab 4}}]
-
-@;{
-
 
 @section*{Week 3: 5/21-24}
 
 @subsection*[#:tag "w3m"]{Monday}
 
 @itemlist[
-@item{Assignment 3 due}]
+@item{Sorting with comparisons}
+@item{Type-specific computations over parametric data}]
 
 @subsection*{Tuesday}
 
 @itemlist[
-@item{Lab 5}]
+@item{Visitors}
+@item{Lab 5}
+@item{@seclink["assign03"]{Assignment 3} due}]
 
 @subsection*{Wednesday}
 
@@ -153,6 +153,8 @@ Read Part II of @emph{HtDC}.
 @itemlist[
 @item{Exam 3}
 @item{Lab 6}]
+
+@;{
 
 @section*{Week 4: 5/28-31}
 
