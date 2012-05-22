@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Solution for assignment 2}
+@tt{Tue May 22 00:17:29 EDT 2012}
+
+@seclink["assign02"]{Assignment 2} should be graded by the end of this
+week, but in the meantime, solutions to @link["2.1.java"]{2.1},
+@link["2.2.java"]{2.2}, and @link["2.3.java"]{2.3} are available.
+
 @section*{Code from today}
 @tt{Mon May 21 15:17:33 EDT 2012}
 
