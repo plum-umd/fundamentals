@@ -79,7 +79,7 @@ that computes the aggregate length of a list of strings.}
 that computes whether a list of strings has an element @tt{"Boston"}.}
 
 @exercise{Develop an implementation of @tt{ListVisitor<String,String>}
-that a list of strings together.}
+that concatenates a list of strings together.}
 
 @exercise{Develop an implementation of
 @tt{ListVisitor<Integer,Boolean>} that computes whether a list of
@@ -103,8 +103,8 @@ helper visitors):
 a @emph{non-empty} list of integers.}
 
 @exercise{Develop an implementation of
-@tt{ListVisitor<Integer,Integer>} that computes the shortest string in
-a @emph{non-empty} list of integers.}
+@tt{ListVisitor<String,String>} that computes the shortest string in
+a @emph{non-empty} list of strings.}
 
 @exercise{Develop an implementation of
 @tt{ListVisitor<Integer,Integer>} that computes a number closest to a
