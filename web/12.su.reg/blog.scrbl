@@ -3,6 +3,12 @@
 
 @title*{Blog}
 
+@section*{Code from today on exceptions and visitors}
+@tt{Tue May 22 11:42:54 EDT 2012}
+
+Here is the @link["05.22.java"]{code} from today's class on
+exceptional behavior and the visitor pattern.
+
 @section*{Solution for assignment 2}
 @tt{Tue May 22 00:17:29 EDT 2012}
 
