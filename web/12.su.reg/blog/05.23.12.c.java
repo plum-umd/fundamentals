@@ -39,9 +39,11 @@ class Tea implements Drink {
 
 // Represents a cup of coffee with Bailey's in it.
 class Baileys extends Coffee {
+    Baileys(Integer sugar) { super(sugar); }
+
     // Is this coffee w/ Bailey's the same as that drink?
     public Boolean same(Drink that) {
-	return (that insanceof Baileys)
+	return (that instanceof Baileys)
 	    && ((Baileys)that).sugars.equals(this.sugars);
     }
 }
