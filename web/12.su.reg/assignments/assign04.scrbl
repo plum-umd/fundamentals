@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require "../utils.rkt")
 
-@title[#:tag "assign04"]{5/27: Visiting}
+@title[#:tag "assign04"]{5/27: Visiting and Equality}
 
 Due: 5/27, midnight by svn.
 
@@ -24,10 +24,40 @@ developed in Lab 4.
 
 Re-develop the methods of exercise 6-8 of Lab 4 as visitors.
 
-@section{TBA}
+@section{Fixing Coffee}
 
-The remainder of this assignment will be posted shortly.
+Take a look at the code we wrote showing the perils of @tt{instanceof}
+and casts, which is on the @secref{Blog}.  Develop two corrections to
+that code---one using safe casting and one using double dispatch---so
+that all of the test cases pass.  (Your solutions should be in two
+separate files.)
 
+@section{Yahtzee}
 
+There is yet another approach to structural equality that we didn't
+discuss in class, but which you have all the concepts needed to carry
+out.  We can define equality by way of a visitor that computes whether
+the visited value is the same as some given value.
 
+Develop the visitor pattern for the @tt{Drink} data definition and
+design an implementation of @tt{DrinkVisitor<Boolean>} that computes
+whether the visited drink is structurally equal to a given drink.  You
+may find it useful to develop helper visitors.
 
+@section{Same XML}
+
+Revisit your XML assignment and develop a @tt{same} method that
+determines whether this XML is the same as some given XML.  Two XML
+documents should be considered the same if they are structurally
+equal.  You may use any approach you'd like, so long as it does not
+involve @tt{instanceof} and casts (``safe casts'' are OK).
+
+@section{Same XML with unorder attributes}
+
+Real XML considers the order of attributes to be irrelevant, so for
+example @tt{<img src="mom.jpg" alt="the best">...</img>} is considered
+to equivalent to @tt{<img alt="the best" src="mom.jpg">...</img>},
+assuming the ``@tt{...}'' are equivalent.
+
+Modify your @tt{same} method so that it ignores the order of
+attributes when considering whether two XML documents are the same.
