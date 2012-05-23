@@ -61,3 +61,13 @@ assuming the ``@tt{...}'' are equivalent.
 
 Modify your @tt{same} method so that it ignores the order of
 attributes when considering whether two XML documents are the same.
+
+@section{Concrete XML}
+
+Develop a method for XML that produces the string representation of an
+XML document, i.e., the @tt{toXMLString} method should produce the
+string @tt{"<a href=\"google.com\">Search</a>"} from the
+representation of @tt{<a href="google.com">Search</a>}.  Note that
+@tt{\"} is how to write a double-quote inside of a string, so @tt{"I
+said \"Hello\""} is the string representation of the text @tt{I said
+"Hello"}.
