@@ -3,6 +3,15 @@
 
 @title*{Blog}
 
+@section*{Code on safe casting, double dispatch, and instanceof}
+@tt{Wed May 23 14:07:06 EDT 2012}
+
+Here is the code from class today that shows the
+@link["05.23.12.a.java"]{safe casting} approach to structural
+equality, the @link["05.23.12.b.java"]{double dispatch} approach, and
+finally the @link["05.23.12.c.java"]{perils of @tt{instanceof} and
+casts}, which should be avoided at all costs.
+
 @section*{Code from today on exceptions and visitors}
 @tt{Tue May 22 11:42:54 EDT 2012}
 
