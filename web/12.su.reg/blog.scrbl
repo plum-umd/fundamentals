@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Solution to today's exam}
+@tt{Thu May 24 11:35:08 EDT 2012}
+
+Here is a @link["Exam3.java"]{solution}, in the form of running Java
+code, to today's @link["exam3.su.12.pdf"]{exam}.
+
+
 @section*{Today's lab is cancelled}
 @tt{Thu May 24 10:25:07 EDT 2012}
 
