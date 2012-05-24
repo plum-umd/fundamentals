@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Today's lab is cancelled}
+@tt{Thu May 24 10:25:07 EDT 2012}
+
+Today's lab is cancelled.  You should spend the this time working with
+your partner on the current homework assignment.
+
+
 @section*{Code on safe casting, double dispatch, and instanceof}
 @tt{Wed May 23 14:07:06 EDT 2012}
 

@@ -98,7 +98,7 @@ Jacques Pépin on the @secref{Blog}.
 @subsection*[#:tag "w1r"]{Thursday}
 
 @itemlist[
-@item{@link["exam1.pdf"]{Exam 1}}
+@item{@link["exam1.su.12.pdf"]{Exam 1}}
 @item{@seclink["lab02"]{Lab 2}}]
 
 @section*{Week 2: 5/14-17}
@@ -128,7 +128,7 @@ Read Part II of @emph{HtDC}.
 @subsection*[#:tag "w2r"]{Thursday}
 
 @itemlist[
-@item{@link["exam2.pdf"]{Exam 2}}
+@item{@link["exam2.su.12.pdf"]{Exam 2}}
 @item{@seclink["lab04"]{Lab 4}}]
 
 @section*{Week 3: 5/21-24}
@@ -143,16 +143,21 @@ Read Part II of @emph{HtDC}.
 
 @itemlist[
 @item{Visitors}
-@item{Lab 5}
+@item{@seclink["lab05"]{Lab 5}}
 @item{@seclink["assign03"]{Assignment 3} due}]
 
 @subsection*{Wednesday}
+@itemlist[
+@item{Structural equality}
+@item{Safe casting}
+@item{Double dispatch}
+@item{The case against @tt{instanceof}}]
 
 @subsection*{Thursday}
 
 @itemlist[
-@item{Exam 3}
-@item{Lab 6}]
+@item{@link["exam3.su.12.pdf"]{Exam 3}}
+@item{Lab 6 (Cancelled)}]
 
 @;{
 
