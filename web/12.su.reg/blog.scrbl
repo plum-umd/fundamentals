@@ -48,7 +48,7 @@ class Examples {
 }
 }|
 
-@section*{Homework due is till Tuesday at midnight}
+@section*{Homework due is still Tuesday at midnight}
 @tt{Mon May 28 22:21:58 EDT 2012}
 
 There was a typo on @seclink["assign04"]{assignment 4} giving a due
