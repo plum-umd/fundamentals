@@ -133,6 +133,8 @@ Read Part II of @emph{HtDC}.
 
 @section*{Week 3: 5/21-24}
 
+Read Part III @emph{HtDC}.
+
 @subsection*[#:tag "w3m"]{Monday}
 
 @itemlist[
@@ -157,29 +159,37 @@ Read Part II of @emph{HtDC}.
 
 @itemlist[
 @item{@link["exam3.su.12.pdf"]{Exam 3}}
-@item{Lab 6 (Cancelled)}]
-
-@;{
+@item{Lab Cancelled}]
 
 @section*{Week 4: 5/28-31}
+
+Read Part IV @emph{HtDC}.
 
 @subsection*{Monday}
 
 @itemlist[
-@item{Assignment 4 due}]
+@item{Memorial Day, no class}]
 
 @subsection*{Tuesday}
 
 @itemlist[
-@item{Lab 7}]
+@item{Constructors}
+@item{Overriding @tt{equals} and @tt{hashCode}}
+@item{Assignment 4 due}
+@item{@seclink["lab07"]{Lab 6}}]
 
 @subsection*{Wednesday}
+
+@itemlist[
+@item{Mutation}]
+
 @subsection*{Thursday}
 
 @itemlist[
 @item{Exam 4}
 @item{Lab 8}]
 
+@;{
 @section*{Week 5: 6/4-7}
 
 @subsection*{Monday}
