@@ -3,6 +3,51 @@
 
 @title*{Blog}
 
+@section*{How to test exceptions}
+@tt{Tue May 29 00:19:38 EDT 2012}
+
+Here is a short example of how to test the exceptional behavior of a
+program.
+
+@verbatim|{
+import tester.*;
+
+// An example of how to test for exceptional behavior
+
+// Represents a function A -> B
+interface Function<A,B> {
+    // Apply this function to given argument.
+    B apply(A a);
+}
+
+// Represents inversion operation 1/x
+class Invert implements Function<Double,Double> {
+    Invert() {}
+
+    // Produce 1/x
+    public Double apply(Double x) {
+	if (x.equals(0.0)) {
+	    throw new RuntimeException("Divide by zero.");
+	} else {
+	    return 1/x;
+	}
+    }
+}
+
+class Examples {
+    void testInv(Tester t) {
+	t.checkException(// The expected exception
+			 new RuntimeException("Divide by zero."),
+			 // The object that throws
+			 new Invert(),
+			 // The method (as a string!) that throws
+			 "apply",
+			 // The arguments to the method
+			 0.0);
+    }
+}
+}|
+
 @section*{Homework due is till Tuesday at midnight}
 @tt{Mon May 28 22:21:58 EDT 2012}
 
