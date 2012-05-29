@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Homework due is till Tuesday at midnight}
+@tt{Mon May 28 22:21:58 EDT 2012}
+
+There was a typo on @seclink["assign04"]{assignment 4} giving a due
+date of 5/27, which was @bold{not} correct.  The assignment is due
+Tuesday, 5/29 at midnight and the assignment has been corrected.
+
 @section*{Solution to today's exam}
 @tt{Thu May 24 11:35:08 EDT 2012}
 

@@ -1,9 +1,9 @@
 #lang scribble/manual
 @(require "../utils.rkt")
 
-@title[#:tag "assign04"]{5/27: Visiting and Equality}
+@title[#:tag "assign04"]{5/29: Visiting and Equality}
 
-Due: 5/27, midnight by svn.
+Due: 5/29, midnight by svn.
 
 Language: Java.
 
