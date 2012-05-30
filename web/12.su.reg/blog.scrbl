@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Code from yesterday and today}
+@tt{Wed May 30 12:33:19 EDT 2012}
+
+Here is the code from @link["05.30.12.java"]{today} and yesterday's
+@link["05.29.12.a.java"]{part 1} and @link["05.29.12.b.java"]{part 2}.
+
+
 @section*{How to test exceptions}
 @tt{Tue May 29 00:19:38 EDT 2012}
 
