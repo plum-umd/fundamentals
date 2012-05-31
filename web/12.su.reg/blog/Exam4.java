@@ -40,10 +40,6 @@ class EmptyAssoc<K,V> implements Assoc<K,V> {
     public Boolean sameConsAssoc(ConsAssoc<K,V> that) {
 	return false;
     }
-
-    public boolean equals(Assoc<K,V> that) {
-	return this.same(that);
-    }
 }
 
 class ConsAssoc<K,V> implements Assoc<K,V> {
@@ -75,12 +71,6 @@ class ConsAssoc<K,V> implements Assoc<K,V> {
 	    && this.val.equals(that.val)
 	    && this.rest.same(that.rest);
     }
-
-    public boolean equals(Object that) {
-	return (that instanceof Assoc)
-	    && this.same((Assoc<K,V>)that);
-    }
-
 }
 
 // Look up value associated with given key in visited assoc.
@@ -118,14 +108,5 @@ class Examples {
 	t.checkExpect(mt.same(grades), false);
 	t.checkExpect(grades.same(mt), false);
 	t.checkExpect(grades.same(grades), true);
-    }
-
-    void testEquals(Tester t) {
-	Assoc<String,Integer> omt = new EmptyAssoc<String,Integer>();
-	t.checkExpect(mt.equals(omt), true);
-	t.checkExpect(mt.equals(grades), false);
-	t.checkExpect(grades.equals(mt), false);
-	t.checkExpect(grades.equals(grades), true);
-	t.checkExpect(grades.equals(5), false);
     }
 }

@@ -78,9 +78,9 @@ represent the same association.
 @exercise{Design a @tt{same} method that determines if this
 association list and a given association list represent the same
 information. (You may need to design one or more helper methods to
-solve this problem.}
+solve this problem.)}
 
-You can use this notion of equality to ovveride @tt{equals} as follows:
+You can use this notion of equality to override @tt{equals} as follows:
 
 @verbatim|{
     public boolean equals(Object that) {
@@ -89,7 +89,7 @@ You can use this notion of equality to ovveride @tt{equals} as follows:
     }
 }|
 
-Notice that must have @tt{that} be of type @tt{Object} in order to
+Notice that you must have @tt{that} be of type @tt{Object} in order to
 override the built-in @tt{equals} method (contrary to what was said in
 class).  You may get warnings about the cast, but they can be ignored
 for now (Java is fundamentally broken when it comes to casting and
@@ -97,7 +97,7 @@ parameterized types.)
 
 @exercise{Design a @tt{hashCode} method that is compatible with the
 above notion of equality.  Your method must be able to distinguish at
-least three different association list (thus always return a constant
+least three different association lists (thus always return a constant
 will not suffice.)}
 
 @lab:section{Mutable association lists}
@@ -112,7 +112,7 @@ Here is the interface that mutable association lists should support:
 // Represents a mutable association of keys and values.
 interface MAssoc<K,V> {
   // EFFECT: Add given key, value pair to this assoc.
-  void add(K, V);
+  void add(K key, V val);
 
   // EFFECT: Update value associated with given key in this assoc.
   // Produces the old value associate with the key.
