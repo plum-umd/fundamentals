@@ -3,6 +3,12 @@
 
 @title*{Blog}
 
+@section*{Solution for exam 4}
+@tt{Thu May 31 11:40:23 EDT 2012}
+
+Here's a @link["Exam4.java"]{solution} to today's
+@link["exam4.su.12.pdf"]{exam}.
+
 @section*{Code from yesterday and today}
 @tt{Wed May 30 12:33:19 EDT 2012}
 
