@@ -108,7 +108,7 @@ Implement the method counting up and counting down.}
 
 @exercise{Design a method @tt{<T> ArrayList<T> reverse(ArrayList<T>
 is)} that computes the reverse of the given list.  (This method should
-have no effect on @tt{ls}.)}
+have no effect on @tt{is}.)}
 
 Here is a data definition for pairs:
 
