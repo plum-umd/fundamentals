@@ -18,7 +18,7 @@
 The goal of this lab is to practice designing methods for indexed,
 mutable data such as @tt{ArrayList}s.
 
-@lab:section{Simple functional methods on @tt{ArrayList}s}
+@lab:section{Simple functional methods on ArrayLists}
 
 There are basically two ways to design a method that operates on
 indexed data: either count up or count down:
@@ -127,7 +127,7 @@ list of @tt{T}s and an array list of @tt{V}s into an array list of
 pairs of @tt{T}s and @tt{V}s.  You may assume the given lists are the
 same length.}
 
-@lab:section{Some imperative methods on @tt{ArrayList}s}
+@lab:section{Some imperative methods on ArrayLists}
 
 Now you'll design a few methods that mutate their input list.
 
