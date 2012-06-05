@@ -3,6 +3,17 @@
 
 @title*{Blog}
 
+@section*{Assignment 5 revised, new partners}
+@tt{Tue Jun  5 09:32:23 EDT 2012}
+
+As discussed in class, assignment 5 has been revised and finalized by
+adding the exercises from lab 7.
+
+If you'd like a new partner for the remaining portion of class, send
+email to @tt{dvanhorn} with the subject ``CS2510 Partner''.  The body
+should consist of two CCIS usernames.  If you don't submit a partner
+request by midnight tonight, we will assign you a partner randomly.
+
 @section*{Solution for exam 4}
 @tt{Thu May 31 11:40:23 EDT 2012}
 

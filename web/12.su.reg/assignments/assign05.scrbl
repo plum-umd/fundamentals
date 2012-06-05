@@ -14,7 +14,8 @@ This assignment is due Tuesday at midnight.
 
 @section[#:tag "assign05lab"]{Follow-up from Lab}
 
-Complete exercises 1-3 from @seclink["lab07"]{Lab 6}.
+Complete exercises 1-3 from @seclink["lab07"]{Lab 6} @bold{and}
+exercises 1-4 from @seclink["lab08"]{Lab 7}.
 
 @section{Indexing into data}
 
@@ -56,6 +57,4 @@ reference the list.  To do that, we must use mutation:
 
 Develop both of these methods.
 
-@section{TBA}
 
-The rest of this assignment will be posted shortly.
