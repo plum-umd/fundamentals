@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Some code from class}
+@tt{Wed Jun  6 17:45:03 EDT 2012}
+
+Here is the code from @link["06.05.12.java"]{yesterday} and
+@link["06.06.12.java"]{today}.
+
+
 @section*{Assignment 5 revised, new partners}
 @tt{Tue Jun  5 09:32:23 EDT 2012}
 
