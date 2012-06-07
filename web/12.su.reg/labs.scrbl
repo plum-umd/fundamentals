@@ -15,6 +15,7 @@
 @include-section["labs/7.scrbl"]
 @include-section["labs/8.scrbl"]
 @include-section["labs/9.scrbl"]
+@include-section["labs/10.scrbl"]
 
 @;section[#:tag "lab02"]{1/16: No lab (MLK)}
 @;include-section["labs/3.scrbl"]
