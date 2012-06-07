@@ -3,6 +3,21 @@
 
 @title*{Blog}
 
+@section*{New partners}
+@tt{Thu Jun  7 12:34:25 EDT 2012}
+
+Here are the changes made for the next round of partners.  If you are
+not mentioned in this list, you should continue working with your old
+pair.  Please report any problems ASAP.
+
+@verbatim|{
+pair15: psanshi ajacks
+pair16: deema sripley7
+pair17: merylas schwarta
+}|
+
+The svn repository should be updated shortly.
+
 @section*{Solution for Exam 5}
 @tt{Thu Jun  7 10:34:26 EDT 2012}
 

@@ -18,6 +18,11 @@
 The goal of this lab is to practice designing world programs in an
 object-oriented setting.
 
+@lab:section{New Partners}
+
+Be sure to check the @seclink{Blog} for the revised partner list for
+the second part of this course.
+
 @lab:section{Fun New Worlds}
 
 Just as we used the World library for designing interactive video
