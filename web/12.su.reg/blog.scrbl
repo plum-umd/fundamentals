@@ -3,6 +3,13 @@
 
 @title*{Blog}
 
+@section*{Solution for Exam 5}
+@tt{Thu Jun  7 10:34:26 EDT 2012}
+
+Here is a @link["Exam5.java"]{solution} for
+@link["exam5.su.12.pdf"]{Exam 5}.
+
+
 @section*{Some code from class}
 @tt{Wed Jun  6 17:45:03 EDT 2012}
 
