@@ -79,7 +79,7 @@ the second integer by increments of the third integer.  Eg. @tt{new
 HalfOpen(4, 12, 2)} would iterate through @tt{4, 6, 8, 10}.}
 
 @exercise{Design the @tt{Open} and @tt{Closed} classes that represent
-@tt{[x,y]} and @tt{(x,y)} intervals, respectively.  Include all of the
+@tt{(x,y)} and @tt{[x,y]} intervals, respectively.  Include all of the
 constructor features above.}
 
 Now let's do something with a slight twist: let's construct an
