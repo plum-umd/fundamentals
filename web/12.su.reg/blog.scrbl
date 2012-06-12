@@ -3,6 +3,12 @@
 
 @title*{Blog}
 
+@section*{HashTable code from today}
+@tt{Tue Jun 12 11:40:58 EDT 2012}
+
+Here is the @link["06.12.12.java"]{hash table} implementation we wrote
+today in class.
+
 @section*{New partners}
 @tt{Thu Jun  7 12:34:25 EDT 2012}
 
