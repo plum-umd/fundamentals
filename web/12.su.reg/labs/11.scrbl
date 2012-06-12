@@ -45,8 +45,8 @@ for (Integer i : new HalfOpen(0,30)) {
 }
 }|
 
-This should run through the integers in @tt{(0,30]}.  The class is
-called @tt{HalfOpen} because a @tt{(x,y]} is known as a
+This should run through the integers in @tt{[0,30)}.  The class is
+called @tt{HalfOpen} because a @tt{[x,y)} is known as a
 @emph{half-open interval}.
 
 Half-open intervals are useful for all kinds of programming tasks.
@@ -70,7 +70,7 @@ shown above.}
 integer and whose iterator goes from @tt{0} to that number.}
 
 @exercise{Add an integrity check to your constructors so that
-malformed intervals such as @tt{(3,-2]} are rejected by raising an
+malformed intervals such as @tt{[3,-2)} are rejected by raising an
 exception.}
 
 @exercise{Add a third constructor to @tt{HalfOpen} that consumes three
