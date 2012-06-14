@@ -14,6 +14,7 @@ otherwise noted.
 @include-section["assignments/assign03.scrbl"]
 @include-section["assignments/assign04.scrbl"]
 @include-section["assignments/assign05.scrbl"]
+@include-section["assignments/assign06.scrbl"]
 
 @;{
 @include-section["assignments/assign02.scrbl"]
