@@ -4,15 +4,15 @@ import tester.*;
 class Alg {
     Double avg(Iterable<Double> nums) {
 	Double sum = 0.0;
-	Double cnt = 0.0;
+	Integer ct = 0;
 	for (Double n : nums) {
 	    sum = sum + n;
-	    cnt = cnt + 1;
+	    ct = ct + 1;
 	}
-	if (cnt.equals(0.0)) {
+	if (ct.equals(0)) {
 	    throw new RuntimeException("No nums");
 	} else {
-	    return sum / cnt;
+	    return sum / ct;
 	}
     }
 }
