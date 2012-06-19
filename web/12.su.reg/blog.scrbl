@@ -3,6 +3,44 @@
 
 @title*{Blog}
 
+@section*{Clarifications on homework}
+@tt{Tue Jun 19 11:33:02 EDT 2012}
+
+A couple of questions came up on the homework:
+
+@itemlist[
+
+@item{What do you mean by ``Rewrite the hash table initialization to
+use an interval as we had orginally wanted to''?
+
+Originally in the hash table constructor, we had wanted to iterate
+through the numbers from 0 to the @tt{SIZE} of the table.  Had Java
+made @tt{Integer} implement @tt{Iterable<Integer>}, we could have done
+that with:
+
+@verbatim|{for (Integer i : this.SIZE) { ... }}|
+
+Alas, this won't work because @tt{Integer}s don't implement
+@tt{Iterable<Integer>}.  But the first part of the lab is all about
+implementing iterators on integers, so if you complete the first part,
+you should now be able to write:
+
+@verbatim|{for (Integer i : new HalfOpen(this.SIZE)) { ... }}|
+
+That's what was meant.}
+
+@item{In quick lists you use both @tt{size} and @tt{length}
+interchangeably.  Are they the same?  Which should we use.
+
+They are meant to be the same.  It's just a typo.  Use @tt{size} and
+replace all occurrences of @tt{length} with @tt{size} in the
+description of the assignment.}  ]
+
+@section*{Class canceled today}
+@tt{Mon Jun 18 08:49:36 EDT 2012}
+
+Class is canceled today.  See you Tuesday.
+
 @section*{Solution to Exam 6}
 @tt{Thu Jun 14 10:00:06 EDT 2012}
 
