@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+
+\usepackage{slatex}
+
+\pagestyle{empty}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+\section*{Quiz}
+
+\bigskip
+Name: \underline{\hspace*{4in}}
+
+\bigskip
+\bigskip
+\setlength{\parskip}{8pt}
+
+\begin{verbatim}
+// A LoI is one of 
+// - new Cons(Integer, LoI)
+// - new Mt()
+// and implements LoI
+interface LoI {
+  // get the element at the given index
+  Integer listRef(Integer index);
+}
+
+class Cons implements LoI {
+  Integer f;
+  LoI r;
+  Cons(Integer f, LoI r) {
+    this.f = f;
+    this.r = r;
+  }
+  public Integer listRef(Integer index) {
+    return (index == 0) ?
+           this.f : this.r.listRef(index);
+  }
+}
+
+class Mt implements LoI {
+  Mt() {}
+  public Integer listRef(Integer index) {
+    throw new RuntimeException("Index too large");
+  }
+}
+\end{verbatim}
+
+Design the \verb|listSet| method, which \emph{changes} the element at
+the given index to a given new value.  You do not need to write tests.
+\end{document}
