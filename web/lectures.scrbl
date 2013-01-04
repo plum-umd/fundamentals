@@ -22,7 +22,7 @@ In this section, you'll find brief notes from each lecture.
 
 @local-table-of-contents[#:style 'immediate-only]
 
-@section[#:tag "lec01"]{1/9: Objects}
+@section[#:tag "lec01"]{1/7: Objects}
 
 @itemlist[
  @item{Announcements
@@ -49,7 +49,7 @@ In this section, you'll find brief notes from each lecture.
 If you don't have a CCIS account, you need to get one TODAY.  Make
 sure we have your CCIS username on the @seclink{Blog}.
 
-@section[#:tag "lec02"]{1/12: Data definitions and functionality with classes}
+@section[#:tag "lec02"]{1/10: Data definitions and functionality with classes}
 
 @section[#:tag "lec03"]{1/16: Holiday (MLK Day)}
 There is no lecture on 1/16 since it is Martin Luther King, Jr. Day.

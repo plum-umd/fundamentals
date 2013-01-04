@@ -13,10 +13,10 @@ This syllabus will evolve throughout the semester so check it often.
             (string-append "0" r)]
            [else r])))
 
-@(define WEEK-REVEALED (if-internal 15 6))
+@(define WEEK-REVEALED (if-internal 15 0))
 
 @(define assign-dates
-   (list "1/11"
+   (list "1/9"
 	 "1/18"
 	 "1/25"
 	 "2/1"
@@ -33,7 +33,7 @@ This syllabus will evolve throughout the semester so check it often.
 	 "4/28"))
 
 @(define lab-dates
-   (list "1/9"
+   (list "1/1"
 	 "1/16 MLK"
 	 "1/23"
 	 "1/30"

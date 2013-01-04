@@ -7,7 +7,9 @@
 
 @local-table-of-contents[]
 
+
 @include-section["labs/1.scrbl"]
+@;{
 @section[#:tag "lab02"]{1/16: No lab (MLK)}
 @include-section["labs/3.scrbl"]
 @include-section["labs/4.scrbl"]
@@ -23,3 +25,4 @@
 @include-section["labs/13.scrbl"]
 @include-section["labs/14.scrbl"]
 @section[#:tag "lab15"]{4/16: No lab (Patriots Day)}
+}

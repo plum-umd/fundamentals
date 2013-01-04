@@ -4,16 +4,17 @@
 
 @(define instructors
   (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/samth/"]{Sam Tobin-Hochstadt}
-	      (tt "samth") "WVH358 " "Monday " "3:00pm-5:00pm")
+	      (tt "samth") "WVH358 " "TBD " "")
         (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn} 
-	      (tt "dvanhorn") "WVH350" "Thursday " "3:00pm-5:00pm")))
+	      (tt "dvanhorn") "WVH350" "TBD " "")))
 
 @(define tas
-  (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/asumu/"]{Asumu Takikawa}
-	      (tt "asumu") "WVH308" "Wed./Fri. " "5:00pm-6:00pm/4:00-5:00pm")))
+  (list (list @link[#:style "plainlink" "#"]{Nick Labich}
+	      (tt "labichn") "TBD" "" "")))
 
 @(define tutors
-  (list	(list "Spencer Florence" (tt "florence") "WVH102" "Monday " "8:00pm-10:00pm")
+  (list	#;#;#;
+        (list "Spencer Florence" (tt "florence") "WVH102" "Monday " "TBD")
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
         (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
 
@@ -81,7 +82,7 @@ share code in any way}.  Submitting code that is not your own will be
 considered a violation of the University's Academic Integrity
 Policy (pages 38---40 of the @link[#:style "plainlink"
 "http://www.northeastern.edu/osccr/pdfs/Code%20of%20Conduct/2011_2012_Code_of_Co.pdf"]{2011-2012
-Underaduate Student Handbook}).  Violations of academic integrity will
+Undergraduate Student Handbook}).  Violations of academic integrity will
 be reported to @link[#:style "plainlink"
 "http://www.northeastern.edu/osccr/"]{OSCCR} and will have a negative
 impact on your grade.}]
@@ -89,7 +90,7 @@ impact on your grade.}]
 @section*{Computing Environment}
 
 @indented{We will use @link[#:style "plainlink"
-"http://racket-lang.org/"]{DrRacket} v5.2.  DrRacket is installed on
+"http://racket-lang.org/"]{DrRacket} v5.3.1.  DrRacket is installed on
 the CCS computers. It is also freely available on the web in case you
 wish install it on your own computer.
 
@@ -143,8 +144,8 @@ the satisfaction of both, you @emph{must} switch roles.
 @section*{Exams}
 
 @itemlist[
-  @item{Exam 1: 2/13 at 6-9 PM}
-  @item{Exam 2: 3/27 at 6-9 PM}]
+  @item{Exam 1: TBD at 6-9 PM}
+  @item{Exam 2: TBD at 6-9 PM}]
 
 @section*{Projects}
 
