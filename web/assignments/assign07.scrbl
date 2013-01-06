@@ -5,9 +5,9 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign08"]{2/29: Quick Visits}
+@title[#:tag "assign07"]{2/20: Quick Visits}
 
-Due: 2/29.
+Due: 2/20.
 
 Language: @racketmodname[class/2]
 

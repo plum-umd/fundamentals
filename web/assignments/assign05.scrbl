@@ -3,11 +3,11 @@
 	  "../unnumbered.rkt"
           (for-label (except-in class/1 append reverse)))
 
-@title[#:tag "assign05"]{2/8: Fundamentals}
+@title[#:tag "assign03"]{1/23: Fundamentals + Pong}
 
-Due: 2/8.
+Due: 1/23.
 
-Language: @racketmodname[class/1].
+Language: @racketmodname[class/0].
 
 In this assignment, you will practice designing solutions to several
 small problems.

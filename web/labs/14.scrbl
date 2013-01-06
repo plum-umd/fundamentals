@@ -25,7 +25,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab14"]{4/09: Cellular worlds}
+@title[#:tag "lab14"]{4/08: Cellular worlds}
 
 @lab:section{Introduction}
 

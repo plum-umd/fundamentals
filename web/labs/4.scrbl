@@ -19,14 +19,14 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab04"]{1/30: Universe}
+@title[#:tag "lab04"]{1/28: Universe}
 
 @; TODO Elaborate or rewrite
 
 @exercise{
   Is your class system up to date?
 
-  Refer to @seclink["lab03"]{the previous lab} if you don't remember how to
+  Refer to @seclink["lab02"]{the previous lab} if you don't remember how to
   update it.
 }
 

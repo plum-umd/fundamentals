@@ -1,9 +1,9 @@
 #lang scribble/manual
 @(require "../utils.rkt")
 
-@title[#:tag "assign01"]{1/11: Rectangles}
+@title[#:tag "assign01"]{1/9: Rectangles}
 
-Due: 1/11, midnight. @;[@seclink["soln01"]{Solution}]
+Due: 1/9, midnight. @;[@seclink["soln01"]{Solution}]
 
 Language: @racketmodname[class/0].
 

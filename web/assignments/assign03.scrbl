@@ -3,9 +3,9 @@
           (for-label class/0 class/universe))
 
 
-@title[#:tag "assign03"]{1/25: Playing Animations}
+@title[#:tag "assign04"]{1/30: Playing Animations}
 
-Due: 1/25.
+Due: 1/30.
 
 @section{Animation player}
 

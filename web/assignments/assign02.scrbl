@@ -2,9 +2,9 @@
 @(require "../utils.rkt"
           (for-label class/0))
 
-@title[#:tag "assign02"]{1/18: Space Invaders}
+@title[#:tag "assign02"]{1/16: Space Invaders}
 
-Due: 1/18.
+Due: 1/16.
 
 Language: @racketmodname[class/0].
 

@@ -19,7 +19,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab03"]{1/23: Interfaces in Space!}
+@title[#:tag "lab02"]{1/14: Interfaces in Space!}
 
 @lab:section{Update your class system}
 

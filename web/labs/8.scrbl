@@ -9,7 +9,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab8"]{2/27: Java, Dictionaries, and the Internet}
+@title[#:tag "lab08"]{2/25: Java, Dictionaries, and the Internet}
 
 @itemlist[
   @item{Download @tt{prima-1.2.3.jar} from

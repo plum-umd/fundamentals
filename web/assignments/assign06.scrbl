@@ -5,9 +5,9 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign07"]{2/22: Nesting Worlds and Quick Lists}
+@title[#:tag "assign06"]{2/13: Nesting Worlds and Quick Lists}
 
-Due: 2/22.
+Due: 2/13.
 
 Language: @racketmodname[class/2]
 

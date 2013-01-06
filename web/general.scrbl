@@ -4,17 +4,17 @@
 
 @(define instructors
   (list (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/samth/"]{Sam Tobin-Hochstadt}
-	      (tt "samth") "WVH358 " "TBD " "")
+	      (tt "samth") "WVH358 " "Thursday " "3:30-5:30pm")
         (list @link[#:style "plainlink" "http://www.ccs.neu.edu/home/dvanhorn/"]{David Van Horn} 
-	      (tt "dvanhorn") "WVH350" "TBD " "")))
+	      (tt "dvanhorn") "WVH350" "Monday " "3:30-5:30pm")))
 
 @(define tas
   (list (list @link[#:style "plainlink" "#"]{Nick Labich}
-	      (tt "labichn") "TBD" "" "")))
+	      (tt "labichn") "WVH102" "Monday " "7:45-9:45pm")))
 
 @(define tutors
-  (list	#;#;#;
-        (list "Spencer Florence" (tt "florence") "WVH102" "Monday " "TBD")
+  (list (list "Kathleen Mullins" (tt "mullinsk") "WVH102" "TBD " "TBD")
+        #;#;
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
         (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
 
@@ -101,7 +101,7 @@ enter the url
 @centered[@tt[class-system-latest]]
 
 
-You will use @secref{Subversion} to work on your homework sets, to
+You will use @secref{Git} to work on your homework sets, to
 keep track of revisions, and to submit your homework.}
 
 @section*{Bug Reports}

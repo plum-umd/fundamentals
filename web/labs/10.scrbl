@@ -9,7 +9,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab10"]{3/12: Skip lists}
+@title[#:tag "lab10"]{3/11: Skip lists}
 
 @lab:section{Imperative lists}
 

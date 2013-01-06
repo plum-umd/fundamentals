@@ -35,7 +35,6 @@ to practical hands-on programming.
 @include-section["lectures.scrbl"]
 @include-section["labs.scrbl"]
 @include-section["assignments.scrbl"]
-@;include-section["solutions.scrbl"]
 @include-section["git.scrbl"]
 @include-section["pair-programming.scrbl"]
 @include-section["style.scrbl"]

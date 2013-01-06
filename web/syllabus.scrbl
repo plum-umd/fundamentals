@@ -17,37 +17,37 @@ This syllabus will evolve throughout the semester so check it often.
 
 @(define assign-dates
    (list "1/9"
-	 "1/18"
-	 "1/25"
-	 "2/1"
-	 "2/8"
-	 "2/15"
-	 "2/22"
-	 "Spring break"
-	 "3/7"
-	 "3/14"
-	 "3/21"
-	 "3/28"
-	 "4/4"
-	 "4/11"
-	 "4/28"))
-
-@(define lab-dates
-   (list "1/1"
-	 "1/16 MLK"
+	 "1/16"
 	 "1/23"
 	 "1/30"
 	 "2/6"
 	 "2/13"
-	 "2/20 Presidents"
-	 "2/27 Spring break"
-	 "3/5"
-	 "3/12"
-	 "3/19"
-	 "3/26"
-	 "4/2"
-	 "4/9"
-	 "4/16 Patriots"))
+	 "2/20"
+         "2/27"
+	 "Spring break"
+	 "3/13"
+	 "3/20"
+	 "3/27"
+	 "4/3"
+	 "4/10"
+         "4/17 No Assignment"))
+
+@(define lab-dates
+   (list "1/7"
+	 "1/14"
+	 "1/21 MLK"
+	 "1/28"
+	 "2/4"
+	 "2/11"
+	 "2/18 Presidents"
+	 "2/25"
+	 "3/4 Spring break"
+	 "3/11"
+	 "3/18"
+	 "3/25"
+	 "4/1"
+	 "4/8"
+	 "4/15 Patriots"))
 	 
 
 @(define (syllabus-row i reading)

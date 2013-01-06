@@ -4,7 +4,7 @@
 
 @(define (ittt . args) (italic (apply tt args)))
 
-@title*{Subversion}
+@title*{Git}
 
 In this course we will use @link["http://subversion.tigris.org/"]{Subversion}
 for collaboration, version control, and homework submission. This guide will

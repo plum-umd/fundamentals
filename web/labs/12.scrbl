@@ -6,7 +6,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab12"]{3/26: Hashes and bloom filters}
+@title[#:tag "lab12"]{3/25: Hashes and bloom filters}
 
 @lab:section{Warmup with sets}
 

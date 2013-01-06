@@ -6,7 +6,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab11"]{3/19: Iterators}
+@title[#:tag "lab11"]{3/18: Iterators}
 
 @lab:section{Java & Collections}
 

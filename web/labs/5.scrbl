@@ -19,7 +19,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab05"]{2/06: Dictionaries}
+@title[#:tag "lab05"]{2/04: Dictionaries}
 
 A @emph{dictionary} is a commonly used data structure that maps @emph{keys} to
 @emph{values}. Like an actual dictionary on your bookshelf, the central

@@ -27,7 +27,7 @@
 }
 
 @exercise{
-  Familiarize yourself with @seclink["Subversion"]{how we will use Subversion}
+  Familiarize yourself with @seclink["Git"]{how we will use Git and GitHub}
 }
 
 @exercise{
