@@ -53,8 +53,11 @@ example, there's a property for @tt{get} and @tt{cons} analogous to
 the above:
 
 @verbatim{
-∀ ls : QList<X> . ∀ x : X . ls.cons(x).get(ls.size()).equals(x)
+∀ ls : QList<X> . ∀ x : X . ls.cons(x).get(0).equals(x)
 }
+
+[The above property used to have @tt{ls.size()} in place of @tt{0},
+which is clearly wrong and has been fixed.]
 
 @exercise{Implement the @tt{get} property as a function on lists and
 elements.  Test it against your quick list implementation.}

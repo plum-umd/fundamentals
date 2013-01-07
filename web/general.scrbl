@@ -9,11 +9,12 @@
 	      (tt "dvanhorn") "WVH350" "Monday " "3:30-5:30pm")))
 
 @(define tas
-  (list (list @link[#:style "plainlink" "#"]{Nick Labich}
+  (list (list "Nick Labich"
 	      (tt "labichn") "WVH102" "Monday " "7:45-9:45pm")))
 
 @(define tutors
-  (list (list "Kathleen Mullins" (tt "mullinsk") "WVH102" "TBD " "TBD")
+  (list (list "Kathleen Mullins" (tt "mullinsk") "WVH102" "Saturday " "noon-2:00pm")
+        (list "Becca MacKenzie" (tt "rmacnz") "WVH102" "Tuesday " "6:30pm-8:30pm")
         #;#;
         (list "Sarah Laplante" (tt "laplante") "WVH102" "Wednesday " "11:30am-1:30pm")
         (list "Ryan Plessner" (tt "rpless") "WVH102" "Saturday " "3:00-5:00pm")))
@@ -60,7 +61,7 @@ deeper understanding by teaching what they know to others.
 any of the course staff; usernames are given above.}
 
 @bold{Lectures} 
-@indented{Monday and Thursday 11:45–1:25pm in Shillman 415.}
+@indented{Monday and Thursday 11:45–1:25pm in WVH 108.}
 
 @bold{Labs}  
 @indented{Monday 6:00–7:40pm in WVH 210.}

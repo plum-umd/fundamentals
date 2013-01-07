@@ -3,6 +3,12 @@
 
 @title*{Blog}
 
+@section*{Final assignment posted}
+@tt{Wed Jun 20 16:01:03 EDT 2012}
+
+The final @seclink["assign07"]{assignment} has been posted.
+
+
 @section*{Clarifications on homework}
 @tt{Tue Jun 19 11:33:02 EDT 2012}
 

@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+%% ------------------------------------------------------------------
+%% SOLUTIONS:
+\def\thel{\noindent\rule{2.5cm}{.5pt}}
+\long\def\begsol#1 #2\endsol{#1}
+%\def\begsol#1{\thel {\bf Solution} \thel}\def\endsol{\relax}
+%%uncomment the above line to get the solutions printed
+
+\newcommand\code[1]{\texttt{#1}}
+\newcommand\bcode[1]{\texttt{\textbf{#1}}}
+
+%% PROBLEMS:
+\def\pts#1{\marginpar{\footnotesize \raggedright  \fbox{#1 {\sc Points}}}}
+\newcounter{Pctr}
+\newenvironment{problem}{\stepcounter{Pctr}%
+\begin{description}
+\item[\noindent{\bf Problem} \arabic{Pctr}] 
+\end{description}}{\relax}
+%% ------------------------------------------------------------------
+
+%% SUBPARTS:
+\newcounter{parts}
+\renewcommand{\theparts}{\Alph}
+%% ------------------------------------------------------------------
+
+\begin{document}
+
+\renewcommand{\theenumi}{\Alph{enumi}}
+\setcounter{Pctr}{0}
+
+%% ------------------------------------------------------------------
+
+\vfill
+\centerline{\Large CS 2510 Exam 7 -- Summer 2012}
+
+~\\[2cm]
+
+\begin{center}
+\begin{tabular}{l@{\qquad}l}
+Name:                        & \rule{200pt}{.1pt} \\[.5cm]
+Student Id (last 4 digits):  & \rule{200pt}{.1pt} \\[.5cm]
+\end{tabular}
+\end{center}
+
+\noindent\begin{minipage}{7.5cm} $\bullet$ Write down the answers in the
+space provided. 
+
+$\bullet$ You may use all syntax of Java that we have studied in
+class.
+
+$\bullet$ For tests you only need to provide the expression that
+computes the actual value, connecting it with an arrow to the expected
+value. For example \code{s.method() -> true} is sufficient.
+
+$\bullet$ Remember that the phrase ``design a class'' or ``design a
+method'' means more than just providing a definition. It means to
+design them according to the \textbf{design recipe}.  You are
+\textit{not} required to provide a method template unless the problem
+specifically asks for one.  However, be prepared to struggle if you
+choose to skip the template step.
+
+\bigskip
+
+\textit{Good luck!}
+\end{minipage}\hfil\begin{minipage}[t]{4.5cm}
+\begin{tabular}{|c|l@{\qquad\qquad}|r|}
+\hline
+\textbf{Score} &  & 45 \\ \hline
+\end{tabular}
+\end{minipage}
+
+\vfill\thispagestyle{empty}
+\newpage
+
+%% -----------------------------------------------------------------------------
+%% 
+\pts{45}
+\begin{problem}
+
+A matryoshka doll, or a Russian nesting doll, refers to a set of
+wooden dolls of decreasing size placed one inside the other.  The
+innermost doll is usually a baby, and thus we can describe matryoshka
+dolls as either a baby, or a layer with a matryoshka doll inside.
+
+\begin{enumerate}
+\item Design a data definition for matryoshka dolls.
+\item Draw the class diagram corresponding to your data definition.
+\item Develop the visitor pattern for matryoshka dolls.
+\item Design a visitor for matryoshka dolls that computes the nesting
+  depth of the doll.  The nesting depth of the baby is 0.
+\item Have a great summer.
+\end{enumerate}
+\end{problem}
+\newpage
+\
+\newpage
+\
+\end{document}
+
