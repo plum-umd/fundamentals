@@ -81,24 +81,24 @@ questions of and draw to the screen.
 
     ; -> Number
     ; The Ball's area
-    (define/public (area)
+    (define (area)
       (* pi (sqr (field radius))))
 
     ; Ball -> Boolean
     ; Do the Balls have the same radius?
-    (define/public (same-radius? b)
+    (define (same-radius? b)
       (equal? (field radius)    ; (How to access our own field)
               (send b radius))) ; (How to access someone else's field)
 
     ; Ball -> Boolean
     ; Do the Balls have the same area?
-    (define/public (same-area? b)
-      (equal? (area)            ; (How to call our own method)
+    (define (same-area? b)
+      (equal? (send this area)  ; (How to call our own method)
               (send b area)))   ; (How to call someone else's method)
 
     ; -> Image
     ; The image representing the Ball
-    (define/public (draw)
+    (define (draw)
       (circle (field radius) "solid" (field color))))
 )
 
@@ -193,11 +193,11 @@ a single object:
     (fields ...)
 
     ; -> World
-    (define/public (on-tick)
+    (define (on-tick)
       ...)
 
     ; -> Image
-    (define/public (to-draw)
+    (define (to-draw)
       ...))
 
   (big-bang (new world% ...))

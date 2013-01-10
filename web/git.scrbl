@@ -29,7 +29,7 @@ The first thing you will need is a Github account.  To do this, go to:
   @url{http://github.com/}
 ]
 
-Follow the "Sign up for free" instructions.  Please use your CCIS
+Follow the ``Sign up for free'' instructions.  Please use your CCIS
 email address when you register (this important for getting you a free
 account with perks that we will need for the course).  If possible, we
 suggest re-using your CCIS username as your Github username.
@@ -50,6 +50,16 @@ Github provides clients for both Windows and Macs at the following URLs:
   @url{http://mac.github.com/}
 ]
 
+Unfortunately neither of these clients are available on the lab
+computers.  What you'll use in the lab is TortoiseGit:
+
+@indented[
+  @url{http://code.google.com/p/tortoisegit/}
+]
+
+You're welcome to use whatever git client that suits your needs.
+
+
 @section*{Your Github repositories}
 
 You will use git to (1) keep track of revisions as you work on your
@@ -67,126 +77,98 @@ Once your team is established, you can create a repository for your
 work.  All homework should be done in @bold{private} repositories, so
 make sure to create a private repository.
 
-@; If you are in pair number @emph{P}, then your repository is located at
+To create your pair's repository, log in to github.com.  Be switch to
+switch your account context to CCIS-2510H.  Create a new repository.
+The name of repository should be @tt{pairNN} where @tt{NN} is your
+two-digit pair number.  The repository should be marked private.
+Since we've already created teams, your partner should immediately
+have access to this repository.  At this point, you need to clone the
+repository to your computer and can start working.
 
-@; @indented[
-@;  @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2012/pairP/}
-@; ]
+Within your repository you should follow the following naming
+conventions and directory structure:
 
-@; You should @tt{svn checkout} the above URL to create your local working
-@; directory. If you just want to view what files are there, you can also load it
-@; in a web browser (but you won't be able to commit anything from the browser).
+@indented[@verbatim{
+pairNN/
+  assign01/
+  assign02/
+  ...
+}]
 
-@; For each assignment @emph{N}, you will create a directory in your local working
-@; directory named @tt{assnN} containing each problem in a separate racket file
-@; named @tt{M.rkt}, where @emph{M} is the problem number. For example, if
-@; assignment 1 has three problems, your repository should look like this:
+Feel free to also add other directories for labs, notes, or whatever
+else you find useful, but assignments must be in their own
+directories, named as above.
 
-@; @indented[@verbatim{
-@;   pairP
-@;    - assn1
-@;      - 1.rkt
-@;      - 2.rkt
-@;      - 3.rkt
-@; }]
+@section*{Important git concepts}
 
-@; Whenever you want to push your changes to your repository, you will need to
-@; @tt{svn commit} them. (You will need to @tt{svn add} them first---see the
-@; command reference below).
+There are a few important git concepts you need to be comfortable
+with.  To begin with, there are ``repositories''.  At first cut, a
+repository is just a bundle of files that have a history of
+modifcations.  When you created your pair repository, you made an
+empty bundle with no history.  That repository lives on github.  In
+order to make changes, you will need to bring that repository to your
+local computer, make changes, commit them, and then communicate those
+commits back to github.com.
 
-@; You could then verify the current state of your work for assignment 1, for
-@; instance, by pointing your browser to
+@itemize[
 
-@; @indented[
-@;   @tt{https://trac.ccs.neu.edu/svn/cs2510hspring2012/pairP/assn1/}
-@; ]
+@item{Clone - cloning is a one-time operation you do to copy a
+repository from a server to your computer.  Once you've done this, you
+now have the repository on your local machine.  You can add, edit, or
+delete files within this repository as you would any other set of
+files.
 
-@; Just like the design recipe asks you to run tests at the end of a design cycle,
-@; you should check on your homework assignment on the server whenever you think
-@; you're done.
+Once you've made changes that you want to save to the repository,
+you're ready for a commit.}
 
-@; You should commit all of your work every time you finish working on a
-@; problem. This ensures that we can track problems within pairings, that
-@; you can prove your innocence in terms of code theft, and that you
-@; always have a backup of your work.
+@item{Commit - when you're ready to save your changes to your local
+repository, you need to commit them.  You can select any files in the
+repository that have been modified for a commit.  You can also add new
+files to the repository or remove files.  Once you've selected what
+you want to save, you can commit giving an informative message about the change.
 
-@section*{Homework submission}
+At this point, it's important to remember that you've made changes
+@emph{only} to your @bold{local} repository.  Your team members cannot
+see these changes.  If your hard drive failed or your laptop got
+stolen, those changes would be gone forever.
 
-On the due date, an automated script will collect every pair's current solution
-at midnight. Each time you commit an intermediate solution you're guaranteeing
-yourself to have something available at the deadline. We will grade the code
-that we collect at midnight and ignore any revisions that you submit later. No
-exceptions.
+So once you've committed (perhaps several times) and are ready to save
+this batch of commits to the server---and make them available to other
+team members---you need to push.}
 
-@; @section*{Command reference}
+@item{Push - a push communicates a batch of commits on your computer
+to a server.  Once commits have been pushed, they are forever a part
+of the history of the repository.  Team members (and graders) can see
+the changes, and if something happens to your computer, at least those
+commits you've pushed will still be available on the server.}
 
-@; Subversion commands are of the form:
+@item{Pull - a pull communicates a batch of commits on the server to
+your computer.  A pull is how you update your local repository will
+changes your team members have made.  It's a good idea to always do a
+pull before you start any new work to avoid potential conflicts.}
+]
 
-@; @indented{@tt{
-@;   $ svn @ittt{verb} [@ittt{adverbs}] [@ittt{nouns}]
-@; }}
+There are a couple things that you want to make sure you do.
 
-@; The @ittt{verb} says @emph{what} to do, such as to @tt{update} or
-@; @tt{add} information on a file.  The optional @ittt{adverbs} say
-@; @emph{how} to do it, for example @tt{-q} for quietly or
-@; @tt{-N} for non-recursively.  The optional @ittt{nouns} are usually files or
-@; URLs on which to act.
+@itemize[
 
-@; @subsection*{Essential verbs}
+@item{Commit often.  Push often.  There is nothing worse than losing
+work and this will help minimize the awfulness in case something bad
+happens to your computer.}
 
-@; There are two useful verbs that ask for information:
+@item{Don't forget to explicitly add new files to your repository.  If
+you create a new file within your repository, this is not actually a
+part of the repository until you add and commit it.}
 
-@; @itemlist[
-@;   @item{@tt{help [@ittt{verb}]}
+@item{Write informative commit messages.  Documenting the evolution of
+your work will help you understand what you were thinking when months
+later you're trying to make a change to your code.  It will also help
+other people (partners, graders, users) understand your project.  Good
+programmers always write informative commit messages and value others
+who do the same.  Messages such as ``some changes'' or ``fixed some
+stuff'' convey nothing useful.}
+]
 
-@;   Display information for how to use @tt{svn}. If @ittt{verb} is given, display
-@;   information for how to use @tt{svn @ittt{verb}}.}
 
-@;   @item{@tt{status} [@ittt{files and directories}]
 
-@;   Display information about changes since your last commit to the repository.
-@;   (Also see @tt{log} and @tt{diff}.)}]
 
-@; There are various verbs for telling Subversion which files in your local
-@; directory it is responsible for. Here's the most common one:
-
-@; @itemlist[
-@;   @item{@tt{add [@ittt{files and directories}]}
-
-@;   Places @ittt{files and directories} under Subversion's control: the
-@;   @emph{next time you commit} they will be sent to the repository. If
-@;   you @tt{add} a directory, all files inside of that directory will
-@;   also be added. (Also see @tt{rm}, @tt{mkdir}, @tt{mv}, and
-@;   @tt{cp}.)}]
-
-@; And there are several verbs for talking to the repository:
-
-@; @itemlist[
-
-@;   @item{@tt{checkout @ittt{repository-url} [@ittt{new-directory}]}
-
-@;   Makes a local copy of a repository.  You only need to do
-@;   this once per computer you want to work on.}
-
-@;   @item{@tt{update [@ittt{files and directories}]}
-
-@;   Updates your local files with changes from the repository, merging if
-@;   necessary.
-
-@;   This will print the current revision number of the repository.  Note
-@;   that this will increase quickly, since it is a @emph{global} number
-@;   for the entire class, not just for your pair.
-
-@;   Sometimes, when your partner has made changes to a file that you
-@;   have also edited, Subversion will report a conflict.  There are a
-@;   number of ways to resolve conflicts, but the simplest way is for you
-@;   and your partner to work together as a pair, so that conflicts do
-@;   not arise at all.}
-
-@;   @item{@tt{commit [@ittt{files and directories}]}
-
-@;   Push changes from the local copy into a new revision on the repository. Use
-@;   the @tt{-m} switch to give the revision a short description.
-
-@;   Subversion will refuse to commit if the repository has newer information than
-@;   your local copy. In this case, @tt{update} and try again.}]

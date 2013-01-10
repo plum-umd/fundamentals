@@ -23,6 +23,16 @@
 
 @title*{Blog}
 
+@section*{Assignment 2 out, Git notes updated}
+
+@tt{Thu Jan 10 11:29:45 EST 2013}
+
+@seclink["assign02"]{Assignment 2} is posted.  Be forewarned, it is
+quite involved so we suggest you start early.
+
+We've also updated the notes on @secref{Git} and flushed out
+descriptions of some of the most important Git concepts.
+
 @section*{Name and User name survey}
 
 @tt{Mon Jan  7 16:18:18 EST 2013}
@@ -42,7 +52,7 @@ or are not on this list, please see a member of the course staff.
 03. Cody M. Wetherby         Dylan P. Collins
 04. Matthew T. Cotton        Maxwell T. Skala
 05. Eli L. Abidor            Timothy J. Wright
-06. Kyle P. Meyer            Tiffany L. Chao
+06. Nicholas L. Jones        Tiffany L. Chao
 07. Christopher M. Freeley   Calvin J. Pomerantz
 08. Zachary Youngren         Craig J. Ellis
 09. Lukas Berger             Julia T. Ebert
@@ -52,9 +62,9 @@ or are not on this list, please see a member of the course staff.
 13. Kyle H. Alpert           James C. Larisch
 14. Yang Yang                Christian J. DiMare
 15. Kaila M. Corrington      Victor M. Monterroso
-16. Joseph S. Maxwell        Victor ??
+16. Joseph S. Maxwell        Victor Lei
 17. Zoe R. Winkworth         Priscilla A. Baquerizo
-18. Lindsey M. Thoms         Nicholas L. Jones
+18. Kyle P. Meyer
 19. Trithep Devakul          Matthew C. Singer
 20. Nicholas D. Acquadro     William Caruso
 }

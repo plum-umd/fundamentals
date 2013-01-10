@@ -24,4 +24,5 @@ alien that flies across the top of the screen.  You don't need to keep
 score and the player only needs to have one life.  Of course,
 @emph{you can} implement all of these nice features, but remember,
 you're graded for your program design, not making a cool video game.
-So whatever you add, make sure it's well designed.}
+So whatever you add, make sure it's well designed.
+
