@@ -9,9 +9,9 @@
 
 
 @include-section["labs/1.scrbl"]
-@internal[
 @include-section["labs/3.scrbl"]
 @section[#:tag "lab03"]{1/21: No lab (MLK)}
+@internal[
 @include-section["labs/4.scrbl"]
 @include-section["labs/5.scrbl"]
 @;include-section["labs/6.scrbl"]

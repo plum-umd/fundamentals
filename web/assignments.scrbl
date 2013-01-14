@@ -11,7 +11,6 @@ otherwise noted.
 
 @include-section["assignments/assign01.scrbl"]
 @include-section["assignments/assign02.scrbl"]
-
 @internal[
 @include-section["assignments/assign05.scrbl"]
 @include-section["assignments/assign03.scrbl"]
