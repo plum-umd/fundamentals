@@ -23,6 +23,27 @@
 
 @title*{Blog}
 
+@section*{Fixing image errors in DrRacket}
+
+@tt{Mon Jan 14 12:21:14 EST 2013}
+
+Sometimes, when you have a file in DrRacket that uses images,
+sometimes you'll get the following error
+
+@verbatim{
+write: cannot marshal value that is embedded in compiled code
+  value: (object:image-snip% ...)
+}
+
+To fix this, you should change your DrRacket settings as follows.
+First, open the @emph{Choose Language} item from the @emph{Language}
+menu.  Then click on @emph{Show Details} Then @bold{uncheck} the
+@emph{Populate "compiled" directories} item.
+
+In general, tools such as Git will work better with files that embed
+images when you follow the guidelines outlined on the @secref["style"]
+page.
+
 @section*{Assignment 2 out, Git notes updated}
 
 @tt{Thu Jan 10 11:29:45 EST 2013}

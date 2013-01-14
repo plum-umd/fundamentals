@@ -21,6 +21,12 @@
 
 @title[#:tag "lab02"]{1/14: Interfaces in Space!}
 
+@lab:section{New tools}
+
+The lab computers now have the GitHub Windows client available, so if
+you're using that on other computers, feel free to use it here as
+well.  TortiseGit is still available as well.
+
 @lab:section{Update your class system}
 
 Throughout the course the @racket[class] languages will be under constant
