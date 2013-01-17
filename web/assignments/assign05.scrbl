@@ -10,7 +10,7 @@ Due: 1/23.
 Language: @racketmodname[class/0].
 
 In this assignment, you will practice designing solutions to several
-small problems.
+small problems.  Then you'll build another classic computer game: Pong.
 
 @itemlist[#:style 'ordered 
 
@@ -215,4 +215,31 @@ all of the gaps).
 
 }
 
+@item{
+@bold{Pong!}
+
+Design and implement a two-player version of the classic Pong game.  You can
+see Pong in action in @link["http://www.youtube.com/watch?v=pDrRnJOCKZc"]{this
+video of the original game} or @link["http://www.ponggame.org/"]{this
+online version}.
+
+The important elements of the game are the following:
+
+@itemlist[ 
+@item{Two paddles, which move up and down but not off the screen. One paddle
+should be controlled by the @tt{w} and @tt{s} keys, and the other by the up and
+down keys.}
+
+@item{A ball, which bounces off the top and bottom walls and off the paddles.}
+
+@item{A winning condition, when the ball reaches either side wall.}
+
+@item{A score, for each player, which counts the times the ball hit the
+@emph{other} side wall.}
+]
+
+In other words, it should look a lot like the original Pong game in the video.
+You do @emph{not} need to implement any embellishments, such as varying bounce
+angles, faster speeds, or fancier graphics.
+}
 ]
