@@ -23,6 +23,13 @@
 
 @title*{Blog}
 
+@section*{Assignment 3 out}
+
+@tt{Thu Jan 17 11:30:30 EST 2013}
+
+@seclink["assign03"]{Assignment 3} is posted.
+
+
 @section*{Fixing image errors in DrRacket}
 
 @tt{Mon Jan 14 12:21:14 EST 2013}
