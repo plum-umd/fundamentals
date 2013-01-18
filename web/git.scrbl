@@ -50,14 +50,18 @@ Github provides clients for both Windows and Macs at the following URLs:
   @url{http://mac.github.com/}
 ]
 
-Unfortunately neither of these clients are available on the lab
-computers.  What you'll use in the lab is TortoiseGit:
+An alternative git client is TortoiseGit:
 
 @indented[
   @url{http://code.google.com/p/tortoisegit/}
 ]
 
+Both the Github client and TortoisGit are avaialable on CCIS lab
+machines.
+
 You're welcome to use whatever git client that suits your needs.
+The course staff prefers using the git command line program.
+Examples of using the command line are given below.
 
 
 @section*{Your Github repositories}
@@ -119,13 +123,39 @@ delete files within this repository as you would any other set of
 files.
 
 Once you've made changes that you want to save to the repository,
-you're ready for a commit.}
+you're ready for a commit.
+
+Using the command line, the following clones a repository and changes
+into its directory:
+
+@verbatim[#:indent 3]|{
+git clone git@github.com:CCIS-2510H/pairNN.git
+cd pairNN/
+}|}
+
+@item{Status - you should always check the status of your repository
+before making changes.
+
+@verbatim[#:indent 3]{
+git status
+}}
+
+@item{Add - when you want changes or new files to be included in a
+commit (described below), you need to add those files.  This step is
+often handled in the GUI clients by selecting files interactively
+during a commit.  At the command line, the following adds a file to
+the set to be committed:
+
+@verbatim[#:indent 3]{
+git add assign01/blah.txt
+}}
 
 @item{Commit - when you're ready to save your changes to your local
 repository, you need to commit them.  You can select any files in the
 repository that have been modified for a commit.  You can also add new
 files to the repository or remove files.  Once you've selected what
-you want to save, you can commit giving an informative message about the change.
+you want to save, you can commit giving an informative message about
+the change.
 
 At this point, it's important to remember that you've made changes
 @emph{only} to your @bold{local} repository.  Your team members cannot
@@ -134,19 +164,49 @@ stolen, those changes would be gone forever.
 
 So once you've committed (perhaps several times) and are ready to save
 this batch of commits to the server---and make them available to other
-team members---you need to push.}
+team members---you need to push.
+
+At the command line, the following will open an editor for you to
+compose the commit message and then commit everything that's been
+added:
+
+@verbatim[#:indent 3]{
+git commit
+}
+
+If you want to specify a message on the command line, you do so with:
+@verbatim[#:indent 3]{
+git commit -m "My commit message"
+}
+
+If you want to skip the add step above, you specify the files to
+commit:
+
+@verbatim[#:indent 3]{
+git commit -m "My commit message" assign01/blah.txt
+}
+}
 
 @item{Push - a push communicates a batch of commits on your computer
 to a server.  Once commits have been pushed, they are forever a part
 of the history of the repository.  Team members (and graders) can see
 the changes, and if something happens to your computer, at least those
-commits you've pushed will still be available on the server.}
+commits you've pushed will still be available on the server.
+
+@verbatim[#:indent 3]{
+git push
+}
+}
+
 
 @item{Pull - a pull communicates a batch of commits on the server to
 your computer.  A pull is how you update your local repository will
 changes your team members have made.  It's a good idea to always do a
-pull before you start any new work to avoid potential conflicts.}
-]
+pull before you start any new work to avoid potential conflicts.
+
+@verbatim[#:indent 3]{
+git pull
+}}]
 
 There are a couple things that you want to make sure you do.
 
