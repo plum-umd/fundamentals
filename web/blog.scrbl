@@ -23,9 +23,30 @@
 
 @title*{Blog}
 
+@section*{Assignment 3 questions and updates}
+
+@tt{Mon Jan 21 12:38:31 EST 2013}
+
+@seclink["assign03"]{Assignment 3} incorrectly asked two questions about super
+classes, which we haven't discussed in class. These have been removed from the
+assignment.
+
+If you want, you may use @racketmodname[class/1] to solve the assignment, but
+@emph{only} the features of @racketmodname[class/1] we have discussed in class.
+
+Also, there have been questions about the @racket[half-working] method.  In a
+case where aging won't produce a population that is exactly half as large (as
+when there are an odd number of adults), your @racket[half-working] method
+should stop when there are @emph{no more than half} as many adults as
+originally.
+
+There was also a typo in the @racket[Possession] problem, which has been fixed,
+and the problem on mobiles has been clarified.
+
+
 @section*{Assignment 3 out}
 
-@tt{Thu Jan 17 11:30:30 EST 2013}
+@tt{Thu Jan 17 11:30:30 EST 2013} 
 
 @seclink["assign03"]{Assignment 3} is posted.
 

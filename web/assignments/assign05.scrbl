@@ -44,7 +44,7 @@ weight of a mobile. The weight of the lines and struts is given by
 their lengths (a strut of length @racket[n] has weight @emph{n}).
 
 Design the method @racket[height] that computes the height of the
-mobile.} 
+mobile.  The example has height 7.} 
 
 @item{ Here is a @link["Employees.pdf"]{class diagram} for employees.
 Develop data and class definitions for employees.
@@ -80,7 +80,7 @@ from any source of the river to the mouth of the river.
 A football game consists of a series of Posessions.  Each Posession
 starts at a location on the field (a yard from 0 to 100), ends at a
 specific location on the field, either with a score (of either 3 or 7
-points), and a kick to the other team, causing them to start at a new
+points), or a kick to the other team, causing them to start at a new
 location on the field.  
 
 Design a data defintion for football games.  Then design the method
@@ -140,19 +140,22 @@ schedule is good for @racket[free-time].}
 numbers.  Design the @racket[reverse] method that consumes no
 arguments and produces the list of this list's elements in reverse
 order.  You should design the method using a helper method with an
-accumulator.  Once you have the helper method, make sure the
+accumulator.
+@;{Once you have the helper method, make sure the
 definition of @racket[reverse] is identical in all the classes that
 represent lists, then define a new super class of these classes and
 lift this duplicated, identical definition to it.  Thus you should now
-have a single definition of @racket[reverse].
+have a single definition of @racket[reverse].}
 
 @bold{Note:} you may @emph{not} use lists from last semester, i.e. those
 constructed with @racket[cons] and @racket[empty].}
 
 @item{Revisit your solution to @racket[free-time].  Did you use an
 accumulator desgin?  (You probably should have.)  If you didn't,
-redesign the program with an accumulator.  Lift any identical method
+redesign the program with an accumulator.  @;{
+Lift any identical method
 definitions to super classes.}
+}
 
 @item{
 Here is a data defintion for a @racket[Shape]:
