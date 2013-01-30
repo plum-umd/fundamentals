@@ -21,108 +21,31 @@
 
 @title[#:tag "lab04"]{1/28: Universe}
 
-@; TODO Elaborate or rewrite
 
-@exercise{
-  Is your class system up to date?
-
-  Refer to @seclink["lab02"]{the previous lab} if you don't remember how to
-  update it.
-}
 
 @lab:section{Universe with objects}
 
-@#reader scribble/comment-reader
-(racketmod
-class/0
-(require class/universe)
-(require 2htdp/image)
+The purpose of this lab is to practice writing distributed programs
+with Universe.
 
-(define WIDTH  500)
-(define HEIGHT 500)
-)
+@exercise{ Starting with the Zombie game we've developed in class,
+  develop a single-player distributed version of Zombie.  This game
+  should function just like the World version of the game, the only
+  difference is that the server will maintain the data of where the
+  zombies and the player are.  The client will communicate the mouse
+  position to the server as it changes.  The server will communicate
+  the location of the player and zombies on a regular basis. }
 
-@exercise{
-  Create a World that connects to the Universe using the @racket[register]
-  method. The IP of the Universe machine is written on the board.
-
-  You must include a @racket[to-draw] method---for now just have it create an
-  empty scene with the dimensions above.
-
-  If you don't include an @racket[on-receive] method then the Universe will
-  disconnect you immediately, after it tries to send you a message and you fail
-  to receive it. To get started, just create one that returns the World
-  unchanged.
+@exercise{ Modify the above program to make a @emph{multi-player}
+  distributed version of Zombie in which the zombies move toward the
+  @emph{closest} player in the game.  Each client is responsible for
+  moving a single player, but it also displays the position of every
+  other player and all of the zombies.
 }
 
-The Universe consists of circular rocks flying through space. You are one of
-these rocks, and if you collide with another you will be destroyed and the
-Universe will disconnect you.
+It should not be possible for the clients to cheat, for example, by
+moving too fast or influencing the position of other players.
 
-The Universe keeps track of all the rocks. Your job is to build a World to give
-you a visual display of what's going on in the Universe and give you control
-over your rock so that you can navigate it away from danger.
-
-The Universe communicates to you by sending you the list of all the rocks every
-@racket[1/10]th of a second. Each rock is sent over the wire as RockData:
-
-@#reader scribble/comment-reader
-(racketblock
-; A  RockData is a (list Location Velocity Acceleration Radius Color)
-
-; A  Location is a Complex
-; A  Velocity is a Complex
-; An Acceleration is a Complex
-; A  Radius is a non-negative Real
-; A  Color is a String
-)
-
-We will again use complex numbers for 2D geometry like we did in
-@seclink["lab03"]{lab 3}.
-
-@exercise{
-  Define a Rock class. It should have fields for all the data in RockData, and
-  it should know how to @racket[draw] itself.
-}
-
-The Universe sends you RockData by calling your @racket[on-receive] method. The
-input SExp is a list of RockData.
-
-@exercise{
-  Elaborate @racket[on-recieve] and @racket[to-draw] to display the current
-  state of all the Rocks in the Universe.
-}
-
-You can only control yourself by sending messages back to the Universe. In fact,
-all you can control is your acceleration. The
-@link["http://docs.racket-lang.org/teachpack/2htdpuniverse.html#(part._.Sending_.Messages)"]{Package}
-you may send to the Universe consists of one value: your new Acceleration.
-
-@exercise{
-  Add simple keyboard controls to your World so that you can control your
-  acceleration.
-}
-
-Notice that your acceleration stays constant until you send a new one...
-
-@exercise{@bold{(Open ended)}
-  Using either the mouse or the keyboard, design a control scheme that gives you
-  precise control over your Rock. Consider how you can both (1) control the
-  angle of your acceleration, and (2) modulate the magnitude of your
-  acceleration.
-}
-
-@exercise{@bold{(Open ended)}
-  WRITE ANOTHER EXERCISE HERE.
-}
-
-@exercise{@bold{(Open ended)}
-  The Universe gives you the location (and velocity) of every Rock in play, and
-  yours is always the first in the list. Design an @emph{automated} control
-  scheme that avoids other Rocks.
-
-  Here's a basic approach to get you started: assign a repulsive acceleration to
-  each rock, weighted by its distance from you, and sum them all together to
-  find the direction of least ``immediate'' danger. (This strategy will need a
-  bit of refinement...)
-}
+@exercise{ Once you have a version of the server that works for
+well-behaved clients, fortify your server so that it works for all
+possible clients and potential interactions.}

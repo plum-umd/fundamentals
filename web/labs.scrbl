@@ -11,8 +11,8 @@
 @include-section["labs/1.scrbl"]
 @include-section["labs/3.scrbl"]
 @section[#:tag "lab03"]{1/21: No lab (MLK)}
-@internal[
 @include-section["labs/4.scrbl"]
+@internal[
 @include-section["labs/5.scrbl"]
 @;include-section["labs/6.scrbl"]
 @section[#:tag "lab06"]{2/13: No lab (Exam 1)}
