@@ -2,6 +2,7 @@ CLASS=class-system-01-04.plt
 CLASS_LATEST=class-system-latest.plt
 CCS=login.ccs.neu.edu
 CCS_PATH=/course/cs2510h/.www/
+RACO=raco
 
 scrbls := $(wildcard *.scrbl) $(wildcard assignments/*.scrbl) $(wildcard labs/*.scrbl)
 
@@ -18,7 +19,7 @@ clean: clean-class clean-web
 class: $(CLASS) clean-class
 
 $(CLASS):
-	raco pack -v ++setup class --collect --at-plt --replace $(CLASS) class
+	$(RACO) pack -v ++setup class --collect --at-plt --replace $(CLASS) class
 
 clean-class:
 	find ../class* -name compiled -type d | xargs rm -fr
@@ -31,13 +32,13 @@ clean-class:
 web: 2510H 2510H/dpc.pdf
 
 2510H/dpc.pdf: dpc.scrbl
-	raco scribble --latex --dest 2510H/ dpc.scrbl
+	$(RACO) scribble --latex --dest 2510H/ dpc.scrbl
 	cd 2510H; xelatex dpc.tex
 
 2510H: $(CLASS) $(scrbls)
 	ln -sf $(CLASS) $(CLASS_LATEST)
-	env CLASS=$(CLASS) raco make 2510H.scrbl
-	raco scribble --htmls \
+	env CLASS=$(CLASS) $(RACO) make 2510H.scrbl
+	$(RACO) scribble --htmls \
 		++extra fonts/kulminoituva-webfont.eot \
 		++extra fonts/kulminoituva-webfont.svg \
 		++extra fonts/kulminoituva-webfont.ttf \
