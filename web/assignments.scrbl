@@ -13,9 +13,8 @@ otherwise noted.
 @include-section["assignments/assign02.scrbl"]
 @include-section["assignments/assign05.scrbl"]
 @include-section["assignments/assign03.scrbl"]
-@internal[
-@include-section["assignments/assign04.scrbl"]
 @include-section["assignments/assign06.scrbl"]
+@internal[
 @include-section["assignments/assign07.scrbl"]
 @include-section["assignments/assign08.scrbl"]
 @include-section["assignments/assign09.scrbl"]

@@ -1,15 +1,15 @@
 #lang scribble/manual
 @(require "../utils.rkt"
 	  "../unnumbered.rkt"
-          (for-label (except-in class/2 empty cons first rest list-ref length e check-expect))
+          (for-label (except-in class/1 empty cons first rest list-ref length e check-expect))
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign06"]{2/13: Nesting Worlds and Quick Lists}
+@title[#:tag "assign06"]{2/6: Nesting Worlds and Quick Lists}
 
-Due: 2/13.
+Due: 2/6.
 
-Language: @racketmodname[class/2]
+Language: @racketmodname[class/1]
 
 In this problem set, we'll be implementing operating systems---very
 simple ones, but operating systems none-the-less, and a variant of
@@ -120,7 +120,7 @@ we're used to, so for example, these tests should all pass if
 @racket[empty] is appropriately defined:
 
 @codeblock{
-#lang class/2
+#lang class/1
 (require "your-implementation-of-lists.rkt") ; provides empty
 
 (define ls (empty . cons 'a . cons 'b . cons 'c . cons 'd . cons 'e))
