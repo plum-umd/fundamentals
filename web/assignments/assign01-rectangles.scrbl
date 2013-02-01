@@ -230,14 +230,14 @@ and
 (define-class circ% 
   (fields r c x y)
   (define (area)
-    (* pi (expt (field r) 2)))
+    (* pi (expt (send this r) 2)))
   (define (draw-on scn)
     (place-image (to-image)
-                 (field x)
-                 (field y)
+                 (send this x)
+                 (send this y)
                  scn))
   (define (to-image)
-    (circle (field r) "solid" (field c))))
+    (circle (send this r) "solid" (send this c))))
 ))
 
 	@interaction[#:eval the-eval
