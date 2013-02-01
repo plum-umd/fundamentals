@@ -229,14 +229,14 @@ and
 	   '(begin
 (define-class circ% 
   (fields r c x y)
-  (define/public (area)
+  (define (area)
     (* pi (expt (field r) 2)))
-  (define/public (draw-on scn)
+  (define (draw-on scn)
     (place-image (to-image)
                  (field x)
                  (field y)
                  scn))
-  (define/public (to-image)
+  (define (to-image)
     (circle (field r) "solid" (field c))))
 ))
 
