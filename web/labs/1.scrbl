@@ -82,13 +82,13 @@ questions of and draw to the screen.
     ; -> Number
     ; The Ball's area
     (define (area)
-      (* pi (sqr (field radius))))
+      (* pi (sqr (send this radius))))
 
     ; Ball -> Boolean
     ; Do the Balls have the same radius?
     (define (same-radius? b)
-      (equal? (field radius)    ; (How to access our own field)
-              (send b radius))) ; (How to access someone else's field)
+      (equal? (send this radius) ; (How to access our own field)
+              (send b radius)))  ; (How to access someone else's field)
 
     ; Ball -> Boolean
     ; Do the Balls have the same area?
@@ -99,7 +99,7 @@ questions of and draw to the screen.
     ; -> Image
     ; The image representing the Ball
     (define (draw)
-      (circle (field radius) "solid" (field color))))
+      (circle (send this radius) "solid" (send this color))))
 )
 
 We can create and use Ball objects as follows:
