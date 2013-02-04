@@ -12,8 +12,8 @@
 @include-section["labs/3.scrbl"]
 @section[#:tag "lab03"]{1/21: No lab (MLK)}
 @include-section["labs/4.scrbl"]
-@internal[
 @include-section["labs/5.scrbl"]
+@internal[
 @;include-section["labs/6.scrbl"]
 @section[#:tag "lab06"]{2/13: No lab (Exam 1)}
 @section[#:tag "lab07"]{2/20: No lab (Presidents Day)}
