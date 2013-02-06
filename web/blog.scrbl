@@ -23,6 +23,35 @@
 
 @title*{Blog}
 
+@section*{First exam: In class, Thursday 2/14}
+@tt{Wed Feb  6 17:47:40 EST 2013}
+
+The first exam will be held on Thursday 2/14 @emph{in class}.
+Previously we had planned for a three hour out-of-class exam, but due
+to the short notice, we've decided to hold a 1.5 hour exam.  We will
+host a review session and post past exams to this blog.
+
+@section*{Some answers on quick lists}
+@tt{Wed Feb  6 17:42:10 EST 2013}
+
+Q: I'm having trouble understanding what is meant by representing a
+list as a ``forest of trees of elements'' -- and my confusion only
+gets worse as I read more of the paragraph describing ``Van Horn's
+idea''.  Would you mind clarifying the data structure we're being
+asked to build?
+
+A: A ``forest'' is just a collection of trees.  So when the assignment
+says that ``A quick list is a forest of increasingly large full binary
+trees'' that means that your quick list data structure should contain
+a bunch of binary trees, each of which is full (we talked about full
+binary trees in class on Monday), and which are increasingly large as
+you go through the forest.
+
+Q: And going through/deeper into the forest would be the equivalent of
+traveling further down the elements of a list, correct?
+
+A: Yes, later elements in the list are further into the forest.
+
 @section*{Assignment 3 questions and updates}
 
 @tt{Mon Jan 21 12:38:31 EST 2013}
