@@ -26,7 +26,7 @@
 @section*{Assignment 6 out}
 @tt{Wed Feb  6 19:31:15 EST 2013}
 
-The next assignment is @secref["assign06"]{out}.
+The next assignment is @seclink["assign06"]{out}.
 
 @section*{First exam: In class, Thursday 2/14}
 @tt{Wed Feb  6 17:47:40 EST 2013}

@@ -12,7 +12,7 @@ Sometimes, all you want is a quick game of Pong, but you can't find
 anyone to play with.  In this assignment, we'll solve this problem.  
 
 You need to implement a computer player that plays pong with the
-server you wrote @secref["assign04"]{previously}.  This player will be
+server you wrote @seclink["assign04"]{previously}.  This player will be
 a stand-alone world that communicates with the server using just the
 same messages that you sent back and forth.  Since that design ensured
 that players couldn't cheat, your computer player won't be able to
