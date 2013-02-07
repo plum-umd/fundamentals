@@ -13,7 +13,7 @@ This syllabus will evolve throughout the semester so check it often.
             (string-append "0" r)]
            [else r])))
 
-@(define WEEK-REVEALED (if-internal 15 3))
+@(define WEEK-REVEALED (if-internal 15 5))
 
 @(define assign-dates
    (list "1/9"
@@ -55,7 +55,7 @@ This syllabus will evolve throughout the semester so check it often.
          (itemlist (item (secref (string-append "lec" (number->string2 (- (* 2 i) 2)))))
                    (item (secref (string-append "lec" (number->string2 (- (* 2 i) 1))))))
          reading
-         (if (<= i (add1 WEEK-REVEALED))
+         (if (<= i (+ 0 WEEK-REVEALED))
 	     (secref (string-append "lab" (number->string2 i)))
 	     (list-ref lab-dates (sub1 i)))
 	 (if (<= i (add1 WEEK-REVEALED))
