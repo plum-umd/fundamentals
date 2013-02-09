@@ -23,6 +23,14 @@
 
 @title*{Blog}
 
+@section*{Past exams}
+@tt{Thu Feb  7 11:56:19 EST 2013}
+
+Here are the past exams from CS2510H:
+@itemlist[
+@item{@link["exam1-s11.pdf"]{Spring 2011}}
+@item{@link["exam1-s12.pdf"]{Spring 2012}}]
+
 @section*{Assignment 6 out}
 @tt{Wed Feb  6 19:31:15 EST 2013}
 
