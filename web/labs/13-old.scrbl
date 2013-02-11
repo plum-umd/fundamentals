@@ -8,7 +8,7 @@
 
 @(define exercise (exercise-counter))
 
-@title[#:tag "lab13"]{4/02: The minority game}
+@title[#:tag "lab06"]{2/11: The minority game}
 
 Here is a state-transition diagram for a simple @math{n}-player game:
 
@@ -121,6 +121,10 @@ the spec above, you should all be speaking the same protocol.
   incoming messages, and you had to define do-nothing methods to appease the
   @racket[universe] system.
 
+  Define a superclass to abstract the repeated code.  Do you need to
+  use overriding?
+
+@;{
   Define @racket[ignore-new-mixin] @tt{: Class -> Class} that adds a do-nothing
   @racket[on-new] method to a class to make it more @tt{Universe} compliant.
 
@@ -129,13 +133,14 @@ the spec above, you should all be speaking the same protocol.
 
   Use these two mixins to clean up your @tt{Universe} classes.
 }
+}
 
 @exercise{
   If you used @racket[on-key] or @racket[on-mouse] to input the player's vote,
   you'll have a similar problem where you defined do-nothing methods on all but
   one of your @tt{World} classes.
 
-  Clean up your @tt{World} classes by defining a mixin, similar to the two
+  Clean up your @tt{World} classes by defining a superclass, similar to the one
   above.
 }
 
@@ -146,5 +151,5 @@ the spec above, you should all be speaking the same protocol.
   Change your @racket[vote-universe%] and @racket[win-lose-universe%] so that
   they queue up incoming players and pass them off to the
   @racket[join-universe%] when the next round starts. To avoid repeated code,
-  define and use a @racket[queueing-mixin] to achieve this.
+  define and use a superclass to achieve this.
 }
