@@ -1,0 +1,439 @@
+% You must \input this file into a file the has previously
+% defined the \ifrubric conditional.
+
+\documentclass[12pt]{article}                   % -*- latex -*-
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{./exam}
+\usepackage{type1cm} % We are using scalable fonts. Really.
+\usepackage{alltt,times,comment,amsmath}
+\usepackage{alltt}
+\usepackage{ct} % tight CM font for \tt
+\usepackage[usenames,dvipsnames]{xcolor}
+\newexercise{exercise}{Exercise}[subsection]
+
+\makeatletter
+\newcommand{\ie}{\mbox{\emph{i.e.}}}    % \mbox keeps the last period from
+\newcommand{\Ie}{\mbox{\emph{I.e.}}}    % looking like an end-of-sentence.
+\newcommand{\etc}{\emph{etc.}}
+
+\newcommand{\itum}[1]{\item{\bf #1}\\*}
+
+\newcommand{\var}[1]{\textrm{\textit{#1}}}
+
+\newenvironment{inset}
+ {\bgroup\parskip=1ex plus 1ex\begin{list}{}%
+        {\topsep=0pt\rightmargin\leftmargin}%
+        \item[]}%
+ {\end{list}\leavevmode\egroup\global\@ignoretrue}
+
+\newenvironment{insetverb}%
+  {\begin{inset}\begin{verbatim}}%
+  {\end{verbatim}\end{end}}%
+
+\def\pts#1{\marginpar{\footnotesize \raggedright  \fbox{#1 {\sc Points}}}}
+%\def\pts#1{\relax}
+
+\ifrubric
+\newenvironment{solution}{\color{Red}}{}
+\else
+\excludecomment{solution}
+\fi
+\newexercise{problem}{Problem}
+
+\newcommand\code[1]{\texttt{#1}}
+
+% Works in math mode; all special chars remain special; cheaper than \cd.
+% Will not be correct size in super and subscripts, though.
+\newcommand{\ex}[1]{\mbox{\ttt #1}} 
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\vspace*{-1.5cm}
+\centerline{\Large CSU2510H Exam 1 \ifrubric (SOLUTION) \fi-- Spring 2013}
+
+\vspace{0.5cm}
+
+\ifrubric\relax\else
+\begin{center}
+\begin{tabular}{l@{\qquad}l}
+Name:                        & \rule{174pt}{1pt} \\[.5cm]
+Student Id (last 4 digits):  & \rule{174pt}{1pt} \\[.5cm]
+%Section (morning, honors or afternoon):           & \rule{174pt}{1pt} \\[.5cm]
+\end{tabular}
+\end{center}
+\fi
+
+\noindent\begin{minipage}{8cm}\sloppy
+\begin{itemize}
+\item You may use the usual primitives and expression forms of any of
+  the \code{class} languages; for everything else, define it.
+
+\item You may write {\tt {\slshape c} $\rightarrow$ {\slshape e}} as
+  shorthand for
+  {\tt (check-expect {\slshape c e})}.
+
+\item To add a method to an existing class definition, you
+  may write just the method and indicate the appropriate class name
+  rather than re-write the entire class definition.
+
+\item We expect data \emph{and} interface definitions.
+
+\item If an interface is given to you, you do not need to repeat the
+  contract and purpose statements in your implementations.  Likewise,
+  you do not need to repeat any test cases given to you, but you
+  should add tests wherever appropriate.
+
+%% DVH: This info is already in the table.
+% \item You may obtain a maximum of 55 points: 50 for the first six
+% problems; and five extra-credit points for the final problem.
+
+\item The extra credit problem is \emph{all or nothing};  no partial
+  credit will be awarded.
+
+\item Unless specifically requested, templates and super classes are
+  \emph{not} required.
+
+\item Some basic test taking advice: Before you start answering
+any problems, read \emph{every} problem, so your brain can  think
+about the harder problems in the background while you knock off the easy ones.
+\end{itemize}
+
+\bigskip
+
+\emph{Good luck!}
+\end{minipage}\hfil\begin{minipage}[t]{6cm}
+\rule{1cm}{0pt}\begin{tabular}{|c|l|@{/}r|}
+\hline
+{\bf Problem} & Points & out of \\ \hline
+1 & & 18\\ \hline
+2 & & 10\\ \hline
+Extra & & 5 \\ \hline
+{\bf Total} & & 28+5 \\ \hline
+%{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
+\end{tabular}
+\end{minipage}
+
+\vfill\thispagestyle{empty}
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem} \pts{15}
+
+% Set/Property problem
+
+In order to manage the distribution of ID , the College decided that they
+needed to create a new implementation of the \verb|Set| data
+structure.  They went with the lowest bidder, which
+turned out to be a bunch of BU students.  Now, having paid for this
+code, the College needs to test it, and they turn to you.  
+
+Unfortunately, the code the BU students produced is so convoluted that
+it doesn't bear looking at.  All you have to go on is that the
+\verb|Set| data structure obeys the following interface:
+
+\begin{verbatim}
+;; A Set implements:
+;; - insert : String -> Set
+;;   adds given string to this set, if it isn't already there
+;;   (otherwise produces this set)
+;; - remove : String -> Set
+;;   removes given string from this set, if it's already there
+;;   (otherwise produces this set)
+;; - size : -> Number
+;;   count the elements of this set
+;; - has? : String -> Boolean
+;;   is the given String in this set?
+
+;; empty-set is a Set value containing no elements
+\end{verbatim}
+\noindent
+\verb|Set|s should satisfy the following property, called the
+``insert-size'' property, for any element and
+set:
+
+\begin{quote}
+If we insert any element into any set, then the resulting set is the
+same size as the original set \emph{if} the element was already in the
+set, and the resulting set is one larger than the original set
+if the element was \emph{not} already in the set.
+\end{quote}
+
+\begin{enumerate}
+\item Codify the ``insert-size'' property as a predicate.  Write a
+  test case that should pass (if the sets work right) using the
+  predicate you have defined.
+\end{enumerate}
+
+\ifrubric\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+\newpage
+\noindent
+The College wants to be really sure that their sets are correct, and
+they've come up with another property that they think is true, called
+the ``insert-remove'' property:
+
+\begin{quote}
+If we insert element any element $a$ into any set, and then remove any
+element $b$ from the resulting set, the result has the same size as if
+we do the two operations in the reverse order, i.e., remove $b$, then
+insert $a$.
+\end{quote}
+
+\noindent
+The College is considering adding this to the test suite as well.
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+
+\item Codify this property as a predicate, and write a test case that
+  should pass using the predicate.
+
+\item Is the ``insert-remove'' property true for all sets?  If so,
+  give an explanation.  If not, write a counter-example (i.e., a
+  failing test case) using your predicate.
+
+\end{enumerate}
+
+\begin{solution}
+\begin{alltt}
+\rubricpts{1 pt -- contract & purpose}
+;; check-insert-size : Set String -> Boolean
+;; check the "insert-size" property on s and i.
+\rubricpts{4 pts -- code}
+(define (check-insert-size s i)
+  (= (s . insert i . size)
+     (cond [(s . has? i) (add1 (s . size))]
+           [else               (s . size)])))
+
+\rubricpts{2 pts -- test case}
+(check-expect (check-insert-size empty-set "hi") true)
+
+\rubricpts{1 pt -- contract & purpose}
+;; check-remove-insert : Set String -> Boolean
+;; check the "remove-insert" property on s, a, and b.
+\rubricpts{3 pts -- code}
+(define (check-remove-insert s a b)
+  (= (s . insert a . remove b . size)
+     (s . remove b . insert a . size))
+
+\rubricpts{1 pt -- successful test}
+(check-expect (check-remove-insert empty-set "yes" "no") true)
+
+;; Property does not hold.
+;; Counter-example (failing test):
+\rubricpts{3 pts -- failing test}
+(check-expect (check-remove-insert empty-set "yes" "yes") true)
+\end{alltt}
+\end{solution}
+
+\newpage
+\ifrubric\else
+[Here is some more space for the previous problem.]
+\newpage
+\fi
+\end{problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem} \pts{15}
+
+
+% JSON problem
+
+Here are data and class definitions for representing the files and
+directories of a computer:
+
+\begin{verbatim}
+;; An Elem is one of
+;; - (new file% String Number)
+;; - (new dir% String LoElem)
+(define-class file% (fields name size))
+(define-class dir% (fields name elems))
+
+;; A LoElem is one of
+;; - (new mt%)
+;; - (new cons% Elem LoElem)
+(define-class mt%)
+(define-class cons% (fields first rest))    
+\end{verbatim}
+
+
+\noindent
+Here is an example of a directory tree and its representation as an
+\verb|Elem|:
+\begin{verbatim}
+#|
+ User
+   +-- A
+   |   +-- a.txt
+   |   +-- B
+   |       +-- b.rkt
+   +-- C
+       +-- c.c
+|#
+
+(define mt (new mt%))
+(define a (new file% "a.txt" 5))
+(define b (new file% "b.rkt" 10))
+(define c (new file% "c.c" 1000))
+
+(define C/ (new dir% "C" (new cons% c mt)))
+(define B/ (new dir% "B" (new cons% b mt)))
+(define A/ (new dir% "A" (new cons% a (new cons% B/ mt))))
+(define User/ (new dir% "/" (new cons% A/ (new cons% C/ mt))))
+\end{verbatim}
+
+\newpage
+\noindent
+Your job is to implement one of the main tasks of the common Unix
+utility \verb|find|, which gives a list of all the files within an
+element.  To do so, add a \verb|list-files| method of \verb|Elem|
+which produces a list of files.  So for example, we expect:
+\begin{verbatim}
+(check-expect (User/ . list-files) 
+              (new cons% a (new cons% b (new cons% c mt))))
+\end{verbatim}
+\emph{Hint}: it may come in handy to be able to concatenate two
+\verb|LoElem| together.
+
+\ifrubric
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+\begin{solution}
+\begin{alltt}
+\rubricpts{1pts -- interfaces, contracts, purpose}
+;; An Elem implements
+;; - list-files : -> LoElem
+;;   List all files within this element.
+
+\rubricpts{2pts -- interfaces, contracts, purpose}
+;; A LoElem implements
+;; - list-files : -> LoElem
+;;   List all files within this list of elements.
+;; - append : LoElem -> LoElem
+;;   Append this list of elements to given list.
+
+\rubricpts{1pt -- code}
+;; in dir%
+(define (list-files)
+  (this . elems . list-files))
+
+\rubricpts{1pt -- code}
+;; in file%
+(define (list-files)
+  (new cons% this (new mt%)))
+
+\rubricpts{2pt -- code}
+;; in mt%
+(define (append loe) loe)
+(define (list-files) this)
+
+\rubricpts{4pt -- code}
+;; in cons%
+(define (append loe)
+  (new cons% (this . first) (this . rest . append loe)))
+(define (list-files)
+  (this . first . list-files . append (this . rest . list-files)))
+
+\rubricpts{1pt -- sanity}
+
+\rubricpts{3pts -- tests}
+;; tests
+(check-expect (mt . append (new cons% a mt)) (new cons% a mt))
+(check-expect ((new cons% a mt) . append (new cons% b mt))
+              (new cons% a (new cons% b mt)))
+
+(check-expect (mt . list-files) mt)
+(check-expect ((new cons% a (new cons% b mt)) . list-files)
+              (new cons% a (new cons% b mt)))
+
+(check-expect (a . list-files) (new cons% a mt))
+\end{alltt}
+\end{solution}
+
+\end{problem}
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{problem}\pts{5}
+
+% Visitor on Binary Trees
+
+\textbf{Extra Credit}
+\\
+\noindent
+After Van Horn discovered the problems with numbers, he attempted to
+fix them.  Unfortunately, not only did he not fix them, he broke
+booleans as well.  Fortunately, we have an idea about how you can
+help, expressed in the following interface definitions.  
+
+\begin{verbatim}
+;; A Bool implements:
+;; - branch : [Action X] [Action X] -> X
+;;   run the first action if this bool is true, 
+;;   otherwise run the second action
+
+;; An [Action X] implements:
+;; - run : -> X
+;; run this action
+
+
+\end{verbatim}
+
+Following these interface definitions, design data and class
+defintions for implementations of the \verb|Bool| interface, and
+reimplement the \verb|fact| method to use them.
+You will need to provide new defintions for \verb|true| and
+\verb|false|, since they were broken by this catastrophe as well.
+
+\ifrubric\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+
+\begin{solution}
+\begin{alltt}
+\rubricpts{5 pts -- get it right}
+(define-class fact%
+  (define (fact n)
+    (n . zero? . branch (new const% one) (new recur% n))))
+
+(define-class const%
+  (fields run))
+
+(define-class recur%
+  (fields n)
+  (define (run) 
+    ((new fact%) . fact (this . n . sub1) . times (this . n))))
+
+(define-class t%
+  (define (branch t e) (t . run)))
+(define-class f%
+  (define (branch t e) (e . run)))
+
+(define true (new t%)) 
+(define false (new f%))
+
+(check-expect ((new fact%) . fact zero) one)                  ; 0! = 1
+(check-expect ((new fact%) . fact one) one)                   ; 1! = 1
+(check-expect ((new fact%) . fact (one . add1)) (one . add1)) ; 2! = 2
+(check-expect ((new fact%) . fact (one . add1 . add1))        ; 3! = 6
+              (one . add1 . add1 . add1 . add1 . add1))
+\end{alltt}
+\end{solution}
+\end{problem}
+\end{document}
+
+
