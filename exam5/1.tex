@@ -107,7 +107,7 @@ about the harder problems in the background while you knock off the easy ones.
 \rule{1cm}{0pt}\begin{tabular}{|c|l|@{/}r|}
 \hline
 {\bf Problem} & Points & out of \\ \hline
-1 & & 18\\ \hline
+1 & & 19\\ \hline
 2 & & 10\\ \hline
 Extra & & 5 \\ \hline
 {\bf Total} & & 28+5 \\ \hline
@@ -121,73 +121,131 @@ Extra & & 5 \\ \hline
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{problem} \pts{15}
+\begin{problem} \pts{19}
 
 % Set/Property problem
 
-In order to manage the distribution of ID , the College decided that they
-needed to create a new implementation of the \verb|Set| data
-structure.  They went with the lowest bidder, which
-turned out to be a bunch of BU students.  Now, having paid for this
-code, the College needs to test it, and they turn to you.  
-
-Unfortunately, the code the BU students produced is so convoluted that
-it doesn't bear looking at.  All you have to go on is that the
-\verb|Set| data structure obeys the following interface:
+In order to manage the distribution of ID cards, the University needs
+a data structure for managing sets of numbers.  Van Horn started on
+the implementation, resulting in what you see below.
 
 \begin{verbatim}
-;; A Set implements:
-;; - insert : String -> Set
-;;   adds given string to this set, if it isn't already there
-;;   (otherwise produces this set)
-;; - remove : String -> Set
-;;   removes given string from this set, if it's already there
-;;   (otherwise produces this set)
-;; - size : -> Number
-;;   count the elements of this set
-;; - has? : String -> Boolean
-;;   is the given String in this set?
+;; A Set is one of:
+;; - (new empty%)
+;; - (new singelton% Number)
+;; - (new union% Set Set)
+;; Interpretation: a set that contains all the *unique* numbers in the data
+;; and implements
+;; - sum : -> Number
+;;   Produce the sum of all the unique elements of this set
+;; - sum/acc : Set -> Number
+;;   Produce the sum of all the unique elements of this set that are
+;;   *not* in the given set
+;; - contains? : Number -> Boolean
+;;   Does this set contain the given number?
+;; - union : Set -> Set
+;;   Combine this set with the given set
 
-;; empty-set is a Set value containing no elements
+(define-class empty%
+  (define (sum) 0)
+  (define (sum/acc s) 0))
+
+(define-class singleton%
+  (fields n)
+  (define (sum) n)
+  (define (sum/acc s) (cond [(s . contains? (this . n)) 0]
+                            [else (this . n)])))
+
+(define-class union%
+  (fields l r)
+  (define (sum) (this . sum/acc (new empty%)))
+  (define (sum/acc s) (+ (this . l . sum/acc s)
+                         (this . r . sum/acc (s . union (this . l))))))
 \end{verbatim}
-\noindent
+
+\newpage
+
+Unfortunately, as you can see, Van Horn fell asleep before finishing,
+and the deadline is today.  Help him out by implementing the
+\verb|union| and \verb|contains?| methods for all \verb|Set|s.
+
+
+\ifrubric
+\begin{alltt}
+\rubricpts{1 pt -- union method}
+\rubricpts{3 pts -- contains method}
+;; in empty%
+(define (union s) s)
+(define (contains n) #f)
+;; also ok:
+(define (union s) (new union% this s)
+;; in singleton%
+(define (union s) (new union% this s)
+(define (contains n) (= n (this . n)))
+;; in union%
+(define (union s) (new union% this s)
+(define (contains n) (or (this . l . contains n)
+                         (this . r . contains n)))
+(define e (new empty%))
+\rubricpts{2 pts -- tests}
+(check-expect (e . contains 5) #f)
+(check-expect ((new singleton% 5) . contains 5) #t)
+(check-expect ((new singleton% 6) . contains 5) #f)
+(check-expect ((new singleton% 6) . union  e . contains 5) #f)
+(check-expect (e . union (new singleton% 5) . contains 5) #t)
+(check-expect ((new singleton% 5) . union (new singleton% 5) . contains 5) #t)
+\end{alltt}
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+\newpage
+
 \verb|Set|s should satisfy the following property, called the
-``insert-size'' property, for any element and
-set:
+``union-contains'' property, for any number $n$ and
+any two sets $s_1$ and $s_2$:
 
 \begin{quote}
-If we insert any element into any set, then the resulting set is the
-same size as the original set \emph{if} the element was already in the
-set, and the resulting set is one larger than the original set
-if the element was \emph{not} already in the set.
+Given two sets $s_1$ and $s_2$, if $n$ is contained in the union of $s_1$ and $s_2$, then $n$ is either
+contained in $s_1$ or it is contained in $s_2$.
 \end{quote}
 
 \begin{enumerate}
-\item Codify the ``insert-size'' property as a predicate.  Write a
-  test case that should pass (if the sets work right) using the
+\item Codify the ``union-contains'' property as a predicate.  Write a
+  test case that should pass (if your implementations work right) using the
   predicate you have defined.
 \end{enumerate}
 
-\ifrubric\else
+\ifrubric
+\begin{alltt}
+\rubricpts{1 pt -- contract & purpose}
+;; union-contains : Set Set Number -> Boolean
+\rubricpts{3 pts -- code}
+(define (union-contains s1 s2 n)
+  (check-expect (s1 . union s2 . contains n)
+                (or (s1 . contains n) (s2 . contains n))))
+\rubricpts{1 pt -- successful test}
+(union-contains e (new singleton% 17) 17)
+\end{alltt}
+\else
 \newpage
 [Here is some more space for the previous problem.]
 \fi
 
 \newpage
 \noindent
-The College wants to be really sure that their sets are correct, and
-they've come up with another property that they think is true, called
-the ``insert-remove'' property:
+The University doesn't really trust Van Horn, and they want to make
+sure that \verb|Set|s satisfy another property, called the
+``union-sum'' property:
 
 \begin{quote}
-If we insert element any element $a$ into any set, and then remove any
-element $b$ from the resulting set, the result has the same size as if
-we do the two operations in the reverse order, i.e., remove $b$, then
-insert $a$.
+Given two sets $s_1$ and $s_2$, computing the sum of $s_1$ and the sum
+of $s_2$ and then adding the two results is equal to the sum of the
+union of  $s_1$ and $s_2$.
 \end{quote}
 
 \noindent
-The College is considering adding this to the test suite as well.
+The University is considering adding this to the test suite as well.
 
 \begin{enumerate}
 \setcounter{enumi}{1}
@@ -195,7 +253,7 @@ The College is considering adding this to the test suite as well.
 \item Codify this property as a predicate, and write a test case that
   should pass using the predicate.
 
-\item Is the ``insert-remove'' property true for all sets?  If so,
+\item Is the ``union-sum'' property true for all sets?  If so,
   give an explanation.  If not, write a counter-example (i.e., a
   failing test case) using your predicate.
 
@@ -204,32 +262,18 @@ The College is considering adding this to the test suite as well.
 \begin{solution}
 \begin{alltt}
 \rubricpts{1 pt -- contract & purpose}
-;; check-insert-size : Set String -> Boolean
-;; check the "insert-size" property on s and i.
-\rubricpts{4 pts -- code}
-(define (check-insert-size s i)
-  (= (s . insert i . size)
-     (cond [(s . has? i) (add1 (s . size))]
-           [else               (s . size)])))
-
-\rubricpts{2 pts -- test case}
-(check-expect (check-insert-size empty-set "hi") true)
-
-\rubricpts{1 pt -- contract & purpose}
-;; check-remove-insert : Set String -> Boolean
-;; check the "remove-insert" property on s, a, and b.
+;; union-sum : Set Set -> Boolean
 \rubricpts{3 pts -- code}
-(define (check-remove-insert s a b)
-  (= (s . insert a . remove b . size)
-     (s . remove b . insert a . size))
+(define (union-contains s1 s2 n)
+  (check-expect (s1 . union s2 . sum)
+                (+ (s1 . sum) (s2 . sum))))w
 
 \rubricpts{1 pt -- successful test}
-(check-expect (check-remove-insert empty-set "yes" "no") true)
-
-;; Property does not hold.
-;; Counter-example (failing test):
+;; successful test
+(union-sum (new singleton% 17) e)
 \rubricpts{3 pts -- failing test}
-(check-expect (check-remove-insert empty-set "yes" "yes") true)
+;; It's false, counterexample:
+(union-sum (new singleton% 17) (new singleton% 17))
 \end{alltt}
 \end{solution}
 
