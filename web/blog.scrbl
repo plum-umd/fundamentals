@@ -23,8 +23,14 @@
 
 @title*{Blog}
 
-@section*{Past exams}
-@tt{Thu Feb  7 11:56:19 EST 2013}
+@section*{Review session}
+@tt{Wed Feb 13 10:10:35 EST 2013}
+
+The review session will be from 6-9 PM on Wednesday (i.e., today) in WVH 366.
+
+
+
+@section*{Past exams} @tt{Thu Feb 7 11:56:19 EST 2013}
 
 Here are the past exams from CS2510H:
 @itemlist[
