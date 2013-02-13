@@ -141,7 +141,7 @@ the implementation, resulting in what you see below.
 ;; - sum/acc : Set -> Number
 ;;   Produce the sum of all the unique elements of this set that are
 ;;   *not* in the given set
-;; - contains? : Number -> Boolean
+;; - contains : Number -> Boolean
 ;;   Does this set contain the given number?
 ;; - union : Set -> Set
 ;;   Combine this set with the given set
@@ -152,8 +152,8 @@ the implementation, resulting in what you see below.
 
 (define-class singleton%
   (fields n)
-  (define (sum) n)
-  (define (sum/acc s) (cond [(s . contains? (this . n)) 0]
+  (define (sum) (this . n))
+  (define (sum/acc s) (cond [(s . contains (this . n)) 0]
                             [else (this . n)])))
 
 (define-class union%
@@ -167,7 +167,7 @@ the implementation, resulting in what you see below.
 
 Unfortunately, as you can see, Van Horn fell asleep before finishing,
 and the deadline is today.  Help him out by implementing the
-\verb|union| and \verb|contains?| methods for all \verb|Set|s.
+\verb|union| and \verb|contains| methods for all \verb|Set|s.
 
 
 \ifrubric
@@ -178,12 +178,12 @@ and the deadline is today.  Help him out by implementing the
 (define (union s) s)
 (define (contains n) #f)
 ;; also ok:
-(define (union s) (new union% this s)
+(define (union s) (new union% this s))
 ;; in singleton%
-(define (union s) (new union% this s)
+(define (union s) (new union% this s))
 (define (contains n) (= n (this . n)))
 ;; in union%
-(define (union s) (new union% this s)
+(define (union s) (new union% this s))
 (define (contains n) (or (this . l . contains n)
                          (this . r . contains n)))
 (define e (new empty%))
@@ -264,9 +264,9 @@ The University is considering adding this to the test suite as well.
 \rubricpts{1 pt -- contract & purpose}
 ;; union-sum : Set Set -> Boolean
 \rubricpts{3 pts -- code}
-(define (union-contains s1 s2 n)
+(define (union-sum s1 s2 n)
   (check-expect (s1 . union s2 . sum)
-                (+ (s1 . sum) (s2 . sum))))w
+                (+ (s1 . sum) (s2 . sum))))
 
 \rubricpts{1 pt -- successful test}
 ;; successful test
