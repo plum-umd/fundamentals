@@ -118,8 +118,58 @@ Extra & & 5 \\ \hline
 \vfill\thispagestyle{empty}
 \newpage
 
+\begin{problem} \pts{??}
 
+JSON is a lightweight data-interchange format.  It is widely used on
+the web and plays exactly the role of S-Expressions in universe
+programs, but for JavaScript programs.  It's used by folks like Google
+and there's tons of data on the web that's available in the JSON
+format.  So as to not be left out of the fun, your co-op employer has
+asked you to design an object representation of JSON to incorporate
+into their 2 million lines of {\tt class/2} code.  To start things off
+simply, here are some examples of what we'll call ``JSON, Jr.'':
 
+\begin{verbatim}
+"this is JSON"
+{ "this is JSON", "Jr." }
+{ {}, { "So", "is" }, "this" }
+\end{verbatim}
+The first example is just a string.  The second is an ``array'' of two
+JSON elements, which are both strings.  The third is another array,
+but of three elements: the first is an array of zero elements, the
+second is an array of two strings, and the third is a string.
+
+\begin{enumerate}
+\item Design an object-based data representation for JSON, Jr.
+\newpage
+\item Design a method for counting the number of strings in a JSON,
+  Jr.~object.
+\newpage
+\item Among the 2M lines of code your employer maintains are 30,000
+  lines of code devoted to implementations of the {\tt
+    StringPred} interface, which is:
+\begin{verbatim}
+;; A StringPred implements
+;; - apply : String -> Boolean
+\end{verbatim}
+These objects represent predicates on strings.  Now that your JSON,
+Jr. library is in place, they've decided to put their predicates to
+use in searching a large corpus of JSON data.  To accomodate this,
+design the following method for JSON, Jr.~objects:
+\begin{verbatim}
+;; Find the first string in this JSON Jr object satisfying
+;; given predicate, or #f if there's no such string.
+;; find : StringPred -> String or #f
+\end{verbatim}
+\end{enumerate}
+
+\end{problem}
+
+\newpage
+\ifrubric\else
+[Here is some more space for the previous problem.]
+\newpage
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem} \pts{19}
 
