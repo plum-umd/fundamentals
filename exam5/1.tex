@@ -348,29 +348,42 @@ The University is considering adding this to the test suite as well.
 \textbf{Extra Credit}
 \\
 \noindent
-After Van Horn discovered the problems with numbers, he attempted to
-fix them.  Unfortunately, not only did he not fix them, he broke
-booleans as well.  Fortunately, we have an idea about how you can
-help, expressed in the following interface definitions.  
+Labich was unhappy to discover that the class languages don't have his
+favorite programming language feature---pattern matching.  After
+thinking hard about this problem, he came up with a solution, which he
+calls \emph{pattern objects}.  
 
+Consider the following data defintion:
 \begin{verbatim}
-;; A Bool implements:
-;; - branch : [Action X] [Action X] -> X
-;;   run the first action if this bool is true, 
-;;   otherwise run the second action
+;; A BTree is one of:
+;; - (new leaf% Number)
+;; - (new node% BTree Number BTree)
+;; and implements
+;; - match : [Pattern X] -> X
+;;   applies the given pattern object to this tree
 
-;; An [Action X] implements:
-;; - run : -> X
-;; run this action
+;; A [Pattern X] implements:
+;; - leaf : Number -> X
+;; - node : BTree Number BTree -> X
 
+(define-class leaf%
+  (fields n)
+  ;; apply the appropriate method from the given pattern object
+  (define (match p) (p . leaf (this . n))))
 
+(define-class node%
+  (fields left n right)
+  ;; apply the appropriate method from the given pattern object
+  (define (match p) 
+    (p . node (this . left) (this . n) (this . right))))
 \end{verbatim}
 
-Following these interface definitions, design data and class
-defintions for implementations of the \verb|Bool| interface, and
-reimplement the \verb|fact| method to use them.
-You will need to provide new defintions for \verb|true| and
-\verb|false|, since they were broken by this catastrophe as well.
+A pattern object is like the implementation of two different functions
+at once: one that implements a function for leaves from a binary tree,
+and one function that works on nodes.
+
+Write a pattern object that computes the product of all of the numbers
+in a binary tree.
 
 \ifrubric\else
 \newpage
@@ -381,31 +394,16 @@ You will need to provide new defintions for \verb|true| and
 \begin{solution}
 \begin{alltt}
 \rubricpts{5 pts -- get it right}
-(define-class fact%
-  (define (fact n)
-    (n . zero? . branch (new const% one) (new recur% n))))
+;; product% implements [Pattern Number]
+(define-class product%
+  ;; the product of a leaf
+  (define (leaf n) n)
+  ;; the product of a node
+  (define (node l n r) (* n (l . match this) (r . match this))))
 
-(define-class const%
-  (fields run))
-
-(define-class recur%
-  (fields n)
-  (define (run) 
-    ((new fact%) . fact (this . n . sub1) . times (this . n))))
-
-(define-class t%
-  (define (branch t e) (t . run)))
-(define-class f%
-  (define (branch t e) (e . run)))
-
-(define true (new t%)) 
-(define false (new f%))
-
-(check-expect ((new fact%) . fact zero) one)                  ; 0! = 1
-(check-expect ((new fact%) . fact one) one)                   ; 1! = 1
-(check-expect ((new fact%) . fact (one . add1)) (one . add1)) ; 2! = 2
-(check-expect ((new fact%) . fact (one . add1 . add1))        ; 3! = 6
-              (one . add1 . add1 . add1 . add1 . add1))
+(define p (new product%))
+(check-expect ((new leaf% 5) . match p) 5)
+(check-expect ((new node%  (new leaf% 2) 5 (new leaf% 7)) . match p) 70)
 \end{alltt}
 \end{solution}
 \end{problem}
