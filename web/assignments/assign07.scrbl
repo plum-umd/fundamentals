@@ -5,13 +5,13 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign04"]{2/20: Playing Animations}
+@title[#:tag "assign07"]{2/20: Playing Animations}
 
 Due: 2/20.
 
 @section{Animation player}
 
-Language: @racketmodname[class/0].
+Language: @racketmodname[class/2].
 
 In this assignment, we'll build a video player for animations.  The
 player will support play, pause, fast-forward, and rewind.  A player

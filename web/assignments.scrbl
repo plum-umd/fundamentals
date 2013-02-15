@@ -15,7 +15,8 @@ otherwise noted.
 @include-section["assignments/assign03.scrbl"] @; Pong Universe
 @include-section["assignments/assign06.scrbl"] @; Quick Lists + Nested Worlds 
 @include-section["assignments/assign04.scrbl"] @; Computer Pong
-@section[#:tag "assign07"]{2/20: Coming Soon}
+@include-section["assignments/assign07.scrbl"] @; Animations
+@section[#:tag "assign08"]{2/27: Coming Soon}
 @internal[
 @include-section["assignments/assign07.scrbl"] @; Quick Visits + Universe Setup
 @include-section["assignments/assign08.scrbl"] @; TBD
