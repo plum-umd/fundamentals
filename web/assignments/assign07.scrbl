@@ -5,310 +5,371 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign07"]{2/20: Quick Visits}
+@title[#:tag "assign04"]{2/20: Playing Animations}
 
 Due: 2/20.
 
-Language: @racketmodname[class/2]
+@section{Animation player}
 
-You will need to update your copy of the @seclink["class"]{class system} to solve this assignment.
+Language: @racketmodname[class/0].
 
-@section{Quick Visits}
+In this assignment, we'll build a video player for animations.  The
+player will support play, pause, fast-forward, and rewind.  A player
+will interact with an @racket[Animation] solely through the following
+interface: 
 
-This problem builds on the @emph{quick lists} problem from last week.
+@verbatim{
+;; An Animation implements:
+;; next : -> Animation
+;; prev : -> Animation
+;; render : -> Scene
+}
 
-Here was the interface you should have implemented for lists using the
-@emph{quick list} data structure that supports a fast
-@racket[list-ref] method:
+The @racket[next] and @racket[prev] methods work on @emph{all}
+@racket[Animation]s.  In particular, the @racket[prev] method on the
+first frame of an animation should stay at the first frame, and
+@racket[next] of the last frame should stay on the last frame.
 
+
+Here is an example implementation of an @racket[Animation] that
+displays a sequence of numbers:
+
+@codeblock{#lang class/0
+(define WIDTH 200) ; Animation dimension in PX.
+(define-class count-animation%
+ (fields n)
+ (define (next)
+   (new count-animation% (add1 (send this n))))
+ (define (prev)
+   (new count-animation% (max 0 (sub1 (send this n)))))
+ (define (render)
+   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black")
+            (empty-scene 200 200))))
+}
+
+
+@itemlist[#:style 'ordered
+@item{@bold{The Player user interface}
+
+The user can interact with a player through the keyboard: @racket["p"]
+plays, @racket["f"] fast-forwards, @racket["r"] rewinds, and
+@racket["s"] stops playing.
+
+The fast-forward mode should skip every other frame of the animation.
+The rewind should go back through the animation.  }
+
+@item{@bold{Animations}
+
+An animation is anything that implements the above interface.  You
+need to implement several ways to construct animations.
+
+@itemlist[  
+@item{First, animations that are constructed from lists of @racket[Scene]s.} 
+
+@item{Second, animations that consists of a function from a number to
+a frame.  For example, when given the following function, your
+animation creator should produce the animation as the example above:
+@racketblock[
+(lambda (i) (overlay (text (number->string i) 50 "black")
+                     (empty-scene 200 200)))
+]}
+
+@item{Third, you should
+create an implementation of @racket[Animation] that wraps an object
+with @racket[on-tick] and @racket[to-draw] methods.  That is, the
+constructor should take an object that supports the following
+@racket[World] interface:
 @codeblock{
-;; A [List X] implements
-;; - cons : X -> [List X]
-;;   Cons given element on to this list.
-;; - first : -> X
-;;   Get the first element of this list 
-;;   (only defined on non-empty lists).
-;; - rest : -> [List X]
-;;   Get the rest of this 
-;;   (only defined on non-empty lists).
-;; - list-ref : Natural -> X
-;;   Get the ith element of this list 
-;;   (only defined for lists of i+1 or more elements).
-;; - length : -> Natural
-;;   Compute the number of elements in this list.
+;; A World implements
+;;  to-draw : -> Scene
+;;  on-tick : -> World
+}
+and it should render the @racket[Scene]s that the @racket[World]
+produces.  } ]
 
-;; empty is a [List X] for any X.
+Finally, you should use the third implementation to play an animation
+of a playing animation.  You should demonstrate this in your solution
+with one of your other animations.  }]
+
+
+
+@;{
+
+
+#lang class/0
+(require 2htdp/image)
+(require class/universe)
+
+(define WIDTH 200) ; Animation dimension in PX.
+(define HEIGHT 200)
+
+(define TRIANGLE-SIZE (/ WIDTH 10))
+(define play (rotate -90 (triangle TRIANGLE-SIZE "solid" "blue")))
+(define (bar c) (rectangle (/ TRIANGLE-SIZE 4) TRIANGLE-SIZE "solid" c))
+(define pause (beside play (bar "blue") (bar "white") (bar "blue")))
+(define (mk-button img)
+ (overlay img (rectangle (/ WIDTH 3) (/ WIDTH 3) "solid" "white")))
+
+(define PLAY-IMAGE (mk-button play))
+(define PAUSE-IMAGE (mk-button pause))
+(define FF-IMAGE (mk-button (beside play play)))
+(define FR-IMAGE (mk-button (beside (rotate 180 play) (rotate 180 play))))
+
+;; An Animation implements:
+;; next : -> Animation
+;; prev : -> Animation
+;; render : -> Scene
+
+(define-class count-animation%
+ (fields n)
+ (define (next)
+   (new count-animation% (add1 (send this n))))
+ (define (prev)
+   (new count-animation% (max 0 (sub1 (send this n)))))
+ (define (render)
+   (overlay (text (number->string (send this n)) (quotient WIDTH 4) "black")
+            (empty-scene WIDTH HEIGHT))))
+
+;; A Player is implements
+;; -  > : -> Player
+;; - << : -> Player
+;; - >> : -> Player
+;; - render : -> Scene
+;; - next : -> Player
+
+
+(define-class play% ; implements Player
+ (fields anim)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PAUSE-IMAGE FF-IMAGE)))
+ (define (next) (new play% (send (send this anim) next)))
+ (define (>)  (new pause% (send this anim)))
+ (define (<<) (new fr% (send this anim) 2))
+ (define (>>) (new ff% (send this anim) 2)))
+
+(define-class pause% ; implements Player
+ (fields anim)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next) this)
+ (define (>)  (new play% (send this anim)))
+ (define (<<) (new fr% (send this anim) 2))
+ (define (>>) (new ff% (send this anim) 2)))
+
+(define-class ff% ; implement Player
+ (fields anim factor)
+ (define (play)
+   (new play% (send this anim)))
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next)
+   (send this jump (send this factor)))
+
+ (define (jump n)
+   (cond [(zero? n) this]
+         [else
+          (send (new ff%
+                     (send (send this anim) next)
+                     (send this factor))
+                jump
+                (sub1 n))]))
+
+ (define (>) (new play% (send this anim)))
+ (define (>>) (new ff% (send this anim) (* 2 (send this factor))))
+ (define (<<) (new fr% (send this anim) 2)))
+
+(define-class fr% ; implements Player
+ (fields anim factor)
+ (define (render)
+   (above (send (send this anim) render)
+          (beside FR-IMAGE PLAY-IMAGE FF-IMAGE)))
+ (define (next)
+   (send this jump (send this factor)))
+
+ (define (jump n)
+   (cond [(zero? n) this]
+         [else
+          (send (new fr%
+                     (send (send this anim) prev)
+                     (send this factor))
+                jump
+                (sub1 n))]))
+
+ (define (>) (new play% (send this anim)))
+ (define (>>) (new ff% (send this anim) 2))
+ (define (<<) (new fr% (send this anim) (* 2 (send this factor)))))
+
+
+(define-class world%
+ (fields player)
+ (define (on-tick) (new world% (send (send this player) next)))
+ (define (to-draw) (send (send this player) render))
+ (define (on-key ke)
+   (cond [(key=? ke "p") (new world% (send (send this player) >))]
+         [(key=? ke ">") (new world% (send (send this player) >>))]
+         [(key=? ke "<") (new world% (send (send this player) <<))]
+         [else this])))
+
+(define w0 (new world% (new play% (new count-animation% 20))))
+(big-bang w0)
+					
 }
 
-Make sure your quick list implementation is working and place it into
-a file named @racket{quick-lists.rkt}.  That file should provide one
-name, @racket[empty], by including the following at the top of the
-file:
+@;{
+@title[#:tag "assign03"]{1/26: Zombie, redux}
 
-@codeblock{
-(provide empty)
+Due: 1/26.
+
+@itemlist[#:style 'ordered 
+ @item{@bold{Zombie!}
+
+ Language: @racketmodname[class0].
+
+ Revise your previous design of the Zombie! game.  Make sure to fix
+ any problems that remained when you submitted last week.  Eliminate
+ any duplicated code by using the functional abstraction design
+ recipe.
+
+ This part of the assignment must be completed in @racketmodname[class0],
+ so you cannot use inheritance.
+
+ If you are totally satisfied with your previous submission, you may
+ simply submit your previous version of Zombie for this portion of the
+ assignment.
+
+ You will likely not have grader feedback in time to incorporate
+ tutors' comments into your re-design, so you should revise your
+ program as you see fit.  This portion of the assignment @emph{must}
+ be based on your previous solution.  If you throw out all of your
+ code and submit the solution provided on the web page, you will
+ receive no credit for this portion of the assignment.}
+
+ @item{@bold{Super Zombie!}
+
+ Language: @racketmodname[class1]. 
+
+ Revise your design of the Zombie game to include a @racket[zombie<%>]
+ and @racket[player<%>] interface.  Implement a @racket[live-zombie%]
+ and @racket[dead-zombie%] class that both implement your
+ @racket[zombie<%>] interface; implement a @racket[player%] class that
+ implements your @racket[player<%>] interface.
+
+ Do not use the functional abstraction recipe.  Instead, if you notice
+ code that could be shared between the various classes you've
+ designed, design super classes and use inheritance to abstract the
+ duplicated code.
+
+ Design a @racket[world%] class for playing the Zombie game that
+ interacts with the zombie and player objects only according to the
+ interfaces you've designed, i.e. the @racket[world%] class should
+ work for @emph{any} objects that correctly implement your zombie and 
+ player interfaces.}
+
+ @item{@bold{Modulo Zombie!}
+
+ Language: @racketmodname[class1]. 
+
+ Using your interface design from the previous problem, design a 
+ @racket[modulo-player%] class and a @racket[modulo-live-zombie%]
+ class that implement the @racket[player<%>] and @racket[zombie<%>]
+ interfaces, respectively.
+
+ These alternative implementations should behave as follows: the
+ player and the zombies may now "wrap around" on the screen.  If a
+ player goes off the top of the screen, they should re-appear on the
+ bottom; if the go off of the left side, they should appear on the
+ right, etc., and likewise for the zombies.  When calculating in which
+ direction they should go, the player and zombies should take into
+ account the possibility of wrapping around the screen.  So for
+ example, if the player is on the far right side and there is a zombie
+ on the far left side, the zombie should head left to wrap around the
+ screen and quickly arrive upon the player and feast upon his or her
+ brains.  Similarly if the mouse is on the very top and the player is
+ on the very bottom, the player should move down to get to the top
+ quickly.
+
+ If you need to make changes to your interface design to accommodate
+ these new game requirements, you must re-implement your solution to
+ problem 2 in order to satisfy the revised interfaces.  In the end,
+ the interfaces used and your implementation of the @racket[world%]
+ class be the same in both problem 2 and 3.}
+
+ @item{@bold{Mixed Zombie!}
+
+ Language: @racketmodname[class1]. 
+
+ Experiment with different combinations of your classes from part 2
+ and 3 (only the player can wrap around; only the zombies can wrap
+ around; some of the zombies and the player; some of the zombies, but
+ not the player, etc.) until you find a combination you like best.
+ Write down an expression that launches the game using this
+ combination.}
+
+ @item{@bold{Finger exercises: parametric lists}
+
+ Language: @racketmodname[class1]. 
+
+ Consider the parametric data definition for lists we studied last
+ semester:
+
+ @#reader scribble/comment-reader
+(racketblock 
+ ;; A [Listof X] is one of:
+ ;; - empty
+ ;; - (cons X [Listof X])
+)
+
+Design an analogous class-based representation of parametric lists.
+Design a @racket[list<%>] interface that includes @racket[cons],
+@racket[empty], @racket[length], @racket[append], @racket[reverse],
+@racket[map], @racket[filter], @racket[foldl], and @racket[foldr].
+
+Implement that interface in two ways:
+@itemlist[
+
+ @item{Using the recipe for a recursive union represented using
+objects, i.e.  similar to the way you developed lists of numbers last
+week.}
+
+ @item{Using a "wrapper class", i.e. design a class that has a single
+field which contains a "real" list---one built out of @racket[cons]
+and @racket[empty].}
+
+]
+
+Any program that interacts with either of these representations
+according to the interface should not be able to tell them apart.
+
+Use inheritance to lift method definitions to a super class to the
+full extent possible.  (@emph{Hint}: it will help if you realize that many of
+these methods may be expressed in terms of a few "core" methods.)  If
+possible, have both the recursive union representation and the wrapper
+representation share a common super class.
+
+The @racket[cons] and @racket[empty] methods have been added to
+facilitate opportunities for abstraction.  You might find them useful
+to use when you lift methods to a common super class so that the right
+kind of list (either a wrapped or a recursive union list) is
+constructed.
+
+Another hint: the names of methods we have chosen overlap with the
+name of some standard values that you may like to use when defining
+methods, especially in the wrapped list case.  If you refer to these
+names within a class, you refer to the method rather than the built-in
+value.  If you would like to refer to the built-in value, an easy
+work-around is to do something like this:
+
+@#reader scribble/comment-reader
+(racketblock
+  (define ls:cons cons) ; etc.
+)
+
+Now when you want to refer to the @racket[cons] @emph{function} instead
+of the @racket[cons] @emph{method}, you can use the name @racket[ls:cons].
+
+}]
+
 }
-
-In a file named @racket{slow-lists.rkt} @emph{re-}develop an
-implementation of the list interface, but in the usual way as a
-recursive union of @racket[mt%] and @racket[cons%] classes.  That file
-should also provide @racket[empty] by including the same line above at
-the top.
-
-Finally, start a third file called @racket{use-lists.rkt} that will
-make use of both kinds of lists by including the following at the top
-of the file:
-
-@codeblock{
-(require (prefix-in q: "quick-lists.rkt"))
-(require (prefix-in s: "slow-lists.rkt"))
-}
-
-You now have two lists: @racket[q:empty] and @racket[s:empty];
-both are represented in very different ways, but so long as you use
-them accoring to the list interface, they should be indistinguishable.
-
-Let's now revise the @tt{[List X]} interface to include support for
-visitors:
-
-@codeblock{
-;; A [List X] implements ...
-;; - accept : [ListVisitor X Y] -> Y
-;;   Accept given visitor and visit this list's data.
-
-;; A [ListVisitor X Y] implements
-;; - visit-mt : -> Y
-;;   Visit an empty list.
-;; - visit-cons : X [Listof X] -> Y
-;;   Visit a cons lists.
-}
-
-Implement the revised @tt{[List X]} interface in both
-@racket{quick-lists.rkt} and @racket{slow-lists.rkt}.
-
-In @racket{use-lists.rkt} you should be able to define particular
-visitors and have it work on @emph{both} representations of lists.  As
-an example, here is a list visitor that computes the length of a list:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A (new length%) implements [ListVisitor X Natural].
-;; List visitor for computing the length of a list.
-(define-class length%
-  (define (visit-mt) 0)
-  (define (visit-cons x r)
-    (add1 (r . accept this))))
-
-(define len (new length%))
-
-(check-expect (q:empty . accept len) 0)
-(check-expect (s:empty . accept len) 0)
-(check-expect (q:empty . cons 'c . cons 'b . cons 'a . accept len) 3)
-(check-expect (s:empty . cons 'c . cons 'b . cons 'a . accept len) 3)
-}
-
-And here's one for the sum of a list of numbers:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A (new sum%) implements [ListVisitor Number Number].
-;; List visitor for computing the sum of a list of numbers.
-(define-class sum%
-  (define (visit-mt) 0)
-  (define (visit-cons n r)
-    (+ n (r . accept this))))
-
-(define sum (new sum%))
-
-(check-expect (q:empty . accept sum) 0)
-(check-expect (s:empty . accept sum) 0)
-(check-expect (q:empty . cons 3 . cons 4 . cons 7 . accept sum) 14)
-(check-expect (s:empty . cons 3 . cons 4 . cons 7 . accept sum) 14)
-}
-
-Implement a @tt{[ListVisitor X X]} named @racket[reverse%] that
-reverses a list (note: you may need to implement a ``helper'' visitor
-that corresponds to the helper function you'd write for the
-@racket[reverse] function).  Note that this visitor will have to
-commit to produces either a quick list or a slow list, but it really
-doesn't really matter which... well, except for testing.  So for
-example, let's say the reverse visitor produces slow lists.  Then we
-would expect the following test to pass, assuming @racket[reverse%]
-works as specified:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-(define rev (new reverse%))
-
-(check-expect (q:empty . accept rev) s:empty)
-(check-expect (q:empty . cons 'c . cons 'b . cons 'a . accept rev) 
-              (s:empty . cons 'a . cons 'b . cons 'c))
-}
-
-Of course, this isn't ideal since our @emph{test} is testing more than
-is actually required of @racket[reverse%].  In particular, it should
-be perfectly acceptable for @racket[reverse%] to produce quick lists
-without tests failing.
-
-What's happening here is that @racket[check-expect] is checking too
-much because it is not treating the objects it compares solely
-according to their interface.  We will see how to fix this problem by
-defining an interface-respecting equality computation, but for now,
-just test as shown above.
-
-Now to build some larger pieces with visitors.  First, here's an
-interface definition for functional objects that represent functions
-from @tt{X}s to @tt{Y}s.  Such an object has a single method called
-@racket[apply] that consumes an @tt{X} and produces a @tt{Y}:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A [Fun X Y] implements
-;; - apply : X -> Y
-;;   Apply this function to given x.
-}
-
-Here's an interface definition for functional objects that represent
-predicates:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A [Question X] implements
-;; - ask : X -> Boolean
-;;   Ask if this predicate holds on x.
-}
-
-Now implement the following two visitors:
-
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A (new filter% [Question X]) implements [ListVisitor X [List X]].
-;; Filters visited list to produce a list of elements satisfying predicate.
-
-;; A (new map% [Fun X Y]) implements [ListVisitor X [List Y]].
-;; Maps visited list to produce a list of results of applying the function.
-}
-
-Implement at least one @tt{[Fun Natural String]} and one @tt{[Question
-String]} to use for testing @racket[filter%] and @racket[map%].
-
-
-@subsection{Folds vs Visitors}
-
-We can also implements @emph{folds} over lists, in both for both kinds
-of lists.  Extend your implementation of lists (both kinds) to support
-the @racket[fold] method:
-@codeblock{
-;; A [List X] implements ...
-;; - fold : [ListFold X Y] -> Y
-;;   Accept given fold and process this list's data.
-
-;; A [ListFold X Y] implements
-;; - fold-mt : -> Y
-;;   Process an empty list.
-;; - fold-cons : X Y -> Y
-;;   Process a cons lists.
-}
-
-Now revise your implementations of the @racket[filter%] and
-@racket[map%] to implement folds as well as visitors.  Be sure to
-specify what interfaces they implement.  
-
-Finally, implement the class @racket[list-ref%]:
-@codeblock[#:keep-lang-line? #f]{
-#lang class/2
-;; A (new list-ref% Number) implements [ListVisitor X X]
-;; Retrieves the element at the specified index.
-}
-
-Could you implement this using the @racket[ListFold] interface?  Which
-was more elegant for @racket[map%] and @racket[filter%]?
-
-@section{Universe Setup}
-
-Many universe programs are really two-party communication protocols.
-In other words, the server always expects to communicate with exactly
-two worlds.  Writing the code to manually handle connections can be
-annoying, and so we'll abstract it.
-
-@subsection{Number Guessing}
-
-First, set up the guess-my-number game for two players from
-@secref["guess-my-number-book"], and improve the code as
-you see fit.
-
-@subsection{Startup}
-
-Design a class that implements the usual @racket[universe] interface,
-and takes exactly one constructor argument.  That constructor argument
-must be an object that supports the following method:
-
-@codeblock{
-;; startup : IWorld IWorld -> Universe
-;; start this universe server, connected to the given iworlds
-}
-
-Your setup universe should replace itself with the universe produced
-by the @racket[startup] method.  
-
-Use your startup universe to simplify your implementation of
-guess-my-number. 
-
-@subsection{Wrapping}
-
-There's still more cruft that we could abstract out.  For example, are
-you rejecting extra worlds that try to join?  Also, we still have to
-check which player sent which message.
-
-Design a new, wrapping universe.  This should wrap (i.e., take as a
-constructor argument) a @racket[GameServer] object with the following interface:
-
-@codeblock{
-; A GameServer implements:
-; on-tick : -> GameServerResult
-; The universe ticked
-; player1-join : -> GameServerResult
-; Player one joined
-; player2-join : -> GameServerResult
-; Player two joined
-; player1-message : Sexp -> GameServerResult
-; Player one sent the given message
-; player2-message : Sexp -> GameServerResult
-; Player two sent the given message
-; player1-disconnect : -> GameServerResult
-; Player one disconnected
-; player2-disconnect : -> GameServerResult
-; Player two disconnected
-
-; A GameServerResult implements:
-; player1-messages : -> [Listof Sexp]
-; The messages to be sent to player one
-; player2-messages : -> [Listof Sexp]
-; The messages to be sent to player two
-; new-server : -> GameServer
-; The new value of the server
-; stop? : -> Boolean
-; Should the universe end now?
-}
-
-When the universe that you implement receives an event, it should pass
-that event on to game server.  Player 1 is the first player to
-connect, player 2 is the second player to connect.  Because we've
-distinguished the messages by the method that's called, there's no
-need for the game server to know about @tt{iworld}s at all.
-
-A @racket[GameServerResult] tells you how the game server wants the
-universe to change.  All of the messages in the list produced by
-@racket[player1-messages] should be sent to player 1, and similarly
-for the messages in @racket[player2-messages].  The new state of the
-game server is the result of @racket[new-server].  
-
-Your universe server should automatically disconnect any excess worlds
-that join, without telling the game server about this.
-
-Your universe server should end the universe (using
-@racket[stop-when]) if the @tt{GameServerResult} ever produces
-@racket[true] from @racket[stop?].  
-
-Reimplement guess-my-number as a @racket[GameServer].  Make sure it
-still works with the old clients.  
