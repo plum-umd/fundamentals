@@ -107,10 +107,10 @@ about the harder problems in the background while you knock off the easy ones.
 \rule{1cm}{0pt}\begin{tabular}{|c|l|@{/}r|}
 \hline
 {\bf Problem} & Points & out of \\ \hline
-1 & & 19\\ \hline
-2 & & 10\\ \hline
+1 & & 20\\ \hline
+2 & & 19\\ \hline
 Extra & & 5 \\ \hline
-{\bf Total} & & 28+5 \\ \hline
+{\bf Total} & & 39+5 \\ \hline
 %{\bf Base}  & \multicolumn{2}{l|}{{\bf 56}} \\ \hline
 \end{tabular}
 \end{minipage}
@@ -118,7 +118,7 @@ Extra & & 5 \\ \hline
 \vfill\thispagestyle{empty}
 \newpage
 
-\begin{problem} \pts{??}
+\begin{problem} \pts{20}
 
 JSON is a lightweight data-interchange format.  It is widely used on
 the web and plays exactly the role of S-Expressions in universe
@@ -141,9 +141,66 @@ second is an array of two strings, and the third is a string.
 
 \begin{enumerate}
 \item Design an object-based data representation for JSON, Jr.
+
+\ifrubric
+\begin{alltt}
+;; A JSON is one of:  [5pt]
+;; - (new s% String)
+;; - Array
+;;
+;; An Array is one of
+;; - (new a0%)
+;; - (new a+% JSON Array)
+
+(define-class s%
+  (fields val))
+
+(define-class a0%)
+
+(define-class a+%
+  (fields hd tl))
+\end{alltt}
+\else
 \newpage
+[Here is some more space for the previous problem.]
+\fi
+\newpage
+
 \item Design a method for counting the number of strings in a JSON,
   Jr.~object.
+\ifrubric
+\begin{alltt}
+;; JSON implements [1pts]
+;; - Count the number of strings in this object
+;;   count-strings : -> Natural
+
+;; in s% [1pt]
+(define (count-strings) 1)
+
+;; in a0% [1pt]
+(define (count-strings) 0)
+
+;; in a+% [1pt]
+(define (count-strings)
+  (+ (this . hd . count-strings)
+     (this . tl . count-strings)))
+
+;; [1pts]
+(define eg1 (new s% "This is JSON"))
+(define eg2 (new a+% eg1 (new a+% (new s% "Jr.") (new a0%))))
+(define eg3 (new a+% (new a0%)
+                 (new a+% (new a+% (new s% "So")
+                               (new a+% (new s% "is") (new a0%)))
+                      (new a+% (new s% "this")
+                           (new a0%)))))
+
+;; [1pts]
+(check-expect (eg1 . count-strings) 1)
+(check-expect (eg2 . count-strings) 2)
+(check-expect (eg3 . count-strings) 3)
+\end{alltt}
+\else
+\fi
 \newpage
 \item Among the 2M lines of code your employer maintains are 30,000
   lines of code devoted to implementations of the {\tt
@@ -161,15 +218,51 @@ design the following method for JSON, Jr.~objects:
 ;; given predicate, or #f if there's no such string.
 ;; find : StringPred -> String or #f
 \end{verbatim}
-\end{enumerate}
+\ifrubric
+\begin{alltt}
+;; in s%  [2pts]
+(define (find p)
+  (if (p . apply (this . val))
+      (this . val)
+      #f))
 
+;; in a0% [1pts]
+(define (find p) false)
+
+;; in a+% [3pts]
+(define (find p)
+  (local [(define r (this . hd . find p))]
+    (if (false? r)
+        (this . tl . find p)
+        r)))
+
+;; [2pts]
+;; A (new eq% String) implements StringPred
+(define-class eq%
+  (fields x)
+  (define (apply y)
+    (string=? (this . x) y)))
+
+;; [1pts]
+(check-expect (eg1 . find (new eq% "This is JSON")) "This is JSON")
+(check-expect (eg1 . find (new eq% "this")) false)
+(check-expect (eg2 . find (new eq% "This is JSON")) "This is JSON")
+(check-expect (eg2 . find (new eq% "this")) false)
+(check-expect (eg3 . find (new eq% "This is JSON")) false)
+(check-expect (eg3 . find (new eq% "this")) "this")
+\end{alltt}
+\else
+\fi
+\end{enumerate}
 \end{problem}
 
+\ifrubric
+\else
 \newpage
-\ifrubric\else
 [Here is some more space for the previous problem.]
-\newpage
 \fi
+\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem} \pts{19}
 
