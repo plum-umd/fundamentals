@@ -23,6 +23,16 @@
 
 @title*{Blog}
 
+@section*{Exam 2: 4/1 at 6PM in WVH 108}
+@tt{Tue Feb 19 14:37:44 EST 2013}
+
+The second exam will be on Monday, 4/1 at 6PM in WVH 108.  This means that
+there will be no lab on 4/1.
+
+If you have a conflict with the portion of this time from 7:40-9:00, please let
+the instructors know as soon as possible.
+
+
 @section*{Review session}
 @tt{Wed Feb 13 10:10:35 EST 2013}
 
