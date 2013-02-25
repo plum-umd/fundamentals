@@ -1,0 +1,9 @@
+Problem 1
+
+Gave a description of what merge does rather than assuming students
+know it.
+
+Dropped the accumulator argument from the specification.
+
+Specified that merge should not mutate any of its arguments.
+

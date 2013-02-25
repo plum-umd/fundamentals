@@ -1,0 +1,373 @@
+\documentclass[11pt]{article}
+
+%% ------------------------------------------------------------------
+%% SOLUTIONS:
+\def\thel{\noindent\rule{2.5cm}{.5pt}}
+\long\def\begsol#1 #2\endsol{#1}
+%\def\begsol#1{\thel {\bf Solution} \thel}\def\endsol{\relax}
+%%uncomment the above line to get the solutions printed
+
+\newcommand\code[1]{\texttt{#1}}
+\newcommand\bcode[1]{\texttt{\textbf{#1}}}
+
+%% PROBLEMS:
+\def\pts#1{\marginpar{\footnotesize \raggedright  \fbox{#1 {\sc Points}}}}
+\newcounter{Pctr}
+\newenvironment{problem}{\stepcounter{Pctr}%
+\begin{description}
+\item[\noindent{\bf Problem} \arabic{Pctr}] 
+\end{description}}{\relax}
+%% ------------------------------------------------------------------
+
+%% SUBPARTS:
+\newcounter{parts}
+\renewcommand{\theparts}{\Alph}
+%% ------------------------------------------------------------------
+
+\begin{document}
+
+\renewcommand{\theenumi}{\Alph{enumi}}
+\setcounter{Pctr}{0}
+
+%% ------------------------------------------------------------------
+
+\vfill
+\centerline{\Large CS 2510 Exam 1 -- Spring 2012}
+
+~\\[2cm]
+
+\begin{center}
+\begin{tabular}{l@{\qquad}l}
+Name:                        & \rule{200pt}{.1pt} \\[.5cm]
+Student Id (last 4 digits):  & \rule{200pt}{.1pt} \\[.5cm]
+\end{tabular}
+\end{center}
+
+\noindent\begin{minipage}{7.5cm} $\bullet$ Write down the answers in the
+space provided. 
+
+$\bullet$ You may use all syntax that you know from \textit{FunJava}
+(that is, the parts of Java we have studied in class),
+although there are several features you will \emph{not} need.
+
+$\bullet$ When defining methods, you do not need to give a complete
+class definition---just indicate in which class your method definition
+should be placed.
+
+$\bullet$ For tests you only need to provide the expression that
+computes the actual value, connecting it with an arrow to the expected
+value. For example \code{s.method() -> true} is sufficient.
+
+$\bullet$ Remember that the phrase ``design a class'' or ``design a
+method'' means more than just providing a definition. It means to
+design them according to the \textbf{design recipe}.  You are
+\textit{not} required to provide a method template unless the problem
+specifically asks for one.  However, be prepared to struggle if you
+choose to skip the template step.
+
+$\bullet$ We will not answer \textit{any} questions during the exam.
+
+\bigskip
+
+\textit{Good luck!}
+\end{minipage}\hfil\begin{minipage}[t]{4.5cm}
+\begin{tabular}{|c|l|@/r|}
+\hline
+\textbf{Problem} & Points & \\ \hline
+A & & 3\\ \hline
+B & & 9\\ \hline
+C & & 9\\ \hline
+D & & 9\\ \hline
+E & & 4\\ \hline
+\textbf{Total} &  & 34 \\ \hline
+\end{tabular}
+\end{minipage}
+
+\vfill\thispagestyle{empty}
+\newpage
+
+%% -----------------------------------------------------------------------------
+%% 
+\pts{34}
+\begin{problem}  Tonight is another meeting of the ACM, and they
+  always serve pizza. So, we want to know a bit about what they serve.
+
+Here is a class diagram that describes a pizza:
+
+\begin{verbatim}
+                    +--------------+
+                    |    IPizza    |<-------------------+
+                    +--------------+                    |
+                     / \   / \   / \                    |
+                     ---   ---   ---                    |
+                      |     |     |                     |
+        +-------------+     |     +-----------+         |
+        |                   |                 |         |
+        |                   |                 |         |
++-------------+      +-------------+   +-------------+  |
+| Crust       |<--+  | Cheese      |   | Topping     |  |
++-------------+   |  +-------------+   +-------------+  |
+| String name |   |  | String kind |   | IPizza base |--+ 
++-------------+   +--| Crust crust |   +-------------+
+                     +-------------+
+\end{verbatim}
+
+(It may seem strange, but the toppings have no names.)
+
+
+\begin{enumerate}
+
+
+\newpage
+%-----------------------------------------------
+\item {\em{(3 points)}}
+
+ Make examples of data (i.e., instances) for this class
+    hierarchy. Include an example of a thin crust pizza with mozarella
+    cheese, and three toppings.
+
+\begsol{\vspace{0.5in}}
+[POINTS 3: 1 point for the \texttt{Crust} example, 1 point for the a 
+\texttt{Cheese}, 1 point for the the specified example of
+\texttt{Topping}]  
+
+%{\vspace{0.5in}}
+\begin{verbatim}
+IBang p0 = new Pop(0);
+IBang p1 = new Pop(1);
+IBang p2 = new Pop(2);
+IBang p3 = new Pop(3);
+	
+IBang b0 = new Fizz(4, this.p0, this.p0);
+IBang b1 = new Fizz(4, this.p2, this.p3);
+IBang b1t1 = new Fizz(5, this.p3, this.p3);
+IBang b1t2 = new Fizz(6, this.p3, this.b0);
+IBang b1t7 = new Fizz(7, this.b0, this.b0);
+\end{verbatim}
+\endsol
+
+
+\newpage
+%-----------------------------------------------
+\item {\em{(9 points)}}
+
+Design a method, \code{weight}, that computes the weight of the pizza
+represented by a \code{IPizza}.
+
+      The weight of \code{crust} is always \code{5}.  The weight 
+      of a \code{Cheese} is \code{3}. Each
+      topping contributes one to the total size.
+
+
+\begsol{\vspace{0.5in}}
+[POINTS 9: 1 point for the purpose and header in the interface
+\texttt{IGift}; in the class \texttt{Jewel}: 1 point for the body, 1
+point for tests; in the class \texttt{Box}: 1 point for the body, 1
+point for tests; in the class \texttt{Wrap}: 2 
+points for the body, 2 points for examples]
+
+%{\vspace{0.5in}}
+\begin{verbatim}
+// in the interface IBang:
+
+// compute the age of this pop
+int howOld();
+
+// in the class Pop:
+// compute the age of this pop
+int howOld(){
+  return this.age;
+}
+
+// in the class Fizz:
+// compute the age of this fizz
+int howOld(){
+  return this.age + 
+         Math.max(this.bang1.howOld(), 
+                  this.bang2.howOld());
+}
+
+// in the Examples class
+// test the method howOld for the IBang classes
+boolean testHowOld(Tester t){
+  return
+  t.checkExpect(this.p0.howOld(), 0) &&
+  t.checkExpect(this.p3.howOld(), 3) &&
+  t.checkExpect(this.b1.howOld(), 7) &&
+  t.checkExpect(this.b1t1.howOld(), 8) &&
+  t.checkExpect(this.b1t7.howOld(), 11);
+}	
+\end{verbatim}
+\endsol
+
+\newpage
+%-----------------------------------------------
+\item {\em{(9 points)}}
+
+Design the method \code{replaceCheese} that produces an
+    \code{IPizza} with the same toppings as this one,
+    having the same crust but with the cheese replaced by the
+    cheese of the given kind.
+
+
+\begsol{\vspace{0.5in}}
+[POINTS 9: 1 point for the purpose and header in the interface
+\texttt{IGift}; in the class \texttt{Jewel}: 1 point for the body, 1
+point for tests; in the class \texttt{Box}: 1 point for the body, 1
+point for tests; in the class \texttt{Wrap}: 2 
+points for the body, 2 points for examples]
+
+%{\vspace{0.5in}}
+\begin{verbatim}
+// in the interface IBang:
+
+// produce a new bang from this Bang after one tick
+IBang nextYear();
+
+// in the class Pop:
+// produce a new bang from this Pop after one tick
+IBang nextYear(){
+  if (this.age == 3){
+    return new Fizz(4, new Pop(0), new Pop(0));
+  } else {
+    return new Pop(this.age + 1);
+  }
+}
+
+// in the class Fizz:
+// produce a new bang from this Fizz after one tick
+IBang nextYear(){
+  if (this.bang2.howOld() > this.bang1.howOld()){
+    return new Fizz(this.age + 1, 
+             this.bang1.nextYear(), this.bang2);
+  } else {
+    return new Fizz(this.age + 1, 
+             this.bang1, this.bang2.nextYear());
+  }
+}
+
+// in the Examples class:
+// test the method nextYear for the IBang classes
+boolean testNextYear(Tester t){
+  return
+  t.checkExpect(this.p0.nextYear(), this.p1) &&
+  t.checkExpect(this.p3.nextYear(), this.b0) &&
+  t.checkExpect(this.b1.nextYear(), this.b1t1) &&
+  t.checkExpect(this.b1t1.nextYear(), this.b1t2) &&
+ t.checkExpect(this.b1t2.nextYear(), this.b1t7);
+}
+\end{verbatim}
+\endsol
+
+\newpage
+%-----------------------------------------------
+\item {\em{(9 points)}}
+
+Design the method \code{sameCheeseCrust} that checks whether this pizza
+has the crust with the given name and the cheese of the given kind.
+
+
+\begsol{\vspace{0.5in}}
+[POINTS 9: 1 point for the purpose and header in the interface
+\texttt{IGift}; in the class \texttt{Jewel}: 1 point for the body, 1
+point for tests; in the class \texttt{Box}: 1 point for the body, 1
+point for tests; in the class \texttt{Wrap}: 2 
+points for the body, 2 points for examples]
+
+%{\vspace{0.5in}}
+\begin{verbatim}
+// in the interface IBang:
+
+// produce a new bang from this Bang after one tick
+IBang nextYear();
+
+// in the class Pop:
+// produce a new bang from this Pop after one tick
+IBang nextYear(){
+  if (this.age == 3){
+    return new Fizz(4, new Pop(0), new Pop(0));
+  } else {
+    return new Pop(this.age + 1);
+  }
+}
+
+// in the class Fizz:
+// produce a new bang from this Fizz after one tick
+IBang nextYear(){
+  if (this.bang2.howOld() > this.bang1.howOld()){
+    return new Fizz(this.age + 1, 
+             this.bang1.nextYear(), this.bang2);
+  } else {
+    return new Fizz(this.age + 1, 
+             this.bang1, this.bang2.nextYear());
+  }
+}
+
+// in the Examples class:
+// test the method nextYear for the IBang classes
+boolean testNextYear(Tester t){
+  return
+  t.checkExpect(this.p0.nextYear(), this.p1) &&
+  t.checkExpect(this.p3.nextYear(), this.b0) &&
+  t.checkExpect(this.b1.nextYear(), this.b1t1) &&
+  t.checkExpect(this.b1t1.nextYear(), this.b1t2) &&
+ t.checkExpect(this.b1t2.nextYear(), this.b1t7);
+}
+\end{verbatim}
+\endsol
+
+\newpage
+%-----------------------------------------------
+{\center{... This page intentionally left blank ...}}
+
+
+\newpage
+%-----------------------------------------------
+\item {\em{(4 points)}}
+
+Show the resulting templates for the \code{Cheese} class.
+
+\begsol{\vspace{0.5in}}
+[POINTS 4:
+  Pop -- field and two methods with types  -- 1 point;
+  Bing -- fields with types                -- 1 point;
+          methods defined here with types  -- 1 point;
+          methods for fields with types    -- 1 point]]
+
+%{\vspace{0.5in}}
+\begin{verbatim}
+// in the class Pop:
+/* Template:
+   Fields:
+   ... this.age ...     -- int
+   
+   Methods:
+   ... this.howOld() ...   -- int
+   ... this.nextYear() ... -- IBang
+*/
+
+// in the class Fizz:
+/* Template:
+   Fields:
+   ... this.age ...     -- int
+   ... this.bang1 ...     -- IBang
+   ... this.bang2 ...     -- IBang
+   
+   Methods:
+   ... this.howOld() ...   -- int
+   ... this.nextYear() ... -- IBang
+   
+   Methods for fields:
+   ... this.bang1.howOld() ...   -- int
+   ... this.bang2.howOld() ...   -- int
+   ... this.bang1.nextYear() ... -- IBang
+   ... this.bang2.nextYear() ... -- IBang   
+ */	
+\end{verbatim}
+\endsol
+
+
+\end{enumerate}
+\end{problem}
+\end{document}
+
