@@ -5,17 +5,16 @@
           (for-label (only-in lang/htdp-intermediate-lambda check-expect))
 	  (for-label class/universe))
 
-@title[#:tag "assign07"]{2/20: Quick Visits}
+@title[#:tag "assign08"]{2/27: Quick Visits}
 
-Due: 2/20.
+Due: 2/27.
 
 Language: @racketmodname[class/2]
 
-You will need to update your copy of the @seclink["class"]{class system} to solve this assignment.
 
 @section{Quick Visits}
 
-This problem builds on the @emph{quick lists} problem from last week.
+This problem builds on the @emph{quick lists} problem.
 
 Here was the interface you should have implemented for lists using the
 @emph{quick list} data structure that supports a fast
@@ -224,6 +223,7 @@ Finally, implement the class @racket[list-ref%]:
 Could you implement this using the @racket[ListFold] interface?  Which
 was more elegant for @racket[map%] and @racket[filter%]?
 
+@;{
 @section{Universe Setup}
 
 Many universe programs are really two-party communication protocols.
@@ -312,3 +312,4 @@ Your universe server should end the universe (using
 
 Reimplement guess-my-number as a @racket[GameServer].  Make sure it
 still works with the old clients.  
+}

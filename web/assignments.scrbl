@@ -16,10 +16,8 @@ otherwise noted.
 @include-section["assignments/assign06.scrbl"] @; Quick Lists + Nested Worlds 
 @include-section["assignments/assign04.scrbl"] @; Computer Pong
 @include-section["assignments/assign07.scrbl"] @; Animations
-@section[#:tag "assign08"]{2/27: Coming Soon}
+@include-section["assignments/assign08.scrbl"] @; Quick Visits
 @internal[
-@include-section["assignments/assign07.scrbl"] @; Quick Visits + Universe Setup
-@include-section["assignments/assign08.scrbl"] @; TBD
 @include-section["assignments/assign09.scrbl"] @; Spring Break
 @include-section["assignments/assign10.scrbl"] @; Fundamentals in Java
 @include-section["assignments/assign11.scrbl"] @; Quick Lists in Java
