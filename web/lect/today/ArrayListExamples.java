@@ -9,14 +9,126 @@ class ALMethods {
     }
 
     Integer sum(ArrayList<Integer> al) {
-	// ... think about this
+	return sumTraversal(new ArrTraversal(al));
+	// Think about this
+	// return this.sumAcc(al, 0);
+    }
+
+    Integer sumAcc(ArrayList<Integer> al, Integer i) {
+	if (i.equals(al.size())) {
+	    return 0;
+	} else {
+	    return al.get(i) + this.sumAcc(al, i+1);
+	}
+    }
+
+    Integer sumTraversal(Traversal<Integer> t) {
+	if (t.emptyHuh()) {
+	    return -0;
+	} else {
+	    return t.getFirst() + sumTraversal(t.getRest());
+	}
+    }
+}
+
+class ArrTraversal<T> implements Traversal<T> {
+    ArrayList<T> al;
+
+    ArrayTraversal(ArrayList<T> al) {
+	this.al = al;
+    }
+
+    public Boolean emptyHuh() {
+	return al.size().equals(0);		
+    }
+
+    public T getFirst() {
+	return al.get(0);
+    }
+
+    public Traversal<T> getRest() {
+	???
+	// Think about this.
+    }
+}
+
+// Represents the ordered Traversal of some data 
+interface Traversal<W>{
+    // Is it empty
+    Boolean emptyHuh();
+    // Get the first of this Traversal (a W)
+    W getFirst();
+    // Get the rest of this Traversal (another Traversal)
+    Traversal<W> getRest();
+}
+
+interface Stack<T> {
+    void push(T t);
+    T pop();
+    T peek();
+}
+
+interface Queue<T> {
+    void enqueue(T t);
+    T dequeue();    
+    T peek();
+}
+
+class Pancake {
+    String topping;
+    Pancake(String topping) {
+	this.topping = topping;
+    }
+}
+
+class ArrStack<T> implements Stack<T> {
+    ArrayList<T> elements;
+
+    // Construct an empty stack
+    ArrStack() {
+	this.elements = new ArrayList<T>();
+    }
+
+    public void push(T t) {
+	this.elements.add(t);
+    }
+
+    // Produce the last element pushed onto this stack.
+    // EFFECT: remove the last element pushed.
+    public T pop() {
+	return this.elements.remove(this.elements.size()-1);
+    }
+
+    // Produce the last element pushed onto this stack.
+    public T peek() {
+	return this.elements.get(this.elements.size()-1);
+    }
+}
+
+class ArrQueue<T> implements Queue<T> {
+    ArrayList<T> elements;
+    ArrQueue() {
+	this.elements = new ArrayList<T>();
+    }
+
+    public void enqueue(T t) {
+	this.elements.add(t);
+    }
+
+    public T dequeue() {
+	return this.elements.remove(0);
+    }
+
+    public T peek() {
+	return this.elements.get(0);
     }
 }
 
 
 class Examples {
+    ALMethods m = new ALMethods();
+    
     void testSwap(Tester t) {
-	ALMethods m = new ALMethods();
 	ArrayList<String> a = new ArrayList<String>();
 	a.add("a");
 	a.add("b");
@@ -26,6 +138,7 @@ class Examples {
 	b.add("a");
 	t.checkExpect(a, b);
     }
+    
 
     void testConstructArrayList(Tester t) {
 	ArrayList<String> a = new ArrayList<String>();
@@ -99,4 +212,36 @@ class Examples {
 	x.set(0, 42);
 	t.checkExpect(b.get(0).get(0), 42);
     }
+    
+    void testSum(Tester t) {
+	ArrayList<Integer> is = new ArrayList<Integer>() {{
+		this.add(7);
+		this.add(3);
+		this.add(2);
+	    }};
+	t.checkExpect(m.sum(is), 12);
+    }    
+
+    void testStack(Tester t) {
+	Pancake pb = new Pancake("butter");
+	Pancake ps = new Pancake("syrup");
+	Stack<Pancake> notSoShort = new ArrStack<Pancake>();
+	notSoShort.push(pb);
+	notSoShort.push(ps);
+	t.checkExpect(notSoShort.peek(), ps);
+	t.checkExpect(notSoShort.pop(), ps);
+	t.checkExpect(notSoShort.peek(), pb);
+    }
+
+    void testQueue(Tester t) {
+	Pancake pb = new Pancake("butter");
+	Pancake ps = new Pancake("syrup");
+	Queue<Pancake> notSoShort = new ArrQueue<Pancake>();
+	notSoShort.enqueue(pb);
+	notSoShort.enqueue(ps);
+	t.checkExpect(notSoShort.peek(), pb);
+	t.checkExpect(notSoShort.dequeue(), pb);
+	t.checkExpect(notSoShort.peek(), ps);
+    }
+
 }
