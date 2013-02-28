@@ -1,5 +1,6 @@
 import tester.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // Useful methods for array lists
 class ALMethods {
@@ -8,17 +9,35 @@ class ALMethods {
 	al.set(j, al.set(i, al.get(j)));
     }
 
+    Integer sum(Traversable<Integer> t) {
+	return sumTraversal(t.getTraversal());
+    }
+
+    /*
     Integer sum(ArrayList<Integer> al) {
 	return sumTraversal(new ArrTraversal(al));
 	// Think about this
 	// return this.sumAcc(al, 0);
     }
+    */
 
     Integer sumAcc(ArrayList<Integer> al, Integer i) {
 	if (i.equals(al.size())) {
 	    return 0;
 	} else {
 	    return al.get(i) + this.sumAcc(al, i+1);
+	}
+    }
+
+    <X> Integer count(Traversable<X> t) {
+	return this.countTraversal(t.getTraversal());
+    }
+
+    <X> Integer countTraversal(Traversal<X> t) {
+	if (t.emptyHuh()) {
+	    return 0;
+	} else {
+	    return 1+countTraversal(t.getRest());
 	}
     }
 
@@ -31,29 +50,42 @@ class ALMethods {
     }
 }
 
-class ArrTraversal<T> implements Traversal<T> {
+class ArrTraversal<T> implements Traversal<T>, Traversable<T> {
     ArrayList<T> al;
+    Integer i;
 
-    ArrayTraversal(ArrayList<T> al) {
+    ArrTraversal(ArrayList<T> al) {
+	this(al, 0);
+    }
+
+    private ArrTraversal(ArrayList<T> al, Integer i) {
 	this.al = al;
+	this.i = i;
+    }
+
+    public Traversal<T> getTraversal() {
+	return this;
     }
 
     public Boolean emptyHuh() {
-	return al.size().equals(0);		
+	return i == al.size();
     }
 
     public T getFirst() {
-	return al.get(0);
+	return al.get(i);
     }
 
     public Traversal<T> getRest() {
-	???
-	// Think about this.
+	return new ArrTraversal(this.al, this.i+1);
     }
 }
 
+interface Traversable<W> {
+    Traversal<W> getTraversal();
+}
+
 // Represents the ordered Traversal of some data 
-interface Traversal<W>{
+interface Traversal<W> {
     // Is it empty
     Boolean emptyHuh();
     // Get the first of this Traversal (a W)
@@ -62,16 +94,18 @@ interface Traversal<W>{
     Traversal<W> getRest();
 }
 
-interface Stack<T> {
+interface Stack<T> extends Traversable<T> {
     void push(T t);
     T pop();
     T peek();
+    // Traversal<T> getTraversal();
 }
 
-interface Queue<T> {
+interface Queue<T> extends Traversable<T> {
     void enqueue(T t);
     T dequeue();    
     T peek();
+    Traversal<T> getTraversal();
 }
 
 class Pancake {
@@ -103,6 +137,10 @@ class ArrStack<T> implements Stack<T> {
     public T peek() {
 	return this.elements.get(this.elements.size()-1);
     }
+
+    public Traversal<T> getTraversal() {
+	return new ArrTraversal(this.elements);
+    }
 }
 
 class ArrQueue<T> implements Queue<T> {
@@ -121,6 +159,10 @@ class ArrQueue<T> implements Queue<T> {
 
     public T peek() {
 	return this.elements.get(0);
+    }
+
+    public Traversal<T> getTraversal() {
+	return new ArrTraversal(this.elements);
     }
 }
 
@@ -214,12 +256,9 @@ class Examples {
     }
     
     void testSum(Tester t) {
-	ArrayList<Integer> is = new ArrayList<Integer>() {{
-		this.add(7);
-		this.add(3);
-		this.add(2);
-	    }};
-	t.checkExpect(m.sum(is), 12);
+	ArrayList<Integer> is = new ArrayList<Integer>(Arrays.asList(7,3,2));
+	t.checkExpect(m.sum(new ArrTraversal(is)), 12);
+	t.checkExpect(m.sum(new ArrTraversal(is)), 12);
     }    
 
     void testStack(Tester t) {
@@ -231,6 +270,7 @@ class Examples {
 	t.checkExpect(notSoShort.peek(), ps);
 	t.checkExpect(notSoShort.pop(), ps);
 	t.checkExpect(notSoShort.peek(), pb);
+	t.checkExpect(m.countTraversal(notSoShort.getTraversal()), 1);
     }
 
     void testQueue(Tester t) {
@@ -239,9 +279,12 @@ class Examples {
 	Queue<Pancake> notSoShort = new ArrQueue<Pancake>();
 	notSoShort.enqueue(pb);
 	notSoShort.enqueue(ps);
+	t.checkExpect(m.count(notSoShort), 2);
+	t.checkExpect(m.count(notSoShort), 2);
 	t.checkExpect(notSoShort.peek(), pb);
 	t.checkExpect(notSoShort.dequeue(), pb);
 	t.checkExpect(notSoShort.peek(), ps);
+	t.checkExpect(m.count(notSoShort), 1);	
     }
 
 }
