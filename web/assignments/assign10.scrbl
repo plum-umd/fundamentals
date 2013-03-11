@@ -67,11 +67,10 @@ according to some ordering. For example, you can find out if a given
 element is contained in a sorted binary tree must faster than you in
 one which is not. Of course, whether a given binary tree is sorted or
 not depends on the ordering of elements we have in mind. For example,
-recalling our discussion of the Boston Marathon, a binary tree of
-runners that is sorted by runners' finish times is probably not the
-same as if we sorted by runners' bib number. So the question "is the
-tree sorted?" depends on the ordering we'd like to impose on the
-elements.
+if we had a binary tree of Boston Marathon runners, the tree sorted by
+runners' finish times is probably not the same as the tree sorted by
+runners' bib number. So the question "is the tree sorted?" depends on
+the ordering we'd like to impose on the elements.
 
 Since ordering elements is such a fundamental operation, and since
 orders exist independently of elements (for example runners may be
@@ -175,10 +174,6 @@ To the extent possible, your code should re-use functionality
 developed earlier in this problem.
 
 @section{Trie, trie again}
-
-Van Horn spent a bunch of time talking about Java in lab on Monday, so
-there wasn't much time to finish the lab. So you'll do that in
-homework.  
 
 Implement the @tt{Trie<V>} interface, including the @tt{size} and
 @tt{matchPrefix} methods.  The details of tries, as well as the

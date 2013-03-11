@@ -17,9 +17,9 @@ otherwise noted.
 @include-section["assignments/assign04.scrbl"] @; Computer Pong
 @include-section["assignments/assign07.scrbl"] @; Animations
 @include-section["assignments/assign08.scrbl"] @; Quick Visits
-@internal[
 @include-section["assignments/assign09.scrbl"] @; Spring Break
 @include-section["assignments/assign10.scrbl"] @; Fundamentals in Java
+@internal[
 @include-section["assignments/assign11.scrbl"] @; Quick Lists in Java
 @include-section["assignments/assign12.scrbl"] @; Java Iterators & Collections
 @include-section["assignments/assign13.scrbl"]
