@@ -9,10 +9,13 @@ class ALMethods {
 	al.set(j, al.set(i, al.get(j)));
     }
 
+    // Sum elements of given traversable.
     Integer sum(Traversable<Integer> t) {
 	return sumTraversal(t.getTraversal());
     }
 
+    // We arrived at above code as a generalization of
+    // sum(ArrayList<Integer> a) below:
     /*
     Integer sum(ArrayList<Integer> al) {
 	return sumTraversal(new ArrTraversal(al));
@@ -21,6 +24,8 @@ class ALMethods {
     }
     */
 
+    // Sum elements of al
+    // ACCUM: index of elements summed so far.
     Integer sumAcc(ArrayList<Integer> al, Integer i) {
 	if (i.equals(al.size())) {
 	    return 0;
@@ -29,10 +34,12 @@ class ALMethods {
 	}
     }
 
+    // Count number of elements in traversable.
     <X> Integer count(Traversable<X> t) {
 	return this.countTraversal(t.getTraversal());
     }
 
+    // Count number of elemenets in traversal
     <X> Integer countTraversal(Traversal<X> t) {
 	if (t.emptyHuh()) {
 	    return 0;
@@ -41,6 +48,7 @@ class ALMethods {
 	}
     }
 
+    // Sum elements of traversal
     Integer sumTraversal(Traversal<Integer> t) {
 	if (t.emptyHuh()) {
 	    return -0;
@@ -50,6 +58,40 @@ class ALMethods {
     }
 }
 
+// Interface of things which can be traversed.
+interface Traversable<W> {
+    Traversal<W> getTraversal();
+}
+
+// Represents the ordered Traversal of some data.
+interface Traversal<W> {
+    // Is it empty
+    Boolean emptyHuh();
+    // Get the first of this Traversal (a W)
+    W getFirst();
+    // Get the rest of this Traversal (another Traversal)
+    Traversal<W> getRest();
+}
+
+// Stacks behave first in, first out (like a stack of plates at the cafeteria).
+interface Stack<T> extends Traversable<T> {
+    void push(T t);
+    T pop();
+    T peek();
+    // Traversal<T> getTraversal();
+}
+
+// Queues behave last in, first out (like a line of people at the cafeteria).
+interface Queue<T> extends Traversable<T> {
+    void enqueue(T t);
+    T dequeue();    
+    T peek();
+    Traversal<T> getTraversal();
+}
+
+
+// Represents a traversal of an array list
+// Index i is current location in al.
 class ArrTraversal<T> implements Traversal<T>, Traversable<T> {
     ArrayList<T> al;
     Integer i;
@@ -58,15 +100,18 @@ class ArrTraversal<T> implements Traversal<T>, Traversable<T> {
 	this(al, 0);
     }
 
+    // Private constructor
     private ArrTraversal(ArrayList<T> al, Integer i) {
 	this.al = al;
 	this.i = i;
     }
 
+    // This is a traversal, so just return this.
     public Traversal<T> getTraversal() {
 	return this;
     }
 
+    // Empty when index is at the end.
     public Boolean emptyHuh() {
 	return i == al.size();
     }
@@ -80,34 +125,7 @@ class ArrTraversal<T> implements Traversal<T>, Traversable<T> {
     }
 }
 
-interface Traversable<W> {
-    Traversal<W> getTraversal();
-}
-
-// Represents the ordered Traversal of some data 
-interface Traversal<W> {
-    // Is it empty
-    Boolean emptyHuh();
-    // Get the first of this Traversal (a W)
-    W getFirst();
-    // Get the rest of this Traversal (another Traversal)
-    Traversal<W> getRest();
-}
-
-interface Stack<T> extends Traversable<T> {
-    void push(T t);
-    T pop();
-    T peek();
-    // Traversal<T> getTraversal();
-}
-
-interface Queue<T> extends Traversable<T> {
-    void enqueue(T t);
-    T dequeue();    
-    T peek();
-    Traversal<T> getTraversal();
-}
-
+// Represents a delicious pancake.
 class Pancake {
     String topping;
     Pancake(String topping) {
@@ -115,6 +133,7 @@ class Pancake {
     }
 }
 
+// Implements a stack with an ArrayList.
 class ArrStack<T> implements Stack<T> {
     ArrayList<T> elements;
 
@@ -143,6 +162,7 @@ class ArrStack<T> implements Stack<T> {
     }
 }
 
+// Implements a queue with an ArrayList.
 class ArrQueue<T> implements Queue<T> {
     ArrayList<T> elements;
     ArrQueue() {
@@ -183,6 +203,7 @@ class Examples {
     
 
     void testConstructArrayList(Tester t) {
+	// Some tests for getting to know ArrayLists.
 	ArrayList<String> a = new ArrayList<String>();
         a.add("a");
 	a.add("b");
