@@ -13,11 +13,17 @@
 
 @lab:section{Imperative lists}
 
-If you remember back to lecture, we started looking at ways to build
-lists using a different style of programming using @emph{mutation}.
-The main goal of this lab will be to develop a new kind of data structure,
-but first we will need to define mutable lists that we will be using
-later.
+If you remember back to lecture, we've started looking at new ways of
+building data structures that use @emph{mutation}.  The main goal of
+this lab will be to develop a new kind of data structure, but first we
+will need to define a new kind of list that is mutable.  (It will come
+in handy later.)
+
+Here's an interface (in comments) for a @emph{mutable list}, which
+lets you modify a list with the @tt{set} method.  The @tt{set} method
+takes an index and an element and destructively updates the list to
+contain the given element at the given index.  We've also included a
+@tt{ref} method that produces the element at a given index:
 
 @indented{@verbatim|{
   // A List<V> implements
@@ -41,10 +47,10 @@ later.
 
 @lab:section{Another day, another data structure}
 
-Think back to all the ways that we have come up with so far for storing a
-sorted collection of data. We have used sorted lists and balanced search trees.
-Both of these implement the interface of an ordered (or sorted) set. However,
-both of these data structures have their own issues.
+There are many ways for storing a sorted collection of data, such as
+sorted lists and balanced search trees.  Both of these implement the
+interface of an ordered (or sorted) set. However, both of these data
+structures have their own issues.
 
 With sorted lists, insertion and search of an element of the set takes
 time proportional to the entire length of the list in the worst case since
@@ -55,12 +61,13 @@ logarithmic in the number of elements. On the other hand, they are more
 complicated than lists and can take up a significant amount of memory
 on your computer.
 
-Could we do even better? It turns out you can, for some definition of "better".
-We will look at a data structure called a @emph{skip list} that uses
-randomization to provide the same @emph{expected} running time as a binary
-search tree, but using a data structure that is simpler and potentially uses
-less memory ("expected" here means that over a large number of trials we will
-get that running time on average).
+Could we do even better? It turns out you can, for some definition of
+``better''.  We will look at a data structure called a @emph{skip
+list} that uses randomization to provide the same @emph{expected}
+running time as a binary search tree, but using a data structure that
+is simpler and potentially uses less memory ("expected" here means
+that over a large number of trials we will get that running time on
+average).
 
 @lab:section{Building skip lists}
 

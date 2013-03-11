@@ -15,10 +15,10 @@
 @include-section["labs/5.scrbl"]
 @include-section["labs/13-old.scrbl"]
 @include-section["labs/8.scrbl"]
+@include-section["labs/10.scrbl"]
 @internal[
 @section[#:tag "lab07"]{2/20: No lab (Presidents Day)}
 @section[#:tag "lab09"]{3/5: No lab (Spring break)}
-@include-section["labs/10.scrbl"]
 @include-section["labs/11.scrbl"]
 @include-section["labs/12.scrbl"]
 @include-section["labs/13.scrbl"]
