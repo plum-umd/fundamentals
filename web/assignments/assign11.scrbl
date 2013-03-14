@@ -9,4 +9,5 @@
 
 Due: 3/20.  Language: Java.
 
-
+Re-develop solutions for the quick list portion of assignment 5 and
+all of assignment 8 in Java.
