@@ -30,13 +30,10 @@ iterators.
 
 @lab:section{Iterators}
 
-In lecture today, we saw the @racket[Traversal] interface, which is
-a functional way of doing a generic traversal over a data structure.
-We saw that you could write programs in the style of Fundies 1.
-
-Now we'll look at an alternative style of interfaces that iterate in a less
-functional style.  First of all, let's just note that all @racket[Collection]s
-implement the @racket[Iterable] interface that is defined like this:
+In this lab, we'll examine one of the core features for working with
+  collection: @emph{iterators}.  First of all, let's just note that all
+  @racket[Collection]s implement the @racket[Iterable] interface that is
+  defined like this:
 
 @indented{@verbatim|{
   // An Iterable<T> implements
