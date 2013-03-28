@@ -23,6 +23,17 @@
 
 @title*{Blog}
 
+@section*{Past exams}
+@tt{Thu Mar 28 11:59:37 EDT 2013}
+
+Here are the past exam 2s:
+
+@itemlist[#:style 'unordered
+@item{@link["exam2-s11.pdf"]{Exam 2, Spring 2011}}
+@item{@link["exam2-s12.pdf"]{Exam 2, Spring 2012}}]
+
+
+
 @section*{Exam 2: 4/1 at 6PM in WVH 108}
 @tt{Tue Feb 19 14:37:44 EST 2013}
 

@@ -48,6 +48,8 @@ web: 2510H 2510H/dpc.pdf
 		++extra misc/Invader01.pdf \
 		++extra misc/exam1-s11.pdf \
 		++extra misc/exam1-s12.pdf \
+		++extra misc/exam2-s11.pdf \
+		++extra misc/exam2-s12.pdf \
 		++extra misc/old-exam2.pdf \
 		++extra misc/marathon.rkt \
 		++extra misc/gender.rkt \
