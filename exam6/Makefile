@@ -2,6 +2,8 @@
 
 all: exam2.pdf rubric2.pdf soln2.pdf
 
+exam2.pdf rubric2.pdf soln2.pdf: 2.tex
+
 # A "make clean" shouldn't flush the pdfs & dvis. A "make superclean" removes
 # *everything* that can be recreated.
 clean:
