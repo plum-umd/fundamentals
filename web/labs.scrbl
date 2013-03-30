@@ -19,8 +19,8 @@
 @section[#:tag "lab07"]{2/20: No lab (Presidents Day)}
 @section[#:tag "lab09"]{3/5: No lab (Spring break)}
 @include-section["labs/11.scrbl"]
-@internal[
 @include-section["labs/12.scrbl"]
+@internal[
 @include-section["labs/13.scrbl"]
 @include-section["labs/14.scrbl"]
 @section[#:tag "lab15"]{4/16: No lab (Patriots Day)}
