@@ -23,6 +23,11 @@
 
 @title*{Blog}
 
+@section*{Exam review}
+@tt{Fri Mar 29 19:46:06 EDT 2013}
+
+Exam review will be led by Nick Labich in WVH 108 on Sunday from 4-6PM.
+
 @section*{Past exams}
 @tt{Thu Mar 28 11:59:37 EDT 2013}
 
