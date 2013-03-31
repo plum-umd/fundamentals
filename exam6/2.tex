@@ -145,8 +145,91 @@ Extra & & 5 \\ \hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{problem} \pts{20}
+\noindent
+Tobin-Hochstadt needs to automatically manage papers to make it
+easier to review them.  He wants to represent a paper in the following
+way:
 
-Outline problem
+A \emph{Section} has a title and a list of subsections, which are just
+sections themselves.  A paper is therefore just a big section.  Here
+is an example of a paper (and, of course, an example of a section):
+
+\begin{verbatim}
+   Fundies 2, Day 1
+   1. OO = struct + fun
+   1.1. Rocket
+   1.2. Moon
+   2. Design
+   2.1. Announce
+   2.1.1. Assign
+   3. End
+\end{verbatim}
+Note that the section numbers are \emph{NOT} part of the document!
+
+\bigskip
+%\vskip{2}
+
+\begin{enumerate}
+
+\item Develop data, class, and interface defintions for sections.  
+
+\newpage
+
+\noindent
+\item Extend your defininition of \texttt{Section} to support an
+\texttt{accept} method that take \texttt{SectionVisitor}s over to
+compute over sections.  You will need to define the
+\texttt{SectionVisitor} interface.  You may need to define additional
+visitors as well, depending on your original data definition.
+
+\newpage
+
+\noindent
+\item Write a \texttt{SectionVisitor} that produces the ``outline'' of a section, with the
+section numbers.  The result should be an \texttt{ArrayList} of
+\texttt{String}s, as seen in the initial example for this problem.
+
+\ifrubric
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+\newpage
+
+\noindent
+\item Here is a defintion for the \texttt{equals} and \texttt{hashCode}
+methods for \texttt{Section}s:
+
+\begin{verbatim}
+Boolean sameSec(Section s) { ...}
+
+boolean equals(Object o) {
+    if (o instanceof Section)
+        return this.sameSec((Section)o);
+    else
+        return false;
+}
+
+int hashCode() { return 42; }
+\end{verbatim}
+
+\noindent
+Develop the \texttt{sameSec} method, which \texttt{equals} relies on.
+
+\ifrubric
+\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+\newpage
+
+\noindent
+\item The definition for \texttt{hashCode} that we have presented is very
+simple, but it will reduce the performance of hash tables of
+\texttt{Section}s.  Develop a better version of the \texttt{hashCode}
+method.  Make sure that it can distinguish (some) \texttt{Section}s
+with the same title but different contents, as well as (some)
+\texttt{Section}s with different titles but the same contents.
 
 \ifrubric
 \else
@@ -155,15 +238,9 @@ Outline problem
 \fi
 \newpage
 \newpage
-
+\end{enumerate}
 \end{problem}
 
-\ifrubric
-\else
-\newpage
-[Here is some more space for the previous problem.]
-\fi
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
