@@ -146,48 +146,74 @@ Extra & & 5 \\ \hline
 
 \begin{problem} \pts{20}
 \noindent
-Tobin-Hochstadt needs to automatically manage papers to make it
-easier to review them.  He wants to represent a paper in the following
-way:
-
-A \emph{Section} has a title and a list of subsections, which are just
-sections themselves.  A paper is therefore just a big section.  Here
-is an example of a paper (and, of course, an example of a section):
-
+Tobin-Hochstadt has been asked to serve on a review panel for the
+National Science Foundation, which requires he read and make notes on
+a set of grant proposals the government is considering to fund.
+Rather than read the proposals, he's decided to make a program for
+modeling his notes.  His notes take the form of an outline, which
+consists of a peice of text and a list of (sub)notes.  For example,
+here's one of his notes (thankfully not in his handwritting):
 \begin{verbatim}
-   Fundies 2, Day 1
-   1. OO = struct + fun
-   1.1. Rocket
-   1.2. Moon
-   2. Design
-   2.1. Announce
-   2.1.1. Assign
-   3. End
+       NSF Proposal 1218390
+       |
+       +- Overview
+       |  |
+       |  +- WAT?
+       |  |
+       |  +- Motivations
+       |     |
+       |     +- unmotivating
+       |
+       +- Middle (fell asleep)
+       |
+       +- Conclusions
+       |
+       +- Budget
+          |
+          +- very large
+          |
+          +- lots of BU undergrads
 \end{verbatim}
-Note that the section numbers are \emph{NOT} part of the document!
 
-\bigskip
+
+%\bigskip
 %\vskip{2}
+\newpage
 
 \begin{enumerate}
 
-\item Develop data, class, and interface defintions for sections.  
+\item Develop data, class, and interface defintions for a note.
 
 \newpage
 
 \noindent
-\item Extend your defininition of \texttt{Section} to support an
-\texttt{accept} method that take \texttt{SectionVisitor}s over to
-compute over sections.  You will need to define the
-\texttt{SectionVisitor} interface.  You may need to define additional
-visitors as well, depending on your original data definition.
+\item Develop the visitor pattern for notes by designing
+  an \texttt{accept} method on notes that
+  consumes a note visitor and uses it to compute something of a note.
+  You will need to define the note visitor interface and may need to
+  define additional visitors as well, depending on your original data
+  definition.
 
 \newpage
 
 \noindent
-\item Write a \texttt{SectionVisitor} that produces the ``outline'' of a section, with the
-section numbers.  The result should be an \texttt{ArrayList} of
-\texttt{String}s, as seen in the initial example for this problem.
+\item Write a note visitor that produces the numbered outline of a
+  note.  The result should be an \texttt{ArrayList} of
+  \texttt{String}s.  For example, the numbered outline of the note
+  note is an \texttt{ArrayList<String>} with the following elements:
+
+\begin{verbatim}
+"1. NSF Proposal 1218390"
+"1.1 Overview"
+"1.1.1 WAT?"
+"1.1.2 Motivations"
+"1.1.2.1 unmotivating"
+"1.2 Middle (fell asleep)"
+"1.3 Conclusions"
+"1.4 Budget"
+"1.4.1 very large"
+"1.4.2 lots of BU undergrads"
+\end{verbatim}
 
 \ifrubric
 \else
@@ -198,23 +224,22 @@ section numbers.  The result should be an \texttt{ArrayList} of
 
 \noindent
 \item Here is a defintion for the \texttt{equals} and \texttt{hashCode}
-methods for \texttt{Section}s:
+methods for a note:
 
 \begin{verbatim}
-Boolean sameSec(Section s) { ...}
+Boolean sameNote(Note s) { ...}
 
 boolean equals(Object o) {
-    if (o instanceof Section)
-        return this.sameSec((Section)o);
-    else
-        return false;
+    return (o instanceof Note) 
+        && this.sameNote((Note)o);
 }
 
 int hashCode() { return 42; }
 \end{verbatim}
 
 \noindent
-Develop the \texttt{sameSec} method, which \texttt{equals} relies on.
+Develop the \texttt{sameNote} method, which \texttt{equals} relies on.
+(Two notes are equal if they have the same text and subnotes.)
 
 \ifrubric
 \else
@@ -224,12 +249,12 @@ Develop the \texttt{sameSec} method, which \texttt{equals} relies on.
 \newpage
 
 \noindent
-\item The definition for \texttt{hashCode} that we have presented is very
-simple, but it will reduce the performance of hash tables of
-\texttt{Section}s.  Develop a better version of the \texttt{hashCode}
-method.  Make sure that it can distinguish (some) \texttt{Section}s
-with the same title but different contents, as well as (some)
-\texttt{Section}s with different titles but the same contents.
+\item The definition for \texttt{hashCode} that we have presented is
+  very simple, but it will reduce the performance of hash tables of
+  notes.  Develop a better version of the \texttt{hashCode} method.
+  Make sure that it can distinguish (at least \emph{some}) notes with
+  the same text but different subnotes, as well as (some)
+  notes with different text but the same subnotes.
 
 \ifrubric
 \else
