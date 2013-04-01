@@ -320,7 +320,77 @@ Develop the \texttt{sameNote} method, which \texttt{equals} relies on.
 
 \begin{problem} \pts{20}
 
-Computation/thunk problem
+In most general terms, you can think of a \emph{computation} as something that
+\emph{runs} to compute an answer.  To solidify this idea as an interface, a
+computation could be represented by an object implementing:
+
+\begin{verbatim}
+interface Computation<R> {
+  // Run this computation
+  R run();
+}
+\end{verbatim}
+
+\noindent
+For example, this computation computes the square of five:
+
+\begin{verbatim}
+class TwentyFive implements Computation<Integer> {
+  Integer run() { return 5 * 5; }
+}
+\end{verbatim}
+
+\begin{enumerate}
+
+\item Design a computation that when constructed is given a
+ \texttt{Computation<Integer>} and a natural number \emph{n}, and when
+ run, runs the computation \emph{n} times and produces an array list
+of all the results.
+
+\newpage
+\item
+
+Computations can be expensive, so it's probably a good idea to avoid
+ running them if you can, or if you must run them, run them just once
+ and remember the result. Subsequent runs of the computation should
+ then just return the remembered value rather than doing any real
+ work.
+
+In contemplating the design of a library for such laziness, you should
+ realize that this idea of running something at most once and
+ remembering its result is itself a computation.  In other words, if
+ given a computation, you can make a new computation that will act
+ just like the given one, except it will run the given computation at
+ most one time.
+
+Design the following class:
+
+\begin{verbatim}
+class MaybeOnce<R> implements Computation<R> {
+  MaybeOnce(Computation<R> compute) { ... }
+
+  // If this computation has never been run, run
+  // compute and produce its result.  Remember
+  // this answer for future runs and just return
+  // it rather than re-run compute.
+  R run();
+}
+\end{verbatim}
+\end{enumerate}
+
+Take care to make sure that if a \texttt{MaybeOnce} computation is not
+run, it never runs the inner computation.  For example, 
+this program should not blow up (assuming this is the whole program):
+
+\begin{verbatim}
+class BlowUp implements Computation<Integer> {
+  // Blows up when run
+  Integer run() { throw new RuntimeException("KABOOM!"); }
+}
+
+// Never run, so never blows up.
+new MaybeOnce<Integer>(new BlowUp())
+\end{verbatim}
 
 \ifrubric
 \else
