@@ -121,7 +121,59 @@ Extra & & 5 \\ \hline
 
 \begin{problem} \pts{20}
 
- Binary tree problem
+A \emph{binary search tree} is a lot like a binary tree in that a BST
+is either a node, which contains an element and a left and right
+subtree, or a leaf, which doesn't contain an element or subtrees.  The
+difference between a binary tree and a binary \emph{search} tree is
+that every leaf and node of a BST also contains a \texttt{Comparator},
+and nodes have the following invariant: every element in the left
+subtree is smaller (according to the comparator) than the element in
+the node, which in turn is smaller than or equal (according to the
+comparator) to every element in the right subtree.  (You can assume
+the comparator in every leaf and node is the same for any given BST.)
+
+\begin{enumerate}
+\item Design class and interface definitions for binary search trees
+  \texttt{BST<X>}.  Design the following method for binary search
+  trees:
+  \begin{verbatim}
+  // Insert x into this BST, preserving the BST invariant
+  BST<X> insert(X x);
+\end{verbatim}
+
+\ifrubric\else
+\newpage
+[Here is some more space for the previous problem.]
+\fi
+
+\newpage
+\item Here's an idea for sorting a series of elements: take all of the
+ elements and insert them into (an initially empty) binary search
+ tree.  Now, assuming \texttt{BST<X>} implemented the
+ \texttt{Iterable<X>} such that the iterator produced by
+ \texttt{iterator()} visited the elements of the BST in increasing
+ order (according to the comparator), then the elements could be retrieved
+in sorted order.
+
+Use this idea to implement a sorting method with the signature given
+ below.  It should sort a given iterable object in ascending order
+ according to a given comparator, producing the sorted list as an
+ array list of elements.
+
+You may assume \texttt{BST<X>} implements \texttt{Iterable<X>} correctly
+and do not need to define this yourself (see the extra credit).
+
+{\small
+\begin{verbatim}
+// Class of sorting methods
+class Sort {
+  // Produce an array list of elems sorted in ascending order by c
+  <X> ArrayList<X> treeSort(Comparator<X> c, Iterable<X> elems) { 
+    ... 
+  }
+}
+\end{verbatim}}
+\end{enumerate}
 
 \ifrubric
 \else
@@ -130,9 +182,6 @@ Extra & & 5 \\ \hline
 \fi
 \newpage
 \newpage
-
-\textbf{Extra Credit}
-
 \end{problem}
 
 \ifrubric
