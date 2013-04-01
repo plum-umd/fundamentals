@@ -379,7 +379,7 @@ class MaybeOnce<R> implements Computation<R> {
   // compute and produce its result.  Remember
   // this answer for future runs and just return
   // it rather than re-run compute.
-  R run();
+  R run() { ... }
 }
 \end{verbatim}
 \end{enumerate}
