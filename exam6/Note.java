@@ -96,6 +96,63 @@ class OutlineList implements ListVisitor<Note,Void> {
     }       
 }
 
+
+/////////////////////////
+
+// class Outline implements NoteVisitor<ArrayList<String>> {
+//     String prefix;
+//     Integer secnum;
+//     ArrayList<String> output;
+
+//     Outline() {
+// 	this("1.", 1, new ArrayList<String>());
+//     }
+//     Outline(String prefix, Integer secnum, ArrayList<String> output) {
+// 	this.prefix = prefix;
+// 	this.secnum = secnum;
+// 	this.output = output;
+//     }
+
+//     public ArrayList<String> visitNote(String txt, List<Note> subnotes) {
+// 	this.output.add(txt);
+// 	ArrayList<String> suboutline = subnotes.accept(new OutlineList(this.secnum));
+
+// 	for(String s : suboutline)
+// 	    this.output.add(this.prefix.concat(s));
+
+// 	return this.output;
+//     }
+
+// }
+
+// class OutlineList implements ListVisitor<Note,ArrayList<String>> {
+//     String prefix;
+//     Integer secnum;
+//     ArrayList<String> output;
+//     OutlineList(String prefix, Integer secnum, ArrayList<String> output) {
+// 	this.prefix = prefix;
+// 	this.secnum = secnum;
+// 	this.output = output;
+//     }
+
+//     OutlineList next() {
+// 	return new OutlineList(this.prefix, this.secnum+1, this.output);
+//     }
+    
+//     public Void visitEmpty() { return null; }
+//     public Void visitCons(Note first, List<Note> rest) {
+// 	ArrayList<String> firsts = first.accept(new Outline());
+// 	for (String s : first)
+// 	    this.output.add(this.prefix.concat(this.secnum.toString().concat("."))
+// 	first.accept(new Outline(this.prefix.concat(this.secnum.toString().concat(".")), this.secnum, this.output));
+// 	rest.accept(this.next());
+// 	return null;
+//     }       
+// }
+
+////////////////////////
+
+
 // Nesting Depth with recursion
 class NestDepthR implements NoteVisitor<Integer> {
     NestDepthR () {}
