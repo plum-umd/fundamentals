@@ -382,7 +382,6 @@ class MaybeOnce<R> implements Computation<R> {
   R run() { ... }
 }
 \end{verbatim}
-\end{enumerate}
 
 Take care to make sure that if a \texttt{MaybeOnce} computation is not
 run, it never runs the inner computation.  For example, 
@@ -397,6 +396,7 @@ class BlowUp implements Computation<Integer> {
 // Never run, so never blows up.
 new MaybeOnce<Integer>(new BlowUp())
 \end{verbatim}
+\end{enumerate}
 
 \ifrubric
 \else
@@ -423,6 +423,7 @@ new MaybeOnce<Integer>(new BlowUp())
 Revise your design of \texttt{BST<X>} to implement
  \texttt{Iterable<X>} interface.  The iterator returned by
  \texttt{iterator()} should iterate through the elements in sorted order.
+ It should do this efficiently by relying on the \texttt{BST} invariant.
 
 
 
