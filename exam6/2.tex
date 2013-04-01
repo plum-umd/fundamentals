@@ -120,17 +120,56 @@ Extra & & 5 \\ \hline
 \vfill\thispagestyle{empty}
 \newpage
 
+\begin{center}
+{\bf Java Reference}
+\end{center}
+\noindent
+You may be asked to use or implement the following standard Java
+interfaces, which are described here for reference:
+
+\begin{enumerate}
+\item \texttt{Iterable<X>} -- Implementing this interface allows an object to be the target of the ``foreach'' statement. 
+
+ Methods:
+ \begin{itemize}
+ \item \texttt{Iterator<X> iterator()} : Returns an iterator over a set of
+  elements of type \texttt{X}.
+  \end{itemize}
+
+\item \texttt{Iterator<X>} -- An iterator over a collection.
+
+  Methods:
+  \begin{itemize}
+    \item \texttt{boolean hasNext()} : Returns \texttt{true} if the iteration
+      has more elements.
+    \item \texttt{X next()} : Returns the next element in the iteration.
+  \end{itemize}
+
+\item \texttt{Comparator<X>} -- A comparison function, which imposes a total ordering on some collection of objects.
+
+  Methods:
+  \begin{itemize}
+    \item \texttt{int compare(X o1, X o2)} : Compares its two
+      arguments for order. Returns a negative integer, zero, or a
+      positive integer as the first argument is less than, equal to,
+      or greater than the second.
+  \end{itemize}
+  
+\end{enumerate}
+
+\newpage
+
 \begin{problem} \pts{20}
 
-A \emph{binary search tree} is a lot like a binary tree in that a BST
-is either a node, which contains an element and a left and right
-subtree, or a leaf, which doesn't contain an element or subtrees.  The
+A \emph{binary search tree} (BST) is a lot like a binary tree in that
+a BST is either a node, which contains an element and a left and right
+subtree, or a leaf, which contains neither elements nor subtrees.  The
 difference between a binary tree and a binary \emph{search} tree is
 that every leaf and node of a BST also contains a \texttt{Comparator},
 and nodes have the following invariant: every element in the left
 subtree is smaller (according to the comparator) than the element in
-the node, which in turn is smaller than or equal (according to the
-comparator) to every element in the right subtree.  (You can assume
+the node, which in turn is smaller than or equal to (according to the
+comparator) every element in the right subtree.  (You can assume
 the comparator in every leaf and node is the same for any given BST.)
 
 \begin{enumerate}
@@ -151,18 +190,18 @@ the comparator in every leaf and node is the same for any given BST.)
 \item Here's an idea for sorting a series of elements: take all of the
  elements and insert them into (an initially empty) binary search
  tree.  Now, assuming \texttt{BST<X>} implemented the
- \texttt{Iterable<X>} such that the iterator produced by
+ \texttt{Iterable<X>} interface such that the iterator produced by
  \texttt{iterator()} visited the elements of the BST in increasing
  order (according to the comparator), then the elements could be retrieved
 in sorted order.
 
 Use this idea to implement a sorting method with the signature given
- below.  It should sort a given iterable object in ascending order
- according to a given comparator, producing the sorted list as an
- array list of elements.
+ below.  It should sort the elements of a given iterable object in ascending order
+ according to a given comparator, producing the sorted elements as an
+ array list.
 
 You may assume \texttt{BST<X>} implements \texttt{Iterable<X>} correctly
-and do not need to define this yourself (see the extra credit).
+and do not need to define this yourself (see the extra credit problem).
 
 {\small
 \begin{verbatim}
@@ -197,12 +236,13 @@ class Sort {
 \begin{problem} \pts{25}
 \noindent
 Tobin-Hochstadt has been asked to serve on a review panel for the
-National Science Foundation, which requires he read and make notes on
-a set of grant proposals the government is considering to fund.
-Rather than read the proposals, he's decided to make a program for
-modeling his notes.  His notes take the form of an outline, which
-consists of a peice of text and a list of (sub)notes.  For example,
-here's one of his notes (thankfully not in his handwritting):
+ National Science Foundation, which requires he read and make notes on
+ a set of grant proposals the government is considering to fund.
+  Rather than read the proposals he's been assigned, he's decided to
+ make a program for modeling his notes.  His notes take the form of an
+ outline, which consists of a peice of text and a list of (sub)notes.
+  For example, here's one of his notes (thankfully not in his
+ handwritting):
 \begin{verbatim}
        NSF Proposal 1218390
        |
@@ -282,7 +322,7 @@ here's one of his notes (thankfully not in his handwritting):
 methods for a note:
 
 \begin{verbatim}
-Boolean sameNote(Note s) { ...}
+Boolean sameNote(Note s) { ... }
 
 boolean equals(Object o) {
     return (o instanceof Note) 
