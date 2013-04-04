@@ -20,9 +20,9 @@ otherwise noted.
 @include-section["assignments/assign09.scrbl"] @; Spring Break
 @include-section["assignments/assign10.scrbl"] @; Fundamentals in Java
 @include-section["assignments/assign11.scrbl"] @; Quick Lists in Java
+@include-section["assignments/assign13.scrbl"] @; Stable marriage
 @internal[
 @include-section["assignments/assign12.scrbl"] @; Java Iterators & Collections
-@include-section["assignments/assign13.scrbl"]
 @include-section["assignments/assign14.scrbl"]
 @include-section["assignments/assign15.scrbl"]
 ]

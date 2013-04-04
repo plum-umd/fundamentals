@@ -2,11 +2,10 @@
 @(require "../utils.rkt"
 	  "../unnumbered.rkt")
 
-@title[#:tag "assign13"]{4/3: More Java (Stable Marriage)}
+@title[#:tag "assign13"]{4/10: More Java (Stable Marriage)}
 
-Due: 4/3. Language: Java.
+Due: 4/10. Language: Java.
 
-@;{
 Daisy, Daisy, give me your answer, do. 
 
 I'm half crazy, all for the love of you. 
@@ -136,7 +135,7 @@ A Person implements:
 name : -> String
 The name of this person
 
-intended : -> Person or #f
+intended : -> [Maybe Person]
 This person's intended significant other, if any.
 
 preferences : -> [Listof Person]
@@ -146,33 +145,33 @@ possibles : -> [Listof Person]
 People this person has not proposed to, but is still interested in, in
 order of preference.
 
-load-preferences! : [Listof Person] -> 
+loadPreferences : [Listof Person] -> Void
 Effect: set this person's prefences to the given list.
 
-reset! : -> 
-Effect: Reinitialize this person's intended (#f), possibles (empty), and
+reset : -> Void
+Effect: Reinitialize this person's intended (none), possibles (empty), and
 preferences (empty).
 
-propose! : -> Boolean
+propose : -> Boolean
 Effect: Propose to the most desired person not already proposed to.
 Produces true if proposal is accepted, false if rejected.
 
-i-love-you! : Person -> Boolean
+iLoveYou : Person -> Boolean
 This message represents a proposal from the given person to this 
 person.
 Effect: set the intended to the given person, if accepted.
 Produce true if accepted, false otherwise.
 
-i-changed-my-mind! : Person -> 
+iChangedMyMind : Person -> Void
 This message represents a break up from the given person to this
 person.
-Effect: set the intended to #f.
+Effect: set the intended to none.
 Assume: this person is the given person's intended and vice versa.
 
-i-like-more? : Person Person -> Boolean
+iLikeMore : Person Person -> Boolean
 Does this person like the first person more than the second?
 
-couple? : Person -> Boolean
+isCouple : Person -> Boolean
 Are this person and the given person engaged to each other?
 }
 
@@ -181,24 +180,28 @@ Are this person and the given person engaged to each other?
  Design a class that implements the @tt{Person} interface.}
 
  @item{@bold{Match making.}
- Design the following function:
+ Design the following method:
 
 @verbatim{
-courtship! : [Listof People] [Listof People] -> [Listof (list String String)]
+courtship : [Listof People] [Listof People] -> [Listof [Pairof String String]]
 Effect: Marry all of the given proposers and proposees, producing
 a stable configuration.
 Produces a list of couple's name, proposer first.
 }
 
-The @tt{courtship!} function should be an implementation of the stable
+The @tt{courtship} method should be an implementation of the stable
 marriage algorithm described above.
 
-Implement any additional functions or classes needed to implement the
+Implement any additional methods or classes needed to implement the
 stable marriage algorithm.
-}
-	
- @item{@bold{Java.}
-  Re-write your stable marriage program in Java.}
-]
+}	
 
-}
+@item{@bold{Termination.}
+Prove that your @tt{courtship} method terminates on all valid inputs,
+or give an example that causes @tt{courthship} to run forever.}
+
+@item{@bold{Correctness.}
+Prove that your @tt{courtship} method always produces a stable marriage
+for any valid inputs, or give an example that results in an unstable
+configuration.}
+]
