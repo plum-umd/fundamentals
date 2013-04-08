@@ -20,8 +20,9 @@
 @section[#:tag "lab09"]{3/5: No lab (Spring break)}
 @include-section["labs/11.scrbl"]
 @include-section["labs/12.scrbl"]
-@internal[
+@section[#:tag "lab13"]{4/1: No lab (Exam)}
 @include-section["labs/13.scrbl"]
+@internal[
 @include-section["labs/14.scrbl"]
 @section[#:tag "lab15"]{4/16: No lab (Patriots Day)}
 ]
