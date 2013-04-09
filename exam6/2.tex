@@ -486,6 +486,27 @@ class TwentyFive implements Computation<Integer> {
  run, runs the computation \emph{n} times and produces an array list
 of all the results.
 
+\begin{solution}
+\begin{verbatim}
+// 4 pts total
+// 1 pt class structure
+class Count implements Computation<Integer> {
+    Integer i;
+    Count() {
+        this.i = 0;
+    }
+
+// 2 pts for run
+    public Integer run() {
+        Integer j = this.i;
+        this.i = i+1;
+        return j;
+    }      
+}
+// 1 pt for tests
+\end{verbatim}
+\end{solution}
+
 \newpage
 \item
 
@@ -531,6 +552,73 @@ new MaybeOnce<Integer>(new BlowUp())
 \end{verbatim}
 \end{enumerate}
 
+\begin{solution}
+\newpage
+\begin{verbatim}
+// 2 pt structure (including purpose etc)
+class Thunk<X> implements Computation<X> {
+    Delay<X> s;
+    Thunk(Computation<X> c) {
+        this.s = new Frozen<X>(c);
+    }
+// 2 pts 
+    public X run() {
+        this.s = this.s.force();
+        return this.s.val();
+    }
+}
+\end{verbatim}
+\newpage
+\begin{verbatim}
+// 8 pts for the code in general, may have different design
+interface Delay<X> {
+    Delay<X> force();
+    X val();
+}
+class Frozen<X> implements Delay<X> {
+    Computation<X> c;
+    Frozen(Computation<X> c) {
+        this.c = c;
+    }
+    public Delay<X> force() {
+        return new Thaw<X>(this.c.run());
+    }
+    public X val() {
+        return null;
+    }
+}
+class Thaw<X> implements Delay<X> {
+    X x;
+    Thaw(X x) {
+        this.x = x;
+    }
+    public Delay<X> force() {
+        return this;
+    }
+    public X val() {
+        return this.x;
+    }
+}
+\end{verbatim}
+\newpage
+\begin{verbatim}
+// 2 pts tests
+class Examples {
+    void testThunk(Tester t) {
+        Computation<Integer> count = new Count();
+        t.checkExpect(count.run(), 0);
+        t.checkExpect(count.run(), 1);
+        t.checkExpect(count.run(), 2);
+        t.checkExpect(count.run(), 3);
+        Computation<Integer> thunk = new Thunk<Integer>(new Count());
+        t.checkExpect(thunk.run(), 0);
+        t.checkExpect(thunk.run(), 0);
+    }
+    
+}
+\end{verbatim}
+\end{solution}
+
 \ifrubric
 \else
 \newpage
@@ -560,9 +648,6 @@ Revise your design of \texttt{BST<X>} to implement
 
 \begin{solution}
 \begin{verbatim}
-//> 5pts all correct
-//> Ok if they have another implementation if it's right
-
 // in BST<X> interface
     // Add all elements of this BST to ls, in order.
     void addTo(ArrayList<X> ls);
