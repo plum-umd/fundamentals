@@ -16,7 +16,18 @@ class Note {
 
     <R> R accept(NoteVisitor<R> v) {
 	return v.visitNote(this.txt, this.subnotes);
+
+    Boolean sameNote(Note s) {
+	return this.txt.equals(s.txt)
+	    && this.subnotes.sameList(s.subnotes)
     }
+    
+    boolean equals(Object o) {
+	return (o instanceof Note) 
+	    && this.sameNote((Note)o);
+    }
+    
+    int hashCode() { return this.txt.hashCode() + this.subnotes.hashCode(); }
 }
 
 interface NoteVisitor<R> {
@@ -25,6 +36,9 @@ interface NoteVisitor<R> {
 
 interface List<X> {
     <R> R accept(ListVisitor<X,R> v);
+    Boolean sameList(List<X> l);
+    Boolean sameEmpty(Empty<X> l);
+    Boolean sameCons(Cons<X> l);
 }
 
 interface ListVisitor<X,R> {
@@ -34,9 +48,13 @@ interface ListVisitor<X,R> {
 
 class Empty<X> implements List<X> {
     Empty() {}
+    public Boolean sameList(List<X> l) { return l.sameEmpty(this); }
+    public Boolean sameEmpty(Empty<X> l) { return true; }
+    public Boolean sameCons(Cons<X> l) { return false; }
     public <R> R accept(ListVisitor<X,R> v) {
 	return v.visitEmpty();
     }
+    int hashCode() { return 17; }
 }
 
 class Cons<X> implements List<X> {
@@ -48,9 +66,17 @@ class Cons<X> implements List<X> {
 	this.rest = rest;
     }
 
+    public Boolean sameList(List<X> l) { return l.sameCons(this); }
+    public Boolean sameEmpty(Empty<X> l) { return false; }
+    public Boolean sameCons(Cons<X> l) { 
+	return this.first.equals(l.first)
+	    && this.rest.sameList(l.rest);
+    }
+
     public <R> R accept(ListVisitor<X,R> v) {
 	return v.visitCons(this.first, this.rest);
     }
+    int hashCode() { return this.first.hashCode() + this.rest.hashCode(); }
 }
 
 // TWO SOLUTIONS TO NESTING DEPTH.

@@ -369,7 +369,7 @@ Tobin-Hochstadt has been asked to serve on a review panel for the
 
 \begin{solution}
 \begin{verbatim}
-// 5 pts for Note
+// 3 pts for Note
 class Note {
     String txt;
     List<Note> subnotes;
@@ -385,7 +385,7 @@ class Note {
 
 }
 
-// 4 pts for List
+// 2 pts for List
 interface List<X> {}
 
 class Empty<X> implements List<X> {
@@ -418,7 +418,7 @@ class Cons<X> implements List<X> {
 \begin{solution}
 \begin{verbatim}
 
-//> 4 pts for interface defintions
+//> 3 pts for interface defintions
 
 interface ListVisitor<X,R> {
     R visitEmpty();
@@ -432,7 +432,7 @@ interface NoteVisitor<R> {
     R visitNote(String txt, List<Note> subnotes);
 }
 
-//> 4 pts for accept methods
+//> 2 pts for accept methods
 // in Note
     <R> R accept(NoteVisitor<R> v) {
         return v.visitNote(this.txt, this.subnotes);
@@ -461,7 +461,7 @@ interface NoteVisitor<R> {
 
 \begin{solution}
 \begin{verbatim}
-//> 4 pts
+//> 6 pts overall
 // Nesting Depth with recursion
 class NestDepthR implements NoteVisitor<Integer> {
     NestDepthR () {}
@@ -470,7 +470,6 @@ class NestDepthR implements NoteVisitor<Integer> {
     }
 }
 
-//> 4 pts
 class NestDepthListR implements ListVisitor<Note,Integer> {
     NestDepthListR () {}
     public Integer visitEmpty() {
@@ -533,6 +532,36 @@ Develop the \texttt{sameNote} method, which \texttt{equals} relies on.
 \newpage
 [Here is some more space for the previous problem.]
 \fi
+
+\begin{solution}
+\begin{verbatim}
+// 5 pts (including tests)
+// in Note
+    Boolean sameNote(Note s) {
+        return this.txt.equals(s.txt)
+            && this.subnotes.sameList(s.subnotes)
+    }
+
+// in List<X>
+    Boolean sameList(List<X> l);
+    Boolean sameEmpty(Empty<X> l);
+    Boolean sameCons(Cons<X> l);
+
+// in Empty<X>
+    public Boolean sameList(List<X> l) { return l.sameEmpty(this); }
+    public Boolean sameEmpty(Empty<X> l) { return true; }
+    public Boolean sameCons(Cons<X> l) { return false; }
+
+// in Cons<X>
+    public Boolean sameList(List<X> l) { return l.sameCons(this); }
+    public Boolean sameEmpty(Empty<X> l) { return false; }
+    public Boolean sameCons(Cons<X> l) { 
+        return this.first.equals(l.first)
+            && this.rest.sameList(l.rest);
+    }
+\end{verbatim}
+\end{solution}
+
 \newpage
 
 \noindent
@@ -548,6 +577,21 @@ Develop the \texttt{sameNote} method, which \texttt{equals} relies on.
 \newpage
 [Here is some more space for the previous problem.]
 \fi
+
+\begin{solution}
+\begin{verbatim}
+// 4 pts (including tests)
+// in Note
+    int hashCode() { return this.txt.hashCode() + this.subnotes.hashCode(); }
+
+// in Empty
+    int hashCode() { return 17; }
+
+// in Cons
+    int hashCode() { return this.first.hashCode() + this.rest.hashCode(); }
+\end{verbatim}
+\end{solution}
+
 \newpage
 \newpage
 \end{enumerate}
