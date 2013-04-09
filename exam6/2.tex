@@ -465,7 +465,33 @@ Revise your design of \texttt{BST<X>} to implement
  \texttt{iterator()} should iterate through the elements in sorted order.
  It should do this efficiently by relying on the \texttt{BST} invariant.
 
+\begin{solution}
+\begin{verbatim}
+//> 5pts all correct
+//> Ok if they have another implementation if it's right
 
+// in BST<X> interface
+    // Add all elements of this BST to ls, in order.
+    void addTo(ArrayList<X> ls);
+
+// in ABST<X>
+    public Iterator<X> iterator() {
+        ArrayList<X> elems = new ArrayList<X>();
+        this.addTo(elems);
+        return elems.iterator();
+    }
+
+// in Leaf<X>
+    public void addTo(ArrayList<X> ls) {}
+
+// in Node<X>
+    public void addTo(ArrayList<X> ls) {
+        this.left.addTo(ls);
+        ls.add(this.x);
+        this.right.addTo(ls);
+    }
+\end{verbatim}
+\end{solution}
 
 \end{problem}
 
