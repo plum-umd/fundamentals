@@ -181,7 +181,62 @@ the comparator in every leaf and node is the same for any given BST.)
   BST<X> insert(X x);
 \end{verbatim}
 
-\ifrubric\else
+\ifrubric
+
+\begin{solution}
+\begin{verbatim}
+// [1pt]
+interface BST<X> extends Iterable<X> {
+    // Insert given element into this BST.
+    BST<X> insert(X x);
+}
+
+// [optional]
+abstract class ABST<X> implements BST<X> {
+    Comparator<X> c;
+    ABST(Comparator<X> c) {
+        this.c = c;
+    }
+}
+
+// [1pt: fields, constructor, parameterized type]
+class Leaf<X> extends ABST<X> {
+    Leaf(Comparator<X> c) {
+        super(c);
+    }
+
+    // [1pt]
+    public BST<X> insert(X x) {
+        return new Node<X>(this.c, x, this, this);
+    }
+}
+
+// [2pt: fields, constructor, parameterized type]
+class Node<X> extends ABST<X> {
+    X x;
+    BST<X> left;
+    BST<X> right;
+    Node(Comparator<X> c, X x, BST<X> left, BST<X> right) {
+        super(c);
+        this.x = x;
+        this.left = left;
+        this.right = right;
+    }
+
+    // [3pt]
+    public BST<X> insert(X x) {
+        return (this.c.compare(x, this.x) < 0)
+        ? new Node<X>(this.c, this.x, this.left.insert(x), this.right)
+        : new Node<X>(this.c, this.x, this.left, this.right.insert(x));
+        }
+    }
+}
+
+// [2pt: tests]
+\end{verbatim}
+\end{solution}
+
+\else
 \newpage
 [Here is some more space for the previous problem.]
 \fi
@@ -216,6 +271,44 @@ class Sort {
 \end{enumerate}
 
 \ifrubric
+\begin{solution}
+\begin{verbatim}
+// [5pt]
+class Sort {
+    <X> ArrayList<X> treeSort(Comparator<X> c, Iterable<X> elems) {
+        BST<X> bst = new Leaf<X>(c);
+        ArrayList<X> ls = new ArrayList<X>();
+        for (X x : elems) bst = bst.insert(x);
+        for (X x : bst)   ls.add(x);
+        return ls;
+    }
+}
+
+// [2pt]
+class LessThan implements Comparator<Integer> {
+    public int compare(Integer x, Integer y) {
+        return x - y;
+    }
+}
+
+// [3pt]
+class Examples {
+    void testTreeSort(Tester t) {
+        Sort s = new Sort();
+        Comparator<Integer> lt = new LessThan();
+        ArrayList<Integer> elems =
+            new ArrayList<Integer>(Arrays.asList(8,3,7,5));
+        
+        ArrayList<Integer> sorted =
+            new ArrayList<Integer>(Arrays.asList(3,5,7,8));
+
+        t.checkExpect(s.treeSort(lt, new ArrayList<Integer>()),
+                      new ArrayList<Integer>());
+        t.checkExpect(s.treeSort(lt, elems), sorted);
+    }
+}
+\end{verbatim}
+\end{solution}
 \else
 \newpage
 [Here is some more space for the previous problem.]
