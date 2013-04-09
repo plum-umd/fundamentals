@@ -16,18 +16,19 @@ class Note {
 
     <R> R accept(NoteVisitor<R> v) {
 	return v.visitNote(this.txt, this.subnotes);
+    }
 
     Boolean sameNote(Note s) {
 	return this.txt.equals(s.txt)
-	    && this.subnotes.sameList(s.subnotes)
+	    && this.subnotes.sameList(s.subnotes);
     }
     
-    boolean equals(Object o) {
+    public boolean equals(Object o) {
 	return (o instanceof Note) 
 	    && this.sameNote((Note)o);
     }
     
-    int hashCode() { return this.txt.hashCode() + this.subnotes.hashCode(); }
+    public int hashCode() { return this.txt.hashCode() + this.subnotes.hashCode(); }
 }
 
 interface NoteVisitor<R> {
@@ -54,7 +55,7 @@ class Empty<X> implements List<X> {
     public <R> R accept(ListVisitor<X,R> v) {
 	return v.visitEmpty();
     }
-    int hashCode() { return 17; }
+    public int hashCode() { return 17; }
 }
 
 class Cons<X> implements List<X> {
@@ -76,7 +77,7 @@ class Cons<X> implements List<X> {
     public <R> R accept(ListVisitor<X,R> v) {
 	return v.visitCons(this.first, this.rest);
     }
-    int hashCode() { return this.first.hashCode() + this.rest.hashCode(); }
+    public int hashCode() { return this.first.hashCode() + this.rest.hashCode(); }
 }
 
 // TWO SOLUTIONS TO NESTING DEPTH.
