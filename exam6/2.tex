@@ -335,7 +335,7 @@ Tobin-Hochstadt has been asked to serve on a review panel for the
  make a program for modeling his notes.  His notes take the form of an
  outline, which consists of a peice of text and a list of (sub)notes.
   For example, here's one of his notes (thankfully not in his
- handwritting):
+ handwriting):
 \begin{verbatim}
        NSF Proposal 1218390
        |
@@ -367,6 +367,44 @@ Tobin-Hochstadt has been asked to serve on a review panel for the
 
 \item Develop data, class, and interface defintions for a note.
 
+\begin{solution}
+\begin{verbatim}
+// 5 pts for Note
+class Note {
+    String txt;
+    List<Note> subnotes;
+    
+    Note(String txt) {
+        this(txt, new Empty<Note>());
+    }
+
+    Note(String txt, List<Note> subnotes) {
+        this.txt = txt;
+        this.subnotes = subnotes;
+    }
+
+}
+
+// 4 pts for List
+interface List<X> {}
+
+class Empty<X> implements List<X> {
+    Empty() {}
+}
+
+class Cons<X> implements List<X> {
+    X first;
+    List<X> rest;
+
+    Cons(X first, List<X> rest) {
+        this.first = first;
+        this.rest = rest;
+    }
+}
+
+\end{verbatim}
+\end{solution}
+
 \newpage
 
 \noindent
@@ -377,6 +415,42 @@ Tobin-Hochstadt has been asked to serve on a review panel for the
   define additional visitors as well, depending on your original data
   definition.
 
+\begin{solution}
+\begin{verbatim}
+
+//> 4 pts for interface defintions
+
+interface ListVisitor<X,R> {
+    R visitEmpty();
+    R visitCons(X first, List<X> rest);
+}
+
+// in List
+    <R> R accept(ListVisitor<X,R> v);
+
+interface NoteVisitor<R> {
+    R visitNote(String txt, List<Note> subnotes);
+}
+
+//> 4 pts for accept methods
+// in Note
+    <R> R accept(NoteVisitor<R> v) {
+        return v.visitNote(this.txt, this.subnotes);
+    }
+
+
+// in Empty
+    public <R> R accept(ListVisitor<X,R> v) {
+        return v.visitEmpty();
+    }
+
+// in Cons
+    public <R> R accept(ListVisitor<X,R> v) {
+        return v.visitCons(this.first, this.rest);
+    }
+\end{verbatim}
+\end{solution}
+
 \newpage
 
 \noindent
@@ -384,6 +458,31 @@ Tobin-Hochstadt has been asked to serve on a review panel for the
   a note.  For example, the maximum nesting depth of the given example
   is 4.
 
+
+\begin{solution}
+\begin{verbatim}
+//> 4 pts
+// Nesting Depth with recursion
+class NestDepthR implements NoteVisitor<Integer> {
+    NestDepthR () {}
+    public Integer visitNote(String txt, List<Note> subnotes) {
+        return 1 + subnotes.accept(new NestDepthListR());
+    }
+}
+
+//> 4 pts
+class NestDepthListR implements ListVisitor<Note,Integer> {
+    NestDepthListR () {}
+    public Integer visitEmpty() {
+        return 0;
+    }
+    public Integer visitCons(Note first, List<Note> rest) {
+        return Math.max(first.accept(new NestDepthR()),
+                        rest.accept(this));
+    }
+}
+\end{verbatim}
+\end{solution}
 
 %  numbered outline of a
 %   note.  The result should be an \texttt{ArrayList} of
@@ -633,7 +732,6 @@ class Examples {
         t.checkExpect(thunk.run(), 0);
         t.checkExpect(thunk.run(), 0);
     }
-    
 }
 \end{verbatim}
 \end{solution}
