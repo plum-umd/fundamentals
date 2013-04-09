@@ -488,26 +488,45 @@ of all the results.
 
 \begin{solution}
 \begin{verbatim}
-// 4 pts total
-// 1 pt class structure
+// This class is an example
 class Count implements Computation<Integer> {
     Integer i;
     Count() {
         this.i = 0;
     }
 
-// 2 pts for run
     public Integer run() {
         Integer j = this.i;
         this.i = i+1;
         return j;
     }      
 }
-// 1 pt for tests
 \end{verbatim}
+\newpage
+\begin{verbatim}
+// 6 pts total
+// 2 pt class structure
+class Repeat implements Computation<ArrayList<Integer>> {
+    Computation<Integer> comp;
+    Integer n;
+    Repeat(Computation<Integer> comp, Integer n) {
+        this.comp = comp; this.n = n;
+    }
+
+// 2 pts for run
+    public ArrayList<Integer> run() {
+        ArrayList<Integer> as = new ArrayList<Integer>();
+        for(int i = 0; i < n; i++) 
+          as.add(comp.run());
+        return as;
+    }      
+}
+// 2 pt for tests (need an example Computation<Integer>)
+t.checkExpect((new Repeat(new Count(3))).run, new ArrayList(0,1,2));
+\end{verbatim}
+\newpage
 \end{solution}
 
-\newpage
 \item
 
 Computations can be expensive, so it's probably a good idea to avoid
@@ -561,7 +580,7 @@ class Thunk<X> implements Computation<X> {
     Thunk(Computation<X> c) {
         this.s = new Frozen<X>(c);
     }
-// 2 pts 
+// 1 pts 
     public X run() {
         this.s = this.s.force();
         return this.s.val();
@@ -570,7 +589,7 @@ class Thunk<X> implements Computation<X> {
 \end{verbatim}
 \newpage
 \begin{verbatim}
-// 8 pts for the code in general, may have different design
+// 7 pts for the code in general, may have different design
 interface Delay<X> {
     Delay<X> force();
     X val();
