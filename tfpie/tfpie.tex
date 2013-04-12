@@ -1,7 +1,7 @@
 \documentclass[submission,copyright]{eptcs}
 \providecommand{\event}{TFPIE} % Name of the event you are submitting to
 
-\title{From Principles to Fashion with Class}
+\title{From Principles to Practice with Class in the First Year}
 \author{Sam Tobin-Hochstadt \quad\qquad David Van Horn
 \institute{Northeastern University\\
 Boston, Massachusetts, USA}
@@ -19,9 +19,37 @@ in the first-year cirriculum.
 
 \section{Introduction}
 
+\begin{itemize}
+\item Lots of universities want their students to be proficient in an
+  industrial object-oriented programming language by the end of the first year.
+\item Teaching Java on Day 1 is a flawed approach.
+\item Teaching functional programming in Semester 1 and Java in Semester 2 is a flawed approach.
+\item We contribute a solution: a gradual transition from functional
+  programming to object-oriented programming that culminates in
+  industrial language proficiency.
+\end{itemize}
+
+
 \emph{Thesis: ...}
 
+
+Some of these are premature, and better introduced later in the
+course.  Some are just irrelevant trivia (different syntax) that often
+favors ``experienced'' students while needlessly intimidating students
+with only the previous semester under their belt.  Many of these
+trivial matters, e.g. Eclipse configuration, javac command line
+arguments, the CLASSPATH, can be very frustrating to the uninitiated,
+causing students to believe struggling with such crap is \emph{the
+  essence of computer science}.  Bright, promising students may leave
+the program, understandably so, in order to pursue more intellectually
+fulfilling subjects.
+
+
 \section{Background: the first semester}
+
+Context and contraints: HtDP vs. industrial co-op and subsequent Java courses.
+
+Universe and world \cite{dvanhorn:Felleisen2009Functional}.
 
 \cite{dvanhorn:Felleisen2004Structure}
 
@@ -38,17 +66,16 @@ games, etc.).
 
 \subsection{Side-by-side example of program design}
 
+\begin{enumerate}
+\item Lists of numbers
+\item World
+\end{enumerate}
+
+
+
 [First semester vs second semester example programs.]
 
-\section{Our course}
-
-\subsection{Distributed, Interactive Programs}
-
-\subsection{Representation-indepence and interface-oriented programming}
-
-\subsection{Unifying functions and objects}
-
-\section{From principles to fashions}
+\section{From principles to industrial languages}
 
 Could work with any fashion, and should really lead into many
 fashionable languages.  The purpose of showing many is to demonstrate
@@ -64,13 +91,33 @@ expose students to various mechanisms.
 \end{itemize}
 
 
-\section{Comparison with HtDC}
+
+\section{Our course}
+
+\subsection{Representation-independence and interface-oriented programming}
+
+\subsection{Distributed, Interactive Programs}
+
+\subsection{Unifying functions and objects}
+
+
+\section{Related work}
 
 \cite{dvanhorn:Gray2003ProfessorJ}
 
-\cite{dvanhorn:Allen2002DrJava}
+\cite{dvanhorn:Allen2002DrJava, dvanhorn:Hsia2005Taming}
 
 \cite{dvanhorn:Kolling2003}
+
+\cite{dvanhorn:Bruce2001Library}
+
+\cite{dvanhorn:Alphonce2003Using}
+
+\cite{dvanhorn:Chakravarty2004Risks}
+
+\cite{dvanhorn:Ragde2008Chilling}
+
+\cite{dvanhorn:Bloch2000Scheme}
 
 The noble goals of ProfJ:
 
@@ -85,6 +132,7 @@ The transition is too abrupt and too large.
 The failures of  ProfJ:
 
 \begin{itemize}
+\item dead.
 \item changes languages from first semester rather than adding new
   concept (causes students confusing deep issue (O.O. design) and
   shallow ones (Java-like syntax) and orthogonal issues (static type
@@ -120,17 +168,6 @@ The changes that occur on Day 1 of HtDC w/o ProfJ:
 \item Loss of interactivity
 \end{itemize}
 
-Some of these are premature, and better introduced later in the
-course.  Some are just irrelevant trivia (different syntax) that often
-favors ``experienced'' students while needlessly intimidating students
-with only the previous semester under their belt.  Many of these
-trivial matters, e.g. Eclipse configuration, javac command line
-arguments, the CLASSPATH, can be very frustrating to the uninitiated,
-causing students to believe struggling with such crap is \emph{the
-  essence of computer science}.  Bright, promising students may leave
-the program, understandably so, in order to pursue more intellectually
-fulfilling subjects.
-
 \section{Experience and outlook}
 
 Perspective into the upper-class cirriculum:
@@ -143,6 +180,17 @@ Perspective into the upper-class cirriculum:
 
 \item interfaces, interactions, distribution : operating systems, networking
 \end{itemize}
+
+
+Other steps:
+\begin{itemize}
+\item types in class language
+\item pedagogical Java environment
+\item ugly syntax for class language
+\item world in Java
+\end{itemize}
+
+\cite{dvanhorn:sicp}
 
 % \nocite{*}
 \bibliographystyle{eptcs}
