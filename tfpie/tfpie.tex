@@ -211,9 +211,9 @@ games, etc.).
 In intermediate student:
 
 \begin{figure}
-\begin{minipage}{3.5in}
+\begin{minipage}[t]{3.5in}
 \begin{verbatim}
-
+#lang bsl
 ;; A Tree is one of:
 ;; - (make-leaf Number)
 ;; - (make-node Tree Number Tree)
@@ -229,6 +229,9 @@ In intermediate student:
            (node-v a-tree)
            (sum (node-right a-tree)))]))
 
+
+
+
 (check-expect (sum (make-leaf 7)) 7)
 (check-expect 
   (sum (make-node
@@ -240,7 +243,7 @@ In intermediate student:
   16)
 \end{verbatim}
 \end{minipage}
-\begin{minipage}{3in}
+\begin{minipage}[t]{3in}
 \begin{verbatim}
 #lang class/1
 ;; A Tree is one of:
@@ -272,11 +275,8 @@ In intermediate student:
   16)
 \end{verbatim}
 \end{minipage}
-\caption{Binary tree sum in the first course, and in our approach}
+\caption{Binary tree sum in Beginning Student and in our language}
 \end{figure}
-
-
-In Java:
 
 \begin{figure}
 \begin{verbatim}
