@@ -31,35 +31,98 @@ starts in Java.  The latter approach is an improvement over the first,
 but both suffer serious flaws.
 
 As an example, Northeastern University teaches functional programming
-in the first semester using \emph{How to Design Programs}
-\cite{dvanhorn:Felleisen2001How}, followed by object-oriented
-programming using \emph{How to Design Classes} \cite{local:htdc} in
-the second semester.  This sequence is one 
+in the first semester using \emph{How to Design
+  Programs}~\cite{dvanhorn:Felleisen2001How}, followed by
+object-oriented programming using \emph{How to Design
+  Classes}~\cite{local:htdc} in the second semester.  This sequence
+was designed to provide a smooth path for incoming students assumed
+only to have a competence in high-school level algebra to reach
+proficiency in Java by the end of their first year
+\cite{dvanhorn:Felleisen2004Structure}.  It was a major improvement
+over the previous Java-first cirriculum in terms of student sucess,
+attrition, and preparation for subsequent
+courses~\cite{dvanhorn:Proulx2006Design}.  However significant
+problems remain; in particular, the second semester course violates
+the designers' own principles (as recalled
+in~\cite{dvanhorn:Bloch2000Scheme}):
+%
+\begin{enumerate}
+\item \emph{introduce only those language constructs that are necessary to
+  teach programming principles}, and
+\item \emph{choose a language with as
+  few language constructs as possible, and one in which they can be
+  introduced one at a time}.
+\end{enumerate}
 
+The problem is that the first semester ends with an advanced
+pedagogical functional language and the second semester starts with a
+beginning pedagogical subset of Java.  Despite this slimmed-down
+subset, this transition is too abrupt to meaningfully bridge the gap
+between functional and object-oriented programming, because there are
+several other significant transitions happening in concert such as the
+transitions:
+\begin{itemize}
+\item from a highly regular and minimal syntax to a complicated
+  irregular syntax,
 
-These two courses are tightly integrated
-and have been taught by the designers of this cirriculum.
+\item from an untyped language to a typed language,
+
+\item from a pedagogical programming environment to an industrial
+programming environment (Eclipse),
+
+\item from a language with numeric values corresponding to
+  mathematical objects to a language with numeric values corresponding
+  to common machine representations,
+
+\item from a language with image literals and graphical libraries to
+  one in which graphical programming is tedious,
+  
+\item from a language with a simple structural-equality-based testing
+  framework to a language with an industrial strength testing library,
+
+\item from an interaction-oriented language to a compiled,
+  batch-oriented language.  
+\end{itemize}
+
+This abrupt transition has several negative consequences: the
+principles of object-oriented programming are obscured and
+de-emphasized, struggling with the programming environment is
+frustrating and can cause potentially good students to leave the
+program, it favors students with prior exposure to the particular
+tools, it inhibits students from experimenting by relying upon their
+past skills, and it creates the false impression that courses are
+discrete units of instruction that can be discarded after successful
+completion rather than being part of a continuous and culmative
+educational experience.
 
 
 We contribute an alternative approach to the second semester that
-provides a gradual transition from functional programming to
-object-oriented programming that culminates in industrial language
-proficiency.
+overcomes these problems and provides a gradual transition from
+functional programming to object-oriented programming.  Our approach
+is able to start the second semester by introducing \emph{only} the
+concept of programming with objects, while all other aspects of course
+remain where they were left off in the previous semester.  This
+approach allows the other concepts to be introduced at the point at
+which they are relevant and motivated.  Despite this more gradual
+approach, the course accomplishes the goal of teaching industrial
+language proficiency by the end of the semester, covering a super-set
+of the concepts and topics covered in the \emph{How to Design Classes}
+course.
 
-\emph{Thesis: ...}
+\paragraph{Outline} The remainder of this paper is organized as follows\dots
 
-\cite{local:dpc}
+%% \cite{local:dpc}
 
-Some of these are premature, and better introduced later in the
-course.  Some are just irrelevant trivia (different syntax) that often
-favors ``experienced'' students while needlessly intimidating students
-with only the previous semester under their belt.  Many of these
-trivial matters, e.g. Eclipse configuration, javac command line
-arguments, the CLASSPATH, can be very frustrating to the uninitiated,
-causing students to believe struggling with such crap is \emph{the
-  essence of computer science}.  Bright, promising students may leave
-the program, understandably so, in order to pursue more intellectually
-fulfilling subjects.
+%% Some of these are premature, and better introduced later in the
+%% course.  Some are just irrelevant trivia (different syntax) that often
+%% favors ``experienced'' students while needlessly intimidating students
+%% with only the previous semester under their belt.  Many of these
+%% trivial matters, e.g. Eclipse configuration, javac command line
+%% arguments, the CLASSPATH, can be very frustrating to the uninitiated,
+%% causing students to believe struggling with such crap is \emph{the
+%%   essence of computer science}.  Bright, promising students may leave
+%% the program, understandably so, in order to pursue more intellectually
+%% fulfilling subjects.
 
 
 \section{Background: the context at Northeastern}
