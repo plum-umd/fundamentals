@@ -326,7 +326,8 @@ class Examples {
 ;; A World is a Number
 
 ;; on-tick : World -> World
-(define (tick w) (add1 w))
+(define (tick w)
+  (add1 w))
 
 ;; to-draw : World -> Image
 (define (draw w)
@@ -345,15 +346,18 @@ class Examples {
 #lang class/1
 (require 2htdp/image class/universe)
 
-;; A World (new world% Number)
+;; A World is a (new world% Number)
 (define-class world%
   (fields n)
+
   ;; on-tick : -> World
   (define (on-tick)
     (new world% (add1 (this . n))))
+
   ;; to-draw : -> Image
   (define (on-tick) 
     (circle (this . n) "solid" "red"))
+
   ;; on-key : KeyEvent -> World
   (define (on-key k) (new world% 10)))
   
