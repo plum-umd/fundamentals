@@ -1,13 +1,15 @@
 \documentclass[submission,copyright]{eptcs}
 \providecommand{\event}{TFPIE} % Name of the event you are submitting to
 
-\title{From Principles to Practice with Class in the First Year}
+\newcommand\thetitle{From Principles to Practice with Class in the First Year}
+
+\title{\thetitle}
 \author{Sam Tobin-Hochstadt \quad\qquad David Van Horn
 \institute{Northeastern University\\
 Boston, Massachusetts, USA}
 \email{\{samth,dvanhorn\}@ccs.neu.edu}
 }
-\def\titlerunning{A Longtitled Paper}
+\def\titlerunning{\thetitle}
 \def\authorrunning{S. Tobin-Hochstadt \& D. Van Horn}
 \begin{document}
 \maketitle
@@ -28,6 +30,17 @@ programming in the first semester, followed by a second semester that
 starts in Java.  The latter approach is an improvement over the first,
 but both suffer serious flaws.
 
+As an example, Northeastern University teaches functional programming
+in the first semester using \emph{How to Design Programs}
+\cite{dvanhorn:Felleisen2001How}, followed by object-oriented
+programming using \emph{How to Design Classes} \cite{local:htdc} in
+the second semester.  This sequence is one 
+
+
+These two courses are tightly integrated
+and have been taught by the designers of this cirriculum.
+
+
 We contribute an alternative approach to the second semester that
 provides a gradual transition from functional programming to
 object-oriented programming that culminates in industrial language
@@ -35,6 +48,7 @@ proficiency.
 
 \emph{Thesis: ...}
 
+\cite{local:dpc}
 
 Some of these are premature, and better introduced later in the
 course.  Some are just irrelevant trivia (different syntax) that often
@@ -214,7 +228,9 @@ Other steps:
 
 \cite{dvanhorn:sicp}
 
+\cite{local:htdc}
+
 % \nocite{*}
 \bibliographystyle{eptcs}
-\bibliography{dvh-bibliography}
+\bibliography{dvh-bibliography,local}
 \end{document}
