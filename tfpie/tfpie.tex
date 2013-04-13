@@ -199,6 +199,117 @@ games, etc.).
 
 \subsection{Side-by-side example of program design}
 
+In intermediate student:
+
+\begin{figure}
+\begin{minipage}{3.5in}
+\begin{verbatim}
+
+;; A Tree is one of:
+;; - (make-leaf Number)
+;; - (make-node Tree Number Tree)
+(define-struct leaf (v))
+(define-struct node (left v right))
+
+;; sum : Tree -> Number
+;; sums the elements of the given tree
+(define (sum a-tree)
+  (cond [(leaf? a-tree) (leaf-v a-tree)]
+        [else
+        (+ (sum (node-left  a-tree))
+           (node-v a-tree)
+           (sum (node-right a-tree)))]))
+
+(check-expect (sum (make-leaf 7)) 7)
+(check-expect 
+  (sum (make-node
+         (make-leaf 1)
+         5 
+         (make-node (make-leaf 0)
+                    10
+                    (make-leaf 0))))
+  16)
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{3in}
+\begin{verbatim}
+#lang class/1
+;; A Tree is one of:
+;; - (new leaf% Number)
+;; - (new node% Tree Number Tree)
+;; and implements
+;; sum : -> Number
+;; sums the elements of this tree
+
+(define-class leaf%
+  (fields v)
+  (define (sum) (this . v)))
+
+(define-class node%
+  (fields left v right)
+  (define (sum)
+    (+ (this . left . sum)
+       (this . v)
+       (this . right .sum))))
+
+(check-expect (sum (new leaf% 7)) 7)
+(check-expect 
+  (sum (new node%
+         (new leaf% 1)
+         5 
+         (new node% (new leaf% 0) 
+                    10
+                    (new leaf% 0))))
+  16)
+\end{verbatim}
+\end{minipage}
+\caption{Binary tree sum in the first course, and in our approach}
+\end{figure}
+
+
+In Java:
+
+\begin{figure}
+\begin{verbatim}
+import tester.*;
+
+interface Tree {
+    // sums the elements of this tree
+    Integer sum();
+}
+
+class Leaf {
+    Integer v;
+    Leaf(Integer v) { this.v = v; }
+    public Integer sum() { return this.v; }
+}
+
+class Node {
+    Tree left; Integer v; Tree right;
+    Node(Tree l, Integer v, Tree r) {
+        this.left = l;
+        this.v = v;
+        this.right = r;
+    }
+
+    public Integer sum() {
+        return this.left.sum() + this.v + this.right.sum();
+    }
+}
+
+class Examples {
+    void test_tree(Tester t) {
+        t.checkExpect((new Leaf(7)).sum(), 7);
+        t.checkExpect((new Node(new Leaf(1),
+                                5, 
+                                new Node(new Leaf(0), 10, new Leaf(0)))).sum(),
+                      16);
+    }
+}
+\end{verbatim}
+\caption{Binary tree sum in How to Design Classes}
+\end{figure}
+
 \begin{enumerate}
 \item Lists of numbers
 \item World
