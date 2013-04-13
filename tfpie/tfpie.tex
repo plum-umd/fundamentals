@@ -308,10 +308,10 @@ class Node {
 
 class Examples {
     void test_tree(Tester t) {
-        t.checkExpect((new Leaf(7)).sum(), 7);
-        t.checkExpect((new Node(new Leaf(1),
-                                5, 
-                                new Node(new Leaf(0), 10, new Leaf(0)))).sum(),
+        t.checkExpect(new Leaf(7).sum(), 7);
+        t.checkExpect(new Node(new Leaf(1),
+                               5, 
+                               new Node(new Leaf(0), 10, new Leaf(0))).sum(),
                       16);
     }
 }
