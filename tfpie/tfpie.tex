@@ -316,10 +316,54 @@ class Examples {
 \caption{Binary tree sum in How to Design Classes}
 \end{figure}
 
-\begin{enumerate}
-\item Lists of numbers
-\item World
-\end{enumerate}
+
+\begin{figure}
+\begin{minipage}[t]{3.4in}
+\begin{verbatim}
+#lang bsl
+(require 2htdp/image 2htdp/universe)
+
+;; A World is a Number
+
+;; on-tick : World -> World
+(define (tick w) (add1 w))
+
+;; to-draw : World -> Image
+(define (draw w)
+  (circle w "solid" "red"))
+
+;; on-key : KeyEvent World -> World
+(define (on-key k w) 10)
+
+(big-bang 10
+          [to-draw draw]
+          [on-tick tick])
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{3in}
+\begin{verbatim}
+#lang class/1
+(require 2htdp/image class/universe)
+
+;; A World (new world% Number)
+(define-class world%
+  (fields n)
+  ;; on-tick : -> World
+  (define (on-tick)
+    (new world% (add1 (this . n))))
+  ;; to-draw : -> Image
+  (define (on-tick) 
+    (circle (this . n) "solid" "red"))
+  ;; on-key : KeyEvent -> World
+  (define (on-key k) (new world% 10)))
+  
+(big-bang (new world% 10))
+\end{verbatim}
+\end{minipage}
+\caption{World programs}
+\label{fig:world}
+\end{figure}
+
 
 
 
