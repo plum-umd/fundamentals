@@ -203,11 +203,13 @@ previous semester: the addition of objects (same IDE, same syntax,
 same semantics [just a new kind of value], same interactive video
 games, etc.).
 
-\subsection{Side-by-side example of program design}
+\subsection{Day 1}
+
+[First semester vs second semester example programs.]
 
 In intermediate student:
 
-\begin{figure}
+\begin{figure}[h!]
 \begin{minipage}[t]{3.5in}
 \begin{verbatim}
 #lang bsl
@@ -276,46 +278,8 @@ In intermediate student:
 \caption{Binary tree sum in Beginning Student and in our language}
 \end{figure}
 
-\begin{figure}
-\begin{verbatim}
-import tester.*;
 
-interface Tree {
-    // sums the elements of this tree
-    Integer sum();
-}
-
-class Leaf {
-    Integer v;
-    Leaf(Integer v) { this.v = v; }
-    public Integer sum() { return this.v; }
-}
-
-class Node {
-    Tree left; Integer v; Tree right;
-    Node(Tree l, Integer v, Tree r) {
-        this.left = l;
-        this.v = v;
-        this.right = r;
-    }
-
-    public Integer sum() {
-        return this.left.sum() + this.v + this.right.sum();
-    }
-}
-
-class Examples {
-    void test_tree(Tester t) {
-        t.checkExpect(new Leaf(7).sum(), 7);
-        t.checkExpect(new Node(new Leaf(1),
-                               5, 
-                               new Node(new Leaf(0), 10, new Leaf(0))).sum(),
-                      16);
-    }
-}
-\end{verbatim}
-\caption{Binary tree sum in How to Design Classes}
-\end{figure}
+\subsection{Worlds and animations}
 
 
 \begin{figure}
@@ -370,9 +334,20 @@ class Examples {
 \end{figure}
 
 
+\subsection{Language levels}
+
+No SE tools/mechanism built into the language.
+
+\subsection{Universe}
+
+\subsection{Programming to interfaces}
 
 
-[First semester vs second semester example programs.]
+
+
+
+
+
 
 \section{From principles to industrial languages}
 \label{sec:industrial}
@@ -381,6 +356,48 @@ Could work with any fashion, and should really lead into many
 fashionable languages.  The purpose of showing many is to demonstrate
 that the same principles apply in each setting.  Each language can also
 expose students to various mechanisms.
+
+\begin{figure}
+\begin{verbatim}
+import tester.*;
+
+interface Tree {
+    // sums the elements of this tree
+    Integer sum();
+}
+
+class Leaf {
+    Integer v;
+    Leaf(Integer v) { this.v = v; }
+    public Integer sum() { return this.v; }
+}
+
+class Node {
+    Tree left; Integer v; Tree right;
+    Node(Tree l, Integer v, Tree r) {
+        this.left = l;
+        this.v = v;
+        this.right = r;
+    }
+
+    public Integer sum() {
+        return this.left.sum() + this.v + this.right.sum();
+    }
+}
+
+class Examples {
+    void test_tree(Tester t) {
+        t.checkExpect(new Leaf(7).sum(), 7);
+        t.checkExpect(new Node(new Leaf(1),
+                               5, 
+                               new Node(new Leaf(0), 10, new Leaf(0))).sum(),
+                      16);
+    }
+}
+\end{verbatim}
+\caption{Binary tree sum in How to Design Classes}
+\end{figure}
+
 
 \subsection{Java}
 
@@ -391,13 +408,6 @@ expose students to various mechanisms.
 \end{itemize}
 
 
-
-\section{Our course}
-\label{sec:our-course}
-
-\subsection{Representation-independence and interface-oriented programming}
-
-\subsection{Distributed, Interactive Programs}
 
 \subsection{Unifying functions and objects}
 
