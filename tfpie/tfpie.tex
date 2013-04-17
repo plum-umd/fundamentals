@@ -328,50 +328,25 @@ Unions, and recursive unions in particular, are a fundamental kind of
 data definition that students are well-versed in from the previous
 semester.  A fundamental early lesson is how to represent (recursive)
 unions using classes and how to write recursive methods.  As an
-example, here is a simple class definition for lists of numbers
-(an archetypical recursive union data definition) that includes
-a method for computing the length of a list:
-\begin{verbatim}
-    ;; A list of numbers (LoN) is one of:
-    ;; - (new empty%)
-    ;; - (new cons% Number LoN)
+example, figure~\ref{fig:tree} defines binary trees of numbers
+(an archetypical recursive union data definition)
+using the BSL language and the Class language.
+%% \begin{verbatim}
+%%     ;; A list of numbers (LoN) is one of:
+%%     ;; - (new empty%)
+%%     ;; - (new cons% Number LoN)
 
-    (define-class empty%
-      ;; Length of this empty list
-      (check-expect ((new empty%) . len) 0)
-      (define (len) 0))
+%%     (define-class empty%
+%%       ;; Length of this empty list
+%%       (check-expect ((new empty%) . len) 0)
+%%       (define (len) 0))
 
-    (define-class cons% (fields first rest)
-      ;; Length of this cons list
-      (check-expect ((new cons% 7 (new empty%)) . len) 1)
-      (define (len)
-        (add1 (this . rest . len))))
-\end{verbatim}
-
-The structure of this data definition is analagous to the approach of
-the previous semester but this example brings to light an important
-difference with the functional approach.  The method for computing the
-length of the empty list is defined in the {\tt empty\%} class, while
-the method for computing the length of a non-empty list is in the {\tt
-  cons\%} class.  When a list object is sent the {\tt len} method,
-there is no function with a conditional to determine whether the
-object is empty or not---instead, the object itself takes care of
-computing length based on the {\tt len} method it contains.  This
-shift in perspective is at the core of object-orientation: objects
-contain their own behavior and the case analysis previously done in
-functions is eliminated.
-
-
-%% The semester starts with the minimal conceptual change from the
-%% previous semester: the addition of objects (same IDE, same syntax,
-%% same semantics [just a new kind of value], same interactive video
-%% games, etc.).
-
-\subsection{Day 1}
-
-[First semester vs second semester example programs.]
-
-In intermediate student:
+%%     (define-class cons% (fields first rest)
+%%       ;; Length of this cons list
+%%       (check-expect ((new cons% 7 (new empty%)) . len) 1)
+%%       (define (len)
+%%         (add1 (this . rest . len))))
+%% \end{verbatim}
 
 \begin{figure}[h!]
 \begin{minipage}[t]{3.5in}
@@ -439,8 +414,29 @@ In intermediate student:
   16)
 \end{verbatim}
 \end{minipage}
-\caption{Binary tree sum in Beginning Student and in our language}
+\caption{Binary tree sum in Beginning Student and in the Class language}
+\label{fig:tree}
 \end{figure}
+
+The structure of this data definition is analagous to the approach of
+the previous semester but this example brings to light an important
+difference with the functional approach.  The method for computing the
+sum of the empty tree is defined in the {\tt leaf\%} class, while the
+method for computing the sum of a node is in the {\tt node\%} class.
+When a tree object is sent the {\tt sum} method, there is no function
+with a conditional to determine whether the object is a
+leaf---instead, the object itself takes care of computing the sum
+based on the {\tt sum} method it contains.  This shift in perspective
+is at the core of object-orientation: objects contain their own
+behavior and the case analysis previously done in functions is
+eliminated.
+
+
+%% The semester starts with the minimal conceptual change from the
+%% previous semester: the addition of objects (same IDE, same syntax,
+%% same semantics [just a new kind of value], same interactive video
+%% games, etc.).
+
 
 
 \subsection{Worlds and animations}
