@@ -1,6 +1,9 @@
 \documentclass[submission,copyright]{eptcs}
 \providecommand{\event}{TFPIE} % Name of the event you are submitting to
 
+\usepackage[numbers]{natbib}
+\usepackage{xspace}
+
 \newcommand\thetitle{From Principles to Practice with Class in the First Year}
 
 \title{\thetitle}
@@ -580,31 +583,58 @@ tackled the problem of transition.  Typically they, as we, transition
 to Java in the second course.  We discuss first the approach developed
 by some of the principal creators of PbD, and then other approaches.
 
-\subsection{ProfessorJ}
+\subsection{TeachScheme! and ProfessorJ}
 
-\cite{dvanhorn:Bloch2000Scheme}
+The TeachScheme! project initially focused only on the first course,
+with the second course typically taught in Java in
+institution-specific ways. Subsequently, the pedagogical approach was
+extended to Java, but without the tool support and textbook of the
+first course.  An example of this approach is described by
+\citet{dvanhorn:Bloch2000Scheme}, who presents the experience
+integrating these courses at Adelphi.  He reports that ``many of
+Java's concepts could be introduced more easily in a second course
+than a first''.
 
-\cite{dvanhorn:Gray2003ProfessorJ}
+With these lessons in mind, the TeachScheme! project set out to apply
+the lessons of teaching languages and IDE support to Java, as well as
+to present the approach to object-oriented programming in textbook
+form. ProfessorJ~\cite{dvanhorn:Gray2003ProfessorJ} is the resulting
+system, accompanying the draft textbook \emph{How to Design
+  Classes}~\cite{local:htdc}.  In parallel to our course, Northeastern
+teaches the remainder of its computer science majors following this
+approach.
 
-The noble goals of ProfJ:
+ProfessorJ and How to Design Classes maintain many of the excellent
+ideas of the first course.  In particular, ProfessorJ brings language
+levels to Java, in an attempt to smooth the transition for students
+from the first course and provide more helpful feedback.  ProfessorJ
+is also embedded in the DrRacket IDE, increasing familiarity for the
+students and supporting tools such as an interactive read-eval-print
+loop. 
 
-\begin{itemize}
-\item language levels
-\item continuity in IDE from first semester
-\end{itemize}
+\def\htdp{\emph{How to Design Programs}\xspace}
+\def\htdc{\emph{How to Design Classes}\xspace}
+\def\profj{{ProfessorJ}\xspace}
 
-Many of the shortcomings of HtDC and ProfJ are ``day 1'' problems.
-The transition is too abrupt and too large.
+However, the ``day 1'' transition from the student languages used with
+\htdp to \profj is too abrupt and too large.
+%
+Most significantly, changing languages from the first semester
+immediately rather than simply adding a new concept confuses too many
+issues for students.  On the first day of a \htdc-based course,
+students see object-orientation, a new programming paridigm; Java, a
+new language with new syntax, and static types, a crucial but
+orthogonal concept.
+
+
+This also ultimately lead to the tool being abandoned
+  as it was too difficult to maintain.)
 
 The failures of  ProfJ:
 
 \begin{itemize}
 \item dead.
-\item changes languages from first semester rather than adding new
-  concept (causes students confusing deep issue (O.O. design) and
-  shallow ones (Java-like syntax) and orthogonal issues (static type
-  discipline).  (This also ultimately lead to the tool being abandoned
-  as it was too difficult to maintain.)
+\item 
 
 \item commits to a particular fashion rather than enabling any.
 
@@ -694,6 +724,6 @@ curriculum in progress, and the opportunity to teach them has been
 truly rewarding.
 
 % \nocite{*}
-\bibliographystyle{eptcs}
+\bibliographystyle{plainnat}
 \bibliography{dvh-bibliography,local}
 \end{document}
