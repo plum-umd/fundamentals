@@ -350,7 +350,16 @@ a method for computing the length of a list:
 
 The structure of this data definition is analagous to the approach of
 the previous semester but this example brings to light an important
-difference with the functional approach.
+difference with the functional approach.  The method for computing the
+length of the empty list is defined in the {\tt empty\%} class, while
+the method for computing the length of a non-empty list is in the {\tt
+  cons\%} class.  When a list object is sent the {\tt len} method,
+there is no function with a conditional to determine whether the
+object is empty or not---instead, the object itself takes care of
+computing length based on the {\tt len} method it contains.  This
+shift in perspective is at the core of object-orientation: objects
+contain their own behavior and the case analysis previously done in
+functions is replaced by dispatch.
 
 
 %% The semester starts with the minimal conceptual change from the
