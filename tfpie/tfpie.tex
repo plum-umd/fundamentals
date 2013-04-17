@@ -198,10 +198,162 @@ section~\ref{sec:our-course}.
 \section{A small shift of focus}
 \label{sec:shift}
 
-The semester starts with the minimal conceptual change from the
-previous semester: the addition of objects (same IDE, same syntax,
-same semantics [just a new kind of value], same interactive video
-games, etc.).
+On the first day of the second semester, we introduce a single
+linguistic concept to an otherwise unchanged context of the previous
+semester.
+
+
+An object is a new kind of value that can, as a first cut, be
+understood as a pairing together of two familiar concepts: data and
+functionality.
+
+\begin{itemize}
+\item An object is like a structure in that it has a fixed number of
+fields, thus an object (again, like a structure) can represent
+compound data. But unlike a structure, an object contains not just
+data, but functionality too;
+
+\item An object is like a (set of) function(s) in that it has behavior—it computes; it is
+not just inert data.
+\end{itemize}
+
+This suggests that objects are a natural ﬁt for well-designed programs
+since good programs are organized around data definitions and
+functions that operate over such data. An object, in essence, packages
+these two things together into a single programming apparatus. This
+has two important consequences:
+
+\begin{enumerate}
+
+\item Students already know how to design programs oriented around objects.
+
+Since objects are just the combination of two familiar concepts that
+students already use to design programs, they already know how to
+design programs around objects, even if they have never heard the term
+``object'' before. Our message is the better you are at programming
+with functions, the better you will be at programming with objects,
+and \emph{vice versa}.
+
+\item Objects enable new kinds of abstraction and composition.
+
+Although the combination of data and function may seem simple, objects
+enable new forms of abstraction and composition. That is, objects open
+up new approaches to the construction of computations. By studying
+these new approaches, we can distill new design principles. Because we
+understand objects are just the combination of data and function, we
+can understand how all of these principles apply in the familiar
+context of programming with functions. In short, the better you are at
+programming with objects, the better you will be at programming with
+functions.
+
+\end{enumerate}
+
+\subsection{The basics of objects}
+
+To begin with, we introduce the notion of a \emph{class definition},
+which can be thought of at first as a structure definition in that
+it defines a new class of compound data.  A class is defined using the
+{\tt define-class} form:
+\begin{verbatim}
+    (define-class posn% (fields x y))
+\end{verbatim}
+An \emph{object} is a value that is a member of this class of data,
+which can be constructed with the {\tt new} keyword, a class name, and
+the appropriate number of arguments for the fields of the object:
+\begin{verbatim}
+    (new posn% 3 4)
+\end{verbatim}
+An object understands some set of \emph{messages}.  Simple
+structure-like objects understand messages for accessing their fields
+and message are sent by using the {\tt send} keyword, followed by an object,
+a message name, and some number of arguments:
+\begin{verbatim}
+    (send (new posn% 3 4) x) ;=> 3
+    (send (new posn% 3 4) y) ;=> 4
+\end{verbatim}
+The {\tt send} notation is simple, but syntactically heavy.  Once
+students are comfortable with the {\tt send} form, we introduce a
+shorthand to make it more convenient by writing {\tt (x . m)} for {\tt
+  (send x m)}.  The \emph{dot notation} can be nested, so {\tt (x . m
+  . n)} is shorthand for {\tt (send (send x m) n)}.  (The approach of
+introducing a simple, uniform syntax and later introducing a
+convenient shorthand that would have been confusing to start with
+follows the approach of introducing {\tt cons} and later {\tt list}
+and {\tt quote} in the first semester.)
+
+
+It is possible to endow objects with functionality by defining \emph{methods},
+which extend the set of messages an object understands.  A method definition
+follows the same syntax as a function definition, but is located inside of a
+class definition.  Here is a more complete development of the {\tt posn\%} class
+that includes a couple of methods:
+\begin{verbatim}
+    ;; A Posn is a (new posn% Number Number),
+    ;; which represents a point on the Cartesian plane
+    (define-class posn% (fields x y)
+
+      ;; Posn -> Number
+      ;; Distance between this posn and that posn
+      (check-expect ((new posn% 0 0) . dist (new posn% 3 4)) 5)
+      (define (dist that)
+        (sqrt (+ (sqr (- (this . x) (that . x)))
+                 (sqr (- (this . y) (that . y))))))
+
+      ;; -> Number
+      ;; Distance of this posn from the origin
+      (check-expect ((new posn% 0 0) . dist-origin) 0)
+      (check-expect ((new posn% 3 4) . dist-origin) 5)
+      (define (dist-origin)
+        (this . dist (new posn% 0 0))))
+\end{verbatim}
+
+This class definition defines a new class of values which are {\tt
+  posn\%} objects.  Such objects are comprised of two numeric values
+and understand the messages {\tt x}, {\tt y}, {\tt dist}, and {\tt
+  dist-origin}.  Unit tests have been included with each method
+definition, following the principles of the design recipe studied in
+the first semester.  In fact, the {\tt check-expect} mechanism works
+exactly as it did before.
+
+Methods can be defined to consume any number of arguments, but they
+are implicitly parameterized over {\tt this}, the object that was sent
+the message.
+
+\subsection{Dispatch}
+
+Unions, and recursive unions in particular, are a fundamental kind of
+data definition that students are well-versed in from the previous
+semester.  A fundamental early lesson is how to represent (recursive)
+unions using classes and how to write recursive methods.  As an
+example, here is a simple class definition for lists of numbers
+(an archetypical recursive union data definition) that includes
+a method for computing the length of a list:
+\begin{verbatim}
+    ;; A list of numbers (LoN) is one of:
+    ;; - (new empty%)
+    ;; - (new cons% Number LoN)
+
+    (define-class empty%
+      ;; Length of this empty list
+      (check-expect ((new empty%) . len) 0)
+      (define (len) 0))
+
+    (define-class cons% (fields first rest)
+      ;; Length of this cons list
+      (check-expect ((new cons% 7 (new empty%)) . len) 1)
+      (define (len)
+        (add1 (this . rest . len))))
+\end{verbatim}
+
+The structure of this data definition is analagous to the approach of
+the previous semester but this example brings to light an important
+difference with the functional approach.
+
+
+%% The semester starts with the minimal conceptual change from the
+%% previous semester: the addition of objects (same IDE, same syntax,
+%% same semantics [just a new kind of value], same interactive video
+%% games, etc.).
 
 \subsection{Day 1}
 
