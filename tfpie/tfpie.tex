@@ -255,21 +255,21 @@ which can be thought of at first as a structure definition in that
 it defines a new class of compound data.  A class is defined using the
 {\tt define-class} form:
 \begin{verbatim}
-    (define-class posn% (fields x y))
+    (define-class posn (fields x y))
 \end{verbatim}
 An \emph{object} is a value that is a member of this class of data,
 which can be constructed with the {\tt new} keyword, a class name, and
 the appropriate number of arguments for the fields of the object:
 \begin{verbatim}
-    (new posn% 3 4)
+    (new posn 3 4)
 \end{verbatim}
 An object understands some set of \emph{messages}.  Simple
 structure-like objects understand messages for accessing their fields
 and message are sent by using the {\tt send} keyword, followed by an object,
 a message name, and some number of arguments:
 \begin{verbatim}
-    (send (new posn% 3 4) x) ;=> 3
-    (send (new posn% 3 4) y) ;=> 4
+    (send (new posn 3 4) x) ;=> 3
+    (send (new posn 3 4) y) ;=> 4
 \end{verbatim}
 The {\tt send} notation is simple, but syntactically heavy.  Once
 students are comfortable with the {\tt send} form, we introduce a
@@ -285,30 +285,30 @@ and {\tt quote} in the first semester.)
 It is possible to endow objects with functionality by defining \emph{methods},
 which extend the set of messages an object understands.  A method definition
 follows the same syntax as a function definition, but is located inside of a
-class definition.  Here is a more complete development of the {\tt posn\%} class
+class definition.  Here is a more complete development of the {\tt posn} class
 that includes a couple of methods:
 \begin{verbatim}
-    ;; A Posn is a (new posn% Number Number),
+    ;; A Posn is a (new posn Number Number),
     ;; which represents a point on the Cartesian plane
-    (define-class posn% (fields x y)
+    (define-class posn (fields x y)
 
       ;; Posn -> Number
       ;; Distance between this posn and that posn
-      (check-expect ((new posn% 0 0) . dist (new posn% 3 4)) 5)
+      (check-expect ((new posn 0 0) . dist (new posn 3 4)) 5)
       (define (dist that)
         (sqrt (+ (sqr (- (this . x) (that . x)))
                  (sqr (- (this . y) (that . y))))))
 
       ;; -> Number
       ;; Distance of this posn from the origin
-      (check-expect ((new posn% 0 0) . dist-origin) 0)
-      (check-expect ((new posn% 3 4) . dist-origin) 5)
+      (check-expect ((new posn 0 0) . dist-origin) 0)
+      (check-expect ((new posn 3 4) . dist-origin) 5)
       (define (dist-origin)
-        (this . dist (new posn% 0 0))))
+        (this . dist (new posn 0 0))))
 \end{verbatim}
 
 This class definition defines a new class of values which are {\tt
-  posn\%} objects.  Such objects are comprised of two numeric values
+  posn} objects.  Such objects are comprised of two numeric values
 and understand the messages {\tt x}, {\tt y}, {\tt dist}, and {\tt
   dist-origin}.  Unit tests have been included with each method
 definition, following the principles of the design recipe studied in
@@ -382,31 +382,31 @@ using the BSL language and the Class language.
 \begin{verbatim}
 #lang class/1
 ;; A Tree is one of:
-;; - (new leaf% Number)
-;; - (new node% Tree Number Tree)
+;; - (new leaf Number)
+;; - (new node Tree Number Tree)
 ;; and implements
 ;; sum : -> Number
 ;; sums the elements of this tree
 
-(define-class leaf%
+(define-class leaf
   (fields v)
   (define (sum) (this . v)))
 
-(define-class node%
+(define-class node
   (fields left v right)
   (define (sum)
     (+ (this . left . sum)
        (this . v)
        (this . right .sum))))
 
-(check-expect ((new leaf% 7) . sum) 7)
+(check-expect ((new leaf 7) . sum) 7)
 (check-expect 
-  ((new node%
-        (new leaf% 1)
+  ((new node
+        (new leaf 1)
         5 
-        (new node% (new leaf% 0) 
-                   10
-                   (new leaf% 0))))
+        (new node (new leaf 0) 
+                  10
+                  (new leaf 0))))
     . sum)
   16)
 \end{verbatim}
@@ -418,8 +418,8 @@ using the BSL language and the Class language.
 The structure of this data definition is analagous to the approach of
 the previous semester but this example brings to light an important
 difference with the functional approach.  The method for computing the
-sum of the empty tree is defined in the {\tt leaf\%} class, while the
-method for computing the sum of a node is in the {\tt node\%} class.
+sum of the empty tree is defined in the {\tt leaf} class, while the
+method for computing the sum of a node is in the {\tt node} class.
 When a tree object is sent the {\tt sum} method, there is no function
 with a conditional to determine whether the object is a
 leaf---instead, the object itself takes care of computing the sum
@@ -468,22 +468,22 @@ eliminated.
 #lang class/1
 (require 2htdp/image class/universe)
 
-;; A World is a (new world% Number)
-(define-class world%
+;; A World is a (new world Number)
+(define-class world
   (fields n)
 
   ;; on-tick : -> World
   (define (on-tick)
-    (new world% (add1 (this . n))))
+    (new world (add1 (this . n))))
 
   ;; to-draw : -> Image
   (define (to-draw) 
     (circle (this . n) "solid" "red"))
 
   ;; on-key : KeyEvent -> World
-  (define (on-key k) (new world% 10)))
+  (define (on-key k) (new world 10)))
   
-(big-bang (new world% 10))
+(big-bang (new world 10))
 \end{verbatim}
 \end{minipage}
 \caption{World programs}
