@@ -4,6 +4,11 @@
 \usepackage[numbers]{natbib}
 \usepackage{xspace}
 
+\def\htdp{\emph{How to Design Programs}\xspace}
+\def\htdc{\emph{How to Design Classes}\xspace}
+\def\profj{{ProfessorJ}\xspace}
+
+
 \newcommand\thetitle{From Principles to Practice with Class in the First Year}
 
 \title{\thetitle}
@@ -518,10 +523,36 @@ No SE tools/mechanism built into the language.
 \section{From principles to industrial languages}
 \label{sec:industrial}
 
-Could work with any fashion, and should really lead into many
-fashionable languages.  The purpose of showing many is to demonstrate
-that the same principles apply in each setting.  Each language can also
-expose students to various mechanisms.
+The transition from custom teaching languages to a professional
+language takes place about half-way through the course.  At this
+point, students have already seen many of the essentials of
+object-oriented programming. In particular: object, classes, fields
+and methods, dynamic dispatch, inheritance, and overriding.
+
+From this point, almost any language that students might use in future
+co-op positions and courses would be an appropriate follow-up.  Our
+course transitions to Java, but C\#, Python, Ruby, Eiffel, or
+JavaScript would all work naturally.  The key lesson of the transition
+is that the fundamental principles underlying object-oriented
+programming remain the same between languages, and that learning a new
+language is primarily a matter of mapping these concepts to specific
+constructs in the new language.  Of course, particular languages also
+use unique specific mechanisms which need to be taught to use the
+language effectively, but these are rarely as vital as the
+cross-language principles.
+
+\subsection{Functional Java}
+
+The transition begins with replicating the object-oriented style of
+our teaching languages in Java.  In particular, we do not introduce
+mutation, for loops, or mutable data structures such as arrays or
+\texttt{ArrayList}s until later in the semester.  Instead, students
+design data representations using classes, with \texttt{interface}s
+representing unions of data.  Additionally, we avoid mention of the
+distinction between primitive and other values in Java, which is made
+easier by not using standard libraries early.  An example of this
+style of programming is presented in figure~\ref{fig:java}, repeating
+the binary tree sum from the previous section.
 
 \begin{figure}
 \begin{verbatim}
@@ -562,20 +593,63 @@ class Examples {
 }
 \end{verbatim}
 \caption{Binary tree sum in How to Design Classes}
+\label{fig:java}
 \end{figure}
 
+Comparing this figure to the previous example illustrates a number of the
+differences that students are exposed to upon transition to Java.
 
-\subsection{Java}
+\begin{enumerate}
+\item Explicit representation of unions and interfaces in the
+  language.  Previously, interfaces were simply described in stylized
+  comments, following the \htdp approach.
+\item Types are now specified as part of the program, and are now
+  enforced.
+\item Java syntax is substantially different and more verbose. For
+  example, constructors must be defined explicitly.
+\item The testing environment is somewhat different, and requires
+  additional boilerplate, although we are
+  able to use the JavaLib framework~\cite{local:java-world} to support simple testing by
+  structural equality.
+\end{enumerate}
 
-\begin{itemize}
-\item Types
-\item Compiler
-\item ``Industrial'' features (collections library, ...)
-\end{itemize}
+\noindent
+Of course, there are other differences which cannot be seen from a
+code snippet.
 
+\begin{enumerate}
+  \setcounter{enumi}{4}
+\item Students must use a new development environment and compiler.
+  In class, we primarily develop in a text editor and run the Java
+  compiler at the command line.  In labs and on homeworks, students
+  typically use the Eclipse IDE.
+\item Installing and configuring libraries is now required.  Because
+  we use a custom library for testing, students must cope with library
+  installation and class paths on the first day.
+\end{enumerate}
 
+Of course, all but the first two of these changes are unrelated to the
+fundamental lessons we hope to teach---the rest merely present
+additional hurdles for students.
 
-\subsection{Unifying functions and objects}
+\subsection{Traditional Java}
+
+Thanks to the the preparation in the first half of the course, we can
+cover functional OO programming in Java in a just a few lectures.  We
+then increase the subset of the language we use to encompass mutation,
+loops, and mutable data structures. We present \texttt{ArrayList}s,
+followed briefly by arrays. Students use, and then implement, hash
+tables as well as other mutable and immutable data structures.
+Conventional input and output are treated only very briefly, as we
+focus instead of both fundamentals and exercises making use of real
+APIs such as hashing functions or Twitter posting.  Finally, while,
+for, and for-each loops are presented, following the methodology of
+\htdc which connects loops to stylized use of recursive functions with
+accumulators, a technique the students now have two semsesters of
+practice with.
+
+\subsection{Beyond Traditional Java}
+
 
 
 \section{Related work}
@@ -623,9 +697,6 @@ is also embedded in the DrRacket IDE, increasing familiarity for the
 students and supporting tools such as an interactive read-eval-print
 loop. 
 
-\def\htdp{\emph{How to Design Programs}\xspace}
-\def\htdc{\emph{How to Design Classes}\xspace}
-\def\profj{{ProfessorJ}\xspace}
 
 However, the ``day 1'' transition from the student languages used with
 \htdp to \profj is too abrupt and too large.
