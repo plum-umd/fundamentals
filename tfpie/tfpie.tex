@@ -464,6 +464,39 @@ the course with a library for doing so in an object-oriented style.
 Figure~\ref{fig:world} gives an example written in both the functional
 style and object-oriented style.
 
+The key difference between these two programs is that the functional
+program uses the {\tt 2htdp/universe} library, which provides a {\tt
+  big-bang} form that consumes the initial state of the world and has
+a declarative form of associating event-handler functions.  The
+object-oriented program uses an alternative library developed for the
+class language: {\tt class/universe}.  It also provides a {\tt
+  big-bang} form but it consumes a single argument, the initial state
+of the world represented as an object.  Event handlers are just
+methods of this object.
+
+The program on the left is the first program of the first semester,
+while the one on the right is the first program of the second
+semester.  Our approach is able to make the conceptual connection
+between functional and object-oriented programming quite clear while
+appealing the familiar event-driven interactive programs developed
+throughout the year.
+
+The move to object-oriented style immediately and naturally leads to
+design principles that are enabled by organizing programs around
+objects.  For example, the state-pattern becomes useful almost
+immediately.  The programs in figure~\ref{fig:world} animate a rocket
+(rendered as a circle in this example) taking off.  An illustrative
+follow-up exercise is to animate a rocket that \emph{lands}.  The
+natural design is to have two variants for states of the rocket: one
+for descending rockets, one for landed rockets.  While in the
+functional approach it is easy to use the state-pattern for the
+\emph{data} representing a rocket, it is more difficult to have states
+of \emph{behavior}.  Of course in the object approach, states of
+behavior are just as natural as data.  Therefore it is straightforward
+to design programs with easy to observe invariants such as ``a landed
+rocket never changes position.''  In the functional approach, even such
+simple properties are more involved to establish.
+
 \begin{figure}
 \begin{minipage}[t]{3.4in}
 \begin{verbatim}
