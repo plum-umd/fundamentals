@@ -551,11 +551,52 @@ simple properties are more involved to establish.
 
 \subsection{Language levels}
 
-No SE tools/mechanism built into the language.
+Our introduction to object-oriented programming is built on a series
+of ``language levels'', each of which introduces additional features,
+adding complexity to the programming model and expressiveness to the
+programs.  Each language is  \texttt{class/}\textit{N}
+for some \textit{N}, with features appearing in the following order.
+\begin{enumerate}
+  \setcounter{enumi}{-1}
+\item Classes and Objects
+\item Abbreviated notation for method calls
+\item Super classes
+\item Overriding
+\item Constructors
+\end{enumerate}
 
-\subsection{Universe}
+Several commonalities run through all of these languages.  First, they
+are all purely functional; we do not introduce imperative I/O or
+side-effects until after transitioning to Java in the second half of
+the course.  Second, they all are a super set of the
+\emph{Intermediate Student} language from \htdp, meaning that they
+support higher-order functional programming and lists. 
 
-\subsection{Programming to interfaces}
+One key principle that we adhere to in the design of the language
+levels is that no features of the language are added purely to support
+``software engineering'' concerns such as specification mechanisms.
+Not only does that language not support declaring types or contracts,
+but interfaces are described purely in comments.
+
+This is not to say that interfaces and contracts are optional; in
+fact, they are mandatory.  But the focus of the first part of the
+course is on the fundamentals of object-orientation.  Teaching the use
+of software engineering tools such as type systems, while vital, is a
+topic which we defer to the second half of the course when we
+transition to Java. 
+
+We made this decision after experience in which students were confused
+about the relationship between explicit interface specifications, type
+systems, and the informal data definitions and contracts which
+students are required to write for all methods.  After removing
+interfaces from the language and making them purely a specification
+construct, this confusion disappeared.
+
+%% Fixme: add these sections back later
+
+%\subsection{Universe}
+
+%\subsection{Programming to interfaces}
 
 
 
