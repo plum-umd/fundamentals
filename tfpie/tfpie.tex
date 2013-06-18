@@ -648,13 +648,13 @@ interface Tree {
     Integer sum();
 }
 
-class Leaf {
+class Leaf implements Tree {
     Integer v;
     Leaf(Integer v) { this.v = v; }
     public Integer sum() { return this.v; }
 }
 
-class Node {
+class Node implements Tree {
     Tree left; Integer v; Tree right;
     Node(Tree l, Integer v, Tree r) {
         this.left = l;
@@ -898,12 +898,13 @@ Java-like syntax for the teaching languages we have developed would
 help tease apart the difficult transitions still present in the course.
 
 Finally, the Java portion of the class does not continue the use of
-``World''-style interactive graphical
-programming. \citet{local:java-world}.  Instead, our course focuses on
-coverage of standard Java libraries, as well as introductory
-algorithmic and data structure topics.  Continuing to use World-style
-programming in motivating examples might be valuable for continuity
-between the two halves of the course.
+``World''-style interactive graphical programming, although a version
+of the ``World'' library has been developed for Java
+\cite{local:java-world}.  Instead, our course focuses on coverage of
+standard Java libraries, as well as introductory algorithmic and data
+structure topics.  Continuing to use World-style programming in
+motivating examples might be valuable for continuity between the two
+halves of the course.
 
 \subsection*{Acknowledgments}
 
