@@ -277,6 +277,12 @@ it defines a new class of compound data.  A class is defined using the
 \begin{verbatim}
     (define-class posn (fields x y))
 \end{verbatim}
+This is similar to the {\tt define-struct} form of the first semester,
+used as follows:
+\begin{verbatim}
+    (define-struct posn (x y))
+\end{verbatim}
+
 An \emph{object} is a value that is a member of this class of data,
 which can be constructed with the {\tt new} keyword, a class name, and
 the appropriate number of arguments for the fields of the object:
@@ -292,13 +298,13 @@ a message name, and some number of arguments:
     (send (new posn 3 4) y) ;=> 4
 \end{verbatim}
 The {\tt send} notation is simple, but syntactically heavy.  Once
-students are comfortable with the {\tt send} form, we introduce a
-shorthand to make it more convenient by writing {\tt (x . m)} for {\tt
+students are comfortable with {\tt send}, we introduce 
+shorthand to make it more convenient, writing {\tt (x . m)} for {\tt
   (send x m)}.  The \emph{dot notation} can be nested, so {\tt (x . m
   . n)} is shorthand for {\tt (send (send x m) n)}.  (The approach of
 introducing a simple, uniform syntax and later introducing a
 convenient shorthand that would have been confusing to start with
-follows the approach of introducing {\tt cons} and later {\tt list}
+follows the approach of first introducing {\tt cons} and then later {\tt list}
 and {\tt quote} in the first semester.)
 
 
@@ -306,7 +312,7 @@ It is possible to endow objects with functionality by defining \emph{methods},
 which extend the set of messages an object understands.  A method definition
 follows the same syntax as a function definition, but is located inside of a
 class definition.  Here is a more complete development of the {\tt posn} class
-that includes a couple of methods:
+with two methods:
 \begin{verbatim}
     ;; A Posn is a (new posn Number Number),
     ;; which represents a point on the Cartesian plane
