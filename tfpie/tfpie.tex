@@ -306,14 +306,14 @@ that includes a couple of methods:
     ;; which represents a point on the Cartesian plane
     (define-class posn (fields x y)
 
-      ;; Posn -> Number
+      ;; dist : Posn -> Number
       ;; Distance between this posn and that posn
       (check-expect ((new posn 0 0) . dist (new posn 3 4)) 5)
       (define (dist that)
         (sqrt (+ (sqr (- (this . x) (that . x)))
                  (sqr (- (this . y) (that . y))))))
 
-      ;; -> Number
+      ;; dist-origin : -> Number
       ;; Distance of this posn from the origin
       (check-expect ((new posn 0 0) . dist-origin) 0)
       (check-expect ((new posn 3 4) . dist-origin) 5)
@@ -322,15 +322,16 @@ that includes a couple of methods:
 \end{verbatim}
 
 This class definition defines a new class of values which are {\tt
-  posn} objects.  Such objects are comprised of two numeric values
-and understand the messages {\tt x}, {\tt y}, {\tt dist}, and {\tt
+  posn} objects.  Such objects are comprised of two numeric values and
+understand the messages {\tt x}, {\tt y}, {\tt dist}, and {\tt
   dist-origin}.  Unit tests have been included with each method
 definition, following the principles of the design recipe studied in
-the first semester.  In fact, the {\tt check-expect} mechanism works
-exactly as it did before.
+the first semester.  Although {\tt check-expect} forms can appear
+within class definitions, they are lifted to the top-level when a
+program is run.
 
 Methods can be defined to consume any number of arguments, but they
-are implicitly parameterized over {\tt this}, the object that was sent
+are implicitly parameterized over {\tt this}, the object that received
 the message.
 
 \subsection{Where did the {\tt cond} go?}
@@ -374,9 +375,9 @@ using the BSL language and the Class language.
 (define (sum a-tree)
   (cond [(leaf? a-tree) (leaf-v a-tree)]
         [else
-        (+ (sum (node-left  a-tree))
-           (node-v a-tree)
-           (sum (node-right a-tree)))]))
+         (+ (sum (node-left  a-tree))
+            (node-v a-tree)
+            (sum (node-right a-tree)))]))
 
 
 
@@ -432,12 +433,12 @@ using the BSL language and the Class language.
 The structure of this data definition is analogous to the approach of
 the previous semester but this example brings to light an important
 difference with the functional approach.  The method for computing the
-sum of the empty tree is defined in the {\tt leaf} class, while the
+sum of a leaf is defined in the {\tt leaf} class, while the
 method for computing the sum of a node is in the {\tt node} class.
 When a tree object is sent the {\tt sum} method, there is no function
 with a conditional to determine whether the object is a
 leaf---instead, the object itself takes care of computing the sum
-based on the {\tt sum} method it contains.  This shift in perspective
+based on its own {\tt sum} method.  This shift in perspective
 is at the core of object-orientation: objects contain their own
 behavior and the case analysis previously done in functions is
 eliminated.
@@ -452,38 +453,38 @@ eliminated.
 
 \subsection{Worlds and animations}
 
-Programming in the first semester is often oriented around interactive
-event-driven video games.  The basic design of a video game involves
-defining a data representation for states of the game and functions
-for transitioning between states based on events such as clock ticks,
-keyboard input, or mouse events.  The design of a game thus involves
-the design of data and functions on that data; in other words, the
-game involves the design of objects.  We therefore continue in the
-second semester with the use of programming video games but supplement
-the course with a library for doing so in an object-oriented style.
-Figure~\ref{fig:world} gives an example written in both the functional
-style and object-oriented style.
+At Northeastern, Programming in the first semester is often oriented
+around interactive event-driven video games.  The basic design of a
+video game involves defining a data representation for states of the
+game and functions for transitioning between states based on events
+such as clock ticks, keyboard input, or mouse events.  The design of a
+game thus involves the design of data and operations on that data; in
+other words, the game involves the design of objects.  We therefore
+continue in the second semester with the use of programming video
+games but supplement the course with a library for doing so in an
+object-oriented style.  Figure~\ref{fig:world} gives an example
+written in both the functional style and object-oriented style.
 
 The key difference between these two programs is that the functional
 program uses the {\tt 2htdp/universe} library, which provides a {\tt
   big-bang} form that consumes the initial state of the world and has
-a declarative form of associating event-handler functions.  The
-object-oriented program uses an alternative library developed for the
-class language: {\tt class/universe}.  It also provides a {\tt
-  big-bang} form but it consumes a single argument, the initial state
-of the world represented as an object.  Event handlers are just
-methods of this object.
+a declarative form of associating event-handler functions, while the
+object-oriented program uses an alternative library developed for our
+class: {\tt class/universe}.  It also provides a {\tt big-bang} form
+but it consumes a single argument, the initial state of the world
+represented as an object.  Event handlers are simply methods of this
+object.
 
 The program on the left is the first program of the first semester,
 while the one on the right is the first program of the second
 semester.  Our approach is able to make the conceptual connection
 between functional and object-oriented programming quite clear while
-appealing the familiar event-driven interactive programs developed
+appealing to the familiar event-driven interactive programs developed
 throughout the year.
 
 The move to object-oriented style immediately and naturally leads to
-design principles that are enabled by organizing programs around
-objects.  For example, the state-pattern becomes useful almost
+designs that are enabled by organizing programs around objects.  For
+example, the state pattern~\cite{samth:GOF} becomes useful almost
 immediately.  The programs in figure~\ref{fig:world} animate a rocket
 (rendered as a circle in this example) taking off.  An illustrative
 follow-up exercise is to animate a rocket that \emph{lands}.  The
@@ -491,11 +492,12 @@ natural design is to have two variants for states of the rocket: one
 for descending rockets, one for landed rockets.  While in the
 functional approach it is easy to use the state-pattern for the
 \emph{data} representing a rocket, it is more difficult to have states
-of \emph{behavior}.  Of course in the object approach, states of
-behavior are just as natural as data.  Therefore it is straightforward
+of \emph{behavior}.  The typical solution adds conditionals to all of
+the event handlers.  In the object-oriented approach, states of
+behavior are just as natural as data.  It is therefore straightforward
 to design programs with easy to observe invariants such as ``a landed
-rocket never changes position.''  In the functional approach, even such
-simple properties are more involved to establish.
+rocket never changes position.''  In the functional approach, even
+such simple properties are more involved to establish.
 
 \begin{figure}
 \begin{minipage}[t]{3.4in}
@@ -922,5 +924,5 @@ truly rewarding.
 
 % \nocite{*}
 \bibliographystyle{plainnat}
-\bibliography{dvh-bibliography,local}
+\bibliography{dvh-bibliography,local,sth-bibliography}
 \end{document}
