@@ -678,7 +678,7 @@ class Examples {
     }
 }
 \end{verbatim}
-\caption{Binary tree sum in How to Design Classes}
+\caption{Binary tree sum in the style of \emph{How to Design Classes}}
 \label{fig:java}
 \end{figure}
 
@@ -722,28 +722,28 @@ additional hurdles for students.
 Thanks to the the preparation in the first half of the course, we can
 cover functional OO programming in Java in a just a few lectures.  We
 then increase the subset of the language we use to encompass mutation,
-loops, and mutable data structures. We present \texttt{ArrayList}s,
-followed briefly by arrays. Students use, and then implement, hash
-tables as well as other mutable and immutable data structures.
-Conventional input and output are treated only very briefly, as we
-focus instead of both fundamentals and exercises making use of real
-APIs such as hashing functions or Twitter posting.  Finally, while,
-for, and for-each loops are presented, following the methodology of
-\htdc which connects loops to stylized use of recursive functions with
-accumulators, a technique the students now have two semesters of
-practice with.
+loops, and mutable data structures and introduce the underlying design
+principles. We present \texttt{ArrayList}s, followed briefly by
+arrays. Students use, and then implement, hash tables as well as other
+mutable and immutable data structures.  Conventional input and output
+are treated only very briefly, as we focus instead on both
+fundamentals and exercises making use of real APIs such as hashing
+functions or Twitter posting.  Finally, \texttt{while}, \texttt{for},
+and for-each loops are presented, following the methodology of \htdc
+which connects loops to stylized use of recursive functions with
+accumulators, a technique the students now have used for two semesters.
 
 \subsection{Beyond Traditional Java}
 
 Finally, at the end of the course, we are able to build on the two
 major segments to examine less-well-explored topics in object-oriented
-programming.  Typically, we cover the basics of implementing OO
-programming in a functional language, advanced OO techniques such as
-mixins and prototypes, and a new OO language such as Ruby or
-JavaScript.  Additionally, we emphasize the ability to embed
-functional programming in an OO context, using techniques such as the
-command pattern and the visitor patterns.  Again, the key message is
-the transferability of concepts across languages. 
+programming.  Typically, we cover the basics of representing objects
+in a functional language, advanced OO techniques such as mixins and
+prototypes, and a new OO language such as Ruby or JavaScript.
+Additionally, we emphasize the ability to embed functional programming
+in an OO context, using techniques such as the command pattern and the
+visitor patterns.  Again, the key message is the transferability of
+concepts across languages.
 
 
 
@@ -752,10 +752,12 @@ the transferability of concepts across languages.
 
 Teaching programming principles in a functional style has a long
 history, with Abelson and Sussman's \emph{Structure and Interpretation
-of Computer Programs}~\cite{dvanhorn:sicp} a prominent example.  Our
-work follows in the tradition of the \emph{TeachScheme!} project, now
-\emph{Program by Design} (PbD), which emphasizes a systematic
-approach to program construction.  
+  of Computer Programs}~\cite{dvanhorn:sicp} being a prominent
+example.  Our work follows in the tradition of the \emph{Program by
+  Design} (PbD)
+project\footnote{\url{http://www.programbydesign.org/}} (previously
+known as the \emph{TeachScheme!} project), which emphasizes a
+systematic approach to program construction.
 
 Since the introduction of functional-first curricula, and more
 specifically in the Program by Design framework, numerous courses have
@@ -763,9 +765,9 @@ tackled the problem of transition.  Typically they, as we, transition
 to Java in the second course.  We discuss first the approach developed
 by some of the principal creators of PbD, and then other approaches.
 
-\subsection{TeachScheme! and ProfessorJ}
+\subsection{Program by Design and ProfessorJ}
 
-The TeachScheme! project initially focused only on the first course,
+The Program by Design project initially focused only on the first course,
 with the second course typically taught in Java in
 institution-specific ways. Subsequently, the pedagogical approach was
 extended to Java, but without the tool support and textbook of the
@@ -773,9 +775,9 @@ first course.  An example of this approach is described by
 \citet{dvanhorn:Bloch2000Scheme}, who presents the experience
 integrating these courses at Adelphi.  He reports that ``many of
 Java's concepts could be introduced more easily in a second course
-than a first''.
+than a first.''
 
-With these lessons in mind, the TeachScheme! project set out to apply
+With these lessons in mind, the PbD project set out to apply
 the lessons of teaching languages and IDE support to Java, as well as
 to present the approach to object-oriented programming in textbook
 form. ProfessorJ~\cite{dvanhorn:Gray2003ProfessorJ} is the resulting
@@ -784,13 +786,12 @@ system, accompanying the draft textbook \emph{How to Design
 teaches the remainder of its computer science majors following this
 approach.
 
-ProfessorJ and How to Design Classes maintain many of the excellent
-ideas of the first course.  In particular, ProfessorJ brings language
-levels to Java, in an attempt to smooth the transition for students
-from the first course and provide more helpful feedback.  ProfessorJ
-is also embedded in the DrRacket IDE, increasing familiarity for the
-students and supporting tools such as an interactive read-eval-print
-loop. 
+ProfessorJ and \emph{How to Design Classes} maintain many of the ideas
+of the first course.  In particular, ProfessorJ brings language levels
+to Java, in an attempt to smooth the transition for students from the
+first course and provide more helpful feedback.  ProfessorJ is also
+embedded in the DrRacket IDE, increasing familiarity for the students
+and supporting tools such as an interactive read-eval-print loop.
 
 
 However, the ``day 1'' transition from the student languages used with
@@ -800,7 +801,7 @@ Most significantly, changing languages from the first semester
 immediately rather than simply adding a new concept confuses too many
 issues for students.  On the first day of a \htdc-based course,
 students see object-orientation, a new programming paradigm; Java, a
-new language with new syntax, and static types, a crucial but
+new language with new syntax, and a static type system, a crucial but
 orthogonal concept.
 %
 In contrast, our course presents just one of these concepts on the
@@ -812,16 +813,16 @@ Java environment as well as the eventual abandoning of the tool since
 it was too difficult to maintain, let alone keep up with advances in
 Java.  
 
-Finally, committing to Java on the first day, regardless of the
-environment provided to students, has significant limitations.  First,
-the syntactic and semantic heaviness of Java is a burden for beginning
+Committing to Java on the first day, regardless of the environment
+provided to students, has significant limitations.  First, the
+syntactic and semantic heaviness of Java is a burden for beginning
 students, and discourages interactive and experimental programming.
-The very first chapter of \htdc discusses the fixed size of Java integers,
-a topic avoided entirely in the first course.
-Second, by committing to a particular industrial-strength language, it
-closes off possibilities in the curriculum.  Third, it commits
-entirely to the new paradigm, making it more difficult for students to
-compare the approaches. 
+The very first chapter of \htdc discusses the fixed size of Java
+integers, a topic avoided entirely in the first course.  Second, by
+committing to a particular industrial-strength language, it closes off
+possibilities in the curriculum.  Third, it commits entirely to the
+new paradigm, making it more difficult for students to compare the
+approaches.
 
 Since \profj is no longer available, students are faced with an even
 starker change on the first day.  Even with a student-oriented
@@ -836,16 +837,16 @@ fundamental to the concepts that the course focuses on.
 
 \subsection{Other transitions}
 
-Of course, not every curriculum that begins with \htdp transitions to
-Java after the first course.  \citet{dvanhorn:Ragde2008Chilling}
-describes a second course that includes both more advanced work in
-Scheme beyond teaching-oriented languages as well as low-level
-programming in C, taught to computer science majors at University of
-Waterloo.  Radge's course intentionally does not use student-oriented
-languages, although the recently-developed C0 language~\cite{local:c0}
-could provide this. Other discussions of functional programming in the
-first year~\cite{dvanhorn:Chakravarty2004Risks} do not discuss the
-problems of transition.
+Not every curriculum that begins with \htdp transitions to Java after
+the first course.  \citet{dvanhorn:Ragde2008Chilling} describes a
+second course that includes both more advanced work in Scheme beyond
+teaching-oriented languages as well as low-level programming in C,
+taught to computer science majors at University of Waterloo.  Radge's
+course intentionally does not use student-oriented languages, although
+the recently-developed C0 language~\cite{local:c0} could provide such
+a language. Other discussions of functional programming in the first
+year~\cite{dvanhorn:Chakravarty2004Risks} do not discuss the problems
+of transition.
 
 \subsection{Other approaches to Java}
 
@@ -875,16 +876,16 @@ take.  The class has also had notable success in the recruitment and
 retention of female students, as compared to the other versions of the
 second-semester course.
 
-The course has also provided a vantage point to introduce topics that
-will be taken up later in the curriculum.  We present types,
-contracts, invariants, and properties of functions, all of which tie
-into both the concurrent course on logic and computation, as well as
-later classes on formal methods.  The emphasis on
-representation-independence and interfaces  both ties into later
-classes on software engineering, as well as preparing the ground for
-algorithms and data structures courses.  Finally, the use of
-interactive and distributed systems connects to later courses on
-operating systems and networks.
+The course has provided a vantage point to introduce topics that will
+be taken up later in the curriculum.  We present types, contracts,
+invariants, and properties of functions, all of which tie into both
+the concurrent course on logic and computation, as well as later
+classes on formal methods.  The emphasis on
+representation-independence and interfaces both tie into later classes
+on software engineering, as well as preparing students for algorithms
+and data structures courses.  Finally, the use of interactive and
+distributed systems connects to later courses on operating systems and
+networks.
 
 Despite our success, much remains to be done.  Type systems are a
 fundamental concept, but their introduction accompanies the rest of
