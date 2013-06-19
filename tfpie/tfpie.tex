@@ -27,15 +27,16 @@ We propose a bridge between functional and object-oriented programming
 in the first-year curriculum.  Traditionally, curricula that begin
 with functional programming transition to a professional, usually
 object-oriented, language in the second course.  This transition poses
-numerous obstacles to students, and often results in confusing the
+ obstacles for students, and often results in confusing the
 details of development environments, syntax, and libraries with the
-fundamentals that the course focuses on.  Our proposal instead begins
+fundamentals of OO programming 
+that the course focuses on.  Our proposal instead begins
 the second course with a sequence of custom teaching languages which
 minimize the transition from the first course, and allow students to
-focus on the core ideas.  We then transition to Java half-way through
+focus on core ideas.  We then transition to Java half-way through
 the course, at which point students have a strong command of the basic
-ideas.  We have 3 years of experience with this course, and it has
-produced notable success.
+principles.  We have 3 years of experience with this course, with
+ notable success.
 \end{abstract}
 
 \section{Introduction}
@@ -43,20 +44,22 @@ produced notable success.
 
 Many universities and colleges aim to teach their students proficiency
 in an industrial object-oriented programming language by the end of
-the students' first year.  Past approaches to achieve this aim have
-included teaching an industrial language, such as Java, starting on
-the first day.  Others have taken a more indirect route by teaching
-functional programming in the first semester, followed by a second
-semester that starts in Java.  The latter approach is an improvement
-over the first, but both suffer serious flaws.
+the students' first year.  The most common approache to achieve this
+aim is to teach an industrial language in the first course, often
+Java, starting on the first day.  Other curricula take a more indirect
+route by teaching functional programming in the first semester,
+followed by a second semester in Java.  The latter approach is an
+improvement over the first, as pointed out by numerous
+observers~\cite{dvanhorn:Felleisen2004Structure, local:spolsky}, but
+both suffer serious flaws.
 
-As an example, Northeastern University teaches functional programming
+As an example, Northeastern University teaches introductory programming
 in the first semester using \emph{How to Design
   Programs}~\cite{dvanhorn:Felleisen2001How}, followed by
 object-oriented programming using \emph{How to Design
   Classes}~\cite{local:htdc} in the second semester.  This sequence
-was designed to provide a smooth path for incoming students assumed
-only to have a competence in high-school level algebra to reach
+was designed to provide a smooth path for incoming students with
+ a competence in high-school level algebra to reach
 proficiency in Java by the end of their first year
 \cite{dvanhorn:Felleisen2004Structure}.  It was a major improvement
 over the previous Java-first curriculum in terms of student success,
@@ -75,24 +78,25 @@ in~\cite{dvanhorn:Bloch2000Scheme}):
 \end{enumerate}
 
 The problem is that the first semester ends with an advanced
-pedagogical functional language and the second semester starts with a
-beginning pedagogical subset of Java.  Despite this slimmed-down
+pedagogical functional language and the second semester starts with
+Java, although it focuses on a side-effect free subset.  Despite this focused
 subset, this transition is too abrupt to meaningfully bridge the gap
-between functional and object-oriented programming, because there are
-several other significant transitions happening in concert such as the
-transitions:
+between functional and object-oriented programming, because
+several other significant transitions happen in concert:
 \begin{itemize}
 \item from a highly regular and minimal syntax to a complicated
   irregular syntax,
 
 \item from an untyped language to a typed language,
 
-\item from a pedagogical programming environment to a professional
+\item from a pedagogical programming environment (DrRacket) to a professional
 programming environment (Eclipse),
 
 \item from a language with numeric values corresponding to
   mathematical objects to a language with numeric values corresponding
-  to common machine representations,
+  to common machine representations,\footnote{While this may seem like
+    a minor point, details of numeric representation can crop up
+    quickly in a Java-based course.}
 
 \item from a language with image literals and graphical libraries to
   one in which graphical programming is tedious,
@@ -106,34 +110,34 @@ principles of object-oriented programming are obscured and
 de-emphasized, struggling with the programming environment is
 frustrating and can cause potentially good students to leave the
 program, it favors students with prior exposure to the particular
-tools, it inhibits students from experimenting by relying upon their
-past skills, and it creates the false impression that courses are
-discrete units of instruction that can be discarded after successful
-completion rather than being part of a continuous and cumulative
-educational experience.
+tools (a set that is demographically skewed), it inhibits students
+from experimenting by allowing them to rely upon past skills, and it creates
+the false impression that courses are discrete units of instruction
+that can be discarded after successful completion rather than being
+part of a continuous and cumulative educational experience.
 
 
 We contribute an alternative approach to the second semester that
-overcomes these problems and provides a gradual transition from
-functional programming to object-oriented programming.  Our approach
-is able to start the second semester by introducing \emph{only} the
+overcomes these problems and provides a gradual introduction 
+to object-oriented programming.  Our approach
+starts the second semester by introducing \emph{only} the
 concept of programming with objects, while all other aspects of course
 remain where they were left off in the previous semester.  This
-approach allows the other concepts to be introduced at the point at
+ allows other concepts to be introduced at the point at
 which they are relevant and motivated.  Despite this more gradual
-approach, the course accomplishes the goal of teaching industrial
-language proficiency by the end of the semester, covering a super-set
-of the concepts and topics covered in the \emph{How to Design Classes}
+approach, the course accomplishes the goal of reaching industrial
+language competence by the end of the semester, covering a super-set
+of the concepts and topics covered in the \emph{How to Design Classes}-based
 course.
 
 \paragraph{Outline} The remainder of this paper is organized as follows:
 in section~\ref{sec:background} provides background on \emph{How to
   Design Programs} and the context and constraints involved in the
-first-year at Northeastern.  Section~\ref{sec:shift} describes our
+first year at Northeastern.  Section~\ref{sec:shift} describes our
 approach to the second semester, which starts with a small shift in
 perspective to bridge the gap between functional programming and
 object oriented programming.  Section~\ref{sec:industrial} describes
-the path toward programming in an industrial object-oriented
+the path from our pedagogical languages to an industrial object-oriented
 programming language.  Section~\ref{sec:related-work} discusses the
 relation to existing work and section~\ref{sec:conclusion} concludes.
 
