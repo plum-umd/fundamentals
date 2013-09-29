@@ -18,7 +18,7 @@ may have about making the transition to an industrial-strength
 language. This is the primary reason that I am unable to put this
 article in the strong accept column.
 
-RESPONSE: We have added a paragraph in section 4.2 on this subject.
+RESPONSE: We have added a paragraph in section 4.1 on this subject.
 
 Page 2
 
@@ -104,36 +104,11 @@ situation. We have clarified the point.
 
 ----------------------- REVIEW 2 ---------------------
 
-I enjoyed reading this paper. It describes the approach to teaching
-programming at Northeastern University, which begins by teaching
-Racket in the first semester, followed by an introduction to
-programming with classes in the second semester, initially by
-extending Racket with classes, then moving on to a functional subset
-of Java, and finally "traditional" Java.  The aim is to introduce
-important programming concepts step by step, while still providing
-students with enough practical knowledge to participate in an
-internship. In particular, it is a nice observation that it is only a
-small shift in focus to move from HDTP style to object oriented style
-by adding a new language concept which the students already (almost)
-understand.
-
-The paper sets out the background and the constraints under which the
-course has been designed, and does this well. It describes informally
-the experience of both students and teachers on the course, and
-suggests that the results have been positive. It is easy to read and
-proceeds at a good pace, and I think it deserves to be published in
-order to encourage more institutions to consider designing courses in
-this way.
-
-Some specific questions/comments/typos:
-
-p1 "approache" => approach
-
 p2 "a set that is demographically skewed" - in what way?  Also, is
 this first paragraph written from your own experience of past versions
 of the course?
 
-p5 Would "figure 1", "figure 2" etc be better capitalised?
+RESPONSE: We commented on our prior experience.
 
 p5 I think this is the first time the names "BSL" and "Class" are
 mentioned.  As far as I know the name BSL is taken from HTDP, and
@@ -141,6 +116,8 @@ there does seem to be a few places where it is assumed the reader is
 familiar with the content of HTDP. Maybe it would be good to give a
 brief summary of the HTDP approach and what these languages are
 earlier.
+
+RESPONSE: We clarify what these languages are.
 
 p6 Interesting (and somewhat surprising to me) comment just before
 section 3.4 that some invariants are easier to establish in the object
