@@ -3,6 +3,7 @@
 
 \usepackage[numbers]{natbib}
 \usepackage{xspace}
+\usepackage{alltt}
 
 \def\htdp{\emph{How to Design Programs}\xspace}
 \def\htdc{\emph{How to Design Classes}\xspace}
@@ -95,7 +96,8 @@ programming environment (Eclipse),
   mathematical objects to a language with numeric values corresponding
   to common machine representations,\footnote{While this may seem like
     a minor point, details of numeric representation can crop up
-    quickly in a Java-based course.}
+    quickly in a Java-based course---for example, $1/3$ cannot be
+    represented by any Java numeric types.}
 
 \item from a language with image literals and graphical libraries to
   one in which graphical programming is tedious,
@@ -484,7 +486,7 @@ object-oriented program uses an alternative library developed for our
 class: {\tt class/universe}.  It also provides a {\tt big-bang} form
 but it consumes a single argument, the initial state of the world
 represented as an object.  Event handlers are simply methods of this
-object.
+object; for example, clock ticks trigger the {\tt on-tick} method.
 
 The program on the left is the first program of the first semester,
 while the one on the right is the first program of the second
@@ -500,15 +502,16 @@ immediately.  The programs in figure~\ref{fig:world} animate a rocket
 (rendered as a circle in this example) taking off.  An illustrative
 follow-up exercise is to animate a rocket that \emph{lands}.  The
 natural design is to have two variants for states of the rocket: one
-for descending rockets, one for landed rockets.  While in the
-functional approach it is easy to use the state-pattern for the
-\emph{data} representing a rocket, it is more difficult to have states
-of \emph{behavior}.  The typical solution adds conditionals to all of
-the event handlers.  In the object-oriented approach, states of
-behavior are just as natural as data.  It is therefore straightforward
-to design programs with easy to observe invariants such as ``a landed
-rocket never changes position.''  In the functional approach, even
-such simple properties are more involved to establish.
+for descending rockets, one for landed rockets (an example is given in
+appendix~\ref{sec:appendix}).  While in the functional approach it
+is easy to use the state-pattern for the \emph{data} representing a
+rocket, it is more difficult to have states of \emph{behavior}.  The
+typical solution adds conditionals to all of the event handlers.  In
+the object-oriented approach, states of behavior are just as natural
+as data.  It is therefore straightforward to design programs with easy
+to observe invariants such as ``a landed rocket never changes
+position.''  In the functional approach, even such simple properties
+are more involved to establish.
 
 \begin{figure}
 \begin{minipage}[t]{3.4in}
@@ -524,7 +527,9 @@ such simple properties are more involved to establish.
 
 ;; to-draw : World -> Image
 (define (draw w)
-  (circle w "solid" "red"))
+  (place-image 
+    (circle 10 "solid" "red")
+    w 200 (empty-scene 400 400)))
 
 ;; on-key : KeyEvent World -> World
 (define (on-key k w) 10)
@@ -549,7 +554,9 @@ such simple properties are more involved to establish.
 
   ;; to-draw : -> Image
   (define (to-draw) 
-    (circle (this . n) "solid" "red"))
+    (place-image 
+     (circle 10 "solid" "red")
+     (this . w) 200 (empty-scene 400 400)))
 
   ;; on-key : KeyEvent -> World
   (define (on-key k) (new world 10)))
@@ -936,4 +943,55 @@ truly rewarding.
 % \nocite{*}
 \bibliographystyle{plainnat}
 \bibliography{dvh-bibliography,local,sth-bibliography}
+
+\newpage
+\appendix
+\section{Worlds and the State pattern}
+\label{sec:appendix}
+
+\begin{alltt}
+#lang class/1
+(require 2htdp/image class/universe)
+
+;; A World is one of 
+;; - (new upworld Number)
+;; - (new downworld Number)
+(define-class upworld
+  (fields n)
+
+  ;; on-tick : -> World
+  (define (on-tick)
+    (new world (add1 (this . n))))
+
+  ;; to-draw : -> Image
+  (define (to-draw) 
+    (place-image 
+     (circle 10 "solid" "red")
+     (this . w) 200 (empty-scene 400 400)))
+
+  ;; on-key : KeyEvent -> World
+  (define (on-key k) (new world 10)))
+
+(define-class downworld
+  (fields n)
+
+  ;; on-tick : -> World
+  (define (on-tick)
+    (cond [(zero? (this . n))
+           (new upworld (this . n))]
+          [else
+           (new world (sub1 (this . n)))]))
+
+  ;; to-draw : -> Image
+  (define (to-draw) 
+    (place-image 
+     (circle 10 "solid" "red")
+     (this . w) 200 (empty-scene 400 400)))
+
+  ;; on-key : KeyEvent -> World
+  (define (on-key k) (new world 10)))
+  
+(big-bang (new downworld 400))
+\end{alltt}
+
 \end{document}

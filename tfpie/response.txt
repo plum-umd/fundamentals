@@ -1,0 +1,356 @@
+----------------------- REVIEW 1 ---------------------
+
+I use the term "work-in-progress," because the authors have
+side-stepped the methodology used to introduce types and the
+transition from their tower of student languages to an industrial
+language. Granted, this is likely something the authors are still
+polishing. Nonetheless, it is important to provide a vision for how to
+do these things and to outline what they have done highlighting both
+succeses and failures. In this manner, interested readers may join
+their efforts by reproducing the authors' methodology in their schools
+using the languages developed by the authors. Let's face it,
+introducing types is necessary to make the move to an
+industrial-strength language and without providing a vision for it
+many may balk. I suspect that the transition builds on the informal
+contracts students are familiar with. Thus, adding this vision should
+not be to difficult. Outlining this vision may obviate doubts readers
+may have about making the transition to an industrial-strength
+language. This is the primary reason that I am unable to put this
+article in the strong accept column.
+
+RESPONSE: We have added a paragraph in section 4.2 on this subject.
+
+Page 2
+
+Spell out an example of the details of numeric representation that
+crop up quickly.
+
+RESPONSE: We have added an example.
+
+Implicit in the discussion is the assumption that reaching industrial
+language competence by the end of the semester is a desirable
+goal. The authors should address this head on. An obvious alternative
+is emphasize and reinforce OO concepts and leave the industrial
+language for latter (one semester?) in the curriculum. I am aware that
+at NE students are expected to get a co-op/intership over the
+summer. That, however, is a NE pecularity and is not a pedagogical
+argument.
+
+RESPONSE: We make explicit in section 2 the aspects of Northeastern
+that inform our course.  It is not only co-op, but downstream courses,
+that require Java.  
+
+Page 3
+
+"sent by using the send keyword, followed by an object, a message
+name, and some number of arguments"
+
+        What are these "some number of arguments?"
+        They are not part of the examples.
+
+RESPONSE: These particular methods take no arguments, but the `dist`
+method, on the same page, takes an argument.
+
+Page 6
+
+Spell out for the reader how students are explained the world
+parameter is not needed and, therefore, removed from the methods in
+the class definition.
+
+RESPONSE: This is already covered in the discussion of OO
+fundamentals.
+
+In the class version, how does the runtime know which method to use?
+Are the names of the handlers restricted to on-tick, on-key, etc.? Do
+the methods have to appear in a certain order? Does the mechanism used
+to make the association of events with the proper handler pose any
+difficulty for the students? One nice feature of the functional
+approach is that such associations are made explicitly and this allows
+students to name their handlers whatever makes sense to them.
+
+RESPONSE: We made this more explicit in the paper.
+
+Do you mean the first interactive event-driven program?
+
+RESPONSE: No, this is the first program we show.
+
+The programs in Figure 2 do not animate a rocket. Please reformulate
+the description of the programs in Figure 2.
+
+RESPONSE: We have revised the program.
+
+Show the reader how you use with students in class the state pattern
+to animate a rocket that lands. There is plenty of room within the
+20-page limit.
+
+RESPONSE: We added an appendix with this program.
+
+
+Page 11
+
+Spell out the drawbacks that are alleviated and those that are not
+addressed by DrJava and BlueJ. As a reader, I want to clearly see the
+contrast of your approach with these.
+
+Page 12
+
+Can you quantify the recruitment/retention impact on female students?
+Give the reader a sense of what you mean. It must be significant given
+that you mention it!
+
+
+Minor comments
+
+Overall: Capitalize major words in section/subsection headers (not
+just the first word).
+
+Page 3
+        "and message are sent" --> "and messages are sent"
+
+Page 5
+        "figure 1" --> "Figure 1"
+
+Page 6
+
+        "the structure of this data definition" --> "the structure of
+        this class definition"
+
+        "design of a game thus involves" --> "design of a game, thus,
+        involves"
+
+        "2htdp/universe" over the margin
+
+        "figure 2" --> "Figure 2"
+
+        "rockets, one" --> "rockets and one"
+
+        "language levels", --> "language levels,"
+Page 8
+        "figure 3" --> "Figure 3"
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 1
+TITLE: From Principles to Practice with Class in the First Year
+AUTHORS: Sam Tobin-Hochstadt and David Van Horn
+
+OVERALL EVALUATION: 2 (accept)
+REVIEWER'S CONFIDENCE: 4 (high)
+
+----------- REVIEW -----------
+
+I enjoyed reading this paper. It describes the approach to teaching
+programming at Northeastern University, which begins by teaching
+Racket in the first semester, followed by an introduction to
+programming with classes in the second semester, initially by
+extending Racket with classes, then moving on to a functional subset
+of Java, and finally "traditional" Java.  The aim is to introduce
+important programming concepts step by step, while still providing
+students with enough practical knowledge to participate in an
+internship. In particular, it is a nice observation that it is only a
+small shift in focus to move from HDTP style to object oriented style
+by adding a new language concept which the students already (almost)
+understand.
+
+The paper sets out the background and the constraints under which the
+course has been designed, and does this well. It describes informally
+the experience of both students and teachers on the course, and
+suggests that the results have been positive. It is easy to read and
+proceeds at a good pace, and I think it deserves to be published in
+order to encourage more institutions to consider designing courses in
+this way.
+
+Some specific questions/comments/typos:
+
+p1 "approache" => approach
+
+p2 "a set that is demographically skewed" - in what way?  Also, is
+this first paragraph written from your own experience of past versions
+of the course?
+
+p5 Would "figure 1", "figure 2" etc be better capitalised?
+
+p5 I think this is the first time the names "BSL" and "Class" are
+mentioned.  As far as I know the name BSL is taken from HTDP, and
+there does seem to be a few places where it is assumed the reader is
+familiar with the content of HTDP. Maybe it would be good to give a
+brief summary of the HTDP approach and what these languages are
+earlier.
+
+p6 Interesting (and somewhat surprising to me) comment just before
+section 3.4 that some invariants are easier to establish in the object
+oriented style.
+
+p7 Is this the first mention of "Intermediate Student" language?
+Again, maybe in section two where the idea of language levels is
+mentioned, maybe it would be good to go into a bit more detail for the
+benefit of those who haven't read HTDP.
+
+p9 Is it possible to include the Racket version alongside this
+program? I found it interesting to compare them, and there does seem
+to be enough space on the page for it.
+
+p10 "functional OO programming" reads a bit strangely to me, since it
+could mean "functional" in a non-technical sense. Maybe "a functional
+subset of ..."?
+
+p12 It's an interesting comment about retaining female students, but
+it's not clear how the design of the course might be relevant to
+this. Do you have any suggestions why? Could it just be a random
+fluctuation?
+
+p13 Some of the capitalisation in the references has gone ('java'
+appears a few times for example)
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 1
+TITLE: From Principles to Practice with Class in the First Year
+AUTHORS: Sam Tobin-Hochstadt and David Van Horn
+
+OVERALL EVALUATION: 1 (weak accept)
+REVIEWER'S CONFIDENCE: 4 (high)
+
+----------- REVIEW -----------
+
+In this paper the authors present their approach to smoothen the
+transition during the first year programming course from semester 1:
+FP to semester 2: OO programming. The key contribution of their work
+is to demonstrate how a pure FP approach can be extended step by step
+with OO concepts. In the end students acquire the same (and even
+higher) level of proficiency of programming OO in Java as comparable
+other courses.
+
+The project's success relies on DrRacket, used in semester 1, which
+can be extended with the desired features step by step. Halfway during
+semester 2, when a sufficient 'critical mass' of OO concepts has been
+introduced, the course and the students switch to Java and Eclipse.
+
+The paper is well written. The paper is clearly in scope of TFPIE.
+
+My main motivation for marking the paper as 'weak accept' is that in
+my opinion it is not (yet) complete to deserve publication in
+EPTCS. My main criticism plus advice for improvement is:
+
+(1) in the introduction, page 1, the bullet-list enumerates
+'significant transitions happen in concert'. In the paper we learn how
+to overcome bullet 1, but not bullets 2, 3, 4, and 5. On page 8, first
+paragraph: "In particular: objects, classes, fields and methods,
+dynamic dispatch, inheritance, and overriding." are enumerated as
+being essential concepts of object-oriented programming that students
+have had experience with in the new set-up. The paper explains this
+for the first half ('objects, classes, fields and methods') but not
+for the second half ('dynamic dispatch, inheritance, and overriding').
+
+Suggestion for improvement: extend section 3 with material how dynamic
+dispatch, inheritance, and overriding is presented to students.
+
+(2) Section 5.1 is too long to my taste: a lot of the criticism has
+been discussed in the motivation of the introduction of this paper.
+
+Suggestion for improvement: shorten section 5.1. The extra space can
+be used to elaborate on issue (1) above. I don't think this section
+requires sub sections, so all text can be organized into a single
+section.
+
+(3) In the introduction, it is said that 'an alternative approach to
+the second semester [that] overcomes these problems and provides a
+gradual introduction to OO programming'. However, acting as the
+devil's advocate, I can argue that this is not true: halfway semester
+2 there is still the abrupt switch to both another language, Java,
+*and* another tool set, Eclipse. Stated bluntly, the switch is only
+postponed instead of solved.
+
+Suggestion for improvement: if issue (1) is resolved, it will become
+clearer how the 'switch-gap' is made smaller. Section 4.1 enumerates
+the differences of this gap, but does not explain how the students are
+taught to jump over them. This should be added in this
+section. Sections 4.2 and 4.3 are too brief in my opinion. Are the
+topics in these sections taken immediately from 'How to Design
+Classes'? If so, please state this. If not, please include material
+that illustrates how these topics are taught and how this fits in the
+philosophy of the chosen approach.
+
+
+Minor remarks:
+page 1:
+"approache" --> "approach"
+
+"numerous observers [9, 23]": only two references, of which [23] is
+not scientific is not particularly 'numerous'. Please provide more
+scientific references or remove the word 'numerous' (I prefer the
+first option)
+
+page 2:
+"as follows: in section 2" --> "as follows: section 2"
+
+page 4: the use of ";=> 3" and ";=> 4" in the same teletype font is
+confusing because they are not part of the expression, but probably
+intended to denote 'evaluates to'? Please use $math$ here.
+
+page 5: "the BSL language and the Class language." these languages
+have not been introduced yet, please do.
+
+
+----------------------- REVIEW 4 ---------------------
+PAPER: 1
+TITLE: From Principles to Practice with Class in the First Year
+AUTHORS: Sam Tobin-Hochstadt and David Van Horn
+
+OVERALL EVALUATION: 2 (accept)
+REVIEWER'S CONFIDENCE: 4 (high)
+
+----------- REVIEW -----------
+
+The authors describe a new approach to tackle difficulties in
+transitioning from a functional semester one course to an
+object-oriented semester two course. Students are reportedly confused
+by the circumstantial differences (compilation model / environment /
+syntax) which makes grasping the fundamental concepts being taught
+harder to grasp. Instead of transitioning on day one of the second
+semester to Java in Eclipse (or similar), the authors present an
+approach that continues the progression of student languages to
+include objects and other OO concepts before transitioning to a "real"
+OO environment and language.
+
+The paper is well-written, is well-positioned in the context of the
+status quo and balances the pedagogical approach with the material
+used. The idea of language levels is properly motivated and the
+continuation of this approach beyond the first semester seems - after
+reading the paper - the Obvious Choice. What is lacking, however, is a
+motivation for the point at which the transition to Java is made. Why
+aren't e.g. iteration, mutability & typing introduced in the similar
+vein as objects, class-hierarchies, etc.? Was this a choice from
+practicality, or is there a reason to introduce them post-transition?
+
+A few specific comments and minor corrections:
+
+ - (Sec.1) "common approache to" --> "common approach to"
+
+ - (Sec.1) "interaction-oriented language" / "batch-oriented language"
+   --> it seems the authors are refering to the environments/tooling
+   rather than the language. If not, this terminology warrents
+   clarification.
+
+ - (Sec.1) "aspects of course remain" --> "aspects of *the* course
+   remain"
+
+ - (Sec.2) "while most students do some software development, there is
+   almost no uniformity beyond that" & "in which they will use
+   professional-grade languages and tools which will almost certainly
+   be object-oriented" are, at least, paradoxical (if not
+   contradictory). This conflict in the motivation should be addressed
+   for the final version of the paper.
+
+ - (Sec.3.1) "and message are sent" --> "and message*s* are sent"
+
+ - (Sec.4.2) "Thanks to the the preparation" --> omit one "the"
+ 
+- (Sec.6) "The class has also had notable success in the recruitment
+  and retention of female students, as compared to the other versions
+  of the second-semester course." --> I find this a rather hefty
+  statement. It would - in my mind - at least warrent further
+  research. If this consistently holds true, there are valuable
+  insights to be gained about pedagogical gender-script in the field
+  of CS. The statement by itself seems a bit hefty to be included
+  without at least some concrete data and/or qualitative evaluation.
