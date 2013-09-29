@@ -119,31 +119,31 @@ earlier.
 
 RESPONSE: We clarify what these languages are.
 
-p6 Interesting (and somewhat surprising to me) comment just before
-section 3.4 that some invariants are easier to establish in the object
-oriented style.
-
 p7 Is this the first mention of "Intermediate Student" language?
 Again, maybe in section two where the idea of language levels is
 mentioned, maybe it would be good to go into a bit more detail for the
 benefit of those who haven't read HTDP.
 
+RESPONSE: We extended section 2 to cover more HTDP background.
+
 p9 Is it possible to include the Racket version alongside this
 program? I found it interesting to compare them, and there does seem
 to be enough space on the page for it.
 
+RESPONSE: The BSL and Class versions of this program are in figure 1.
+
 p10 "functional OO programming" reads a bit strangely to me, since it
 could mean "functional" in a non-technical sense. Maybe "a functional
 subset of ..."?
+
+RESPONSE: Clarified.
 
 p12 It's an interesting comment about retaining female students, but
 it's not clear how the design of the course might be relevant to
 this. Do you have any suggestions why? Could it just be a random
 fluctuation?
 
-p13 Some of the capitalisation in the references has gone ('java'
-appears a few times for example)
-
+RESPONSE: We clarified the anecdotal nature of this.
 
 ----------------------- REVIEW 3 ---------------------
 PAPER: 1
