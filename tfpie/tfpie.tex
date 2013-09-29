@@ -180,39 +180,55 @@ education, with almost all Computer Science majors participating in a
 take place at a wide variety of companies, and while most students do
 some software development, there is almost no uniformity beyond that.
 In particular, there is wide variation in the languages students use
-while on co-op.
+while on co-op. This combination sets the constraints under which we
+designed our approach.
 
-This combination sets the constraints under which we designed our
-approach.  Our students begin the course with a firm grasp of
-data-driven program design, as well as experience with the tools used
-in the first course:
+\subsection{A first course on \emph{How to Design Programs}}
 
-\begin{itemize}
-  \item the student languages introduced in \emph{How to Design
-    Programs}~\cite{dvanhorn:Felleisen2004Structure,
-    dvanhorn:Felleisen2001How} as well as the idea of ``language levels'';
+In the first semester, students are introduced to the ``design
+recipe'', a step-by-step process for going from English descriptions
+of problems to working programs.  The design recipe involves six steps:
+\begin{enumerate}
+\item Analyze the information involved in the problem and express
+  how to represent it as data.
+\item Write down a function signature, a summary of the purporse
+  of the function, and a function stub.
+\item Illustrate the signature and the purpose statement with some
+  functional examples.
+\item Take an inventory of the input data that can be used to compute
+  an answer.
+\item Write the code for the function.
+\item Verify the behavior of the program against the functional
+  examples given earlier.
+\end{enumerate}
 
-  \item the DrRacket (formerly DrScheme) 
-    programming environment~\cite{dvanhorn:Findler2002DrScheme};
+Students explore program design using this process in the context of a
+series of successively richer pedagogical programming language
+levels~\cite{dvanhorn:Felleisen2004Structure,
+  dvanhorn:Felleisen2001How} that are included in the DrRacket
+(formerly DrScheme) programming
+environment~\cite{dvanhorn:Findler2002DrScheme}.
+%
+The language and environment include several tools in support of the
+design recipe.  For example, functional examples can be written as
+executable tests by writting \texttt{check-expect}
+expression~\cite{local:check-expect}; an algebraic stepper and REPL
+are provided to interact with programs at each step of the design
+process.
 
-  \item the \texttt{check-expect} testing framework~\cite{local:check-expect};
+Finally, the first semester course makes extensive use of a library
+for developing interactive animations and games using functional
+programming and functional
+graphics~\cite{dvanhorn:Felleisen2009Functional, local:barland-sfp10}.
 
-  \item the ``World'' approach to developing interactive animations
-    and games using functional programming and functional
-    graphics~\cite{dvanhorn:Felleisen2009Functional,
-      local:barland-sfp10}.
-\end{itemize}
+\subsection{The goal of the second course}
 
-\noindent
-We deliberately reuse all of these elements in our approach.
-
-After our course, our students should both (a) be prepared for
+After the second course, students should both (a) be prepared for
 subsequent courses in the curriculum, which expect familiarity with
 Java and standard Java libraries, (b) be prepared for co-ops in which
-they will use professional-grade languages and tools which will
-almost certainly be object-oriented.  More significantly, we aim to
-teach the key insights behind the object-oriented approach to program
-design.
+they will use professional-grade languages and tools which will almost
+certainly be object-oriented.  More significantly, we aim to teach the
+key insights behind the object-oriented approach to program design.
 
 These constraints, while in detail specific to Northeastern and the
 CCIS curriculum, are broadly similar to the requirements for the first
