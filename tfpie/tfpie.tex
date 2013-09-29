@@ -50,7 +50,8 @@ Java, starting on the first day.  Other curricula take a more indirect
 route by teaching functional programming in the first semester,
 followed by a second semester in Java.  The latter approach is an
 improvement over the first, as pointed out by numerous
-observers~\cite{dvanhorn:Felleisen2004Structure, local:spolsky}, but
+observers~\cite{dvanhorn:Felleisen2004Structure, local:spolsky,
+  dvanhorn:Chakravarty2004Risks, dvanhorn:Ragde2008Chilling}, but
 both suffer serious flaws.
 
 As an example, Northeastern University teaches introductory programming
@@ -132,7 +133,7 @@ of the concepts and topics covered in the \emph{How to Design Classes}-based
 course.
 
 \paragraph{Outline} The remainder of this paper is organized as follows:
-in section~\ref{sec:background} provides background on \emph{How to
+ section~\ref{sec:background} provides background on \emph{How to
   Design Programs} and the context and constraints involved in the
 first year at Northeastern.  Section~\ref{sec:shift} describes our
 approach to the second semester, which starts with a small shift in
@@ -503,8 +504,8 @@ immediately.  The programs in figure~\ref{fig:world} animate a rocket
 (rendered as a circle in this example) taking off.  An illustrative
 follow-up exercise is to animate a rocket that \emph{lands}.  The
 natural design is to have two variants for states of the rocket: one
-for descending rockets and one for landed rockets (an example is given in
-appendix~\ref{sec:appendix}).  While in the functional approach it
+for descending rockets and one for landed rockets (an example is given
+in appendix~\ref{sec:appendix}).  While in the functional approach it
 is easy to use the state-pattern for the \emph{data} representing a
 rocket, it is more difficult to have states of \emph{behavior}.  The
 typical solution adds conditionals to all of the event handlers.  In
@@ -512,7 +513,17 @@ the object-oriented approach, states of behavior are just as natural
 as data.  It is therefore straightforward to design programs with easy
 to observe invariants such as ``a landed rocket never changes
 position.''  In the functional approach, even such simple properties
-are more involved to establish.
+are more involved to establish, because all event handlers must be
+inspected.
+
+This approach also leads naturally to discussion of inheritance.
+Often programs with multiple states wish to share the implementation
+of some methods.  We first show that this can be accomplished at the
+cost of minor boilerplate with delegation, and then show how
+inheritance allows the programmer to avoid duplication and boilerplate
+entirely.  Once inheritance is able to group identical methods,
+overriding is a natural next step when some but not all of the
+implementations are identical across the variants.
 
 \begin{figure}
 \begin{minipage}[t]{3.4in}
@@ -744,7 +755,13 @@ There are other differences which cannot be seen from a code snippet.
 
 All but the first two of these changes are unrelated to the
 fundamental lessons we hope to teach---the rest merely present
-additional hurdles for students.
+additional hurdles for students.  However, at this point in the
+semester, the students are far better equipped to meet these
+challenges.  They are already familiar with objects, classes, and the
+other concepts we have covered.  They are also fully engaged in the
+class, instead of making the transition in the midst of the transition
+between semesters.  Finally, they have now been programming for 50\%
+longer than they had at the start of the semester.
 
 \subsection{Traditional Java}
 
@@ -973,23 +990,15 @@ truly rewarding.
 (require 2htdp/image class/universe)
 
 ;; A World is one of 
-;; - (new upworld Number)
+;; - (new landed-world)
 ;; - (new downworld Number)
-(define-class upworld
-  (fields n)
-
-  ;; on-tick : -> World
-  (define (on-tick)
-    (new world (add1 (this . n))))
+(define-class landed-world
 
   ;; to-draw : -> Image
   (define (to-draw) 
     (place-image 
      (circle 10 "solid" "red")
-     (this . w) 200 (empty-scene 400 400)))
-
-  ;; on-key : KeyEvent -> World
-  (define (on-key k) (new world 10)))
+     390 200 (empty-scene 400 400))))
 
 (define-class downworld
   (fields n)
@@ -997,7 +1006,7 @@ truly rewarding.
   ;; on-tick : -> World
   (define (on-tick)
     (cond [(zero? (this . n))
-           (new upworld (this . n))]
+           (new landed-world)]
           [else
            (new world (sub1 (this . n)))]))
 
@@ -1008,7 +1017,7 @@ truly rewarding.
      (this . w) 200 (empty-scene 400 400)))
 
   ;; on-key : KeyEvent -> World
-  (define (on-key k) (new world 10)))
+  (define (on-key k) (new world 400)))
   
 (big-bang (new downworld 400))
 \end{alltt}

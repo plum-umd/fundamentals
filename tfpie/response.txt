@@ -146,37 +146,16 @@ fluctuation?
 RESPONSE: We clarified the anecdotal nature of this.
 
 ----------------------- REVIEW 3 ---------------------
-PAPER: 1
-TITLE: From Principles to Practice with Class in the First Year
-AUTHORS: Sam Tobin-Hochstadt and David Van Horn
-
-OVERALL EVALUATION: 1 (weak accept)
-REVIEWER'S CONFIDENCE: 4 (high)
-
------------ REVIEW -----------
-
-In this paper the authors present their approach to smoothen the
-transition during the first year programming course from semester 1:
-FP to semester 2: OO programming. The key contribution of their work
-is to demonstrate how a pure FP approach can be extended step by step
-with OO concepts. In the end students acquire the same (and even
-higher) level of proficiency of programming OO in Java as comparable
-other courses.
-
-The project's success relies on DrRacket, used in semester 1, which
-can be extended with the desired features step by step. Halfway during
-semester 2, when a sufficient 'critical mass' of OO concepts has been
-introduced, the course and the students switch to Java and Eclipse.
-
-The paper is well written. The paper is clearly in scope of TFPIE.
-
-My main motivation for marking the paper as 'weak accept' is that in
-my opinion it is not (yet) complete to deserve publication in
-EPTCS. My main criticism plus advice for improvement is:
 
 (1) in the introduction, page 1, the bullet-list enumerates
 'significant transitions happen in concert'. In the paper we learn how
-to overcome bullet 1, but not bullets 2, 3, 4, and 5. On page 8, first
+to overcome bullet 1, but not bullets 2, 3, 4, and 5. 
+
+RESPONSE: Our approach presents OO programming in a context that
+avoids _all 5_ of these significant transitions until after the
+fundamental concepts of OO programming are taught, as we emphasize.
+
+On page 8, first
 paragraph: "In particular: objects, classes, fields and methods,
 dynamic dispatch, inheritance, and overriding." are enumerated as
 being essential concepts of object-oriented programming that students
@@ -187,6 +166,10 @@ for the second half ('dynamic dispatch, inheritance, and overriding').
 Suggestion for improvement: extend section 3 with material how dynamic
 dispatch, inheritance, and overriding is presented to students.
 
+RESPONSE: We discuss dynamic dispatch extensively in the paper.  This
+is the entire point of section 3.2.  We added a paragraph discussion
+inheritance and overriding.
+
 (2) Section 5.1 is too long to my taste: a lot of the criticism has
 been discussed in the motivation of the introduction of this paper.
 
@@ -194,6 +177,8 @@ Suggestion for improvement: shorten section 5.1. The extra space can
 be used to elaborate on issue (1) above. I don't think this section
 requires sub sections, so all text can be organized into a single
 section.
+
+RESPONSE: We feel that this discussion is needed.
 
 (3) In the introduction, it is said that 'an alternative approach to
 the second semester [that] overcomes these problems and provides a
@@ -203,36 +188,16 @@ devil's advocate, I can argue that this is not true: halfway semester
 *and* another tool set, Eclipse. Stated bluntly, the switch is only
 postponed instead of solved.
 
-Suggestion for improvement: if issue (1) is resolved, it will become
-clearer how the 'switch-gap' is made smaller. Section 4.1 enumerates
-the differences of this gap, but does not explain how the students are
-taught to jump over them. This should be added in this
-section. Sections 4.2 and 4.3 are too brief in my opinion. Are the
-topics in these sections taken immediately from 'How to Design
-Classes'? If so, please state this. If not, please include material
-that illustrates how these topics are taught and how this fits in the
-philosophy of the chosen approach.
-
-
-Minor remarks:
-page 1:
-"approache" --> "approach"
+RESPONSE: We clarify how the transition is less troublesome here.  We
+also describe future work that would further alleviate these
+difficulties. 
 
 "numerous observers [9, 23]": only two references, of which [23] is
 not scientific is not particularly 'numerous'. Please provide more
 scientific references or remove the word 'numerous' (I prefer the
 first option)
 
-page 2:
-"as follows: in section 2" --> "as follows: section 2"
-
-page 4: the use of ";=> 3" and ";=> 4" in the same teletype font is
-confusing because they are not part of the expression, but probably
-intended to denote 'evaluates to'? Please use $math$ here.
-
-page 5: "the BSL language and the Class language." these languages
-have not been introduced yet, please do.
-
+RESPONSE: We have added additional references.
 
 ----------------------- REVIEW 4 ---------------------
 PAPER: 1
