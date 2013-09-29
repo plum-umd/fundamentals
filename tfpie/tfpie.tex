@@ -709,8 +709,16 @@ differences that students are exposed to upon transition to Java.
 \item Explicit representation of unions and interfaces in the
   language.  Previously, interfaces were simply described in stylized
   comments, following the \htdp approach.
-\item Types are now specified as part of the program and are (statically)
-  enforced.
+\item Types are now specified as part of the program and are
+  (statically) enforced.  Data definitions and interfaces can be
+  transformed from the stylized comments into {\tt interface}
+  definitions and method signatures annotated with types.  Students
+  are taught the benefits of type systems, which impose syntactic
+  restrictions sufficient to prove objects meet (the structural
+  aspects of) their interface definitions.  Students also encounter
+  the downside of types when they discover the type system cannot
+  always follow valid reasoning about program invariants and may reject
+  perfectly good programs.
 \item Java syntax is substantially different and more verbose. For
   example, constructors must be defined explicitly.
 \item The testing environment is somewhat different, and requires
@@ -752,6 +760,9 @@ functions or Twitter posting.  Finally, \texttt{while}, \texttt{for},
 and for-each loops are presented, following the methodology of \htdc
 which connects loops to stylized use of recursive functions with
 accumulators, a technique the students now have used for two semesters.
+
+
+
 
 \subsection{Beyond Traditional Java}
 
