@@ -103,8 +103,8 @@ programming environment (Eclipse),
 \item from a language with image literals and graphical libraries to
   one in which graphical programming is tedious,
 
-\item from an interaction-oriented language to a compiled,
-  batch-oriented language.  
+\item from an interaction-oriented language and tool suite to a
+  compiled, batch-oriented language.
 \end{itemize}
 
 This abrupt transition has several negative consequences which we have
@@ -123,7 +123,7 @@ We contribute an alternative approach to the second semester that
 overcomes these problems and provides a gradual introduction 
 to object-oriented programming.  Our approach
 starts the second semester by introducing \emph{only} the
-concept of programming with objects, while all other aspects of course
+concept of programming with objects, while all other aspects of the course
 remain where they were left off in the previous semester.  This
  allows other concepts to be introduced at the point at
 which they are relevant and motivated.  Despite this more gradual
@@ -178,7 +178,8 @@ More significantly, Northeastern distinctively emphasizes experiential
 education, with almost all Computer Science majors participating in a
 6 month ``co-op'' internship after their third semester.  These co-ops
 take place at a wide variety of companies, and while most students do
-some software development, there is almost no uniformity beyond that.
+some software development, there is no single platform or
+set of tools that commands majority use.
 In particular, there is wide variation in the languages students use
 while on co-op. This combination sets the constraints under which we
 designed our approach.
@@ -675,6 +676,15 @@ course, particular languages also use unique specific mechanisms which
 need to be taught to use the language effectively, but these are
 rarely as vital as the cross-language principles.
 
+We chose the half-way point as the time for transition based on
+experience with earlier versions of this course. In particular, we
+found that a later transition, while allowing us to present additional
+concepts in a controlled environment, did not give students sufficient
+time and experience with Java.  Subsequent classes found that students
+were strong on fundamentals but weak on Java practice.  The other
+alternative, transitioning earlier, would not provide sufficient time
+to cover the fundamental topics before the transition.
+
 \subsection{Functional Java}
 
 The transition begins with replicating the object-oriented style of
@@ -781,7 +791,7 @@ longer than they had at the start of the semester.
 
 \subsection{Traditional Java}
 
-Thanks to the the preparation in the first half of the course, we can
+Thanks to the preparation in the first half of the course, we can
 cover OO programming in a functional subset of Java in a just a few
 lectures.  We then increase the subset of the language we use to
 encompass mutation, loops, and mutable data structures and introduce

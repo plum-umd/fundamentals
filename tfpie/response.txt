@@ -200,25 +200,6 @@ first option)
 RESPONSE: We have added additional references.
 
 ----------------------- REVIEW 4 ---------------------
-PAPER: 1
-TITLE: From Principles to Practice with Class in the First Year
-AUTHORS: Sam Tobin-Hochstadt and David Van Horn
-
-OVERALL EVALUATION: 2 (accept)
-REVIEWER'S CONFIDENCE: 4 (high)
-
------------ REVIEW -----------
-
-The authors describe a new approach to tackle difficulties in
-transitioning from a functional semester one course to an
-object-oriented semester two course. Students are reportedly confused
-by the circumstantial differences (compilation model / environment /
-syntax) which makes grasping the fundamental concepts being taught
-harder to grasp. Instead of transitioning on day one of the second
-semester to Java in Eclipse (or similar), the authors present an
-approach that continues the progression of student languages to
-include objects and other OO concepts before transitioning to a "real"
-OO environment and language.
 
 The paper is well-written, is well-positioned in the context of the
 status quo and balances the pedagogical approach with the material
@@ -230,17 +211,15 @@ aren't e.g. iteration, mutability & typing introduced in the similar
 vein as objects, class-hierarchies, etc.? Was this a choice from
 practicality, or is there a reason to introduce them post-transition?
 
-A few specific comments and minor corrections:
-
- - (Sec.1) "common approache to" --> "common approach to"
+RESPONSE: We clarify why the transition point was chosen.
 
  - (Sec.1) "interaction-oriented language" / "batch-oriented language"
    --> it seems the authors are refering to the environments/tooling
    rather than the language. If not, this terminology warrents
    clarification.
 
- - (Sec.1) "aspects of course remain" --> "aspects of *the* course
-   remain"
+RESPONSE: That Java has no semantics for single-expression evaluation
+is a fact about the language, not its tools.
 
  - (Sec.2) "while most students do some software development, there is
    almost no uniformity beyond that" & "in which they will use
@@ -249,10 +228,8 @@ A few specific comments and minor corrections:
    contradictory). This conflict in the motivation should be addressed
    for the final version of the paper.
 
- - (Sec.3.1) "and message are sent" --> "and message*s* are sent"
+RESPONSE: We edited this sentence.
 
- - (Sec.4.2) "Thanks to the the preparation" --> omit one "the"
- 
 - (Sec.6) "The class has also had notable success in the recruitment
   and retention of female students, as compared to the other versions
   of the second-semester course." --> I find this a rather hefty
@@ -261,3 +238,6 @@ A few specific comments and minor corrections:
   insights to be gained about pedagogical gender-script in the field
   of CS. The statement by itself seems a bit hefty to be included
   without at least some concrete data and/or qualitative evaluation.
+
+RESPONSE: We agree that this merits further study.  However, our
+remark is anecdotal, and we have clarified it.
