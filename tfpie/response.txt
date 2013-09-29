@@ -85,12 +85,13 @@ to animate a rocket that lands. There is plenty of room within the
 
 RESPONSE: We added an appendix with this program.
 
-
 Page 11
 
 Spell out the drawbacks that are alleviated and those that are not
 addressed by DrJava and BlueJ. As a reader, I want to clearly see the
 contrast of your approach with these.
+
+RESPONSE: We now make this explicit.
 
 Page 12
 
@@ -98,46 +99,10 @@ Can you quantify the recruitment/retention impact on female students?
 Give the reader a sense of what you mean. It must be significant given
 that you mention it!
 
-
-Minor comments
-
-Overall: Capitalize major words in section/subsection headers (not
-just the first word).
-
-Page 3
-        "and message are sent" --> "and messages are sent"
-
-Page 5
-        "figure 1" --> "Figure 1"
-
-Page 6
-
-        "the structure of this data definition" --> "the structure of
-        this class definition"
-
-        "design of a game thus involves" --> "design of a game, thus,
-        involves"
-
-        "2htdp/universe" over the margin
-
-        "figure 2" --> "Figure 2"
-
-        "rockets, one" --> "rockets and one"
-
-        "language levels", --> "language levels,"
-Page 8
-        "figure 3" --> "Figure 3"
-
+RESPONSE: A quantitative evaluation would be inappropriate in this
+situation. We have clarified the point.
 
 ----------------------- REVIEW 2 ---------------------
-PAPER: 1
-TITLE: From Principles to Practice with Class in the First Year
-AUTHORS: Sam Tobin-Hochstadt and David Van Horn
-
-OVERALL EVALUATION: 2 (accept)
-REVIEWER'S CONFIDENCE: 4 (high)
-
------------ REVIEW -----------
 
 I enjoyed reading this paper. It describes the approach to teaching
 programming at Northeastern University, which begins by teaching

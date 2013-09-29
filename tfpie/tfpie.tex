@@ -292,7 +292,7 @@ the appropriate number of arguments for the fields of the object:
 \end{verbatim}
 An object understands some set of \emph{messages}.  Simple
 structure-like objects understand messages for accessing their fields
-and message are sent by using the {\tt send} keyword, followed by an object,
+and messages are sent by using the {\tt send} keyword, followed by an object,
 a message name, and some number of arguments:
 \begin{verbatim}
     (send (new posn 3 4) x) ;=> 3
@@ -443,7 +443,7 @@ using the BSL language and the Class language.
 \label{fig:tree}
 \end{figure}
 
-The structure of this data definition is analogous to the approach of
+The structure of this program is analogous to the approach of
 the previous semester but this example brings to light an important
 difference with the functional approach.  The method for computing the
 sum of a leaf is defined in the {\tt leaf} class, while the
@@ -502,7 +502,7 @@ immediately.  The programs in figure~\ref{fig:world} animate a rocket
 (rendered as a circle in this example) taking off.  An illustrative
 follow-up exercise is to animate a rocket that \emph{lands}.  The
 natural design is to have two variants for states of the rocket: one
-for descending rockets, one for landed rockets (an example is given in
+for descending rockets and one for landed rockets (an example is given in
 appendix~\ref{sec:appendix}).  While in the functional approach it
 is easy to use the state-pattern for the \emph{data} representing a
 rocket, it is more difficult to have states of \emph{behavior}.  The
@@ -877,6 +877,11 @@ BlueJ~\cite{dvanhorn:Hsia2005Taming,dvanhorn:Kolling2003} are
 introductory environments for Java, which alleviate some but not all
 of the drawbacks we have outlined.
 %
+For example, both of these systems immediately present students with
+(1) type systems and (2) Java syntax, and (3) do not support the image
+values and exact numeric values that we rely on in our course.
+
+
 Several teaching-oriented graphics libraries for Java have been
 proposed~\cite{dvanhorn:Bruce2001Library,dvanhorn:Alphonce2003Using},
 but these are significantly more complex than the graphics and
@@ -892,9 +897,10 @@ approximately 35 students each time.  Our experience has been
 uniformly positive, and the students have gone on to significant
 success in the subsequent courses, despite the curriculum differing
 from what the bulk of Northeastern University computer science majors
-take.  The class has also had notable success in the recruitment and
-retention of female students, as compared to the other versions of the
-second-semester course.
+take.  Anectodally, the class has also had notable success in the
+recruitment and retention of female students, as compared to the other
+versions of the second-semester course. However, the classes are
+sufficiently different as to make a precise comparison impossible.
 
 The course has provided a vantage point to introduce topics that will
 be taken up later in the curriculum.  We present types, contracts,
