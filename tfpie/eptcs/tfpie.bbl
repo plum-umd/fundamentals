@@ -1,0 +1,168 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abelson and Sussman(1996)]{dvanhorn:sicp}
+Harold Abelson and Gerald~J. Sussman.
+\newblock \emph{Structure and Interpretation of Computer Programs}.
+\newblock MIT Press, 1996.
+
+\bibitem[Allen et~al.(2002)Allen, Cartwright, and
+  Stoler]{dvanhorn:Allen2002DrJava}
+Eric Allen, Robert Cartwright, and Brian Stoler.
+\newblock {DrJava}: a lightweight pedagogic environment for java.
+\newblock \emph{SIGCSE Bull.}, 34\penalty0 (1):\penalty0 137--141, 2002.
+\newblock \doi{10.1145/563517.563395}.
+
+\bibitem[Alphonce and Ventura(2003)]{dvanhorn:Alphonce2003Using}
+Carl Alphonce and Phil Ventura.
+\newblock Using graphics to support the teaching of fundamental object-oriented
+  principles in {CS1}.
+\newblock In \emph{Companion of the 18th annual ACM SIGPLAN conference on
+  Object-oriented programming, systems, languages, and applications}, OOPSLA
+  '03, pages 156--161. ACM, 2003.
+\newblock \doi{10.1145/949344.949391}.
+
+\bibitem[Barland et~al.(2010)Barland, Flatt, and Findler]{local:barland-sfp10}
+Ian Barland, Matthew Flatt, and Robby Findler.
+\newblock The design of a functional image library.
+\newblock In \emph{Workshop on Scheme and Functional Programming (SFP)}, 2010.
+
+\bibitem[Bloch(2000)]{dvanhorn:Bloch2000Scheme}
+Stephen~A. Bloch.
+\newblock Scheme and java in the first year.
+\newblock \emph{J. Comput. Sci. Coll.}, 15\penalty0 (5):\penalty0 157--165,
+  2000.
+
+\bibitem[Bruce et~al.(2001)Bruce, Danyluk, and
+  Murtagh]{dvanhorn:Bruce2001Library}
+Kim~B. Bruce, Andrea Danyluk, and Thomas Murtagh.
+\newblock A library to support a graphics-based object-first approach to {CS}
+  1.
+\newblock In \emph{Proceedings of the thirty-second SIGCSE technical symposium
+  on Computer Science Education}, volume~33 of \emph{SIGCSE '01}, pages 6--10.
+  ACM, 2001.
+\newblock \doi{10.1145/366413.364527}.
+
+\bibitem[Chakravarty and Keller(2004)]{dvanhorn:Chakravarty2004Risks}
+Manuel M.~T. Chakravarty and Gabriele Keller.
+\newblock The risks and benefits of teaching purely functional programming in
+  first year.
+\newblock \emph{J. Funct. Program.}, 14\penalty0 (1):\penalty0 113--123, 2004.
+\newblock \doi{10.1017/S0956796803004805}.
+
+\bibitem[Felleisen et~al.(2001)Felleisen, Findler, Flatt, and
+  Krishnamurthi]{dvanhorn:Felleisen2001How}
+Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
+  Krishnamurthi.
+\newblock \emph{How to design programs: an introduction to programming and
+  computing}.
+\newblock MIT Press, 2001.
+
+\bibitem[Felleisen et~al.(2004)Felleisen, Findler, Flatt, and
+  Krishnamurthi]{dvanhorn:Felleisen2004Structure}
+Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
+  Krishnamurthi.
+\newblock The structure and interpretation of the computer science curriculum.
+\newblock \emph{Journal of Functional Programming}, 14\penalty0 (4):\penalty0
+  365--378, 2004.
+\newblock \doi{10.1017/s0956796804005076}.
+
+\bibitem[Felleisen et~al.(2009)Felleisen, Findler, Flatt, and
+  Krishnamurthi]{dvanhorn:Felleisen2009Functional}
+Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
+  Krishnamurthi.
+\newblock A functional {I/O} system or, fun for freshman kids.
+\newblock In \emph{ICFP '09 Proceedings of the 14th ACM SIGPLAN International
+  Conference on Functional programming}, pages 47--58. ACM, 2009.
+\newblock \doi{10.1145/1631687.1596561}.
+
+\bibitem[Felleisen et~al.(2012)Felleisen, Flatt, Findler, Gray, Krishnamurthi,
+  and Proulx]{local:htdc}
+Matthias Felleisen, Matthew Flatt, Robert~Bruce Findler, Kathryn~E. Gray,
+  Shriram Krishnamurthi, and Viera~K. Proulx.
+\newblock \emph{How to Design Classes (Draft)}.
+\newblock 2012.
+\newblock URL \url{http://www.ccs.neu.edu/home/matthias/htdc.html}.
+
+\bibitem[Findler et~al.(2002)Findler, Clements, Flanagan, Flatt, Krishnamurthi,
+  Steckler, and Felleisen]{dvanhorn:Findler2002DrScheme}
+Robert~B. Findler, John Clements, Cormac Flanagan, Matthew Flatt, Shriram
+  Krishnamurthi, Paul Steckler, and Matthias Felleisen.
+\newblock Drscheme: a programming environment for {S}cheme.
+\newblock \emph{JFP}, 12\penalty0 (02):\penalty0 159--182, 2002.
+\newblock \doi{10.1017/s0956796801004208}.
+
+\bibitem[Gamma et~al.(1994)Gamma, Helm, Johnson, and Vlissides]{samth:GOF}
+Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
+\newblock \emph{Design Patterns: Elements of Reusable {Object-Oriented}
+  Software}.
+\newblock Addison Wesley, 1994.
+
+\bibitem[Gray and Felleisen(2007)]{local:check-expect}
+Kathryn~E. Gray and Matthias Felleisen.
+\newblock Linguistic support for unit tests.
+\newblock Technical Report UUCS-07-013, University of Utah, 2007.
+
+\bibitem[Gray and Flatt(2003)]{dvanhorn:Gray2003ProfessorJ}
+Kathryn~E. Gray and Matthew Flatt.
+\newblock {ProfessorJ}: a gradual introduction to java through language levels.
+\newblock In \emph{Companion of the 18th annual ACM SIGPLAN conference on
+  Object-oriented programming, systems, languages, and applications}, OOPSLA
+  '03, pages 170--177. ACM, 2003.
+\newblock \doi{10.1145/949344.949394}.
+
+\bibitem[Hsia et~al.(2005)Hsia, Simpson, Smith, and
+  Cartwright]{dvanhorn:Hsia2005Taming}
+James~I. Hsia, Elspeth Simpson, Daniel Smith, and Robert Cartwright.
+\newblock Taming java for the classroom.
+\newblock \emph{SIGCSE Bull.}, 37\penalty0 (1):\penalty0 327--331, 2005.
+\newblock \doi{10.1145/1047124.1047459}.
+
+\bibitem[Kaufmann et~al.(2000)Kaufmann, Moore, and
+  Manolios]{dvanhorn:Kaufmann2000ComputerAided}
+Matt Kaufmann, J.~Strother Moore, and Panagiotis Manolios.
+\newblock \emph{{Computer-Aided} Reasoning: An Approach}.
+\newblock Kluwer Academic Publishers, 2000.
+
+\bibitem[K{\"{o}}lling et~al.(2003)K{\"{o}}lling, Quig, Patterson, and
+  Rosenberg]{dvanhorn:Kolling2003}
+Michael K{\"{o}}lling, Bruce Quig, Andrew Patterson, and John Rosenberg.
+\newblock The {BlueJ} system and its pedagogy.
+\newblock \emph{Journal of Computer Science Education}, 13\penalty0 (4), 2003.
+
+\bibitem[Pfennig(2011)]{local:c0}
+Frank Pfennig.
+\newblock C0 reference, 2011.
+\newblock URL \url{http://c0.typesafety.net/doc/c0-reference.pdf}.
+
+\bibitem[Proulx(2012)]{local:java-world}
+Viera~K. Proulx.
+\newblock Javalib, 2012.
+\newblock URL \url{http://www.ccs.neu.edu/javalib/}.
+
+\bibitem[Proulx and Gray(2006)]{dvanhorn:Proulx2006Design}
+Viera~K. Proulx and Kathryn~E. Gray.
+\newblock Design of class hierarchies: an introduction to {OO} program design.
+\newblock In \emph{Proceedings of the 37th SIGCSE technical symposium on
+  Computer science education}, SIGCSE '06, pages 288--292. ACM, 2006.
+\newblock \doi{10.1145/1121341.1121431}.
+
+\bibitem[Ragde(2008)]{dvanhorn:Ragde2008Chilling}
+Prabhakar Ragde.
+\newblock The chilling descent: making the transition to a conventional
+  curriculum.
+\newblock In \emph{Proceedings of the 2008 international workshop on Functional
+  and declarative programming in education}, FDPE '08, pages 13--20. ACM, 2008.
+\newblock \doi{10.1145/1411260.1411263}.
+
+\bibitem[Spolsky(2005)]{local:spolsky}
+Joel Spolsky.
+\newblock {The Perils of JavaSchools}, 2005.
+\newblock URL
+  \url{http://www.joelonsoftware.com/articles/ThePerilsofJavaSchools.html}.
+
+\end{thebibliography}
