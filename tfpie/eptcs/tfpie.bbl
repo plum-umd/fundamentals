@@ -1,168 +1,245 @@
-\begin{thebibliography}{23}
-\providecommand{\natexlab}[1]{#1}
+\begin{thebibliography}{10}
+\providecommand{\bibitemdeclare}[2]{}
+\providecommand{\surnamestart}{}
+\providecommand{\surnameend}{}
+\providecommand{\urlprefix}{Available at }
 \providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\providecommand{\href}[2]{\texttt{#2}}
+\providecommand{\urlalt}[2]{\href{#1}{#2}}
+\providecommand{\doi}[1]{doi:\urlalt{http://dx.doi.org/#1}{#1}}
+\providecommand{\bibinfo}[2]{#2}
 
-\bibitem[Abelson and Sussman(1996)]{dvanhorn:sicp}
-Harold Abelson and Gerald~J. Sussman.
-\newblock \emph{Structure and Interpretation of Computer Programs}.
-\newblock MIT Press, 1996.
+\bibitemdeclare{book}{dvanhorn:sicp}
+\bibitem{dvanhorn:sicp}
+\bibinfo{author}{Harold \surnamestart Abelson\surnameend} \&
+  \bibinfo{author}{Gerald~J. \surnamestart Sussman\surnameend}
+  (\bibinfo{year}{1996}): \emph{\bibinfo{title}{Structure and Interpretation of
+  Computer Programs}}.
+\newblock \bibinfo{publisher}{MIT Press}.
 
-\bibitem[Allen et~al.(2002)Allen, Cartwright, and
-  Stoler]{dvanhorn:Allen2002DrJava}
-Eric Allen, Robert Cartwright, and Brian Stoler.
-\newblock {DrJava}: a lightweight pedagogic environment for java.
-\newblock \emph{SIGCSE Bull.}, 34\penalty0 (1):\penalty0 137--141, 2002.
-\newblock \doi{10.1145/563517.563395}.
+\bibitemdeclare{article}{dvanhorn:Allen2002DrJava}
+\bibitem{dvanhorn:Allen2002DrJava}
+\bibinfo{author}{Eric \surnamestart Allen\surnameend}, \bibinfo{author}{Robert
+  \surnamestart Cartwright\surnameend} \& \bibinfo{author}{Brian \surnamestart
+  Stoler\surnameend} (\bibinfo{year}{2002}): \emph{\bibinfo{title}{{DrJava}: a
+  lightweight pedagogic environment for Java}}.
+\newblock {\sl \bibinfo{journal}{SIGCSE Bull.}}
+  \bibinfo{volume}{34}(\bibinfo{number}{1}), pp. \bibinfo{pages}{137--141},
+  \doi{10.1145/563517.563395}.
 
-\bibitem[Alphonce and Ventura(2003)]{dvanhorn:Alphonce2003Using}
-Carl Alphonce and Phil Ventura.
-\newblock Using graphics to support the teaching of fundamental object-oriented
-  principles in {CS1}.
-\newblock In \emph{Companion of the 18th annual ACM SIGPLAN conference on
-  Object-oriented programming, systems, languages, and applications}, OOPSLA
-  '03, pages 156--161. ACM, 2003.
-\newblock \doi{10.1145/949344.949391}.
+\bibitemdeclare{inproceedings}{dvanhorn:Alphonce2003Using}
+\bibitem{dvanhorn:Alphonce2003Using}
+\bibinfo{author}{Carl \surnamestart Alphonce\surnameend} \&
+  \bibinfo{author}{Phil \surnamestart Ventura\surnameend}
+  (\bibinfo{year}{2003}): \emph{\bibinfo{title}{Using graphics to support the
+  teaching of fundamental object-oriented principles in {CS1}}}.
+\newblock In: {\sl \bibinfo{booktitle}{Companion of the 18th annual ACM SIGPLAN
+  conference on Object-oriented programming, systems, languages, and
+  applications}}, \bibinfo{series}{OOPSLA '03}, \bibinfo{publisher}{ACM}, pp.
+  \bibinfo{pages}{156--161}, \doi{10.1145/949344.949391}.
 
-\bibitem[Barland et~al.(2010)Barland, Flatt, and Findler]{local:barland-sfp10}
-Ian Barland, Matthew Flatt, and Robby Findler.
-\newblock The design of a functional image library.
-\newblock In \emph{Workshop on Scheme and Functional Programming (SFP)}, 2010.
+\bibitemdeclare{inproceedings}{local:barland-sfp10}
+\bibitem{local:barland-sfp10}
+\bibinfo{author}{Ian \surnamestart Barland\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend} \&
+  \bibinfo{author}{Robby \surnamestart Findler\surnameend}
+  (\bibinfo{year}{2010}): \emph{\bibinfo{title}{The Design of a Functional
+  Image Library}}.
+\newblock In: {\sl \bibinfo{booktitle}{Workshop on Scheme and Functional
+  Programming (SFP)}}.
 
-\bibitem[Bloch(2000)]{dvanhorn:Bloch2000Scheme}
-Stephen~A. Bloch.
-\newblock Scheme and java in the first year.
-\newblock \emph{J. Comput. Sci. Coll.}, 15\penalty0 (5):\penalty0 157--165,
-  2000.
+\bibitemdeclare{article}{dvanhorn:Bloch2000Scheme}
+\bibitem{dvanhorn:Bloch2000Scheme}
+\bibinfo{author}{Stephen~A. \surnamestart Bloch\surnameend}
+  (\bibinfo{year}{2000}): \emph{\bibinfo{title}{Scheme and Java in the first
+  year}}.
+\newblock {\sl \bibinfo{journal}{J. Comput. Sci. Coll.}}
+  \bibinfo{volume}{15}(\bibinfo{number}{5}), pp. \bibinfo{pages}{157--165}.
 
-\bibitem[Bruce et~al.(2001)Bruce, Danyluk, and
-  Murtagh]{dvanhorn:Bruce2001Library}
-Kim~B. Bruce, Andrea Danyluk, and Thomas Murtagh.
-\newblock A library to support a graphics-based object-first approach to {CS}
-  1.
-\newblock In \emph{Proceedings of the thirty-second SIGCSE technical symposium
-  on Computer Science Education}, volume~33 of \emph{SIGCSE '01}, pages 6--10.
-  ACM, 2001.
-\newblock \doi{10.1145/366413.364527}.
+\bibitemdeclare{inproceedings}{dvanhorn:Bruce2001Library}
+\bibitem{dvanhorn:Bruce2001Library}
+\bibinfo{author}{Kim~B. \surnamestart Bruce\surnameend},
+  \bibinfo{author}{Andrea \surnamestart Danyluk\surnameend} \&
+  \bibinfo{author}{Thomas \surnamestart Murtagh\surnameend}
+  (\bibinfo{year}{2001}): \emph{\bibinfo{title}{A library to support a
+  graphics-based object-first approach to {CS} 1}}.
+\newblock In: {\sl \bibinfo{booktitle}{Proceedings of the thirty-second SIGCSE
+  technical symposium on Computer Science Education}}, {\sl
+  \bibinfo{series}{SIGCSE '01}}~\bibinfo{volume}{33}, \bibinfo{publisher}{ACM},
+  pp. \bibinfo{pages}{6--10}, \doi{10.1145/366413.364527}.
 
-\bibitem[Chakravarty and Keller(2004)]{dvanhorn:Chakravarty2004Risks}
-Manuel M.~T. Chakravarty and Gabriele Keller.
-\newblock The risks and benefits of teaching purely functional programming in
-  first year.
-\newblock \emph{J. Funct. Program.}, 14\penalty0 (1):\penalty0 113--123, 2004.
-\newblock \doi{10.1017/S0956796803004805}.
+\bibitemdeclare{article}{dvanhorn:Chakravarty2004Risks}
+\bibitem{dvanhorn:Chakravarty2004Risks}
+\bibinfo{author}{Manuel M.~T. \surnamestart Chakravarty\surnameend} \&
+  \bibinfo{author}{Gabriele \surnamestart Keller\surnameend}
+  (\bibinfo{year}{2004}): \emph{\bibinfo{title}{The risks and benefits of
+  teaching purely functional programming in first year}}.
+\newblock {\sl \bibinfo{journal}{J. Funct. Program.}}
+  \bibinfo{volume}{14}(\bibinfo{number}{1}), pp. \bibinfo{pages}{113--123},
+  \doi{10.1017/S0956796803004805}.
 
-\bibitem[Felleisen et~al.(2001)Felleisen, Findler, Flatt, and
-  Krishnamurthi]{dvanhorn:Felleisen2001How}
-Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
-  Krishnamurthi.
-\newblock \emph{How to design programs: an introduction to programming and
-  computing}.
-\newblock MIT Press, 2001.
+\bibitemdeclare{book}{dvanhorn:Felleisen2001How}
+\bibitem{dvanhorn:Felleisen2001How}
+\bibinfo{author}{Matthias \surnamestart Felleisen\surnameend},
+  \bibinfo{author}{Robert~B. \surnamestart Findler\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend} \&
+  \bibinfo{author}{Shriram \surnamestart Krishnamurthi\surnameend}
+  (\bibinfo{year}{2001}): \emph{\bibinfo{title}{How to design programs: an
+  introduction to programming and computing}}.
+\newblock \bibinfo{publisher}{MIT Press}.
 
-\bibitem[Felleisen et~al.(2004)Felleisen, Findler, Flatt, and
-  Krishnamurthi]{dvanhorn:Felleisen2004Structure}
-Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
-  Krishnamurthi.
-\newblock The structure and interpretation of the computer science curriculum.
-\newblock \emph{Journal of Functional Programming}, 14\penalty0 (4):\penalty0
-  365--378, 2004.
-\newblock \doi{10.1017/s0956796804005076}.
+\bibitemdeclare{article}{dvanhorn:Felleisen2004Structure}
+\bibitem{dvanhorn:Felleisen2004Structure}
+\bibinfo{author}{Matthias \surnamestart Felleisen\surnameend},
+  \bibinfo{author}{Robert~B. \surnamestart Findler\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend} \&
+  \bibinfo{author}{Shriram \surnamestart Krishnamurthi\surnameend}
+  (\bibinfo{year}{2004}): \emph{\bibinfo{title}{The structure and
+  interpretation of the computer science curriculum}}.
+\newblock {\sl \bibinfo{journal}{Journal of Functional Programming}}
+  \bibinfo{volume}{14}(\bibinfo{number}{4}), pp. \bibinfo{pages}{365--378},
+  \doi{10.1017/s0956796804005076}.
 
-\bibitem[Felleisen et~al.(2009)Felleisen, Findler, Flatt, and
-  Krishnamurthi]{dvanhorn:Felleisen2009Functional}
-Matthias Felleisen, Robert~B. Findler, Matthew Flatt, and Shriram
-  Krishnamurthi.
-\newblock A functional {I/O} system or, fun for freshman kids.
-\newblock In \emph{ICFP '09 Proceedings of the 14th ACM SIGPLAN International
-  Conference on Functional programming}, pages 47--58. ACM, 2009.
-\newblock \doi{10.1145/1631687.1596561}.
+\bibitemdeclare{inproceedings}{dvanhorn:Felleisen2009Functional}
+\bibitem{dvanhorn:Felleisen2009Functional}
+\bibinfo{author}{Matthias \surnamestart Felleisen\surnameend},
+  \bibinfo{author}{Robert~B. \surnamestart Findler\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend} \&
+  \bibinfo{author}{Shriram \surnamestart Krishnamurthi\surnameend}
+  (\bibinfo{year}{2009}): \emph{\bibinfo{title}{A functional {I/O} system or,
+  fun for freshman kids}}.
+\newblock In: {\sl \bibinfo{booktitle}{ICFP '09 Proceedings of the 14th ACM
+  SIGPLAN International Conference on Functional programming}},
+  \bibinfo{publisher}{ACM}, pp. \bibinfo{pages}{47--58},
+  \doi{10.1145/1631687.1596561}.
 
-\bibitem[Felleisen et~al.(2012)Felleisen, Flatt, Findler, Gray, Krishnamurthi,
-  and Proulx]{local:htdc}
-Matthias Felleisen, Matthew Flatt, Robert~Bruce Findler, Kathryn~E. Gray,
-  Shriram Krishnamurthi, and Viera~K. Proulx.
-\newblock \emph{How to Design Classes (Draft)}.
-\newblock 2012.
-\newblock URL \url{http://www.ccs.neu.edu/home/matthias/htdc.html}.
+\bibitemdeclare{book}{local:htdc}
+\bibitem{local:htdc}
+\bibinfo{author}{Matthias \surnamestart Felleisen\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend},
+  \bibinfo{author}{Robert~Bruce \surnamestart Findler\surnameend},
+  \bibinfo{author}{Kathryn~E. \surnamestart Gray\surnameend},
+  \bibinfo{author}{Shriram \surnamestart Krishnamurthi\surnameend} \&
+  \bibinfo{author}{Viera~K. \surnamestart Proulx\surnameend}
+  (\bibinfo{year}{2012}): \emph{\bibinfo{title}{How to Design Classes
+  (Draft)}}.
+\newblock \urlprefix\url{http://www.ccs.neu.edu/home/matthias/htdc.html}.
 
-\bibitem[Findler et~al.(2002)Findler, Clements, Flanagan, Flatt, Krishnamurthi,
-  Steckler, and Felleisen]{dvanhorn:Findler2002DrScheme}
-Robert~B. Findler, John Clements, Cormac Flanagan, Matthew Flatt, Shriram
-  Krishnamurthi, Paul Steckler, and Matthias Felleisen.
-\newblock Drscheme: a programming environment for {S}cheme.
-\newblock \emph{JFP}, 12\penalty0 (02):\penalty0 159--182, 2002.
-\newblock \doi{10.1017/s0956796801004208}.
+\bibitemdeclare{article}{dvanhorn:Findler2002DrScheme}
+\bibitem{dvanhorn:Findler2002DrScheme}
+\bibinfo{author}{Robert~B. \surnamestart Findler\surnameend},
+  \bibinfo{author}{John \surnamestart Clements\surnameend},
+  \bibinfo{author}{Cormac \surnamestart Flanagan\surnameend},
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend},
+  \bibinfo{author}{Shriram \surnamestart Krishnamurthi\surnameend},
+  \bibinfo{author}{Paul \surnamestart Steckler\surnameend} \&
+  \bibinfo{author}{Matthias \surnamestart Felleisen\surnameend}
+  (\bibinfo{year}{2002}): \emph{\bibinfo{title}{DrScheme: a programming
+  environment for {S}cheme}}.
+\newblock {\sl \bibinfo{journal}{JFP}}
+  \bibinfo{volume}{12}(\bibinfo{number}{02}), pp. \bibinfo{pages}{159--182},
+  \doi{10.1017/s0956796801004208}.
 
-\bibitem[Gamma et~al.(1994)Gamma, Helm, Johnson, and Vlissides]{samth:GOF}
-Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
-\newblock \emph{Design Patterns: Elements of Reusable {Object-Oriented}
-  Software}.
-\newblock Addison Wesley, 1994.
+\bibitemdeclare{book}{samth:GOF}
+\bibitem{samth:GOF}
+\bibinfo{author}{Erich \surnamestart Gamma\surnameend},
+  \bibinfo{author}{Richard \surnamestart Helm\surnameend},
+  \bibinfo{author}{Ralph \surnamestart Johnson\surnameend} \&
+  \bibinfo{author}{John \surnamestart Vlissides\surnameend}
+  (\bibinfo{year}{1994}): \emph{\bibinfo{title}{Design Patterns: Elements of
+  Reusable {Object-Oriented} Software}}.
+\newblock \bibinfo{publisher}{Addison Wesley}.
 
-\bibitem[Gray and Felleisen(2007)]{local:check-expect}
-Kathryn~E. Gray and Matthias Felleisen.
-\newblock Linguistic support for unit tests.
-\newblock Technical Report UUCS-07-013, University of Utah, 2007.
+\bibitemdeclare{techreport}{local:check-expect}
+\bibitem{local:check-expect}
+\bibinfo{author}{Kathryn~E. \surnamestart Gray\surnameend} \&
+  \bibinfo{author}{Matthias \surnamestart Felleisen\surnameend}
+  (\bibinfo{year}{2007}): \emph{\bibinfo{title}{Linguistic Support for Unit
+  Tests}}.
+\newblock \bibinfo{type}{Technical Report} \bibinfo{number}{UUCS-07-013},
+  \bibinfo{institution}{University of Utah}.
 
-\bibitem[Gray and Flatt(2003)]{dvanhorn:Gray2003ProfessorJ}
-Kathryn~E. Gray and Matthew Flatt.
-\newblock {ProfessorJ}: a gradual introduction to java through language levels.
-\newblock In \emph{Companion of the 18th annual ACM SIGPLAN conference on
-  Object-oriented programming, systems, languages, and applications}, OOPSLA
-  '03, pages 170--177. ACM, 2003.
-\newblock \doi{10.1145/949344.949394}.
+\bibitemdeclare{inproceedings}{dvanhorn:Gray2003ProfessorJ}
+\bibitem{dvanhorn:Gray2003ProfessorJ}
+\bibinfo{author}{Kathryn~E. \surnamestart Gray\surnameend} \&
+  \bibinfo{author}{Matthew \surnamestart Flatt\surnameend}
+  (\bibinfo{year}{2003}): \emph{\bibinfo{title}{{ProfessorJ}: a gradual
+  introduction to Java through language levels}}.
+\newblock In: {\sl \bibinfo{booktitle}{Companion of the 18th annual ACM SIGPLAN
+  conference on Object-oriented programming, systems, languages, and
+  applications}}, \bibinfo{series}{OOPSLA '03}, \bibinfo{publisher}{ACM}, pp.
+  \bibinfo{pages}{170--177}, \doi{10.1145/949344.949394}.
 
-\bibitem[Hsia et~al.(2005)Hsia, Simpson, Smith, and
-  Cartwright]{dvanhorn:Hsia2005Taming}
-James~I. Hsia, Elspeth Simpson, Daniel Smith, and Robert Cartwright.
-\newblock Taming java for the classroom.
-\newblock \emph{SIGCSE Bull.}, 37\penalty0 (1):\penalty0 327--331, 2005.
-\newblock \doi{10.1145/1047124.1047459}.
+\bibitemdeclare{article}{dvanhorn:Hsia2005Taming}
+\bibitem{dvanhorn:Hsia2005Taming}
+\bibinfo{author}{James~I. \surnamestart Hsia\surnameend},
+  \bibinfo{author}{Elspeth \surnamestart Simpson\surnameend},
+  \bibinfo{author}{Daniel \surnamestart Smith\surnameend} \&
+  \bibinfo{author}{Robert \surnamestart Cartwright\surnameend}
+  (\bibinfo{year}{2005}): \emph{\bibinfo{title}{Taming Java for the
+  classroom}}.
+\newblock {\sl \bibinfo{journal}{SIGCSE Bull.}}
+  \bibinfo{volume}{37}(\bibinfo{number}{1}), pp. \bibinfo{pages}{327--331},
+  \doi{10.1145/1047124.1047459}.
 
-\bibitem[Kaufmann et~al.(2000)Kaufmann, Moore, and
-  Manolios]{dvanhorn:Kaufmann2000ComputerAided}
-Matt Kaufmann, J.~Strother Moore, and Panagiotis Manolios.
-\newblock \emph{{Computer-Aided} Reasoning: An Approach}.
-\newblock Kluwer Academic Publishers, 2000.
+\bibitemdeclare{book}{dvanhorn:Kaufmann2000ComputerAided}
+\bibitem{dvanhorn:Kaufmann2000ComputerAided}
+\bibinfo{author}{Matt \surnamestart Kaufmann\surnameend},
+  \bibinfo{author}{J.~Strother \surnamestart Moore\surnameend} \&
+  \bibinfo{author}{Panagiotis \surnamestart Manolios\surnameend}
+  (\bibinfo{year}{2000}): \emph{\bibinfo{title}{{Computer-Aided} Reasoning: An
+  Approach}}.
+\newblock \bibinfo{publisher}{Kluwer Academic Publishers}.
 
-\bibitem[K{\"{o}}lling et~al.(2003)K{\"{o}}lling, Quig, Patterson, and
-  Rosenberg]{dvanhorn:Kolling2003}
-Michael K{\"{o}}lling, Bruce Quig, Andrew Patterson, and John Rosenberg.
-\newblock The {BlueJ} system and its pedagogy.
-\newblock \emph{Journal of Computer Science Education}, 13\penalty0 (4), 2003.
+\bibitemdeclare{article}{dvanhorn:Kolling2003}
+\bibitem{dvanhorn:Kolling2003}
+\bibinfo{author}{Michael \surnamestart K{\"{o}}lling\surnameend},
+  \bibinfo{author}{Bruce \surnamestart Quig\surnameend},
+  \bibinfo{author}{Andrew \surnamestart Patterson\surnameend} \&
+  \bibinfo{author}{John \surnamestart Rosenberg\surnameend}
+  (\bibinfo{year}{2003}): \emph{\bibinfo{title}{The {BlueJ} system and its
+  pedagogy}}.
+\newblock {\sl \bibinfo{journal}{Journal of Computer Science Education}}
+  \bibinfo{volume}{13}(\bibinfo{number}{4}).
 
-\bibitem[Pfennig(2011)]{local:c0}
-Frank Pfennig.
-\newblock C0 reference, 2011.
-\newblock URL \url{http://c0.typesafety.net/doc/c0-reference.pdf}.
+\bibitemdeclare{misc}{local:c0}
+\bibitem{local:c0}
+\bibinfo{author}{Frank \surnamestart Pfennig\surnameend}
+  (\bibinfo{year}{2011}): \emph{\bibinfo{title}{C0 Reference}}.
+\newblock \urlprefix\url{http://c0.typesafety.net/doc/c0-reference.pdf}.
 
-\bibitem[Proulx(2012)]{local:java-world}
-Viera~K. Proulx.
-\newblock Javalib, 2012.
-\newblock URL \url{http://www.ccs.neu.edu/javalib/}.
+\bibitemdeclare{misc}{local:java-world}
+\bibitem{local:java-world}
+\bibinfo{author}{Viera~K. \surnamestart Proulx\surnameend}
+  (\bibinfo{year}{2012}): \emph{\bibinfo{title}{JavaLib}}.
+\newblock \urlprefix\url{http://www.ccs.neu.edu/javalib/}.
 
-\bibitem[Proulx and Gray(2006)]{dvanhorn:Proulx2006Design}
-Viera~K. Proulx and Kathryn~E. Gray.
-\newblock Design of class hierarchies: an introduction to {OO} program design.
-\newblock In \emph{Proceedings of the 37th SIGCSE technical symposium on
-  Computer science education}, SIGCSE '06, pages 288--292. ACM, 2006.
-\newblock \doi{10.1145/1121341.1121431}.
+\bibitemdeclare{inproceedings}{dvanhorn:Proulx2006Design}
+\bibitem{dvanhorn:Proulx2006Design}
+\bibinfo{author}{Viera~K. \surnamestart Proulx\surnameend} \&
+  \bibinfo{author}{Kathryn~E. \surnamestart Gray\surnameend}
+  (\bibinfo{year}{2006}): \emph{\bibinfo{title}{Design of class hierarchies: an
+  introduction to {OO} program design}}.
+\newblock In: {\sl \bibinfo{booktitle}{Proceedings of the 37th SIGCSE technical
+  symposium on Computer science education}}, \bibinfo{series}{SIGCSE '06},
+  \bibinfo{publisher}{ACM}, pp. \bibinfo{pages}{288--292},
+  \doi{10.1145/1121341.1121431}.
 
-\bibitem[Ragde(2008)]{dvanhorn:Ragde2008Chilling}
-Prabhakar Ragde.
-\newblock The chilling descent: making the transition to a conventional
-  curriculum.
-\newblock In \emph{Proceedings of the 2008 international workshop on Functional
-  and declarative programming in education}, FDPE '08, pages 13--20. ACM, 2008.
-\newblock \doi{10.1145/1411260.1411263}.
+\bibitemdeclare{inproceedings}{dvanhorn:Ragde2008Chilling}
+\bibitem{dvanhorn:Ragde2008Chilling}
+\bibinfo{author}{Prabhakar \surnamestart Ragde\surnameend}
+  (\bibinfo{year}{2008}): \emph{\bibinfo{title}{The chilling descent: making
+  the transition to a conventional curriculum}}.
+\newblock In: {\sl \bibinfo{booktitle}{Proceedings of the 2008 international
+  workshop on Functional and declarative programming in education}},
+  \bibinfo{series}{FDPE '08}, \bibinfo{publisher}{ACM}, pp.
+  \bibinfo{pages}{13--20}, \doi{10.1145/1411260.1411263}.
 
-\bibitem[Spolsky(2005)]{local:spolsky}
-Joel Spolsky.
-\newblock {The Perils of JavaSchools}, 2005.
-\newblock URL
-  \url{http://www.joelonsoftware.com/articles/ThePerilsofJavaSchools.html}.
+\bibitemdeclare{misc}{local:spolsky}
+\bibitem{local:spolsky}
+\bibinfo{author}{Joel \surnamestart Spolsky\surnameend} (\bibinfo{year}{2005}):
+  \emph{\bibinfo{title}{{The Perils of JavaSchools}}}.
+\newblock
+  \urlprefix\url{http://www.joelonsoftware.com/articles/ThePerilsofJavaSchools.html}.
 
 \end{thebibliography}
