@@ -1,5 +1,5 @@
-course = cmsc198
-course_group = cmsc198fa17
+course = cmsc131A
+course_group = cmsc131Afa17
 course_term = fall2017
 site_loc = /fs/www/class/$(course_term)
 
