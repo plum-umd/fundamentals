@@ -8,7 +8,7 @@
                      (decode-flow strs)))
 
 @(define year "2017")
-@(define courseno "CMSC 198")
+@(define courseno "CMSC 131A")
 
 @title[@courseno]{: Systematic Program Design I}
 
@@ -29,7 +29,7 @@ design: ``an approach to the creation of software that relies on
 systematic thought, planning, and understanding from the very
 beginning, at every stage and for every step''
 (@hyperlink["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_preface.html"]{HtDP/2e,
-Preface}).  While taking this course will not make you a great
+Preface}).  While taking this course will @emph{not} make you a great
 programmer, you cannot become a great programmer without mastering
 these skills.  More importantly, even if you never program again, a
 student of design ``will still pick up universally useful
@@ -42,6 +42,15 @@ students will design and implement several related languages, and will
 explore parsing, syntax querying, dataflow analysis, compilation to
 bytecode, type systems, and language interoperation.
 
+@bold{Assumptions:} This course makes no assumptions about your past
+programming experience.  If you've never programmed before, you're in
+good shape.  If you have programmed before, chances are it won't help.
+Having a good grasp of basic (grade-school) mathematics and the
+willingness and discipline to learn something new is all we assume.
+
+@bold{Disclaimer:} All information on this web page is tentative and
+subject to change until the start of the semester.
+
 @(define (bldg abbr)
    (link (string-append "http://www.umd.edu/CampusMaps/bld_detail.cfm?bld_code=" abbr) abbr))
 @(define AVW "AVW")
@@ -52,17 +61,21 @@ bytecode, type systems, and language interoperation.
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")} @bold{Office Hours})
 	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{TBD})
-         (list "Nicholas Labich" @elem{4103 @AVW} "labichn" @elem{TBD}))]
+         (list "Nicholas Labich" @elem{4103 @AVW} "labichn" @elem{TBD})
+         (list "Cameron Moy" @elem{??? @AVW} "cmoy" @elem{TBD})
+         (list "Austin Bourgerie" @elem{??? @AVW} "austinb" @elem{TBD})
+         (list "Thomas Harris" @elem{??? @AVW} "tharris" @elem{TBD}))]
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
 	 #:row-properties '(top)
-		 (list (list @bold{Location} @elem{TBD})
-	       (list @bold{Time} @elem{TBD})
-	       (list @bold{Midterm 1} "TBD, in class")
-	       (list @bold{Midterm 2} "TBD, in class")
+		 (list (list @bold{Location} @elem{1115 @CSI})
+	       (list @bold{Time} @elem{MWF 11:00am--11:50am})
+	       (list @bold{Midterm 1} "Oct 2, in class")
+	       (list @bold{Midterm 2} "Nov 6, in class")
+               (list @bold{Final exam} "TBD by Registrar")
 	       ;(list @nonbreaking{@bold{Final Exam}} @elem{@link["http://www.registrar.umd.edu/current/registration/exam%20tables%20spring.html"]{Monday, May 16, 10:30-12:30pm}, 1122 CSI})
-	       (list @bold{Textbooks} @elem{@emph{How to Design Programs}, Felleisen, et al.}))]
+	       (list @bold{Textbooks} @elem{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
 
 @;include-section{schedule.scrbl}
 
@@ -88,7 +101,7 @@ email system.
 @;include-section{resources.scrbl}
 
 @;include-section{texts.scrbl}
-@;include-section{schedule.scrbl}
+@include-section{schedule.scrbl}
 @;include-section{research-project.scrbl}
 @;include-section{problem-sets.scrbl}
 @;include-section{blog.scrbl}

@@ -1,0 +1,60 @@
+#lang scribble/manual
+@(require scribble/core racket/list)
+
+@title[#:style 'unnumbered]{Schedule}
+
+@(define (d s) (nonbreaking (bold s)))
+
+@tabular[#:style 'boxed
+	 #:sep @hspace[1] 
+	 #:row-properties '(bottom-border)
+	 (list (list @bold{Date} @bold{Topic})
+	       (list @d{Aug 28} @elem{TBD})
+	       (list @d{Aug 30} @elem{TBD})
+	       (list @d{Sep 1} @elem{TBD})
+	       (list @d{Sep 4} @elem{@emph{Labor Day, no class}})
+	       (list @d{Sep 6} @elem{TBD})
+	       (list @d{Sep 8} @elem{TBD})
+	       (list @d{Sep 11} @elem{TBD})
+	       (list @d{Sep 13} @elem{TBD})
+	       (list @d{Sep 15} @elem{TBD})
+	       (list @d{Sep 18} @elem{TBD})
+	       (list @d{Sep 20} @elem{TBD})
+	       (list @d{Sep 22} @elem{TBD})
+	       (list @d{Sep 25} @elem{TBD})
+	       (list @d{Sep 27} @elem{TBD})
+	       (list @d{Sep 29} @elem{TBD})
+	       (list @d{Oct 2} @elem{@bold{Midterm 1}})
+	       (list @d{Oct 4} @elem{TBD})
+	       (list @d{Oct 6} @elem{TBD})
+	       (list @d{Oct 9} @elem{TBD})
+	       (list @d{Oct 11} @elem{TBD})
+	       (list @d{Oct 13} @elem{TBD})
+	       (list @d{Oct 16} @elem{TBD})
+	       (list @d{Oct 18} @elem{TBD})
+	       (list @d{Oct 20} @elem{TBD})
+	       (list @d{Oct 23} @elem{TBD})
+	       (list @d{Oct 25} @elem{TBD})
+	       (list @d{Oct 27} @elem{TBD})
+	       (list @d{Oct 30} @elem{TBD})
+	       (list @d{Nov 1} @elem{TBD})
+	       (list @d{Nov 3} @elem{TBD})
+	       (list @d{Nov 6} @elem{@bold{Midterm 2}})
+	       (list @d{Nov 8} @elem{TBD})
+	       (list @d{Nov 10} @elem{TBD})
+	       (list @d{Nov 13} @elem{TBD})
+	       (list @d{Nov 15} @elem{TBD})
+	       (list @d{Nov 17} @elem{TBD})
+	       (list @d{Nov 20} @elem{TBD})
+	       (list @d{Nov 22} @elem{@emph{Thanksgiving break, no class}})
+	       (list @d{Nov 24} @elem{@emph{Thanksgiving break, no class}})
+	       (list @d{Nov 27} @elem{TBD})
+	       (list @d{Nov 29} @elem{TBD})
+	       (list @d{Dec 1} @elem{TBD})
+	       (list @d{Dec 4} @elem{TBD})
+	       (list @d{Dec 6} @elem{TBD})
+	       (list @d{Dec 8} @elem{TBD})
+	       (list @d{Dec 11} @elem{TBD}))]
+
+
+
