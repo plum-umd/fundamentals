@@ -12,5 +12,5 @@ all:
 push:
 	find $(course) -type d -exec chmod 775 {} \;
 	find $(course) -type f -exec chmod 664 {} \;
-	rsync -rvzp cmsc198 umd:$(site_loc)
+	rsync -rvzp cmsc131A umd:$(site_loc)
 	ssh umd "chown -R :$(course_group) $(site_loc)/$(course)/*"
