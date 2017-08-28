@@ -4,7 +4,7 @@
   (elem #:style (style #f (list (color-property c)))
         content))
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab1"]{Lab 1: Getting Started}
+@title[#:style 'unnumbered #:tag "lab1"]{Lab 1: Getting Started}
 
 @section[#:style 'unnumbered #:tag "lab1:intro"]{Introduction(s)}
 
@@ -70,26 +70,21 @@ went wrong. Try to fix the problem.
 
 @section[#:tag "lab1:ex"]{Finger exercises}
 
-@larger{@bold{Ex 1}}: Define a function @tt{what-temp} that consumes a number
-(in degrees Fahrenheit) and produces one of three strings: "cold" for cold
-temperatures (say, less than 45), "hot" for hot temperatures (at or greater than
-75), and "comfy" for anything in between.
+@larger{@bold{Ex 1}}: Define a function @tt{how-long-at-60-mph} that, when given
+a number that represents distance in miles, will return the time (in hours) it
+takes to travel that distance when going 60 MPH. Write your function in the
+@italic{definitions window}, click Run, then use the @italic{interactions
+window} to test your function.
+
+@larger{@bold{Ex 2}}: Define a function @tt{how-far-at-70-mph} that, when given
+a number representing time in minutes, will return the distance traveled when
+going 70 MPH, rounding up to whole miles.
 
 @bold{@colorize["red"]{Hint}}: If you don't know how to perform some particular
 calculation, search the docs! If you can't find it in the docs, ask a TA (and
 show them what you searched for in the docs).
 
-@larger{@bold{Ex 2}}: Some international students (or just anyone tired of the
-Imperial system) may prefer to use Celsius for their input temperatures. Define
-a function @tt{celsius->fahrenheit} that converts a number from degrees Celsius
-to degrees Fahrenheit. Search for the conversion online if you don't know it
-off-hand.
-
-@larger{@bold{Ex 3}}: Define a function @tt{what-temp/celsius} that takes in a
-number (in degrees Celsius) and returns the same three strings as in Ex 1 for
-the appropriate temperature ranges.
-
-@larger{@bold{Ex 4}}: Swap @bold{Head} and @bold{Hands}!
+@larger{@bold{Ex 3}}: Swap @bold{Head} and @bold{Hands}!
 
 When you program, you encounter three kinds of errors:
 @itemlist[
@@ -104,11 +99,14 @@ When you program, you encounter three kinds of errors:
 ]
 
 Define three variants of the function from @bold{Ex 2}:
-@tt{celsius->fahrenheit/{syntax,run-time,logical}}, each of which demonstrates a
-different kind of error. Comment the functions out once you're done.
+@tt{how-far-at-70-mph/{syntax,run-time,logical}}, each of which demonstrates a
+different kind of error. Comment out the functions once you're done.
 
-@larger{@bold{Ex 5}}: Add the 2htdp/image teachpack to the current language in
-DrRacket (under the Language menu). Hit <Run> to load the teachpack.
+@larger{@bold{Ex 4}}: Add the following expression at the top of your definitions window:
+@racketblock[(require 2htdp/image)]
+
+The @tt{require} form lets you use external library definitions in your
+code. Hit <Run> after adding the @tt{require} to load the image library.
 
 Find a picture of your favorite animal on the internet (talking to you,
 @bold{Head}). Copy and paste it into DrRacket's @italic{definitions window} and
@@ -119,12 +117,9 @@ Draw a frame with a green border around your picture of Chip. As always, the
 if you don't know what functions to use to, for example, make a
 @link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._rectangle%29%29"]{@tt{rectangle}}
 or
-@link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29"]{place-image}s
+@link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29"]{@tt{place-image}}s
 on one another.
 
-@larger{@bold{Ex 6}}: Define a function @tt{in-a-mood} that places Chip on
-backgrounds of different colors based on Chip's mood. You can use whatever you
-want to describe the mood, like a number from 0 to 100 if Chip's a bit
-one-dimensional, or a more descriptive string input like "happy", "hungry", or
-"lachrymose". Whatever you choose, make sure you describe acceptable inputs
-above the function in a comment.
+@larger{@bold{Ex 6}}: Define a function @tt{in-a-frame} that given a string
+color (like "red", "blue", "green") places Chip on a frame of that
+color.
