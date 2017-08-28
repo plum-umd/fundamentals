@@ -100,7 +100,7 @@ subject to change until the start of the semester.
 
 @section[#:style 'unnumbered]{Piazza}
 
-All announcements will be made on @link["http://piazza.com/umd/spring2017/cmsc430"]{Piazza}.  Please sign-up at the start of the semester.
+All announcements will be made on @link["http://piazza.com/umd/fall2017/cmsc131a"]{Piazza}.  Please sign-up at the start of the semester.
 
 Emergency announcement such as last-minute class cancelations (which
 should not happen often), will also be announced via the university
@@ -116,8 +116,8 @@ All grades will be posted on the Grades server.
 
 @url[(string-append "http://submit.cs.umd.edu/spring" year)]
 
-@;include-section{projects.scrbl}
-@;include-section{homeworks.scrbl}
+@include-section{assignments.scrbl}
+
 @;include-section{resources.scrbl}
 @;include-section{research-project.scrbl}
 @;include-section{problem-sets.scrbl}
