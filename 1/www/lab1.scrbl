@@ -104,7 +104,7 @@ When you program, you encounter three kinds of errors:
 ]
 
 Define three variants of the function from @bold{Ex 2}:
-@tt{fahrenheit->celsius/{syntax,run-time,logical}}, each of which demonstrates a
+@tt{celsius->fahrenheit/{syntax,run-time,logical}}, each of which demonstrates a
 different kind of error. Comment the functions out once you're done.
 
 @larger{@bold{Ex 5}}: Add the 2htdp/image teachpack to the current language in
