@@ -75,7 +75,7 @@ subject to change until the start of the semester.
          #:row-properties '(bottom-border ())
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")} @bold{Office Hours})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{1-3pm, Mon})
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{2-4pm, Mon})
          (list "Nicholas Labich" @elem{1112 @AVW} "labichn" @elem{2-4pm, Fri})
          (list "Samuel Barham" @elem{1112 @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
          (list "Cameron Moy" @elem{1112 @AVW} "camoy" @elem{1-3pm, Thurs})
