@@ -44,9 +44,11 @@ use at the beginning of each lab and problem set.
 (Note: if you change the language, you'll have to hit the <Run> button for it to
 take effect.)
 
-Next, find the documentation for the BSL. (Hint: check the Help menu.) You
-should get comfortable searching and reading the documentation for anything you
-need to know about the language and its libraries.
+Next, look at the
+@link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{documentation for
+the BSL}. (Hint: also check the Help menu.) You should get comfortable searching
+and reading the documentation for anything you need to know about the language
+and its libraries.
 
 Locate the @italic{definitions window} and the @italic{interactions window}
 
