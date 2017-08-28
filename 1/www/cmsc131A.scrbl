@@ -76,11 +76,11 @@ subject to change until the start of the semester.
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")} @bold{Office Hours})
 	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{1-3pm, Mon})
-         (list "Nicholas Labich" @elem{4103 @AVW} "labichn" @elem{2-4pm, Fri})
-         (list "Samuel Barham" @elem{??? @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
-         (list "Cameron Moy" @elem{1120 @AVW} "camoy" @elem{1-3pm, Thurs})
-         (list "Austin Bourgerie" @elem{1120 @AVW} "abourg" @elem{12-2pm, Fri})
-         (list "Thomas Harris" @elem{1120 @AVW} "tharris" @elem{10-11am, Mon, Wed}))]
+         (list "Nicholas Labich" @elem{1112 @AVW} "labichn" @elem{2-4pm, Fri})
+         (list "Samuel Barham" @elem{1112 @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
+         (list "Cameron Moy" @elem{1112 @AVW} "camoy" @elem{1-3pm, Thurs})
+         (list "Austin Bourgerie" @elem{1112 @AVW} "abourg" @elem{12-2pm, Fri})
+         (list "Thomas Harris" @elem{1112 @AVW} "tharris" @elem{10-11am, Mon, Wed}))]
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
