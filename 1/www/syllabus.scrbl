@@ -71,7 +71,9 @@ percentages:
 
 @section{Problem Sets}
 
-TBD.
+There will be weekly problem sets, due Fridays at 11:59pm EST.  All
+problem sets are done with assigned pairs and submitted using the
+submit server.
 
 @section{Clicker Quizzes}
 
