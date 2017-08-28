@@ -95,6 +95,7 @@ subject to change until the start of the semester.
 @include-section{syllabus.scrbl}
 @include-section{texts.scrbl}
 @include-section{schedule.scrbl}
+@include-section{labs.scrbl}
 
 @section[#:style 'unnumbered]{Piazza}
 
