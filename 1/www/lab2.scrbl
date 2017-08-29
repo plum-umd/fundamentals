@@ -4,7 +4,7 @@
   (elem #:style (style #f (list (color-property c)))
         content))
 
-@title[#:style 'unnumbered #:tag "lab2"]{Lab 2: Text and Images}
+@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab2"]{Lab 2: Text and Images}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
