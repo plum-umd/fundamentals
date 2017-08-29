@@ -122,6 +122,6 @@ or
 @link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29"]{@tt{place-image}}s
 on one another.
 
-@larger{@bold{Ex 6}}: Define a function @tt{in-a-frame} that given a string
+@larger{@bold{Ex 5}}: Define a function @tt{in-a-frame} that given a string
 color (like "red", "blue", "green") places Chip on a frame of that
 color.
