@@ -8,3 +8,4 @@ in lectures with helpful assistants around.
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section{lab1.scrbl}
+@include-section{lab2.scrbl}
