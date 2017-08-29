@@ -75,12 +75,12 @@ subject to change until the start of the semester.
          #:row-properties '(bottom-border ())
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")} @bold{Office Hours})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{1-3pm, Mon})
-         (list "Nicholas Labich" @elem{4103 @AVW} "labichn" @elem{2-4pm, Fri})
-         (list "Samuel Barham" @elem{??? @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
-         (list "Cameron Moy" @elem{1120 @AVW} "camoy" @elem{1-3pm, Thurs})
-         (list "Austin Bourgerie" @elem{1120 @AVW} "abourg" @elem{12-2pm, Fri})
-         (list "Thomas Harris" @elem{1120 @AVW} "tharris" @elem{10-11am, Mon, Wed}))]
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{2-4pm, Mon})
+         (list "Nicholas Labich" @elem{1112 @AVW} "labichn" @elem{2-4pm, Fri})
+         (list "Samuel Barham" @elem{1112 @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
+         (list "Cameron Moy" @elem{1112 @AVW} "camoy" @elem{1-3pm, Thurs})
+         (list "Austin Bourgerie" @elem{1112 @AVW} "abourg" @elem{12-2pm, Fri})
+         (list "Thomas Harris" @elem{1112 @AVW} "tharris" @elem{10-11am, Mon, Wed}))]
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
@@ -100,7 +100,7 @@ subject to change until the start of the semester.
 
 @section[#:style 'unnumbered]{Piazza}
 
-All announcements will be made on @link["http://piazza.com/umd/spring2017/cmsc430"]{Piazza}.  Please sign-up at the start of the semester.
+All announcements will be made on @link["http://piazza.com/umd/fall2017/cmsc131a"]{Piazza}.  Please sign-up at the start of the semester.
 
 Emergency announcement such as last-minute class cancelations (which
 should not happen often), will also be announced via the university
@@ -116,8 +116,8 @@ All grades will be posted on the Grades server.
 
 @url[(string-append "http://submit.cs.umd.edu/spring" year)]
 
-@;include-section{projects.scrbl}
-@;include-section{homeworks.scrbl}
+@include-section{assignments.scrbl}
+
 @;include-section{resources.scrbl}
 @;include-section{research-project.scrbl}
 @;include-section{problem-sets.scrbl}

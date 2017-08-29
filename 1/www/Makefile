@@ -7,7 +7,10 @@ site_loc = /fs/www/class/$(course_term)
 
 all:
 	rm -rf $(course)
-	scribble --htmls ++style extra.css $(course).scrbl
+	scribble --htmls ++style extra.css \
+		++xref-in setup/xref load-collections-xref \
+		--redirect-main http://docs.racket-lang.org/ \
+		$(course).scrbl
 
 push:
 	find $(course) -type d -exec chmod 775 {} \;
