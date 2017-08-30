@@ -117,6 +117,7 @@ All grades will be posted on the Grades server.
 @url[(string-append "http://submit.cs.umd.edu/spring" year)]
 
 @include-section{assignments.scrbl}
+@include-section{notes.scrbl}
 
 @;include-section{resources.scrbl}
 @;include-section{research-project.scrbl}
