@@ -30,9 +30,12 @@ string name of some person and a string slogan, returns a string with a
 personalized slogan such as:
 
 @itemlist[
-  @item{Hungry for Milk, Jerry}
-  @item{Think Dissimilar, Michele}
-  @item{Can You Hear Me Presently? Good, Patrick}
+  @item{@verbatim{(greet-tracked-person "Jerry" "Hungry for Milk")
+; => "Hungry for Milk, Jerry"}}
+  @item{@verbatim{(greet-tracked-person "Michele" "Think Dissimilar")
+; => "Think Dissimilar, Michele"}}
+  @item{@verbatim{(greet-tracked-person "Patrick" "Can You Hear Me Presently? Good")
+; => "Can You Hear Me Presently? Good, Patrick"}}
 ]
 
 You may find the function
