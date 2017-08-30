@@ -11,6 +11,8 @@ all:
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl
+	cp eclipse.rkt cmsc131A/
+	cp distance.rkt cmsc131A/
 
 push:
 	find $(course) -type d -exec chmod 775 {} \;
