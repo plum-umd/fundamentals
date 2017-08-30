@@ -114,7 +114,7 @@ All grades will be posted on the Grades server.
 
 @section[#:style 'unnumbered]{Submit Server}
 
-@url[(string-append "http://submit.cs.umd.edu/spring" year)]
+@url[(string-append "http://submit.cs.umd.edu/" semester year)]
 
 @include-section{assignments.scrbl}
 
