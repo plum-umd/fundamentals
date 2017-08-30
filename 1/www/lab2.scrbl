@@ -4,7 +4,7 @@
   (elem #:style (style #f (list (color-property c)))
         content))
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab2"]{Lab 2: Text and Images}
+@title[#:style 'unnumbered #:tag "lab2"]{Lab 2: Text and Images}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -40,14 +40,7 @@ You may find the function
 useful. Test your function with
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28form._%28%28lib._lang%2Fhtdp-beginner..rkt%29._check-expect%29%29"]{@tt{check-expect}}.
 
-
-@larger{@bold{Ex 2}}: Some slogans are just too long, so define a new function
-@tt{no-more-than-32} that, given a string, returns that string with no more than
-the first 32 characters. One of the
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28part._htdp-beginner._.Strings%29"]{BSL
-string operations} may provide a simple way to do this.
-
-@larger{@bold{Ex 3}}: Strings and images are different types of values and we
+@larger{@bold{Ex 2}}: Strings and images are different types of values and we
 want both in our advertisements. Write a function @tt{big-and-red} that, given
 some string @tt{str}, returns an image of @tt{str} colored red and in a 64pt
 font of your choice.
@@ -60,6 +53,19 @@ for @tt{string->image} and give up if you see no results, look for a function
 that takes in a string a returns an image. Test it out, and if it's not what you
 need, keep looking!
 @;You can convert strings to images with the @link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._text%29%29"]{@tt{text}} function provided by the image library.
+
+
+@larger{@bold{@colorize["red"]{Bonus}}}: Some slogans are just too long, so
+define a new function @tt{no-more-than-32} that, given a string, returns that
+string with no more than the first 32 characters. One of the
+@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28part._htdp-beginner._.Strings%29"]{BSL
+string operations} provides a simple way to do this for strings at least 32
+characters long, but may not work for shorter strings. A clever use of
+@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._min%29%29"]{@tt{min}}
+and
+@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-length%29%29"]{@tt{string-length}}
+will let you solve this without resorting to @tt{cond}, which we'll use in the
+future.
 
 
 @section[#:style 'unnumbered #:tag "lab2:image"]{Images}
