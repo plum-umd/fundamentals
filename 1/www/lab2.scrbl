@@ -68,22 +68,22 @@ will let you solve this without resorting to @tt{cond}, which we'll use in the
 future.
 
 
-@section[#:style 'unnumbered #:tag "lab2:image"]{Images}
+@section[#:style 'unnumbered #:tag "lab2:image"]{Text and Images}
 
 Swap @bold{Head} and @bold{Hands}.
 
-@larger{@bold{Ex 4}}: Logos and slogans go hand-in-hand, so define a function
+@larger{@bold{Ex 3}}: Logos and slogans go hand-in-hand, so define a function
 @tt{logo-and-slogan} that, given an image @tt{logo} and a string @tt{slogan},
 returns an image with the logo to the left of the text of the slogan (try to
 make it large and in an obnoxious font). Copy your favorite logos from the
 internet into your definitions window to test your implementation.
 
-@larger{@bold{Ex 5}}: Some companies find that people accidentally overlook even
+@larger{@bold{Ex 4}}: Some companies find that people accidentally overlook even
 their best advertisements. Define a function @tt{four-must-be-better} that,
 given an image, stacks four copies of that image vertically so it can't be
 missed.
 
-@larger{@bold{Ex 6}}: We find the close button in our prototype is too easy to
+@larger{@bold{Ex 5}}: We find the close button in our prototype is too easy to
 click, so we want to change the size of our advertisements dynamically so the
 close button is harder to click. Define a function @tt{on-background-of-width}
 that, given an image and some positive integer @tt{width}, places the image on a
