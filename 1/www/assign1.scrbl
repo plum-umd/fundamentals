@@ -7,7 +7,7 @@
 @title[#:style 'unnumbered #:tag "assign1"]{Assignment 1: Draw an image in DrRacket}
 
 
-@bold{Due}: Friday, September 1, 12:59:59 PM EST.
+@bold{Due}: Friday, September 1, 11:59:59 PM EST.
 
 @(define @Piazza @link["http://piazza.com/umd/fall2017/cmsc131a"]{Piazza})
 
