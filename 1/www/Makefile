@@ -13,6 +13,7 @@ all:
 		$(course).scrbl
 	cp eclipse.rkt cmsc131A/
 	cp distance.rkt cmsc131A/
+	cp fancy-eclipse.rkt cmsc131A/
 
 push:
 	find $(course) -type d -exec chmod 775 {} \;
