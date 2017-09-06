@@ -4,12 +4,13 @@
   (elem #:style (style #f (list (color-property c)))
         content))
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab3"]{Lab 3: Conditional Eval}
+@title[#:style 'unnumbered #:tag "lab3"]{Lab 3: Conditional Eval}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
 Language}. Require the HtDP2e image and universe libraries at the top of your
-definitions: @racketblock[(require 2htdp/image 2htdp/universe)]
+definitions: @racketblock[(require 2htdp/image)
+(require 2htdp/universe)]
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
