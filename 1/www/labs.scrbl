@@ -9,3 +9,4 @@ in lectures with helpful assistants around.
 
 @include-section{lab1.scrbl}
 @include-section{lab2.scrbl}
+@include-section{lab3.scrbl}
