@@ -25,4 +25,12 @@ Code from today's lecture:
 @item{@link["eclipse.rkt"]{eclipse.rkt}}
 ]
 
+@section{September 1, 2017}
 
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=43327ae6-bd37-40ff-90b5-a2b148c6757e"]
+
+Code from today's lecture:
+
+@itemlist[
+@item{@link["fancy-eclipse.rkt"]{fancy-eclipse.rkt}}
+]
