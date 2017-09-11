@@ -34,3 +34,14 @@ Code from today's lecture:
 @itemlist[
 @item{@link["fancy-eclipse.rkt"]{fancy-eclipse.rkt}}
 ]
+
+@section{September 6}
+
+Nick will provide notes soon.
+
+@section{September 8}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=53e3fff7-1313-4bfa-b497-84657608ae2c"]
+
+
+
