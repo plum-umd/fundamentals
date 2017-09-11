@@ -35,13 +35,24 @@ Code from today's lecture:
 @item{@link["fancy-eclipse.rkt"]{fancy-eclipse.rkt}}
 ]
 
-@section{September 6}
+@section{September 6, 2017}
 
 Nick will provide notes soon.
 
-@section{September 8}
+@section{September 8, 2017}
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=53e3fff7-1313-4bfa-b497-84657608ae2c"]
+
+@section{September 11, 2017}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=06890a7d-8455-415f-b292-9d6cfbb52fbd"]
+
+Code from today's lecture:
+
+@itemlist[
+@item{@link["days.rkt"]{days.rkt}}
+@item{@link["traffic.rkt"]{traffic.rkt}}
+]
 
 
 
