@@ -7,6 +7,10 @@
 The following should be completed in cooperation with your assigned
 partner from lab 1. (Partner assignments are listed on Piazza.)
 
+This is the first assignment where you must use the design recipe to
+receive full credit.  You must also follow @secref{style}
+guidelines.
+
 @section{Preparation}
 
 In your @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{textbook} turn to 

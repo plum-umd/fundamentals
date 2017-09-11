@@ -3,7 +3,7 @@
           scribble/example)
 
 
-@title[#:style 'unnumbered]{The Style}
+@title[#:style 'unnumbered #:tag "style"]{The Style}
 
 In addition to following the design recipe, all code must adhere to
 the following basic style guidelines:
