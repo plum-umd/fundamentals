@@ -9,3 +9,4 @@ Assignments should be completed with your assigned partners.
 
 @include-section{assign1.scrbl}
 @include-section{assign2.scrbl}
+@include-section{assign3.scrbl}

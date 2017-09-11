@@ -118,6 +118,7 @@ All grades will be posted on the Grades server.
 
 @include-section{assignments.scrbl}
 @include-section{notes.scrbl}
+@include-section{style.scrbl}
 
 @;include-section{resources.scrbl}
 @;include-section{research-project.scrbl}
