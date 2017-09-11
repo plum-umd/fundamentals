@@ -4,7 +4,7 @@
   (elem #:style (style #f (list (color-property c)))
         content))
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab4"]{Lab 4: Design and Composites}
+@title[#:style 'unnumbered #:tag "lab4"]{Lab 4: Design and Composites}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -68,7 +68,7 @@ A good data definition for posns looks like this:
 ;; x is a Number,
 ;; y is a Number,
 ;; (posn-x (make-posn x y)) => x, and
-;; (posn-y (make-posn x y)) => y
+;; (posn-y (make-posn x y)) => y.
 )
 
 @larger{@bold{Ex 2}}: Design a function @tt{posn-distance} that given two posns,
@@ -82,14 +82,13 @@ should produce a scene with a red circle in the lower left corner.
 Swap @bold{Head} and @bold{Hands}.
 
 @larger{@bold{Ex 4}}: Design a function @tt{in-circle?} that consumes two posns
-and a positive integer @tt{r}. The first posn may be any point, while the second
-represents the center of a circle with the radius @tt{r}. The function
+and a positive integer @tt{a}. The first posn may be any point, while the second
+represents the center of a circle with the area @tt{a}. The function
 @tt{in-circle?} should return @tt{#true} only if the second point is inside the
 circle, and @tt{#false} otherwise.
 
-@colorize["red"]{@bold{Note}}: You may want to use the constant
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#(def._htdp-beginner._((lib._lang%2Fhtdp-beginner..rkt)._pi))"]{@tt{pi}}
-in exercise 4.
+@colorize["red"]{@bold{Hint}}: You may want to define a helper-function
+@tt{area->radius} in your solution to exercise 4.
 
 @larger{@bold{Ex 5}}: Design a function @tt{in-rectangle?} that consumes two
 posns and two positive integers @tt{w}, @tt{h}. The first posn may be any point,
