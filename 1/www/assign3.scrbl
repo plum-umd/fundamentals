@@ -145,8 +145,8 @@ definitions above): 1 Jan, 0. Let's call this function
 @codeblock{
 ; year-month-day->days : Year Month Day -> Number
 ; returns the number of days elapsed since January 1, 0
-; given: "January" 1 0     expect: 0
-; given: "August" 28 2017  expect: 736444
+; given: 0 "January" 1     expect: 0
+; given: 2017 "August" 28  expect: 736424
 }
 Notice that @tt{year-month-day->days} itself is not
 completely straightforward, and this is due to the fact that
