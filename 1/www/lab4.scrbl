@@ -26,22 +26,23 @@ Choose the initial @bold{Head} and @bold{Hands}, and get started!
 In your previous labs we've asked you to @bold{define} various functions. From
 now on, we're going to ask you to @bold{design} a function. You must follow the
 @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_preface.html"]{design
-recipe} to @bold{design} a function. Before you begin any implementation, you
-should have written down any relevant data definition, a function signature,
-header, and purpose statement, as well as input/output examples covering both
-common and edge cases.
+recipe} to @bold{design} a function.
+
+Before you begin any implementation, you should have written down any relevant
+data definition, a function signature, header, and purpose statement, as well as
+input/output examples covering both common and edge cases.
 
 @#reader scribble/comment-reader (racketblock
-;; what-temp : Number -> String
-;; Given a temperature (in degrees Fahrenheit) return a string description
-;; of the comfort level of that temperature.
-(define (what-temp df) "")
-;; (what-temp 32)       => "cold"
-;; (what-temp 45.0)     => "comfy"
-;; (what-temp 68)       => "comfy"
-;; (what-temp 74.99999) => "comfy"
-;; (what-temp 75)       => "hot"
-;; (what-temp 100)      => "hot"
+;; what-temp : Number -> String                                  <- Signature
+;; Given a temperature (in degrees Fahrenheit), return a string  <- Purpose 
+;; string description of the comfort level of that temperature.     Statement
+(define (what-temp df) "")                    ; <- Stub
+(check-expect (what-temp 32)       "cold")    ; <- Examples/Tests
+(check-expect (what-temp 45.0)     "comfy")
+(check-expect (what-temp 68)       "comfy")
+(check-expect (what-temp 74.99999) "comfy")
+(check-expect (what-temp 75)       "hot")
+(check-expect (what-temp 100)      "hot")
 )
 
 @colorize["red"]{@bold{Note}}: From now on, the first response you get from any
@@ -55,25 +56,38 @@ on?" Before asking any questions in this or future labs, first ask your
 
 @section[#:style 'unnumbered #:tag "lab4:posn"]{Positions}
 
-Posns are a kind of data provided by BSL that represent a position on a
-plane. As you would expect, a position on a plane is represented using two
-numbers, one for the value of the x axis, and the other for the y axis.
+Programs manipulate data. We describe how to create data with @bold{data
+defintions} and describe how to tear apart data for use in functions with
+@bold{templates}.
 
-The @tt{make-posn} function creates a posn. Use the documentation to find out
-how to use it. Once you have a posn, you will likely want to know what its x and
-y values are--to pass them to another function, for example. To do so, use the
-@tt{posn-x} and @tt{posn-y} functions, which give you the x and y values of the
-posn, respectively.
-
-A good data definition for posns looks like this:
+Consider @tt{Posn}s--a composite data structure provided by BSL:
 
 @#reader scribble/comment-reader (racketblock
 ;; A Posn is a (make-posn x y), where
-;; x is a Number,
-;; y is a Number,
-;; (posn-x (make-posn x y)) => x, and
-;; (posn-y (make-posn x y)) => y.
+;; x is a Number and
+;; y is a Number.
 )
+
+A @tt{Posn} represents a two-dimensional position. The @bold{data definition}
+describes how to make a @tt{Posn}: give the function @tt{make-posn} two numbers,
+such as @tt{(make-posn x y)}. We can pass that value @tt{(make-posn x y)} to any
+function that expects a @tt{Posn} as its input.
+
+This @bold{template} describes the data available in any function that expects a
+@tt{Posn} as its input:
+
+@#reader scribble/comment-reader (racketblock
+;; posn-template : Posn -> ???
+(define (posn-template p)
+  ... (posn-x p) ... (posn-y p) ...)
+;; where (posn-x (make-posn x y)) == x
+;;   and (posn-y (make-posn x y)) == y.
+)
+
+While each of the following functions have different signatures, purpose
+statements, stubs, and examples/tests (function-specific parts of the design
+recipe), the @tt{Posn} data definition and template remain the same
+(data-specific parts of the design recipe).
 
 @larger{@bold{Ex 2}}: Design a function @tt{posn-distance} that given two posns,
 returns the scalar distance between the two posns.
