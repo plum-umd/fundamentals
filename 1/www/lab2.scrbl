@@ -1,8 +1,5 @@
 #lang scribble/manual
-@(require scribble/core)
-@(define (colorize c . content)
-  (elem #:style (style #f (list (color-property c)))
-        content))
+@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
 @title[#:style 'unnumbered #:tag "lab2"]{Lab 2: Text and Images}
 
@@ -38,10 +35,8 @@ personalized slogan such as:
 ; => "Can You Hear Me Presently? Good, Patrick"}}
 ]
 
-You may find the function
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-append%29%29"]{@tt{string-append}}
-useful. Test your function with
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28form._%28%28lib._lang%2Fhtdp-beginner..rkt%29._check-expect%29%29"]{@tt{check-expect}}.
+You may find the function @racket[string-append] useful. Test your function with
+@racket[check-expect].
 
 @larger{@bold{Ex 2}}: Strings and images are different types of values and we
 want both in our advertisements. Write a function @tt{big-and-red} that, given
@@ -55,8 +50,6 @@ documentation}. If you need to convert a string into an image, don't just search
 for @tt{string->image} and give up if you see no results, look for a function
 that takes in a string a returns an image. Test it out, and if it's not what you
 need, keep looking!
-@;You can convert strings to images with the @link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._text%29%29"]{@tt{text}} function provided by the image library.
-
 
 @larger{@bold{@colorize["red"]{Bonus}}}: Some slogans are just too long, so
 define a new function @tt{no-more-than-32} that, given a string, returns that
@@ -64,11 +57,8 @@ string with no more than the first 32 characters. One of the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28part._htdp-beginner._.Strings%29"]{BSL
 string operations} provides a simple way to do this for strings at least 32
 characters long, but may not work for shorter strings. A clever use of
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._min%29%29"]{@tt{min}}
-and
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._string-length%29%29"]{@tt{string-length}}
-will let you solve this without resorting to @tt{cond}, which we'll use in the
-future.
+@racket[min] and @racket[string-length] will let you solve this without
+resorting to @tt{cond}, which we'll use in the future.
 
 
 @section[#:style 'unnumbered #:tag "lab2:image"]{Text and Images}
@@ -96,5 +86,7 @@ wide.
 @larger{@bold{@colorize["red"]{Bonus}}}: Using the functions you've defined,
 define a function @tt{animation} that, given a non-negative integer @tt{width},
 returns an image of your favorite logo and slogan on a background 200 pixels
-high and @tt{width} pixels wide. Require the @tt{2htdp/universe} library, and
-use the function @tt{animate} to demo the growing advertisement.
+high and @tt{width} pixels wide. Require the
+@link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{@tt{2htdp/universe}}
+library, and use the function @racket[animate] to demo the growing
+advertisement.

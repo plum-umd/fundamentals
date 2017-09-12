@@ -1,8 +1,5 @@
 #lang scribble/manual
-@(require scribble/core)
-@(define (colorize c . content)
-  (elem #:style (style #f (list (color-property c)))
-        content))
+@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
 @title[#:style '(unnumbered hidden toc-hidden) #:tag "lab5"]{Lab 5: More and More Design}
 
@@ -43,17 +40,29 @@ Recall the data definition and template for @tt{Posn}s:
 )
 
 A @tt{Posn} is a built-in data structure with the fields @tt{x} and @tt{y}. Note
-that the function
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._make-posn%29%29"]{@tt{make-posn}}
-accepts two values of any type. Per the above data definition, when we refer to
-@tt{Posn} in function signatures or purpose statements, the @tt{x} and @tt{y}
-must be Numbers. These constraints are not enforced by the BSL; the data
-defintion is a contract that we programmers agree to obey while designing
-functions that make or use @tt{Posn}s.
+that the function @racket[make-posn] accepts two values of any type. Per the
+above data definition, when we refer to @tt{Posn} in function signatures or
+purpose statements, the @tt{x} and @tt{y} must be Numbers. These constraints are
+not enforced by the BSL; the data defintion is a contract that we programmers
+agree to obey while designing functions that make or use @tt{Posn}s.
 
-The BSL provides the functions @tt{make-posn}, @tt{posn-x}, @tt{posn-y}, and
-@tt{posn?}. But what if we want to manipulate @tt{3dPosn}s? We can create our
-own composite data structures with @tt{define-struct}.
+The BSL provides the functions @racket{make-posn}, @racket{posn-x},
+@racket{posn-y}, and @racket{posn?}. If these were not predefined, we could
+define our own Posn2 with @racket[define-struct]:
+
+@#reader scribble/comment-reader (racketblock
+(define-struct posn2 (x y))
+;; A 2dPosn is a (make-posn2 Number Number).
+
+;; posn2-template : 2dPosn -> ???
+(define (posn2-template p)
+  ... (posn2-x p) ... (posn2-y p) ... )
+
+> 
+)
+
+But what if we want to manipulate @tt{3dPosn}s? We can create our
+own composite data structures with @racket[define-struct].
 
 @#reader scribble/comment-reader (racketblock
 (define-struct posn3 (x y z))
@@ -64,17 +73,16 @@ own composite data structures with @tt{define-struct}.
   ... (posn3-x p) ... (posn3-y p) ... (posn3-z p))
 )
 
-@larger{@bold{Ex 1}}: Read the BSL documentation for
-@link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28form._%28%28lib._lang%2Fhtdp-beginner..rkt%29._define-struct%29%29"]{@tt{define-struct}}. In
+@larger{@bold{Ex 1}}: Read the BSL documentation for @racket[define-struct]. In
 a comment, write down the names and signatures of all functions defined by the
-expression @tt{(define-struct posn3 (x y z))}.
+expression @racket[(define-struct posn3 (x y z))].
 
 @colorize["red"]{Hint}: Most, but not all of the functions are shown in the
 above data definition and template for @tt{3dPosn}s.
 
 @larger{@bold{Ex 2}}: In general, for any structure definition with @tt{N}
-fields, how many functions are defined by @tt{define-struct}? Write your answer
-in a comment.
+fields, how many functions are defined by @racket[define-struct]? Write your
+answer in a comment.
 
 @larger{@bold{Ex 3}}: Here are some data definitions:
 @#reader scribble/comment-reader (racketblock
@@ -115,10 +123,11 @@ Business, and four times the pay rate if the @tt{TA} is in computer science.
 @section[#:style 'unnumbered #:tag "lab5:shapes"]{Functions on Shapes}
 
 @larger{@bold{Ex 8}}: A Shape may be either a box (a square), a pointy shape (a
-triangle), or a round shape (a circle). Design a data definition for Shapes,
-using structure definitions to represent squares, triangles, and circles. Each
-of these needs information about how big it is, what color it is, and what
-position it is on the screen. Make data examples for each kind of shape.
+triangle), or a round shape (a circle). Design the data definitions @tt{box},
+@tt{pointy}, @tt{round} for Shapes, using structure definitions to represent
+squares, triangles, and circles. Each of these needs information about how big
+it is, what color it is, and what position it is on the screen. Make data
+examples for each kind of shape.
 
 @larger{@bold{Ex 9}}: Design a function that takes a @tt{Shape} as input and
 produces a picture where the shape has been drawn on a white background. Use
@@ -126,5 +135,5 @@ your data examples in the examples when designing this function.
 
 @larger{@bold{Ex 10}}: Design a function that, given an integer width, draws a
 @tt{Shape} of that width on an empty scene. What will happen when you
-@tt{animate} that function?
+@racket[animate] that function?
 

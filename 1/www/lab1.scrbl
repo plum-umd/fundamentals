@@ -1,8 +1,5 @@
 #lang scribble/manual
-@(require scribble/core)
-@(define (colorize c . content)
-  (elem #:style (style #f (list (color-property c)))
-        content))
+@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
 @title[#:style 'unnumbered #:tag "lab1"]{Lab 1: Getting Started}
 
@@ -38,13 +35,14 @@ the first @bold{Head} and @bold{Hands} and get continue on only one machine.
 
 Explore DrRacket's interface. First, find out how to set the current
 @link["https://docs.racket-lang.org/drracket/choose-language.html"]{Language} to
-the Beginning Student teaching language (BSL). We'll tell you which language to
-use at the beginning of each lab and problem set.
+the @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning
+Student Language} (BSL). We'll tell you which language to use at the beginning
+of each lab and problem set.
 
 (Note: if you change the language, you'll have to hit the <Run> button for it to
 take effect.)
 
-Next, look at the
+Next, look through the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{documentation for
 the BSL}. (Hint: also check the Help menu.) You should get comfortable searching
 and reading the documentation for anything you need to know about the language
@@ -117,10 +115,7 @@ give it a name (like Chip!).
 Draw a frame with a green border around your picture of Chip. As always, the
 @link["https://docs.racket-lang.org/teachpack/2htdpimage.html"]{docs} can help
 if you don't know what functions to use to, for example, make a
-@link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._rectangle%29%29"]{@tt{rectangle}}
-or
-@link["https://docs.racket-lang.org/teachpack/2htdpimage.html#%28def._%28%28lib._2htdp%2Fimage..rkt%29._place-image%29%29"]{@tt{place-image}}s
-on one another.
+@racket[rectangle] or @racket[place-image]s on one another.
 
 @larger{@bold{Ex 5}}: Define a function @tt{in-a-frame} that given a string
 color (like "red", "blue", "green") places Chip on a frame of that

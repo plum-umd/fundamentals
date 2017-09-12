@@ -1,8 +1,5 @@
 #lang scribble/manual
-@(require scribble/core)
-@(define (colorize c . content)
-  (elem #:style (style #f (list (color-property c)))
-        content))
+@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
 @title[#:style 'unnumbered #:tag "lab3"]{Lab 3: Conditional Eval}
 
@@ -52,8 +49,7 @@ between 0 and 3, returns the properly indexed image above.
 non-negative number, returns an appropriate frame of Chip's stride. For any N,
 N+1 should return the next indexed image (looping back to the first after the
 fourth image is returned). Animate Chip's graceful stride by passing
-@tt{time->chip} to
-@link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html#%28def._%28%28lib._2htdp%2Funiverse..rkt%29._animate%29%29"]{@tt{animate}}.
+@tt{time->chip} to @racket[animate].
 
 @colorize["red"]{Hint}: There may be a helpful, built-in
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._modulo%29%29"]{numeric

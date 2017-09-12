@@ -1,8 +1,5 @@
 #lang scribble/manual
-@(require scribble/core)
-@(define (colorize c . content)
-  (elem #:style (style #f (list (color-property c)))
-        content))
+@(require scribble/core "helper.rkt")
 
 @title[#:style 'unnumbered #:tag "lab4"]{Lab 4: Design and Composites}
 
