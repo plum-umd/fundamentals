@@ -89,7 +89,7 @@ subject to change until the start of the semester.
 	       (list @bold{Time} @elem{MWF 11:00am--11:50am})
 	       (list @bold{Midterm 1} @elem{@m1-date, in class})
 	       (list @bold{Midterm 2} @elem{@m2-date, in class})
-               (list @bold{Final exam} "TBD by Registrar")
+               (list @bold{Final exam} @elem{@final-date})
 	       ;(list @nonbreaking{@bold{Final Exam}} @elem{@link["http://www.registrar.umd.edu/current/registration/exam%20tables%20spring.html"]{Monday, May 16, 10:30-12:30pm}, 1122 CSI})
 	       (list @bold{Textbooks} @elem{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
 

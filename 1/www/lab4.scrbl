@@ -102,7 +102,7 @@ Swap @bold{Head} and @bold{Hands}.
 @larger{@bold{Ex 4}}: Design a function @tt{in-circle?} that consumes two posns
 and a positive integer @tt{a}. The first posn may be any point, while the second
 represents the center of a circle with the area @tt{a}. The function
-@tt{in-circle?} should return @tt{#true} only if the second point is inside the
+@tt{in-circle?} should return @tt{#true} only if the first point is inside the
 circle, and @tt{#false} otherwise.
 
 @colorize["red"]{@bold{Hint}}: You may want to define a helper-function
