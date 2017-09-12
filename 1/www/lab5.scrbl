@@ -35,9 +35,9 @@ Recall the data definition and template for @tt{Posn}s:
 ;; posn-template : @tt{Posn} -> ???
 (define (posn-template p)
   ... (posn-x p) ... (posn-y p) ...)
-;; where (posn-x (make-posn x y)) == x
-;;   and (posn-y (make-posn x y)) == y
 )
+@racketinput[(check-expect (posn-x (make-posn 1 2)) 1)]
+@racketinput[(check-expect (posn-y (make-posn 1 2)) 2)]
 
 A @tt{Posn} is a built-in data structure with the fields @tt{x} and @tt{y}. Note
 that the function @racket[make-posn] accepts two values of any type. Per the
@@ -56,13 +56,19 @@ define our own Posn2 with @racket[define-struct]:
 
 ;; posn2-template : 2dPosn -> ???
 (define (posn2-template p)
-  ... (posn2-x p) ... (posn2-y p) ... )
-
-> 
+  ... (posn2-x p) ... (posn2-y p) ... ) 
 )
 
-But what if we want to manipulate @tt{3dPosn}s? We can create our
-own composite data structures with @racket[define-struct].
+@racketinput[(check-expect (posn2-x (make-posn2 1 2)) 1)
+             (check-expect (posn2-y (make-posn2 1 2)) 2)]
+
+Note: the built-in operations on @tt{Posn}s have nothing to do with our
+@tt{Posn2}s.
+
+@racketinput[(check-expect (posn-x (make-posn2 1 2)) 1)]
+@racketerror{posn-x: expects a posn, given (make-posn2 1 2)}
+
+And if we want to manipulate @tt{3dPosn}s:
 
 @#reader scribble/comment-reader (racketblock
 (define-struct posn3 (x y z))
@@ -80,9 +86,8 @@ expression @racket[(define-struct posn3 (x y z))].
 @colorize["red"]{Hint}: Most, but not all of the functions are shown in the
 above data definition and template for @tt{3dPosn}s.
 
-@larger{@bold{Ex 2}}: In general, for any structure definition with @tt{N}
-fields, how many functions are defined by @racket[define-struct]? Write your
-answer in a comment.
+@larger{@bold{Ex 2}}: For any structure definition with @tt{N} fields, how many
+functions are defined by @racket[define-struct]? Write your answer in a comment.
 
 @larger{@bold{Ex 3}}: Here are some data definitions:
 @#reader scribble/comment-reader (racketblock
