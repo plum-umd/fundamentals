@@ -76,7 +76,7 @@ This @bold{template} describes the data available in any function that expects a
 @#reader scribble/comment-reader (racketblock
 ;; posn-template : Posn -> ???
 (define (posn-template p)
-  ... (posn-x p) ... (posn-y p) ...)
+  (... (posn-x p) ... (posn-y p) ...))
 ;; where (posn-x (make-posn x y)) == x
 ;;   and (posn-y (make-posn x y)) == y.
 )

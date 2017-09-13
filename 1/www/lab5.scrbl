@@ -34,7 +34,7 @@ Recall the data definition and template for @tt{Posn}s:
 
 ;; posn-template : @tt{Posn} -> ???
 (define (posn-template p)
-  ... (posn-x p) ... (posn-y p) ...)
+  (... (posn-x p) ... (posn-y p) ...))
 )
 @racketinput[(check-expect (posn-x (make-posn 1 2)) 1)]
 @racketinput[(check-expect (posn-y (make-posn 1 2)) 2)]
@@ -56,7 +56,7 @@ define our own Posn2 with @racket[define-struct]:
 
 ;; posn2-template : 2dPosn -> ???
 (define (posn2-template p)
-  ... (posn2-x p) ... (posn2-y p) ... ) 
+  (... (posn2-x p) ... (posn2-y p) ... ))
 )
 
 @racketinput[(check-expect (posn2-x (make-posn2 1 2)) 1)
@@ -76,7 +76,7 @@ And if we want to manipulate @tt{3dPosn}s:
 
 ;; posn3-template : 3dPosn -> ???
 (define (posn3-template p)
-  ... (posn3-x p) ... (posn3-y p) ... (posn3-z p))
+  (... (posn3-x p) ... (posn3-y p) ... (posn3-z p)))
 )
 
 @larger{@bold{Ex 1}}: Read the BSL documentation for @racket[define-struct]. In
