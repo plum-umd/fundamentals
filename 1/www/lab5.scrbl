@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab5"]{Lab 5: More and More Design}
+@title[#:style 'unnumbered #:tag "lab5"]{Lab 5: More and More Design}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -46,8 +46,8 @@ purpose statements, the @tt{x} and @tt{y} must be Numbers. These constraints are
 not enforced by the BSL; the data defintion is a contract that we programmers
 agree to obey while designing functions that make or use @tt{Posn}s.
 
-The BSL provides the functions @racket{make-posn}, @racket{posn-x},
-@racket{posn-y}, and @racket{posn?}. If these were not predefined, we could
+The BSL provides the functions @racket[make-posn], @racket[posn-x],
+@racket[posn-y], and @racket[posn?]. If these were not predefined, we could
 define our own Posn2 with @racket[define-struct]:
 
 @#reader scribble/comment-reader (racketblock
