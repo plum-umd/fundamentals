@@ -128,8 +128,8 @@ Business, and four times the pay rate if the @tt{TA} is in computer science.
 @section[#:style 'unnumbered #:tag "lab5:shapes"]{Functions on Shapes}
 
 @larger{@bold{Ex 8}}: A Shape may be either a box (a square), a pointy shape (a
-triangle), or a round shape (a circle). Design the data definitions @tt{box},
-@tt{pointy}, @tt{round} for Shapes, using structure definitions to represent
+triangle), or a roundy shape (a circle). Design the data definitions @tt{box},
+@tt{pointy}, @tt{roundy} for Shapes, using structure definitions to represent
 squares, triangles, and circles. Each of these needs information about how big
 it is, what color it is, and what position it is on the screen. Make data
 examples for each kind of shape.
