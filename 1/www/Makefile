@@ -16,6 +16,8 @@ all:
 	cp fancy-eclipse.rkt cmsc131A/
 	cp days.rkt cmsc131A/
 	cp traffic.rkt cmsc131A/
+	cp render-string.rkt cmsc131A/
+	cp chip{0,1}.rkt cmsc131A/
 	cp chip{0,1,2,3}.png cmsc131A/
 
 push:
