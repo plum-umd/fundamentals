@@ -37,7 +37,7 @@ Code from today's lecture:
 
 @section{September 6, 2017}
 
-Nick will provide notes soon.
+@include-section["rocket.scrbl"]
 
 @section{September 8, 2017}
 
