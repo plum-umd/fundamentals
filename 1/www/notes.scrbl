@@ -54,5 +54,23 @@ Code from today's lecture:
 @item{@link["traffic.rkt"]{traffic.rkt}}
 ]
 
+@section{September 13, 2017}
 
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e3bfd03f-c3b4-4895-8ddb-576c2052d2b3"]
 
+Code from today's lecture:
+
+@itemlist[
+@item{@link["render-string.rkt"]{render-string.rkt}}
+@item{@link["chip0.rkt"]{chip0.rkt}}
+]
+
+@section{September 15, 2017}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dd5dfd8f-936a-46dc-a38a-5197e7706fbe"]
+
+Code from today's lecture (remember, it has failing test cases):
+
+@itemlist[
+@item{@link["chip1.rkt"]{chip1.rkt}}
+]
