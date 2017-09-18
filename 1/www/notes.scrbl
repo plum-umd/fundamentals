@@ -74,3 +74,16 @@ Code from today's lecture (remember, it has failing test cases):
 @itemlist[
 @item{@link["chip1.rkt"]{chip1.rkt}}
 ]
+
+Today's quiz:
+
+A @tt{Coord} is a @tt{(make-posn Integer Integer)}.
+Interp: a point on the Cartesian plane.
+
+Write a function @tt{dist : Coord -> Number} that computes the
+distance from the origin.
+
+Recall: distance of (x,y) to (0,0) is √(x²+y²).
+
+You do not need to perform all steps of the DR, just define the
+function.
