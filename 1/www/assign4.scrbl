@@ -87,3 +87,12 @@ Additionally, make explicit template definitions for the following
 data definitions: @tt{Month}, @tt{MonthFormat}, @tt{DateOrder}, and
 @tt{DaysInYear}.
 
+@section[#:tag "assign4:submission"]{Project submission}
+
+You should submit all files: @tt{editor.rkt}, @tt{chip.rkt},
+@tt{chips.rkt}, and @tt{calendar-revised.rkt}.
+
+Submit your files directly to the submit server by uploading them.
+Select each of these files individually using the ``Browse'' button.
+Once you have selected all the files, press the ``Submit project!''
+button. You do not need to put them in a zip file.
