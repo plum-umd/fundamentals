@@ -108,27 +108,10 @@ cursor.
 which returns the string content of the given @tt{Textbox} that comes after the
 cursor.
 
-@colorize["red"]{@larger{@bold{Note}}}: the function @racket[text] throws a bad
-(uninformative) error when given the empty string as its content. Copy and use
-the helper function @tt{text*} to make sure the next exercise does not call
-@racket[text] on the empty string.
-
-@#reader scribble/comment-reader (racketblock
-;; text* : String PositiveInteger Color -> Image
-;; Return an image representation of the given string (or the empty image if the
-;; string is empty).
-(define (text* str size color)
-  (cond [(= 0 (string-length str)) empty-image]
-        [else (text str size color)]))
-(check-expect (text* "" 10 "red") empty-image)
-(check-expect (text* "foo" 10 "red") (text "foo" 10 "red"))
-)
-
 @larger{@bold{Ex 11}}: Implement the function @tt{textbox->image} that creates
 an image representation of a @tt{Textbox}. The content can be any size or color
 you want, and you should draw the cursor as a tall, skinny rectangle between the
-content that comes before and after the cursor. @bold{Don't forget to use
-@tt{text*} rather than @tt{text} in your implementation.}
+content that comes before and after the cursor.
 
 @#reader scribble/comment-reader (racketblock
 ;; textbox->image : Textbox -> Image
