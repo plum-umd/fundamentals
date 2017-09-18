@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab6"]{Lab 6: Chatting about Design}
+@title[#:style 'unnumbered #:tag "lab6"]{Lab 6: Chatting about Design}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -13,7 +13,9 @@ Make sure you follow
 @link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
-Choose the initial @bold{Head} and @bold{Hands}, and get started!
+Make sure you save and submit your definitions, we will be extending this
+program in future labs. Choose the initial @bold{Head} and @bold{Hands}, and get
+started!
 
 
 @section[#:style 'unnumbered #:tag "lab6:msg"]{Messages}
@@ -89,13 +91,13 @@ window.
 (define-struct textbox (content cursor))
 ;; A Textbox is a (make-textbox String Natural)
 ;; Interp: a textbox (make-textbox str n) has its cursor immediately before the
-;; `n'th character of `str'. The cursor's value must never exceed the length of
+;; Nth character of STR. The cursor's value must never exceed the length of
 ;; the string.
-(define tb0 (make-textbox "foo " 0)) ; => |foo 
-(define tb1 (make-textbox "foo " 1)) ; => f|oo 
-(define tb2 (make-textbox "foo " 2)) ; => fo|o 
-(define tb3 (make-textbox "foo " 3)) ; => foo| 
-(define tb4 (make-textbox "foo " 4)) ; => foo |
+(define tb0 (make-textbox "foo " 0))
+(define tb1 (make-textbox "foo " 1))
+(define tb2 (make-textbox "foo " 2))
+(define tb3 (make-textbox "foo " 3))
+(define tb4 (make-textbox "foo " 4))
 )
 
 @larger{@bold{Ex 9}}: Design the function @tt{before-cursor : Textbox -> String}
@@ -106,27 +108,10 @@ cursor.
 which returns the string content of the given @tt{Textbox} that comes after the
 cursor.
 
-@colorize["red"]{@larger{@bold{Note}}}: the function `text' throws a bad
-(uninformative) error when given the empty string as its content. Copy and use
-the helper function @tt{text*} to make sure the next exercise does not call
-@tt{text} on the empty string.
-
-@#reader scribble/comment-reader (racketblock
-;; text* : String PositiveInteger Color -> Image
-;; Return an image representation of the given string (or the empty image if the
-;; string is empty).
-(define (text* str size color)
-  (cond [(= 0 (string-length str)) empty-image]
-        [else (text str size color)]))
-(check-expect (text* "" 10 "red") empty-image)
-(check-expect (text* "foo" 10 "red") (text "foo" 10 "red"))
-)
-
 @larger{@bold{Ex 11}}: Implement the function @tt{textbox->image} that creates
 an image representation of a @tt{Textbox}. The content can be any size or color
 you want, and you should draw the cursor as a tall, skinny rectangle between the
-content that comes before and after the cursor. @bold{Don't forget to use
-@tt{text*} rather than @tt{text} in your implementation.}
+content that comes before and after the cursor.
 
 @#reader scribble/comment-reader (racketblock
 ;; textbox->image : Textbox -> Image
