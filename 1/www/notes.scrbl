@@ -87,3 +87,61 @@ Recall: distance of (x,y) to (0,0) is √(x²+y²).
 
 You do not need to perform all steps of the DR, just define the
 function.
+
+@section{September 18, 2017}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7bed18c4-092f-4bcc-89bf-90326ea750b5"]
+
+We didn't really write any code; we discussed templates, stubs, the
+three kinds of errors, and failing test cases.
+
+Here are some common issues encountered so far in grading
+@secref{assign3}:
+
+@itemize[
+
+@item{Most students place test cases below their def'n
+  instead of between signature and def'n.}
+
+@item{ Some people included function examples in comments
+  without writing concrete test cases. Some had both.}
+
+@item{Almost @bold{every} submission had some incorrect
+  indentation and long lines.}
+
+@item{The format-month almost universally lacked helper
+  usage and contained long lines.}
+
+@item{Some students defined "helpers" that didn't "help" at
+  all, basically like:
+  @verbatim{
+    (define (supposed-to-implement x)
+      (so-called-helper x))
+      }
+      }
+
+@item{Many submission had stubs still left in their code either as a
+  comment or as a defined function like @tt{(define (format-month-stub
+  ...) "Nov")}. I don't think students understand what a stub is.}
+
+@item{There were lots of submissions with just templates defined for
+  every function, or data templates that were just wrong.}
+
+@item{General disorganization was common, e.g. signatures and test
+  cases thrown about randomly and not coupled together with the
+  function def'n. Some people renamed the functions to something else
+  which made it difficult to grade.}
+
+@item{Lots of long functions bodies were defined on the same line as
+  the "define".}
+
+@item{Commonly @tt{init-time} was defined as a function instead of
+  just as an expression in terms of @tt{init-*} constants.}
+
+@item{A surpisingly amount of submission weren't even grammatically
+  well-formed BSL programs. :(}
+
+]
+
+Make sure you correct any of these issue if they occur in your program
+for @secref{assign4}.
