@@ -10,6 +10,17 @@ the following basic style guidelines:
 
 @itemlist[#:style 'ordered
 
+@item{@bold{Start every file with a standard header}:
+
+@#reader scribble/comment-reader
+(racketblock
+;; Authors: <directoryID1>, <directoryID2>
+;; Purpose: <concise, high-level purpose statement for program>
+)
+
+These should be the @bold{first two lines} of the file.
+}
+
 @item{@bold{Organize your program top-down,} regardless of how you
 actually work through your wish list. The phrase "top down" means that
 project files consist of a general purpose statement, a data
