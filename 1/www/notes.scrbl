@@ -95,6 +95,19 @@ function.
 We didn't really write any code; we discussed templates, stubs, the
 three kinds of errors, and failing test cases.
 
+Today's quizzes were (1) exactly the quiz from Friday and (2):
+
+@verbatim{
+A Lec is one of:
+- "M"
+- "W"
+- "F"
+Interp: day of the week for 131A lecture
+
+Write a template for a Lec function.
+}
+
+
 Here are some common issues encountered so far in grading
 @secref{assign3}:
 
