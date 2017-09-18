@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab6"]{Lab 6: Chatting about Design}
+@title[#:style 'unnumbered #:tag "lab6"]{Lab 6: Chatting about Design}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -89,13 +89,13 @@ window.
 (define-struct textbox (content cursor))
 ;; A Textbox is a (make-textbox String Natural)
 ;; Interp: a textbox (make-textbox str n) has its cursor immediately before the
-;; `n'th character of `str'. The cursor's value must never exceed the length of
+;; Nth character of STR. The cursor's value must never exceed the length of
 ;; the string.
-(define tb0 (make-textbox "foo " 0)) ; => |foo 
-(define tb1 (make-textbox "foo " 1)) ; => f|oo 
-(define tb2 (make-textbox "foo " 2)) ; => fo|o 
-(define tb3 (make-textbox "foo " 3)) ; => foo| 
-(define tb4 (make-textbox "foo " 4)) ; => foo |
+(define tb0 (make-textbox "foo " 0))
+(define tb1 (make-textbox "foo " 1))
+(define tb2 (make-textbox "foo " 2))
+(define tb3 (make-textbox "foo " 3))
+(define tb4 (make-textbox "foo " 4))
 )
 
 @larger{@bold{Ex 9}}: Design the function @tt{before-cursor : Textbox -> String}
@@ -106,10 +106,10 @@ cursor.
 which returns the string content of the given @tt{Textbox} that comes after the
 cursor.
 
-@colorize["red"]{@larger{@bold{Note}}}: the function `text' throws a bad
+@colorize["red"]{@larger{@bold{Note}}}: the function @racket[text] throws a bad
 (uninformative) error when given the empty string as its content. Copy and use
 the helper function @tt{text*} to make sure the next exercise does not call
-@tt{text} on the empty string.
+@racket[text] on the empty string.
 
 @#reader scribble/comment-reader (racketblock
 ;; text* : String PositiveInteger Color -> Image
