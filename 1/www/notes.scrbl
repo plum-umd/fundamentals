@@ -151,7 +151,7 @@ Here are some common issues encountered so far in grading
 @item{Commonly @tt{init-time} was defined as a function instead of
   just as an expression in terms of @tt{init-*} constants.}
 
-@item{A surpisingly amount of submission weren't even grammatically
+@item{A surpising amount of submission weren't even grammatically
   well-formed BSL programs. :(}
 
 ]
