@@ -87,3 +87,6 @@ Additionally, make explicit template definitions for the following
 data definitions: @tt{Month}, @tt{MonthFormat}, @tt{DateOrder}, and
 @tt{DaysInYear}.
 
+There are a list of common problems in the class notes for
+@secref{September_18__2017}.
+
