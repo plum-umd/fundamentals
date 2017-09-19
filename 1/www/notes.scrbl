@@ -122,7 +122,7 @@ Here are some common issues encountered so far in grading
 @item{Almost @bold{every} submission had some incorrect
   indentation and long lines.}
 
-@item{The format-month almost universally lacked helper
+@item{The @tt{format-month} almost universally lacked helper
   usage and contained long lines.}
 
 @item{Some students defined "helpers" that didn't "help" at
@@ -133,9 +133,9 @@ Here are some common issues encountered so far in grading
       }
       }
 
-@item{Many submission had stubs still left in their code either as a
+@item{Many submissions had stubs still left in their code either as a
   comment or as a defined function like @tt{(define (format-month-stub
-  ...) "Nov")}. I don't think students understand what a stub is.}
+  ...) "Nov")}.}
 
 @item{There were lots of submissions with just templates defined for
   every function, or data templates that were just wrong.}
@@ -145,16 +145,16 @@ Here are some common issues encountered so far in grading
   function def'n. Some people renamed the functions to something else
   which made it difficult to grade.}
 
-@item{Lots of long functions bodies were defined on the same line as
+@item{Lots of long function bodies were defined on the same line as
   the "define".}
 
 @item{Commonly @tt{init-time} was defined as a function instead of
   just as an expression in terms of @tt{init-*} constants.}
 
-@item{A surpising amount of submission weren't even grammatically
+@item{A surprising amount of submission weren't even grammatically
   well-formed BSL programs. :(}
 
 ]
 
-Make sure you correct any of these issue if they occur in your program
+Make sure you correct any of these issues if they occur in your program
 for @secref{assign4}.
