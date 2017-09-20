@@ -19,6 +19,7 @@ all:
 	cp render-string.rkt cmsc131A/
 	cp chip{0,1}.rkt cmsc131A/
 	cp chip{0,1,2,3}.png cmsc131A/
+	cp invaders.rkt cmsc131A/
 	cp -r A2 cmsc131A/
 
 push:

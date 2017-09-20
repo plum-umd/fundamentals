@@ -158,3 +158,23 @@ Here are some common issues encountered so far in grading
 
 Make sure you correct any of these issues if they occur in your program
 for @secref{assign4}.
+
+@section{September 20, 2017}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=403e60d0-6858-4efd-88df-b186aa44e8b1"]
+
+Here is the code for simple space invaders designed using the design
+recipe and adhering to @secref{style}:
+
+@itemlist[
+  @item{@link["invaders.rkt"]{invaders.rkt}}
+]
+
+I've made a two part video that develops the invader program from
+scratch, resulting in the code above.  You can watch this to get a
+complete example of following the DR through on an involved example.
+
+@itemlist[
+  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a37f226-9e62-4765-ba88-7df756112a12"]{Part I}}
+  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d335e86e-39eb-4d33-a2c3-975887822deb"]{Part II}}
+]
