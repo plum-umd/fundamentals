@@ -118,7 +118,7 @@ cursor removed and the cursor properly updated. If the cursor is at the
 beginning of the @tt{Textbox}, @tt{textbox-backspace} should have no effect.
 
 @larger{@bold{Ex 4}}: Design a function @tt{textbox-delete} that works similarly
-to @tt{textbox-delete}, but for the character directly after the cursor.
+to @tt{textbox-backspace}, but for the character directly after the cursor.
 
 
 @section[#:style 'unnumbered #:tag "lab7:big-bang"]{A Working Textbox}
