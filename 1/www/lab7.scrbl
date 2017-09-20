@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
-@title[#:style '(unnumbered hidden toc-hidden) #:tag "lab7"]{Lab 7: Chatting in Action}
+@title[#:style 'unnumbered #:tag "lab7"]{Lab 7: Chatting in Action}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
