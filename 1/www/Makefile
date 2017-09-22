@@ -20,6 +20,7 @@ all:
 	cp chip{0,1}.rkt cmsc131A/
 	cp chip{0,1,2,3}.png cmsc131A/
 	cp invaders.rkt cmsc131A/
+	cp shots.rkt cmsc131A/
 	cp -r A{2,3} cmsc131A/
 
 push:
