@@ -428,5 +428,26 @@ perimeter of the triangle formed by (0,0), (x,0), (x,y).
 Design a function that reflects a coordinate over the x-axis,
 e.g. (5,3) becomes (5,-3).
 
+@subsection{Solutions}
+
+Here are videos going through solutions to each part of the drill
+problems:
+
+@itemize[
+
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07"]{Simple computations}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07"]{Stepping through computations}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07"]{Classifying errors}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=82f70804-e2fd-42bb-9b66-7eb1346ec6e0"]{Templates}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=52171455-3691-4a1d-811a-48a219355c68"]{Stubs}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7ba10792-a8ae-4b21-aff4-c63afb87e448"]{Designing Name functions}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=121430ba-3592-4f2d-b1e0-72d4f59da5be"]{Designing Dir functions}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=497e4719-12a5-4749-a2f2-274971ba8bf5"]{Designing Coord functions}}
+
+]
+
+
+
+
 
 
