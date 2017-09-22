@@ -252,7 +252,7 @@ a constant with its value.
 @item{@racketblock[
 (define Q 2)
 (define (h z)
-  (+ (* x 5) Q))
+  (+ (* z 5) Q))
 (cond [(= (h 1) 7) (add1 9)]
       [(= (h 2) 12) 4])]}
 @item{@racketblock[
@@ -371,8 +371,7 @@ Write stubs for each of these signatures.
 )
 
 Design a function that creates a opening phrase of a letter.  For
-example, given the full name David Van Horn, produces @racket["Dear
-David,"].
+example, given the full name David Van Horn, produces @racket["Dear David,"].
 
 Design a function that is given two full names and a first name.  It
 should produce a new name using the given first name and a hyphenated
@@ -426,7 +425,7 @@ triangle is 1/2 * base * height.
 Design a function that, given a coordinate (x,y), computes the
 perimeter of the triangle formed by (0,0), (x,0), (x,y).
 
-Design a function that reflects a coordinate over the y-axis,
+Design a function that reflects a coordinate over the x-axis,
 e.g. (5,3) becomes (5,-3).
 
 
