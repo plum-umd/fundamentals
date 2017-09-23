@@ -17,7 +17,7 @@ receive full credit.
 
 Make sure you have read and studied chapters 9 and 10 of
 @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part
-I} of HtDP2e.
+II} of HtDP2e.
 
 @section[#:tag "assign5:lists"]{Many Numbers, Many Shapes}
 
