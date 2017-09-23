@@ -441,7 +441,7 @@ problems:
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=82f70804-e2fd-42bb-9b66-7eb1346ec6e0"]{Templates}}
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=52171455-3691-4a1d-811a-48a219355c68"]{Stubs}}
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7ba10792-a8ae-4b21-aff4-c63afb87e448"]{Designing Name functions}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=121430ba-3592-4f2d-b1e0-72d4f59da5be"]{Designing Dir functions}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2039c7b4-2533-4ee6-8351-af0dc7447086"]{Designing Dir functions}}
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=497e4719-12a5-4749-a2f2-274971ba8bf5"]{Designing Coord functions}}
 
 ]
