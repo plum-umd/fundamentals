@@ -2,6 +2,9 @@ course = cmsc131A
 course_group = cmsc131Afa17
 course_term = fall2017
 site_loc = /fs/www/class/$(course_term)
+git_local := $(shell git rev-parse @)
+git_remote := $(shell git rev-parse @{u})
+git_base := $(shell git merge-base @ @{u})
 
 .PHONY : all push
 
@@ -23,8 +26,15 @@ all:
 	cp -r A{2,3} cmsc131A/
 
 push:
+ifeq ($(git_local),$(git_remote))
 	find $(course) -type d -exec chmod 775 {} \;
 	find $(course) -type f -exec chmod 664 {} \;
 	chmod 771 $(course)/A{2,3}
 	rsync -rvzp cmsc131A umd:$(site_loc)
 	ssh umd "chown -R :$(course_group) $(site_loc)/$(course)/*"
+else ifeq ($(git_local),$(git_base))
+	@echo 'You need to `git pull` before modifying the website'
+else ifeq ($(git_remote),$(git_base))
+	@echo 'You need to `git push` before modifying the website'
+endif
+
