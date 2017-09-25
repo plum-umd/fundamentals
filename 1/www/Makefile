@@ -2,9 +2,9 @@ course = cmsc131A
 course_group = cmsc131Afa17
 course_term = fall2017
 site_loc = /fs/www/class/$(course_term)
-git_local := $(shell git rev-parse @)
-git_remote := $(shell git rev-parse @{u})
-git_base := $(shell git merge-base @ @{u})
+git_local = $(shell git rev-parse @)
+git_remote = $(shell git rev-parse @{u})
+git_base = $(shell git merge-base @ @{u})
 
 .PHONY : all push
 
@@ -26,7 +26,8 @@ all:
 	cp shots.rkt cmsc131A/
 	cp -r A{2,3} cmsc131A/
 
-push:
+push: all
+	@git fetch
 ifeq ($(git_local),$(git_remote))
 	find $(course) -type d -exec chmod 775 {} \;
 	find $(course) -type f -exec chmod 664 {} \;
