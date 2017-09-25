@@ -25,6 +25,7 @@ all:
 	cp invaders.rkt cmsc131A/
 	cp shots.rkt cmsc131A/
 	cp shots-draw-on.rkt cmsc131A/
+	cp feedback-assign4.pdf cmsc131A/
 	cp -r A{2,3} cmsc131A/
 
 push: all

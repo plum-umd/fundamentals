@@ -452,6 +452,10 @@ problems:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a3cb585-3566-4f58-981c-d720d0519c86"]
 
+Here are the comments I made in regard to what we've seen so far in
+assignment 4 submissions:
+@link["feedback-assign4.pdf"]{feedback-assign4.pdf}.
+
 Here is the code for today (I re-arranged it slightly to follow the
 style guidelines):
 
