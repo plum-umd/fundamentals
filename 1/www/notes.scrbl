@@ -448,6 +448,17 @@ problems:
 
 
 
+@section{September 25, 2017}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a3cb585-3566-4f58-981c-d720d0519c86"]
+
+Here is the code for today (I re-arranged it slightly to follow the
+style guidelines):
+
+@itemlist[
+@item{@link["shots-draw-on.rkt"]{shots-draw-on.rkt}}
+]
+
 
 
 
