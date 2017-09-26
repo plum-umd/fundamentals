@@ -5,14 +5,16 @@
 \usepackage{fancyvrb}
 
 \censorruleheight=0ex
-\StopCensoring
+%\StopCensoring
 
 \begin{document}
 
 \begin{center}
   {\Large {\bf CMSC 131A, Midterm 1 (Practice)}\\
+    \censor{{\bf SOLUTION}} \ \\
     \ \\
-    Fall 2017}
+    Fall 2017 \ \\
+  }
 \end{center}
 
 \begin{center}
@@ -83,6 +85,33 @@ constant with its value.
 
 \vskip 2.5in
 
+
+\begin{SaveVerbatim}{VerbEnv}  
+SOLUTION:
+(add1 (cond [(= (w 2) 12) 4] [else 9]))   -->[plug]
+                ^^^^^                                    
+(add1 (cond [(= (* R 2) 12) 4] [else 9])) -->[const]
+                   ^                          
+(add1 (cond [(= (* 9 2) 12) 4] [else 9])) -->[arith]
+                ^^^^^^^           
+(add1 (cond [(= 18 12) 4] [else 9]))      -->[arith]
+             ^^^^^^^^^            
+(add1 (cond [#false 4] [else 9]))         -->[cond]
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^            
+(add1 (cond [else 9]))                    -->[cond]
+      ^^^^^^^^^^^^^^^             
+(add1 9)                                  -->[arith]
+^^^^^^^^                          
+10
+\end{SaveVerbatim}
+
+\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+
+
+
 \noindent
 {\bf Problem 1(b).}
 
@@ -90,7 +119,28 @@ constant with its value.
 (posn-x (cond [(= (string-length "hi") 2) (make-posn 3 4)]
               [else (make-posn 8 0)]))
 \end{verbatim}
-  
+
+
+\begin{SaveVerbatim}{VerbEnv}
+SOLUTION:
+(posn-x (cond [(= (string-length "hi") 2) (make-posn 3 4)]
+                  ^^^^^^^^^^^^^^^^^^^^                     -->[arith]
+              [else (make-posn 8 0)]))
+(posn-x (cond [(= 2 2) (make-posn 3 4)]
+               ^^^^^^^                                     -->[arith]
+              [else (make-posn 8 0)]))
+(posn-x (cond [#true (make-posn 3 4)]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       
+              [else (make-posn 8 0)]))                     -->[arith]
+              ^^^^^^^^^^^^^^^^^^^^^^^         
+(posn-x (make-posn 3 4))              
+^^^^^^^^^^^^^^^^^^^^^^^^                                   -->[arith]
+3
+\end{SaveVerbatim}
+
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
 
 \newpage
 
@@ -110,17 +160,34 @@ for transposing characters at a given position in a string that has at
 least 2 characters in it:
 \begin{verbatim}
 ;; transpose : String Index -> String
-;; Transpose characters at index i and i+1.
-;; Assumes string has length >= 2 and 0<=i, i+1<=length.
-(check-expect (transpose "ab" 0) "ba")
-(check-expect (transpose "peice" 1) "piece")
-(check-expect (transpose "student's" 7) "students'")
+;; Transpose characters at left and right of index i.
+;; Assumes string has length >= 2 and 1<=i, i+1<=length.
+(check-expect (transpose "ab" 1) "ba")
+(check-expect (transpose "peice" 2) "piece")
+(check-expect (transpose "student's" 8) "students'")
 (define (transpose s i) ...)
 \end{verbatim}
 
 \noindent
 Give a correct definition for \verb|transpose|.  (You only need to
 provide code, not the design steps.)
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+  
+(define (transpose s i)
+  (string-append (substring s 0 (sub1 i))
+                 (substring s i (add1 i))
+                 (substring s (sub1 i) i)
+                 (substring s (add1 i))))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
 
 \newpage 
 \noindent
@@ -193,6 +260,28 @@ Design a function called \verb|tock : BB -> BB| that calculates where
 a given billiard ball will be, based on its velocity, after one tick
 of the clock and assuming it does not encounter any obstacle.
 
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+  
+;; tock : BB -> BB
+;; Move ball one tick based on velocity
+(check-expect (tock (make-bb "red" (make-posn 2 5) (make-vel 1 -2)))
+              (make-bb "red" (make-posn 3 3) (make-vel 1 -2)))
+(define (tock bb)
+  (make-bb (bb-color bb)
+           (make-posn (+ (posn-x (bb-center bb))
+                         (vel-deltax (bb-vel bb)))
+                      (+ (posn-y (bb-center bb))
+                         (vel-deltay (bb-vel bb))))
+           (bb-vel bb)))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
 
 \newpage
 
@@ -262,9 +351,6 @@ SOLUTION:
         
 \end{SaveVerbatim}
 
-\vskip 15em
-
-\censor{\vspace{-15em}}
 \censor{%
 \noindent\BUseVerbatim{VerbEnv}}
 
@@ -283,6 +369,33 @@ distance to drive (measured in miles) after making that turn.
 \noindent
 Define a data definition for routes and give two examples of values
 which are routes.
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION (there are many, this is just one):
+
+;; A Route is one of:
+;; - '()
+;; - (cons Seg Route)
+;; Interp: list of segments to follow in a truck route
+
+;; A Seg is a (make-seg Turn Number)
+(define-struct seg (turn dur))
+;; Interp: turn to make immediately,
+;; followed by distance dur going straight
+
+'()
+(cons (make-seg "L" 50)
+      (cons (make-seg "R" 20)
+            '()))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
 
 \newpage
 
@@ -321,6 +434,33 @@ you.
 \noindent
 Design a program that calculates the number of `C' grades in a
 \verb|ClassGrades| collection.
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+;; cs : ClassGrades -> Natural
+;; Count the number of Cs in the class, i.e. numbers in [70,80).
+(check-expect (cs '()) 0)
+(check-expect (cs (cons 99 (cons 72 (cons 74 (cons 50 '()))))) 2)
+(define (cs gs)
+  (cond [(empty? gs) 0]
+        [(cons? gs)
+         (+ (cond [(c? (first gs)) 1]
+                  [else 0])
+            (cs (rest gs)))]))
+
+;; c? : Grade -> Boolean
+;; is the given grade a C (i.e. in [70,80))?
+(check-expect (c? 70) #true)
+(check-expect (c? 80) #false)
+(define (c? g)
+  (and (<= 70 g) (< g 80)))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
 
 
 
