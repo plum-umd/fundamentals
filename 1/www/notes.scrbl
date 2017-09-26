@@ -463,6 +463,16 @@ style guidelines):
 @item{@link["shots-draw-on.rkt"]{shots-draw-on.rkt}}
 ]
 
+@section{Midterm practice exam}
+
+Here is a midterm practice exam to help prepare for the upcoming
+midterm:
+@itemlist[
+@item{@link["m1-practice.pdf"]{m1-practice.pdf}}
+]
+
+(The solution will be posted shortly.)
+
 
 
 
