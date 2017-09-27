@@ -465,14 +465,22 @@ style guidelines):
 
 @section{Midterm practice exam}
 
-Here is a midterm practice exam to help prepare for the upcoming
+Here is a midterm practice exam (and solution) to help prepare for the upcoming
 midterm:
 @itemlist[
 @item{@link["m1-practice.pdf"]{m1-practice.pdf}}
+@item{@link["m1-practice-soln.pdf"]{m1-practice-soln.pdf}}
 ]
 
-(The solution will be posted shortly.)
 
+@section{September 27, 2017}
 
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4c651ab2-35ac-467b-bf6b-c4eeb19dc56a}
 
+Here is the code for today; we skipped the section on lists of
+strings, so see if you can do that on your own and also have a go at
+the functions on lists of lists of numbers we didn't get to.
 
+@itemlist[
+@item{@link["lists-1.rkt"]{lists-1.rkt}}
+]

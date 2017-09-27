@@ -25,8 +25,9 @@ all:
 	cp invaders.rkt cmsc131A/
 	cp shots.rkt cmsc131A/
 	cp shots-draw-on.rkt cmsc131A/
+	cp lists-1.rkt cmsc131A/
 	cp feedback-assign4.pdf cmsc131A/
-	cp m1-practice.pdf cmsc131A/
+	cp m1-practice{,-soln}.pdf cmsc131A/
 	cp -r A{2,3} cmsc131A/
 
 push: all
