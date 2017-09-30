@@ -512,7 +512,7 @@ Today's quiz:
 Write the definition of the count-skins function:
 
 @verbatim{
-(define b(make-bulb))
+(define b (make-bulb))
 
 ;; count-skins : Onion -> Natural
 ;; Count the number of skins on the onion
