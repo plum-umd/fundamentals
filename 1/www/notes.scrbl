@@ -525,5 +525,33 @@ Code for today:
 @item{@link["lists-2.rkt"]{lists-2.rkt}}
 ]
 
+@section{Pair programming Space Invaders with shots}
 
+On Friday, Austin Bourgerie and I sat down to pair program the Space
+Invaders portion of @secref{assign5}.  We recorded the session in
+hopes of showing:
+@itemlist[
+@item{(a) how the head and hands model of pair programming
+can be effective in rapidly thinking through and solving problems and}
+@item{
+(b) how sticking to the design process makes short order of the
+assignment.}
+
+We were able to complete that part of the assignment in 1 hour.  As
+you watch the video, I hope you'll realize we were able to get through
+it so quickly not because we are overly smart, experienced, or have an
+encyclopedic knowledge of BSL or Space Invaders---we got through it so
+fast because we stuck to the process and went slow to quickly get to a
+well-designed program.  We didn't do anything that you couldn't also
+do.  We made a few small mistakes along the way, but we found them and
+recovered quickly, thanks to the process.
+
+I made only one change to the code after we finished, which is I
+deleted all the obsoleted code having to do with @tt{Aim} and
+@tt{Fire}.
+
+@itemlist[
+@item{@link["invader-shots-dvanhorn-abourg.rkt"]{Code}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452"]{Video}}
+]
 

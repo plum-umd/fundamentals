@@ -23,6 +23,7 @@ all:
 	cp chip{0,1}.rkt cmsc131A/
 	cp chip{0,1,2,3}.png cmsc131A/
 	cp invaders.rkt cmsc131A/
+	cp invader-shots-dvanhorn-abourg.rkt cmsc131A/
 	cp shots.rkt cmsc131A/
 	cp shots-draw-on.rkt cmsc131A/
 	cp lists-{1,2}.rkt cmsc131A/
