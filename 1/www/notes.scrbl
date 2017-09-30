@@ -484,3 +484,46 @@ the functions on lists of lists of numbers we didn't get to.
 @itemlist[
 @item{@link["lists-1.rkt"]{lists-1.rkt}}
 ]
+
+Today's quiz:
+
+@verbatim{
+;; An Onion is one of:
+;; - (make-bulb)
+;; - (make-skin Onion)
+(define-struct bulb ())
+(define-struct skin (inner))}
+
+Write a template for @tt{Onion} functions.
+
+@section{September 29, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=622f0c0f-7f16-4e64-afb8-1ade64a6ca3a}
+
+Today's quiz:
+
+@verbatim{
+;; An Onion is one of:
+;; - (make-bulb)
+;; - (make-skin Onion)
+(define-struct bulb ())
+(define-struct skin (inner))}
+
+Write the definition of the count-skins function:
+
+@verbatim{
+(define b(make-bulb))
+
+;; count-skins : Onion -> Natural
+;; Count the number of skins on the onion
+(check-expect (count-skins b) 0)
+(check-expect (count-skins (make-skin b)) 1)
+(check-expect (count-skins (make-skin (make-skin b))) 2)}
+
+Code for today:
+@itemlist[
+@item{@link["lists-2.rkt"]{lists-2.rkt}}
+]
+
+
+
