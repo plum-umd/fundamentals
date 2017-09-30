@@ -535,7 +535,7 @@ hopes of showing:
 can be effective in rapidly thinking through and solving problems and}
 @item{
 (b) how sticking to the design process makes short order of the
-assignment.}
+assignment.}]
 
 We were able to complete that part of the assignment in 1 hour.  As
 you watch the video, I hope you'll realize we were able to get through
