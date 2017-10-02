@@ -465,14 +465,93 @@ style guidelines):
 
 @section{Midterm practice exam}
 
-Here is a midterm practice exam to help prepare for the upcoming
+Here is a midterm practice exam (and solution) to help prepare for the upcoming
 midterm:
 @itemlist[
 @item{@link["m1-practice.pdf"]{m1-practice.pdf}}
+@item{@link["m1-practice-soln.pdf"]{m1-practice-soln.pdf}}
 ]
 
-(The solution will be posted shortly.)
 
+@section{September 27, 2017}
 
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4c651ab2-35ac-467b-bf6b-c4eeb19dc56a}
 
+Here is the code for today; we skipped the section on lists of
+strings, so see if you can do that on your own and also have a go at
+the functions on lists of lists of numbers we didn't get to.
+
+@itemlist[
+@item{@link["lists-1.rkt"]{lists-1.rkt}}
+]
+
+Today's quiz:
+
+@verbatim{
+;; An Onion is one of:
+;; - (make-bulb)
+;; - (make-skin Onion)
+(define-struct bulb ())
+(define-struct skin (inner))}
+
+Write a template for @tt{Onion} functions.
+
+@section{September 29, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=622f0c0f-7f16-4e64-afb8-1ade64a6ca3a}
+
+Today's quiz:
+
+@verbatim{
+;; An Onion is one of:
+;; - (make-bulb)
+;; - (make-skin Onion)
+(define-struct bulb ())
+(define-struct skin (inner))}
+
+Write the definition of the count-skins function:
+
+@verbatim{
+(define b (make-bulb))
+
+;; count-skins : Onion -> Natural
+;; Count the number of skins on the onion
+(check-expect (count-skins b) 0)
+(check-expect (count-skins (make-skin b)) 1)
+(check-expect (count-skins (make-skin (make-skin b))) 2)}
+
+Code for today:
+@itemlist[
+@item{@link["lists-2.rkt"]{lists-2.rkt}}
+]
+
+@section{Pair programming Space Invaders with shots}
+
+On Friday, Austin Bourgerie and I sat down to pair program the Space
+Invaders portion of @secref{assign5}.  We recorded the session in
+hopes of showing:
+@itemlist[
+@item{(a) how the head and hands model of pair programming
+can be effective in rapidly thinking through and solving problems and}
+@item{
+(b) how sticking to the design process makes short order of the
+assignment.}]
+
+We were able to complete that part of the assignment in 1 hour.  As
+you watch the video, I hope you'll realize we were able to get through
+it so quickly not because we are overly smart, experienced, or have an
+encyclopedic knowledge of BSL or Space Invaders---we got through it so
+fast because we stuck to the process and went slow to quickly get to a
+well-designed program.  We didn't do anything that you couldn't also
+do.  We made a few small mistakes along the way, but we found them and
+recovered quickly, thanks to the process.
+
+I made only one change to the code after we finished, which is I
+deleted all the obsoleted code having to do with @tt{Aim} and
+@tt{Fire}.
+
+@itemlist[
+@item{@link["invader-shots-dvanhorn-abourg.rkt"]{Code}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452"]{Video}}
+]
 

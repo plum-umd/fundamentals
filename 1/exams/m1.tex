@@ -10,12 +10,24 @@
 \begin{document}
 
 \begin{center}
-  {\Large {\bf CMSC 131A, Midterm 1 (Practice)}\\
+  {\Large {\bf CMSC 131A, Midterm 1}\\
     \censor{{\bf SOLUTION}} \ \\
     \ \\
     Fall 2017 \ \\
   }
 \end{center}
+
+\vspace{2em}
+
+\noindent
+NAME:\verb|________________________________________________________|
+
+\vspace{2em}
+
+\noindent
+UID: \verb|__________________________________________|
+
+\vspace{2em}
 
 \begin{center}
 \begin{tabular}{| c | c |}
@@ -24,11 +36,11 @@
   1 & 10 \\ \hline
   2 & 10 \\ \hline
   3 & 10 \\ \hline
-  4 & 20 \\ \hline
-  5 & 10 \\ \hline
-  6 & 20 \\ \hline \hline
+  4 & 15 \\ \hline
+  5 & 15 \\ \hline
+  6 & 10 \\ \hline
   7 & 20 \\ \hline \hline
-  Total: & 100\\
+  Total: & 90\\
   \hline
 \end{tabular}
 \end{center}
@@ -55,6 +67,12 @@ and do not need to repeat their definitions.
 \vskip 1em
 
 \noindent
+Unless specifically instructed otherwise, you may use any built-in BSL
+functions or data types.
+
+\vskip 1em
+
+\noindent
 When writing tests, you may use a shorthand for writing check-expects
 by drawing an arrow between two expressions to mean you expect the
 first to evaluate to same result as the second.  For example, you may
@@ -66,21 +84,18 @@ write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
 \noindent
 {\bf Problem 1 (10 points).}
 %
-For each of the following programs, write out each step of
-computation. At each step, underline the expression being
-simplified. Label each step as being ``arithmetic'' (meaning any
-built-in operation), ``conditional'', ``plug'' (for plugging in an
-argument for a function parameter), or ``constant'' for replacing a
-constant with its value.
+For the following program, write out each step of computation. At each
+step, underline the expression being simplified. Label each step as
+being ``arithmetic'' (meaning any built-in operation),
+``conditional'', ``plug'' (for plugging in an argument for a function
+parameter), or ``constant'' for replacing a constant with its value.
 
-\noindent
-{\bf Problem 1(a).}
 
 \begin{verbatim}
 (define R 9)
-(define (w z) (* R z))
-(add1 (cond [(= (w 2) 12) 4]
-            [else 9]))
+(define (w z) (= R z))
+(cond [(w 2) 4]
+      [else 9])
 \end{verbatim}
 
 \vskip 2.5in
@@ -88,99 +103,59 @@ constant with its value.
 
 \begin{SaveVerbatim}{VerbEnv}  
 SOLUTION:
-(add1 (cond [(= (w 2) 12) 4] [else 9]))   -->[plug]
-                ^^^^^                                    
-(add1 (cond [(= (* R 2) 12) 4] [else 9])) -->[const]
-                   ^                          
-(add1 (cond [(= (* 9 2) 12) 4] [else 9])) -->[arith]
-                ^^^^^^^           
-(add1 (cond [(= 18 12) 4] [else 9]))      -->[arith]
-             ^^^^^^^^^            
-(add1 (cond [#false 4] [else 9]))         -->[cond]
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^            
-(add1 (cond [else 9]))                    -->[cond]
-      ^^^^^^^^^^^^^^^             
-(add1 9)                                  -->[arith]
-^^^^^^^^                          
-10
 \end{SaveVerbatim}
 
-\censor{\vspace{-2.5in}}
+%\censor{\vspace{-2.5in}}
 \censor{%
 \noindent\BUseVerbatim{VerbEnv}}
-
-
-
-
-\noindent
-{\bf Problem 1(b).}
-
-\begin{verbatim}
-(posn-x (cond [(= (string-length "hi") 2) (make-posn 3 4)]
-              [else (make-posn 8 0)]))
-\end{verbatim}
-
-
-\begin{SaveVerbatim}{VerbEnv}
-SOLUTION:
-(posn-x (cond [(= (string-length "hi") 2) (make-posn 3 4)]
-                  ^^^^^^^^^^^^^^^^^^^^                     -->[arith]
-              [else (make-posn 8 0)]))
-(posn-x (cond [(= 2 2) (make-posn 3 4)]
-               ^^^^^^^                                     -->[arith]
-              [else (make-posn 8 0)]))
-(posn-x (cond [#true (make-posn 3 4)]
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       
-              [else (make-posn 8 0)]))                     -->[arith]
-              ^^^^^^^^^^^^^^^^^^^^^^^         
-(posn-x (make-posn 3 4))              
-^^^^^^^^^^^^^^^^^^^^^^^^                                   -->[arith]
-3
-\end{SaveVerbatim}
-
-\censor{%
-\noindent\BUseVerbatim{VerbEnv}}
-
 
 \newpage
 
 \noindent
 {\bf Problem 2 (10 points).}
 %
-The graphical text editor you developed in a recent assignment has
-garned major attention by Bay-area venture capitalists who want to
-base a start-up company around your editor.  They're ready to invest
-to help you develop a full-featured prototype.  But before they write
-a check, they want to make sure you can handle fancy operations for
-expert text editor users.  They ask if you can implement a
-\emph{transpose} operation, which will transpose the character to the
-left of a cursor with the character to the right of the cursor.  To
-satisfy your potential investors, you define the following function
-for transposing characters at a given position in a string that has at
-least 2 characters in it:
+For the following structure definition, list the names of every
+function it creates.  For each function, classify it as being either a
+constructor, accessor, or predicate.
+
 \begin{verbatim}
-;; transpose : String Index -> String
-;; Transpose characters at left and right of index i.
-;; Assumes string has length >= 2 and 1<=i, i+1<=length.
-(check-expect (transpose "ab" 1) "ba")
-(check-expect (transpose "peice" 2) "piece")
-(check-expect (transpose "student's" 8) "students'")
-(define (transpose s i) ...)
+(define-struct run (time up score))
+\end{verbatim}
+
+\newpage
+
+\noindent
+{\bf Problem 3 (10 points).}
+%
+The graphical text editor you developed in a recent assignment has
+attracted the interest of investors.  But before they write you a
+check, they want to make sure you can handle fancy operations for
+expert text editor users.  They ask if you can implement a \emph{swap}
+operation, which will swap content to the left of the cursor with the
+content to the right..  To satisfy your potential investors, you
+define the following function for swapping strings at a given
+position:
+\begin{verbatim}
+;; swap : String Integer -> String
+;; Swap string to the left of i with string to the right.
+;; Assume (<= 0 i (string-length s)).
+(check-expect (swap "" 0) "")
+(check-expect (swap "ab" 1) "ba")
+(check-expect (swap "bannana" 3) "nanaban")
+(define (swap s i) ...)
 \end{verbatim}
 
 \noindent
-Give a correct definition for \verb|transpose|.  (You only need to
+Give a correct definition for \verb|swap|.  (You only need to
 provide code, not the design steps.)
 
 \begin{SaveVerbatim}{VerbEnv}
 
 SOLUTION:
-  
-(define (transpose s i)
-  (string-append (substring s 0 (sub1 i))
-                 (substring s i (add1 i))
-                 (substring s (sub1 i) i)
-                 (substring s (add1 i))))
+
+(define (swap s i)
+  (string-append (substring s i)
+                 (substring s 0 i)))
 \end{SaveVerbatim}
 
 \censor{%
@@ -191,21 +166,28 @@ SOLUTION:
 
 \newpage 
 \noindent
-{\bf Problem 3 (10 points).}
+{\bf Problem 4 (15 points).}
 %
-A point in three dimensional space can be represented by three numbers
-specifying the points distance from the $x$-axis, $y$-axis, and
-$z$-axis.  The distance of a point $(x,y,z)$ can be computed as:
-\[\sqrt(x^2+y^2+z^2)\]
-For example, the distance of $(2,6,9)$ to the origin is $11$; the
-distance of $(3,2,6)$ is $7$.  Assume the following data definition
-and design a program for computing the distance of a given 3D
-point.
+Use the following data definition for representing names:
+\begin{verbatim}
+;; A Name is a (make-name String String)
+;; Interp: a person's full (first and last) name.
+;; Both strings must contain at least one letter.
+(define-struct name (first last))
+\end{verbatim}
+
+\noindent
+Write a program, \verb|name-width|, that determines the width needed
+to print someone's name on a letter using a mono-typed font (meaning
+each letter has the same width).  The program can calculate this width
+based on the length of the person's first and last name, plus the
+width of a space to go in between.  Assume each letter is 10 pixels
+wide.  For example, the name Bob Harper requires 100 pixels; the name
+Bo Jack requires 70 pixels.  You may start from the following header:
 
 \begin{verbatim}
-;; A 3D is a (make-3d Number Number Number)
-;; Interp: a point in three dimension space
-(define-struct 3d (x y z))
+;; name-width : Name -> Number
+;; Computes width needed to print name in mono-type font
 \end{verbatim}
 
 \begin{SaveVerbatim}{VerbEnv}
@@ -226,55 +208,28 @@ SOLUTION:
 
 \newpage
 \noindent
-{\bf Problem 4 (20 points).}  Growing tired of Space Invaders, you
-decide to build a new video game.  Part of the game consists of flying
-billiard balls that move in straight lines at varying velocities until
-hitting other balls or bouncing off walls and other obstacles.  After
-making some sketches, you decide on the following data representation
-for billiard balls:
+{\bf Problem 5 (15 points).}  
+%
+Design a program that takes a list of numbers and produces the count
+of non-negative numbers in the list.  For example, if the list
+contains 3, 4, -1, 0, -2, and 5, the count of non-negative numbers is
+4.  You may use the following data definition:
 
 \begin{verbatim}
-;; A BB is a:
-;; (make-bb Color 
-;;          (make-posn Integer Integer) 
-;;          (make-vel Integer Integer))
-
-;; A Color is one of:
-;; - "red"
-;; - "yellow"
-;; - "green"
-
-(define-struct bb (color center vel))
-(define-struct vel (deltax deltay))
+;; A LoN (list of numbers) is one of:
+;; - '()
+;; - (cons Number LoN)
+;; Interp: an arbitrarily long list of numbers
 \end{verbatim}
-The interpretation of a \verb|BB| is that the color is the color of
-the ball, the \verb|posn| is the location of the center of the ball,
-and the \verb|vel| structure describes the ball's velocity as a change
-along the $x$-axis (\verb|deltax|) and $y$-axis (\verb|deltay|) in one
-clock tick.
 
-\vskip 1em
 
-\noindent
-Design a function called \verb|tock : BB -> BB| that calculates where
-a given billiard ball will be, based on its velocity, after one tick
-of the clock and assuming it does not encounter any obstacle.
+
+
 
 \begin{SaveVerbatim}{VerbEnv}
 
 SOLUTION:
   
-;; tock : BB -> BB
-;; Move ball one tick based on velocity
-(check-expect (tock (make-bb "red" (make-posn 2 5) (make-vel 1 -2)))
-              (make-bb "red" (make-posn 3 3) (make-vel 1 -2)))
-(define (tock bb)
-  (make-bb (bb-color bb)
-           (make-posn (+ (posn-x (bb-center bb))
-                         (vel-deltax (bb-vel bb)))
-                      (+ (posn-y (bb-center bb))
-                         (vel-deltay (bb-vel bb))))
-           (bb-vel bb)))
 \end{SaveVerbatim}
 
 \censor{%
@@ -286,40 +241,39 @@ SOLUTION:
 \newpage
 
 \noindent
-{\bf Problem 5 (10 points).} You've been hired by UPS, a package
-delivery service, to manage and improve their truck routing software.
-The software directs their truck drivers on how to proceed at each
-intersection (we assume streets are laid out on a simple grid for this
-problem): either continue straight, turn left, turn right, or take a
-u-turn (i.e. turn around and proceed in the opposite direction.
-
-You decide on the following data definition for representing these
-instructions:
+{\bf Problem 6 (10 points).} You've been hired by the US Department of
+Transportation to design traffic simulation software, which includes
+simulating traffic lights.  Discovering the simple design from 131A is
+insufficient, you come up with the following representation, which
+makes it possible to model not just the color, but also how much
+longer the current light has before changing: 
 
 \begin{verbatim}
-;; A Turn is one of:
-;; - "S"
-;; - "L"
-;; - "R"
-;; - "U"
-;; Interp: directions for truck turns: straight (S), left (L), 
-;; right (R), or u-turn (U).
+;; A Light is one of:
+;; - (make-red Natural)
+;; - (make-yellow Natural)
+;; - (make-green Natural)
+;; Interp: color and remaining duration (in ticks) of a light 
+(define-struct red (count))
+(define-struct yellow (count))
+(define-struct green (count))
 \end{verbatim}
+(Recall that a \verb|Natural| is a natural number, i.e. a non-negative
+integer.)
+
+\vspace{1em}
 
 \noindent
-{\bf Problem 5(a).} Write a template for \verb|Turn| functions.
+{\bf Problem 6(a).} Write a template for \verb|Light| functions.
 
 \begin{SaveVerbatim}{VerbEnv}
   
 SOLUTION:
   
-(define (turn-temp t)
-  (cond [(string=? t "S") ...]
-        [(string=? t "L") ...]
-        [(string=? t "R") ...]
-        [(string=? t "U") ...]))
-
-
+(define (light-temp l)
+  (cond [(red? l) (... (red-count l) ...)]
+        [(yellow? l) (... (yellow-count l) ...)]
+        [(green? l) (... (green-count l) ...)]
         
 \end{SaveVerbatim}
 
@@ -331,15 +285,13 @@ SOLUTION:
 
 
 \noindent
-{\bf Problem 5(b).} Write a stub for the following function:
+{\bf Problem 6(b).} Write a stub for the following function:
     
 \begin{verbatim}
-;; backtrack : Turn -> Turn
-;; Compute the turn to go backward on route
-(check-expect (backtrack "S") "S")
-(check-expect (backtrack "L") "R")
-(check-expect (backtrack "R") "L")
-(check-expect (backtrack "U") "U")
+;; tock : Light -> Light
+;; Advance the light by one tick of time
+(check-expect (tock (make-red 10)) (make-red 9))
+(check-expect (tock (make-red 0)) (make-green 10))
 \end{verbatim}
 
 
@@ -347,7 +299,7 @@ SOLUTION:
   
 SOLUTION:
 
-(define (backtrack t) "R")
+(define (tock l) (make-red 0))
         
 \end{SaveVerbatim}
 
@@ -357,113 +309,81 @@ SOLUTION:
 \newpage
 
 \noindent
-{\bf Problem 6 (20 points).}
+{\bf Problem 7 (20 points).}
 %
-Part of your new UPS job is to compute useful metrics about trucking
-routes, which will be used by the business office to optimize routes
-for improving gasoline consumption.  A route consists of any number of
-segments and each segment consists of a turn (as in problem 2) and a
-distance to drive (measured in miles) after making that turn.
-
-\vskip 1em
-\noindent
-Define a data definition for routes and give two examples of values
-which are routes.
-
+Over the summer, you take an internship at the University of
+Maryland's Center for Bioinformatics and Computational Biology (CBCB).
+Your first task deals with computing information about \emph{DNA
+  strands}.  A DNA strand is an arbitrarily long sequence of
+\emph{nucleotides}, which are either: C, G, A, or T.  Design a program
+that, given a DNA strand, computes the number of times the G
+nucleotide occurs in it.  For example, if the strand is AGCTTTGA, your
+program should produce 2.
 
 \begin{SaveVerbatim}{VerbEnv}
 
-SOLUTION (there are many, this is just one):
+;; SOLUTION:
+  
+;; A Nucleotide is one of:
+;; - "C"
+;; - "G"
+;; - "A"
+;; - "T"
+;; Interp: DNA nucleotide C,G,A,T.
 
-;; A Route is one of:
+;; A DNA is one of:
 ;; - '()
-;; - (cons Seg Route)
-;; Interp: list of segments to follow in a truck route
+;; - (cons Nucleotide DNA)
+;; Interp: a DNA strand of nucleotides
 
-;; A Seg is a (make-seg Turn Number)
-(define-struct seg (turn dur))
-;; Interp: turn to make immediately,
-;; followed by distance dur going straight
+;; count-g : DNA -> Natural
+;; Count the number of occurrence of G in given DNA strand
+(check-expect (count-g '()) 0)
+(check-expect (count-g (cons "A" (cons "G" (cons "G" '())))) 2)
+(define (count-g dna)
+  (cond [(empty? dna) 0]
+        [(cons? dna)
+         (+ (if (string=? (first dna) "G") 1 0)
+            (count-g (rest dna)))]))
 
-'()
-(cons (make-seg "L" 50)
-      (cons (make-seg "R" 20)
-            '()))
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
-
-
-
+  
 \newpage
 
 \noindent
-{\bf Problem 7 (20 points).}
-%
-Students seem obsessed with grades, which are calculated as numbers
-between 0 and 100, inclusive.  At the end of the year, the professor
-needs to figure out how to convert a numeric grade into a letter
-grade, so they decide to write a small program using the following
-data definition:
-\begin{verbatim}
-;; A Grade is one of:
-;; - [90,100]  ;; Interp: A
-;; - [80,90)   ;;         B
-;; - [70,80)   ;;         C
-;; - [60,70)   ;;         D
-;; - [0,60)    ;;         F
-\end{verbatim}
-
-While students are obsessed with their individual grades, the
-university is more interested in knowing statistics about the class as
-a whole.  They ask the professor questions like ``how many `C'
-students were in your class?,'' so they decide to write another
-program using the following data definition:
-\begin{verbatim}
-;; A ClassGrades is one of:
-;; - '()
-;; - (cons Grade ClassGrades)
-\end{verbatim}
-But then, because the professor is lazy, they outsource the problem to
-you.
-
-\vskip 1em
-
-\noindent
-Design a program that calculates the number of `C' grades in a
-\verb|ClassGrades| collection.
-
-\begin{SaveVerbatim}{VerbEnv}
-
-SOLUTION:
-
-;; cs : ClassGrades -> Natural
-;; Count the number of Cs in the class, i.e. numbers in [70,80).
-(check-expect (cs '()) 0)
-(check-expect (cs (cons 99 (cons 72 (cons 74 (cons 50 '()))))) 2)
-(define (cs gs)
-  (cond [(empty? gs) 0]
-        [(cons? gs)
-         (+ (cond [(c? (first gs)) 1]
-                  [else 0])
-            (cs (rest gs)))]))
-
-;; c? : Grade -> Boolean
-;; is the given grade a C (i.e. in [70,80))?
-(check-expect (c? 70) #true)
-(check-expect (c? 80) #false)
-(define (c? g)
-  (and (<= 70 g) (< g 80)))
-\end{SaveVerbatim}
-
-\censor{%
-\noindent
-\BUseVerbatim{VerbEnv}}
+[Extra space, should you need it.]
 
 
+%% Design a program that consumes an arbitrarily large collection of
+%% numbers and produces the count of non-negative numbers in the
+%% collection.
 
+%% \begin{SaveVerbatim}{VerbEnv}
+
+%% SOLUTION:
+
+%% ;; A LoN (list of numbers) is one of:
+%% ;; - '()
+%% ;; - (cons Number LoN)
+
+%% ;; count-non-neg : LoN -> Natural
+%% ;; Count the number of non-negative numbers in the given list.
+%% (check-expect (count-non-neg '()) 0)
+%% (check-expect (count-non-neg (cons -1 (cons 1 (cons -2 '())))) 1)
+%% (define (count-non-neg lon)
+%%   (cond [(empty? lon) 0]
+%%         [(cons? lon) 
+%%          (+ (if (<= 0 (first lon)) 1 0)
+%%             (count-non-neg (rest lon)))]))
+%% \end{SaveVerbatim}
+
+%% \censor{%
+%% \noindent
+%% \BUseVerbatim{VerbEnv}}
 
 \end{document}
 
