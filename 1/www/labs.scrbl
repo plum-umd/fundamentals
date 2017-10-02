@@ -16,3 +16,4 @@ in lectures with helpful assistants around.
 @include-section{lab7.scrbl}
 @include-section{lab8.scrbl}
 @include-section{lab9.scrbl}
+@include-section{lab10.scrbl}
