@@ -555,3 +555,13 @@ deleted all the obsoleted code having to do with @tt{Aim} and
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452"]{Video}}
 ]
 
+@section{October 4, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f26b466e-78bd-43f9-a3a3-23cc776fa74b}
+
+Today's code:
+
+@itemlist[
+  @item{@link["sort.rkt"]{sort.rkt}}
+]
+
