@@ -5,7 +5,7 @@
 \usepackage{fancyvrb}
 
 \censorruleheight=0ex
-\StopCensoring
+%\StopCensoring
 
 \begin{document}
 
@@ -26,7 +26,7 @@
   3 & 10 \\ \hline
   4 & 20 \\ \hline
   5 & 10 \\ \hline
-  6 & 20 \\ \hline \hline
+  6 & 20 \\ \hline
   7 & 20 \\ \hline \hline
   Total: & 100\\
   \hline
@@ -131,7 +131,7 @@ SOLUTION:
               [else (make-posn 8 0)]))
 (posn-x (cond [#true (make-posn 3 4)]
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       
-              [else (make-posn 8 0)]))                     -->[arith]
+              [else (make-posn 8 0)]))                     -->[cond]
               ^^^^^^^^^^^^^^^^^^^^^^^         
 (posn-x (make-posn 3 4))              
 ^^^^^^^^^^^^^^^^^^^^^^^^                                   -->[arith]
@@ -148,7 +148,7 @@ SOLUTION:
 {\bf Problem 2 (10 points).}
 %
 The graphical text editor you developed in a recent assignment has
-garned major attention by Bay-area venture capitalists who want to
+garnered major attention by Bay-area venture capitalists who want to
 base a start-up company around your editor.  They're ready to invest
 to help you develop a full-featured prototype.  But before they write
 a check, they want to make sure you can handle fancy operations for
