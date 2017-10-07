@@ -188,24 +188,23 @@ For now, copy the following into your @italic{definitions window}.
 We'll do this in a few steps. We gave you the helper function
 @tt{add-char-to-first-word}.
 
-@larger{@bold{Ex 10}}: Define the function @tt{chars->words} that, given a
+@larger{@bold{Ex 9}}: Define the function @tt{chars->words} that, given a
 @tt{ListofChar}, returns a @tt{ListofWord} where the @tt{Char}s of the input are
 grouped together into @tt{Word}s. Use the helper function
 @tt{add-char-to-first-word} in your definition.
 
-@larger{@bold{Ex 11}}: Define the function @tt{string->words} that, given a
+@larger{@bold{Ex 10}}: Define the function @tt{string->words} that, given a
 @tt{String}, returns a @tt{ListofWord}. You may want to use the helper functions
 @tt{chars->words} and @tt{string->list} in your definition.
 
-@larger{@bold{Ex 12}}: The function @tt{string->words} sometimes includes the
+@larger{@bold{Ex 11}}: The function @tt{string->words} sometimes includes the
 empty string in its output. Under what conditions does this happen? Does this
 break its signature?
 
-@larger{@bold{Ex 13}}: Design the function @tt{remove-empties} that, given a
+@larger{@bold{Ex 12}}: Design the function @tt{remove-empties} that, given a
 @tt{ListofWord}s, returns a @tt{ListofWord}s with no empty strings in it. Modify
 your definition of @tt{string->words} so it does not ever include the empty
 @tt{String} in its output.
-
 
 Cool! In the next lab we'll can break our @tt{Message}s into multiple lines of
 @tt{Word}s, so we don't garble the content in our @tt{ChatClient}.
