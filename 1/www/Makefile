@@ -6,10 +6,11 @@ git_local = $(shell git rev-parse @)
 git_remote = $(shell git rev-parse @{u})
 git_base = $(shell git merge-base @ @{u})
 
-.PHONY : all push
+.PHONY : all clean push skeletons
 
-all:
-	rm -rf $(course)
+all: clean assign6.zip cmsc131A
+
+cmsc131A:
 	scribble --htmls ++style extra.css \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
@@ -31,6 +32,16 @@ all:
 	cp m1-practice{,-soln}.pdf cmsc131A/
 	cp sort.rkt cmsc131A/
 	cp -r A{2,3} cmsc131A/
+	cp assign6.zip cmsc131A/
+
+clean:
+	rm -f assign6.zip
+	rm -rf $(course)
+
+assign6.zip:
+	cd ../skeletons/assign6 && zip ../../www/assign6.zip *.rkt
+
+skeletons: assign6.zip
 
 push: all
 	@git fetch
