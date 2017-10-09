@@ -5,10 +5,10 @@
 
 @bold{Due:} Friday, October 13, 11:59:59 PM EST.
 
-The following should be completed in cooperation with your assigned
-partner from lab 1. (Partner assignments are listed on
-@link["https://piazza.com/class/j474gwnsd3619n?cid=43"]{Piazza}.)  You
-may not share code for this assignment with anyone but your partner.
+The following should be completed in cooperation with your latest assigned
+partner. (Partner assignments are listed on
+@link["https://piazza.com/class/j474gwnsd3619n?cid=43"]{Piazza}.)  You may not
+share code for this assignment with anyone but your partner.
 
 You must use the design recipe and @secref{style} guidelines to
 receive full credit.
