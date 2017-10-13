@@ -35,6 +35,7 @@ cmsc131A:
 	cp f-all-abstract.rkt cmsc131A/
 	cp addn-abstract.rkt cmsc131A/
 	cp even-odd-abstract.rkt cmsc131A/
+	cp prod-sum-abstract.rkt cmsc131A/
 	cp -r A{2,3} cmsc131A/
 	cp assign6.zip cmsc131A/
 
