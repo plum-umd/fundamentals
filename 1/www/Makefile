@@ -31,6 +31,10 @@ cmsc131A:
 	cp feedback-assign4.pdf cmsc131A/
 	cp m1-practice{,-soln}.pdf cmsc131A/
 	cp sort.rkt cmsc131A/
+	cp snake-{complete,in-progress}.rkt cmsc131A/
+	cp f-all-abstract.rkt cmsc131A/
+	cp addn-abstract.rkt cmsc131A/
+	cp even-odd-abstract.rkt cmsc131A/
 	cp -r A{2,3} cmsc131A/
 	cp assign6.zip cmsc131A/
 

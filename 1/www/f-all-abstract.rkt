@@ -1,0 +1,23 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname f-all-abstract) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;; Amber Rahman, assign 3
+
+;; sqr-all : LoN -> LoN
+;; Square each element of the list
+(define (sqr-all lon)
+  (f-all sqr lon))
+
+;; double-all : LoN -> LoN
+;; Double each element of the list
+(define (double-all lon)
+  (f-all dbl lon))
+
+;; f-all : (Number -> Number) LoN -> LoN
+(define (f-all f lon)
+  (cond [(empty? lon) '()]
+        [(cons? lon)
+         (cons (f (first lon))
+               (f-all f (rest lon)))]))
+
+(define (dbl x) (+ x x))
