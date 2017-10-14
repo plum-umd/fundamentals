@@ -565,3 +565,30 @@ Today's code:
   @item{@link["sort.rkt"]{sort.rkt}}
 ]
 
+@section{October 11, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=24a1b149-639b-4230-9cc7-6c007a35d34d}
+
+Snake code:
+@itemlist[
+ @item{@link["snake-in-progress.rkt"]{snake-in-progress.rkt}}
+ @item{@link["snake-complete.rkt"]{snake-complete.rkt}}
+]
+
+Today's code:
+
+@itemlist[
+  @item{@link["addn-abstract.rkt"]{addn-abstract.rkt}}
+  @item{@link["even-odd-abstract.rkt"]{even-odd-abstract.rkt}}
+  @item{@link["f-all-abstract.rkt"]{f-all-abstract.rkt}}
+]
+
+@section{October 13, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d58ba7b4-9c7b-42ab-b725-d0de765cb4cf}
+
+Today's code:
+
+@itemlist[
+  @item{@link["prod-sum-abstract.rkt"]{prod-sum-abstract.rkt}}
+]
