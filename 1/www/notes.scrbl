@@ -565,6 +565,10 @@ Today's code:
   @item{@link["sort.rkt"]{sort.rkt}}
 ]
 
+@section{October 6 & 9, 2017}
+
+@include-section["snake.scrbl"]
+
 @section{October 11, 2017}
 
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=24a1b149-639b-4230-9cc7-6c007a35d34d}
