@@ -8,7 +8,7 @@ git_base = $(shell git merge-base @ @{u})
 
 .PHONY : all clean push skeletons
 
-all: clean assign6.zip cmsc131A
+all: clean assign6.zip assign7.zip cmsc131A
 
 cmsc131A:
 	scribble --htmls ++style extra.css \
@@ -37,16 +37,19 @@ cmsc131A:
 	cp even-odd-abstract.rkt cmsc131A/
 	cp prod-sum-abstract.rkt cmsc131A/
 	cp -r A{2,3,4} cmsc131A/
-	cp assign6.zip cmsc131A/
+	cp assign{6,7}.zip cmsc131A/
 
 clean:
-	rm -f assign6.zip
+	rm -f assign{6,7}.zip
 	rm -rf $(course)
 
 assign6.zip:
 	cd ../skeletons/assign6 && zip ../../www/assign6.zip *.rkt
 
-skeletons: assign6.zip
+assign7.zip:
+	cd ../skeletons/assign7 && zip ../../www/assign7.zip *.rkt
+
+skeletons: assign6.zip assign7.zip
 
 push: all
 	@git fetch
