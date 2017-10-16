@@ -596,3 +596,10 @@ Today's code:
 @itemlist[
   @item{@link["prod-sum-abstract.rkt"]{prod-sum-abstract.rkt}}
 ]
+
+@section{October 16. 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7e3f2c63-b17c-4889-ae85-6c1ef6c5236b}
+
+
+
