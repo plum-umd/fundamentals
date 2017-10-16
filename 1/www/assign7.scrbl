@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "assign7"]{Assignment 6: Invasion!}
+@title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: Abstract Invasion!}
 
 @bold{Due:} Friday, October 20, 11:59:59 PM EST.
 
