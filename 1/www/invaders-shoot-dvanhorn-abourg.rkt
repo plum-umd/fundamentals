@@ -834,7 +834,7 @@
 ;; Timer functions
 
 (define (timer-template t)
-  (... (timer-x t) ... (timer-y t) ...))
+  (... (posn-x t) ... (posn-y t) ...))
 
 ;; timer-tock : Timer -> Timer
 ;; Tock the timer one tick, restart countdown if 0
