@@ -3,7 +3,7 @@
 
 @title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: Abstract Invasion!}
 
-@bold{Due:} Friday, October 20, 11:59:59 PM EST.
+@bold{Due:} Monday, October 23, 11:59:59 PM EST. (@bold{extended!})
 
 The following should be completed in cooperation with your latest assigned
 partner. (Partner assignments are listed on
@@ -36,10 +36,14 @@ Part 3}.
 
 @section[#:tag "assign7:shots"]{Abstract invader}
 
-Copy your code from the @tt{invader-shoot.rkt} in assignment 6 into the provided
+Copy your code from the @tt{invaders-shoot.rkt} in assignment 6 into the provided
 file @tt{invaders-abs.rkt} for this part of the assignment. Edit the standard
 file header at the top of the file. @bold{Submit only @tt{invaders-abs.rkt}
 for this part of the assignment, not the original @tt{invader-shoot.rkt}.}
+
+@bold{Update: you may start from a canonical solution to assignment 6
+if you'd prefer:
+@link["invaders-shoot-dvanhorn-abourg.rkt"]{invaders-shoot-dvanhorn-abourg.rkt}.}
 
 
 Keeping exactly the same functionality as in assignment 6, rewrite
