@@ -634,3 +634,18 @@ Today's quiz:
 ;; Recall:
 ;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
 )
+
+@section{Midterm solution videos}
+
+Here is a series of videos going through the exam and constructing
+answers:
+
+@itemlist[
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0829900b-418b-4465-aa13-860c1f044a4c"]{Problem 1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=70faff06-27b1-4a1a-997a-6181c8c280c1"]{Problem 2}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e6dc6f38-8888-43cf-85cd-eec7440102de"]{Problem 3}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5892d33d-ae17-4416-93a3-3c5590aa6d0a"]{Problem 4}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4a5a743c-3292-46a2-a89c-f288a7d27fb1"]{Problem 5}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2579bdfb-95a2-4a99-ada9-9063ac39e7e6"]{Problem 6}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eeeebf01-6745-4f6e-8c81-78f4da782d4b"]{Problem 7}}
+]
