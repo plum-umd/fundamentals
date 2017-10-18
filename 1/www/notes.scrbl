@@ -597,9 +597,40 @@ Today's code:
   @item{@link["prod-sum-abstract.rkt"]{prod-sum-abstract.rkt}}
 ]
 
-@section{October 16. 2017}
+@section{October 16, 2017}
 
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7e3f2c63-b17c-4889-ae85-6c1ef6c5236b}
 
 
 
+@section{October 18, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=61a0be80-3729-4ec6-b083-4695d06ef9ee}
+
+Today's code: @link["using-abstractions.rkt"]{using-abstractions.rkt}
+
+Today's quiz:
+
+@#reader scribble/comment-reader (racketblock
+;; my-append : [X] [Listof X] [Listof X] -> [Listof X]
+;; Append the elements of ls1 and ls2
+(check-expect (my-append '() '())
+              '())
+(check-expect (my-append '() (list 4 5 6))
+              (list 4 5 6))
+(check-expect (my-append (list 1 2 3) '())
+              (list 1 2 3))
+(check-expect (my-append (list 1 2 3) (list 4 5 6))
+              (list 1 2 3 4 5 6))
+(define (my-append ls1 ls2)
+  (cond [(empty? ls1) ls2]
+        [(cons? ls1)
+         (cons (first ls1)
+               (my-append (rest ls1) ls2))]))
+
+;; Quiz: Give an equivalent definition of my-append
+;; in terms of foldr
+
+;; Recall:
+;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
+)
