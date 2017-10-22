@@ -649,3 +649,10 @@ answers:
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2579bdfb-95a2-4a99-ada9-9063ac39e7e6"]{Problem 6}}
 @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eeeebf01-6745-4f6e-8c81-78f4da782d4b"]{Problem 7}}
 ]
+
+@section{October 20, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=87ee9932-ab7b-4f40-b2dc-1a05c39eb4c5}
+
+The code will not be posted for this lecture (but can be seen in the video).
+
