@@ -38,7 +38,7 @@ cmsc131A:
 	cp even-odd-abstract.rkt cmsc131A/
 	cp prod-sum-abstract.rkt cmsc131A/
 	cp using-abstractions.rkt cmsc131A/
-	cp -r A{2,3,4} cmsc131A/
+	cp -r A{2,3,4,5} cmsc131A/
 	cp assign{6,7}.zip cmsc131A/
 
 clean:
@@ -58,7 +58,7 @@ push: all
 ifeq ($(git_local),$(git_remote))
 	find $(course) -type d -exec chmod 775 {} \;
 	find $(course) -type f -exec chmod 664 {} \;
-	chmod 771 $(course)/A{2,3}
+	chmod 771 $(course)/A{2,3,4,5}
 	rsync -rvzp cmsc131A umd:$(site_loc)
 	ssh umd "chown -R :$(course_group) $(site_loc)/$(course)/*"
 else ifeq ($(git_local),$(git_base))
