@@ -22,3 +22,4 @@ in lectures with helpful assistants around.
 @include-section{lab13.scrbl}
 @include-section{lab14.scrbl}
 @include-section{lab15.scrbl}
+@include-section{lab16.scrbl}
