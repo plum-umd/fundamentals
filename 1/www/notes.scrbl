@@ -656,3 +656,8 @@ answers:
 
 The code will not be posted for this lecture (but can be seen in the video).
 
+@section{October 23, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2157c1f1-ba53-459f-9e73-01fb293c154a}
+
+Again the code will not be posted, but can be seen in the video.
