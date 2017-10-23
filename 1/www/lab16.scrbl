@@ -77,7 +77,7 @@ To get you started, here are the examples representing the root directory
 ;; (define DIR2 ...)
 ;; (define DIR1 ...)
 (define DIR0 (make-dir "DIR0" (list FILE0)))
-(define ROOTDIR (make-dir "" (list DIR0 DIR1)))
+(define ROOTDIR (make-dir "" (list DIR0 DIR1 DIR3)))
 )
 
 
