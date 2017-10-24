@@ -80,7 +80,9 @@ subject to change until the start of the semester.
          (list "Samuel Barham" @elem{1112 @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
          (list "Cameron Moy" @elem{1112 @AVW} "camoy" @elem{1-3pm, Thurs})
          (list "Austin Bourgerie" @elem{1112 @AVW} "abourg" @elem{12-2pm, Fri})
-         (list "Thomas Harris" @elem{1112 @AVW} "tharris" @elem{10-11am, Mon, Wed}))]
+         (list "Thomas Harris" @elem{1112 @AVW} "tharris" @elem{10-11am, Mon, Wed})
+	 (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung" @elem{11am-12pm, Tue, Thurs})
+	 (list "Jack Qian" @elem{1112 @AVW} "jqian" @elem{12-2pm, Wed}))]
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
