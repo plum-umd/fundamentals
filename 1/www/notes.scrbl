@@ -656,8 +656,71 @@ answers:
 
 The code will not be posted for this lecture (but can be seen in the video).
 
+The first quiz from today:
+
+@#reader scribble/comment-reader (racketblock
+;; flatten : [X] [Listof [Listof X]] -> [Listof X]
+;; Flatten a list of lists of elements into a list of elements
+(check-expect (flatten '()) '())
+(check-expect (flatten (list (list 1 2 3)) (list 4 5) (list 6))
+              (list 1 2 3 4 5 6))
+(define (flatten lolox)
+  (cond [(empty? lolox) '()]
+        [(cons? lolox)
+         (append (first lolox)
+                 (flatten (rest lolox)))]))
+
+;; Quiz: Give an equivalent definition of flatten
+;; in terms of foldr
+
+;; Recall:
+;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
+)
+
+The second quiz:
+
+@#reader scribble/comment-reader (racketblock
+;; largest : [Listof Number] Number -> Number
+;; Determine the largest number among all elements of the list and given number
+(check-expect (largest '() 5) 5)
+(check-expect (largest (list 1 2 3) 5) 5)
+(check-expect (largest (list 6 5 4) 5) 6)
+(define (largest lon n)
+  (cond [(empty? lon) n]
+        [(cons? lon)
+         (max (first lon)
+              (largest (rest lon) n))]))
+
+;; Quiz: Give an equivalent definition of largest
+;; in terms of foldr
+
+;; Recall:
+;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
+)
+
 @section{October 23, 2017}
 
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2157c1f1-ba53-459f-9e73-01fb293c154a}
 
 Again the code will not be posted, but can be seen in the video.
+
+Today's quiz:
+
+@#reader scribble/comment-reader (racketblock
+;; all-longer-than? : [Listof String] Number -> Boolean
+;; Are all of the strings longer than n characters long?
+(check-expect (all-longer-than? '() 1) #true)
+(check-expect (all-longer-than? (list "a" "b" "c") 1) #false)
+(check-expect (all-longer-than? (list "abc" "def") 1) #true)
+(define (all-longer-than? los n)
+  (cond [(empty? los) #true]
+        [(cons? los)
+         (and (> (string-length (first los)) n)
+              (all-longer-than? (rest los) n))]))
+
+;; Quiz: Give an equivalent definition of all-longer-than?
+;; in terms of andmap
+
+;; Recall:
+;; andmap : [X] (X -> Boolean) [Listof X] -> Boolean
+)
