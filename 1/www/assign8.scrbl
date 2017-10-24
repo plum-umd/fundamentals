@@ -51,8 +51,9 @@ hypertext markup language for documents on the web, looks like this:
 <h1>Mark it</h1>
 
 <p>
-Edit the file <tt>ml.rkt</tt> for this part of the assignment. Add
-your information to the standard file header at the top of the file.
+Edit a file named <b>EXACTLY</b> <tt>ml.rkt</tt> for this part of the
+assignment. Add your information to the standard file header at the
+top of the file.
 </p>
 
 <p>
