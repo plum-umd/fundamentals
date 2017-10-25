@@ -205,7 +205,14 @@ Copy in this helper function:
 (check-expect (intersperse '("1" "2" "3") "," "[" "]") "[1,2,3]")
 )
 
-@bold{Ex 11}: Design a function @tt{muzzle->strings} that returns a list of
+@bold{Ex 11}: Design the function @tt{muff->string} that returns a string
+representating the given @emph{Muff}. The elements should be delimited by
+@racket[","] and surrounded by square braces @racket["[...]"].
+
+@colorize["red"]{Hint}: You will not be able to pass these tests until you've
+finished exercises 12, 13, and 14.
+
+@bold{Ex 12}: Design a function @tt{muzzle->strings} that returns a list of
 strings representating the given @emph{Muzzle}. Each @emph{Muzzle} street should
 be converted into a single string, where the @tt{oobleck} and @tt{tumble} fields
 are seperated with a colon @racket[":"], and each @tt{oobleck} wrapped in
@@ -216,12 +223,9 @@ quotes.
              (check-expect (muzzle->strings MUZ2)
                            '("\"bar\":{\"foo\":42\"}" "\"foo\":42"))]
 
-@colorize["red"]{Hint}: You will not be able to run these tests until you've
-finished exercises 12 and 13.
+@bold{Ex 13}: Design the function @tt{muzzle->string} that returns a string
+representating the given @emph{Shuffle}. You should be able to implement it
+easily with @tt{muzzle->strings} and @tt{intersperse}.
 
-@bold{Ex 12}: Design the function @tt{muff->string} that returns a string
-representating the given @emph{Muff}. The elements should be delimited by
-@racket[","] and surrounded by square braces @racket["[...]"].
-
-@bold{Ex 13}: Design the function @tt{shuffle->string} that returns a
+@bold{Ex 14}: Design the function @tt{shuffle->string} that returns a
 string representating the given @emph{Shuffle}.
