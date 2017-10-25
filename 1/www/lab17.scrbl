@@ -214,7 +214,10 @@ quotes.
 @racketblock[(check-expect (muzzle->strings MUZ0) '())
              (check-expect (muzzle->strings MUZ1) '("\"foo\":42"))
              (check-expect (muzzle->strings MUZ2)
-                           '("\"bar\":\"baz\"" "\"foo\":42"))]
+                           '("\"bar\":{\"foo\":42\"}" "\"foo\":42"))]
+
+@colorize["red"]{Hint}: You will not be able to run these tests until you've
+finished exercises 12 and 13.
 
 @bold{Ex 12}: Design the function @tt{muff->string} that returns a string
 representating the given @emph{Muff}. The elements should be delimited by
