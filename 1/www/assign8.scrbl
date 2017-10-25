@@ -95,8 +95,8 @@ document snippet above.
 @bold{Exercise 2} Design a function @tt{content-to-HTML} that converts
 content to a string representation of the HTML markup.  For example,
 convert the example from exercise 1 should produce a string that
-starts @racket{"<h1>Mark it</h1><p>Edit the file <tt>ml.rkt</tt>
-for..."}.
+starts
+@racket["<h1>Mark it</h1><p>Edit the file named <b>EXACTLY</b> <tt>ml.rkt</tt> for..."].
 
 (There are some subtle issues like what to do if there is an item in
 the document which is a string that looks like HTML, e.g. "<tt>", but
