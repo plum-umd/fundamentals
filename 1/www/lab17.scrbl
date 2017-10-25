@@ -114,10 +114,10 @@ of strings representating the given @emph{Muzzle}. Each @emph{Muzzle} street
 should be converted into a single string, where the @tt{oobleck} and @tt{tumble}
 fields are seperated with a colon @racket[":"].
 
-@racketblock[(check-expect (muzzle->string MUZ0) '())
-             (check-expect (muzzle->string MUZ1) '("\"foo\":42"))
-             (check-expect (muzzle->string MUZ2) '("\"foo\":42")
-                           '("\"foo\":42" "\"bar\":\"baz\""))]
+@racketblock[(check-expect (muzzle->strings MUZ0) '())
+             (check-expect (muzzle->strings MUZ1) '("\"foo\":42"))
+             (check-expect (muzzle->strings MUZ2)
+                           '("\"bar\":\"baz\"" "\"foo\":42"))]
 
 @larger{@bold{Ex 6}}: Using the helper @tt{intersperse}, design a function
 @tt{muzzle->string} that returns a string representating the given
