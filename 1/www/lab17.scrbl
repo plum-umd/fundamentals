@@ -46,7 +46,7 @@ have! Any function you write has to know the same:
 @#reader scribble/comment-reader (racketblock
 ;; duffle? : Any -> Boolean
 ;; Is the given value a Duffle?
-(define (duffle? x) (or (number? x) (string? x) (boolean? x)))
+(define (duffle? x) (or (number? x) (string? x)))
 
 ;; muzzle? : Any -> Boolean
 ;; Is the given value a Muzzle?
@@ -74,12 +74,12 @@ need to know which of the three possible types of atomic data it is.
 @bold{Note}: We omit explicit applications of the @tt{string-template} and
 @tt{number-template}, since these are atomic data and have trivial templates.
 
-@larger{@bold{Ex 2}}: Write down the template for all operations that consume a
+@larger{@bold{Ex 1}}: Write down the template for all operations that consume a
 @emph{Muzzle}. Does this remind you of any other template you've seen? Be sure
 to include explicit applications of the @tt{shuffle-template} and the
 @tt{muzzle-template}.
 
-@larger{@bold{Ex 3}}: Design a function @tt{count-streets} that returns the
+@larger{@bold{Ex 2}}: Design a function @tt{count-streets} that returns the
 number of @emph{Muzzle} streets in a given @emph{Muzzle}.
 
 @racketblock[(define MUZ0 (make-muzzle-town))
@@ -89,7 +89,7 @@ number of @emph{Muzzle} streets in a given @emph{Muzzle}.
              (check-expect (count-down-streets MUZ1) 1)
              (check-expect (count-down-streets MUZ2) 2)]
 
-@larger{@bold{Ex 4}}: Design a function @tt{muzzle-find} that is given a
+@larger{@bold{Ex 3}}: Design a function @tt{muzzle-find} that is given a
 @emph{Muzzle} and a string @tt{key}. If the @emph{Muzzle} contains a
 @emph{Muzzle} street with @tt{key} in the @tt{oobleck} field, it returns the
 @emph{Shuffle} in the @tt{tumble} field. Otherwise, @tt{muzzle-find} returns
@@ -100,7 +100,7 @@ number of @emph{Muzzle} streets in a given @emph{Muzzle}.
              (check-expect (muzzle-find MUZ2 "foo") 42)
              (check-expect (muzzle-find MUZ2 "bar") "baz")]
 
-@larger{@bold{Ex 5}}: Design a function @tt{duffle->string} that turns any
+@larger{@bold{Ex 4}}: Design a function @tt{duffle->string} that turns any
 @emph{Duffle} into a string. If the @emph{Duffle} is a string already, wrap it
 in quotes: @racket["\"rah\""]. If the @emph{Duffle} is a number, just convert it
 to a string.
@@ -109,7 +109,7 @@ to a string.
              (check-expect (duffle->string 42) "42")]
 
 
-@larger{@bold{Ex 6}}: Design a function @tt{muzzle->strings} that returns a list
+@larger{@bold{Ex 5}}: Design a function @tt{muzzle->strings} that returns a list
 of strings representating the given @emph{Muzzle}. Each @emph{Muzzle} street
 should be converted into a single string, where the @tt{oobleck} and @tt{tumble}
 fields are seperated with a colon @racket[":"].
@@ -119,7 +119,7 @@ fields are seperated with a colon @racket[":"].
              (check-expect (muzzle->string MUZ2) '("\"foo\":42")
                            '("\"foo\":42" "\"bar\":\"baz\""))]
 
-@larger{@bold{Ex 7}}: Using the helper @tt{intersperse}, design a function
+@larger{@bold{Ex 6}}: Using the helper @tt{intersperse}, design a function
 @tt{muzzle->string} that returns a string representating the given
 @emph{Muzzle}. Each @emph{Muzzle} street should be converted into a single
 string, where the @tt{oobleck} and @tt{tumble} fields are seperated with a colon
@@ -141,5 +141,5 @@ string, where the @tt{oobleck} and @tt{tumble} fields are seperated with a colon
                              (prepend-all (rest los) delim))]))
 )
 
-@larger{@bold{Ex 8}}: Design a function @tt{shuffle->string} that returns a
+@larger{@bold{Ex 7}}: Design a function @tt{shuffle->string} that returns a
 string representating the @emph{Shuffle}.
