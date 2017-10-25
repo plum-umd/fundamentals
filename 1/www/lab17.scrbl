@@ -92,7 +92,7 @@ number of @emph{Muzzle} streets in a given @emph{Muzzle}.
 @larger{@bold{Ex 3}}: Design a function @tt{muzzle-find} that is given a
 @emph{Muzzle} and a string @tt{key}. If the @emph{Muzzle} contains a
 @emph{Muzzle} street with @tt{key} in the @tt{oobleck} field, it returns the
-@emph{Shuffle} in the @tt{tumble} field. Otherwise, @tt{muzzle-find} returns
+@emph{Duffle} in the @tt{tumble} field. Otherwise, @tt{muzzle-find} returns
 #false.
 
 @racketblock[(check-expect (muzzle-find MUZ0 "foo") #false)
