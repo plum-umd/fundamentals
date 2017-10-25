@@ -116,7 +116,7 @@ fields are seperated with a colon @racket[":"].
 
 @racketblock[(check-expect (muzzle->string MUZ0) '())
              (check-expect (muzzle->string MUZ1) '("\"foo\":42"))
-             (check-expect (muzzle->string MUZ2) '("\"foo\":42")
+             (check-expect (muzzle->string MUZ2)
                            '("\"foo\":42" "\"bar\":\"baz\""))]
 
 @larger{@bold{Ex 6}}: Using the helper @tt{intersperse}, design a function
