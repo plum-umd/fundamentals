@@ -171,12 +171,12 @@ string.
 @racketblock[(check-expect (duffle->string "foo") "\"foo\"")
              (check-expect (duffle->string 42) "42")]
 
-@emph{Muffle}s, @emph{Muff}s, and @emph{Shuffle}s are mutually recursive, so
+@emph{Muzzle}s, @emph{Muff}s, and @emph{Shuffle}s are mutually recursive, so
 we'll need to design these together.
 
-@bold{Ex 10}: Copy the @tt{muffle-template}, @tt{muff-template}, and
+@bold{Ex 10}: Copy the @tt{muzzle-template}, @tt{muff-template}, and
 @tt{shuffle-template}s into the bottom of your @emph{definitions window}. Rename
-these definitions @tt{muffle->string}, @tt{muff->string}, and
+these definitions @tt{muzzle->string}, @tt{muff->string}, and
 @tt{shuffle->string}. Write down the proper signature and purpose statements.
 
 Copy in this helper function:
