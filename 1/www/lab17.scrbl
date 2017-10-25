@@ -76,7 +76,7 @@ need to know which of the three possible types of atomic data it is.
 
 @larger{@bold{Ex 1}}: Write down the template for all operations that consume a
 @emph{Muzzle}. Does this remind you of any other template you've seen? Be sure
-to include explicit applications of the @tt{shuffle-template} and the
+to include explicit applications of the @tt{duffle-template} and the
 @tt{muzzle-template}.
 
 @larger{@bold{Ex 2}}: Design a function @tt{count-streets} that returns the
@@ -85,9 +85,9 @@ number of @emph{Muzzle} streets in a given @emph{Muzzle}.
 @racketblock[(define MUZ0 (make-muzzle-town))
              (define MUZ1 (make-muzzle-street "foo" 42 MUZ0))
              (define MUZ2 (make-muzzle-street "bar" "baz" MUZ1))
-             (check-expect (count-down-streets MUZ0) 0)
-             (check-expect (count-down-streets MUZ1) 1)
-             (check-expect (count-down-streets MUZ2) 2)]
+             (check-expect (count-streets MUZ0) 0)
+             (check-expect (count-streets MUZ1) 1)
+             (check-expect (count-streets MUZ2) 2)]
 
 @larger{@bold{Ex 3}}: Design a function @tt{muzzle-find} that is given a
 @emph{Muzzle} and a string @tt{key}. If the @emph{Muzzle} contains a
@@ -141,5 +141,37 @@ string, where the @tt{oobleck} and @tt{tumble} fields are seperated with a colon
                              (prepend-all (rest los) delim))]))
 )
 
-@larger{@bold{Ex 7}}: Design a function @tt{shuffle->string} that returns a
-string representating the @emph{Shuffle}.
+@larger{@bold{Ex 7}}: The functions @tt{intersperse} and @tt{prepend-all} assume
+that the resulting string should be surrounded by curly braces
+@racket["{}"]. Abstract over those functions (as @tt{intersperse/2} and
+@tt{prepend-all/2} to allow the opening and closing strings to be given as two
+additional arguments.
+
+@#reader scribble/comment-reader (racketblock
+;; intersperse/2 : [Listof String] String String String -> String
+;; Join the given strings into a single string delimited by delim,
+;; surrounded by open and close.
+(define (intersperse/2 los delim open close)
+  (cond [(empty? los) ???]
+        [else (string-append ??? (first los)
+                             (prepend-all (rest los) delim close))]))
+
+;; prepend-all/2 : [Listof String] String String -> String
+;; Join the given strings into a single string prepended by delim,
+;; ended by close.
+(define (prepend-all/2 los delim close)
+  (cond [(empty? los) ???]
+        [else (string-append delim 
+                             (first los)
+                             (prepend-all (rest los) delim))]))
+)
+
+@larger{@bold{Ex 8}}: Redefined the functions @tt{intersperse} and
+@tt{prepend-all} in terms of @tt{intersperse/2} and @tt{prepend-all/2}.
+
+@larger{@bold{Ex 9}}: Design a function @tt{muff->string} that returns a string
+representating the given @emph{Muff}. The elements should be delimited by
+@racket[","] and surrounded by square braces @racket["[...]"].
+
+@larger{@bold{Ex 10}}: Design a function @tt{shuffle->string} that returns a
+string representating the given @emph{Shuffle}.
