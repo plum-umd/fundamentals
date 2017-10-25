@@ -724,3 +724,25 @@ Today's quiz:
 ;; Recall:
 ;; andmap : [X] (X -> Boolean) [Listof X] -> Boolean
 )
+
+@section{October 25, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8a91183a-94c3-4189-9895-26a907e07e2c}
+
+Today's quiz:
+
+@#reader scribble/comment-reader (racketblock
+;; erma : ____________________________
+(check-expect (erma (list sqr add1)) (list 25 6))
+(check-expect (erma (list number->string)) (list "5"))
+(define (erma lof)
+  (cond [(empty? lof) '()]
+        [(cons? lof)
+         (local [(define f (first lof))]
+           (cons (f 5)
+                 (erma (rest lof))))]))
+
+;; QUIZ: Give a parametric signature for erma.
+)
+
+Today's code: @link["adventure.rkt"]{adventure.rkt}.
