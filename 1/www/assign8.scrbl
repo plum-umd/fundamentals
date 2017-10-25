@@ -31,7 +31,8 @@ top of the file.
 
 Complete exercises 310--315 from
 @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{HtDP2e
-Part IV}.
+Part IV}.  (Use the function name @tt{forest-average-age} in exercise 315 to
+avoid conflicting with @tt{average-age} in 311.)
 
 
 
