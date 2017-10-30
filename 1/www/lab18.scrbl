@@ -111,18 +111,6 @@ the bugs in the code and any other mistakes (including those in signatures).
 Make all tests pass.
 
 @#reader scribble/comment-reader (racketblock
-;; json->string : JSON -> String
-;; Convert the given JSON value into its string representation.
-(define (json->string j)
-  (cond [(atom? j) (atom->string j)]
-        [(asc? j) (atom->string j)]
-        [else (intersperse (map json->string j) ", " "[" "]")]))
-(check-expect (json->string JSON0) "[]")
-(check-expect (json->string JSON1)
-              "[\"\", {}]")
-(check-expect (json->string JSON2)
-              "[{\"foo\":\"\"}, \"brightly, brightly, and with beauty\", 42]")
-
 ;; atom->string : Atom -> String
 ;; Convert the given atomic JSON value to a string.
 (define (atom->string a)
@@ -131,7 +119,7 @@ Make all tests pass.
 (check-expect (atom->string ATOM1) "42")
 (check-expect (atom->string ATOM2) "\"brightly, brightly, and with beauty\"")
 
-;; asc->string : Atom -> Number
+;; asc->string : Asc -> Number
 ;; Convert the given JSON asc to a string.
 (define (asc->string m)
   (local [;; asc->strings : Asc -> [Listof String]
@@ -150,6 +138,18 @@ Make all tests pass.
 (check-expect (asc->string ASC2) "{\"bar\":42, \"foo\":\"\"}")
 (check-expect (asc->string ASC3)
               "{\"baz\":{\"foo\":\"\"}, \"bar\":42, \"foo\":\"\"}")
+
+;; json->string : JSON -> String
+;; Convert the given JSON value into its string representation.
+(define (json->string j)
+  (cond [(atom? j) (atom->string j)]
+        [(asc? j) (atom->string j)]
+        [else (intersperse (map json->string j) ", " "[" "]")]))
+(check-expect (json->string JSON0) "[]")
+(check-expect (json->string JSON1)
+              "[\"\", {}]")
+(check-expect (json->string JSON2)
+              "[{\"foo\":\"\"}, \"brightly, brightly, and with beauty\", 42]")
 )
 
 @section[#:style 'unnumbered #:tag "lab18:alist"]{Working with @emph{Asc}s}
