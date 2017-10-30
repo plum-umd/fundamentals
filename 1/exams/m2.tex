@@ -1,0 +1,299 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{xcolor,censor}
+\usepackage{fancyvrb}
+
+\censorruleheight=0ex
+%\StopCensoring
+
+\begin{document}
+
+\begin{center}
+  {\Large {\bf CMSC 131A, Midterm 2 (Practice)}\\
+    \censor{{\bf SOLUTION}} \ \\
+    \ \\
+    Fall 2017 \ \\
+  }
+\end{center}
+
+\vspace{2em}
+
+\noindent
+NAME:\verb|________________________________________________________|
+
+\vspace{2em}
+
+\noindent
+UID: \verb|__________________________________________|
+
+\vspace{2em}
+
+\begin{center}
+\begin{tabular}{| c | c |}
+  \hline
+  Question & Points \\ \hline \hline
+  1 & 12 \\ \hline
+  2 & 12 \\ \hline
+  3 & 15 \\ \hline
+  4 & 15 \\ \hline
+  5 & 15 \\ \hline
+  6 & 10 \\ \hline
+  7 & 15 \\ \hline \hline
+  Total: & 94\\
+  \hline
+\end{tabular}
+\end{center}
+
+\noindent
+This test is open-book, open-notes, but you may not use any computing
+device other than your brain and may not communicate with anyone.
+You have 50 minutes to complete the test.
+
+\vskip 1em
+
+\noindent
+The phrase ``design a program'' or ``design a function'' means follow
+the steps of the design recipe.  Unless specifically asked for, you do
+not need to provide intermediate products like templates or stubs,
+though they may be useful to help you construct correct solutions.
+
+\vskip 1em
+
+\noindent
+You may use any of the data definitions given to you within this exam
+and do not need to repeat their definitions.
+
+\vskip 1em
+
+\noindent
+Unless specifically instructed otherwise, you may use any built-in ISL+
+functions or data types.
+
+\vskip 1em
+
+\noindent
+When writing tests, you may use a shorthand for writing check-expects
+by drawing an arrow between two expressions to mean you expect the
+first to evaluate to same result as the second.  For example, you may
+write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
+\verb|(check-expect (add1 3) 4)|.
+
+\newpage
+
+\noindent
+{\bf Problem 1 (12 points).}
+%
+Each of the following signatures describes a class of functions:
+
+\begin{verbatim}
+Boolean String -> String
+[Boolean -> String] -> String
+[Listof Boolean] [Listof Number] -> Number
+[X] . [Number -> X] -> X
+[X Y] . [X -> Y] [Listof X] -> [Listof Y]
+[X Y Z] . [X -> Y] [Y -> Z] X -> Z
+\end{verbatim}
+Define one example of a function in each class.  (You only need to
+provide the code, not a full design.)
+
+
+\vskip 2.5in
+
+
+\begin{SaveVerbatim}{VerbEnv}  
+SOLUTION:
+\end{SaveVerbatim}
+
+%\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+{\bf Problem 2 (12 points).}
+%
+For each of the following functions, provide the most general signature
+that correctly describes the function:
+
+\begin{verbatim}
+;; f :
+
+(define (f x)
+  (+ (sqr x) 2))
+
+;; g :
+
+(define (g x)
+  (map add1 x))
+
+;; h :
+
+(define (h x y)
+  (cond [(empty? x) y]
+        [(cons? x)
+         (cons (sqr (first x))
+               (h (rest x) y))]))
+
+;; i :
+
+(define (i x)
+  (sqr (x 5)))
+
+;; j :
+
+(define (j x)
+  (lambda (y)
+    (+ x y)))
+
+;; k : 
+
+(define (k x y)
+  (cond [(= y 0) (list (x 0))]
+        [else
+          (cons (x y) (k x (sub1 y)))]))
+\end{verbatim}
+
+
+\newpage
+
+\noindent
+{\bf Problem 3 (15 points).}
+%
+Design a program called {\tt avg} that computes the average of a list of numbers.
+
+
+
+\newpage 
+\noindent
+{\bf Problem 4 (15 points).}
+%
+Here is a parametric data definition for a non-empty list of items:
+\begin{verbatim}
+;; A [NEListof X] is one of:
+;; - (cons X '())
+;; - (cons X [NEListof X])
+;; Interp: an arbitrarily long but non-empty sequence of items.
+\end{verbatim}
+Here are two similar programs that operate over non-empty lists:
+\begin{verbatim}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; smallest : [NEListof Number] -> Number
+;; Produce the smallest number in the list
+(check-expect (smallest (list 6 3 2 4)) 2)
+(define (smallest xs)
+  (cond [(empty? (rest xs)) (first xs)]
+        [else
+          (min (first xs)
+               (smallest (rest xs)))]))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; longest : [NEListof String] -> String
+;; Produce the first longest string in the list
+(check-expect (longest (list "hi" "there")) "there")
+(check-expect (longest (list "same" "size")) "same")
+(define (longest xs)
+  (cond [(empty? (rest xs)) (first xs)]
+        [else
+          (longer (first xs)
+                  (longest (rest xs)))]))
+
+;; longer : String String -> String
+;; Select the longer of the two strings (s1 if tied)
+(check-expect (longer "hi" "there") "there")
+(check-expect (longer "same" "size") "same")
+(define (longer s1 s2)
+  (cond [(< (string-length s1) (string-length s2)) s2]
+        [else s1]))
+\end{verbatim}
+
+Design an abstraction of the {\tt smallest} and {\tt longest}
+functions and redefine {\tt smallest} and {\tt longest} in terms of
+it.  Be sure to give the most general parametric signature for your
+abstraction function.
+
+
+\newpage
+
+\noindent
+[Space for problem 4.]
+
+
+
+\newpage
+\noindent
+{\bf Problem 5 (15 points).}  
+%
+Design a program that takes a list of numbers and produces the count
+of positive numbers in the list.  For example, if the list contains 3,
+4, -1, 0, -2, and 5, the count of positive numbers is 3.  You may
+assume the {\tt{[Listof Number]}} data definition is defined.
+%
+For full credit, use list abstraction functions.  For partial credit,
+follow the template for {\tt{[Listof Number]}}.
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+  
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+
+\newpage
+
+\noindent
+{\bf Problem 6 (10 points).}
+%
+It's been said that {\tt foldr} is \emph{the} fundamental list
+abstraction function because any function that follows the list
+template can be expressed in terms of {\tt foldr}.  Put that theory to
+the test by providing an equivalent definition for the following
+function in terms of {\tt foldr}:
+
+\begin{verbatim}
+;; map : [X Y] . [X -> Y] [Listof X] -> [Listof Y]
+;; Apply f to each element of list, collect a list of results
+(define (map f ls)
+  (cond [(empty? ls) '()]
+        [(cons? ls)
+         (cons (f (first ls))
+               (map f (rest ls)))]))
+\end{verbatim}
+
+\noindent
+(Just provide code, not a full design.)
+
+\newpage
+
+\noindent
+{\bf Problem 7 (15 points).}
+%
+A sports tournament in which teams pair off against eachother and
+the winner advances to the next level in the tournament can be modelled
+with the following data definition:
+
+\begin{verbatim}
+;; A Tournament is one of:
+;; - String
+;; - (make-bracket Tournament Tournament)
+;; Interp: a sports tournament where a String is a team name
+;; that is still in the tournament and a bracket represents
+;; a match between the winner of two tournaments. 
+(define-struct bracket (t1 t2))
+\end{verbatim}
+
+Design a function {\tt most-games} that computes the maximum number of
+games any team in the tournament would have to play in order to win
+the tournament.
+
+\end{document}
+

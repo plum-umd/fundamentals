@@ -38,8 +38,9 @@ cmsc131A:
 	cp even-odd-abstract.rkt cmsc131A/
 	cp prod-sum-abstract.rkt cmsc131A/
 	cp using-abstractions.rkt cmsc131A/
-	cp adventure.rkt cmsc131A/
+	cp adventure{,2}.rkt cmsc131A/
 	cp -r A{2,3,4,5} cmsc131A/
+	cp m2-practice.pdf cmsc131A/
 	cp assign{6,7}.zip cmsc131A/
 
 clean:

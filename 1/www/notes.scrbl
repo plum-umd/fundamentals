@@ -746,3 +746,13 @@ Today's quiz:
 )
 
 Today's code: @link["adventure.rkt"]{adventure.rkt}.
+
+@section{October 27, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=dcd9a394-650e-46a8-93c6-fd6a55d3e47d}
+
+Today's code: @link["adventure2.rkt"]{adventure2.rkt}.
+
+@section{Midterm 2 practice}
+
+Here is the second midterm practice exam: @link["m2-practice.pdf"]{m2-practice.pdf}.
