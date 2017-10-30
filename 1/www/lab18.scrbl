@@ -38,15 +38,15 @@ respective representations as @emph{JSON} values.
 (define ATOM2 "brightly, brightly, and with beauty")
 ;;
 (define-struct empty-asc ())
-(define-struct asc (key value rest))
+(define-struct asc-pair (key value rest))
 ;; An Asc is one of:
 ;; - (make-empty-asc)
-;; - (make-asc String JSON Asc)
+;; - (make-asc-pair String JSON Asc)
 ;; Interp: Ascs represent associations between string keys and JSON values.
 (define ASC0 (make-empty-asc))
-(define ASC1 (make-asc "foo" ATOM0 ASC0))
-(define ASC2 (make-asc "bar" ATOM1 ASC1))
-(define ASC3 (make-asc "baz" ASC1 ASC2))
+(define ASC1 (make-asc-pair "foo" ATOM0 ASC0))
+(define ASC2 (make-asc-pair "bar" ATOM1 ASC1))
+(define ASC3 (make-asc-pair "baz" ASC1 ASC2))
 ;;
 ;; A JSON is one of:
 ;; - Atom
@@ -66,7 +66,7 @@ The structure of the data remains unchanged. The templates for operations over
 (define (atom? j) (or (string? j) (number? j)))
 
 ;; asc? : JSON -> Boolean
-(define (asc? j) (or (empty-asc? j) (asc? j)))
+(define (asc? j) (or (empty-asc? j) (asc-pair? j)))
 
 ;; json-template : JSON -> ???
 ;; The template for all operations over JSON.
@@ -88,12 +88,12 @@ The structure of the data remains unchanged. The templates for operations over
 ;; The template for all operations over Ascs.
 (define (asc-template m)
   (cond [(empty-asc? m) ...]
-        [(asc? m) (... (asc-key m)
-                       ...
-                       (json-template (asc-value m))
-                       ...
-                       (asc-template (asc-rest m))
-                       ...)]))
+        [(asc-pair? m) (... (asc-pair-key m)
+                            ...
+                            (json-template (asc-pair-value m))
+                            ...
+                            (asc-template (asc-pair-rest m))
+                            ...)]))
 )
 
 Remember our mantras for these templates: @bold{search} through
@@ -138,8 +138,8 @@ Make all tests pass.
           ;; Convert each pair inside the asc to a string.
           (define (asc->strings m)
             (cond [(empty-asc? m) '()]
-                  [else (cons (pair->string (asc-key m) (asc-key m))
-                              (asc->strings (asc-rest m)))]))
+                  [else (cons (pair->string (asc-pair-key m) (asc-pair-key m))
+                              (asc->strings (asc-pair-rest m)))]))
           ;; pair->string : String JSON -> String
           ;; Create a string representation of a key-value pair.
           (define (pair->string k v)
@@ -201,16 +201,16 @@ each string has had @racket["+1"] appended to its end.
 @tt{atom-add1} and @tt{asc-add1} to properly implement @tt{json-add1}.
 
 @#reader scribble/comment-reader (racketblock
-(check-expect (json-add1 JSON2) (list (make-asc "foo" "+1" ASC0)
+(check-expect (json-add1 JSON2) (list (make-asc-pair "foo" "+1" ASC0)
                                       "brightly, brightly, and with beauty+1"
                                       43))
 (check-expect (json-add1 ATOM0) "+1")
 (check-expect (json-add1 ATOM1) 43)
-(check-expect (json-add1 ASC1) (make-asc "foo" "+1" ASC0))
+(check-expect (json-add1 ASC1) (make-asc-pair "foo" "+1" ASC0))
 (check-expect (json-add1 ASC3)
-              (make-asc "baz" (make-asc "foo" "+1" ASC0)
-                        (make-asc "bar" 43
-                                  (make-asc "foo" "+1" ASC0))))
+              (make-asc-pair "baz" (make-asc-pair "foo" "+1" ASC0)
+                        (make-asc-pair "bar" 43
+                                       (make-asc-pair "foo" "+1" ASC0))))
 )
 
 @bold{Ex 8}: Design the function @tt{json-no-numbers} that given a @emph{JSON}
@@ -227,7 +227,7 @@ string.
 (check-expect (json-no-numbers ATOM1) "42")
 (check-expect (json-no-numbers ASC1) ASC1)
 (check-expect (json-no-numbers ASC3)
-              (make-asc "baz" ASC1 (make-asc "bar" "42" ASC1)))
+              (make-asc-pair "baz" ASC1 (make-asc-pair "bar" "42" ASC1)))
 )
 
 @bold{Ex 9}: Design the following three functions, which map operations over the
@@ -260,9 +260,9 @@ key @racket["foo"] removed.
 @#reader scribble/comment-reader (racketblock
 (check-expect (foos-are-awful JSON1) JSON1)
 (check-expect (foos-are-awful JSON2) (list ASC0 ATOM2 ATOM1))
-(check-expect (foos-are-awful ASC2) (make-asc "bar" ATOM1 ASC0))
+(check-expect (foos-are-awful ASC2) (make-asc-pair "bar" ATOM1 ASC0))
 (check-expect (foos-are-awful ASC3) 
-              (make-asc "baz" ASC0 (make-asc "bar" ATOM1 ASC0)))
+              (make-asc-pair "baz" ASC0 (make-asc-pair "bar" ATOM1 ASC0)))
 )
 
 @bold{Ex 12}: Design a function @tt{no-more-numbers} that, given a
@@ -273,7 +273,7 @@ pairs with numeric values removed.
 (check-expect (no-more-numbers JSON1) JSON1)
 (check-expect (no-more-numbers JSON2) JSON2)
 (check-expect (no-more-numbers ASC2) ASC1)
-(check-expect (no-more-numbers ASC3) (make-asc "baz" ASC1 ASC1))
+(check-expect (no-more-numbers ASC3) (make-asc-pair "baz" ASC1 ASC1))
 )
 
 @bold{Ex 13}: Design a function @tt{asc-filter-out} that, given an @emph{Asc}
