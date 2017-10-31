@@ -1,0 +1,454 @@
+This is the working repo for introducing Fundamentals of Computer Science I,II
+(colloquially: fundies 1,2) as an alternative/replacement introductory class for
+UMD CMSC majors.
+
+* General Notes
+
+** Meeting with DVH, Alan Sussman, Evan Golub, Nelson Padua-Perez
+
+*** When designing course
+- Must take into account skills necessary for the rest of the curriculum.
+  - Data structures: trees, linked lists, graphs
+  - Big O for comparing data structure operations
+  - Touch on concurrency/parallelism (to prepare students for threads)
+- Take advantage of institutional knowledge.
+  - Contact Evan about 131 requirements and how the class fits into the rest of
+    the curriculum.
+  - (DVH) Talk to Bill Pugh about the process of revamping the introductory
+    course last time around.
+- Submit server interaction--likely requires a DrRacket plugin
+
+*** TODO Outstanding questions/tasks [0/5]
+**** TODO Put together story for how we'll fill existing requirements
+(Or why the existing requirements we won't shouldn't be filled.)
+
+This is where reverse design comes in: once we've got a handle on what the
+students should know, we'll have a better idea how to design labs to satisfy
+that goal.
+
+***** Exemption exams for cmsc13{1,2}
+https://undergrad.cs.umd.edu/exemption-exams
+http://www.cs.umd.edu/~egolub/131exemption/TopicsList.shtml
+****** CMSC131 Object Oriented Programming I
+Duration: 75 minutes
+Format: Handwrite code, define terms
+Passing score: 80% +
+Practice Problems 
+Topics covered:
+++-	Hardware/Software/Java Terminology
+-	Binary Numbers
+  (I don't think we ever did this.)
++	Primitives and Arithmetic and Logical Operators
+-	Java String and StringBuffer
+  Obviously won't be covered, but the core idea here should be to teach the
+  students how to familiarize themselves with core language libraries--and
+  we always pointed students to Racket's (terrific) documentation from day 1.
++	Conditional statements
+-	For and While and Do loops
+  Maybe show off the Racket `for' forms? They're a bit more expressive, but
+  maybe we can introduce one in the intermediate/advanced student language?
+  Perhaps put off until F2?
+-	Arrays, 2-D Arrays, Arrays as Parameters
+  Likely with mutation, so we don't do this. Perhaps there should be a portion
+  of later F1 or early F2 that focuses on mutable state and side-effects as a
+  whole.?
+-	Object Oriented Concepts
+  Not at all in F1.
+-	Mutable-vs-Immutable types, Reference/Shallow/Deep Copies of Arrays
+  See the above notes for "Arrays, 2-D Arrays, Arrays as Parameters"
+-	Generics, Interfaces, ArrayList
+  Only insofar that we have arbitrarily generic collections, but definitely not
+  interfaces. Will surely be discussed in F2.
+-	Objects and Inheritance
+  Definitely not in F1.
+-	Exception Handling
+  No. Not sure if this can be expressed in the student languages.
+-	JUnit Testing
+  The students won't be familiar with JUnit in and of itself, but unit testing
+  for correctness is a core part of the design recipe. Racket's `check-expect'
+  serves a similar purpose, but doesn't help with Java/Eclipse
+  finger-exercises...
+  
+****** CMSC132 Object Oriented Programming II
+Note: You will need to place out of CMSC131 prior to moving onto the CMSC132 exam.
+Duration: 2 hours
+Format: Handwrite code, define terms
+Passing score: 80% +
+Topics covered:
+-	Topics listed under CMSC131
+-	Object-oriented software development
+-	Software life cycle
+-	Requirements & specifications
+-	Designing objects & classes
+-	Testing & code coverage
+-	Programming paradigms
+-	Design patterns
+-	Algorithms & data structures
+-	Asymptotic efficiency
+-	Lists, stacks, queues
+-	Trees, heaps
+-	Sets, maps, graphs
+-	Hash code contract
+-	Recursion
+-	Programming skills
+-	Java collection framework
+  (nope)
+-	Threads, synchronization
+  (We've done distributed, but not parallel or concurrent.)
+-	Exceptions
+  (Again, not even sure this can be expressed with the student languages.)
+
+**** TODO What will the course #s be?
+- Can we justify calling them 13{1,2}?
+- Is it possible to have a majors introductory class as a 198* class?
+- Which choice carries the least administrative burden?
+**** TODO How many students should be in the class
+- Up to 140 at the most as a full 13{1,2} section replacement (broken into four
+  discussion sessions).
+- Other possibility: 70 student lecture with two discussion sections
+**** TODO Advertise the course
+- The suggestions of the undergraduate advisers have a lot of sway, especially
+  for the first semester--how best to lobby them to promote the class?
+**** TODO Staff training
+Without many students indoctrinated into fundies, there's a dearth of experience
+that we'll have to fill. Nick will probably end up in each lab session (at least
+in the beginning), but we'll need to organize (a day's worth of?) training for
+any undergraduates or graduate students we rope in.
+
+
+** Course materials from offerings at other schools
+
+Racket: https://github.com/racket/racket/wiki/Courses-using-Racket.
+Where are courses run?
+This is only the subset from the above racket list that _still_ use HtDP and
+Racket/Scheme in their introductory courses
+*** IU
+- c211 http://www.cs.indiana.edu/classes/c211/
+- c311
+*** NEU
+- cs2500 http://www.ccs.neu.edu/course/cs2500f14/
+*** Norhtwestern
+- eecs111 now using SICP (come on Robbie!)
+*** Tufts
+- comp50 http://www.cs.tufts.edu/comp/50/
+  [[file:/media/down/htdp.pdf][On Teaching How to Design Programs]]
+  (https://www.cs.tufts.edu/~nr/pubs/htdp.pdf)
+*** Vassar
+- cmpu101 https://www.cs.vassar.edu/~cs101/hun-spr-2017/
+  Still using DrScheme!!
+*** UBC
+- cpsc110 https://sites.google.com/site/ubccpsc110/
+*** Berry College
+- supposedly csc120 -- no guest access
+*** U Waterloo
+- cs115 https://www.student.cs.uwaterloo.ca/~cs115/
+- cs116 https://www.student.cs.uwaterloo.ca/~cs116/
+*** UofU
+- cs1410-20 http://www.eng.utah.edu/~cs1410-20/
+- cs2420-20 http://www.eng.utah.edu/~cs2420-20/
+  Interesting!! "Object-Oriented Programming CS I"
+*** Westmont
+- cs010 http://www.westmont.edu/~iba/teaching/CS010/
+*** Cal Poly
+- cs123 https://www.brinckerhoff.org/clements/2148-csc123/
+  Big feature: computer-generated music
+*** UVM
+- cs32 http://www.cems.uvm.edu/~rsnapp/teaching/cs32/
+  Not really HtDP (puzzles, games, algos)
+  May be a good place to find ideas for exercises
+*** Toronto
+- csc104 https://www.cs.toronto.edu/~gfb/csc104/2017W/
+*** Yale
+- cpsc201 http://zoo.cs.yale.edu/classes/cs201/
+
+
+* Fundies 1
+
+** Important Dates:
+
+[[http://www.provost.umd.edu/calendar/17.cfm][2017-2018 Academic Calendar]]
+
+*** Fall 2017
+First day of classes: <2017-08-28 Mon>
+Labor day:            <2017-09-04 Mon>
+Thanksgiving recess:  <2017-11-22 Wed> - <2017-11-26 Sun>
+Last  day of classes: <2017-12-11 Mon>
+Final exams:          <2017-12-13 Wed> - <2017-12-19 Tue>
+
+*** Spring 2018
+First day of classes: <2018-01-24 Wed>
+Spring break:         <2018-03-18 Sun> - <2018-03-25 Sun>
+Last  day of classes: <2018-05-10 Thu>
+Final exams:          <2018-05-12 Sat> - <2018-05-18 Fri>
+
+** Resources
+- Books
+  - HtDP   http://www.htdp.org/2003-09-26/Book/
+  - HtDP2e http://www.ccs.neu.edu/home/matthias/HtDP2e/Draft/index.html
+   (notes) http://www.ccs.neu.edu/home/matthias/HtDP2e/Draft/notes/index.html
+- Experience reports:
+  - https://www.cs.tufts.edu/~nr/pubs/htdp.pdf
+  - http://www.ccs.neu.edu/racket/pubs/jfp2004-fffk.pdf
+- (Spectacular!) introduction to continuation-based web server (Flatt):
+  http://docs.racket-lang.org/more/
+  Can we integrate this into the curriculum? The later labs for F1 at NEU
+  started working with universes to do concurrency and networking, maybe we can
+  get a bit more low-level in later labs for F2? Maybe it's just out of scope
+  for these classes, but it's a great example of a good lab.
+
+** High-level course outline
+
+*** Fundies 1
+
+**** Fixed-sized data
+
+***** Content
+- Atomic data (bools, numbers, strings, symbols)
+- Finite, composite data (structs)
+
+***** Lab features
+- Finger exercises with atomics, images
+- Simple structure manipulations (REPLACE! the animals shenanigans)
+
+**** Arbitrarily large data
+
+***** Content
+- Recursive data
+
+***** Lab features
+- Hand-rolled list of numbers
+- Finger exercises with quoted lists
+- Expanding circles with world
+- Chip the Cheap Sheep
+
+**** Abstraction
+
+***** Content
+- λ (anonymous functions)
+- Higher-order functions
+- Local definitions
+
+***** Lab features
+- Turning the list template into `foldr' (best lab ever)
+
+**** Intertwined Data
+
+***** Content
+- Mutually recursive data (SExprs, JExprs, XExprs)
+
+***** Lab features
+- JSON via JExprs? Could build from this to a non-trivial interaction between
+  universe instances in later labs.
+
+**** Generative Recursion
+
+***** Content
+- ???
+
+***** Lab features
+- ???
+
+**** Accumulators
+
+***** Content
+- ???
+
+***** Lab features
+- ???
+
+**** Misc.
+
+***** Content
+- Concurrent/distributed programming
+
+***** Lab features
+- Hungry Henry
+- 
+
+** Schedule
+
+*** Fundies 1: Fall   2017
+
+**** Lectures (46 total)
+***** 2017-08 August (2)
+****** 2017-08-28 Monday
+****** 2017-08-30 Wednesday
+***** 2017-09 September (13)
+****** 2017-09-01 Friday
+****** 2017-09-04 Monday
+****** 2017-09-06 Wednesday
+****** 2017-09-08 Friday
+****** 2017-09-11 Monday
+****** 2017-09-13 Wednesday
+****** 2017-09-15 Friday
+****** 2017-09-18 Monday
+****** 2017-09-20 Wednesday
+****** 2017-09-22 Friday
+****** 2017-09-25 Monday
+****** 2017-09-27 Wednesday
+****** 2017-09-29 Friday
+***** 2017-10 October (13)
+****** 2017-10-02 Monday
+****** 2017-10-04 Wednesday
+****** 2017-10-06 Friday
+****** 2017-10-09 Monday
+****** 2017-10-11 Wednesday
+****** 2017-10-13 Friday
+****** 2017-10-16 Monday
+****** 2017-10-18 Wednesday
+****** 2017-10-20 Friday
+****** 2017-10-23 Monday
+****** 2017-10-25 Wednesday
+****** 2017-10-27 Friday
+****** 2017-10-30 Monday
+***** 2017-11 November (13)
+****** 2017-11-01 Wednesday
+****** 2017-11-03 Friday
+****** 2017-11-06 Monday
+****** 2017-11-08 Wednesday
+****** 2017-11-10 Friday
+****** 2017-11-13 Monday
+****** 2017-11-15 Wednesday
+****** 2017-11-17 Friday
+****** 2017-11-20 Monday
+****** 2017-11-22 Wednesday
+****** 2017-11-24 Friday
+****** 2017-11-27 Monday
+****** 2017-11-29 Wednesday
+***** 2017-12 December (5)
+****** 2017-12-01 Friday
+****** 2017-12-04 Monday
+****** 2017-12-06 Wednesday
+****** 2017-12-08 Friday
+****** 2017-12-11 Monday
+
+
+**** Labs     (31 total)
+***** 2017-08 August (2)
+****** 2017-08-28 Monday
+****** 2017-08-30 Wednesday
+***** 2017-09 September (8)
+****** 2017-09-04 Monday
+****** 2017-09-06 Wednesday
+****** 2017-09-11 Monday
+****** 2017-09-13 Wednesday
+****** 2017-09-18 Monday
+****** 2017-09-20 Wednesday
+****** 2017-09-25 Monday
+****** 2017-09-27 Wednesday
+***** 2017-10 October (9)
+****** 2017-10-02 Monday
+****** 2017-10-04 Wednesday
+****** 2017-10-09 Monday
+****** 2017-10-11 Wednesday
+****** 2017-10-16 Monday
+****** 2017-10-18 Wednesday
+****** 2017-10-23 Monday
+****** 2017-10-25 Wednesday
+****** 2017-10-30 Monday
+***** 2017-11 November (9)
+****** 2017-11-01 Wednesday
+****** 2017-11-06 Monday
+****** 2017-11-08 Wednesday
+****** 2017-11-13 Monday
+****** 2017-11-15 Wednesday
+****** 2017-11-20 Monday
+****** 2017-11-22 Wednesday
+****** 2017-11-27 Monday
+****** 2017-11-29 Wednesday
+***** 2017-12 December (3)
+****** 2017-12-04 Monday
+****** 2017-12-06 Wednesday
+****** 2017-12-11 Monday
+
+
+*** Fundies 2: Spring 2018
+
+**** Lectures (43 total)
+
+***** 2018-01 January (4)
+****** 2018-01-24 Wednesday
+****** 2018-01-26 Friday
+****** 2018-01-29 Monday
+****** 2018-01-31 Wednesday
+***** 2018-02 February (12)
+****** 2018-02-02 Friday
+****** 2018-02-05 Monday
+****** 2018-02-07 Wednesday
+****** 2018-02-09 Friday
+****** 2018-02-12 Monday
+****** 2018-02-14 Wednesday
+****** 2018-02-16 Friday
+****** 2018-02-19 Monday
+****** 2018-02-21 Wednesday
+****** 2018-02-23 Friday
+****** 2018-02-26 Monday
+****** 2018-02-28 Wednesday
+***** 2018-03 March (10)
+****** 2018-03-02 Friday
+****** 2018-03-05 Monday
+****** 2018-03-07 Wednesday
+****** 2018-03-09 Friday
+****** 2018-03-12 Monday
+****** 2018-03-14 Wednesday
+****** 2018-03-16 Friday
+****** 2018-03-26 Monday
+****** 2018-03-28 Wednesday
+****** 2018-03-30 Friday
+***** 2018-04 April (13)
+****** 2018-04-02 Monday
+****** 2018-04-04 Wednesday
+****** 2018-04-06 Friday
+****** 2018-04-09 Monday
+****** 2018-04-11 Wednesday
+****** 2018-04-13 Friday
+****** 2018-04-16 Monday
+****** 2018-04-18 Wednesday
+****** 2018-04-20 Friday
+****** 2018-04-23 Monday
+****** 2018-04-25 Wednesday
+****** 2018-04-27 Friday
+****** 2018-04-30 Monday
+***** 2018-05 May (4)
+****** 2018-05-02 Wednesday
+****** 2018-05-04 Friday
+****** 2018-05-07 Monday
+****** 2018-05-09 Wednesday
+
+**** Labs     (29 total)
+
+***** 2018-01 January (3)
+****** 2018-01-24 Wednesday
+****** 2018-01-29 Monday
+****** 2018-01-31 Wednesday
+***** 2018-02 February (8)
+****** 2018-02-05 Monday
+****** 2018-02-07 Wednesday
+****** 2018-02-12 Monday
+****** 2018-02-14 Wednesday
+****** 2018-02-19 Monday
+****** 2018-02-21 Wednesday
+****** 2018-02-26 Monday
+****** 2018-02-28 Wednesday
+***** 2018-03 March (6)
+****** 2018-03-05 Monday
+****** 2018-03-07 Wednesday
+****** 2018-03-12 Monday
+****** 2018-03-14 Wednesday
+****** 2018-03-26 Monday
+****** 2018-03-28 Wednesday
+***** 2018-04 April (9)
+****** 2018-04-02 Monday
+****** 2018-04-04 Wednesday
+****** 2018-04-09 Monday
+****** 2018-04-11 Wednesday
+****** 2018-04-16 Monday
+****** 2018-04-18 Wednesday
+****** 2018-04-23 Monday
+****** 2018-04-25 Wednesday
+****** 2018-04-30 Monday
+***** 2018-05 May (3)
+****** 2018-05-02 Wednesday
+****** 2018-05-07 Monday
+****** 2018-05-09 Wednesday
+
