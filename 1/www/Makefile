@@ -41,6 +41,7 @@ cmsc131A:
 	cp adventure{,2}.rkt cmsc131A/
 	cp -r A{2,3,4,5} cmsc131A/
 	cp m2-practice.pdf cmsc131A/
+	cp multi-inputs.rkt cmsc131A/
 	cp assign{6,7}.zip cmsc131A/
 
 clean:
