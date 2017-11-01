@@ -776,3 +776,15 @@ Today's quiz:
 
 ;; QUIZ: Give a parametric signature for wilma.
 )
+
+@section{November 1, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c22c5ff4-2bd2-44df-97f7-f24c166e6f4f}
+
+Today's code:
+
+@itemlist[
+@item{@link["merge.rkt"]{merge.rkt}}
+]
+
+(I'm missing the code for bundle but will upload it soon.)
