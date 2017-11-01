@@ -107,10 +107,6 @@ converted to a string and prepended with @tt{pre}.
 returns a list of randomly-generated grades between 0 and 100 for those
 students.
 
-@bold{Ex 9}: Design a function @tt{ex-9} that, given a list of grades,
-returns a list of randomly-generated grades between 0 and 100 for those
-students.
-
 
 @section[#:style 'unnumbered #:tag "lab19:handrolled"]{Abstracting Operations}
 
@@ -134,7 +130,7 @@ follows:
                    (natural-template (sub1 n)))]))
 )
 
-@bold{Ex 10}: The following three functions share a similar form over the
+@bold{Ex 9}: The following three functions share a similar form over the
 @emph{Natural} numbers. Design an abstraction of @tt{hyp{0,1,2}} named
 @tt{hypN}, then define @tt{hyp0/2}, @tt{hyp1/2}, and @tt{hyp2/2} in terms of
 @tt{hypN}.
@@ -160,14 +156,14 @@ follows:
 )
 
 
-@bold{Ex 11}: Define the fourth
+@bold{Ex 10}: Define the fourth
 @link["https://en.wikipedia.org/wiki/Tetration"]{hyperoperation over natural
 numbers} @tt{hyp4 : @emph{Number} @emph{Number} -> @emph{Number}} in terms of
 @tt{hypN}.
 
-@bold{Ex 12}: Design the function @tt{foldd : [X] . [Natural X -> X] X Natural
+@bold{Ex 11}: Design the function @tt{foldd : [X] . [Natural X -> X] X Natural
 -> X}. If you get stuck look at the @tt{natural-template} and consider the
-implementation of @tt{foldr} over lists from your notes. Your implementation
+ implementation of @tt{foldr} over lists from your notes. Your implementation
 should pass the tests below.
 
 @#reader scribble/comment-reader (racketblock
@@ -179,4 +175,4 @@ should pass the tests below.
               "10 9 8 7 6 5 4 3 2 1 0")
 )
 
-@bold{Ex 13}: Define the function @tt{hypN/2} in terms of @tt{foldd}.
+@bold{Ex 12}: Define the function @tt{hypN/2} in terms of @tt{foldd}.
