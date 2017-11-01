@@ -755,4 +755,24 @@ Today's code: @link["adventure2.rkt"]{adventure2.rkt}.
 
 @section{Midterm 2 practice}
 
-Here is the second midterm practice exam: @link["m2-practice.pdf"]{m2-practice.pdf}.
+Here is the second midterm practice exam: @link["m2-practice.pdf"]{m2-practice.pdf} (@link["m2-practice-soln.pdf"]{m2-practice-soln.pdf}).
+
+@section{October 30, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4a74da6a-fcf8-4080-b077-646d773e4d80}
+
+Today's code: @link["multi-inputs.rkt"]{multi-inputs.rkt}.
+
+Today's quiz:
+@#reader scribble/comment-reader (racketblock
+;; wilma : ___________________________
+(check-expect (wilma add1 5) (list 6 5 4 3 2 1))
+(check-expect (wilma number->string 3) (list "3" "2" "1" "0"))
+(define (wilma f n)
+  (cond [(zero? n) (list (f 0))]
+        [else
+          (cons (f n)
+                (wilma f (sub1 n)))]))
+
+;; QUIZ: Give a parametric signature for wilma.
+)
