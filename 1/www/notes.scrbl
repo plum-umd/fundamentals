@@ -755,7 +755,7 @@ Today's code: @link["adventure2.rkt"]{adventure2.rkt}.
 
 @section{Midterm 2 practice}
 
-Here is the second midterm practice exam: @link["m2-practice.pdf"]{m2-practice.pdf}.
+Here is the second midterm practice exam: @link["m2-practice.pdf"]{m2-practice.pdf} (@link["m2-practice-soln.pdf"]{m2-practice-soln.pdf}).
 
 @section{October 30, 2017}
 
