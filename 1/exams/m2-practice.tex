@@ -1,8 +1,11 @@
 \documentclass[12pt]{article}
 \usepackage{fullpage}
-\usepackage{times}
 \usepackage{xcolor,censor}
 \usepackage{fancyvrb}
+\usepackage{fontspec}
+\usepackage{alltt}
+
+\setmainfont{Times New Roman}
 
 \censorruleheight=0ex
 %\StopCensoring
@@ -98,6 +101,7 @@ Define one example of a function in each class.  (You only need to
 provide the code, not a full design.)
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 (define (f b s) s)
@@ -120,7 +124,7 @@ SOLUTION:
 For each of the following functions, provide the most general signature
 that correctly describes the function:
 
-\begin{verbatim}
+\begin{alltt}
 ;; f : \censor{Number -> Number}
 
 (define (f x)
@@ -156,7 +160,7 @@ that correctly describes the function:
   (cond [(= y 0) (list (x 0))]
         [else
           (cons (x y) (k x (sub1 y)))]))
-\end{verbatim}
+\end{alltt}
 
 
 \newpage
@@ -168,6 +172,7 @@ Design a program called {\tt avg} that computes the average of a list of numbers
 
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 ;; avg : [Listof Number] -> Number
@@ -251,6 +256,7 @@ abstraction function.
 [Space for problem 4.]
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 ;; mostest : [X] [NEListof X] [X X -> X] -> X
@@ -288,6 +294,7 @@ follow the template for {\tt{[Listof Number]}}.
 
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 ;; count-pos : [Listof Number] -> Number
@@ -333,6 +340,7 @@ function in terms of {\tt foldr}:
 (Just provide code, not a full design.)
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 (define (map f xs)
@@ -369,6 +377,7 @@ the tournament.
 
 
 \begin{SaveVerbatim}{VerbEnv}
+
 SOLUTION:
 
 ;; most-games : Tournament -> Number
@@ -379,8 +388,8 @@ SOLUTION:
 (define (most-games t)
   (cond [(string? t) 0]
         [(bracket? t)
-         (add1 (max (most-games(bracket-t1 t))
-                    (most-games(bracket-t2 t))))]))
+         (add1 (max (most-games (bracket-t1 t))
+                    (most-games (bracket-t2 t))))]))
 \end{SaveVerbatim}
 
 \censor{%
