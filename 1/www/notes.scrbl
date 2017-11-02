@@ -836,7 +836,7 @@ Use your abstraction to define the following function (you may find
 Using only @tt{andf}, @tt{>}, @tt{even?}, and @tt{lambda} expressions, write an expression that
 produces a predicate on numbers that will produce true when applied to even numbers greater than 5.
 
-@section{Signatures}
+@subsection{Signatures}
 
 Provide the most general valid signature for the following functions.
 
@@ -851,7 +851,7 @@ Provide the most general valid signature for the following functions.
   (map (λ (f) (f 0)) lof))
 )
 
-@section{Using list abstractions}
+@subsection{Using list abstractions}
 
 Re-define the following functions in terms of list abstraction
 functions where appropriate.  (Signatures and purpose statements
@@ -903,7 +903,7 @@ intentionally omitted):
 
 
 
-@section[#:tag "design2"]{Designing functions}
+@subsection[#:tag "design2"]{Designing functions}
 
 Design a function that computes the ``dot product'' of two equal
 length lists of numbers.  The dot product is the sum of the product of
