@@ -785,9 +785,9 @@ Today's code:
 
 @itemlist[
 @item{@link["merge.rkt"]{merge.rkt}}
+@item{@link["bundle.rkt"]{bundle.rkt}}
 ]
 
-(I'm missing the code for bundle but will upload it soon.)
 
 @section[#:tag "drills2"]{Drills}
 
