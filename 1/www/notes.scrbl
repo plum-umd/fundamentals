@@ -959,3 +959,9 @@ For example, @tt{(brute (list "a" "b" "c") 2)} produces:
 (list "" "a" "b" "c" "aa" "ab" "ac" "ba" "bb" "bc" "ca" "cb" "cc")
 )
 
+@section{November 3, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=87a30bf0-ad24-419f-987e-820778010926}
+
+Code from today: @link["qsort.rkt"]{qsort.rkt}.
+
