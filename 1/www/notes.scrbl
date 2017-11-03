@@ -791,7 +791,7 @@ Today's code:
 
 @section[#:tag "drills2"]{Drills}
 
-Here are some drill problems.
+Here are some drill problems. (Solutions: @link["drill-soln.rkt"]{drill-soln.rkt}.)
 
 Keep in mind that any topic from midterm 1 could show up again on
 midterm 2 so it may be worth revisiting older drill problems and the
