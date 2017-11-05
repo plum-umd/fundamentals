@@ -90,7 +90,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Designing functions
 
-;; dot-product : [Listof Number] [Listof Number] -> [Listof Number]
+;; dot-product : [Listof Number] [Listof Number] -> Number
 ;; Compute the dot product of the two lists
 ;; Assume: lists have same length
 (check-expect (dot-product (list 1 2 3) (list 4 5 6))
