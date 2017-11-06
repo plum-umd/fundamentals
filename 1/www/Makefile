@@ -43,6 +43,10 @@ cmsc131A:
 	cp m2-practice{,-soln}.pdf cmsc131A/
 	cp m2-practice.pdf cmsc131A/
 	cp multi-inputs.rkt cmsc131A/
+	cp merge.rkt cmsc131A/
+	cp bundle.rkt cmsc131A/
+	cp qsort.rkt cmsc131A/
+	cp drill-soln.rkt cmsc131A/
 	cp assign{6,7}.zip cmsc131A/
 
 clean:

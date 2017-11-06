@@ -776,3 +776,527 @@ Today's quiz:
 
 ;; QUIZ: Give a parametric signature for wilma.
 )
+
+@section{November 1, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c22c5ff4-2bd2-44df-97f7-f24c166e6f4f}
+
+Today's code:
+
+@itemlist[
+@item{@link["merge.rkt"]{merge.rkt}}
+@item{@link["bundle.rkt"]{bundle.rkt}}
+]
+
+
+@section[#:tag "drills2"]{Drills}
+
+Here are some drill problems. (Solutions: @link["drill-soln.rkt"]{drill-soln.rkt}.)
+
+Keep in mind that any topic from midterm 1 could show up again on
+midterm 2 so it may be worth revisiting older drill problems and the
+practice midterm 1.
+
+@subsection{Programming with functions}
+
+Design and abstraction called @tt{andf} from the following two functions:
+
+@#reader scribble/comment-reader (racketblock
+;; even-pos? : Number -> Boolean
+;; Is the number even and positive?
+(check-expect (even-pos? 4) #true)
+(check-expect (even-pos? 3) #false)
+(check-expect (even-pos? -1) #false)
+(define (even-pos? n)
+  (and (even? n) (positive? n)))
+
+;; neg-odd? : Number -> Boolean
+;; Is the number negative and odd?
+(check-expect (neg-odd? 4) #false)
+(check-expect (neg-odd? 3) #false)
+(check-expect (neg-odd? -1) #true)
+(define (neg-odd? n)
+  (and (negative? n) (odd? n)))
+)
+
+Be sure to give @tt{andf} the most general parametric signature that is valid.
+
+Use your abstraction to define the following function (you may find
+@tt{string-alphabetic?} and @tt{string-lower-case?} helpful):
+
+@#reader scribble/comment-reader (racketblock
+;; string-lower-alpha? : String -> Boolean
+;; Is the string made up of lower case, alphabetic letters?
+(check-expect (string-lower-alpha? "ABC") #false)
+(check-expect (string-lower-alpha? "a2c") #false)
+(check-expect (string-lower-alpha? "abc") #true)
+(define (string-lower-alpha? s) ...)
+)
+
+Using only @tt{andf}, @tt{>}, @tt{even?}, and @tt{lambda} expressions, write an expression that
+produces a predicate on numbers that will produce true when applied to even numbers greater than 5.
+
+@subsection{Signatures}
+
+Provide the most general valid signature for the following functions.
+
+@#reader scribble/comment-reader (racketblock
+(define (lengths xs)
+  (map length xs))
+
+(define (total-length xs)
+  (foldr (λ (x t) (+ (length x) t)) 0 xs))
+
+(define (map-f-zero lof)
+  (map (λ (f) (f 0)) lof))
+)
+
+@subsection{Using list abstractions}
+
+Re-define the following functions in terms of list abstraction
+functions where appropriate.  (Signatures and purpose statements
+intentionally omitted):
+
+@#reader scribble/comment-reader (racketblock
+(check-expect (rev-append (list "there" "hi")) "hithere")
+(define (rev-append los)
+  (cond [(empty? los) ""]
+        [(cons? los)
+         (string-append (rev-append (rest los)) (first los))]))
+
+(check-expect (posns-at-x (list 1 2 3) 7)
+              (list (make-posn 7 1) (make-posn 7 2) (make-posn 7 3)))
+(define (posns-at-x ys x)
+  (cond [(empty? ys) '()]
+        [(cons? ys)
+         (cons (make-posn x (first ys))
+               (posns-at-x (rest ys) x))]))
+
+(check-expect (dist (make-posn 0 0) (make-posn 3 4)) 5)
+(define (dist p q)
+  (sqrt (+ (sqr (- (posn-x p)
+                   (posn-x q)))
+           (sqr (- (posn-y p)
+                   (posn-y q))))))
+
+(check-expect (close-by (make-posn 0 0) (list (make-posn 3 4) (make-posn 8 8)) 6)
+              (list (make-posn 3 4)))
+(define (close-by p lop d)
+  (cond [(empty? lop) '()]
+        [(cons? lop)
+         (cond [(<= (dist p (first lop)) d)
+                (cons (first lop)
+                      (close-by p (rest lop) d))]
+               [else
+                (close-by p (rest lop) d)])]))
+
+(check-expect (draw-on (list (make-posn 50 50)))
+              (place-image (circle 10 "solid" "red") 50 50 (empty-scene 100 100)))
+(define (draw-on lop)
+  (cond [(empty? lop) (empty-scene 100 100)]
+        [(cons? lop)
+         (place-image (circle 10 "solid" "red")
+                      (posn-x (first lop))
+                      (posn-y (first lop))
+                      (draw-on (rest lop)))]))
+)
+
+
+
+@subsection[#:tag "design2"]{Designing functions}
+
+Design a function that computes the ``dot product'' of two equal
+length lists of numbers.  The dot product is the sum of the product of
+each corresponding elements in the lists.  For example, the dot
+product of @tt{(list 1 2 3)} and @tt{(list 4 5 6)} is @tt{(+ (* 1 4) (*
+2 5) (* 3 6))}.
+
+Design a function that computes the ``outer product'' of two lists of numbers.
+The outerproduct of @tt{(list 1 2 3)} and @tt{(list 4 5 6 7)} is:
+@#reader scribble/comment-reader (racketblock
+(list (list (* 1 4) (* 1 5) (* 1 6) (* 1 7))
+      (list (* 2 4) (* 2 5) (* 2 6) (* 2 7))
+      (list (* 3 4) (* 3 5) (* 3 6) (* 3 7)))
+)
+
+Notice that the outer product of a list of length @tt{N} and of length
+@tt{M} is a list of @tt{N} lists of @tt{M} numbers, with the exception
+that if @tt{M} or @tt{N} is 0, the result is an empty list.
+
+Design a similar function the computes something like the outer product, but for strings.
+The outer string product of @tt{(list "a" "b" "c")} and @tt{(list "1" "2" "3" "4")} is:
+@#reader scribble/comment-reader (racketblock
+(list (list "a1" "a2" "a3" "a4")
+      (list "b1" "b2" "b3" "b4")
+      (list "c1" "c2" "c3" "c4"))
+)
+
+Design an abstraction function for ``outer-product-like" computations
+of any kind.  Redefine your two outerproduct functions in terms of it.
+
+Design a function @tt{append-to-each} that consumes a string @tt{s}
+and a list of string @tt{los} and produces a list of strings like
+@tt{los} but with @tt{s} appended to the front of each element.
+
+Design a function @tt{append-all} that consumes two list of strings @tt{los1}
+and @tt{los2} and produces a list of strings that appends each element of @tt{los1} to
+all of the elements in @tt{los2}.  For example, @tt{(append-all (list "a" "b") (list "c" "d"))}
+should produce @tt{(list "ac" "ad" "bc" "bd")}.
+
+Design a function @tt{brute-n} that consumes a list of @tt{1String}s
+@tt{los} and a natural number @tt{n} and produces a list of all strings
+of length @tt{n} that can be formed from the given letters.  For example,
+@tt{(brute-n (list "a" "b" "c") 2)} produces:
+@#reader scribble/comment-reader (racketblock
+(list "aa" "ab" "ac" "ba" "bb" "bc" "ca" "cb" "cc")
+)
+
+Design a function @tt{brute} that consumes a list of @tt{1String}s and
+a natural number, and produces a list of all strings of length less
+than @tt{n} that can be formed from the given letters.
+For example, @tt{(brute (list "a" "b" "c") 2)} produces:
+@#reader scribble/comment-reader (racketblock
+(list "" "a" "b" "c" "aa" "ab" "ac" "ba" "bb" "bc" "ca" "cb" "cc")
+)
+
+@section{November 3, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=87a30bf0-ad24-419f-987e-820778010926}
+
+Code from today: @link["qsort.rkt"]{qsort.rkt}.
+
+@section{Solving lab 19: From Functions to Signatures}
+
+Lab 19 asks you to provide the most general signature for functions like the following:
+
+@#reader scribble/comment-reader (racketblock
+; brillig : 
+(define (brillig x)
+  (= 1 (modulo x 2)))
+)
+
+The way to approach problems like this is to play @emph{code
+detective}.  Start by collect evidence of what you know, then use that
+to make deductions about other things you know.  Keep doing this until
+you can't deduce anything more, and you've arrived at the most general
+signature.
+
+Let's walk through an example.  What do you know about @tt{brillig}?
+It's a function that takes one input.  Let's make a signature
+involving variables to capture what we know so far; as we continue,
+these variables may get solved and go away.  So far we have:
+
+@#reader scribble/comment-reader (racketblock
+; brillig : A -> B
+)
+
+We know that much just from look at:
+
+@#reader scribble/comment-reader (racketblock
+(define (brillig x) ...)
+)
+
+Now, let's look at the body of the function to try and learn more
+information about @tt{A} and @tt{B}.
+
+Q: How is the parameter @tt{x} used?  A: it is the first argument to
+@racket[modulo].  Follow-up Q: what is the signature of
+@racket[modulo]? A: @tt{Number Number -> Number}.  So we can conclude
+@tt{A} = @tt{Number}.
+
+Q: What kind of value does the body of the function produce?  A: It
+produces whatever kind of value @racket[=] produces.  Follow-up Q:
+What does @racket[=] produce? A: A @tt{Boolean}.  So we can conclude
+@tt{B} = @tt{Boolean}.
+
+Since we've solved for the two unknowns, @tt{A}, @tt{B}, we are done
+and can now give the most general signature:
+
+@#reader scribble/comment-reader (racketblock
+; brillig : Number -> Boolean
+)
+
+Using this signature, go back to the code and confirm it makes sense.
+
+Let's do another.
+
+@#reader scribble/comment-reader (racketblock
+; slithy :
+(define (slithy m n)
+  (> (length m) n))
+)
+
+We can see from the form of the definition that @tt{slithy} is a
+function taking two arguments.  Assigning variables for the unknowns,
+we get:
+
+@#reader scribble/comment-reader (racketblock
+; slithy : A B -> C
+)
+
+How are the arguments used?  
+
+Well, @tt{m} is the argument of @tt{length} and @tt{length} expects a
+list of some kind.  What kind?  We don't know yet, so assign a new
+variable for this unknown, say @tt{D}.  Now we know @tt{A} =
+@tt{[Listof D]}.
+
+Switching to @tt{n}, it is the second argument of @tt{>}, so @tt{B} = @tt{Number}.
+
+What kind of value does the body of the function produce?  Whatever
+kind of value @tt{>} produces, i.e. @tt{Boolean}s.
+
+So far we have:
+@#reader scribble/comment-reader (racketblock
+; slithy : [Listof D] Number -> Boolean
+)
+
+Are there any facts we haven't accounted for?  No, so we're done, but
+there are still unkowns: @tt{D}.  Take another look at the code.  Does
+the code impose any constraints on what kind of elements are in the
+list?  Does it treat them like numbers, string, functions, etc.?  No,
+it doesn't do anything with the elements of the list, so there's
+nothing more to learn about @tt{D} and it remains as a parameter in
+the most general signature:
+
+@#reader scribble/comment-reader (racketblock
+; slithy : [D] [Listof D] Number -> Boolean
+)
+
+Go back and make sure this signature makes sense for the function.
+
+Another:
+
+@#reader scribble/comment-reader (racketblock
+; outgrabe :
+(define (outgrabe x y)
+  (map x (append y y)))
+)
+
+From the definition, we get:
+
+@#reader scribble/comment-reader (racketblock
+; outgrabe : A B -> C
+)
+
+How is the first parameter, @tt{x}, used?  It is the first argument of
+@racket[map].  The first argument of @racket[map] must be a function
+that takes one argument, so we know @tt{A} must be @tt{D -> E} where
+@tt{D} and @tt{E} are new unknowns.
+
+How is the second parameter, @tt{y}, used?  It is both the first and
+second argument of @tt{append}, which takes two lists and produces a
+list of the same kind of element.  So @tt{B} must be a list of some
+kind @tt{[Listof F]}.
+
+Now, since the result of @tt{(append y y)} is the second argument to
+@racket[map] and we know the elements of the list and the input of the
+function must match, we can conclude @tt{F} = @tt{D}.
+
+What about @tt{C}?  What kind of value does the body of the function
+produce?  It produces whatever kind of value @tt{map} produces, which
+is a list of elements produced by the given function.  Hence, @tt{C} =
+@tt{Listof E}.
+
+Collecting what we know, we have:
+@#reader scribble/comment-reader (racketblock
+; outgrabe : [D -> E] [Listof D] -> [Listof E]
+)
+
+Are there any facts we haven't accounted for or anything more we can
+say about @tt{D} or @tt{E}?  No, so we're done and @tt{D} and @tt{E}
+are parameters to the signature:
+
+@#reader scribble/comment-reader (racketblock
+; outgrabe : [D E] [D -> E] [Listof D] -> [Listof E]
+)
+
+Go back and make sure this signature makes sense for the function.
+
+NOTE: It's important to note that whenever we determine that one
+variable is equal to another, we then only use one or the other, but
+not both.  For example, we know @tt{D} = @tt{F}, but it would be a
+mistake to give this function the signature:
+
+@#reader scribble/comment-reader (racketblock
+; WRONG-outgrabe : [D E F] [D -> E] [Listof F] -> [Listof E]
+)
+
+The problem is having two separate parameters, which sould really be a
+single one, makes it seem like @tt{D} and @tt{E} can be instantiated
+separately to different things.  So each set of equal variables,
+should be represnted by a single variable in the final signature.
+
+
+
+Moving on: 
+
+@#reader scribble/comment-reader (racketblock
+; uffish :
+(define (uffish x)
+  (cond [(number? x) (+ x 10)]
+        [(string? x) (string-length x)]))
+)
+
+We know:
+
+@#reader scribble/comment-reader (racketblock
+; uffish : A -> B
+)
+
+What is done with @tt{x}?  The function asks if it's a number or a
+string (and nothing else), so @tt{A} is either a number or a string.
+We could make a data definition for such things:
+@#reader scribble/comment-reader (racketblock
+;; A NumOrString is one of
+;; - A Number
+;; - A string
+)
+
+What kind of value does the function produce?  It produces whatever
+the @racket[cond] produces, which in term produces whatever @tt{+}
+produces @emph{and} whatever @tt{string-length} produces,
+i.e. @tt{Number}s.
+
+So:
+@#reader scribble/comment-reader (racketblock
+; uffish : NumOrString -> Number
+)
+
+Next:
+@#reader scribble/comment-reader (racketblock
+; frabjous :
+(define (frabjous a b c)
+  (a (b c)))
+)
+
+We know:
+@#reader scribble/comment-reader (racketblock
+; frabjous : A B C -> D
+)
+
+What do we know about @tt{A} based on how @tt{a} is used?  It is a
+function of one argument.  So @tt{A} = @tt{E -> F} for new unknowns.
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [E -> F] B C -> D
+)
+
+
+What do we know about @tt{B} based on how @tt{b} is used? It is a
+function of one argument.  So @tt{B} = @tt{G -> H} for new unknowns.
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [E -> F] [G -> H] C -> D
+)
+
+What do we know about @tt{C} based on how @tt{c} is used?  It is the
+argument of @tt{b}.  So @tt{G} = @tt{C}.
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [E -> F] [C -> H] C -> D
+)
+
+Are there facts we haven't accounted for?  Yes, the result of @tt{(b
+c)} is the argument of @tt{a}, so the input of @tt{a} and the result
+of @tt{b} must match, i.e. @tt{E} = @tt{H}.
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [E -> F] [C -> E] C -> D
+)
+
+
+What does the function produce?  Whatever @tt{a} produces, so @tt{D} =
+@tt{F}.
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [E -> D] [C -> E] C -> D
+)
+
+There's nothing more we can deduce, so the remaining unknowns are
+parameters:
+
+@#reader scribble/comment-reader (racketblock
+; frabjous : [C D E] [E -> D] [C -> E] C -> D
+)
+
+Next, picking up the pace:
+
+@#reader scribble/comment-reader (racketblock
+; callooh :
+(define (callooh a b)
+  (a 10 (or (b 0) (b 1))))
+
+; callooh : A B -> C
+
+; because (b 0) and (b 1)
+
+; callooh : A [Numbder -> D] -> C
+
+; because (or (b 0) (b 1))
+
+; callooh : A [Numbder -> Boolean] -> C
+
+; because (a 10 (or ...))
+
+; callooh : [Number Boolean -> G] [Numbder -> Boolean] -> C
+
+; because (define (callooh ...) (a ...))
+
+; callooh : [Number Boolean -> C] [Numbder -> Boolean] -> C
+
+; done:
+
+; callooh : [C] [Number Boolean -> C] [Numbder -> Boolean] -> C
+)
+
+Last:
+
+@#reader scribble/comment-reader (racketblock
+; callay :
+(define (callay q)
+  (frabjous (λ (d) (+ d 42)) q "day"))
+
+; callay : A -> B
+)
+
+Now since we apply a function with a parametric signature, we need to
+use the parameters of @tt{frabjous} (first making them distinct from
+the unknowns we have so far, which they already are) and try to solve
+for them:
+
+@#reader scribble/comment-reader (racketblock
+frabjous : [E -> D] [C -> E] C -> D
+)
+
+Since @racket["day"] is the third argument, @tt{C} = @tt{String}.
+
+@#reader scribble/comment-reader (racketblock
+frabjous : [E -> D] [String -> E] String -> D
+)
+
+Since @racket[q] is the second argument, @tt{A} = @tt{[String -> E]}.
+
+Since @racket[(λ (d) (+ d 42))] is the first argument, and it has the
+signature @tt{[Number -> Number]}, we know @tt{E} = @tt{Number} and
+@tt{D} = @tt{Number}.
+
+@#reader scribble/comment-reader (racketblock
+frabjous : [Number -> Number] [String -> Number] String -> Number
+)
+
+Coming back to @tt{callay}, we know @tt{A} = @tt{[String -> E]} and
+@tt{E} = @tt{Number}, so @tt{A} = @tt{[String -> Number]}:
+
+@#reader scribble/comment-reader (racketblock
+; callay : [String -> Number] -> B
+)
+
+What does the function produce?  Whatever @tt{frabjous} produces.  So
+@tt{B} = @tt{Number}:
+
+@#reader scribble/comment-reader (racketblock
+; callay : [String -> Number] -> Number
+)
+
+And we're done.

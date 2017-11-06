@@ -1,0 +1,435 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{xcolor,censor}
+\usepackage{fancyvrb}
+\usepackage{fontspec}
+\usepackage{alltt}
+
+\setmainfont{Times New Roman}
+
+\censorruleheight=0ex
+%\StopCensoring
+
+\begin{document}
+
+\begin{center}
+  {\Large {\bf CMSC 131A, Midterm 2}\\
+    \censor{{\bf SOLUTION}} \ \\
+    \ \\
+    Fall 2017 \ \\
+  }
+\end{center}
+
+\vspace{2em}
+
+\noindent
+NAME:\verb|________________________________________________________|
+
+\vspace{2em}
+
+\noindent
+UID: \verb|__________________________________________|
+
+\vspace{2em}
+
+\begin{center}
+\begin{tabular}{| c | c |}
+  \hline
+  Question & Points \\ \hline \hline
+  1 & 15 \\ \hline
+  2 & 12 \\ \hline
+  3 & 20 \\ \hline
+  4 & 15 \\ \hline
+  5 & 15 \\ \hline
+  6 & 20 \\ \hline\hline
+  Total: & 97\\
+  \hline
+\end{tabular}
+\end{center}
+
+\noindent
+This test is open-book, open-notes, but you may not use any computing
+device other than your brain and may not communicate with anyone.
+You have 50 minutes to complete the test.
+
+\vskip 1em
+
+\noindent
+The phrase ``design a program'' or ``design a function'' means follow
+the steps of the design recipe.  Unless specifically asked for, you do
+not need to provide intermediate products like templates or stubs,
+though they may be useful to help you construct correct solutions.
+
+\vskip 1em
+
+\noindent
+You may use any of the data definitions given to you within this exam
+and do not need to repeat their definitions.
+
+\vskip 1em
+
+\noindent
+Unless specifically instructed otherwise, you may use any built-in ISL+
+functions or data types.
+
+\vskip 1em
+
+\noindent
+When writing tests, you may use a shorthand for writing check-expects
+by drawing an arrow between two expressions to mean you expect the
+first to evaluate to same result as the second.  For example, you may
+write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
+\verb|(check-expect (add1 3) 4)|.
+
+\newpage
+
+\noindent
+{\bf Problem 1 (15 points).}
+%
+Here are some data definition relevant to representing a dictionary,
+which associates words with the their definitions:
+
+\begin{verbatim}
+;; A Dict is one of:
+;; - '()
+;; - (cons (list String String) Dict)
+;; Interp: a collection of definitions where each element is a 
+;; two-element list of a word (first) and its meaning (second).
+
+;; A Result is one of:
+;; - #false
+;; - String
+;; Interp: represents the result of looking up a word in the
+;; dictionary; #false means not found.
+\end{verbatim}
+
+\noindent
+Design the following function:
+
+\begin{verbatim}
+;; lookup : String Dict -> Result
+;; Lookup the (first) definition of a word in the dictionary,
+;; produces #false if not found
+\end{verbatim}
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define (f b s) s)
+(define (g fs) (fs #false))
+(define (h bs ns) 2)
+(define (i f) (f 2))
+(define (j f xs) (map f xs))
+(define (k f g x) (g (f x)))
+\end{SaveVerbatim}
+
+%\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+{\bf Problem 2 (12 points).}
+%
+For each of the following functions, provide the most general signature
+that correctly describes the function:
+
+\begin{alltt}
+;; method : \censor{Number -> Number}
+
+(define (method x)
+  (+ (sqr x) 2))
+
+;; raekwon : \censor{[Listof Number] -> Boolean}
+
+(define (raekwon x)
+  (ormap positive? x))
+
+;; rza : \censor{[Listof String] [Listof Number] -> [Listof Number]}
+
+(define (rza x y)
+  (cond [(empty? x) y]
+        [(cons? x)
+         (cons (string-length (first x))
+               (rza (rest x) y))]))
+
+;; gza : \censor{(String Number -> Number) -> Number}
+
+(define (gza x)
+  (foldr x 0 (list "a" "b" "c")))
+
+;; odb : \censor{(Number -> Number) -> (Number -> Number)}
+
+(define (odb x)
+  (lambda (y)   
+    (/ (- (x (+ y 0.001))
+          (x (- y 0.001)))
+       (* 2 0.001))))
+    
+
+;; ghostface : \censor{[X Y] [Listof X] [X -> Y] -> [Listof Y]}
+
+(define (ghostface x y)
+  (cond [(empty? x) '()]
+        [(cons? x)
+         (cons (y (first x)) 
+               (ghostface (rest x) y))]))
+\end{alltt}
+
+
+\newpage
+
+\noindent
+{\bf Problem 3 (20 points).}
+%
+Design a program called {\tt w-avg} that computes the weighted average
+of a list of numbers and a list of weights.
+
+For example, let's say a class grade is based on two midterms and a
+project where the project is worth twice as much as the midterms.  A
+student who gets an 80 and a 70 on the midterms and a 90 on the
+project would have a weighted average of 82.5: $((1 \times 80) + (1
+\times 70) + (2 \times 90)) / 4$, which can be computed with {\tt
+  (w-avg (list 80 70 90) (list 1 1 2))}.  You should assume the two
+lists have the same length.
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+;; avg : [Listof Number] -> Number
+;; Compute the average of a list of numbers
+;; Assume: the list is non-empty
+(check-expect (avg (list 3 4 5)) 4)
+(check-expect (avg (list 10 20)) 15)
+(define (avg lon)
+  (/ (sum lon) 
+     (length lon)))
+
+;; sum : [Listof Number] -> Number
+;; Sum the list of numbers
+(check-expect (sum '()) 0)
+(check-expect (sum (list 3 4 5)) 12)
+(define (sum lon)
+  (foldr + 0 lon))
+
+;; Alt: follow [Listof Number] template
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\newpage 
+\noindent
+{\bf Problem 4 (15 points).}
+%
+Here is a parametric data definition for a tree of elements:
+\begin{verbatim}
+;; A [Tree X] is one of:
+;; - (make-leaf)
+;; - (make-node X [Tree X] [Tree X])
+;; Interp: a binary tree that is either empty (a leaf), or non-empty (a node)
+;; with an element and two sub-trees.
+(define-struct leaf ())
+(define-struct node (elem left right))
+\end{verbatim}
+%% {\bf Problem 4(a) (10 points).} Design a function, {\tt tree-sum},
+%% that operates on a binary tree of numbers, {\tt [Tree Number]}, and
+%% produces the sum of all the numbers in the tree.
+
+%% \begin{SaveVerbatim}{VerbEnv}
+
+
+%% SOLUTION:
+
+%% ;; tree-sum : [Tree Number] -> Number
+%% ;; Sum all the numbers in the tree
+%% (check-expect (tree-sum (make-leaf)) 0)
+%% (check-expect (tree-sum (make-node 7 (make-node 1 (make-leaf) (make-leaf)) 
+%%                                      (make-leaf)))
+%%               8)
+%% (define (tree-sum bt)
+%%   (cond [(leaf? bt) 0]
+%%         [(node? bt)
+%%          (+ (node-elem bt)
+%%             (tree-sum (node-left bt))
+%%             (tree-sum (node-right bt)))]))
+
+%% \end{SaveVerbatim}
+
+%% \censor{%
+%% \noindent
+%% \BUseVerbatim{VerbEnv}}
+
+
+%% \newpage
+
+\noindent
+%{\bf Problem 4(b) (10 points).}
+Here is a function that produces a list of all the elements in a tree:
+\begin{verbatim}
+;; tree-elems : [X] . [Tree X] -> [Listof X]
+;; Produce a list of all elements in tree going top-down, left-to-right
+(check-expect (tree-elems (make-leaf)) '())
+(check-expect (tree-elems (make-node 7 
+                                     (make-node 9 (make-leaf) (make-leaf))
+                                     (make-node 2 (make-leaf) (make-leaf))))
+              (list 7 9 2))
+(define (tree-elems bt)
+  (cond [(leaf? bt) '()]
+        [(node? bt)
+         (cons (node-elem bt)
+               (append (tree-elems (node-left bt))
+                       (tree-elems (node-right bt))))]))
+\end{verbatim}
+Here is an abstraction function for trees that is similar to
+{\tt foldr} for lists, but works on trees:
+\begin{verbatim}
+;; tree-fold : [X Y] . [X Y Y -> Y] Y [Tree X] -> Y
+;; The fundamental abstraction function for trees
+(define (tree-fold f b bt)
+  (cond [(leaf? bt) b]
+        [(node? bt)
+         (f (node-elem bt)
+            (tree-fold f b (node-left bt))
+            (tree-fold f b (node-right bt)))]))
+\end{verbatim}
+Give an equivalent definition of {\tt tree-elems} in terms of {\tt
+  tree-fold}.  (Just provide the code.)
+
+\vspace{1em}
+\noindent
+[Provide your answer on the next page.]
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+(define (tree-elems bt)
+  (tree-fold (lambda (x l r) (cons x (append l r))) '() bt))
+
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+[Space for problem 4.]
+
+
+\newpage
+\noindent
+{\bf Problem 5 (15 points).}  
+%
+Design a program that takes a list of strings and produces the count
+of strings with length longer than 3 in the list.  For example, if the
+list contains {\tt "a"}, {\tt "dave"}, {\tt "abc"}, and {\tt "fred"},
+the count is 2.  You may assume the {\tt{[Listof String]}} data
+definition is defined.
+%
+For full credit, use list abstraction functions.  For partial credit,
+follow the template for {\tt{[Listof String]}}.
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+;; count-3+ : [Listof String] -> Number
+;; Count the number of strings with length more than 3 in given list
+(check-expect (count-3+ '()) 0)
+(check-expect (count-3+ (list "a" "abcd" "fred" "c")) 2)
+(define (count-3+ los)
+  (foldr (lambda (s c) (if (> (string-length s) 3) (add1 c) c)) 0 los))
+
+;; Alts:
+(define (count-3+ los)
+  (local [;; count+ : String Number -> Number
+          ;; Bump count if string has length > 3
+          (define (count+ s c) 
+            (if (> (string-length s) 3) (add1 c) c))]
+    (foldr count+ 0 los))
+
+(define (count-3+ los)
+  (local [;; 3+? : String -> Boolean
+          ;; Does the string have length > 3?
+          (define (3+? s) 
+            (> (string-length s) 3))]
+    (length (filter 3+? los))))
+
+(define (count-3+ los)
+  (length (filter (lambda (s) (> (string-length s) 3)) los)))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+
+
+\newpage
+
+\noindent
+{\bf Problem 6 (20 points).}
+%
+Here's a data definition for choose-your-own-adventure books:
+\begin{verbatim}
+;; A CYOA is one:
+;; - String
+;; - (make-choice String CYOA CYOA)
+(define-struct choice (q yes no))
+;; Interp: a choose-your-own-adventure book where a string
+;; is a conclusion and a choice is a yes/no question and
+;; the two adventures that follow as a consequnce of the answer.
+\end{verbatim}
+
+\noindent
+Design a function called {\tt ans} that consumes a {\tt CYOA} and a
+{\tt [Listof Boolean]} that represents answers to the yes/no
+questions: {\tt \#true} means yes, {\tt \#false} means no.  The {\tt
+  ans} function produces the {\tt CYOA} adventure that results after
+giving all of the answers in the list.  If the list contains too many
+answers, {\tt ans} just produces the conclusion of the adventure.
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define a0 "A0")
+(define a1 (make-choice "Q1" "A1" "A2"))
+(define a2 (make-choice "Q2" a0 a1))
+
+;; ans : CYOA [Listof Boolean] -> CYOA
+;; ...
+(check-expect (adv a0 (list #true #false)) "A0")
+(check-expect (adv a1 (list #true #false)) "A1")
+(check-expect (adv a2 (list #false #true)) "A1")
+(check-expect (adv a2 (list #false)) a1)
+(define (ans adv loa)
+  (cond [(string? adv) adv]
+        [(empty? loa) adv]
+        [(first loa)
+         (ans (choice-yes adv) (rest adv))]
+        [else
+         (ans (choice-no adv) (rest adv))]))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\end{document}
+
