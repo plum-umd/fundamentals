@@ -39,10 +39,10 @@ UID: \verb|__________________________________________|
   1 & 15 \\ \hline
   2 & 12 \\ \hline
   3 & 20 \\ \hline
-  4 & 20 \\ \hline
+  4 & 15 \\ \hline
   5 & 15 \\ \hline
   6 & 20 \\ \hline\hline
-  Total: & 102\\
+  Total: & 97\\
   \hline
 \end{tabular}
 \end{center}
@@ -93,9 +93,8 @@ which associates words with the their definitions:
 ;; A Dict is one of:
 ;; - '()
 ;; - (cons (list String String) Dict)
-;; Interp: represents a collection of definitions where each
-;; element is a two-element list consisting of a word (first) and its
-;; meaning (second).
+;; Interp: a collection of definitions where each element is a 
+;; two-element list of a word (first) and its meaning (second).
 
 ;; A Result is one of:
 ;; - #false
@@ -227,7 +226,7 @@ SOLUTION:
 
 \newpage 
 \noindent
-{\bf Problem 4 (20 points).}
+{\bf Problem 4 (15 points).}
 %
 Here is a parametric data definition for a tree of elements:
 \begin{verbatim}
@@ -239,39 +238,39 @@ Here is a parametric data definition for a tree of elements:
 (define-struct leaf ())
 (define-struct node (elem left right))
 \end{verbatim}
-{\bf Problem 4(a) (10 points).} Design a function, {\tt tree-sum},
-that operates on a binary tree of numbers, {\tt [Tree Number]}, and
-produces the sum of all the numbers in the tree.
+%% {\bf Problem 4(a) (10 points).} Design a function, {\tt tree-sum},
+%% that operates on a binary tree of numbers, {\tt [Tree Number]}, and
+%% produces the sum of all the numbers in the tree.
 
-\begin{SaveVerbatim}{VerbEnv}
+%% \begin{SaveVerbatim}{VerbEnv}
 
 
-SOLUTION:
+%% SOLUTION:
 
-;; tree-sum : [Tree Number] -> Number
-;; Sum all the numbers in the tree
-(check-expect (tree-sum (make-leaf)) 0)
-(check-expect (tree-sum (make-node 7 (make-node 1 (make-leaf) (make-leaf)) 
-                                     (make-leaf)))
-              8)
-(define (tree-sum bt)
-  (cond [(leaf? bt) 0]
-        [(node? bt)
-         (+ (node-elem bt)
-            (tree-sum (node-left bt))
-            (tree-sum (node-right bt)))]))
+%% ;; tree-sum : [Tree Number] -> Number
+%% ;; Sum all the numbers in the tree
+%% (check-expect (tree-sum (make-leaf)) 0)
+%% (check-expect (tree-sum (make-node 7 (make-node 1 (make-leaf) (make-leaf)) 
+%%                                      (make-leaf)))
+%%               8)
+%% (define (tree-sum bt)
+%%   (cond [(leaf? bt) 0]
+%%         [(node? bt)
+%%          (+ (node-elem bt)
+%%             (tree-sum (node-left bt))
+%%             (tree-sum (node-right bt)))]))
 
-\end{SaveVerbatim}
+%% \end{SaveVerbatim}
 
-\censor{%
+%% \censor{%
+%% \noindent
+%% \BUseVerbatim{VerbEnv}}
+
+
+%% \newpage
+
 \noindent
-\BUseVerbatim{VerbEnv}}
-
-
-\newpage
-
-\noindent
-{\bf Problem 4(b) (10 points).}
+%{\bf Problem 4(b) (10 points).}
 Here is a function that produces a list of all the elements in a tree:
 \begin{verbatim}
 ;; tree-elems : [X] . [Tree X] -> [Listof X]
