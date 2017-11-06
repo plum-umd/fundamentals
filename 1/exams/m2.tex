@@ -116,12 +116,16 @@ Design the following function:
 
 SOLUTION:
 
-(define (f b s) s)
-(define (g fs) (fs #false))
-(define (h bs ns) 2)
-(define (i f) (f 2))
-(define (j f xs) (map f xs))
-(define (k f g x) (g (f x)))
+(check-expect (lookup "a" '()) #false)
+(check-expect (lookup "a" (list (list "a" "b"))) "b")
+(check-expect (lookup "a" (list (list "c" "b") (list "a" "d"))) "d")
+(define (lookup w d)
+  (cond [(empty? d) #false]
+        [(cons? d)
+         (if (string=? (first (first d)) w)
+             (second (first d))
+             (lookup w (rest d)))]))
+
 \end{SaveVerbatim}
 
 %\censor{\vspace{-2.5in}}
@@ -198,25 +202,36 @@ lists have the same length.
 
 \begin{SaveVerbatim}{VerbEnv}
 
+
 SOLUTION:
 
-;; avg : [Listof Number] -> Number
-;; Compute the average of a list of numbers
-;; Assume: the list is non-empty
-(check-expect (avg (list 3 4 5)) 4)
-(check-expect (avg (list 10 20)) 15)
-(define (avg lon)
-  (/ (sum lon) 
-     (length lon)))
+;; w-avg : [Listof Number] [Listof Number] -> Number
+;; Compute the weighted average of a list of numbers and weights
+;; Assume: lists have the same length (and non-empty)
+(check-expect (w-avg (list 70 80 90) (list 1 1 2)) 82.5)
+(define (w-avg lon ws)
+  (/ (w-sum lon ws) 
+     (foldr + 0 ws)))
 
-;; sum : [Listof Number] -> Number
-;; Sum the list of numbers
-(check-expect (sum '()) 0)
-(check-expect (sum (list 3 4 5)) 12)
-(define (sum lon)
-  (foldr + 0 lon))
+;; w-sum : [Listof Number] [Listof Number] -> Number
+;; Sum the list of numbers according to given weights
+;; Assume: lists have same length
+(check-expect (w-sum (list 70 80 90) (list 1 1 2)) (+ 70 80 180))
+(define (w-sum lon ws)
+  (cond [(empty? lon) 0]
+        [(cons? lon)
+         (+ (* (first lon) (first ws))
+            (w-sum (rest lon) (rest ws)))]))
 
-;; Alt: follow [Listof Number] template
+;; Alt: define w-total function for denominator
+
+;; w-total : [Listof Number] -> Number
+;; Total a list of weights
+(define (w-total ws)
+  (cond [(empty? ws) 0]
+        [(cons? ws)
+         (+ (first ws) 
+            (w-total (rest ws)))]))
 \end{SaveVerbatim}
 
 \censor{%
@@ -405,6 +420,7 @@ answers, {\tt ans} just produces the conclusion of the adventure.
 
 \begin{SaveVerbatim}{VerbEnv}
 
+
 SOLUTION:
 
 (define a0 "A0")
@@ -412,7 +428,7 @@ SOLUTION:
 (define a2 (make-choice "Q2" a0 a1))
 
 ;; ans : CYOA [Listof Boolean] -> CYOA
-;; ...
+;; Compute the remaining adventure after using answers from list
 (check-expect (adv a0 (list #true #false)) "A0")
 (check-expect (adv a1 (list #true #false)) "A1")
 (check-expect (adv a2 (list #false #true)) "A1")
@@ -420,10 +436,10 @@ SOLUTION:
 (define (ans adv loa)
   (cond [(string? adv) adv]
         [(empty? loa) adv]
-        [(first loa)
-         (ans (choice-yes adv) (rest adv))]
-        [else
-         (ans (choice-no adv) (rest adv))]))
+        [(cons? loa)
+         (if (first loa)
+             (ans (choice-yes adv) (rest adv))
+             (ans (choice-yes adv) (rest adv)))]))
 \end{SaveVerbatim}
 
 \censor{%
