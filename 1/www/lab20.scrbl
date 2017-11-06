@@ -130,7 +130,7 @@ with this:
 @#reader scribble/comment-reader (racketblock
 ;; draw : Natural -> Image
 (define (draw w)
-  (local [(define lst (dragon '(down) w))]
+  (local [(define lst (dragon '("down") w))]
     (draw-dirs lst (/ W 2) (/ H 2) (empty-scene W H))))
  
 ;; key : Natural KeyEvent -> Natural
