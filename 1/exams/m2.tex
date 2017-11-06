@@ -36,14 +36,13 @@ UID: \verb|__________________________________________|
 \begin{tabular}{| c | c |}
   \hline
   Question & Points \\ \hline \hline
-  1 & 12 \\ \hline
+  1 & 15 \\ \hline
   2 & 12 \\ \hline
-  3 & 15 \\ \hline
-  4 & 15 \\ \hline
+  3 & 20 \\ \hline
+  4 & 20 \\ \hline
   5 & 15 \\ \hline
-  6 & 10 \\ \hline
-  7 & 15 \\ \hline \hline
-  Total: & 94\\
+  6 & 20 \\ \hline\hline
+  Total: & 102\\
   \hline
 \end{tabular}
 \end{center}
@@ -85,20 +84,34 @@ write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
 \newpage
 
 \noindent
-{\bf Problem 1 (12 points).}
+{\bf Problem 1 (15 points).}
 %
-Each of the following signatures describes a class of functions:
+Here are some data definition relevant to representing a dictionary,
+which associates words with the their definitions:
 
 \begin{verbatim}
-Boolean String -> String
-[Boolean -> String] -> String
-[Listof Boolean] [Listof Number] -> Number
-[X] . [Number -> X] -> X
-[X Y] . [X -> Y] [Listof X] -> [Listof Y]
-[X Y Z] . [X -> Y] [Y -> Z] X -> Z
+;; A Dict is one of:
+;; - '()
+;; - (cons (list String String) Dict)
+;; Interp: represents a collection of definitions where each
+;; element is a two-element list consisting of a word (first) and its
+;; meaning (second).
+
+;; A Result is one of:
+;; - #false
+;; - String
+;; Interp: represents the result of looking up a word in the
+;; dictionary; #false means not found.
 \end{verbatim}
-Define one example of a function in each class.  (You only need to
-provide the code, not a full design.)
+
+\noindent
+Design the following function:
+
+\begin{verbatim}
+;; lookup : String Dict -> Result
+;; Lookup the (first) definition of a word in the dictionary,
+;; produces #false if not found
+\end{verbatim}
 
 \begin{SaveVerbatim}{VerbEnv}
 
@@ -170,7 +183,7 @@ that correctly describes the function:
 \newpage
 
 \noindent
-{\bf Problem 3 (15 points).}
+{\bf Problem 3 (20 points).}
 %
 Design a program called {\tt w-avg} that computes the weighted average
 of a list of numbers and a list of weights.
@@ -358,48 +371,11 @@ SOLUTION:
 
 
 
-\newpage
-
-\noindent
-{\bf Problem 6 (10 points).}
-%
-It's been said that {\tt foldr} is \emph{the} fundamental list
-abstraction function because any function that follows the list
-template can be expressed in terms of {\tt foldr}.  Put that theory to
-the test by providing an equivalent definition for the following
-function in terms of {\tt foldr}:
-
-\begin{verbatim}
-;; map : [X Y] . [X -> Y] [Listof X] -> [Listof Y]
-;; Apply f to each element of list, collect a list of results
-(define (map f ls)
-  (cond [(empty? ls) '()]
-        [(cons? ls)
-         (cons (f (first ls))
-               (map f (rest ls)))]))
-\end{verbatim}
-
-\noindent
-(Just provide code, not a full design.)
-
-\begin{SaveVerbatim}{VerbEnv}
-
-
-SOLUTION:
-
-(define (map f xs)
-  (foldr (lambda (x ys) (cons (f x) ys)) '() xs))
-\end{SaveVerbatim}
-
-\censor{%
-\noindent
-\BUseVerbatim{VerbEnv}}
-
 
 \newpage
 
 \noindent
-{\bf Problem 7 (15 points).}
+{\bf Problem 6 (20 points).}
 %
 Here's a data definition for choose-your-own-adventure books:
 \begin{verbatim}
@@ -425,16 +401,23 @@ answers, {\tt ans} just produces the conclusion of the adventure.
 
 SOLUTION:
 
-;; most-games : Tournament -> Number
-;; Compute most games any team has to win to win tournament
-(check-expect (most-games "NY") 0)
-(check-expect (most-games (make-bracket "LA" "HOU")) 1)
-(check-expect (most-games (make-bracket (make-bracket "LA" "DC") "HOU")) 2)
-(define (most-games t)
-  (cond [(string? t) 0]
-        [(bracket? t)
-         (add1 (max (most-games (bracket-t1 t))
-                    (most-games (bracket-t2 t))))]))
+(define a0 "A0")
+(define a1 (make-choice "Q1" "A1" "A2"))
+(define a2 (make-choice "Q2" a0 a1))
+
+;; ans : CYOA [Listof Boolean] -> CYOA
+;; ...
+(check-expect (adv a0 (list #true #false)) "A0")
+(check-expect (adv a1 (list #true #false)) "A1")
+(check-expect (adv a2 (list #false #true)) "A1")
+(check-expect (adv a2 (list #false)) a1)
+(define (ans adv loa)
+  (cond [(string? adv) adv]
+        [(empty? loa) adv]
+        [(first loa)
+         (ans (choice-yes adv) (rest adv))]
+        [else
+         (ans (choice-no adv) (rest adv))]))
 \end{SaveVerbatim}
 
 \censor{%
