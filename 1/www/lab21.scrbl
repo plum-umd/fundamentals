@@ -105,10 +105,10 @@ Here's some helper code to get you started:
 image.
 
 Otherwise the function puts a @racket{brown} line at
-@tt{x}/@tt{y}/@tt{ang}/@tt{len}, and recursively calls itself twice: once with
-@tt{x}/@tt{y} placed one third up the trunk at an angle off to the left, and
-another with @tt{x}/@tt{y} placed two thirds up the trunk at an angle off to the
-right. The length should be cut in half.
+@tt{x}/@tt{y}/@tt{ang}/@tt{len}, and recur twice: once with @tt{x}/@tt{y} placed
+one third up the trunk at an angle off to the left, and another with
+@tt{x}/@tt{y} placed two thirds up the trunk at an angle off to the right. The
+length should be cut in half.
 
 @colorize["red"]{Hint}: One of the recursive calls should be calculated as
 follows:
