@@ -91,11 +91,11 @@ Here's some helper code to get you started:
 ;; put-line : Number Number Number Number String Image -> Image
 ;; Put a line on the image starting at (x, y) len distance in the given
 ;; direction with the given color.
-(define (put-line x y ang len color scn)
+(define (put-line x y ang len color img)
   (place-image (line (* (cos ang) len)
                      (* (sin ang) len) color)
                (+ x (* (cos ang) (/ len 2)))
-               (+ y (* (sin ang) (/ len 2))) scn))
+               (+ y (* (sin ang) (/ len 2))) img))
 )
 
 @bold{Ex 5}: Design the function @tt{tree} that takes four numbers, @tt{x},
