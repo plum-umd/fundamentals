@@ -28,6 +28,10 @@ V} of HtDP2e.
 
 @section[#:tag "assign9:graph"]{Plotting}
 
+Edit a file named @tt{graph.rkt} for this part of the
+assignment. Add your information to the standard file header at the
+top of the file.
+
 In this assignment, you will develop a program which allows the user to
 interact with a visual representation of a given
 function. See @link["https://en.wikipedia.org/wiki/Graph_of_a_function"]{Graph of a function}.
