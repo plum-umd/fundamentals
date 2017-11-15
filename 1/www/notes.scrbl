@@ -1300,3 +1300,12 @@ What does the function produce?  Whatever @tt{frabjous} produces.  So
 )
 
 And we're done.
+
+@section{November 10, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=413ce506-6e9e-41aa-87bb-9a530bd269ff}
+
+@section{November 13, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4b05ebf2-b21d-44cb-a4c5-d6d9ee892d87}
+
