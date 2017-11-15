@@ -161,18 +161,18 @@ follows:
 numbers} @tt{hyp4 : @emph{Number} @emph{Number} -> @emph{Number}} in terms of
 @tt{hypN}.
 
-@bold{Ex 11}: Design the function @tt{foldd : [X] . [Natural X -> X] X Natural
+@bold{Ex 11}: Design the function @tt{foldu : [X] . [Natural X -> X] X Natural
 -> X}. If you get stuck look at the @tt{natural-template} and consider the
  implementation of @tt{foldr} over lists from your notes. Your implementation
 should pass the tests below.
 
 @#reader scribble/comment-reader (racketblock
-(check-expect (foldd cons '() 3) '(3 2 1))
-(check-expect (foldd * 1 5) 120)
-(check-expect (foldd (λ (n s) (string-append (number->string n) " " s))
+(check-expect (foldu cons '() 3) '(3 2 1))
+(check-expect (foldu * 1 5) 120)
+(check-expect (foldu (λ (n s) (string-append (number->string n) " " s))
                      "0"
                      10)
               "10 9 8 7 6 5 4 3 2 1 0")
 )
 
-@bold{Ex 12}: Define the function @tt{hypN/2} in terms of @tt{foldd}.
+@bold{Ex 12}: Define the function @tt{hypN/2} in terms of @tt{foldu}.
