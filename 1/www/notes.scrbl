@@ -1318,3 +1318,9 @@ And we're done.
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ffcf6b0e-2ab6-4db2-9160-f68ef2643c30}
 
 Code: @link["graph.rkt"]{graph.rkt}.
+
+@section{November 20, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36c1e7d0-1a25-4865-b0aa-bea72795e530}
+
+Code: @link["graph2.rkt"]{graph2.rkt}.
