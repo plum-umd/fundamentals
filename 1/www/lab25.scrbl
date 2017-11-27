@@ -66,16 +66,16 @@ It's easy to represent binary trees using lists.
 
 The symbol @racket['leaf] is a @emph{Tree} of height 0.
 
-@bold{Ex 3}: Write down all of the trees of heights 0, 1, and 2. There should be
+@bold{Ex 4}: Write down all of the trees of heights 0, 1, and 2. There should be
 1, 1, and 3 such trees, resp.
 
-@bold{Ex 4}: Describe in a comment (and to your partner) how the trees of height
+@bold{Ex 5}: Describe in a comment (and to your partner) how the trees of height
 2 are created using the trees of heights 1 and 0. What does it actually mean to
 be a tree of height 2? What must be true of the subtrees?
 
-@bold{Ex 5}: Design the function @tt{trees=} which given a @emph{Natural} @tt{h}
+@bold{Ex 6}: Design the function @tt{trees=} which given a @emph{Natural} @tt{h}
 generates a list of all @emph{Tree}s of height @tt{h}. Use insights gleaned from
-@bold{Ex 4} to generate the correct recursive calls.
+@bold{Ex 5} to generate the correct recursive calls.
 
 @colorize["red"]{@bold{Hint}}: You may want to also design a function
 @tt{trees<}, which returns a list of all @emph{Tree}s of height less than the
@@ -121,7 +121,7 @@ likely run out of memory enumerating the trees of height 6.
 @;                  (λ (ts) (and (member? '(leaf leaf) ts)
 @;                               (member? 'leaf ts))))
 
-@bold{Ex 6}: Design a function @tt{number-of-trees=} which given a
+@bold{Ex 7}: Design a function @tt{number-of-trees=} which given a
 @emph{Natural} @tt{h}, returns the number of trees of that height. You should
 not have to create the trees (or use @tt{trees=} at all) to complete this
 definition. Instead, consider how to generate the number using the same
