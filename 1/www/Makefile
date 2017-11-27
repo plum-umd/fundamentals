@@ -48,6 +48,7 @@ cmsc131A:
 	cp qsort.rkt cmsc131A/
 	cp drill-soln.rkt cmsc131A/
 	cp graph{,2}.rkt cmsc131A/
+	cp typed{,2}.rkt cmsc131A/
 	cp assign{6,7}.zip cmsc131A/
 
 clean:
