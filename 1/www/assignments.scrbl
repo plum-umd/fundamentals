@@ -16,3 +16,4 @@ Assignments should be completed with your assigned partners.
 @include-section{assign7.scrbl}
 @include-section{assign8.scrbl}
 @include-section{assign9.scrbl}
+@include-section{assign10.scrbl}
