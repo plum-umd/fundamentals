@@ -1,6 +1,6 @@
 #lang scribble/base
-@(require (for-label (only-in typed/racket define-type : U Listof)
-                     (only-in racket define if > * define-struct)
+@(require (for-label (only-in typed/racket define-type : U Listof require/typed)
+                     (only-in racket define if > * define-struct module+)
                      rackunit
                      (only-in lang/htdp-intermediate-lambda check-expect)))
 @(require scribble/manual)
