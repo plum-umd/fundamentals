@@ -40,7 +40,7 @@ menu item in DrRacket.  Choose "The Racket Language".  This will add
 @tt{#lang typed/racket}.
 
 As mentioned in lecture, Typed Racket, unlike ISL+ and friends, does
-not have a testing framework built-in.  So will be using the
+not have a testing framework built-in.  So we will be using the
 @racketmodname[rackunit] library.
 
 The following will import @racket[check-equal?], roughly analogous to

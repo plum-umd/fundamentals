@@ -39,7 +39,7 @@ cmsc131A:
 	cp prod-sum-abstract.rkt cmsc131A/
 	cp using-abstractions.rkt cmsc131A/
 	cp adventure{,2}.rkt cmsc131A/
-	cp -r A{2,3,4,5,6,7} cmsc131A/
+	cp -r A{2,3,4,5,6,7,8} cmsc131A/
 	cp m2-practice{,-soln}.pdf cmsc131A/
 	cp m2-practice.pdf cmsc131A/
 	cp multi-inputs.rkt cmsc131A/
@@ -69,7 +69,7 @@ push: all
 ifeq ($(git_local),$(git_remote))
 	find $(course) -type d -exec chmod 775 {} \;
 	find $(course) -type f -exec chmod 664 {} \;
-	chmod 771 $(course)/A{2,3,4,5,6,7}
+	chmod 771 $(course)/A{2,3,4,5,6,7,8}
 	rsync -rvzp cmsc131A umd:$(site_loc)
 	ssh umd "chown -R :$(course_group) $(site_loc)/$(course)/*"
 else ifeq ($(git_local),$(git_base))
