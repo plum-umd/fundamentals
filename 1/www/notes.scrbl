@@ -1330,3 +1330,10 @@ Code: @link["graph2.rkt"]{graph2.rkt}.
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8f3ea164-1ce0-4562-83b4-6031168b5ba8}
 
 Code: @link["typed.rkt"]{typed.rkt}.
+
+@section{November 29, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2dfcf5f5-d906-444e-8469-1177733739e1}
+
+Code: @link["typed2.rkt"]{typed2.rkt}.
+

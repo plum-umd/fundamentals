@@ -1,9 +1,15 @@
 #lang typed/racket
+;; Incantation to write unit tests in TR (Typed Racket):
+(module+ test
+  (require/typed rackunit
+                 [check-equal? (Any Any -> Any)]))
 
+
+;; An Even is Number that is even
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(: qsort : ([Listof Real] -> [Listof Real]))
+(: qsort : [Listof Real] -> [Listof Real])
 ;; Sort the list in ascending order
 (module+ test
   (check-equal? (qsort (list 11 8 14 7)) (list 7 8 11 14))
@@ -23,12 +29,36 @@
 (define (smaller lon n)
   (filter (λ ([fred : Real]) (< fred n)) lon))
 
+(: my-filter : (All (X) ((X -> Boolean) [Listof X] -> [Listof X])))
+(define (my-filter p lox)
+  (cond [(empty? lox) '()]
+        [(cons? lox)
+         (if (p (first lox))
+             (cons (first lox)
+                   (my-filter p (rest lox)))
+             (my-filter p (rest lox)))]))
+
 (: bigger : ([Listof Real] Real -> [Listof Real]))
 ;; Produce a list of elements bigger than or equal to the given number
 (module+ test
   (check-equal? (bigger (list 1 2 3) 2) (list 2 3)))
 (define (bigger lon n)
   (filter (λ ([barney : Real]) (>= barney n)) lon))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,7 +92,7 @@
     (make-choice
      "Do you do the labs?"
      (make-choice
-      "Do you do the assignments?"
+      "A string"
       "A fulfilling life of creative endeavors awaits you."
       "You should.")
      "You're making things harder than they need to")
