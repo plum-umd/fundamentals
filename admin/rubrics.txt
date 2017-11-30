@@ -1,0 +1,5 @@
+Solutions and rubrics for problems sets have been intentionally
+omitted from this repository (and their history removed).  They are
+maintained as private repository within the plum-umd organization.
+Access to instructors is available upon request.
+
