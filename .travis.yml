@@ -25,7 +25,7 @@ script:
  - raco setup book
  - cd web; make 2510H
 
-before-deploy:
+before_deploy:
  - cd web/; tar cvfz 2510H.tgz 2510H/; mv 2510H.tgz ..
 
 deploy:
