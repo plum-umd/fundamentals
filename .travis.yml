@@ -26,7 +26,7 @@ script:
  - cd web; make 2510H
 
 before_deploy:
- - cd web/; tar cvfz 2510H.tgz 2510H/; mv 2510H.tgz ..
+ - cd web/; tar cvfz 2510H.tgz 2510H/
 
 deploy:
   provider: releases
