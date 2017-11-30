@@ -1,0 +1,28 @@
+language: racket
+sudo: required
+dist: trusty
+env:
+  global:
+    - RACKET_DIR=~/racket
+  matrix:
+    - RACKET_VERSION=5.3.5
+    - RACKET_VERSION=6.2
+
+before_install:
+ - git clone https://github.com/greghendershott/travis-racket.git
+ - cat travis-racket/install-racket.sh | bash
+ - export PATH="${RACKET_DIR}/bin:${PATH}"
+ - git clone git@github.com:dvanhorn/dpc.git --branch v1.0.0 --single-branch
+
+install:
+
+before_script:
+
+script:
+ - raco link dpc/class/
+ - raco link dpc/book/
+ - raco setup class
+ - raco setup book
+ - cd web; make 2510H
+
+
