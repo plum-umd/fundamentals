@@ -170,26 +170,7 @@ Below are the initial partnership assignments.  If you can't find your partner,
 or are not on this list, please see a member of the course staff.
 
 @verbatim{
-01. Nir Shtuhl               Michael R. Rinaldi
-02. Trevyn J. Langsford      Tevin M. Otieno
-03. Cody M. Wetherby         Dylan P. Collins
-04. Matthew T. Cotton        Maxwell T. Skala
-05. Eli L. Abidor            Timothy J. Wright
-06. Nicholas L. Jones        Tiffany L. Chao
-07. Christopher M. Freeley   Calvin J. Pomerantz
-08. Zachary Youngren         Craig J. Ellis
-09. Lukas Berger             Julia T. Ebert
-10. Samantha T. Sanborn      Lochlainn O. Macdonald
-11. Ariel R. Winton          Kevin G. O'Leary
-12. Stefan T. Cepko          Sree Vishant Prabhakaran
-13. Kyle H. Alpert           James C. Larisch
-14. Yang Yang                Christian J. DiMare
-15. Kaila M. Corrington      Victor M. Monterroso
-16. Joseph S. Maxwell        Victor Lei
-17. Zoe R. Winkworth         Priscilla A. Baquerizo
-18. Kyle P. Meyer
-19. Trithep Devakul          Matthew C. Singer
-20. Nicholas D. Acquadro     William Caruso
+01. Student 1               Student 2
 }
 
 @section*{Welcome to CS2510H}
