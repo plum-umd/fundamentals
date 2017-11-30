@@ -25,4 +25,16 @@ script:
  - raco setup book
  - cd web; make 2510H
 
+before-deploy:
+ - tar cvfz 2510H.tgz 2510H/
 
+deploy:
+  provider: releases
+  api_key:
+    secure: L1N6EsOBes50BaIAdhj6fpLd2uLgUHwJQE4t/i6myQN3G+WVO3TpJVpjHQUv1htx9nmjP0tK9HIGzLDnQMN78GMRHOJj24tiEUqvtsDQJln2Hw7dDJtDNPWsVq51xu+rYI7cXwZYjIJV1fcgSoyAjfqstbSKASHl24v9SlArCsI=
+  file:
+    - 2510H.tgz
+  skip_cleanup: true
+  on:
+    tags: true
+branch: master
