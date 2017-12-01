@@ -1337,3 +1337,13 @@ Code: @link["typed.rkt"]{typed.rkt}.
 
 Code: @link["typed2.rkt"]{typed2.rkt}.
 
+@section{December 1, 2017}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=529f5dfd-c2e9-4dbd-a782-f978052f3d06}
+
+Code: 
+@itemize[
+@item{@link["typed3.rkt"]{typed3.rkt}}
+@item{@link["yo-client.rkt"]{yo-client.rkt}}
+@item{@link["yo-server.rkt"]{yo-server.rkt}}
+]

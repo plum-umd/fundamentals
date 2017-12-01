@@ -55,6 +55,9 @@ cmsc131A:
 	cp graph2.rkt cmsc131A/
 	cp typed.rkt cmsc131A/
 	cp typed2.rkt cmsc131A/
+	cp typed3.rkt cmsc131A/
+	cp yo-client.rkt cmsc131A/
+	cp yo-server.rkt cmsc131A/
 	cp ml.rkt cmsc131A/
 
 clean:
