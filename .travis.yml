@@ -33,7 +33,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/www/ dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/
+    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/1/www/ dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/
     on:
       branch: master
   - provider: releases
