@@ -18,7 +18,10 @@ install:
 before_script: 
 
 script:
-  - cd 1/www/; make cmsc131A; cd ../../
+  - cd 1/www/
+  - make test
+  - make cmsc131A
+  - cd ../../
 
 addons:
   ssh_known_hosts: junkfood.cs.umd.edu
