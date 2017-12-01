@@ -4,7 +4,6 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
-    - WWW_HOST=junkfood.cs.umd.edu
     - WWW_DIR=/fs/www/class/cmsc131afa17
   matrix:
     - RACKET_VERSION=6.10
@@ -22,7 +21,7 @@ script:
   - cd 1/www/; make cmsc131A; cd ../../
 
 addons:
-  ssh_known_hosts: $WWW_HOST
+  ssh_known_hosts: junkfood.cs.umd.edu
 
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_ce04f0ea5dc2_key -iv $encrypted_ce04f0ea5dc2_iv
@@ -34,7 +33,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/www/ dvanhorn@$WWW_HOST:$WWW_DIR/
+    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/www/ dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/
     on:
       branch: master
   - provider: releases
