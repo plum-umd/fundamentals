@@ -3,9 +3,12 @@ course_group = cmsc131afa17
 course_term = fall2017
 site_loc = /fs/www/class/$(course_term)
 
-.PHONY : all clean push
+.PHONY : all clean push test
 
 all: clean cmsc131A
+
+test: clean
+	raco test .
 
 cmsc131A:
 	scribble --htmls ++style extra.css \
