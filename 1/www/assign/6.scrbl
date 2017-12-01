@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require scribble/core (for-label lang/htdp-beginner))
 
 @title[#:style 'unnumbered #:tag "assign6"]{Assignment 6: Invasion!}
 
@@ -60,7 +60,7 @@ Some questions to consider:
         to change so the invader can fire arbitrarily many shots?}
   @item{Which functions operate on the game state? How do they need to change to
         account for an invader that fires back?}
-  @item{@colorize["red"]{Hint}: Create a TODO list of all functions that need to
+  @item{@bold{Hint}: Create a TODO list of all functions that need to
         change, then start working your way through that list.}
 ]
 
