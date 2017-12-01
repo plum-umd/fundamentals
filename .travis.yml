@@ -4,7 +4,7 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
-    - WWW_DIR=/fs/www/class/cmsc131afa17
+    - WWW_DIR=/fs/www/class/fall2017/cmsc131A
   matrix:
     - RACKET_VERSION=6.10
     - RACKET_VERSION=6.11
@@ -33,7 +33,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A/* dvanhorn@junkfood.cs.umd.edu:/fs/www/class/cmsc131afa17/
+    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:WWW_DIR
     on:
       branch: master
   - provider: releases
