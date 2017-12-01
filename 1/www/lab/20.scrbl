@@ -28,7 +28,7 @@ featured in the headings of chapters in the book
 We'll start off by building a simple line drawing program. Then we'll combine
 pieces into the fractal's @emph{generative} recursion.
 
-@image{dragon.gif}
+@image{img/dragon.gif}
 
 @section[#:style 'unnumbered #:tag "lab20:dd"]{Lines}
 

@@ -34,7 +34,7 @@ code:
 
 This is our first target image.
 
-@image{lab21-circles-1.png}
+@image{img/lab21-circles-1.png}
 
 The circles get smaller as they move to the right.
 
@@ -49,7 +49,7 @@ the original @tt{img}.
 smaller), instead of 2. Modify @tt{WIDTH} so you get something like the image
 below.
 
-@image{lab21-circles-2.png}
+@image{img/lab21-circles-2.png}
 
 @bold{Ex 3}: Define a similar function @tt{spiral} that takes four numbers and
 an image @tt{img}. In addition to @tt{x} and @tt{size}, the function also takes
@@ -67,7 +67,7 @@ and the current angle (in radians).
 You can also add to the @tt{ang}. Try @racket[(/ pi 10)]. Using that as the
 initial angle should give you something like the image below.
 
-@image{lab21-circles-3.png}
+@image{img/lab21-circles-3.png}
 
 @bold{Ex 4}: Modify the various parameters to your function to get interesting
 results. For example, if you modify the function to be structurally recursive
@@ -75,7 +75,7 @@ results. For example, if you modify the function to be structurally recursive
 each time (be sure the function terminates!), you might get something like the
 image below.
 
-@image{lab21-spiral-1.png}
+@image{img/lab21-spiral-1.png}
 
 
 @section[#:style 'unnumbered #:tag "lab21:tree"]{Trees}
@@ -124,8 +124,8 @@ The other recursive call should use @tt{ang - pi/3}, at @tt{2*len/3} away.
 
 You should be able to easily modify the parameters to get various images.
 
-@image{lab21-tree-2.png}
-@image{lab21-tree-3.png}
+@image{img/lab21-tree-2.png}
+@image{img/lab21-tree-3.png}
  
 
 @section[#:style 'unnumbered #:tag "lab21:koch"]{Koch Snowflake}
@@ -146,8 +146,8 @@ a more elaborate version (bigger, with 6 iterations), of a "snowflake" variation
 that (I think) looks pretty cool. See if you can emulate it, or come up with
 something better!
 
-@image{lab21-koch-0.png}
-@image{lab21-koch-1.png}
-@image{lab21-koch-2.png}
-@image{lab21-koch-3.png}
-@image{lab21-koch-4.png}
+@image{img/lab21-koch-0.png}
+@image{img/lab21-koch-1.png}
+@image{img/lab21-koch-2.png}
+@image{img/lab21-koch-3.png}
+@image{img/lab21-koch-4.png}

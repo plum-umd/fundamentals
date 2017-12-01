@@ -37,7 +37,7 @@ Code from today's lecture:
 
 @section{September 6, 2017}
 
-@include-section["rocket.scrbl"]
+@include-section["note/rocket.scrbl"]
 
 @section{September 8, 2017}
 
@@ -567,7 +567,7 @@ Today's code:
 
 @section{October 6 & 9, 2017}
 
-@include-section["snake.scrbl"]
+@include-section["note/snake.scrbl"]
 
 @section{October 11, 2017}
 

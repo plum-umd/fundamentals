@@ -1,3 +1,0 @@
-This is the working repo for Systematic Program Design I, II
-
-See 1/meta/ for notes about the design for the course.
