@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require scribble/core (for-label lang/htdp-beginner))
 
 @title[#:style 'unnumbered #:tag "assign8"]{Assignment 8: Trees, forests, and ML}
 

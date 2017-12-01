@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require scribble/core (for-label lang/htdp-beginner))
 
 @title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: Abstract Invasion!}
 

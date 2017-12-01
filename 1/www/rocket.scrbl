@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require scribble/core (for-label lang/htdp-beginner))
 
 @title[#:style '(unnumbered non-toc) #:tag "rocket"]{Landing a RKT in BSL}
 
