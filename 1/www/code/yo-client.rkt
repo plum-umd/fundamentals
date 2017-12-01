@@ -15,6 +15,7 @@
             [on-receive (λ (w msg) msg)]))
                          
 
-(launch-many-worlds (yo 5)
-                    (yo 3)
-                    (yo 1))
+(define (run _)
+   (launch-many-worlds (yo 5)
+                       (yo 3)
+                       (yo 1)))

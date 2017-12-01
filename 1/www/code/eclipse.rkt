@@ -13,5 +13,6 @@
    (- 500 time)  250
    (overlay sun (empty-scene 500 500))))
 
-(animate eclipse)
+(define (main _)
+  (animate eclipse))
 
