@@ -33,7 +33,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www dvanhorn@junkfood.cs.umd.edu:www/temp
+    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:www/temp
     on:
       branch: master
   - provider: releases
