@@ -2,9 +2,6 @@ course = cmsc131A
 course_group = cmsc131afa17
 course_term = fall2017
 site_loc = /fs/www/class/$(course_term)
-git_local = $(shell git rev-parse @)
-git_remote = $(shell git rev-parse @{u})
-git_base = $(shell git merge-base @ @{u})
 
 .PHONY : all clean push skeletons
 
@@ -59,32 +56,9 @@ cmsc131A:
 	cp typed.rkt cmsc131A/
 	cp typed2.rkt cmsc131A/
 	cp ml.rkt cmsc131A/
-	cp assign6.zip cmsc131A/
-	cp assign7.zip cmsc131A/
 
 clean:
-	rm -f assign6.zip
-	rm -f assign7.zip
 	rm -rf $(course)
 
-assign6.zip:
-	cd ../skeletons/assign6 && zip ../../www/assign6.zip *.rkt
 
-assign7.zip:
-	cd ../skeletons/assign7 && zip ../../www/assign7.zip *.rkt
-
-skeletons: assign6.zip assign7.zip
-
-push: all
-	@git fetch
-ifeq ($(git_local),$(git_remote))
-	find $(course) -type d -exec chmod 775 {} \;
-	find $(course) -type f -exec chmod 664 {} \;
-	rsync -rvzp cmsc131A umd:$(site_loc)
-	ssh umd "chown -R :$(course_group) $(site_loc)/$(course)/*"
-else ifeq ($(git_local),$(git_base))
-	@echo 'You need to `git pull` before modifying the website'
-else ifeq ($(git_remote),$(git_base))
-	@echo 'You need to `git push` before modifying the website'
-endif
 
