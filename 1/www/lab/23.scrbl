@@ -102,7 +102,7 @@ numbers using @tt{sum-all-down}.
                      (eval:result @racketresult[500000500000]
                                   "cpu time: 80 real time: 80 gc time: 0"))]
 
-@image{lab23-sum-all-down-results.jpg}
+@image{img/lab23-sum-all-down-results.jpg}
 
 
 @section[#:style 'unnumbered #:tag "lab23:whoa"]{Whoa}

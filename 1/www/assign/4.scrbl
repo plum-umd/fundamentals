@@ -43,7 +43,7 @@ controlled with the left and right arrow keys as before.
 
 Here's a little animation of a sample running of this program:
 
-@image{chips.gif}
+@image{img/chips.gif}
 
 (You do not need to add the ``POW!'' functionality, but may if you
 have the time.)

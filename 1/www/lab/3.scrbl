@@ -37,10 +37,10 @@ Swap @bold{Head} and @bold{Hands}.
 
 Meet Chip! Chip likes to run.
 
-@centered{@image["chip0.png"]{(Chip's 0th image is missing)}0
-          @image["chip1.png"]{(Chip's 1st image is missing)}1
-          @image["chip2.png"]{(Chip's 2nd image is missing)}2
-          @image["chip3.png"]{(Chip's 3rd image is missing)}3}
+@centered{@image["img/chip0.png"]{(Chip's 0th image is missing)}0
+          @image["img/chip1.png"]{(Chip's 1st image is missing)}1
+          @image["img/chip2.png"]{(Chip's 2nd image is missing)}2
+          @image["img/chip3.png"]{(Chip's 3rd image is missing)}3}
 
 @larger{@bold{Ex 4}}: Define a function @tt{which-chip} that, given a number
 between 0 and 3, returns the properly indexed image above.

@@ -81,7 +81,7 @@ languages. What types do each of the numbers @racket[1], @racket[10],
 @racket[100], @racket[1000], ...  @racket[1000000000000] have? Find one number
 for each of the types given in the image below:
 
-@centered{@image[#:scale 0.5]{lab26-int-tower.png}}
+@centered{@image[#:scale 0.5]{img/lab26-int-tower.png}}
 
 Look at the
 @link["https://docs.racket-lang.org/ts-reference/type-ref.html"]{Type
