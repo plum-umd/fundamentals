@@ -4,28 +4,44 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
+    - WWW_HOST=junkfood.cs.umd.edu
+    - WWW_DIR=/fs/www/class/cmsc131afa17
   matrix:
     - RACKET_VERSION=6.10
     - RACKET_VERSION=6.11
 
 before_install:
- - git clone https://github.com/greghendershott/travis-racket.git
- - cat travis-racket/install-racket.sh | bash
- - export PATH="${RACKET_DIR}/bin:${PATH}"
+  - git clone https://github.com/greghendershott/travis-racket.git
+  - cat travis-racket/install-racket.sh | bash
+  - export PATH="${RACKET_DIR}/bin:${PATH}"
 
-install:
-
-before_script:
+install: 
+before_script: 
 
 script:
- - cd 1/www/; make cmsc131A
+  - cd 1/www/; make cmsc131A
+
+addons:
+  ssh_known_hosts: $WWW_HOST
+
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_ce04f0ea5dc2_key -iv $encrypted_ce04f0ea5dc2_iv
+    -in deploy_rsa.enc -out ~\/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
 
 deploy:
-  provider: releases
-  api_key:
-    secure: Zh2OyyjoVtz6+qcKEpIZmmdVosZo8dwpj1nu5rrxR+DgrAGwFGQOPTqjVLXxcFrqMaITuTs06ZOuhM4e2Qa+eXYkCXjageHfI3JlO//BBs7iKRBOUK+qENkP+V8efhMmnG/QM2h+rFg6JlhPBcIk9IjOlOcKngfEr91OQ61inZ4rg7nurnlsCJJgrLrw1atpo6PYrypFyQXIiggCsRXQlMygaiVOaJKKlyLET3dYka5eRw0m/IwUO9hAR2a2H5itGXkzcMp0Hc5/BmjJ05AN+9q40BfiRV/tVNUayD5BSKKOHO7N4vSP4VPrLfjHzeO2UJNsc7PjVNtedOqNI0eC3Bfc2JsPf+JkhbTVTn3QPyA3HlyzQaykj954jSwC/feR5inc0JEIjqRgsez8nInO5wtOHE2t3uXjXmh3D4VunaaxtJCL40oEROceMZwHSag2+tTy1RLgw2ssxtr5+dAFxhFQxPUArFPZvD0WgmYCXDDsgDb4GcLAv4hYDD1U3qP4DLmUGLeHtAFimGjX/TEIsaDL69ovIcKEVvx4rhndO3RBJr0m+cvAW1Y0qsEi4DvG3N7JbTy955iXNsQaoM5QflTQlZboOtpBXstmBfs2JG8WQ18S0K+pDSf4TO1iWsu/82HkKZ2DrV4A1xuN6dnjhjiORKbn5TgvAIrx2hwb9vg=
-  file:
-  skip_cleanup: true
-  on:
-    tags: true
-    branch: master
+  - provider: script
+    skip_cleanup: true
+    script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/www/ dvanhorn@$WWW_HOST:$WWW_DIR/
+    on:
+      branch: master
+  - provider: releases
+    api_key:
+      secure: Zh2OyyjoVtz6+qcKEpIZmmdVosZo8dwpj1nu5rrxR+DgrAGwFGQOPTqjVLXxcFrqMaITuTs06ZOuhM4e2Qa+eXYkCXjageHfI3JlO//BBs7iKRBOUK+qENkP+V8efhMmnG/QM2h+rFg6JlhPBcIk9IjOlOcKngfEr91OQ61inZ4rg7nurnlsCJJgrLrw1atpo6PYrypFyQXIiggCsRXQlMygaiVOaJKKlyLET3dYka5eRw0m/IwUO9hAR2a2H5itGXkzcMp0Hc5/BmjJ05AN+9q40BfiRV/tVNUayD5BSKKOHO7N4vSP4VPrLfjHzeO2UJNsc7PjVNtedOqNI0eC3Bfc2JsPf+JkhbTVTn3QPyA3HlyzQaykj954jSwC/feR5inc0JEIjqRgsez8nInO5wtOHE2t3uXjXmh3D4VunaaxtJCL40oEROceMZwHSag2+tTy1RLgw2ssxtr5+dAFxhFQxPUArFPZvD0WgmYCXDDsgDb4GcLAv4hYDD1U3qP4DLmUGLeHtAFimGjX/TEIsaDL69ovIcKEVvx4rhndO3RBJr0m+cvAW1Y0qsEi4DvG3N7JbTy955iXNsQaoM5QflTQlZboOtpBXstmBfs2JG8WQ18S0K+pDSf4TO1iWsu/82HkKZ2DrV4A1xuN6dnjhjiORKbn5TgvAIrx2hwb9vg=
+    file:
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
