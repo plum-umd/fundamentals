@@ -4,7 +4,7 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
-    - WWW_DIR=/fs/www/class/fall2017/cmsc131A
+    - WWW_DIR=/fs/www/class/fall2017
   matrix:
     - RACKET_VERSION=6.10
     - RACKET_VERSION=6.11
