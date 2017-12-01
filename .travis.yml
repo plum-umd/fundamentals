@@ -19,7 +19,7 @@ install:
 before_script: 
 
 script:
-  - cd 1/www/; make cmsc131A
+  - cd 1/www/; make cmsc131A; cd ../../
 
 addons:
   ssh_known_hosts: $WWW_HOST
