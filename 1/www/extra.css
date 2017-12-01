@@ -1,0 +1,19 @@
+.boxedtable {
+
+    background-color: inherit;
+    border-collapse:collapse;
+}
+
+.boxedtable td {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.version {
+visibility:hidden;
+}
+
+.strike {
+    text-decoration: line-through;
+}

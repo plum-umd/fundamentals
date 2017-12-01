@@ -1,0 +1,389 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{xcolor,censor}
+\usepackage{fancyvrb}
+
+\censorruleheight=0ex
+%\StopCensoring
+
+\begin{document}
+
+\begin{center}
+  {\Large {\bf CMSC 131A, Midterm 1}\\
+    \censor{{\bf SOLUTION}} \ \\
+    \ \\
+    Fall 2017 \ \\
+  }
+\end{center}
+
+\vspace{2em}
+
+\noindent
+NAME:\verb|________________________________________________________|
+
+\vspace{2em}
+
+\noindent
+UID: \verb|__________________________________________|
+
+\vspace{2em}
+
+\begin{center}
+\begin{tabular}{| c | c |}
+  \hline
+  Question & Points \\ \hline \hline
+  1 & 10 \\ \hline
+  2 & 10 \\ \hline
+  3 & 10 \\ \hline
+  4 & 15 \\ \hline
+  5 & 15 \\ \hline
+  6 & 10 \\ \hline
+  7 & 20 \\ \hline \hline
+  Total: & 90\\
+  \hline
+\end{tabular}
+\end{center}
+
+\noindent
+This test is open-book, open-notes, but you may not use any computing
+device other than your brain and may not communicate with anyone.
+You have 50 minutes to complete the test.
+
+\vskip 1em
+
+\noindent
+The phrase ``design a program'' or ``design a function'' means follow
+the steps of the design recipe.  Unless specifically asked for, you do
+not need to provide intermediate products like templates or stubs,
+though they may be useful to help you construct correct solutions.
+
+\vskip 1em
+
+\noindent
+You may use any of the data definitions given to you within this exam
+and do not need to repeat their definitions.
+
+\vskip 1em
+
+\noindent
+Unless specifically instructed otherwise, you may use any built-in BSL
+functions or data types.
+
+\vskip 1em
+
+\noindent
+When writing tests, you may use a shorthand for writing check-expects
+by drawing an arrow between two expressions to mean you expect the
+first to evaluate to same result as the second.  For example, you may
+write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
+\verb|(check-expect (add1 3) 4)|.
+
+\newpage
+
+\noindent
+{\bf Problem 1 (10 points).}
+%
+For the following program, write out each step of computation. At each
+step, underline the expression being simplified. Label each step as
+being ``arithmetic'' (meaning any built-in operation),
+``conditional'', ``plug'' (for plugging in an argument for a function
+parameter), or ``constant'' for replacing a constant with its value.
+
+
+\begin{verbatim}
+(define R 9)
+(define (w z) (= R z))
+(cond [(w 2) 4]
+      [else 9])
+\end{verbatim}
+
+\vskip 2.5in
+
+
+\begin{SaveVerbatim}{VerbEnv}  
+SOLUTION:
+\end{SaveVerbatim}
+
+%\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+{\bf Problem 2 (10 points).}
+%
+For the following structure definition, list the names of every
+function it creates.  For each function, classify it as being either a
+constructor, accessor, or predicate.
+
+\begin{verbatim}
+(define-struct run (time up score))
+\end{verbatim}
+
+\newpage
+
+\noindent
+{\bf Problem 3 (10 points).}
+%
+The graphical text editor you developed in a recent assignment has
+attracted the interest of investors.  But before they write you a
+check, they want to make sure you can handle fancy operations for
+expert text editor users.  They ask if you can implement a \emph{swap}
+operation, which will swap content to the left of the cursor with the
+content to the right..  To satisfy your potential investors, you
+define the following function for swapping strings at a given
+position:
+\begin{verbatim}
+;; swap : String Integer -> String
+;; Swap string to the left of i with string to the right.
+;; Assume (<= 0 i (string-length s)).
+(check-expect (swap "" 0) "")
+(check-expect (swap "ab" 1) "ba")
+(check-expect (swap "bannana" 3) "nanaban")
+(define (swap s i) ...)
+\end{verbatim}
+
+\noindent
+Give a correct definition for \verb|swap|.  (You only need to
+provide code, not the design steps.)
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define (swap s i)
+  (string-append (substring s i)
+                 (substring s 0 i)))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+
+\newpage 
+\noindent
+{\bf Problem 4 (15 points).}
+%
+Use the following data definition for representing names:
+\begin{verbatim}
+;; A Name is a (make-name String String)
+;; Interp: a person's full (first and last) name.
+;; Both strings must contain at least one letter.
+(define-struct name (first last))
+\end{verbatim}
+
+\noindent
+Write a program, \verb|name-width|, that determines the width needed
+to print someone's name on a letter using a mono-typed font (meaning
+each letter has the same width).  The program can calculate this width
+based on the length of the person's first and last name, plus the
+width of a space to go in between.  Assume each letter is 10 pixels
+wide.  For example, the name Bob Harper requires 100 pixels; the name
+Bo Jack requires 70 pixels.  You may start from the following header:
+
+\begin{verbatim}
+;; name-width : Name -> Number
+;; Computes width needed to print name in mono-type font
+\end{verbatim}
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+  
+;; dist3d : 3D -> Number
+;; Compute distance to origin from given 3-d point
+(check-expect (dist3d (make-3d 3 2 6)) 7)
+(define (dist3d p)
+  (sqrt (+ (sqr (3d-x p)) (sqr (3d-y p)) (sqr (3d-z p)))))  
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\newpage
+\noindent
+{\bf Problem 5 (15 points).}  
+%
+Design a program that takes a list of numbers and produces the count
+of non-negative numbers in the list.  For example, if the list
+contains 3, 4, -1, 0, -2, and 5, the count of non-negative numbers is
+4.  You may use the following data definition:
+
+\begin{verbatim}
+;; A LoN (list of numbers) is one of:
+;; - '()
+;; - (cons Number LoN)
+;; Interp: an arbitrarily long list of numbers
+\end{verbatim}
+
+
+
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+  
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+
+\newpage
+
+\noindent
+{\bf Problem 6 (10 points).} You've been hired by the US Department of
+Transportation to design traffic simulation software, which includes
+simulating traffic lights.  Discovering the simple design from 131A is
+insufficient, you come up with the following representation, which
+makes it possible to model not just the color, but also how much
+longer the current light has before changing: 
+
+\begin{verbatim}
+;; A Light is one of:
+;; - (make-red Natural)
+;; - (make-yellow Natural)
+;; - (make-green Natural)
+;; Interp: color and remaining duration (in ticks) of a light 
+(define-struct red (count))
+(define-struct yellow (count))
+(define-struct green (count))
+\end{verbatim}
+(Recall that a \verb|Natural| is a natural number, i.e. a non-negative
+integer.)
+
+\vspace{1em}
+
+\noindent
+{\bf Problem 6(a).} Write a template for \verb|Light| functions.
+
+\begin{SaveVerbatim}{VerbEnv}
+  
+SOLUTION:
+  
+(define (light-temp l)
+  (cond [(red? l) (... (red-count l) ...)]
+        [(yellow? l) (... (yellow-count l) ...)]
+        [(green? l) (... (green-count l) ...)]
+        
+\end{SaveVerbatim}
+
+\vskip 15em
+
+\censor{\vspace{-15em}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+
+\noindent
+{\bf Problem 6(b).} Write a stub for the following function:
+    
+\begin{verbatim}
+;; tock : Light -> Light
+;; Advance the light by one tick of time
+(check-expect (tock (make-red 10)) (make-red 9))
+(check-expect (tock (make-red 0)) (make-green 10))
+\end{verbatim}
+
+
+\begin{SaveVerbatim}{VerbEnv}
+  
+SOLUTION:
+
+(define (tock l) (make-red 0))
+        
+\end{SaveVerbatim}
+
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+{\bf Problem 7 (20 points).}
+%
+Over the summer, you take an internship at the University of
+Maryland's Center for Bioinformatics and Computational Biology (CBCB).
+Your first task deals with computing information about \emph{DNA
+  strands}.  A DNA strand is an arbitrarily long sequence of
+\emph{nucleotides}, which are either: C, G, A, or T.  Design a program
+that, given a DNA strand, computes the number of times the G
+nucleotide occurs in it.  For example, if the strand is AGCTTTGA, your
+program should produce 2.
+
+\begin{SaveVerbatim}{VerbEnv}
+
+;; SOLUTION:
+  
+;; A Nucleotide is one of:
+;; - "C"
+;; - "G"
+;; - "A"
+;; - "T"
+;; Interp: DNA nucleotide C,G,A,T.
+
+;; A DNA is one of:
+;; - '()
+;; - (cons Nucleotide DNA)
+;; Interp: a DNA strand of nucleotides
+
+;; count-g : DNA -> Natural
+;; Count the number of occurrence of G in given DNA strand
+(check-expect (count-g '()) 0)
+(check-expect (count-g (cons "A" (cons "G" (cons "G" '())))) 2)
+(define (count-g dna)
+  (cond [(empty? dna) 0]
+        [(cons? dna)
+         (+ (if (string=? (first dna) "G") 1 0)
+            (count-g (rest dna)))]))
+
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+  
+\newpage
+
+\noindent
+[Extra space, should you need it.]
+
+
+%% Design a program that consumes an arbitrarily large collection of
+%% numbers and produces the count of non-negative numbers in the
+%% collection.
+
+%% \begin{SaveVerbatim}{VerbEnv}
+
+%% SOLUTION:
+
+%% ;; A LoN (list of numbers) is one of:
+%% ;; - '()
+%% ;; - (cons Number LoN)
+
+%% ;; count-non-neg : LoN -> Natural
+%% ;; Count the number of non-negative numbers in the given list.
+%% (check-expect (count-non-neg '()) 0)
+%% (check-expect (count-non-neg (cons -1 (cons 1 (cons -2 '())))) 1)
+%% (define (count-non-neg lon)
+%%   (cond [(empty? lon) 0]
+%%         [(cons? lon) 
+%%          (+ (if (<= 0 (first lon)) 1 0)
+%%             (count-non-neg (rest lon)))]))
+%% \end{SaveVerbatim}
+
+%% \censor{%
+%% \noindent
+%% \BUseVerbatim{VerbEnv}}
+
+\end{document}
+
