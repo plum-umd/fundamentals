@@ -379,7 +379,7 @@ Today's quiz:
 ;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
 )
 
-@section{Midterm solution videos}
+@section[#:tag "m1-soln-videos"]{Midterm 1 solution videos}
 
 Here is a series of videos going through the exam and constructing
 answers:
