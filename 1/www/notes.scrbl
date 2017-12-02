@@ -588,3 +588,5 @@ Code:
 @item{@link["yo-client.rkt"]{yo-client.rkt}}
 @item{@link["yo-server.rkt"]{yo-server.rkt}}
 ]
+
+@include-section{note/final-drills.scrbl}
