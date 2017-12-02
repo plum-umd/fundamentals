@@ -2,7 +2,7 @@
 @(require racket/sandbox
           scribble/example)
 
-@title{Midterm 2 Drills}
+@title[#:tag "m2-drills"]{Midterm 2 Drills}
 
 Here are some drill problems. (Solutions: @link["drill-soln.rkt"]{drill-soln.rkt}.)
 

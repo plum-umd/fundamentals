@@ -3,7 +3,7 @@
           scribble/example)
 
 
-@title{Midterm 1 Drills}
+@title[#:tag "m1-drills"]{Midterm 1 Drills}
 
 Here are some drill questions to practice for the first midterm.
 These only cover topics we've covered so far in class, but more topics

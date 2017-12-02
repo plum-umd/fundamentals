@@ -1,4 +1,5 @@
 #lang scribble/manual
+@(provide readings)
 @(require scribble/core (for-label lang/htdp-beginner))
 
 @title[#:style 'unnumbered #:tag "assign8"]{Assignment 8: Trees, forests, and ML}
@@ -17,11 +18,13 @@ receive full credit.
 
 @section[#:tag "assign8:prep"]{Preparation}
 
-Make sure you have read all of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part
-III} and through section 19.2 of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{Part
-IV} of HtDP2e.
+@(define readings
+  @elem{all of
+    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part III} 
+    and through section 19.2 of 
+    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{Part IV}})
+
+Make sure you have read @readings of HtDP2e.
 
 @section[#:tag "assign8:trees"]{A walk in the forest}
 

@@ -1,5 +1,6 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner))
+@(provide readings)
 
 @title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: Abstract Invasion!}
 
@@ -20,9 +21,11 @@ will only grade the files named in the skeleton}.
 
 @section[#:tag "assign7:prep"]{Preparation}
 
-Make sure you have read and studied Chapters 14, 15, and 16 of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part III} of
-HtDP2e.
+@(define readings
+  @elem{Chapters 14, 15, and 16 of
+     @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part III}})
+
+Make sure you have read and studied @readings of HtDP2e.
 
 @section[#:tag "assign7:lists"]{Finger Exercises with Abstraction}
 
