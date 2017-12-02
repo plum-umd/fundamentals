@@ -1,4 +1,5 @@
 #lang scribble/manual
+@(provide readings)
 
 @title[#:style 'unnumbered #:tag "assign5"]{Assignment 5: Many, Many, Many}
 
@@ -15,9 +16,11 @@ receive full credit.
 
 @section[#:tag "assign5:prep"]{Preparation}
 
-Make sure you have read and studied chapters 9 and 10 of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part
-II} of HtDP2e.
+@(define readings
+  @elem{chapters 9 and 10 of
+    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part II}})
+
+Make sure you have read and studied @readings of HtDP2e.
 
 @section[#:tag "assign5:lists"]{Many Numbers, Many Shapes}
 

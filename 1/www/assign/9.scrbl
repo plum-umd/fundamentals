@@ -1,4 +1,5 @@
 #lang scribble/manual
+@(provide readings)
 @(require (for-label (except-in lang/htdp-intermediate-lambda image?) 2htdp/image 2htdp/universe))
 
 @title[#:style 'unnumbered #:tag "assign9"]{Assignment 9: Plotting functions}
@@ -20,11 +21,13 @@ receive full credit.
 
 @section[#:tag "assign9:prep"]{Preparation}
 
-Make sure you have read all of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{Part
-IV} and up through Chapter 27 of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_five.html"]{Part
-V} of HtDP2e.
+@(define readings
+   @elem{all of
+     @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{Part IV}
+     and up through Chapter 27 of
+     @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_five.html"]{Part V}})
+
+Make sure you have read @readings of HtDP2e.
 
 @section[#:tag "assign9:graph"]{Plotting}
 

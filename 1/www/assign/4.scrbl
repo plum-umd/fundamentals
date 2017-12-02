@@ -1,4 +1,5 @@
 #lang scribble/manual
+@(provide readings)
 
 @title[#:style 'unnumbered #:tag "assign4"]{Assignment 4: Style and design}
 
@@ -12,6 +13,11 @@ This is the second assignment where you must use the design recipe and
 aspect much more severely from now on.
 
 @section[#:tag "assign4:prep"]{Preparation}
+
+@(define readings
+  @elem{@emph{all} of
+@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html"]{Part
+I}})
 
 Make sure you have read and studied @emph{all} of
 @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html"]{Part

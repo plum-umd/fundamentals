@@ -1,5 +1,6 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner))
+@(provide readings)
 
 @title[#:style 'unnumbered #:tag "assign6"]{Assignment 6: Invasion!}
 
@@ -19,9 +20,12 @@ to edit, please download the archive and edit the files you find inside. You
 
 @section[#:tag "assign6:prep"]{Preparation}
 
-Make sure you have read and studied @emph{all} of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part II} of
-HtDP2e.
+@(define readings
+  @elem{@emph{all} of
+    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part II}})
+
+
+Make sure you have read and studied @readings of HtDP2e.
 
 @section[#:tag "assign6:lists"]{Finger Exercises with Lists}
 

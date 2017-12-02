@@ -2,6 +2,8 @@
 @(require scribble/core
           "defns.rkt")
 
+@provide[exam-table]
+
 @title[#:style 'unnumbered]{Syllabus}
 
 @local-table-of-contents[]
@@ -58,15 +60,28 @@ announcements, deadlines, policies, etc.
 Your final course grade will be determined according to the following
 percentages:
 
-@tabular[#:style 'boxed
-	 #:sep @hspace[1] 
-	 (list (list @bold{Component} @bold{Percentage})
-	       (list "Problem Sets" "40%")
-	       (list @elem{Midterm 1, @m1-date} "12%")
-	       (list @elem{Midterm 2, @m2-date} "12%")
-	       (list @elem{In-class Quizzes}    "6%")
-	       (list @elem{Clicker Quizzes}     "6%")
-	       (list @elem{Final Exam, @final-date} "24%"))]
+@(define grades:m1 (list @elem{Midterm 1, @m1-date} "12%"))
+@(define grades:m2 (list @elem{Midterm 2, @m2-date} "12%"))
+@(define grades:f  (list @elem{Final Exam, @final-date} "24%"))
+
+@(define (make-grade-component-table . entries)
+  @tabular[#:style 'boxed
+	   #:sep @hspace[1] 
+           (list* (list @bold{Component} @bold{Percentage}) entries)])
+
+@(define exam-table
+  @make-grade-component-table[
+    @grades:m1
+    @grades:m2
+    @grades:f])
+
+@make-grade-component-table[
+  (list "Problem Sets" "40%")
+  @grades:m1
+  @grades:m2
+  (list @elem{In-class Quizzes}    "6%")
+  (list @elem{Clicker Quizzes}     "6%")
+  grades:f]
 	 
 
 @section{Problem Sets}
@@ -149,9 +164,9 @@ Grading Events. For this class, such events are the final exam, and
 the two midterms, which will be given in class on the following dates:
 
 @itemlist[
-@item{Midterm 1: @bold{@m1-date}}
-@item{Midterm 2: @bold{@m2-date}}
-]
+  @item{Midterm 1: @bold{@m1-date}}
+  @item{Midterm 2: @bold{@m2-date}}
+  @item{Final Exam: @bold{@final-date}}]
 
 The final exam is scheduled according to the University Registrar.
 

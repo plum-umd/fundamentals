@@ -98,7 +98,11 @@ subject to change until the start of the semester.
 @include-section{syllabus.scrbl}
 @include-section{texts.scrbl}
 @include-section{schedule.scrbl}
+@include-section{exams.scrbl}
 @include-section{labs.scrbl}
+@include-section{assignments.scrbl}
+@include-section{notes.scrbl}
+@include-section{style.scrbl}
 
 @section[#:style 'unnumbered]{Piazza}
 
@@ -118,13 +122,5 @@ All grades will be posted on the Grades server.
 
 @url[(string-append "http://submit.cs.umd.edu/" semester year)]
 
-@include-section{assignments.scrbl}
-@include-section{notes.scrbl}
-@include-section{style.scrbl}
-
 @;include-section{resources.scrbl}
-@;include-section{research-project.scrbl}
-@;include-section{problem-sets.scrbl}
-@;include-section{blog.scrbl}
-
 @include-section{acks.scrbl}
