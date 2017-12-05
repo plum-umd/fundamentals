@@ -5,6 +5,10 @@
 ;; The Yo App - exchange "yo" messages with users online
 ;; Use (run '!) to start a demo.
 
+;; How to use the client:
+;; - Numeric keys open chat window for designated user.
+;; - Enter key sends "yo" in current chat window.
+
 (require 2htdp/universe)
 (require 2htdp/image)
 
@@ -25,6 +29,12 @@
 
 ;; A Name is a String
 
+;; A Message is one of:
+;; - (list "users" (Listof Name)) ; List of users on server
+;; - (list "from" Name String)    ; Message from Name
+;; - (list "username?")           ; What's your name?
+;; Interp: a valid message from the server
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Yo Client
@@ -35,7 +45,7 @@
   (big-bang (make-world username #false '() '())
             [name username]
             [register LOCALHOST]
-            [on-receive handle-msg]
+            [on-receive handle-receive]
             [on-key handle-key]
             [to-draw draw-world]))
 
@@ -63,34 +73,48 @@
 (define OUT-COLOR "plum")
 (define IN-COLOR "light blue")
 
+(define H0 '())
+(define H1 (make-history "You" (list (make-out "yo"))))
+(define H2 (make-history "You" (list (make-in "yo")
+                                     (make-out "yo"))))
+
 (define W0 (make-world "Me" #false (list "You") '()))
 (define W1 (make-world "Me" "You" (list "You") '()))
 (define W2 (make-world "Me" "You" (list "You")
                        (list (make-history "You" (list (make-out "yo"))))))
+(define W3 (make-world "Me" "You" (list "You")
+                       (list (make-history "You" (list (make-out "yo")
+                                                       (make-in "yo"))))))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Event Handlers
 
-;; handle-msg : World SExpr -> HandlerResult
+;; handle-receive : World SExpr -> HandlerResult
 ;; Receive a message from the server
-(check-expect (handle-msg W0 (list "users" (list "A" "B" "C")))
+(check-expect (handle-receive W0 (list "users" (list "A" "B" "C")))
               (receive-users W0 (list "A" "B" "C")))
-(check-expect (handle-msg W0 (list "from" "You" "yo"))
+(check-expect (handle-receive W0 (list "from" "You" "yo"))
               (receive-chat W0 "You" "yo"))
-(check-expect (handle-msg W0 (list "username?"))
+(check-expect (handle-receive W0 (list "username?"))
               (make-package W0 (list "username" "Me")))
-(check-expect (handle-msg W0 "bogus") W0)
-(define (handle-msg w msg)  
-  (cond [(valid-message? msg)
-         (local [(define tag (first msg))]
-           (cond [(string=? tag "users")
-                  (receive-users w (second msg))]
-                 [(string=? tag "from")
-                  (receive-chat w (second msg) (third msg))]    
-                 [(string=? tag "username?")
-                  (make-package w (list "username" (world-you w)))]))]
-        [else w]))
+(check-expect (handle-receive W0 "bogus") W0)
+(define (handle-receive w msg)
+  (if (valid-message? msg)
+      (handle-message w msg)
+      w))
+
+;; handle-message : World Message -> HandlerResult
+;; Receive a valid message from the server
+(define (handle-message w m)
+  (local [(define tag (first m))]
+    (cond [(string=? tag "users")
+           (receive-users w (second m))]
+          [(string=? tag "from")
+           (receive-chat w (second m) (third m))]
+          [(string=? tag "username?")
+           (make-package w (list "username" (world-you w)))])))
 
 ;; handle-key : World KeyEvent -> HandlerResult
 ;; Handle key events; numeric keys select user, enter key tries to send yo
@@ -125,6 +149,7 @@
 (define (receive-users w us)
   (make-world (world-you w)
               (world-them w)
+              ; don't include yourself in user list
               (filter (λ (n) (not (string=? n (world-you w)))) us)
               (world-history w)))
 
@@ -302,6 +327,10 @@
 
 ;; select-chats : [Maybe Name] [Listof History] -> [Listof Chats]
 ;; Select all of the chats from the given user
+(check-expect (select-chats "You" '()) '())
+(check-expect (select-chats "You" (list H2))
+              (list (make-in "yo") (make-out "yo")))
+(check-expect (select-chats "Other" (list H2)) '())
 (define (select-chats name h)
   (cond [(false? name) '()]
         [(empty? h) '()]
@@ -310,8 +339,14 @@
              (history-chats (first h))
              (select-chats name (rest h)))]))
 
-;; update-history : String String [Listof History] [String -> Chat]
+;; update-history : Name String [Listof History] [String -> Chat]
 ;;    -> [Listof History]
+(check-expect (update-history "You" "yo" '() make-out)
+              (list H1))
+(check-expect (update-history "You" "yo" (list H1) make-in)
+              (list H2))
+(check-expect (update-history "Other" "yo" (list H1) make-out)
+              (list H1 (make-history "Other" (list (make-out "yo")))))
 (define (update-history from content h in/out)
   (cond [(empty? h) (list (make-history from (list (in/out content))))]
         [(cons? h)
