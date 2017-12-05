@@ -1,6 +1,7 @@
 #lang scribble/manual
 @(require racket/sandbox
-          scribble/example)
+          scribble/example
+          "../vid.rkt")
 
 
 @title[#:tag "m1-drills"]{Midterm 1 Drills}
@@ -248,13 +249,20 @@ problems:
 
 @itemize[
 
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d3777989-f2b3-4a00-8253-e16ed9e9f655"]{Simple computations}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fd80e685-e204-4e1c-b323-76ca7478da4e"]{Stepping through computations}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07"]{Classifying errors}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=82f70804-e2fd-42bb-9b66-7eb1346ec6e0"]{Templates}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=52171455-3691-4a1d-811a-48a219355c68"]{Stubs}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7ba10792-a8ae-4b21-aff4-c63afb87e448"]{Designing Name functions}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2039c7b4-2533-4ee6-8351-af0dc7447086"]{Designing Dir functions}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=497e4719-12a5-4749-a2f2-274971ba8bf5"]{Designing Coord functions}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d3777989-f2b3-4a00-8253-e16ed9e9f655"]{Simple computations}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d3777989-f2b3-4a00-8253-e16ed9e9f655&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fd80e685-e204-4e1c-b323-76ca7478da4e"]{Stepping through computations}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=fd80e685-e204-4e1c-b323-76ca7478da4e&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07"]{Classifying errors}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=435ebe5b-dded-4922-92c9-48386a9c5c07&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=82f70804-e2fd-42bb-9b66-7eb1346ec6e0"]{Templates}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=82f70804-e2fd-42bb-9b66-7eb1346ec6e0&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=52171455-3691-4a1d-811a-48a219355c68"]{Stubs}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=52171455-3691-4a1d-811a-48a219355c68&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7ba10792-a8ae-4b21-aff4-c63afb87e448"]{Designing Name functions}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=7ba10792-a8ae-4b21-aff4-c63afb87e448&v=1}}
+@item{Designing Dir functions : the video file was corrupted}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=497e4719-12a5-4749-a2f2-274971ba8bf5"]{Designing Coord functions}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=497e4719-12a5-4749-a2f2-274971ba8bf5&v=1}}
 
 ]

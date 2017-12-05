@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require racket/sandbox
-          scribble/example)
-
+          scribble/example
+          "vid.rkt")
 
 @title[#:style 'unnumbered]{Notes}
 
@@ -175,10 +175,11 @@ scratch, resulting in the code above.  You can watch this to get a
 complete example of following the DR through on an involved example.
 
 @itemlist[
-  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a37f226-9e62-4765-ba88-7df756112a12"]{Part I}}
-  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d335e86e-39eb-4d33-a2c3-975887822deb"]{Part II}}
+  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a37f226-9e62-4765-ba88-7df756112a12"]{Part I}
+        @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=1a37f226-9e62-4765-ba88-7df756112a12&v=1}}
+  @item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d335e86e-39eb-4d33-a2c3-975887822deb"]{Part II}
+        @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d335e86e-39eb-4d33-a2c3-975887822deb&v=1}}
 ]
-
 
 @section{September 22, 2017}
 
@@ -296,7 +297,8 @@ deleted all the obsoleted code having to do with @tt{Aim} and
 
 @itemlist[
 @item{@link["invader-shots-dvanhorn-abourg.rkt"]{Code}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452"]{Video}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452"]{Video}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6a35153d-959d-4e1e-a7a4-79946c075452&v=1}}
 ]
 
 @section{October 4, 2017}
@@ -385,13 +387,20 @@ Here is a series of videos going through the exam and constructing
 answers:
 
 @itemlist[
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0829900b-418b-4465-aa13-860c1f044a4c"]{Problem 1}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=70faff06-27b1-4a1a-997a-6181c8c280c1"]{Problem 2}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e6dc6f38-8888-43cf-85cd-eec7440102de"]{Problem 3}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5892d33d-ae17-4416-93a3-3c5590aa6d0a"]{Problem 4}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4a5a743c-3292-46a2-a89c-f288a7d27fb1"]{Problem 5}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2579bdfb-95a2-4a99-ada9-9063ac39e7e6"]{Problem 6}}
-@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eeeebf01-6745-4f6e-8c81-78f4da782d4b"]{Problem 7}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0829900b-418b-4465-aa13-860c1f044a4c"]{Problem 1}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=0829900b-418b-4465-aa13-860c1f044a4c&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=70faff06-27b1-4a1a-997a-6181c8c280c1"]{Problem 2}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=70faff06-27b1-4a1a-997a-6181c8c280c1&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e6dc6f38-8888-43cf-85cd-eec7440102de"]{Problem 3}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e6dc6f38-8888-43cf-85cd-eec7440102de&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5892d33d-ae17-4416-93a3-3c5590aa6d0a"]{Problem 4}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5892d33d-ae17-4416-93a3-3c5590aa6d0a&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4a5a743c-3292-46a2-a89c-f288a7d27fb1"]{Problem 5}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4a5a743c-3292-46a2-a89c-f288a7d27fb1&v=1"}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2579bdfb-95a2-4a99-ada9-9063ac39e7e6"]{Problem 6}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2579bdfb-95a2-4a99-ada9-9063ac39e7e6&v=1}}
+@item{@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eeeebf01-6745-4f6e-8c81-78f4da782d4b"]{Problem 7}
+      @panopto-vid{https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=eeeebf01-6745-4f6e-8c81-78f4da782d4b&v=1}}
 ]
 
 @section{October 20, 2017}
