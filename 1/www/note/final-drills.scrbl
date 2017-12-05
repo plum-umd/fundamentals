@@ -9,6 +9,8 @@ The final exam is cumulative, so you should review @secref{m1-drills}
 and @secref{m2-drills}.  The following drills only cover material
 introduced since the second midterm.
 
+Solutions: @link["drill-final-exam-soln.rkt"]{drill-final-exam-soln.rkt}.
+
 @section{Designing with accumulators}
 
 Here is a design of the @racket[factorial] function using structural
@@ -185,7 +187,8 @@ compute the answer efficiently:
 
 @section{Graphs}
 
-When we studied graphs we used the follow data representation for graphs:
+When we studied graphs we used the follow data representation for
+graphs (@secref{graph-lec}):
 
 @#reader scribble/comment-reader (racketblock
 ;; A Graph is [Listof (cons String [Listof String])]
