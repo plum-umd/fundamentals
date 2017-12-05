@@ -589,7 +589,7 @@ Code:
 @item{@link["yo-server.rkt"]{yo-server.rkt}}
 ]
 
-@section{December 4, 2017}
+@section[#:tag "yo-lec"]{December 4, 2017}
 
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5b014425-d05f-4cb1-a873-7a0351683449}
 

@@ -17,6 +17,7 @@ cmsc131A:
 		$(course).scrbl
 	cp code/* cmsc131A/
 	cp past-exams/* cmsc131A/
+	cp demo/* cmsc131A/
 
 clean:
 	rm -rf $(course)
