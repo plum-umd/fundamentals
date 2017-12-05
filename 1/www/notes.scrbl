@@ -560,7 +560,7 @@ Code from today: @link["qsort.rkt"]{qsort.rkt}.
 
 Code: @link["graph.rkt"]{graph.rkt}.
 
-@section{November 20, 2017}
+@section[#:tag "graph-lec"]{November 20, 2017}
 
 @vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36c1e7d0-1a25-4865-b0aa-bea72795e530}
 
