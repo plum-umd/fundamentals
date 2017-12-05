@@ -225,19 +225,20 @@
               (crop/align
                "left" "top"
                WIDTH USR-WINDOW-HEIGHT
-               (above (show-user/color 1 "A" "white")
-                      (show-user/color 2 "B" "white"))))
+               (above (show-user 1 "A" LINE)
+                      (show-user 2 "B" LINE))))
 (check-expect (show-users "B" (list "A" "B"))
               (crop/align
                "left" "top"
                WIDTH USR-WINDOW-HEIGHT
-               (above (show-user/color 1 "A" "white")
-                      (show-user/color 2 "B" "yellow"))))
+               (above (show-user 1 "A" LINE)
+                      (show-user 2 "B" HLINE))))
 (define (show-users selected users)
   (local [;; show-user/select : Number Name -> Image
           ;; Show user, highlight if selected
           (define (show-user/select n u)
-            (show-user (if (and (string? selected) (string=? selected u))
+            (show-user n u
+                       (if (and (string? selected) (string=? selected u))
                            HLINE
                            LINE)))]
     (crop/align
@@ -320,5 +321,3 @@
                    (rest h))
              (cons (first h)
                    (update-history from content (rest h) in/out)))]))
-                         
-
