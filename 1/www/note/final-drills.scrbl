@@ -144,7 +144,44 @@ scanning the list.  (You should not use @racket[string-contains?].)
 @;fast-exponent
 @;find-root
 
-@section{Invariants and BSTs}
+@section{Invariants}
+
+A @emph{Quad Tree} is an important data structure for representing a
+set of spatial coordinates, for example a set of GPS locations, and
+supporting very efficient queries about whether a given point is in
+the set of locations or not.  
+
+The idea is to represent a set of points using a tree.  Each node in
+the tree contains a point and four subtrees.  The four subtrees have
+an important invariant: one holds all the points that are to the
+Northwest of the point in the node, another holds the points to the
+Northeast, another the Southeast, and another the Southwest.
+
+Here is a data definition for quad trees:
+
+@#reader scribble/comment-reader (racketblock
+;; A QT (Quad Tree) is one of:
+;; - #false
+;; - (make-quad Posn QT QT QT QT)
+(define-struct quad (pt ne nw se sw))
+;; Interp: a set of positions, #false represents an empty set
+;; Invariant: 
+;;  - all points in ne are north (y is smaller) & east (x is larger) of pt
+;;  - all points in nw are north (y is smaller) & west (x is smaller) of pt
+;;  - all points in se are south (y is larger) & east (x is larger) of pt
+;;  - all points in sw are south (y is larger) & west (x is larger) of pt
+)
+
+(Note this uses the convention of graphics coordinates in which the
+y-axis grows downward.)
+
+Define the following function, taking advantage of this invariant to 
+compute the answer efficiently:
+
+@#reader scribble/comment-reader (racketblock
+;; contains? : Posn QT -> Boolean
+;; Is the given position in the set?
+)
 
 @section{Graphs}
 
@@ -205,3 +242,62 @@ Re-develop the @racket[path] function in light of this new representation:
 
 
 @section{Types}
+
+Which of the following programs well-typed (according to Typed
+Racket's type system)?
+
+@#reader scribble/comment-reader (racketblock
+(: f : (All (A) (Number -> A) -> A))
+(define (f x)
+  (x 3))
+
+(: g : (U String Number) -> (U String Number))
+(define (g x)
+  (cond [(string? x) (+ x 3)]
+        [(number? x) (string-append "hi" x)]))
+
+(: h : (U String Number) -> (U String Number))
+(define (h x)
+  (cond [(string? x) (string-append "hi" x)]
+        [(number? x) (+ x 3)]))
+
+(: i : Number -> Real)
+(define (i x)
+  (if (< x 10)
+      (sqr x)
+      (+ x 50)))
+
+(: j : Number -> [Listof Number])
+(define (j x)
+  (map (λ ([z : (Number -> Number)]) (z x))
+       (list add1 sqr sqrt)))
+
+(: k : Number String -> [Listof String])
+(define (k x y)
+  (cons (string-append (number->string x) y)))
+)
+
+
+Provide the most general valid type signature for the following functions.
+Provide type annotations needed for any @racket[λ] parameters.
+
+@#reader scribble/comment-reader (racketblock
+(define (lengths xs)
+  (map length xs))
+ 
+(define (total-length xs)
+  (foldr (λ (x t) (+ (length x) t)) 0 xs))
+ 
+(define (map-f-zero lof)
+  (map (λ (f) (f 0)) lof))
+)
+
+Challenge problem (nothing this tricky will be on the exam): provide
+the most general type signature and annotions for this function:
+
+@#reader scribble/comment-reader (racketblock
+;; Abstraction of outer "product" computations
+(define (outer f l1 l2)
+  (cond [(empty? l2) '()]
+        [else (map (λ (m) (map (λ (n) (f m n)) l2)) l1)]))
+)
