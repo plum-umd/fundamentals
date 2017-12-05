@@ -25,7 +25,7 @@ recursion on natural numnbers:
 
 Design a variant of @racket[factorial] that uses structural recursion
 on @racket[n] with an accumulator that represents the factorial of
-n-1.
+all the numbers seen so far.
 
 Here is a design of the @racket[largest] function that uses structural
 recursion on a non-empty list of (real) numbers to compute the largest
@@ -70,7 +70,7 @@ Here is a design of @racket[sum]:
 (check-expect (sum '()) 0)
 (check-expect (sum (list 1 2 3 4 5)) 15)
 (define (sum xs)
-  (cond [(empty? xs) 1]
+  (cond [(empty? xs) 0]
         [(cons? xs)
          (+ (first xs) 
             (sum (rest xs)))]))
@@ -95,7 +95,7 @@ elements and finds the (earliest) element in the list that
 @emph{minimizes} the output of the function:
 
 @#reader scribble/comment-reader (racketblock
-;; minf : [X] [X -> Real] [NEListof X] -> Real
+;; minf : [X] [X -> Real] [NEListof X] -> X
 ;; Find the earliest element that minimizes f.
 (check-expect (minf sqr (list -4 2 8)) 2)
 (check-expect (minf sqr (list -4 -2 8 2)) -2)
@@ -112,17 +112,37 @@ elements and finds the (earliest) element in the list that
 The observant reader will notice that function @racket[f] is called
 @math{2 × (n-1)} times (where @math{n} is the length of the list).
 Using an accumulator-based design, you can do better, calling the
-function only @math{n-1} times.  The trick is that you will need
-two accumulators: the minimizing element seen so far and the result
-of applying the function to that minimizing element.
+function at most @math{n} times.  The trick is that you will need two
+accumulators: the minimizing element seen so far and the result of
+applying the function to that minimizing element; also note that you
+start these values off by using the first element of the list (which
+is guaranteed to exist).
 
 Design a 2-accumulator-based version of @racket[minf] and argue why
-it only calls @racket[f] @math{n-1} times.
+it only calls @racket[f] at most @math{n} times.
 
 
 
 
 @section{Generative recursion}
+
+Suppose we have a data definition for "ascening strings," i.e. strings
+that consist of letters that must appear in alpahabetic order in the
+string.  For example, @racket["aabcz"] and @racket["bdrtu"] are
+ascending, but @racket["efarw"] is not.
+
+@#reader scribble/comment-reader (racketblock
+;; An AscString is a String
+;; where (explode s) is sorted by string<?
+)
+
+Design a function that is given an @racket[AscString] and a
+@racket[1String] and determines if the given letter occurs in the
+string.  It should use generative recursion to be more efficient than
+scanning the list.  (You should not use @racket[string-contains?].)
+
+@;fast-exponent
+@;find-root
 
 @section{Invariants and BSTs}
 
