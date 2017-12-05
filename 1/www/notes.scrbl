@@ -379,7 +379,7 @@ Today's quiz:
 ;; foldr : [X Y] (X Y -> Y) Y [Listof X] -> Y
 )
 
-@section{Midterm solution videos}
+@section[#:tag "m1-soln-videos"]{Midterm 1 solution videos}
 
 Here is a series of videos going through the exam and constructing
 answers:
@@ -588,3 +588,18 @@ Code:
 @item{@link["yo-client.rkt"]{yo-client.rkt}}
 @item{@link["yo-server.rkt"]{yo-server.rkt}}
 ]
+
+@section{December 4}
+
+@vidlink{https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5b014425-d05f-4cb1-a873-7a0351683449}
+
+Code: 
+@itemize[
+@item{@link["yo-client2.rkt"]{yo-client2.rkt}}
+@item{@link["yo-server2.rkt"]{yo-server2.rkt}}
+]
+
+The client has been filled-in to be a full implementation.  The server
+code is as it was in class.
+
+@include-section{note/final-drills.scrbl}

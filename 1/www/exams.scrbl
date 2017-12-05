@@ -56,10 +56,11 @@ midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
 
 @itemize[
 @item{Readings: @ps9:readings and Chapter 29}
-@item{Drills: TBA}
-@item{Past exams: @link["m1-fall2017.pdf"]{Midterm 1} 
-      (@link["m1-fall2017-soln.pdf"]{Solution}), 
-      @link["m2-fall2017.pdf"]{Midterm 2}
-      (@link["m2-fall2017-soln.pdf"]{Solution})}
+@item{Drills: @secref{final-drills}}
+@item{Past exams: 
+  @itemize[
+    @item{@link["m1-fall2017.pdf"]{Midterm 1} (@link["m1-fall2017-soln.pdf"]{Solution})}
+    @item{@secref{m1-soln-videos}}
+    @item{@link["m2-fall2017.pdf"]{Midterm 2} (@link["m2-fall2017-soln.pdf"]{Solution})}]}
 @item{Practice exam: TBA}
 ]
