@@ -62,5 +62,5 @@ midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
     @item{@link["m1-fall2017.pdf"]{Midterm 1} (@link["m1-fall2017-soln.pdf"]{Solution})}
     @item{@secref{m1-soln-videos}}
     @item{@link["m2-fall2017.pdf"]{Midterm 2} (@link["m2-fall2017-soln.pdf"]{Solution})}]}
-@item{Practice exam: TBA}
+@item{Practice exam: @link["f-practice.pdf"]{practice final}}
 ]
