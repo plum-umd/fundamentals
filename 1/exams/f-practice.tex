@@ -1,0 +1,429 @@
+\documentclass[12pt]{article}
+\usepackage{fullpage}
+\usepackage{xcolor,censor}
+\usepackage{fancyvrb}
+\usepackage{fontspec}
+\usepackage{alltt}
+
+\setmainfont{Times New Roman}
+
+\censorruleheight=0ex
+%\StopCensoring
+
+\begin{document}
+
+\begin{center}
+  {\Large {\bf CMSC 131A, Final Exam (Practice)}\\
+    \censor{{\bf SOLUTION}} \ \\
+    \ \\
+    Fall 2017 \ \\
+  }
+\end{center}
+
+\vspace{2em}
+
+\noindent
+NAME:\verb|________________________________________________________|
+
+\vspace{2em}
+
+\noindent
+UID: \verb|__________________________________________|
+
+\vspace{2em}
+
+\begin{center}
+\begin{tabular}{| c | c |}
+  \hline
+  Question & Points \\ \hline \hline
+  1 & 10 \\ \hline
+  2 & 10 \\ \hline
+  3 & 15 \\ \hline
+  4 & 12 \\ \hline
+  5 & 15 \\ \hline
+  6 & 15 \\ \hline
+  7 & 15 \\ \hline
+  8 & 20 \\ \hline\hline
+  Total: & 112\\
+  \hline
+\end{tabular}
+\end{center}
+
+\noindent
+This test is open-book, open-notes, but you may not use any computing
+device other than your brain and may not communicate with anyone.
+You have 50 minutes to complete the test.
+
+\vskip 1em
+
+\noindent
+The phrase ``design a program'' or ``design a function'' means follow
+the steps of the design recipe.  Unless specifically asked for, you do
+not need to provide intermediate products like templates or stubs,
+though they may be useful to help you construct correct solutions.
+
+\vskip 1em
+
+\noindent
+You may use any of the data definitions given to you within this exam
+and do not need to repeat their definitions.
+
+\vskip 1em
+
+\noindent
+Unless specifically instructed otherwise, you may use any built-in ISL+
+functions or data types.
+
+\vskip 1em
+
+\noindent
+When writing tests, you may use a shorthand for writing check-expects
+by drawing an arrow between two expressions to mean you expect the
+first to evaluate to same result as the second.  For example, you may
+write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
+\verb|(check-expect (add1 3) 4)|.
+
+\newpage
+
+\noindent
+{\bf Problem 1 (10 points).}
+%
+For the following program, write out each step of computation. At each
+step, underline the expression being simplified. Label each step as
+being ``arithmetic'' (meaning any built-in operation),
+``conditional'', ``plug'' (for plugging in an argument for a function
+parameter), or ``constant'' for replacing a constant with its value.
+
+
+\begin{verbatim}
+(define T 7)
+(define (q z) (sqr z))
+(cond [(> T 3) (q 4)]
+      [else 9])
+\end{verbatim}
+
+\newpage
+
+\noindent
+{\bf Problem 2 (10 points).}
+%
+For the following structure definition, list the names of every
+function it creates.  For each function, classify it as being either a
+constructor, accessor, or predicate.
+
+\begin{verbatim}
+(define-struct zip (pad msg))
+\end{verbatim}
+
+\begin{SaveVerbatim}{VerbEnv}  
+SOLUTION:
+
+- make-zip  : Constructor
+- zip-pad  : Accessor
+- zip-msg   : Accessor
+- zip?      : Predicate
+\end{SaveVerbatim}
+
+
+\newpage
+
+\noindent
+{\bf Problem 3 (15 points).}
+%
+Here are some data definition relevant to representing a dictionary,
+which associates words with the their definitions:
+
+\begin{verbatim}
+;; A Dict is one of:
+;; - '()
+;; - (cons (list String String) Dict)
+;; Interp: a collection of definitions where each element is a 
+;; two-element list of a word (first) and its meaning (second).
+\end{verbatim}
+
+\noindent
+Design the following function:
+
+\begin{verbatim}
+;; update : String String Dict -> Dict
+;; Update entry for given word and meaning, if it exists
+;; Add the entry if it does not
+\end{verbatim}
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(check-expect (update "a" "b" '()) (list (list "a" "b")))
+(check-expect (update "a" "c" (list (list "a" "b")))
+              (list (list "a" "c")))
+(check-expect (update "a" "e" (list (list "c" "b") (list "a" "d"))) 
+              (list (list "c" "b") (list "a" "e")))
+(define (update w m d)
+  (cond [(empty? d) (list (list w m))]
+        [(cons? d)
+         (if (string=? (first (first d)) w)
+             (cons (list w m) d)
+             (cons (first d) (lookup w (rest d))))]))
+
+\end{SaveVerbatim}
+
+%\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+{\bf Problem 4 (12 points).}
+%
+For each of the following functions, provide the most general {\bf type} signature
+in Typed Racket that correctly describes the function:
+
+\begin{alltt}
+(: method : \censor{Number -> Number                                    })
+
+(define (method x)
+  (+ (sqr x) 2))
+
+(: raekwon : \censor{[Listof Number] -> Boolean                         })
+
+(define (raekwon x)
+  (ormap positive? x))
+
+(: rza : \censor{[Listof String] [Listof Number] -> [Listof Number]     })
+
+(define (rza x y)
+  (cond [(empty? x) y]
+        [(cons? x)
+         (cons (string-length (first x))
+               (rza (rest x) y))]))
+
+(: gza : \censor{(String Number -> Number) -> Number                    })
+
+(define (gza x)
+  (foldr x 0 (list "a" "b" "c")))
+
+(: odb : \censor{(Number -> Number) -> (Number -> Number)               })
+
+(define (odb x)
+  (lambda (y)   
+    (/ (- (x (+ y 0.001))
+          (x (- y 0.001)))
+       (* 2 0.001))))
+    
+
+(: ghostface : \censor{[X Y] [Listof X] [X -> Y] -> [Listof Y]          })
+
+(define (ghostface x y)
+  (cond [(empty? x) '()]
+        [(cons? x)
+         (cons (y (first x)) 
+               (ghostface (rest x) y))]))
+\end{alltt}
+
+
+\newpage
+
+\noindent
+{\bf Problem 5 (15 points).}
+%
+Here is the design of a program {\tt w-avg} that computes the weighted
+average of a list of numbers and a list of weights.
+
+Design an accumulator variant of {\tt w-avg} that maintains two
+accumulators: the weighted sum of scores and the sum of weights.
+Redefine {\tt w-avg} in terms of your accumulator design.
+
+For example, let's say a class grade is based on two midterms and a
+project where the project is worth twice as much as the midterms.  A
+student who gets an 80 and a 70 on the midterms and a 90 on the
+project would have a weighted average of 82.5: $((1 \times 80) + (1
+\times 70) + (2 \times 90)) / 4$, which can be computed with {\tt
+  (w-avg (list 80 70 90) (list 1 1 2))}.
+
+In the accumulator version, after all elements of the list have been
+seen, the first accumulator would be $330 = 80+70+2\times 90$) and
+the second accumulator would be $4 =1+1+2$.
+
+\begin{verbatim}
+;; w-avg : [Listof Number] [Listof Number] -> Number
+;; Compute the weighted average of a list of numbers and weights
+;; Assume: lists have the same length (and non-empty)
+(check-expect (w-avg (list 70 80 90) (list 1 1 2)) 82.5)
+(define (w-avg lon ws)
+  (/ (w-sum lon ws) 
+     (foldr + 0 ws)))
+
+;; w-sum : [Listof Number] [Listof Number] -> Number
+;; Sum the list of numbers according to given weights
+;; Assume: lists have same length
+(check-expect (w-sum (list 70 80 90) (list 1 1 2)) (+ 70 80 180))
+(define (w-sum lon ws)
+  (cond [(empty? lon) 0]
+        [(cons? lon)
+         (+ (* (first lon) (first ws))
+            (w-sum (rest lon) (rest ws)))]))
+\end{verbatim}
+
+\noindent
+Your solution should not need a helper function like {\tt w-sum}.
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+
+;; Alt: define w-total function for denominator
+
+;; w-total : [Listof Number] -> Number
+;; Total a list of weights
+(define (w-total ws)
+  (cond [(empty? ws) 0]
+        [(cons? ws)
+         (+ (first ws) 
+            (w-total (rest ws)))]))
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\newpage
+
+[Space for problem 5.]
+
+
+\newpage 
+\noindent
+{\bf Problem 6 (15 points).}
+%
+Here is a parametric data definition for a tree of elements:
+\begin{verbatim}
+;; A [Tree X] is one of:
+;; - (make-leaf)
+;; - (make-node X [Tree X] [Tree X])
+;; Interp: a binary tree that is either empty (a leaf), or non-empty (a node)
+;; with an element and two sub-trees.
+(define-struct leaf ())
+(define-struct node (elem left right))
+\end{verbatim}
+
+\noindent
+Here is a function that counts the elements in a tree:
+\begin{verbatim}
+;; tree-count : [X] . [Tree X] -> Natural
+;; Count all the elements in a tree
+(check-expect (tree-count (make-leaf)) 0)
+(check-expect (tree-count (make-node 7 
+                                     (make-node 9 (make-leaf) (make-leaf))
+                                     (make-node 2 (make-leaf) (make-leaf))))
+              3)
+(define (tree-count bt)
+  (cond [(leaf? bt) 0]
+        [(node? bt)
+         (add1 (+ (tree-count (node-left bt))
+                  (tree-count (node-right bt))))]))
+\end{verbatim}
+Here is an abstraction function for trees that is similar to
+{\tt foldr} for lists, but works on trees:
+\begin{verbatim}
+;; tree-fold : [X Y] . [X Y Y -> Y] Y [Tree X] -> Y
+;; The fundamental abstraction function for trees
+(define (tree-fold f b bt)
+  (cond [(leaf? bt) b]
+        [(node? bt)
+         (f (node-elem bt)
+            (tree-fold f b (node-left bt))
+            (tree-fold f b (node-right bt)))]))
+\end{verbatim}
+Give an equivalent definition of {\tt tree-count} in terms of {\tt
+  tree-fold}.  (Just provide the code.)
+
+\vspace{1em}
+\noindent
+[Provide your answer on the next page.]
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+(define (tree-elems bt)
+  (tree-fold (lambda (x l r) (cons x (append l r))) '() bt))
+
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+\noindent
+[Space for problem 6.]
+
+
+\newpage
+\noindent
+{\bf Problem 7 (15 points).}  
+%
+During your internship at the University of Maryland's Center for
+Bioinformatics and Computational Biology (CBCB), you're asked to
+design a program for transcribing DNA strands into RNA strands.
+%
+A DNA strand is an arbitrarily long sequence of bases, which are
+either: C, G, A, or T; an RNA strand is an arbitrarily long sequences
+of either: C, G, A, or U.  The \emph{transcription} of DNA to RNA
+replaces each occurrence of T with U.
+
+Design a program that, given a DNA strand, computes its transcription
+to RNA.
+
+\newpage
+
+
+\noindent
+{\bf Problem 8 (20 points).} Here is the data definition for graphs we studied in class:
+\begin{verbatim}
+;; A Graph is [Listof (cons String [Listof String])]
+;; Interp: a graph is a list of nodes and neighbors reachable from the node
+
+;; A Path is a [Listof String]
+;; Interp: series of nodes neighboring each other that connect a source
+;; to destination in some graph.
+\end{verbatim}
+
+\noindent
+Design the following function:
+
+\begin{verbatim}
+;; all-paths : Graph String String -> [Listof Path]
+;; Produce all non-cyclic paths from src to dst in g.
+;; Assume: both nodes exist in graph.
+(define (all-paths g src dst) '())
+\end{verbatim}
+
+\noindent
+You may assume the following function is already defined and works correctly:
+
+\begin{verbatim}
+;; neighbors : Graph String -> [Listof String]
+;; Produce the list of immediate neighbors of given node name.
+;; Assume: node exists in graph.
+\end{verbatim}
+
+\noindent
+Note: this function is tricky to test since the tests shouldn't
+specify the order of the paths in the list.  You may ignore this
+subtly and just write tests as though a {\tt check-expect} will pass
+if the checked and expected expressions produce lists with the same
+elements in any order, e.g. {\tt (check-expect (list 1 2) (list 2 1))}
+would pass.
+
+\newpage
+[Space for problem 8.]
+\end{document}
+
