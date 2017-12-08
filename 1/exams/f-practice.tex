@@ -102,6 +102,28 @@ parameter), or ``constant'' for replacing a constant with its value.
       [else 9])
 \end{verbatim}
 
+\vskip 2.5in
+
+
+\begin{SaveVerbatim}{VerbEnv}
+SOLUTION:
+(cond [(> T 3) (q 4)] [else 9])           -->[const]
+          ^
+(cond [(> 7 3) (q 4)] [else 9])           -->[arith]
+       ^^^^^^^
+(cond [#true (q 4)] [else 9])             -->[cond]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(q 4)                                     -->[plug]
+^^^^^
+(sqr 4)                                   -->[arith]
+^^^^^^^
+16
+\end{SaveVerbatim}
+
+\censor{\vspace{-2.5in}}
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
+
 \newpage
 
 \noindent
@@ -118,11 +140,14 @@ constructor, accessor, or predicate.
 \begin{SaveVerbatim}{VerbEnv}  
 SOLUTION:
 
-- make-zip  : Constructor
+- make-zip : Constructor
 - zip-pad  : Accessor
-- zip-msg   : Accessor
-- zip?      : Predicate
+- zip-msg  : Accessor
+- zip?     : Predicate
 \end{SaveVerbatim}
+
+\censor{%
+\noindent\BUseVerbatim{VerbEnv}}
 
 
 \newpage
@@ -163,9 +188,8 @@ SOLUTION:
   (cond [(empty? d) (list (list w m))]
         [(cons? d)
          (if (string=? (first (first d)) w)
-             (cons (list w m) d)
-             (cons (first d) (lookup w (rest d))))]))
-
+             (cons (list w m) (rest d))
+             (cons (first d) (update w m (rest d))))]))
 \end{SaveVerbatim}
 
 %\censor{\vspace{-2.5in}}
@@ -186,7 +210,7 @@ in Typed Racket that correctly describes the function:
 (define (method x)
   (+ (sqr x) 2))
 
-(: raekwon : \censor{[Listof Number] -> Boolean                         })
+(: raekwon : \censor{[Listof Real] -> Boolean                           })
 
 (define (raekwon x)
   (ormap positive? x))
@@ -213,7 +237,7 @@ in Typed Racket that correctly describes the function:
        (* 2 0.001))))
     
 
-(: ghostface : \censor{[X Y] [Listof X] [X -> Y] -> [Listof Y]          })
+(: ghostface : \censor{(All [X Y] [Listof X] [X -> Y] -> [Listof Y])    })
 
 (define (ghostface x y)
   (cond [(empty? x) '()]
@@ -243,7 +267,7 @@ project would have a weighted average of 82.5: $((1 \times 80) + (1
   (w-avg (list 80 70 90) (list 1 1 2))}.
 
 In the accumulator version, after all elements of the list have been
-seen, the first accumulator would be $330 = 80+70+2\times 90$) and
+seen, the first accumulator would be $330 = 80+70+2\times 90$ and
 the second accumulator would be $4 =1+1+2$.
 
 \begin{verbatim}
@@ -269,31 +293,34 @@ the second accumulator would be $4 =1+1+2$.
 \noindent
 Your solution should not need a helper function like {\tt w-sum}.
 
+\newpage
+
+[Space for problem 5.]
+
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
+(define (w-avg xs ws) (w-avg/a xs ws 0 0))
 
-;; Alt: define w-total function for denominator
-
-;; w-total : [Listof Number] -> Number
-;; Total a list of weights
-(define (w-total ws)
-  (cond [(empty? ws) 0]
-        [(cons? ws)
-         (+ (first ws) 
-            (w-total (rest ws)))]))
+;; w-avg/a : [Listof Number] [Listof Number] Number Number -> Number
+;; Compute weighted average with accumulators:
+;;  - sum-wxs: sum of weighted elements seen so far
+;;  - sum-ws: sum of weights
+(define (w-avg/a xs ws sum-wxs sum-ws)
+  (cond [(empty? xs) (/ sum-wxs sum-ws)]
+        [(cons? xs)
+         (w-avg/a (rest xs) 
+                  (rest ws)
+                  (+ (* (first xs) (first ws)) sum-wxs)
+                  (+ (first ws) sum-ws))]))
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
 
-
-\newpage
-
-[Space for problem 5.]
 
 
 \newpage 
@@ -346,24 +373,24 @@ Give an equivalent definition of {\tt tree-count} in terms of {\tt
 \noindent
 [Provide your answer on the next page.]
 
+\newpage
+
+\noindent
+[Space for problem 6.]
+
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
-(define (tree-elems bt)
-  (tree-fold (lambda (x l r) (cons x (append l r))) '() bt))
+(define (tree-count bt)
+  (tree-fold (lambda (x l r) (add1 (+ l r))) 0 bt))
 
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
-
-\newpage
-
-\noindent
-[Space for problem 6.]
 
 
 \newpage
@@ -381,6 +408,32 @@ replaces each occurrence of T with U.
 
 Design a program that, given a DNA strand, computes its transcription
 to RNA.
+
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+;; A DNA is a [Listof DNA-Base]
+;; A RNA is a [Listof RNA-Base]
+;; A DNA-Base is one of: "C", "G", "A", "T"
+;; A RNA-Base is one of: "C", "G", "A", "U"
+
+;; trans : DNA -> RNA
+;; Transcribe DNA into RNA
+(check-expect (trans '()) '())
+(check-expect (trans (list "T" "A" "C" "T" "G"))
+              (list "U" "A" "C" "U" "G"))
+(define (trans dna)
+  (map (lambda (db) (if (string=? db "T") "U" db)) dna))    
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
 
 \newpage
 
@@ -404,6 +457,20 @@ Design the following function:
 ;; Produce all non-cyclic paths from src to dst in g.
 ;; Assume: both nodes exist in graph.
 (define (all-paths g src dst) '())
+
+(define G
+  (list (list "a" (list "b" "c"))
+        (list "b" (list "a" "d"))
+        (list "c" (list "d"))))
+
+(check-expect (all-paths G "a" "a")
+              (list (list "a")))
+(check-expect (all-paths G "a" "d")
+              (list (list "a" "b" "d")
+                    (list "a" "c" "d")))
+(check-expect (all-paths G "a" "d")
+              (list (list "a" "b" "d")
+                    (list "a" "c" "d")))
 \end{verbatim}
 
 \noindent
@@ -421,9 +488,48 @@ specify the order of the paths in the list.  You may ignore this
 subtly and just write tests as though a {\tt check-expect} will pass
 if the checked and expected expressions produce lists with the same
 elements in any order, e.g. {\tt (check-expect (list 1 2) (list 2 1))}
-would pass.
+would pass.  (Tests are provided above, you don't need to add more unless
+it's useful to you.)
 
 \newpage
 [Space for problem 8.]
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define (all-paths g src dst)
+  (all-paths/seen g src dst '()))
+
+;; all-paths/seen : Graph String String [Listof String] -> [Listof Path]
+;; Accumulator: list of nodes visited so far on path
+;; Termination: each recursive call adds an item to seen list not previously
+;; seen.  Since there are finite nodes, we get closer to trivial case:
+;; src is in seen.
+(define (all-paths/seen g src dst seen)
+  (cond [(string=? src dst) (list (list src))]
+        [(member? src seen) '()]
+        [else
+         (local [;; all-paths-from : String -> [Listof Path]
+                 ;; All paths from given node to dst
+                 (define (all-paths-from n)
+                   (map (lambda (p) (cons n p))
+                        (all-paths/seen g n dst (cons src seen))))]
+
+         (map-append all-paths-from (neighbors g src)))]))
+
+;; map-append : [X Y] . [X -> [Listof Y]] [Listof X] -> [Listof Y]
+;; map a function and append all the list of results
+(define (map-append f xs) (foldr append '() (map f xs)))
+;; NB: could be more efficient
+\end{SaveVerbatim}
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+
 \end{document}
 
