@@ -612,3 +612,11 @@ The client has been filled-in to be a full implementation.  The server
 code is as it was in class.
 
 @include-section{note/final-drills.scrbl}
+
+
+@section{December 11, 2017}
+
+For the final lecture, we collectively came up with the following
+slide to capture what the course has been all about:
+
+@image[#:scale .35]{img/final-slide.png}
