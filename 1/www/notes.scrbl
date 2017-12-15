@@ -620,3 +620,11 @@ For the final lecture, we collectively came up with the following
 slide to capture what the course has been all about:
 
 @image[#:scale .35]{img/final-slide.png}
+
+@section{December 15, 2017}
+
+Here are PDFs of the final @link["f-fall2017.pdf"]{exam} and
+@link["f-fall2017-soln.pdf"]{solution}.
+
+Have a great break!  It's been a pleasure teaching this class and I
+look forward to seeing you in the Spring!  -- DVH
