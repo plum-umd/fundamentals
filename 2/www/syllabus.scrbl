@@ -114,7 +114,7 @@ full credit for an assignment.
 
 Regrade requests @bold{must} be filed in the appropriate place.  For
 exams, file requests using gradescope.  For problem sets, fill out
-this @link["https://ter.ps/132aregrade"]{Google form}.  @bold{Requests
+this @link["http://ter.ps/132aregrade"]{Google form}.  @bold{Requests
 filed in any other way will not be honored or acknowledged.}
 
 
