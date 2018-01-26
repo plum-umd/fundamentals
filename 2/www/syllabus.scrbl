@@ -88,7 +88,7 @@ percentages:
 
 @section{Problem Sets}
 
-There will be weekly problem sets, due Fridays at 11:59pm EST.  All
+There will be weekly problem sets, due Tuesdays at 11:59pm EST.  All
 problem sets are done with assigned pairs and submitted using the
 submit server.
 
@@ -100,6 +100,23 @@ the @link[elms-url]{ELMS web page}.
 
 We will drop the 20% lowest clicker quizzes to compensate for your
 absence or other clicker related problems.
+
+@section{Regrades}
+
+You may file a request for regrading on any problem set or exam.
+(Quizes cannot be regraded.)  You must file a request for a regrade
+within 10 days of the material being returned to you.  After 10 days,
+your grade is final.  Once filed, the staff will work to resolve the
+issue within 10 days.  If not resolved in 10 days, the relevant points
+will be automatically awarded to you.  It is the professor's
+discretion as to which points are relevant, but could be as much as
+full credit for an assignment.
+
+Regrade requests @bold{must} be filed in the appropriate place.  For
+exams, file requests using gradescope.  For problem sets, fill out
+this @link["https://ter.ps/132aregrade"]{Google form}.  @bold{Requests
+filed in any other way will not be honored or acknowledged.}
+
 
 @section{Laptops in class}
 
