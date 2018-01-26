@@ -106,8 +106,9 @@ Here is a similar program developed using objects:
   ;; Move this coordinate by offsets
   (check-expect (send (new coord% 3 4) move 2 -1) (new coord% 5 3))
   (define (move dx dy)
-    (make-coord (+ (send this x) dx)
-                (+ (send this y) dy))))
+    (new coord%
+         (+ (send this x) dx)
+         (+ (send this y) dy))))
 )
 
 Notice that this programs consists of a single @emph{class}
