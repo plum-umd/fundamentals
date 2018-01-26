@@ -6,3 +6,4 @@
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section["lectures/lecture1/simple-data-definitions.scrbl"]
+@include-section["lectures/lecture2/unions.scrbl"]
