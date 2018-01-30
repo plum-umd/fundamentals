@@ -10,8 +10,8 @@ You can either modify your working chat client, or edit the provided code for ch
 
 @link["chatclient.rkt"]{Provided Client}
 
-The server IP to register is @bold{home.labich.org} and port is
-@bold{8889}. Refresh this page if you are having trouble connecting.
+The server IP to register is @bold{[IP]} and port is
+@bold{[PORT]}. Refresh this page if you are having trouble connecting.
 
 Refer to the universe documentation
 @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{here} for

@@ -4,7 +4,7 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
-    - WWW_DIR=/fs/www/class/fall2017
+    - WWW_DIR=/fs/www/class/spring2018
   matrix:
     - RACKET_VERSION=6.10
     - RACKET_VERSION=6.11
@@ -23,9 +23,9 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script:
-  - cd 1/www/
+  - cd 2/www/
   - make test
-  - make cmsc131A
+  - make cmsc132A
   - cd ../../
 
 addons:
@@ -41,7 +41,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR
+    script: rsync -rvzp $TRAVIS_BUILD_DIR/2/www/cmsc132A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR
     on:
       branch: master
   - provider: releases

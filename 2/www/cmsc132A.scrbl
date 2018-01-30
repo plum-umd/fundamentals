@@ -1,0 +1,146 @@
+#lang scribble/manual
+@(require scribble/core
+	  scriblib/footnote
+          scribble/decode
+	  "defns.rkt")
+
+@(define (blockquote . strs)
+   (make-nested-flow (make-style "blockquote" '(command))
+                     (decode-flow strs)))
+
+@title[@courseno]{: Systematic Program Design II}
+
+@emph{Spring, @year}
+
+@margin-note*{@emph{Program design} is the study of systematic
+thought, planning, and universally useful problem-solving skills
+applied in the setting of programming and computation.}
+
+@courseno studies the class-based program design and the design of
+abstractions that support the design of reusable software and
+libraries. It covers the principles of object oriented program design,
+the basic rules of program evaluation, and examines the relationship
+between algorithms and data structures, as well as basic techniques
+for analyzing algorithm complexity.
+
+The course is suitable for both CS majors and non-majors. It assumes
+that student has been introduced to the basic principles of program
+design and computation (e.g. Systematic Program Design I).
+
+@margin-note*{@bold{Caveat:} Note that @courseno is being offered on a
+trial basis as an alternative introductory course sequence.  You
+@emph{must} have taken CMSC 131A previously.  Students who complete
+the 131A-132A sequence will be fully prepared for all subsequent
+courses that list 131-132 as prerequisites.}
+
+The goal is to help you understand the principles of class-based
+program design using an object-oriented programming language(s), not
+just Java. Java is used so we can learn how the principles are used in
+practical applications, and gives us an opportunity to discuss the
+strengths and weaknesses of languages and paradigms.
+
+
+@bold{Assumptions:} The course assumes proficiency with the systematic
+design of programs and some mathematical maturity. It demands
+curiosity and self-driven exploration and requires a serious
+commitment to practical hands-on programming.
+
+@bold{Disclaimer:} All information on this web page is tentative and
+subject to change until the start of the semester.
+
+@(define (bldg abbr)
+   (link (string-append "http://www.umd.edu/CampusMaps/bld_detail.cfm?bld_code=" abbr) abbr))
+@(define AVW "AVW")
+@(define CSI "CSI")
+
+@tabular[#:style 'boxed
+         #:sep @hspace[1]
+	 #:row-properties '(top)
+		 (list (list @bold{Location} @elem{1115 @CSI})
+	       (list @bold{Time} @elem{MWF 12:00pm--12:50pm})
+	       (list @bold{Midterm 1} @elem{@m1-date, in class})
+	       (list @bold{Midterm 2} @elem{@m2-date, in class})
+               (list @bold{Final exam} @elem{@final-date})
+	       ;(list @bold{Textbooks} @elem{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.})
+)]
+
+@tabular[#:style 'boxed 
+         #:row-properties '(bottom-border ())
+	 (list (list @bold{Staff} 'cont 'cont)
+	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")})
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn")
+         (list "Nicholas Labich" @elem{1112 @AVW} "labichn")
+         (list "Samuel Barham" @elem{1112 @AVW} "sbarham")
+         (list "Cameron Moy" @elem{1112 @AVW} "camoy")
+         (list "Austin Bourgerie" @elem{1112 @AVW} "abourg")
+         (list "Thomas Harris" @elem{1112 @AVW} "tharris")
+	 (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung")
+	 (list "Jack Qian" @elem{1112 @AVW} "jqian"))]
+
+@tabular[#:style 'boxed
+         #:row-properties '(bottom-border ())
+         (list (list @bold{Office hours} 'cont 'cont)
+               (list @bold{Monday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Austin")
+               (list 'nbsp "1-2pm" "Thomas")
+               (list "" "2-3pm" "Sam")
+               (list "" "4-5pm" "Rachael")
+	       (list @bold{Tuesday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Nick")
+               (list "" "10-11am" "Austin")
+	       (list "" "11am-12pm" "Thomas")
+	       (list "" "12:30-2pm" "Jack")
+	       (list "" "2-3pm" "Cameron")
+	       (list "" "4-6" "Nick")
+	       (list @bold{Wednesday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Jack")
+	       (list "" "1-2pm" "Thomas")
+	       (list "" "2-3pm" "Sam")
+	       (list "" "4-5:30pm" "David")
+	       (list @bold{Thursday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Thomas")
+	       (list "" "12:30-2pm" "Jack")
+	       (list "" "2-4pm" "Rachael")
+	       (list @bold{Friday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Sam")
+	       (list "" "1-3pm" "Austin")
+	       (list "" "4-6pm" "Cameron")
+	       (list @bold{Saturday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Cameron")
+	       (list @bold{Sunday} 'cont 'cont)
+	       (list 'nbsp "Piazza on-call" "Rachael"))]
+               
+
+
+@include-section{syllabus.scrbl}
+@include-section{texts.scrbl}
+@include-section{schedule.scrbl}
+@;include-section{exams.scrbl}
+@include-section{lectures.scrbl}
+@include-section{labs.scrbl}
+@include-section{assignments.scrbl}
+@;include-section{notes.scrbl}
+@;include-section{style.scrbl}
+
+@section[#:style 'unnumbered]{Piazza}
+
+All announcements will be made on @link[piazza-url]{Piazza}.  Please sign-up at the start of the semester.
+
+Emergency announcement such as last-minute class cancelations (which
+should not happen often), will also be announced via the university
+email system.
+
+@section[#:style 'unnumbered]{Grades Server}
+
+All grades will be posted on the Grades server.
+
+@url{http://grades.cs.umd.edu/}
+
+@section[#:style 'unnumbered]{Submit Server}
+
+@url[(string-append "http://submit.cs.umd.edu/" semester year)]
+
+@;include-section{resources.scrbl}
+@include-section{acks.scrbl}
+
+
