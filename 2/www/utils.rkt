@@ -13,6 +13,7 @@
          lecture-files
          lab-files
          assn-files
+         class-block
          bsl-block isl-block
          ;java-block
          defn-tt
@@ -128,6 +129,8 @@
 (define (my-code lang args)
   (code #:lang lang (apply string-append (flatten args))))
 
+(define (class-block arg . args)
+  (my-codeblock "class/0" (cons arg args)))
 (define (bsl-block arg . args)
   (my-codeblock "htdp/bsl" (cons arg args)))
 (define (bsl arg . args)
