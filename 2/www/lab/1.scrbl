@@ -74,7 +74,7 @@ in the same @emph{definitions window}.
 @larger{@bold{Ex 1}}: This program calculates how long it takes to
 travel some distance in feet at some speed in mile per hour. 
 
-@class-block{
+@isl-block{
 ;; A Distance is a real number.
 ;; Interp: the distance (in feet) from one place to another.
 
@@ -94,7 +94,7 @@ travel some distance in feet at some speed in mile per hour.
 some person to walk certain distances, as well as create encouraging,
 personalized messages for the walker.
 
-@class-block{
+@isl-block{
 ;; A Person is a (make-person String).
 ;; Interp: A person with some name.
 (define-struct person (name))
@@ -131,7 +131,7 @@ personalized messages for the walker.
 a car traveling at some average-rate to travel certain distances, as
 well as increase and decrease the speed of the car.
 
-@class-block{
+@isl-block{
 ;; A Car is a (make-car Person MPH).
 ;; Interp: A car driven by some person at some average speed.
 (define-struct car (driver speed))
@@ -161,7 +161,7 @@ well as increase and decrease the speed of the car.
 a metro train to travel certain distances, as well as create messages to
 relate that time for the riders of the train.
 
-@class-block{
+@isl-block{
 ;; A Route is one of:
 ;; - "Green"
 ;; - "Red"
@@ -208,7 +208,7 @@ relate that time for the riders of the train.
 @larger{@bold{Ex 5}}: This program joins the three modes of
 transportation in a single data definition.
 
-@class-block{
+@isl-block{
 ;; A Transport is one of:
 ;; - Person
 ;; - Train
@@ -243,7 +243,7 @@ transportation in a single data definition.
 @larger{@bold{Ex 6}}: This allows a trip to be described as a list of
 distances, then totaled into a single distance.
 
-@class-block{
+@isl-block{
 ;; An Itinerary (List of Distances) is one of:
 ;; - (make-empty-lod)
 ;; - (make-cons-lod Distance LoD)
