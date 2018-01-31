@@ -87,7 +87,7 @@
 
 @(define calendar
    '(((1 24) (1 26) (1 29) (labs))
-     ((1 31) (2 2) (2 5) (labs "1" "2"))
+     ((1 31) (2 2) (2 5) (labs "1"))
      ((2 7) (2 9) (2 12) (labs))
      ((2 14) (2 16) (2 19) (labs))
      ((2 21) (2 23) (2 26) (labs))
@@ -108,7 +108,7 @@
 @(define syllabus
    `((1  "Designing Data: Simple classes, classes with containment")
      (2  "Designing unions of classes; self-reference")
-     (3  "Methods for simple classes and classes with containment")
+     (3  "")
      ,@(build-list 40 (λ (i) (list (+ i 4) "")))
      #|
      (4  "Methods for unions of classes and classes with self-reference")
@@ -152,23 +152,18 @@
      ))
 
 @(define labs
-   `(("1"   "Data definitions in Java; Eclipse IDE; Handins homework server")
-     ("1h"  "Data definitions in Java; Eclipse IDE; Handins homework server; simple methods")
-     ("2"   "Designing methods in Java: classes, containment, unions, self-reference")
-     ("2h"  "Designing methods in Java: classes, containment, unions, self-reference")
+   `(("1"   "Simple Data definitions and methods in Class")
+     ("2"   "Designing methods in Java: classes, containment, unions, self-reference")    
      (dummy "Cancelled because of snow")
      ("3"   "Designing methods for self-referential data")
      ("4"   "Practice with abstract classes and constructors")
      ("5"   "Functional world games")
-     ("5h"  "Equality, functional world games")
      ("6"   "Working with function objects")
-     ("6h"  "Working with function objects, introduction to generics")
      ("7"   "Generics and Visitors")
      ("8"   "Working with mutable and cyclic data")
      ("9"   "Loyd's 15 puzzle: working with " ,(tt "ArrayList") "s, loops and imperative worlds")
      (dummy "No lab this week")
      ("10"  "Practice implementing iterators")
-     ("10h" "Wider trees and advanced iterators")
      ("11"  "Heapsort, stress tests")
      ("12"  "TBD")
      ("13"  "TBD")

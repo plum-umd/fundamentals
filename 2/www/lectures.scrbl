@@ -7,3 +7,4 @@
 
 @include-section["lectures/lecture1/simple-data-definitions.scrbl"]
 @include-section["lectures/lecture2/unions.scrbl"]
+@include-section["lectures/3.scrbl"]

@@ -1,7 +1,8 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require "../utils.rkt")
 
-@title[#:style 'unnumbered #:tag "lab1"]{Lab 1: Getting Started}
+@lab-title[1]{Simple Data Definitions with Class}
 
 @section[#:style 'unnumbered #:tag "lab1:intro"]{Introduction(s)}
 
