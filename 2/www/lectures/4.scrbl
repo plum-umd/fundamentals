@@ -72,7 +72,7 @@ Here we see that our template lists the available parts of the
 
 An @deftech{enumeration} is a data definition for a finite set of
 possibilities.  For example, we can represent a traffic light like the
-ones on Baltimore Avenue with a finite set of symbols, as we did in
+ones on Baltimore Avenue with a finite set of strings, as we did in
 SPD I:
 
 @class-block{
@@ -101,9 +101,9 @@ Finally, we can define functions over @tt{Light}s, following the template.
 (check-expect (next "Red") "Green")
 (check-expect (next "Yellow") "Red")
 (define (next l)
-  (cond [(symbol=? "Red" l) "Green"]
-        [(symbol=? "Green" l) "Yellow"]
-        [(symbol=? "Yellow" l) "Red"]))
+  (cond [(string=? "Red" l) "Green"]
+        [(string=? "Green" l) "Yellow"]
+        [(string=? "Yellow" l) "Red"]))
 }
 
 That's all well and good for a function-oriented design, but we want
