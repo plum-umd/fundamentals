@@ -38,11 +38,11 @@ later.
 
 @section{Atomic and Compound Data}
 
-In lectures @lecref{1}, we've already seen how to represent compound
-data as an object.  We can do the same for atomic data by considering
-like a structure with one field; a design we might've consider
-superfluous last semester, but which makes sense once we combine data
-and functionality into objects.
+In @lecref{1}, we've already seen how to represent compound data as an
+object.  We can do the same for atomic data by considering like a
+structure with one field; a design we might've consider superfluous
+last semester, but which makes sense once we combine data and
+functionality into objects.
 
 Stepping back, we can see that the way to represent some fixed number
 @emph{N} of data is with a class with @emph{N} fields.  For example, a
