@@ -42,7 +42,7 @@ here.
 
 Each of these problems gives a small program designed using the design
 recipe of last semester.  For each program, redevelop it using the
-@tt{class/0} language.  You should uses classes and methods instead in
+@tt{class/0} language.  You should use classes and methods instead in
 place of atomic data, structures, and functions.
 
 @subsection{Problem 1}
