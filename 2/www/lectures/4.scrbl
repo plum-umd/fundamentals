@@ -72,8 +72,8 @@ Here we see that our template lists the available parts of the
 
 An @deftech{enumeration} is a data definition for a finite set of
 possibilities.  For example, we can represent a traffic light like the
-ones on Huntington Avenue with a finite set of symbols, as we did in
-Fundies I:
+ones on Baltimore Avenue with a finite set of symbols, as we did in
+SPD I:
 
 @class-block{
 ;; A Light is one of:
