@@ -77,9 +77,9 @@ SPD I:
 
 @class-block{
 ;; A Light is one of:
-;; - 'Red
-;; - 'Green
-;; - 'Yellow
+;; - "Red"
+;; - "Green"
+;; - "Yellow"
 }
 
 Following the design recipe, we can construct the template for
@@ -88,22 +88,22 @@ functions on @tt{Light}s:
 @class-block{
 ;; light-function : Light -> ???
 (define (light-function l)
-  (cond [(symbol=? 'Red l) ...]
-        [(symbol=? 'Green l) ...]
-        [(symbol=? 'Yellow l) ...]))
+  (cond [(string=? "Red" l) ...]
+        [(string=? "Green" l) ...]
+        [(string=? "Yellow" l) ...]))
 }
 
 Finally, we can define functions over @tt{Light}s, following the template.  
 @class-block{
 ;; next : Light -> Light
 ;; Next light after the given light
-(check-expect (next 'Green) 'Yellow)
-(check-expect (next 'Red) 'Green)
-(check-expect (next 'Yellow) 'Red)
+(check-expect (next "Green") "Yellow")
+(check-expect (next "Red") "Green")
+(check-expect (next "Yellow") "Red")
 (define (next l)
-  (cond [(symbol=? 'Red l) 'Green]
-        [(symbol=? 'Green l) 'Yellow]
-        [(symbol=? 'Yellow l) 'Red]))
+  (cond [(symbol=? "Red" l) "Green"]
+        [(symbol=? "Green" l) "Yellow"]
+        [(symbol=? "Yellow" l) "Red"]))
 }
 
 That's all well and good for a function-oriented design, but we want
