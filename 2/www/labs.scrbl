@@ -11,3 +11,4 @@ Jan 29 was cancelled due to illness).
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section{lab/1.scrbl}
+@include-section{lab/2.scrbl}
