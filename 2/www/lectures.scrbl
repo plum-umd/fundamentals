@@ -11,3 +11,4 @@
 @include-section["lectures/4.scrbl"]
 @include-section["lectures/5.scrbl"]
 @include-section["lectures/6.scrbl"]
+@include-section["lectures/7.scrbl"]
