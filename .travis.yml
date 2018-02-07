@@ -25,7 +25,6 @@ before_script:
 script:
   - cd 2/www/
   - raco pkg install https://github.com/dvanhorn/dpc.git#racket-v6.10
-  - make test
   - make cmsc132A
   - cd ../../
 
