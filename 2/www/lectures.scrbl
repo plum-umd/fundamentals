@@ -9,3 +9,5 @@
 @include-section["lectures/2.scrbl"]
 @include-section["lectures/3.scrbl"]
 @include-section["lectures/4.scrbl"]
+@include-section["lectures/5.scrbl"]
+@include-section["lectures/6.scrbl"]
