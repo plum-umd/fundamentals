@@ -14,6 +14,8 @@
 
 @lecture-title[4]{Classes of Objects: Data Definitions}
 
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bbc1eeb2-0e02-44fa-9d6b-a8790149bc02"]{Video}.
+
 One of the most important lessons of @emph{How to Design Programs} is
 that the structure of code follows the structure of the data it
 operates on, which means that the structure of your code can be

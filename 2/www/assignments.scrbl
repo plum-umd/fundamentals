@@ -6,3 +6,4 @@
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section{assign/1.scrbl}
+@include-section{assign/2.scrbl}
