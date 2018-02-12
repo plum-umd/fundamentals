@@ -24,27 +24,6 @@ First,
 @link["http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"]{download
 and install} the proper JDK for your platform.
 
-Next you need to configure the @tt{JAVA_HOME} environment variable for
-Java programs. Programs look for the standard Java libraries in this
-location, so it will be installation-specific.
-
-Set @tt{JAVA_HOME} to the directory where you installed the JDK,
-e.g. @tt{/usr/lib/jvm/jdkX.X.X_XX}, @tt{C:\Program
-Files\Java\jdkX.X.X_XX}.
-
-In a terminal (Mac/Linux):
-
-@tt{    > export JAVA_HOME=/path/to/jdkX.X.X_XX}
-
-In Windows, configure this under for "System > Advanced > Environment
-Variables", and add the variable @tt{JAVA_HOME} with the proper
-directory as its value.
-
-In Linux, you will also have to extend the @tt{PATH} environment
-variable to include the directory @tt{$JAVA_HOME/bin}. See
-@link["https://www.java.com/en/download/help/path.xml"]{here} for
-details if this applies to you.
-
 
 @section[#:tag "lab4:intellij"]{IntelliJ}
 
