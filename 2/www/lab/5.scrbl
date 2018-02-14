@@ -23,3 +23,6 @@ the keyboard.
 Our goal for today's lab is to re-implement the first lab (@labref{1})
 in Java. If you've already completed lab 1 you're in luck--the
 translation from @tt{class/0} should be straightforward.
+
+You should translate tests to Java comments; we'll introduce a
+@tt{check-expect} style testing mechanism next week.
