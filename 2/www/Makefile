@@ -14,7 +14,9 @@ cmsc132A:
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl
-	cp code/* cmsc132A/
+	cp code/* $(course)/
+	pushd ../java/ ; zip Assign3 -r Assign3 ; popd
+	cp ../java/Assign3.zip $(course)/
 
 clean:
 	rm -rf $(course)
