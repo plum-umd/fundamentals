@@ -28,14 +28,12 @@ it in IntelliJ to get started.
 @section[#:tag "lab6:world"]{Drawing Images with JavaLib}
 
 In DrRacket, we used the library @tt{htdp/image} to draw images. In
-Java, we'll use
-@link["https://www2.ccs.neu.edu/javalib/World/Images.html"]{JavaLib's
-images}.
+Java, we'll use JavaLib's images. We used the library
+@tt{htdp/universe} to draw animate our worlds. In Java, we'll use
+JavaLib's Functional Worlds.
 
-In DrRacket, we used the library @tt{htdp/universe} to draw animate
-our worlds. In Java, we'll use JavaLib's Functional Worlds.
-
-The JavaDocs for the images and functional world library can be found
+The documentation for the images and functional world library can be
+found
 @link["https://course.ccs.neu.edu/cs2510sp17/image-doc.html"]{here}.
 
 These libraries are included in the @link["Lab6.zip"]{project skeleton}.
