@@ -33,12 +33,10 @@ Java, we'll use
 images}.
 
 In DrRacket, we used the library @tt{htdp/universe} to draw animate
-our worlds. In Java, we'll use
-@link["https://www2.ccs.neu.edu/javalib/World/Worlds.html"]{JavaLib's
-Functional Worlds}.
+our worlds. In Java, we'll use JavaLib's Functional Worlds.
 
 The JavaDocs for the images and functional world library can be found
-@link["https://www2.ccs.neu.edu/javalib/World/Docs/index.html"]{here}.
+@link["https://course.ccs.neu.edu/cs2510sp17/image-doc.html"]{here}.
 
 These libraries are included in the @link["Lab6.zip"]{project skeleton}.
 
