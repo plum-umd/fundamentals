@@ -17,9 +17,11 @@ cmsc132A:
 	cp code/* $(course)/
 	cd ../java/ ; \
 		zip Assign3 -r Assign3 ; \
+		zip Assign4 -r Assign4 ; \
 		zip Lab6 -r Lab6 ; \
 		zip Lab7 -r Lab7
 	cp ../java/Assign3.zip \
+		../java/Assign4.zip \
 		../java/Lab6.zip \
 		../java/Lab7.zip \
 		$(course)/
