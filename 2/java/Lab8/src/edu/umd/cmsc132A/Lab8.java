@@ -1,5 +1,5 @@
 // Authors: partner1, partner2
-// Lab 8
+// Lab 7
 
 package edu.umd.cmsc132A;
 
@@ -11,168 +11,160 @@ import java.util.Random;
 
 public class Lab8 { /* Intentionally blank; leave blank */ }
 
-// the squares of the Tic Tac Toe board
-interface ISquare {
-  WorldImage draw();  // draw the Tic Tac Toe square
-  Boolean isMarked(); // is the square blank or has it been marked?
+// An interface for simple Balls
+interface IBall {
+    WorldImage draw();  // draw an image of the ball
+    Posn location();    // create a posn of the ball's location
+    IBall next();       // create the ball from the next TICKRATE
+    Boolean outside();  // is this ball outside the scene?
+    Boolean isClicked(Posn mouse);  // was this ball clicked by the mouse?
 }
 
-abstract class Square implements ISquare {
-  static Integer SCALE = 100;
+// Ball class
+class Ball implements IBall {
+    static Integer BALLRADIUS = 20;  // the radius of all balls
+    Integer x;   // the X pixel location of this ball
+    Integer y;   // the Y pixel location of this ball
+    Integer vx;  // the velocity of the ball on the X axis
+    Integer vy;  // the velocity of the ball on the Y axis
 
-  Square() {}
-
-  public WorldImage draw() {
-    return new RectangleImage(Square.SCALE,
-                              Square.SCALE,
-                              OutlineMode.OUTLINE,
-                              Color.BLACK);
-  }
-
-  public Boolean isMarked() {
-    return false;
-  }
-  
-}
-
-class Blank extends Square {}
-
-class X extends Square {
-  public WorldImage draw() {
-    WorldImage background = super.draw();
-    WorldImage line1 =
-      new LineImage(new Posn(Square.SCALE, Square.SCALE), Color.BLACK);
-    WorldImage line2 =
-      new LineImage(new Posn(Square.SCALE, 0 - Square.SCALE), Color.BLACK);
-    return new OverlayImage(line2, new OverlayImage(line1, background));
-  }
-
-  public Boolean isMarked() {
-    return true;
-  }
-}
-
-class O extends Square {
-  public WorldImage draw() {
-    WorldImage background =
-      new RectangleImage(Square.SCALE,
-                         Square.SCALE,
-                         OutlineMode.OUTLINE,
-                         Color.BLACK);
-    WorldImage circle =
-      new CircleImage(Square.SCALE / 2, OutlineMode.OUTLINE, Color.BLACK);
-    return new OverlayImage(circle, background);
-  }
-
-  public Boolean isMarked() {
-    return true;
-  }
-}
-
-class Board {
-  static Integer WIDTH  = Square.SCALE * 3;
-  static Integer HEIGHT = Square.SCALE * 3;
-
-  Square[][] board;
-
-  Board() {
-    Square[][] newBoard = new Square[3][3];
-    for (int x = 0; x < 3; x++) {
-      for (int y = 0; y < 3; y++) {
-        newBoard[x][y] = new Blank();
-      }
+    Ball(Integer x, Integer y, Integer vx, Integer vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
     }
-    this.board = newBoard;
-  }
 
-  Board(Square[][] board) {
-    this.board = board;
-  }
-
-  WorldScene draw() {
-    WorldScene scene = new WorldScene(this.WIDTH, this.HEIGHT);
-    for (int x = 0; x < 3; x++) {
-      for (int y = 0; y < 3; y++) {
-        Integer xloc = x * Square.SCALE + (Square.SCALE / 2);
-        Integer yloc = y * Square.SCALE + (Square.SCALE / 2);
-        scene = scene.placeImageXY(board[x][y].draw(), xloc, yloc);
-      }
+    // Draw this ball as a solid, red CircleImage
+    public WorldImage draw() {
+        return new CircleImage(BALLRADIUS, OutlineMode.SOLID, Color.RED);
     }
-    return scene;
-  }
 
-  Boolean canMark(Integer x, Integer y) {
-    return x >= 0 && y >= 0 && x <= 2 && y <= 2 && !board[x][y].isMarked();
-  }
-
-  Board mark(Square sq, Integer x, Integer y) {
-    if (canMark(x, y)) {
-      Square[][] newBoard = board.clone();
-      newBoard[x][y] = sq;
-      return new Board(newBoard);
-    } else {
-      return this;
+    // Return a posn location of this ball
+    public Posn location() {
+        return new Posn(this.x, this.y);
     }
-  }
+
+    // Check if the ball is outside the BallWorld scene
+    public Boolean outside() {
+        return this.x > BallWorld.WIDTH ||
+                this.y > BallWorld.HEIGHT ||
+                this.x < 0 ||
+                this.y < 0;
+    }
+
+    // Return the next ball. The ball should bounce off walls if it hits the
+    // boundry, rather than remaining unchanged as currently implemented.
+    public Ball next() {
+        if (outside()) {
+            return this; // Change this!
+        } else {
+            return new Ball(this.x + this.vx,
+                    this.y + this.vy,
+                    this.vx,
+                    (int) Math.round(9.8 * BallWorld.TICKRATE + this.vy));
+        }
+    }
+
+    // Returns true only if this ball was clicked with the given mouse event.
+    public Boolean isClicked(Posn mouse) {
+        return false; // Change this!
+    }
+}
+
+// An interface for lists of balls
+interface ListOfBall {
+    ListOfBall next();                   // tick all the balls in the list
+    WorldScene draw(WorldScene scene);   // draw all the balls on the given scene
+    ListOfBall removeClicked(Posn mouse); // remove all balls clicked by mouse
+}
+
+class EmptyLoB implements ListOfBall {
+    EmptyLoB(){}
+
+    public ListOfBall next() {
+        return new EmptyLoB();
+    }
+
+    public WorldScene draw(WorldScene scene) {
+        return scene;
+    }
+
+    public ListOfBall removeClicked(Posn mouse) {
+        return this;
+    }
+}
+
+class ConsLoB implements ListOfBall {
+    Ball first;
+    ListOfBall rest;
+
+    ConsLoB(Ball first, ListOfBall rest) {
+        this.first = first;
+        this.rest = rest;
+    }
+
+    // Get the next list of balls. Make sure you cull any balls
+    // `outside' the scene from the list.
+    public ListOfBall next() {
+        return new ConsLoB(first.next(), rest.next());
+    }
+
+    public WorldScene draw(WorldScene scene) {
+        Posn loc = first.location();
+        return rest.draw(scene).placeImageXY(first.draw(), loc.x, loc.y);
+    }
+
+    // Implement this!
+    public ListOfBall removeClicked(Posn mouse) {
+        return this;
+    }
 }
 
 
-/*
+// The ball world contains some static parameters and ListOfBall
+class BallWorld extends World {
+    static Random r = new Random();  // the random number generator
+    static Integer NBALLOON = 99;    // how many balloons on the scene
+    static Integer WIDTH = 640;      // the width of the scene
+    static Integer HEIGHT = 480;     // the height of the scene
+    static Double TICKRATE = 0.1;    // the tick rate (seconds per tick)
 
-XTurn -> OTurn -> XTurn -> ... -> Done
+    ListOfBall balls;  // the balls of this world
 
- */
+    static ListOfBall generateBalls(Integer howMany, ListOfBall acc) {
+        if (howMany > 0) {
+            return generateBalls(howMany - 1,
+                    new ConsLoB(new Ball(r.nextInt(WIDTH),
+                                         r.nextInt(HEIGHT),
+                                         r.nextInt(20) - 10,
+                                         r.nextInt(20) - 10),
+                                acc));
+        } else {
+            return acc;
+        }
+    }
 
+    BallWorld() {
+        this(generateBalls(NBALLOON, new EmptyLoB()));
+    }
 
+    BallWorld(ListOfBall balls) {
+        this.balls = balls;
+    }
 
-interface TicTacToeTurn {
-  public World mark(Integer x, Integer y);
-  public Boolean canMark(Integer x, Integer y);
-}
+    // Identify the balls that should be removed from the given mouse click, and remove them.
+    public World onMouseClicked(Posn mouse) {
+        return this; // Change this!
+    }
 
-/*
-class XTurn extends World {
-  
-}
+    public World onTick() {
+        return new BallWorld(this.balls.next());
+    }
 
-*/
-
-class TicTacToe extends World {
-  static Random r = new Random();  // the random number generator
-  static Integer WIDTH = Square.SCALE * 3;      // the width of the scene
-  static Integer HEIGHT = Square.SCALE * 3;     // the height of the scene
-  static Double TICKRATE = 0.0;    // the tick rate (seconds per tick)
-
-  Board board;  // the balls of this world
-
-  TicTacToe() {
-    this(new Board());
-  }
-
-  TicTacToe(Board board) {
-    this.board = board;
-  }
-
-  public World onMouseClicked(Posn mouse) {
-    return this;
-
-    //Integer clickX = mouse.x / Square.SCALE;
-    //Integer clickY = mouse.y / Square.SCALE;
-
-    
-  }
-
-  // Tick this world's balls
-  public World onTick() {
-    return this;
-    //return new BallWorld(this.balls.next());
-  }
-
-  // Place the balls on the scene
-  public WorldScene makeScene() {
-    return board.draw();
-  }
-
+    public WorldScene makeScene() {
+        return balls.draw(new WorldScene(this.WIDTH, this.HEIGHT));
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -180,8 +172,8 @@ class TicTacToe extends World {
 
 // You can ignore this, it just gets bigBang up and running
 class Main {
-  Boolean testTicTacToe(Tester t) {
-    TicTacToe w = new TicTacToe();
-    return w.bigBang(TicTacToe.WIDTH, TicTacToe.HEIGHT, TicTacToe.TICKRATE);
-  }
+    Boolean testBallWorld(Tester t) {
+        BallWorld w = new BallWorld();
+        return w.bigBang(BallWorld.WIDTH, BallWorld.HEIGHT, BallWorld.TICKRATE);
+    }
 }
