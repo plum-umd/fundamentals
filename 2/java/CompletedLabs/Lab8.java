@@ -47,16 +47,34 @@ class Ball implements IBall {
     // Hint: you will need different behavior depending on whether you hit
     //       a left/right wall or a top/bottom wall.
     public Ball next() {
-        return new Ball(this.x + this.vx,
-                        this.y + this.vy,
-                        this.vx,
-                        this.vy);
+        // if (true) { // Change this!
+        //    return this; // Change this!
+        if (this.x - BALLRADIUS < 0
+                || this.x + BALLRADIUS > BallWorld.WIDTH) {
+            Integer newVX = -1 * this.vx;
+            return new Ball(this.x + newVX,
+                    this.y + this.vy,
+                    newVX,
+                    this.vy);
+        } else if (this.y - BALLRADIUS < 0
+                || this.y + BALLRADIUS > BallWorld.HEIGHT) {
+            Integer newVY = -1 * this.vy;
+            return new Ball(this.x + this.vx,
+                    this.y + newVY,
+                    this.vx,
+                    newVY);
+        } else {
+            return new Ball(this.x + this.vx,
+                    this.y + this.vy,
+                    this.vx,
+                    this.vy);
+        }
     }
 
     // Returns true only if this ball was clicked with the given mouse event.
     // Hint: be sure to use the BALLRADIUS in your solution
     public Boolean isClicked(Posn mouse) {
-        return false;
+        return Math.hypot(this.x - mouse.x, this.y - mouse.y) <= BALLRADIUS;
     }
 }
 
@@ -103,7 +121,12 @@ class ConsLoB implements ListOfBall {
 
     // Change this!
     public ListOfBall removeClicked(Posn mouse) {
-        return this;
+        // return this;
+        if (first.isClicked(mouse)) {
+            return rest.removeClicked(mouse);
+        } else {
+            return new ConsLoB(first, rest.removeClicked(mouse));
+        }
     }
 }
 
@@ -142,7 +165,8 @@ class BallWorld extends World {
     // Identify the balls that should be removed from the given mouse click,
     // and remove them.
     public World onMouseClicked(Posn mouse) {
-        return this; // Change this!
+        // return this; // Change this!
+        return new BallWorld(balls.removeClicked(mouse));
     }
 
     public World onTick() {
