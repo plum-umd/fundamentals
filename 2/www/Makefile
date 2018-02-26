@@ -18,10 +18,12 @@ cmsc132A:
 	cd ../java/ ; \
 		zip Assign3 -r Assign3 ; \
 		zip Lab6 -r Lab6 ; \
-		zip Lab7 -r Lab7
+		zip Lab7 -r Lab7 ; \
+		zip Lab8 -r Lab8
 	cp ../java/Assign3.zip \
 		../java/Lab6.zip \
 		../java/Lab7.zip \
+		../java/Lab8.zip \
 		$(course)/
 
 clean:
