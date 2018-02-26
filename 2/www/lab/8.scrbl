@@ -33,6 +33,9 @@ documentation} for details about available classes/methods.
 
 Our goal in this lab is to modify the program we wrote in the last lab.
 
+Don't worry if you haven't finished last Wednesday's lab, we provided
+a baseline skeleton program.
+
 This time,
 
 @itemlist[
