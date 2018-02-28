@@ -21,7 +21,7 @@ cmsc132A:
 		zip Lab6 -r Lab6 ; \
 		zip Lab7 -r Lab7 ; \
 		zip Lab8 -r Lab8 ; \
-		zip Lab8 -r Lab9
+		zip Lab9 -r Lab9
 	cp ../java/Assign3.zip \
 		../java/Assign4.zip \
 		../java/Lab6.zip \
