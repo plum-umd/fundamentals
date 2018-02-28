@@ -41,15 +41,20 @@ This time,
 @itemlist[
 
   @item{instead of a blank screen, 99 red balloons will start on the
-        screen,}
+        screen (change @tt{BallWorld()} constructor),}
 
   @item{instead of the balls flying off the screen, you must modify
-        the world so that they bounce off the walls,}
+        the world so that they bounce off the walls (change
+        @tt{Ball.next()}, remove @tt{Ball.outside()}),}
 
   @item{instead of mouse clicks adding balls, mouse clicks should
-        remove all the balls that fall within the click.}
+        remove all the balls that fall within the click (add
+        @tt{public ListOfBall removeClicked(Posn mouse)}, change
+        @tt{BallWorld.onMouseClicked(...)} & @tt{ListOfBall.next()}).}
   
 ]
 
-The lab skeleton gives you an outline of the tasks you need to
-complete to get this program up and running, so go get started!
+For those starting with your code from last week, focus your effort on
+the sections mentioned above. For everyone else, the lab skeleton
+gives you an outline of the tasks you need to complete to get this
+program up and running. Go get started!

@@ -63,10 +63,10 @@ the @tt{EmptyLoB} and @tt{ConsLoB} classes.
 
 @section[#:tag "lab9:ex3+4"]{Repetative Redundancies}
 
-The TAs did a poor job combining your implementations to implement the
+The TAs did a poor job combining your implementations to create the
 methods @tt{bounce}, @tt{jump}, and @tt{tick} methods inside the
 @tt{Ball} class. Each of those methods create a new ball with a
-modified vertical velocity.
+modified vertical velocity and update the new ball's position.
 
 @bold{Exercise 3}: Implement the method @tt{modifyVY} as an
 abstraction of the @tt{bounce}, @tt{jump}, and @tt{tick} methods. It
@@ -76,7 +76,7 @@ with its positions adjusted by the current x-axis velocity and the
 @emph{new} y-axis velocity.
 
 @bold{Exercise 4}: Simplify the implementations of the @tt{bounce},
-@tt{jump}, and @tt{tick} methods to use your new @tt{modifyVY}.
+@tt{jump}, and @tt{tick} methods using your new @tt{modifyVY}.
 
 
 @section[#:tag "lab9:go-crazy"]{Go Crazy!}
