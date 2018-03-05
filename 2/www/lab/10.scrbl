@@ -100,7 +100,7 @@ argument: the amount of whatever unit you're representing.
 @bold{Ex 10}: Implement a static method in each of your @tt{Volume}
 classes @tt{Volume fromLiter(Double liters)} that given some amount of
 liters returns a @tt{Volume} of that class. For example:
-@tt{Cup.fromLiter(1).asLiter()} should return a double close to
+@tt{Cup.fromLiter(1.0).asLiter()} should return a double close to
 @tt{1.0}.
 
 
