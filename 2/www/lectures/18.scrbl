@@ -12,5 +12,5 @@
 
 
 Be sure to study the @link["practice-m1.pdf"]{practice exam} and
-@link["pratice-m1-soln.pdf"]{solution}.
+@link["practice-m1-soln.pdf"]{solution}.
 
