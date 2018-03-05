@@ -8,4 +8,9 @@
 
 @lecture-title[18]{Midterm Review}
 
-Be sure to study the @link["practice-m1.pdf"]{practice exam}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7628788a-b93c-4caf-b5e8-a89a01280acf"]{Video}.
+
+
+Be sure to study the @link["practice-m1.pdf"]{practice exam} and
+@link["pratice-m1-soln.pdf"]{solution}.
+
