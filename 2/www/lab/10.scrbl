@@ -40,9 +40,17 @@ A @emph{Shape} is a data structure representing a clickable shape. Its
 @emph{WorldImage} and be clicked (if the position of the click is
 inside the boundry of the image).
 
-@bold{Ex 1}: Create an interface @tt{Shape} with two public fields
-@tt{Integer x} & @tt{Integer y} and two public methods @tt{WorldImage
-draw()} & @tt{Boolean clicked(Posn p)}.
+@bold{Ex 1}: Create an interface @tt{Shape} with three public methods:
+
+@itemlist[
+
+@item{@tt{Posn position()}}
+
+@item{@tt{WorldImage draw()}}
+
+@item{@tt{Boolean clicked(Posn p)}}
+
+]
 
 @bold{Ex 2}: Design a class @tt{Circle} that implements the @tt{Shape}
 interface. Its constructor should consume three values: @tt{Integer}
