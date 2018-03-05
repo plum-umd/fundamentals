@@ -14,3 +14,5 @@
 Be sure to study the @link["practice-m1.pdf"]{practice exam} and
 @link["practice-m1-soln.pdf"]{solution}.
 
+Here is an IntelliJ @link["classcode1.zip"]{project} that contains all
+the code we've written in class.

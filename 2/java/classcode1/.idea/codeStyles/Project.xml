@@ -1,0 +1,8 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <JavaCodeStyleSettings>
+      <option name="INSERT_OVERRIDE_ANNOTATION" value="false" />
+      <option name="REPLACE_NULL_CHECK" value="false" />
+    </JavaCodeStyleSettings>
+  </code_scheme>
+</component>
