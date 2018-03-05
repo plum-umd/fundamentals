@@ -34,11 +34,10 @@ documentation} for details about available classes/methods.
 
 @section[#:tag "lab10:shapes"]{Clickable Shapes}
 
-A @emph{Shape} is a data structure representing a clickable shape. Its
-@tt{X} and @tt{Y} coordinates should be implemented as public
-@emph{Integer} fields. All @emph{Shape}s can be drawn as a
-@emph{WorldImage} and be clicked (if the position of the click is
-inside the boundry of the image).
+A @emph{Shape} is a data structure representing a clickable shape. All
+@emph{Shape}s have some position, can be drawn as a @emph{WorldImage},
+and can be clicked (if the position of the click is inside the boundry
+of the image).
 
 @bold{Ex 1}: Create an interface @tt{Shape} with three public methods:
 
@@ -101,7 +100,7 @@ argument: the amount of whatever unit you're representing.
 @bold{Ex 10}: Implement a static method in each of your @tt{Volume}
 classes @tt{Volume fromLiter(Double liters)} that given some amount of
 liters returns a @tt{Volume} of that class. For example:
-@tt{Cup.fromLiter(1).asLiter()} should return a double close to
+@tt{Cup.fromLiter(1.0).asLiter()} should return a double close to
 @tt{1.0}.
 
 
