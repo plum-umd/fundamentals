@@ -15,6 +15,7 @@ cmsc132A:
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl
 	cp code/* $(course)/
+	cp exams/* $(course)/
 	cd ../java/ ; \
 		zip Assign3 -r Assign3 ; \
 		zip Assign4 -r Assign4 ; \
