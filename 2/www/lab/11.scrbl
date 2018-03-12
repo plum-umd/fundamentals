@@ -8,7 +8,7 @@
 
 You'll work in this lab with your
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{@bold{newly-assigned
-lab partners}.
+lab partners}}.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
