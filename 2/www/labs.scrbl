@@ -20,3 +20,4 @@ Jan 29 was cancelled due to illness).
 @include-section{lab/8.scrbl}
 @include-section{lab/9.scrbl}
 @include-section{lab/10.scrbl}
+@include-section{lab/11.scrbl}
