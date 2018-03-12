@@ -19,6 +19,10 @@ switch off during the lab to make sure each of you get practice
 problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
+You must start this lab with @link["Lab11.zip"]{this project
+skeleton}. Unzip the file into your IdeaProjects directory and open it
+with IntelliJ to get started.
+
 
 @section[#:style 'unnumbered #:tag "lab11:disp"]{Method Dispatch}
 
