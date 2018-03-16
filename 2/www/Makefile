@@ -29,6 +29,7 @@ cmsc132A:
 		zip classcode1 -r classcode1
 	cp ../java/Assign3.zip \
 		../java/Assign4.zip \
+		../java/Assign5.zip \
 		../java/Lab6.zip \
 		../java/Lab7.zip \
 		../java/Lab8.zip \
