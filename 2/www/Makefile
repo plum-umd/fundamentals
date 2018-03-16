@@ -19,6 +19,7 @@ cmsc132A:
 	cd ../java/ ; \
 		zip Assign3 -r Assign3 ; \
 		zip Assign4 -r Assign4 ; \
+		zip Assign5 -r Assign5 ; \
 		zip Lab6 -r Lab6 ; \
 		zip Lab7 -r Lab7 ; \
 		zip Lab8 -r Lab8 ; \
