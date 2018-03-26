@@ -159,7 +159,7 @@ the prior greeting?
 juliet.greet(hoodedRomeo) => ???
 }|
 
-@section[#:style 'unnumbered #:tag "lab11:sing"]{Single Dispatch}
+@section[#:style 'unnumbered #:tag "lab11:sing2"]{Single Dispatch}
 
 Oh no! Both the hooded and unhooded @tt{Juliet}s bit her thumb at the
 hooded Romeo! That's not good. But why did it happen?
