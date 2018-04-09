@@ -36,6 +36,11 @@ full credit on this assignment, you must pass all of the test suite
 tests (this is necessary for full credit, but not sufficient; you must
 also submit well-designed code.)
 
+You can find the complete test suite here:
+@link["Assign5.java"]{@tt{Assign5.java}}.  You can either add it to
+your project and run it on your own code or use it to determine what
+is being tested when you see something fail on the submit server.
+
 @subsection{Adding @tt{BST}s and @tt{MapComp}s}
 
 You must also implement a new data structure: binary search trees
