@@ -2,7 +2,7 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[16]{Mutable, Cyclic Lists}
+@lab-title[16]{Cyclic Lists}
 
 @section[#:style 'unnumbered #:tag "lab16:intro"]{Intro}
 
