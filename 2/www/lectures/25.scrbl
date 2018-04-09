@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[19]{Midterm 1}
+@lecture-title[25]{Implementing Visitors; Bank Accounts}
 
-Midterm will be held in class.  There is no lab.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f66f3df-a944-47c5-abc1-a8b2010656dc"]{Video}.

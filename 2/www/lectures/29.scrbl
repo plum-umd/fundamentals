@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[19]{Midterm 1}
+@lecture-title[29]{Imperatives: Methods over Cylic Data}
 
-Midterm will be held in class.  There is no lab.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d1cb66e-9758-44d5-8b2d-a8bd00fc98b3"]{Video}.

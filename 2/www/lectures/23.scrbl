@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[19]{Midterm 1}
+@lecture-title[23]{Optional, Maps, Sets, and Lifting Default Code to Abstract Classes}
 
-Midterm will be held in class.  There is no lab.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=58fcb844-d7ae-4d0d-9a48-a8b20106566f"]{Video}.
