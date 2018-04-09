@@ -121,7 +121,7 @@ public Boolean isCyclicHelper(Cons<X> head) {
         return this.rest.isCyclicHelper(head);
     }
 }
-|}
+}|
 
 Note that if a list contains an empty list, it cannot contain a
 cycle. In the @tt{Cons} case, the method @tt{isCyclic} passes
