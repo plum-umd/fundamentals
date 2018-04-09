@@ -135,14 +135,14 @@ Each of these operations already work on non-cyclic lists. Extend them
 with a helper method that maintains a pointer to the head of the list
 like @tt{isCyclic} to make them work on cyclic lists as well.
 
-@tt{Ex 4}: Implement the method @tt{length} using @tt{lengthHelper} to
+@bold{Ex 4}: Implement the method @tt{length} using @tt{lengthHelper} to
 ensure termination for cyclic lists.
 
-@tt{Ex 5}: Implement the method @tt{contains} using @tt{containsHelper} to
+@bold{Ex 5}: Implement the method @tt{contains} using @tt{containsHelper} to
 ensure termination for cyclic lists.
 
-@tt{Ex 6}: Implement the method @tt{foldr} using @tt{foldrHelper} to
+@bold{Ex 6}: Implement the method @tt{foldr} using @tt{foldrHelper} to
 ensure termination for cyclic lists.
 
-@tt{Ex 7}: Reimplement the methods @tt{length}, @tt{contains} using
+@bold{Ex 7}: Reimplement the methods @tt{length}, @tt{contains} using
 @tt{foldr} to ensure termination for cyclic lists.
