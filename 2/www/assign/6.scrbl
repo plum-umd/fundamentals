@@ -7,6 +7,13 @@
 
 @assn-title[6]{Tests, BSTs, and Efficient Maps with Comparable Keys}
 
+UPDATES:
+
+@itemlist[
+@item{We have released the source code for assignment 5 tests so that you can see what tests you're failing on the submit server.}
+@item{We removed a stub for the @tt{findComp} method that is not needed.}
+]
+
 This is assignment is to be completed and submitted with your new
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{partner}.  You
 may not work with anyone other than your assigned partner.

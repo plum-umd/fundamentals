@@ -25,6 +25,18 @@
 @include-section["lectures/17.scrbl"]
 @include-section["lectures/18.scrbl"]
 @include-section["lectures/19.scrbl"]
+@include-section["lectures/20.scrbl"]
+@include-section["lectures/21.scrbl"]
+@;include-section["lectures/22.scrbl"]
+@;include-section["lectures/23.scrbl"]
+@;include-section["lectures/24.scrbl"]
+@;include-section["lectures/25.scrbl"]
+@;include-section["lectures/26.scrbl"]
+@;include-section["lectures/27.scrbl"]
+@;include-section["lectures/28.scrbl"]
+@;include-section["lectures/29.scrbl"]
+
+
 
 
 
