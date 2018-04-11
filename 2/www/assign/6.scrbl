@@ -7,6 +7,13 @@
 
 @assn-title[6]{Tests, BSTs, and Efficient Maps with Comparable Keys}
 
+UPDATES:
+
+@itemlist[
+@item{We have released the source code for assignment 5 tests so that you can see what tests you're failing on the submit server.}
+@item{We removed a stub for the @tt{findComp} method that is not needed.}
+]
+
 This is assignment is to be completed and submitted with your new
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{partner}.  You
 may not work with anyone other than your assigned partner.
@@ -28,6 +35,11 @@ you will see new results for every submission of assignment 6.  To get
 full credit on this assignment, you must pass all of the test suite
 tests (this is necessary for full credit, but not sufficient; you must
 also submit well-designed code.)
+
+You can find the complete test suite here:
+@link["Assign5.java"]{@tt{Assign5.java}}.  You can either add it to
+your project and run it on your own code or use it to determine what
+is being tested when you see something fail on the submit server.
 
 @subsection{Adding @tt{BST}s and @tt{MapComp}s}
 

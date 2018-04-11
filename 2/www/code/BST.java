@@ -117,11 +117,6 @@ class Node<X extends Comparable<X>> implements BST<X> {
         return null;
     }
 
-    // Find an element that compares equally with x
-    public Optional<X> findComp(X x) {
-        return null;
-    }
-
     // Apply f to every element of this BST and collect results as a BST
     // NOTE: cannot assume f is monotonic
     public <R extends Comparable<R>> BST<R> map(Function<X, R> f) {
