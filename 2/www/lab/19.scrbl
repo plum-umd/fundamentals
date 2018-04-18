@@ -43,7 +43,9 @@ stack.pop();     // => Optional.empty()
 stack.height();  // => 0
 }|
 
-The file @tt{Stackof.java} has a skeleton of a stack implementation.
+The file @tt{Stackof.java} has a skeleton of a stack
+implementation. It also contains a simple @tt{Listof} implementation
+which @emph{should not need to be modified}.
 
 @bold{Ex 1}: Implement the core, effectful operations @tt{push} and
 @tt{pop} for @tt{Stack}. @bold{Note}: some of the tests that confirm
