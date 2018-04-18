@@ -57,7 +57,7 @@ class Stackof<X> implements IStackof<X> {
     this.stack = new Empty();
   }
 
-  // Ex 1:
+  // Ex 1:mak
   // EFFECT:
   // Pushes the element `x' on to the top of this stack
   public void push(X x) {
@@ -74,13 +74,13 @@ class Stackof<X> implements IStackof<X> {
   // Ex 2:
   // The fundamental stack abstraction
   public <Y> Y foldr(BiFunction<X, Y, Y> f, Y b) {
-    return this.stack.foldr(f, b);
+    return b;
   }
 
   // Ex 3:
   // Return the height of this stack
   public Integer height() {
-    return this.foldr((x, n) -> n+1, 0);
+    return 0;
   }
 
 }
