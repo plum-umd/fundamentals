@@ -34,6 +34,7 @@ cmsc132A:
 		zip Lab17 -r Lab17 ; \
 		zip Lab18 -r Lab18 ; \
 		zip Lab19 -r Lab19 ; \
+		zip Lab20 -r Lab20 ; \
 		zip classcode1 -r classcode1 ; \
 		zip classcode2 -r classcode2
 	cp ../java/Assign3.zip \
@@ -53,6 +54,7 @@ cmsc132A:
 		../java/Lab17.zip \
 		../java/Lab18.zip \
 		../java/Lab19.zip \
+		../java/Lab20.zip \
 		../java/classcode1.zip \
 		../java/classcode2.zip \
 		$(course)/
