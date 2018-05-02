@@ -36,6 +36,7 @@
 @include-section["lectures/28.scrbl"]
 @include-section["lectures/29.scrbl"]
 @include-section["lectures/30.scrbl"]
+@include-section["lectures/36.scrbl"]
 
 
 
