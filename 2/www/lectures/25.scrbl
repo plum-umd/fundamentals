@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[24]{Implementing Visitors; Bank Accounts}
+@lecture-title[25]{Imperatives: Implicit Communication via Side-Effects}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f66f3df-a944-47c5-abc1-a8b2010656dc"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=628c544f-6608-4942-a4c7-a8ba0143e197"]{Video}.

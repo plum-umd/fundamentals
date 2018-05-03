@@ -1,6 +1,6 @@
 #lang scribble/manual
 @(require "../utils.rkt")
 
-@lecture-title[32]{Resizing Hash Tables}
+@lecture-title[33]{Simple Iterators}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8c9b9645-bd3b-48e4-ab6b-a8c401233c82"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=80b87bda-430f-42f6-96a5-a8c8000fb313"]{Video}.

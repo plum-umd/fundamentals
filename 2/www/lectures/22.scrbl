@@ -6,7 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[21]{More Double Dispatch}
+@lecture-title[22]{Optional, Maps, Sets, and Lifting Default Code to Abstract Classes}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=de2dccb1-ec13-4f4a-8dad-a8b201065719"]{Video}.
-
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=58fcb844-d7ae-4d0d-9a48-a8b20106566f"]{Video}.
