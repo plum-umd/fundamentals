@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[29]{Imperatives: Methods over Cylic Data}
+@lecture-title[28]{Imperatives: Methods over Cylic Data}
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d1cb66e-9758-44d5-8b2d-a8bd00fc98b3"]{Video}.

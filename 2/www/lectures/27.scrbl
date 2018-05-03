@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[27]{Aside: List Exercises}
+@lecture-title[26]{Aside: List Exercises}
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eb43c3cb-59a5-4de4-9a3e-a8ba0143e1e2"]{Video}.

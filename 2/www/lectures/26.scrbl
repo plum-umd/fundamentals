@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[26]{Imperatives: Implicit Communication via Side-Effects}
+@lecture-title[25]{Imperatives: Implicit Communication via Side-Effects}
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=628c544f-6608-4942-a4c7-a8ba0143e197"]{Video}.
