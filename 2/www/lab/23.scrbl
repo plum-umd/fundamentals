@@ -33,18 +33,18 @@ making them amenable to work with in @tt{for-each}- and
 during the past semester, looks like this:
 
 @verbatim|{
-for (@emph{init} ; @emph{test} ; @emph{next}) {
-  @emph{body ...}
+for (|@emph{init} ; |@emph{test} ; |@emph{next}) {
+  |@emph{body ...}
 }
 }|
 
 and is roughly equivalent to the following while loop:
 
 @verbatim|{
-@emph{init};
-while (@emph{test}) {
-  @emph{body ...}
-  @emph{next}
+|@emph{init};
+while (|@emph{test}) {
+  |@emph{body ...}
+  |@emph{next}
 }
 }|
 
