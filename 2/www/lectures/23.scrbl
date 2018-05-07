@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[23]{Optional, Maps, Sets, and Lifting Default Code to Abstract Classes}
+@lecture-title[23]{The Visitor Pattern}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=58fcb844-d7ae-4d0d-9a48-a8b20106566f"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9ea091b1-8cec-45b0-ae3d-a8b201065769"]{Video}.

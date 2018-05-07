@@ -1,11 +1,6 @@
 #lang scribble/manual
-@(require scribble/eval
-          racket/sandbox
-          (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
-          (for-label (except-in class/0 define-struct ... check-expect))
-          (for-label class/universe)
-          "../utils.rkt")
+@(require "../utils.rkt")
 
-@lecture-title[30]{BSTs, Maps, The Law of HashCode, and Comparable vs Comparators}
+@lecture-title[30]{Random access and ArrayLists}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5bf78213-0872-4004-a7a2-a8bd0117c758"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4aa3c7ea-2ad2-403f-9e6c-a8c1012365ba"]{Video}.

@@ -3,7 +3,7 @@
 
 (define m1-date "Mar 7")
 (define m2-date "Apr 25")
-(define final-date "May 17, 8--10 am")
+(define final-date "CHANGED: May 14, 4--6 pm in PHY 1410")
 (define semester "spring")
 (define year "2018")
 (define courseno "CMSC 132A")

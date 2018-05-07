@@ -6,6 +6,7 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[21]{Structural Equality with Double Dispatch; Abstracting and Overridding}
+@lecture-title[21]{More Double Dispatch}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fd1637f8-b011-48da-a151-a8a300ec3181"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=de2dccb1-ec13-4f4a-8dad-a8b201065719"]{Video}.
+

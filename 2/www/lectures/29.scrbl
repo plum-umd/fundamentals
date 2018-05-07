@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[29]{Imperatives: Methods over Cylic Data}
+@lecture-title[29]{BSTs, Maps, The Law of HashCode, and Comparable vs Comparators}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5d1cb66e-9758-44d5-8b2d-a8bd00fc98b3"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5bf78213-0872-4004-a7a2-a8bd0117c758"]{Video}.

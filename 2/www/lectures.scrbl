@@ -36,10 +36,15 @@
 @include-section["lectures/28.scrbl"]
 @include-section["lectures/29.scrbl"]
 @include-section["lectures/30.scrbl"]
+@include-section["lectures/31.scrbl"]
+@include-section["lectures/32.scrbl"]
+@include-section["lectures/33.scrbl"]
+@include-section["lectures/34.scrbl"]
+@include-section["lectures/35.scrbl"]
 @include-section["lectures/36.scrbl"]
-
-
-
-
+@include-section["lectures/37.scrbl"]
+@include-section["lectures/38.scrbl"]
+@include-section["lectures/39.scrbl"]
+@include-section["lectures/40.scrbl"]
 
 

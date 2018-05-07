@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[24]{The Visitor Pattern}
+@lecture-title[24]{Implementing Visitors; Bank Accounts}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9ea091b1-8cec-45b0-ae3d-a8b201065769"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f66f3df-a944-47c5-abc1-a8b2010656dc"]{Video}.

@@ -20,6 +20,7 @@ cmsc132A:
 		zip Assign3 -r Assign3 ; \
 		zip Assign4 -r Assign4 ; \
 		zip Assign5 -r Assign5 ; \
+		zip Assign7 -r Assign7 ; \
 		zip Lab6 -r Lab6 ; \
 		zip Lab7 -r Lab7 ; \
 		zip Lab8 -r Lab8 ; \
@@ -43,6 +44,7 @@ cmsc132A:
 	cp ../java/Assign3.zip \
 		../java/Assign4.zip \
 		../java/Assign5.zip \
+		../java/Assign7.zip \
 		../java/Lab6.zip \
 		../java/Lab7.zip \
 		../java/Lab8.zip \
