@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="tester.Main" />
+    <module name="Lab23" />
+    <option name="PROGRAM_PARAMETERS" value="edu.umd.cmsc132A.Main" />
+    <option name="VM_PARAMETERS" value="--add-modules Lab23" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <method />
+  </configuration>
+</component>
