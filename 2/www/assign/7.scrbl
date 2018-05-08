@@ -117,7 +117,7 @@ removed from the context.}
 The right becomes the new current node; the context remains unchanged.
 }
 
-@item{The left is a node, the left is a leaf.
+@item{The left is a node, the right is a leaf.
 
 The left becomes the new current ndoe; the context remains unchanged.}
 
