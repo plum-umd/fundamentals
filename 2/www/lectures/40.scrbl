@@ -3,6 +3,9 @@
 
 @lecture-title[40]{Drill Solutions}
 
+
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d5309cf9-5a28-4ea2-9505-a8d901163e3d"]{Video}.
+
 @section{Definitions}
 
 Give a brief definition of
