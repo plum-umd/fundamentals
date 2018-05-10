@@ -241,9 +241,10 @@ Answer:
     }
 
     public <R> Optional<R> findPred(Predicate<X> p) {
-        Optional<X> r = p.test(this.first);
-        return r.isPresent() ? r : this.rest.findPred(p);
-    }  
+        return p.test(this.first) ?
+               Optional.of(this.first) :
+               this.rest.findPred(p);
+    }
 }|
 
 
