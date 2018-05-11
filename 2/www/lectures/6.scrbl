@@ -1,6 +1,6 @@
 #lang scribble/manual
-@(require scribble/eval
-          racket/sandbox
+@(require racket/sandbox
+          scribble/example
           (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
           (for-label (except-in class/0 define-struct ... check-expect))
           (for-label class/universe)
@@ -12,7 +12,7 @@
     (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
     (the-eval '(require (prefix-in r: racket)))
-    (the-eval '(require "lectures/5/light.rkt"))
+    (the-eval '(require "lectures/6/lon.rkt"))
     the-eval))
 
 @lecture-title[6]{Interface Design: Independent and Extensible}
@@ -77,14 +77,14 @@ implements the @tt{Light} interface:
            (circle LIGHT-RADIUS "solid" "red")])))
 }
 
-Now clearly a @tt{ModLight} is never a @tt{Light}, but every
-@tt{ModLight} is an @tt{Light}.  Moreover, any program that is
-written for @tt{Light}s will work @emph{no matter what implementation
-we use}.  So notice that the world program only assumes that its
-@tt{light} field is an @tt{Light}; this is easy to inspect---the
-world never assumes the light is constructed in a particular way, it
-just calls @racket[on-tick] and @racket[draw].  Which means that if we were
-to start our program off with 
+Notice that every @tt{ModLight} is a @tt{Light}.  Moreover, any
+program that is written to use @tt{Light}s will be compatible with any
+implemention of the @tt{Light} interface, regardless of its
+representation. So notice that the world program only assumes that its
+@tt{light} field is a @tt{Light}; this is easy to inspect---the world
+never assumes the light is constructed in a particular way, it just
+calls @racket[on-tick] and @racket[draw].  Which means that if we were
+to start our program off with
 
 @class-block{
 (big-bang (new mod-light% 2))
@@ -201,3 +201,167 @@ no problem.  Likewise, programs that were written to use the light
 interface will now work even for blinking lights.  We don't need to
 edit any uses of the @racket[on-tick] method in order to make it work for
 blinking lights.  This program is truly extensible.
+
+@margin-note{@bold{Representation independent testing}: Our current
+approach to testing is oriented around the idea of testing for
+structurally equal representations of values.  Testing in a
+representation independent way requires it's own technique, which we
+will see later in the course.}
+
+@section{An Exercise: Developing Lists of Numbers}
+
+A new look at old friend.  Let's look at an object-oriented
+development of a list of numbers, in particular we will start with an
+interface-based view of these lists, meaning we will consider the
+behaviors of a list of numbers (the things we can compute in terms of
+lists of numbers) rather than their structure.
+
+Let's start by picking a couple of computations which can be done in
+terms of a list of numers: @tt{length} and @tt{map}.
+
+@class-block{
+;; A LoN implements:
+;; - length : -> Number
+;;   Compute the length of this of numbers 
+;;   
+;; - map : [Number -> Number] -> LoN
+;;   Apply the given function to each element of this list of numbers
+}
+
+Now we have to think about designing an actual representation of a
+list of numnbers.  Here we just follow the same design (albeit with
+objects) as we did last semester, using a recursive union data
+definition:
+
+@class-block{
+;; INTERP: Empty list of numbers
+(define-class empty-lon%)
+
+;; INTERP: Non-empty lists of numbers
+(define-class cons-lon%
+  (fields first rest))
+}
+
+Using this representation, we can implement the @racket[LoN] interface
+by implementing the @tt{length} and @tt{map} methods. 
+
+Let's start with @tt{empty-lon%}.  First we should declare our intention
+that @tt{empty-lon%} objects implement the @tt{LoN} interface:
+
+@class-block{
+;; A (new empty-lon%) implements LoN
+;; INTERP: Empty list of numbers
+(define-class empty-lon%)
+}
+
+
+To fulfill this intention, we must actually define the methods listed
+in the @tt{LoN} interface.
+
+Let's make some examples of what these methods should produce in the
+case of an empty list of numbers.
+
+@examples[#:eval the-eval
+(send (new empty-lon%) length)
+(send (new empty-lon%) map add1)]
+
+Writing the code for both is now obvious given the examples:
+
+@filebox[
+ (racket empty-lon%)
+ @class-block{
+ ;; Compute the length of this empty list of numbers
+ (check-expect (send (new empty-lon%) length) 0)
+ (define (length) 0)
+
+;; map : [Number -> Number] -> LoN
+;; Apply the given function to each element of this empty list of numbers
+(check-expect (send (new empty-lon%) map add1) (new empty-lon%))
+(define (map f) (new empty-lon%))
+}]
+
+(Notice how the purpose statements are specialized for the particular
+class in which we are defining the methods.)
+
+Moving on to @tt{cons-lon%}, we go through the same steps.  Declare our
+intention that @tt{cons-lon%} implements @tt{LoN} and make examples:
+
+@class-block{
+;; A (new cons-lon% Number LoN) implements LoN
+;; INTERP: Non-empty list of numbers
+(define-class cons-lon%
+  (fields first rest))
+}
+
+@examples[#:eval the-eval
+(send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) length)
+(send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) map add1)
+]
+
+Since the @tt{cons-lon%} class contains some data, it is useful to
+consider the template for @tt{cons-lon%} methods:
+@filebox[
+ (racket empty-lon%)
+ @class-block{
+ (define (cons-template ...)
+   (send this first) ...
+   (send (send this rest) cons-template ...))}]
+
+
+Instantiating the template for @tt{length} and @tt{map} and adjusting the parameters, we get:
+
+@filebox[
+ (racket empty-lon%)
+ @class-block{
+ (define (length)
+   (send this first) ...
+   (send (send this rest) length))
+
+ (define (map f)
+   (send this first) ...
+   (send (send this rest) map f))
+}]
+
+Combining our knowledge of the examples and the partially filled in
+templates, we can see that @racket[(send this first)] stands for
+@racket[3] and @racket[(send this rest)] stands for @racket[(new cons-lon%
+7 (new empty-lon%))].  Let's make some more examples, based on the list
+contained in the @tt{rest} field.
+
+@examples[#:eval the-eval
+(send (new cons-lon% 7 (new empty-lon%)) length)
+(send (new cons-lon% 7 (new empty-lon%)) map add1)
+]
+
+So in the original example, @tt{(send (send this rest) length)} is @racket[1]
+and @tt{(send (send this rest) map add1)} is @racket[(new cons-lon% 8 (new empty-lon%))].
+
+Our goal in @tt{length} is @racket[2], which can be computed by
+applying @tt{add1} to @racket[(send (send this rest) length)].
+
+Our goal in @tt{map} is @racket[(new cons-lon% 4 (new cons-lon% 8 (new
+empty-lon%)))], which can be computed by applying @tt{f} to @racket[(send
+this first)] and cons that result onto @racket[(send (send this rest)
+map add1)].  We are now in a position to write the code:
+
+@filebox[
+ (racket cons-lon%)
+ @class-block{
+ ;; length : -> Number
+ ;; Compute the length of this non-empty list of numbers
+ (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) length)
+               (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
+ (define (length)
+   (add1 (send (send this rest) length)))
+
+;; map : [Number -> Number] -> LoN
+;; Apply given function to each element of this non-empty list of numbers
+(check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) map add1)
+              (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
+(define (map f)
+  (new cons-lon% (f (send this first)) (send (send this rest) map f)))
+}]
+
+
+We've now accomplished our initial goal.  On your own, work out a
+similar development for lists of strings.
