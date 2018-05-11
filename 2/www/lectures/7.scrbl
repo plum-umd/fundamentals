@@ -216,7 +216,13 @@ program:
 
 We can now reconstruct our original programs by applying the
 parameteric definitions: @tt{[Listof Number]} and @tt{[Listof
-String]}.
+String]}.  We also make new data definitions by applying @tt{Listof}
+to other things.  For example, here's a computation over a @tt{[Listof
+Boolean]}.
+
+@examples[#:eval the-eval
+(send (new cons% #true (new cons% #false (new empty%))) map not)
+]
 
 This is a big step forward, but there's an opportunity to do even
 better.  Consider the following.
@@ -235,14 +241,81 @@ particular we can loosen the constraints in the signature for
 @tt{map}:
 
 @class-block{
+;; A [Listof X] implements
+;;
 ;; map : [X -> Y] -> [Listof Y]
 ;; Apply given function to each element of this list of Xs
+;;
+;; ...
 }
 
 Notice that this method signature makes use of two parameters: @tt{X}
-and @tt{Y}.  The @tt{X} parameter is "bound" at the class definition
-level, i.e. @tt{A (new cons% X [Listof X]) implements [Listof X]}.
-The @tt{Y} is implicitly a parameter of the method's signature.
+and @tt{Y}.  The @tt{X} parameter is "bound" at the level, @tt{[Listof
+X]}.  The @tt{Y} is implicitly a parameter of the method's signature.
+
+So in an object-oriented setting, these parameters can appear at the
+interface and class level, but also at the method level.
+
+We can do another exercise to write things we've seen before.  Let's
+see what @tt{foldr} looks like:
+
+@class-block{
+;; A [Listof X] implements
+;;
+;; ...
+;;
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over the elements with the given combining function and base
+}
+
+We can make some examples.
+
+@examples[#:eval the-eval
+
+(send (new empty%) foldr + 0)
+(send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
+(send (new empty%) foldr string-append "")
+(send (new cons% "5" (new cons% "3" (new empty%))) foldr string-append "")
+]
+
+Let's instantiate the template for @tt{foldr} for @racket[cons%].
+
+@filebox[
+ (racket cons%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this non-empty list of elements with combining function and base
+(define (foldr f b)
+  (send this first) ...
+  (send (send this rest) foldr f b))
+}]
+
+Thinking through the examples and templates, we get:
+
+@filebox[
+ (racket empty%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this empty list of elements
+(check-expect (send (new empty%) foldr + 0) 0)
+(define (foldr f b) b)
+}]
+
+@filebox[
+ (racket cons\%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this empty list of elements
+(check-expect (send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
+              8)
+(define (foldr f b)
+  (f (send this first)
+     (send (send this rest) foldr f b)))
+}]
 
 
-
+There's an interesting remaining question: how do we write methods
+that work on specific kinds of lists?  For example, if we wanted to
+write a @tt{sum} method that summed up the elements in a list of
+numbers, how would we do it?  We can't put it into the @tt{[Listof X]}
+interface since it wouldn't work if @tt{X} stood for string.
