@@ -10,4 +10,6 @@
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=41c2986c-d55e-4548-b43f-a8820148000b"]{Video}.
 
-TBD.
+@java-block{
+// Hi there
+}

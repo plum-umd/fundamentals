@@ -15,10 +15,10 @@
          assn-files
          class-block
          bsl-block isl-block
-         ;java-block
+         java-block
          defn-tt
          bsl isl
-         ;java
+         java
          incercise
          exercise
          styled-verbatim
@@ -139,11 +139,11 @@
   (my-codeblock "htdp/isl+" (cons arg args)))
 (define (isl arg . args)
   (my-code "htdp/isl+" (cons arg args)))
-#;
+
 (define (java-block arg . args)
   (nested #:style (div-style "JavaHighlightBlock") 
           (my-codeblock "java" (cons arg args))))
-#;
+
 (define (java arg . args)
   ;(cond-element
    ;[latex (make-element (make-style #f '(escape))
