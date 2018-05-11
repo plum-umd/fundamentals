@@ -45,6 +45,7 @@ deploy:
     script: rsync -rvzp $TRAVIS_BUILD_DIR/2/www/cmsc132A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR
     on:
       branch: master
+      condition: RACKET_VERSION='6.12'
   - provider: releases
     api_key:
       secure: Zh2OyyjoVtz6+qcKEpIZmmdVosZo8dwpj1nu5rrxR+DgrAGwFGQOPTqjVLXxcFrqMaITuTs06ZOuhM4e2Qa+eXYkCXjageHfI3JlO//BBs7iKRBOUK+qENkP+V8efhMmnG/QM2h+rFg6JlhPBcIk9IjOlOcKngfEr91OQ61inZ4rg7nurnlsCJJgrLrw1atpo6PYrypFyQXIiggCsRXQlMygaiVOaJKKlyLET3dYka5eRw0m/IwUO9hAR2a2H5itGXkzcMp0Hc5/BmjJ05AN+9q40BfiRV/tVNUayD5BSKKOHO7N4vSP4VPrLfjHzeO2UJNsc7PjVNtedOqNI0eC3Bfc2JsPf+JkhbTVTn3QPyA3HlyzQaykj954jSwC/feR5inc0JEIjqRgsez8nInO5wtOHE2t3uXjXmh3D4VunaaxtJCL40oEROceMZwHSag2+tTy1RLgw2ssxtr5+dAFxhFQxPUArFPZvD0WgmYCXDDsgDb4GcLAv4hYDD1U3qP4DLmUGLeHtAFimGjX/TEIsaDL69ovIcKEVvx4rhndO3RBJr0m+cvAW1Y0qsEi4DvG3N7JbTy955iXNsQaoM5QflTQlZboOtpBXstmBfs2JG8WQ18S0K+pDSf4TO1iWsu/82HkKZ2DrV4A1xuN6dnjhjiORKbn5TgvAIrx2hwb9vg=
