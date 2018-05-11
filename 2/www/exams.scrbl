@@ -30,8 +30,8 @@ iterate on the things you got wrong or gave you a difficult time.
 @itemize[
 @;item{Readings: @ps4:readings and @ps5:readings}
 @;item{Drills: @secref{m1-drills}}
-@item{Practice exam: @link["m1-practice.pdf"]{practice
-midterm 1} and @link["m1-practice-soln.pdf"]{solution}}
+@item{Practice exam: @link["practice-m1.pdf"]{practice
+midterm 1} and @link["practice-m1-soln.pdf"]{solution}}
 ]
 
 @section{Midterm 2}
@@ -52,5 +52,5 @@ midterm 2} and @link["practice-m2-soln.pdf"]{solution}}
   @itemize[
     @item{@link["m1-spring2018.pdf"]{Midterm 1}}
     @item{@link["m2-spring2018.pdf"]{Midterm 2}}]}
-@item{Practice exam: @link["practice-f.pdf"]{practice final} and @link["practice-soln-f.pdf"]{solution}}
+@item{Practice exam: @link["practice-f.pdf"]{practice final} and @link["practice-f-soln.pdf"]{solution}}
 ]
