@@ -39,8 +39,8 @@ midterm 1} and @link["m1-practice-soln.pdf"]{solution}}
 @itemize[
 @;item{Readings: @ps6:readings, @ps8:readings}
 @;item{Drills: @secref{m2-drills}}
-@item{Practice exam: @link["m2-practice.pdf"]{practice
-midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
+@item{Practice exam: @link["practice-m2.pdf"]{practice
+midterm 2} and @link["practice-m2-soln.pdf"]{solution}}
 ]
 
 @section{Final Exam}
@@ -52,5 +52,5 @@ midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
   @itemize[
     @item{@link["m1-spring2018.pdf"]{Midterm 1}}
     @item{@link["m2-spring2018.pdf"]{Midterm 2}}]}
-@item{Practice exam: @link["f-practice.pdf"]{practice final} and @link["f-practice-soln.pdf"]{solution}}
+@item{Practice exam: @link["practice-f.pdf"]{practice final} and @link["practice-soln-f.pdf"]{solution}}
 ]
