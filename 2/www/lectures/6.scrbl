@@ -221,11 +221,12 @@ terms of a list of numers: @tt{length} and @tt{map}.
 
 @class-block{
 ;; A LoN implements:
-;; - length : -> Number
-;;   Compute the length of this of numbers 
-;;   
-;; - map : [Number -> Number] -> LoN
-;;   Apply the given function to each element of this list of numbers
+;;
+;; length : -> Number
+;; Compute the length of this list of numbers 
+;; 
+;; map : [Number -> Number] -> LoN
+;; Apply the given function to each element of this list of numbers
 }
 
 Now we have to think about designing an actual representation of a
@@ -270,14 +271,16 @@ Writing the code for both is now obvious given the examples:
 @filebox[
  (racket empty-lon%)
  @class-block{
- ;; Compute the length of this empty list of numbers
- (check-expect (send (new empty-lon%) length) 0)
- (define (length) 0)
+;; Compute the length of this empty list of numbers
+(check-expect (send (new empty-lon%) length) 0)
+(define (length) 
+  0)
 
 ;; map : [Number -> Number] -> LoN
 ;; Apply the given function to each element of this empty list of numbers
 (check-expect (send (new empty-lon%) map add1) (new empty-lon%))
-(define (map f) (new empty-lon%))
+(define (map f) 
+  (new empty-lon%))
 }]
 
 (Notice how the purpose statements are specialized for the particular
@@ -349,17 +352,21 @@ map add1)].  We are now in a position to write the code:
  @class-block{
  ;; length : -> Number
  ;; Compute the length of this non-empty list of numbers
- (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) length)
-               (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
+ (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
+                     length)
+               2)
  (define (length)
    (add1 (send (send this rest) length)))
 
 ;; map : [Number -> Number] -> LoN
 ;; Apply given function to each element of this non-empty list of numbers
-(check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) map add1)
+(check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
+                    map add1)
               (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
 (define (map f)
-  (new cons-lon% (f (send this first)) (send (send this rest) map f)))
+  (new cons-lon% 
+       (f (send this first)) 
+       (send (send this rest) map f)))
 }]
 
 
