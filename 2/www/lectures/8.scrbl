@@ -1,9 +1,7 @@
 #lang scribble/manual
-@(require scribble/eval
-          racket/sandbox
-          (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
+@(require (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
           (for-label (except-in class/0 define-struct ... check-expect))
-          (for-label class/universe)
+          scribble/bnf
           "../utils.rkt")
 
 @lecture-title[8]{Introducing Java: Syntax and Semantics}
@@ -174,3 +172,47 @@ within a programming environment, like DrRacket but for Java, or use a
 Java @emph{compiler} and run the Java interpreter from the command
 line.  These will be covered in demos in class.
 
+Taking a step back, we can characterize the syntax of Java, or at
+least the small bit of Java we've covered so far, with the following
+@emph{grammar}:
+
+@(let ([open @litchar|{{}|]
+       [close @litchar|{}}|])
+   @BNF[(list @nonterm{program}
+              @kleenestar[@nonterm{class-defn}])
+        (list @nonterm{class-defn}
+              @BNF-seq[@litchar{class} @nonterm{class-name} open 
+                          @kleenestar[@nonterm{field-decl}] 
+                          @nonterm{constructor} 
+                          @kleenestar[@nonterm{method-defn}]
+                       close])
+        (list @nonterm{field-decl}
+              @BNF-seq[@nonterm{class-name} @nonterm{field-name} @litchar{;}])
+        (list @nonterm{constructor}
+              @BNF-seq[@nonterm{class-name} @litchar{(} @nonterm{param-list} @litchar{)} open @nonterm{constr-body} close])
+        (list @nonterm{param-list}
+              @BNF-seq[]
+              @BNF-seq[@nonterm{class-name} @nonterm{id} @optional{@litchar{,} @nonterm{param-list}}])
+        (list @nonterm{constr-body}
+              @kleenestar{@nonterm{field-init}})
+        (list @nonterm{field-init}
+              @BNF-seq[@litchar{this} @litchar{.} @nonterm{field-name} @litchar{=} @nonterm{id} @litchar{;}])
+        (list @nonterm{method-defn}
+              @BNF-seq[@nonterm{class-name} @nonterm{meth-name} @litchar{(} @nonterm{param-list} @litchar{)} open
+                         @litchar{return} @nonterm{expr} @litchar{;} 
+                       close])
+        (list @nonterm{expr}
+              @nonterm{number}              
+              @litchar{this}
+              @BNF-seq{@nonterm{expr} @litchar{+} @nonterm{expr}}
+              @BNF-seq{@nonterm{expr} @litchar{*} @nonterm{expr}}
+              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{field-name}}
+              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{meth-name} @litchar{(} @nonterm{arg-list} @litchar{)}})
+        (list @nonterm{arg-list}
+              @BNF-seq[]
+              @BNF-seq[@nonterm{expr} @optional{@litchar{,} @nonterm{arg-list}}])
+        (list @nonterm{class-name} @nonterm{id})
+        (list @nonterm{meth-name} @nonterm{id})
+        (list @nonterm{field-name} @nonterm{id})
+        (list @nonterm{id}
+              @elem{any name except for reserved words like @litchar{class}, @litchar{this}, @litchar{return}, etc.})])
