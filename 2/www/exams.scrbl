@@ -50,7 +50,7 @@ midterm 2} and @link["practice-m2-soln.pdf"]{solution}}
 @item{Drills: @lecref{39} and @lecref{40}}
 @item{Past exams: 
   @itemize[
-    @item{@link["m1-spring2018.pdf"]{Midterm 1}}
-    @item{@link["m2-spring2018.pdf"]{Midterm 2}}]}
+    @item{@link["m1-spring2018.pdf"]{Midterm 1} (@link["m1-soln-spring2018.pdf"]{solution})}
+    @item{@link["m2-spring2018.pdf"]{Midterm 2} (@link["m2-soln-spring2018.pdf"]{solution})}]}
 @item{Practice exam: @link["practice-f.pdf"]{practice final} and @link["practice-f-soln.pdf"]{solution}}
 ]
