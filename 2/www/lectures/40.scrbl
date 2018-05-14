@@ -46,7 +46,7 @@ Answer: an object that represents a procedure for determining the relative order
 
 @item{anonymous inner class
 
-Answer: a short-hand for locally defining an instance of a class without naming them class.
+Answer: a short-hand for locally defining an instance of a class without naming the class.
 }
 @item{lambda expression
 
