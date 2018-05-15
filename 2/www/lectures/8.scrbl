@@ -8,6 +8,8 @@
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=41c2986c-d55e-4548-b43f-a8820148000b"]{Video}.
 
+@bold{Introducting Java Syntax}
+
 You've now seen several programming languages: BSL, ISL, ISL+, and
 @tt{class/0}.  Now time for one more: Java.  Let's start by looking at
 the @emph{syntax}, the way Java programs are written.
@@ -171,6 +173,8 @@ To actually run programs, we will have to either run the programs from
 within a programming environment, like DrRacket but for Java, or use a
 Java @emph{compiler} and run the Java interpreter from the command
 line.  These will be covered in demos in class.
+
+@bold{Grammar: Simplest Java}
 
 Taking a step back, we can characterize the syntax of Java, or at
 least the small bit of Java we've covered so far, with the following
