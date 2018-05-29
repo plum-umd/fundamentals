@@ -1,6 +1,6 @@
 course = cmsc131A
-course_group = cmsc131afa17
-course_term = fall2017
+course_group = cmsc131afa18
+course_term = fall2018
 site_loc = /fs/www/class/$(course_term)
 
 .PHONY : all clean push test
