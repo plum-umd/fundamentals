@@ -73,16 +73,19 @@ subject to change until the start of the semester.
 
 @tabular[#:style 'boxed 
          #:row-properties '(bottom-border ())
-	 (list (list @bold{Staff} 'cont 'cont 'cont)
-	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")} @bold{Office Hours})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn" @elem{2-4pm, Mon})
-         (list "Nicholas Labich" @elem{1112 @AVW} "labichn" @elem{2-4pm, Fri})
-         (list "Samuel Barham" @elem{1112 @AVW} "sbarham" @elem{2:30-3:30pm, Mon, Wed})
-         (list "Cameron Moy" @elem{1112 @AVW} "camoy" @elem{1-3pm, Thurs})
-         (list "Austin Bourgerie" @elem{1112 @AVW} "abourg" @elem{12-2pm, Fri})
-         (list "Thomas Harris" @elem{1112 @AVW} "tharris" @elem{10-11am, Mon, Wed})
-	 (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung" @elem{11am-12pm, Tue, Thurs})
-	 (list "Jack Qian" @elem{1112 @AVW} "jqian" @elem{12-2pm, Wed}))]
+	 (list (list @bold{Staff} 'cont 'cont)
+	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}})
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu")
+         (list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu")
+         (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu")
+         (list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
+	 (list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
+         (list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
+         (list "Deena Postol" @elem{1112 @AVW} "dlpostol@gmail.com")
+	 (list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
+         (list "Fikko Soenanta" @elem{1112 @AVW} "fikko007@gmail.com")
+         (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu"))]
+
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
