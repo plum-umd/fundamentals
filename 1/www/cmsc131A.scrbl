@@ -46,7 +46,7 @@ This course exposes students to the fundamental techniques of program
 design: ``an approach to the creation of software that relies on
 systematic thought, planning, and understanding from the very
 beginning, at every stage and for every step''
-(@hyperlink["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_preface.html"]{HtDP/2e,
+(@hyperlink["https://htdp.org/2018-01-06/Book/part_preface.html"]{HtDP/2e,
 Preface}).  While taking this course will @emph{not} make you a great
 programmer, you cannot become a great programmer without mastering
 these skills.  More importantly, even if you never program again, a
@@ -96,7 +96,7 @@ subject to change until the start of the semester.
 	       (list @bold{Midterm 2} @elem{@m2-date, in class})
                (list @bold{Final exam} @elem{@final-date})
 	       ;(list @nonbreaking{@bold{Final Exam}} @elem{@link["http://www.registrar.umd.edu/current/registration/exam%20tables%20spring.html"]{Monday, May 16, 10:30-12:30pm}, 1122 CSI})
-	       (list @bold{Textbooks} @elem{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
+	       (list @bold{Textbooks} @elem{@link["https://htdp.org/2018-01-06/Book/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
 
 @include-section{syllabus.scrbl}
 @include-section{texts.scrbl}

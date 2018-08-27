@@ -22,7 +22,7 @@ to edit, please download the archive and edit the files you find inside. You
 
 @(define readings
   @elem{@emph{all} of
-    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part II}})
+    @link["https://htdp.org/2018-01-06/Book/part_two.html"]{Part II}})
 
 
 Make sure you have read and studied @readings of HtDP2e.
@@ -33,7 +33,7 @@ Edit the file @tt{list.rkt} for this part of the assignment. Add your
 information to the standard file header at the top of the file.
 
 Complete exercises 143--148 from
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{HtDP2e Part
+@link["https://htdp.org/2018-01-06/Book/part_two.html"]{HtDP2e Part
 2}.
 
 

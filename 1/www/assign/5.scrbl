@@ -18,7 +18,7 @@ receive full credit.
 
 @(define readings
   @elem{chapters 9 and 10 of
-    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_two.html"]{Part II}})
+    @link["https://htdp.org/2018-01-06/Book/part_two.html"]{Part II}})
 
 Make sure you have read and studied @readings of HtDP2e.
 

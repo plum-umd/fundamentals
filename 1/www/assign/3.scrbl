@@ -13,11 +13,11 @@ guidelines.
 
 @section{Preparation}
 
-In your @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{textbook} turn to 
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html"]{Fixed-Sized Data} chapter.
+In your @link["https://htdp.org/2018-01-06/Book/"]{textbook} turn to 
+@link["https://htdp.org/2018-01-06/Book/part_one.html"]{Fixed-Sized Data} chapter.
 
-In Functions and Programs read first @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html#%28part._sec~3afuncs%29"]{Functions} then
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html#%28part._sec~3acomposing%29"]{Composing Functions}.
+In Functions and Programs read first @link["https://htdp.org/2018-01-06/Book/part_one.html#%28part._sec~3afuncs%29"]{Functions} then
+@link["https://htdp.org/2018-01-06/Book/part_one.html#%28part._sec~3acomposing%29"]{Composing Functions}.
 
 You should also be familiar with using the design recipe
 with two kinds of data definition, Enumerations and
