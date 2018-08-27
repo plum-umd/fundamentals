@@ -10,7 +10,11 @@
 @(define (vidlink url)
    @elem{Audio and video capture from today's class is available @link[url]{here}.})
 
-@section{August 28, 2017}
+@section{August 27, 2018}
+
+First lecture is postponed until Wednesday.
+
+@;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
 
@@ -628,3 +632,4 @@ Here are PDFs of the final @link["f-fall2017.pdf"]{exam} and
 
 Have a great break!  It's been a pleasure teaching this class and I
 look forward to seeing you in the Spring!  -- DVH
+}

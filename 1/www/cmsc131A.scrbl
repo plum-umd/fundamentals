@@ -81,7 +81,7 @@ subject to change until the start of the semester.
          (list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
 	 (list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
          (list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
-         (list "Deena Postol" @elem{1112 @AVW} "dlpostol@gmail.com")
+         (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu")
 	 (list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
          (list "Fikko Soenanta" @elem{1112 @AVW} "fikko007@gmail.com")
          (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu"))]
@@ -109,7 +109,7 @@ subject to change until the start of the semester.
 
 @section[#:style 'unnumbered]{Piazza}
 
-All announcements will be made on @link["http://piazza.com/umd/fall2017/cmsc131a"]{Piazza}.  Please sign-up at the start of the semester.
+All announcements will be made on @link["http://piazza.com/umd/fall2018/cmsc131a"]{Piazza}.  Please sign-up at the start of the semester.
 
 Emergency announcement such as last-minute class cancelations (which
 should not happen often), will also be announced via the university
