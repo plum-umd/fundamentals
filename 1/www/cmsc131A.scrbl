@@ -90,7 +90,7 @@ subject to change until the start of the semester.
 @tabular[#:style 'boxed
          #:sep @hspace[1]
 	 #:row-properties '(top)
-		 (list (list @bold{Location} @elem{1115 @CSI})
+		 (list (list @bold{Location} @elem{3117 @CSI})
 	       (list @bold{Time} @elem{MWF 11:00am--11:50am})
 	       (list @bold{Midterm 1} @elem{@m1-date, in class})
 	       (list @bold{Midterm 2} @elem{@m2-date, in class})
