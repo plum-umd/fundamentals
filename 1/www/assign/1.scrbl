@@ -39,7 +39,7 @@ Language".}
 
 @item{Start using the @racketmodname[2htdp/image] library, as
 described in the
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_prologue.html"]{Prologue}
+@link["https://htdp.org/2018-01-06/Book/part_prologue.html"]{Prologue}
 of the book. Read all the way to where images are discussed!}
 
 @item{Using this library, create a program that when you hit the "Run"

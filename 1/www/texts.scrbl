@@ -6,7 +6,7 @@
 
 @itemlist[
 
-@item{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/index.html"]{How
+@item{@link["https://htdp.org/2018-01-06/Book/index.html"]{How
 to Design Programs, Second Edition (On-line Draft)} by Felleisen,
 Findler, Flatt, Krishnamurthi.  MIT Press.
 

@@ -23,7 +23,7 @@ will only grade the files named in the skeleton}.
 
 @(define readings
   @elem{Chapters 14, 15, and 16 of
-     @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part III}})
+     @link["https://htdp.org/2018-01-06/Book/part_three.html"]{Part III}})
 
 Make sure you have read and studied @readings of HtDP2e.
 
@@ -33,7 +33,7 @@ Edit the file @tt{abs.rkt} for this part of the assignment. Add your
 information to the standard file header at the top of the file.
 
 Complete exercises 250--255 from
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{HtDP2e
+@link["https://htdp.org/2018-01-06/Book/part_three.html"]{HtDP2e
 Part 3}.
 
 

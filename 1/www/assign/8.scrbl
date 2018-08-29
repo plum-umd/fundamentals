@@ -20,9 +20,9 @@ receive full credit.
 
 @(define readings
   @elem{all of
-    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_three.html"]{Part III} 
+    @link["https://htdp.org/2018-01-06/Book/part_three.html"]{Part III} 
     and through section 19.2 of 
-    @link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{Part IV}})
+    @link["https://htdp.org/2018-01-06/Book/part_four.html"]{Part IV}})
 
 Make sure you have read @readings of HtDP2e.
 
@@ -33,7 +33,7 @@ assignment. Add your information to the standard file header at the
 top of the file.
 
 Complete exercises 310--315 from
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_four.html"]{HtDP2e
+@link["https://htdp.org/2018-01-06/Book/part_four.html"]{HtDP2e
 Part IV}.  (Use the function name @tt{forest-average-age} in exercise 315 to
 avoid conflicting with @tt{average-age} in 311.)
 

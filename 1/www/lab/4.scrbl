@@ -22,7 +22,7 @@ Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 In your previous labs we've asked you to @bold{define} various functions. From
 now on, we're going to ask you to @bold{design} a function. You must follow the
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_preface.html"]{design
+@link["https://htdp.org/2018-01-06/Book/part_preface.html"]{design
 recipe} to @bold{design} a function.
 
 Before you begin any implementation, you should have written down any relevant

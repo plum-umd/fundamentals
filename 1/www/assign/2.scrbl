@@ -17,7 +17,7 @@ partner from lab 1.  (Partner assignments are listed on @|Piazza|.)
 @section[#:tag "assign2:htdp"]{HtDP exercises}
 
 Complete HtDP exercises
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html#%28counter._%28exercise._fun2%29%29"]{13}, 14, and 18--20.
+@link["https://htdp.org/2018-01-06/Book/part_one.html#%28counter._%28exercise._fun2%29%29"]{13}, 14, and 18--20.
 
 @section[#:tag "assign2:qwerty"]{Render string}
 

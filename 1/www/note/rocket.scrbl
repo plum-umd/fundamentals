@@ -4,7 +4,7 @@
 @title[#:style '(unnumbered non-toc) #:tag "rocket"]{Landing a RKT in BSL}
 
 We're trying to land a rocket (@tt{RKT}) safely on the ground. (See
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_prologue.html"]{HtDP2e's
+@link["https://htdp.org/2018-01-06/Book/part_prologue.html"]{HtDP2e's
 prologue} for the original treatment.) We're doing that with
 @tt{2htdp/{image,universe}} in the Beginning Student Language (BSL).
 

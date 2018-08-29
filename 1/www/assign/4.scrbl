@@ -16,11 +16,11 @@ aspect much more severely from now on.
 
 @(define readings
   @elem{@emph{all} of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html"]{Part
+@link["https://htdp.org/2018-01-06/Book/part_one.html"]{Part
 I}})
 
 Make sure you have read and studied @emph{all} of
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/part_one.html"]{Part
+@link["https://htdp.org/2018-01-06/Book/part_one.html"]{Part
 I} of HtDP2e.
 
 @section[#:tag "assign4:editor"]{Graphical text editor}
@@ -29,7 +29,7 @@ Create a file @tt{editor.rkt} for this part of the assignment.  Use
 the standard file header at the top of the file.
 
 Complete exercises 83--87 from
-@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/"]{HtDP2e}.
+@link["https://htdp.org/2018-01-06/Book/"]{HtDP2e}.
 
 @section[#:tag "assign4:chip"]{Chip the Cheap Sheep Cashes Out}
 
