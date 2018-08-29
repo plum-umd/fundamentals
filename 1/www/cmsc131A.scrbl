@@ -83,7 +83,7 @@ subject to change until the start of the semester.
          (list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
          (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu")
 	 (list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
-         (list "Fikko Soenanta" @elem{1112 @AVW} "fikko007@gmail.com")
+         (list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu")
          (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu"))]
 
 
