@@ -7,9 +7,9 @@
 @title[#:style 'unnumbered #:tag "assign1"]{Assignment 1: Draw an image in DrRacket}
 
 
-@bold{Due}: Friday, September 1, 11:59:59 PM EST.
+@bold{Due}: Wednesday, September 5, 11:59:59 PM EST.
 
-@(define @Piazza @link["http://piazza.com/umd/fall2017/cmsc131a"]{Piazza})
+@(define @Piazza @link["http://piazza.com/umd/fall2018/cmsc131a"]{Piazza})
 
 @section[#:style 'unnumbered #:tag "assign1:piazza"]{Sign up for Piazza}
 
