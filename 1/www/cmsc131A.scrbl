@@ -78,13 +78,14 @@ subject to change until the start of the semester.
 	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu")
          (list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu")
          (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu")
-         (list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
-	 (list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
-         (list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
+         ;(list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
+	 ;(list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
+         ;(list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
          (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu")
-	 (list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
+	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
          (list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu")
-         (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu"))]
+         ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
+         (list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu"))]
 
 
 @tabular[#:style 'boxed
