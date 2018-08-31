@@ -75,8 +75,8 @@ subject to change until the start of the semester.
          #:row-properties '(bottom-border ())
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}} @elem{@bold{Hours}})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu" "1-3PM Mon")
-         (list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu" "3-5PM Wed")
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu" "3:30-5:30PM Mon")
+         (list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu" "10-11AM Mon, Wed")
          (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu" "1-3PM Fri")
          ;(list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
 	 ;(list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
@@ -85,7 +85,7 @@ subject to change until the start of the semester.
 	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
          (list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu" "10AM-12PM Tues")
          ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
-         (list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "3-5PM Mon"))]
+         (list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
 
 
 @tabular[#:style 'boxed
