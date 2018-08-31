@@ -18,6 +18,10 @@ First lecture is postponed until Wednesday.
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=707d5e4f-421b-44bf-bc66-a94b0149df8b"]
 
+@section{August 31, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0852876b-3d8c-47bf-bc50-a94d011efcbb"]
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
