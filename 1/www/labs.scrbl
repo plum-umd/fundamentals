@@ -8,6 +8,7 @@ in lectures with helpful assistants around.
 @local-table-of-contents[#:style 'immediate-only]
 
 @include-section{lab/1.scrbl}
+@;{
 @include-section{lab/2.scrbl}
 @include-section{lab/3.scrbl}
 @include-section{lab/4.scrbl}
@@ -35,3 +36,4 @@ in lectures with helpful assistants around.
 @include-section{lab/26.scrbl}
 @include-section{lab/27.scrbl}
 @include-section{lab/28.scrbl}
+}

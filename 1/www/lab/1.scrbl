@@ -26,9 +26,11 @@ on lab attendance.
 
 @section[#:tag "lab1:ide"]{Meet DrRacket}
 
-DrRacket is the program you'll use to design and run your programs.
-@link["https://download.racket-lang.org"]{Download}, install, and run DrRacket
-to get started.
+You should already have DrRacket installed on your computer, but now
+is the chance to get help (or catch up) if you don't yet.  DrRacket is
+the program you'll use to design and run your programs.
+@link["https://download.racket-lang.org"]{Download}, install, and run
+DrRacket to get started.
 
 Help your partner install it on their machine if you're done first. Then, pick
 the first @bold{Head} and @bold{Hands} and get continue on only one machine.
@@ -48,7 +50,7 @@ the BSL}. (Hint: also check the Help menu.) You should get comfortable searching
 and reading the documentation for anything you need to know about the language
 and its libraries.
 
-Locate the @italic{definitions window} and the @italic{interactions window}
+Locate the @italic{definitions window} and the @italic{interactions window}.
 
 The @italic{interactions window} lets you quickly make simple calculations. You
 can type in some expression and hit <Enter> to run it. Test out a few
@@ -120,3 +122,16 @@ if you don't know what functions to use to, for example, make a
 @larger{@bold{Ex 5}}: Define a function @tt{in-a-frame} that given a string
 color (like "red", "blue", "green") places Chip on a frame of that
 color.
+
+
+@section[#:tag "lab1:submit"]{Submit as a pair}
+
+Save your program as @tt{lab1.rkt}.  Using a web browser, submit this
+file on @link["https://submit.cs.umd.edu"]{submit.cs.umd.edu} (you will need to use your university
+Directory ID to log in).  Only one partner needs to submit and should
+select the name of their partner.
+
+If you have trouble submitting through the submit server, be sure to
+talk with TAs.  You will follow the same process for submitting
+assignment 1.  We recommend you use lab time to submit assignment 1 if
+you can.
