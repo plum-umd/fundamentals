@@ -22,6 +22,23 @@ First lecture is postponed until Wednesday.
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0852876b-3d8c-47bf-bc50-a94d011efcbb"]
 
+@section{September 5, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2767ef87-0395-4410-90ba-a952010818bd"]
+
+
+Here is the code I asked you to explore for Friday:
+
+@racketblock[
+(define (tax i)
+  (cond [(and (> i 0) (<= i 100000)) (* .1 i)]
+        [(and (> i 100001) (<= i 1000000)) (* .2 i)]
+        [(>= i 1000001) (* .02 i)]))
+
+(tax 100)
+(tax 2000000)
+]
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
