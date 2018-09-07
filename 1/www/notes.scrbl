@@ -39,6 +39,11 @@ Here is the code I asked you to explore for Friday:
 (tax 2000000)
 ]
 
+@section{September 7, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b703ca89-ac2d-4a61-a0f4-a9540115686f"]
+
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
