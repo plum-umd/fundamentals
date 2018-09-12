@@ -31,31 +31,43 @@ degrees Celsius) and returns the same three strings as in Ex 1 for the
 appropriate temperature ranges.
 
 
-@section[#:style 'unnumbered #:tag "lab3:chip"]{Chip the Cheap Sheep}
+@section[#:style 'unnumbered #:tag "lab3:chip"]{Traffic Control}
 
 Swap @bold{Head} and @bold{Hands}.
 
-Meet Chip! Chip likes to run.
+You've been hired by UMD's Department of Transportation Services to
+build their next generation of traffic lights, which work basically
+the same as all the existing traffic lights: they go from red to green
+to yellow.  DOTS has specified that traffic lights should display red
+for 5 seconds, then green for 3 seconds, then yellow for 2 seconds
+(drivers better stay alert!).
 
-@centered{@image["img/chip0.png"]{(Chip's 0th image is missing)}0
-          @image["img/chip1.png"]{(Chip's 1st image is missing)}1
-          @image["img/chip2.png"]{(Chip's 2nd image is missing)}2
-          @image["img/chip3.png"]{(Chip's 3rd image is missing)}3}
+Your job is to create a traffic light simulator using the
+@racket[animate] function.  Recall that @racket[animate] uses a frame
+rate of 28 frames per second.  The end result should look like this
+(visual embellishments are fine):
 
-@larger{@bold{Ex 4}}: Define a function @tt{which-chip} that, given a number
-between 0 and 3, returns the properly indexed image above.
+@centered{@image["img/stop-light.gif"]{(Stop-light animation is missing)}}
 
-@larger{@bold{Ex 5}}: Define a function @tt{time->chip} that, given any
-non-negative number, returns an appropriate frame of Chip's stride. For any N,
-N+1 should return the next indexed image (looping back to the first after the
-fourth image is returned). Animate Chip's graceful stride by passing
-@tt{time->chip} to @racket[animate].
+@larger{@bold{Ex 4}}: Define a function @tt{which-light} that, given a
+number between 0 and 280, returns an image of either the red, green,
+or yellow light.  Think of the input to this function as the amount of
+time passed in a single traffic light cycle, measured in 1/28ths of a
+second.  So if given 28, the function should respond with the
+appropriate light for being 1 second in to the cycle.  If given 224,
+it should produce the light appropriate for 8 seconds in to the cycle.
+
+@larger{@bold{Ex 5}}: Define a function @tt{time->light} that, given
+any natural number representing 1/28ths of a second, returns the
+appropriate light for that moment in time.  Animate your light by
+giving @tt{time->light} to @racket[animate].
 
 @colorize["red"]{Hint}: There may be a helpful, built-in
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html#%28def._htdp-beginner._%28%28lib._lang%2Fhtdp-beginner..rkt%29._modulo%29%29"]{numeric
-function} to make @tt{time->chip} easy to implement with @tt{which-chip}.
+function} to make @tt{time->light} easy to implement with @tt{which-light}.
 
-@larger{@bold{Ex 6}}: Define a function @tt{run-chip-run} that, (like
-@tt{time->chip}) given a non-negative number, returns the appropriate frame of
-Chip's stride above, but also moves Chip right-to-left across a 1000px-wide
-scene. Show one of your TAs this animation and you get to leave early!
+@larger{@bold{Ex 6}}: Rework your program to use defined constants for
+any "magic numbers."  It should be possible to change any of the
+following with a single edit to the program: the size of the light,
+the length of the light cycle, and the length of time for any of the
+light colors within the cycle.
