@@ -2,7 +2,7 @@
 
 @title[#:style 'unnumbered #:tag "assign3"]{Assignment 3: Designing and composing functions}
 
-@bold{Due:} Friday, September 15, 11:59:59 PM EST.
+@bold{Due:} Wednesday, September 19, 11:59:59 PM EST.
 
 The following should be completed in cooperation with your assigned
 partner from lab 1. (Partner assignments are listed on Piazza.)
