@@ -48,6 +48,9 @@ Here is the code I asked you to explore for Friday:
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c8bbc196-d3b5-47e7-9cab-a9570119546f"]
 
 
+@section{September 12, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=96c35629-abb2-4bd6-9d9b-a959010963b6"]
 
 @;{
 
