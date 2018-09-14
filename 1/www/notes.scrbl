@@ -1,6 +1,7 @@
 #lang scribble/manual
 @(require racket/sandbox
           scribble/example
+          (for-label lang/htdp-beginner)
           "vid.rkt")
 
 @title[#:style 'unnumbered]{Notes}
@@ -51,6 +52,61 @@ Here is the code I asked you to explore for Friday:
 @section{September 12, 2018}
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=96c35629-abb2-4bd6-9d9b-a959010963b6"]
+
+@section{September 14, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b72a7c3d-5f6f-4d8b-a9a7-a95b010984b4"]
+
+Here is the code I presented in class:
+
+@codeblock[#:keep-lang-line? #f]|{
+#lang htdp/bsl
+;; Authors: dvanhorn
+;; Purpose: Construct greetings for CMNS Development office letters
+
+;; -----------------------------------------------------------------------------
+;; Data Definitions
+
+;; A Name is a non-empty String
+;; interp: string represents full name of person
+(define BH "Bob Harper")
+(define AAA... (replicate 100 "AAA")) ; a really long name
+
+;; name-template : Name -> ??
+(define (name-template n)
+  (... n ...))
+
+;; -----------------------------------------------------------------------------
+;; Defined Constants
+
+(define NAME-MAX-LENGTH 100) ; [10,100]
+
+;; -----------------------------------------------------------------------------
+;; Functions
+
+;; greeting : Name -> String
+;; Create the greeting for a donor letter
+(check-expect (greeting BH) "Dear Bob Harper,")
+(check-expect (greeting AAA...) "Dear A.,")
+(define (greeting n)
+  (string-append "Dear " (name-truncate n) ","))
+
+;; name-truncate : Name -> String
+;; Truncate long names to first letter and ".", or leave as is.
+(check-expect (name-truncate BH) "Bob Harper")
+(check-expect (name-truncate AAA...) "A.")
+(define (name-truncate n)
+  (cond [(too-long? n) (string-append (string-ith n 0) ".")]
+        [else n]))
+
+;; too-long? : Name -> Boolean
+;; Is the given name too long to fit on a page?
+(check-expect (too-long? BH) #false)
+(check-expect (too-long? AAA...) #true)              
+(define (too-long? n)
+  (> (string-length n) NAME-MAX-LENGTH))
+}|
+
 
 @;{
 
