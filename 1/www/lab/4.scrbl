@@ -109,4 +109,4 @@ circle, and @tt{#false} otherwise.
 posns and two positive integers @tt{w}, @tt{h}. The first posn may be any point,
 while the second represents the center of a rectangle with the width @tt{w} and
 height @tt{h}. The function @tt{in-rectangle?} should return @tt{#true} only if
-the second point is inside the rectangle, and @tt{#false} otherwise.
+the first point is inside the rectangle, and @tt{#false} otherwise.
