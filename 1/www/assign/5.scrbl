@@ -3,7 +3,7 @@
 
 @title[#:style 'unnumbered #:tag "assign5"]{Assignment 5: Many, Many, Many}
 
-@bold{Due:} Friday, October 3, 11:59:59 PM EST.
+@bold{Due:} Wednesday, October 3, 11:59:59 PM EST.
 
 The following should be completed in cooperation with your assigned
 partner from lab 1. (Partner assignments are listed on Piazza.)
