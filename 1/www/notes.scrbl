@@ -124,6 +124,11 @@ Here is the code I presented in class:
 
 @include-section{note/m1-drills.scrbl}
 
+@section{September 24, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a5534e17-e695-4286-9ad6-a9650108f995"]
+
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
