@@ -41,6 +41,7 @@ iterate on the things you got wrong or gave you a difficult time.
 @item{Drills: @secref{m1-drills}}
 @item{Practice exam: @link["m1-practice.pdf"]{practice
 midterm 1} and @link["m1-practice-soln.pdf"]{solution}}
+@item{Past exam: @link["m1-fall2017.pdf"]{2017 midterm 1} and @link["m1-fall2017-soln.pdf"]{solution}}
 ]
 
 @section{Midterm 2}

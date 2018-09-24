@@ -122,6 +122,8 @@ Here is the code I presented in class:
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=19b1637d-8e55-4fdc-9085-a962010770d7"]
 
 
+@include-section{note/m1-drills.scrbl}
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
