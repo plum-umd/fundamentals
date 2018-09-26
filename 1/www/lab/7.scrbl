@@ -97,3 +97,13 @@ Make templates for each of the following data definitions:
 ;; - (make-blue-doll RedDoll)
 )
 
+@larger{@bold{Ex 4}}:
+Design the following functions:
+
+@#reader scribble/comment-reader (racketblock
+;; doll-depth : NestingDoll -> Natural
+;; Count the nesting depth of the given doll
+
+;; blue-depth : RedDoll -> Natural
+;; Count the number of blue dolls within given red doll
+)
