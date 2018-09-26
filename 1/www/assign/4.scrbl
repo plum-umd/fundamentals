@@ -44,3 +44,7 @@ You should create two files: @tt{editor1.rkt} for problems 83--36 and
 @section[#:tag "assign4:submission"]{Project submission}
 
 Submit @tt{editor1.rkt} and @tt{editor2.rkt} directly to the submit server by uploading it.
+
+Note: you must submit both files in a single submission.  You cannot
+submit one file, then submit the other.  We will only see the latter
+and therefore only grade half your work.
