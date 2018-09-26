@@ -13,8 +13,8 @@ in lectures with helpful assistants around.
 @include-section{lab/4.scrbl}
 @include-section{lab/5.scrbl}
 @include-section{lab/6.scrbl}
-@;{
 @include-section{lab/7.scrbl}
+@;{
 @include-section{lab/8.scrbl}
 @include-section{lab/9.scrbl}
 @include-section{lab/10.scrbl}
