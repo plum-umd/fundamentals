@@ -38,7 +38,9 @@ the standard file header at the top of the file.
 Complete exercises 83--87 from
 @link["https://htdp.org/2018-01-06/Book/part_one.html#%28part._sec~3aedit1%29"]{A Graphical Editor} in HtDP.
 
+You should create two files: @tt{editor1.rkt} for problems 83--36 and
+@tt{editor2.rkt} for problem 87.
 
 @section[#:tag "assign4:submission"]{Project submission}
 
-Submit @tt{editor.rkt} directly to the submit server by uploading it.
+Submit @tt{editor1.rkt} and @tt{editor2.rkt} directly to the submit server by uploading it.
