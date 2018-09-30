@@ -25,6 +25,12 @@ program so that Chip turns around as soon as the edge of its image
 touches the boundary (instead of midpoint).  Add a key handler
 function that causes chip to change direction when any key is pressed.
 
+You may use the following images for Chip:
+
+@image{img/chip0.png}
+@image{img/chip1.png}
+@image{img/chip2.png}
+@image{img/chip3.png}
 
 Create a file @tt{chips.rkt} and use the standard file header.  Design
 a variant of the Chip program that has two sheep that start off on
