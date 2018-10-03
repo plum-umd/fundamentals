@@ -85,7 +85,7 @@ subject to change until the start of the semester.
 	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
          (list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu" "10AM-12PM Tues")
          ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
-         (list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
+         #;(list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
 
 
 @tabular[#:style 'boxed
