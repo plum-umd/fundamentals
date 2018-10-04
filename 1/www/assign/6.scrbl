@@ -2,21 +2,18 @@
 @(require scribble/core (for-label lang/htdp-beginner))
 @(provide readings)
 
-@title[#:style 'unnumbered #:tag "assign6"]{Assignment 6: Invasion!}
+@title[#:style 'unnumbered #:tag "assign6"]{Assignment 6: The Lonely Pac-Man}
 
-@bold{Due:} Friday, October 13, 11:59:59 PM EST.
+@bold{Due:} Wednesday, October 10, 11:59:59 PM EST.
 
-The following should be completed in cooperation with your latest assigned
-partner. (Partner assignments are listed on
-@link["https://piazza.com/class/j474gwnsd3619n?cid=43"]{Piazza}.)  You may not
-share code for this assignment with anyone but your partner.
+The following should be completed in cooperation with your NEW
+assigned partner. (Partner assignments are listed on
+@link["https://piazza.com/class/jlc99zv3cp9pk?cid=49"]{Piazza}.)  You
+may not share code for this assignment with anyone but your CURRENT
+partner.
 
 You must use the design recipe and @secref{style} guidelines to
 receive full credit.
-
-We've created an assignment skeleton @link["assign6.zip"]{assign6.zip} for you
-to edit, please download the archive and edit the files you find inside. You
-@emph{must not} change any file names.
 
 @section[#:tag "assign6:prep"]{Preparation}
 
@@ -29,86 +26,97 @@ Make sure you have read and studied @readings of HtDP2e.
 
 @section[#:tag "assign6:lists"]{Finger Exercises with Lists}
 
-Edit the file @tt{list.rkt} for this part of the assignment. Add your
-information to the standard file header at the top of the file.
+Create a file @tt{list.rkt} for this part of the assignment.  Add your
+information to a standard file header at the top of the file.
 
 Complete exercises 143--148 from
 @link["https://htdp.org/2018-01-06/Book/part_two.html"]{HtDP2e Part
 2}.
 
 
-@section[#:tag "assign6:shots"]{The Invader Shoots Back}
+@section[#:tag "assign6:lonely-pac"]{The Lonely Pac-Man}
 
-Copy your code from the @tt{invader-shots.rkt} in assignment 5 into the provided
-file @tt{invaders-shoot.rkt} for this part of the assignment. Edit the standard
-file header at the top of the file. @bold{Submit only @tt{invaders-shoot.rkt}
-for this part of the assignment, not the original @tt{invader-shots.rkt}.}
-
-The fight between your base and the invader is a bit one-sided at this
-point. It's far more sporting to let the invader shoot back.
-
-Extend your program such that the invader shoots down toward the base.
-
-@itemlist[
-  @item{The invader shoots at a regular interval every N ticks of the
-        clock. (Note: if N is small, several shots may be present on the screen
-        at once.)}
-  @item{Each shot that hits the base costs 1 life.}
-  @item{The base starts with 3 lives.}
-  @item{The game ends when the base has no lives yet.}
-]
-
-Some questions to consider:
-@itemlist[
-  @item{How does the game state that @racket[big-bang] operates on need
-        to change so the invader can fire arbitrarily many shots?}
-  @item{Which functions operate on the game state? How do they need to change to
-        account for an invader that fires back?}
-  @item{@bold{Hint}: Create a TODO list of all functions that need to
-        change, then start working your way through that list.}
-]
+Create a file @tt{pac0.rkt} for this part of the assignment.  Add your
+information to a standard file header at the top of the file.
 
 
-@section[#:tag "assign6:invaders"]{Many Invaders}
+In this assignment, we will create a first, very simplified version of
+the venerable arcade classic
+@link["https://en.wikipedia.org/wiki/Pac-Man"]{Pac-Man}.
 
-Continue this section in the same file as the last section
-(@tt{invaders-shoot.rkt}).
+In this simplified version of the game, there is a single Pac-Man,
+which can be rendered as a yellow circle, that navigates up, down,
+left, and right, on a rectangular area (the board).  On this area are
+some number of pellets (black, smaller circles).  When Pac-Man comes
+into contact with a pellet, it is consumed.  When all the pellets are
+consumed, the level starts over with new pellets on the screen.  The
+game continues until the player the "Esc" key, which ends the game and
+displays the final score, which is the total number of pellets
+consumed.
 
-Our TAs complain that the single-invader version of the game will be too easy
-for them. Modify your game to support a single row of an arbitrary number of
-invaders that can all shoot at the base.
+There are no ghost, no maze or obstacles, no warps, no power pellets,
+fruit, lives, etc., as in the full version of Pac-Man.
 
-@bold{Note:}
-@itemlist[
+The Pac-Man and pellets are arranged on a grid.  The width and height
+of the playing area should be easy to change by changing the number of
+grid units for the dimensions of the board.  It should be easy to
+scale the size of the whole game by changing the size of grid units.
 
-  @item{It should be easy to modify the program to change the number of invaders
-        in the row.}
+Pac-Man moves at a fixed speed.  Pac-Man, however, does not move a
+full grid unit for every unit of time.  This means that although
+Pac-Man moves on a grid, it's possible to be "in-between" grid
+segments in one of it's dimensions.  For example, suppose Pac-Man is
+at grid-coordinate (1,1) and moving right:
 
-  @item{The whole row should move horizontally along the scene. Once the row
-        meets the far left or the far right of the screen, the entire row should move
-        down.}
+@image{img/pac-grid0.png}
 
-  @item{Knocking off the left-most or right-most invader doesn't change how far
-        left and right the row moves.}
+At the next moment in time, Pac-Man could be between (1,1) and (2,1):
 
-  @item{Each invader can shoot at its own regular interval. These intervals should
-        vary invader-to-invader to make the game interesting.}
+@image{img/pac-grid1.png}
 
-]
+Let's say the player now press the down arrow key.  Pac-Man continues
+moving rightward and does not start moving down until after reaching
+(2,1).  So from the state shown above, Pac-Man continues moving right
+until reaching (2,1):
 
-Some questions to consider:
-@itemlist[
-  @item{How does the game state that @racket[big-bang] operates on need
-        to change so the invader can fire arbitrarily many shots?}
-  @item{Which functions operate on the game state? How do they need to change to
-        account for multiple invaders rather than a single row?}
-]
+@image{img/pac-grid2.png}
+
+Then (assuming the user hasn't pressed additional arrow keys), begins
+moving downward:
+
+@image{img/pac-grid3.png}
+
+This means that you will have to keep track of the following
+information about Pac-Man: it's current direction and the direction
+that will become it's current direction the next time it is
+grid-aligned.
+
+It's important that the speed of Pac-Man (in pixels per unit of time)
+evenly divides the size of the grid units.  So for example, you might
+have Pac-Man move 10 pixels per unit of time with a grid size of 40
+pixels.  This means Pac-Man is "grid-aligned" in both dimensions after
+travelling in any direction for four ticks.  If, on the other hand,
+you don't do this and, e.g., have Pac-Man move 12 pixels per unit of
+time, Pac-Man will skip over some grid coordinates and it will
+significantly complicate your code and/or cause weird effects in the
+game.
+
+Pac-Man cannot go beyond the boundaries of the board.
+
+The game should start with some number of pellets on the board.  It
+should be 2 or more, but otherwise is up to you.  When the level ends
+(the pellets are consumed), you can start over with the pellets in the
+same or different configuration; that's up to you.  But it should be
+possible to easily change the number and position of pellets by
+editing the program text.
+
+
 
 
 @section[#:tag "assign6:submission"]{Project submission}
 
-You should submit both of the provided files: @tt{list.rkt} and
-@tt{invaders-shoot.rkt}.
+You should submit both files: @tt{list.rkt} and
+@tt{pac0.rkt}.
 
 Submit your files directly to the submit server by uploading them.
 Select each of these files individually using the ``Browse'' button.
