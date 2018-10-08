@@ -10,7 +10,7 @@ Language}. Require the HtDP2e
 at the top of your definitions: @racketblock[(require 2htdp/image)]
 
 Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
+@link["https://cs.umd.edu/class/fall2018/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
 Make sure you save and submit your definitions, we will be extending this

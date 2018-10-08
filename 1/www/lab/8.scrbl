@@ -8,7 +8,7 @@ Implement this lab with the
 Language}.
 
 Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
+@link["https://cs.umd.edu/class/fall2018/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
 
@@ -22,7 +22,7 @@ tonight).
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab9:los"]{A List of Strings}
+@section[#:style 'unnumbered #:tag "lab8:los"]{A List of Strings}
 
 @larger{@bold{Ex 1}}: Create a recursive data definition @tt{ListOfStrings} that
 can hold an arbitrarily many @tt{String}s. You may use a built-in data structure
@@ -46,7 +46,7 @@ definition. The data definition should be written as the answer the question
 is a recursive call to the template made?
 
 
-@section[#:style 'unnumbered #:tag "lab9:maps"]{Working with Many Strings}
+@section[#:style 'unnumbered #:tag "lab8:maps"]{Working with Many Strings}
 
 @larger{@bold{Ex 5}}: Design a function @tt{fake-news} that, given a
 @tt{ListOfStrings}, returns a new @tt{ListOfStrings} where each @tt{String} in
@@ -90,7 +90,7 @@ been replaced with the first letter in that string.
                            (make-los "H" (make-los "w" (make-empty-los))))]
 
 
-@section[#:style 'unnumbered #:tag "lab9:reduce"]{Strings -> Other Things}
+@section[#:style 'unnumbered #:tag "lab8:reduce"]{Strings -> Other Things}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -134,7 +134,7 @@ of the number of characters in all @tt{String}s inside the given
 @tt{ListOfStrings}.
 
 
-@section[#:style 'unnumbered #:tag "lab9:lon"]{Working with Many Numbers}
+@section[#:style 'unnumbered #:tag "lab8:lon"]{Working with Many Numbers}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -190,7 +190,7 @@ even.
 numbers inside the @tt{ListOfNats} are greater than the given @tt{n}.
 
 
-@section[#:style 'unnumbered #:tag "lab9:lon-and-los"]{Strings -> Numbers -> Strings}
+@section[#:style 'unnumbered #:tag "lab8:lon-and-los"]{Strings -> Numbers -> Strings}
 
 Swap @bold{Head} and @bold{Hands}!
 

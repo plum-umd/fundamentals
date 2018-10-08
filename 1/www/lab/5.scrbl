@@ -12,7 +12,7 @@ libraries at the top of your definitions: @racketblock[(require 2htdp/image)
 (require 2htdp/universe)]
 
 Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
+@link["https://cs.umd.edu/class/fall2018/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
