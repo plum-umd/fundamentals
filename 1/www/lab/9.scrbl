@@ -61,7 +61,7 @@ with the elements @racket[(cons 1 '())], @racket['()], and 4.
 Swap @bold{Head} and @bold{Hands}!
 
 @larger{@bold{Ex 10}}: Starting from the code
-(@link["code/snake.0.rkt"]{@tt{snake.0.rkt}}) we designed in class,
+(@link["snake.0.rkt"]{@tt{snake.0.rkt}}) we designed in class,
 finish these simple version of the Snake game.
 
 @larger{@bold{Ex 11}}: Refine the Snake game to use an arbitrary
