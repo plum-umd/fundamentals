@@ -332,17 +332,6 @@
 (define (new-egg e)
   (make-posn (random WIDTH) (random HEIGHT)))
 
-;; egg? : Any -> Boolean
-;; Is the given value an egg?
-(check-expect (egg? (make-posn 0 0)) #true)
-(check-expect (egg? (make-posn "a" "b")) #false)
-(define (egg? x)
-  (and (posn? x)
-       (integer? (posn-x x))
-       (integer? (posn-y x))
-       (<= 0 (posn-x x) (add1 WIDTH))
-       (<= 0 (posn-y x) (add1 HEIGHT))))       
-
 
 ;; -----------------------------------------------------------------------------
 ;; Loc functions
