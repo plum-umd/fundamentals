@@ -132,9 +132,16 @@ been duplicated.
 
 @#reader scribble/comment-reader (racketblock
 (check-expect (duplicate '()) '())
-(check-expect (duplicate '(1 2 3)) '(1 1 2 2 3 3))
-(check-expect (duplicate '((1 2 3) () (4) (5 6))) 
-              '((1 2 3) (1 2 3) () () (4) (4) (5 6) (5 6)))
+(check-expect (duplicate (list 1 2 3)) (list 1 1 2 2 3 3))
+(check-expect (duplicate (list (list 1 2 3) '() (list 4) (list 5 6)))
+              (list (list 1 2 3) 
+                    (list 1 2 3) 
+                    '() 
+                    '() 
+                    (list 4) 
+                    (list 4) 
+                    (list 5 6) 
+                    (list 5 6)))
 )
 
 @larger{@bold{Ex 19}}: Design a function @tt{prepend-all}, that given a list of
@@ -143,6 +150,6 @@ elements in the original has had @tt{delim} placed before it.
 
 @#reader scribble/comment-reader (racketblock
 (check-expect (prepend-all '() "\n") '())
-(check-expect (prepend-all '("foo" "bar") " ") '(" " "foo" " " "bar"))
-(check-expect (prepend-all '("a1" "a2" "a3") ",") '("," "a1" "," "a2" "," "a3"))
+(check-expect (prepend-all (list "foo" "bar") " ") (list " " "foo" " " "bar"))
+(check-expect (prepend-all (list "a1" "a2" "a3") ",") (list "," "a1" "," "a2" "," "a3"))
 )
