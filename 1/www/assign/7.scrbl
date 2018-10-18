@@ -2,22 +2,17 @@
 @(require scribble/core (for-label lang/htdp-beginner))
 @(provide readings)
 
-@title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: Abstract Invasion!}
+@title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: The Lonely, Obstructed PacMan}
 
-@bold{Due:} Monday, October 23, 11:59:59 PM EST. (@bold{extended!})
+@bold{Due:} Monday, October 24, 11:59:59 PM EST.
 
 The following should be completed in cooperation with your latest assigned
 partner. (Partner assignments are listed on
-@link["https://piazza.com/class/j474gwnsd3619n?cid=43"]{Piazza}.)  You may not
+@link["https://piazza.com/class/jlc99zv3cp9pk?cid=49"]{Piazza}.)  You may not
 share code for this assignment with anyone but your partner.
 
 You must use the design recipe and @secref{style} guidelines to
 receive full credit.
-
-We've created an assignment skeleton @link["assign7.zip"]{assign7.zip}
-for you to edit, please download the archive and edit the files you
-find inside. You @emph{must not} change any file names -- @bold{we
-will only grade the files named in the skeleton}.
 
 @section[#:tag "assign7:prep"]{Preparation}
 
@@ -37,55 +32,62 @@ Complete exercises 250--255 from
 Part 3}.
 
 
-@section[#:tag "assign7:shots"]{Abstract invader}
+@section[#:tag "assign7:pacman-abs"]{Lonely PacMan with Abstractions}
 
-Copy your code from the @tt{invaders-shoot.rkt} in assignment 6 into the provided
-file @tt{invaders-abs.rkt} for this part of the assignment. Edit the standard
-file header at the top of the file. @bold{Submit only @tt{invaders-abs.rkt}
-for this part of the assignment, not the original @tt{invader-shoot.rkt}.}
-
-@bold{Update: you may start from a canonical solution to assignment 6
-if you'd prefer:
-@link["invaders-shoot-dvanhorn-abourg.rkt"]{invaders-shoot-dvanhorn-abourg.rkt}.}
-
+Revise the Lonely PacMan game from assignment 6 to add obstacles.  You
+may either start from your assignment 6 solution or a canonical
+solution (@link["pac0-soln.rkt"]{@tt{pac0-soln.rkt}}).  Rename your
+file to @tt{pac1.rkt}.
 
 Keeping exactly the same functionality as in assignment 6, rewrite
 your program in ISL using the list abstraction functions we've seen so
 far, such as @tt{filter}, @tt{map}, @tt{foldr}, @tt{andmap}, and
-@tt{ormap}.
+@tt{ormap}, wherever appropriate.
 
+@section[#:tag "assign7:pacman-obs"]{Lonely PacMan with Obstructions}
 
-@section[#:tag "assign7:invaders"]{Many More Invaders}
+Continue this section in the same file as the last section.
 
-Continue this section in the same file as the last section
-(@tt{invaders-abs.rkt}).
+The Lonely PacMan is not so fun.  Revise your program to add
+obstacles.  An obstacle occupies a single grid position and must be
+grid-aligned; prevents pacman from occupying that position.
+Obstacles are centered on grid positions and have a size of 1 square
+grid.  No part of PacMan can occupy any space occupied by an obstacle.
 
-Our TAs still complain that the single-row-of-invaders version of the game is too easy
-for them. Modify your game to support multiple rows of an arbitrary number of
-invaders that can all shoot at the base.
+For example, here is a PacMan at (1,1) and obstacle at (2,1), with the
+grid drawn for demonstrative purposes:
 
-@bold{Note:}
-@itemlist[
+@image{img/pac-obs1.png}
 
-  @item{It should be easy to modify the program to change the number of rows of invaders.}
+In this configuration, if PacMan were moving right, he'd be stuck and
+wouldn't move until his direction was changed.
 
-  @item{Only the bottom row of invaders can shoot at the base.}
+Here's an example with obstacles at (2,1), (0,1), (1,0), and (1,2) and
+PacMan at (1,1).  This configuration totally traps PacMan:
 
-  @item{Once the bottom row has been eliminated, the next row up becomes the bottom (and can start shooting).}
-  
-  @item{Each invader can shoot at its own regular interval. These intervals should
-        vary invader-to-invader to make the game interesting.}
+@image{img/pac-obs2.png}
 
-]
+There can be any number of obstacles in the game and your game should
+be written in such a way that it is easy to revise the game to add &
+remove obstacles.
 
-Your final version should also use list abstraction functions wherever
-appropriate (but you may find it easier to first design the enhanced
-game without them).
+With enough obstacles, you can make mazes that look like the real
+PacMan game.  You don't need to produce mazes like this, but it should
+be easy to set the defined constants in your game to do this:
+
+@image{img/pac-maze1.png}
+
+(If you'd like the data for this maze, you can use
+@link["maze-data.rkt"]{@tt{maze-data.rkt}}.)
+
+Note that all other functionality of the game should remain the same.
+PacMan can't go over the boundaries of the board.  Pressing "escape"
+ends the game and shows the score, etc.
 
 @section[#:tag "assign7:submission"]{Project submission}
 
-You should submit both of the provided files: @tt{abs.rkt} and
-@tt{invaders-abs.rkt}.
+You should submit both of the files: @tt{abs.rkt} and
+@tt{pac1.rkt}.
 
 Submit your files directly to the submit server by uploading them.
 Select each of these files individually using the ``Browse'' button.
