@@ -19,7 +19,7 @@
 ;; A World is one of:
 ;; - a Game
 ;; - a Number
-;; Interp: game representes an ongoing game, number represents final score
+;; Interp: game represents an ongoing game, number represents final score
 #;
 (define (world-template w)
   (cond [(number? w) ...]
