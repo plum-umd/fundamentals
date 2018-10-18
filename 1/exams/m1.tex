@@ -16,7 +16,7 @@
   {\Large {\bf CMSC 131A, Midterm 1}\\
     \censor{{\bf SOLUTION}} \ \\
     \ \\
-    Fall 2017 \ \\
+    Fall 2018 \ \\
   }
 \end{center}
 
@@ -38,11 +38,9 @@ UID: \verb|__________________________________________|
   Question & Points \\ \hline \hline
   1 & 10 \\ \hline
   2 & 10 \\ \hline
-  3 & 10 \\ \hline
+  3 & 15 \\ \hline
   4 & 15 \\ \hline
-  5 & 15 \\ \hline
-  6 & 10 \\ \hline
-  7 & 20 \\ \hline \hline
+  5 & 40 \\ \hline
   Total: & 90\\
   \hline
 \end{tabular}
@@ -95,10 +93,10 @@ parameter), or ``constant'' for replacing a constant with its value.
 
 
 \begin{verbatim}
-(define R 9)
-(define (w z) (= R z))
-(cond [(w 2) 4]
-      [else 9])
+(define Q 1)
+(define (w z) (< (string-length z) 20))
+(w (cond [(= 1 Q) "fred"]
+         [else 9]))
 \end{verbatim}
 
 
@@ -106,17 +104,18 @@ parameter), or ``constant'' for replacing a constant with its value.
 
 SOLUTION:
 
-(cond [(w 2) 4] [else 9])     -->[plug]
-       ^^^^^
-(cond [(= R 2) 4] [else 9])   -->[const]
-          ^
-(cond [(= 9 2) 4] [else 9])   -->[arith]
-       ^^^^^^^
-(cond [#false 4] [else 9])    -->[cond]
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-(cond [else 9])               -->[cond]
-^^^^^^^^^^^^^^^
-9
+(w (cond [(= 1 Q) "fred"] [else 9])) -->[const]
+               ^
+(w (cond [(= 1 1) "fred"] [else 9])) -->[arith]
+          ^^^^^^^
+(w (cond [#true "fred"] [else 9]))   -->[cond]
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(w "fred")                           -->[plug]
+^^^^^^^^^^
+(< (string-length "fred") 20))       -->[arith]
+   ^^^^^^^^^^^^^^^^^^^^^^
+(< 5 20)                             -->[arith]
+#true
 \end{SaveVerbatim}
 
 %\censor{\vspace{-2.5in}}
@@ -133,17 +132,16 @@ function it creates.  For each function, classify it as being either a
 constructor, accessor, or predicate.
 
 \begin{verbatim}
-(define-struct run (time up score))
+(define-struct dr (who strange))
 \end{verbatim}
 
 \begin{SaveVerbatim}{VerbEnv}  
 SOLUTION:
 
-- make-run  : Constructor
-- run-time  : Accessor
-- run-up    : Accessor
-- run-score : Accessor
-- run?      : Predicate
+- make-dr    : Constructor
+- dr-who     : Accessor
+- dr-strange : Accessor
+- dr?        : Predicate
 \end{SaveVerbatim}
 
 %\censor{\vspace{-2.5in}}
@@ -153,29 +151,36 @@ SOLUTION:
 \newpage
 
 \noindent
-{\bf Problem 3 (10 points).}
+{\bf Problem 3 (15 points).}
 %
-The graphical text editor you developed in a recent assignment has
-attracted the interest of investors.  But before they write you a
-check, they want to make sure you can handle fancy operations for
-expert text editor users.  They ask if you can implement a \emph{swap}
-operation, which will swap content to the left of the cursor with the
-content to the right..  To satisfy your potential investors, you
-define the following function for swapping strings at a given
-position:
+You've been hired by the CMNS development office and been given their
+existing software for spamming potential donors.  It contains the following
+data definition:
 \begin{verbatim}
-;; swap : String Integer -> String
-;; Swap string to the left of i with string to the right.
-;; Assume (<= 0 i (string-length s)).
-(check-expect (swap "" 0) "")
-(check-expect (swap "ab" 1) "ba")
-(check-expect (swap "bannana" 3) "nanaban")
-(define (swap s i) ...)
+;; A Person is a (make-name Title String String)
+;; Interp: a person's title and first and last names.
+(define-struct name (title first last))
+
+;; A Title is one of:
+;; - "r"      Interp: Mr.
+;; - "s"              Ms.
+;; - "d"              Dr.
 \end{verbatim}
 
 \noindent
-Give a correct definition for \verb|swap|.  (You only need to
-provide code, not the design steps.)
+Finish the design of the following function for creating letter
+openings:
+\begin{verbatim}
+;; dear : Person -> String
+;; Create a letter opening for the given person.
+(check-expect (dear (make-name "d" "Minnie" "Maisy"))
+              "Dear Dr. Maisy:")
+(check-expect (dear (make-name "r" "Fred" "Rogers"))
+              "Dear Mr. Rogers:")
+(check-expect (dear (make-name "s" "Miriam" "Maisel"))
+              "Dear Ms. Maisel:")
+\end{verbatim}
+
 
 \begin{SaveVerbatim}{VerbEnv}
 
@@ -190,58 +195,14 @@ SOLUTION:
 \noindent
 \BUseVerbatim{VerbEnv}}
 
-
-
-\newpage 
-\noindent
-{\bf Problem 4 (15 points).}
-%
-Use the following data definition for representing names:
-\begin{verbatim}
-;; A Name is a (make-name String String)
-;; Interp: a person's full (first and last) name.
-;; Both strings must contain at least one letter.
-(define-struct name (first last))
-\end{verbatim}
-
-\noindent
-Write a program, \verb|name-width|, that determines the width needed
-to print someone's name on a letter using a mono-typed font (meaning
-each letter has the same width).  The program can calculate this width
-based on the length of the person's first and last name, plus the
-width of a space to go in between.  Assume each letter is 10 pixels
-wide.  For example, the name Bob Harper requires 100 pixels; the name
-Bo Jack requires 70 pixels.  You may start from the following header:
-
-\begin{verbatim}
-;; name-width : Name -> Number
-;; Computes width needed to print name in mono-type font
-\end{verbatim}
-
-\begin{SaveVerbatim}{VerbEnv}
-
-SOLUTION:
-  
-(check-expect (name-width (make-name "Bob" "Harper")) 100)
-(check-expect (name-width (make-name "Bo" "Jack")) 70)
-(define (name-width n)
-  (* 10 (+ 1 (string-length (name-first n))
-             (string-length (name-last n)))))
-\end{SaveVerbatim}
-
-\censor{%
-\noindent
-\BUseVerbatim{VerbEnv}}
-
-
 \newpage
 \noindent
-{\bf Problem 5 (15 points).}  
+{\bf Problem 4 (15 points).}  
 %
-Design a program that takes a list of numbers and produces the count
-of non-negative numbers in the list.  For example, if the list
-contains 3, 4, -1, 0, -2, and 5, the count of non-negative numbers is
-4.  You may use the following data definition:
+Design a program that takes a list of numbers and produces the sum of
+positive numbers in the list.  For example, if the list contains 3, 4,
+-1, 0, -2, and 5, the sum of positive numbers (3+4+5) is 12.  You may
+use the following data definition:
 
 \begin{verbatim}
 ;; A LoN (list of numbers) is one of:
@@ -276,43 +237,44 @@ SOLUTION:
 \newpage
 
 \noindent
-{\bf Problem 6 (10 points).} You've been hired by the US Department of
-Transportation to design traffic simulation software, which includes
-simulating traffic lights.  Discovering the simple design from 131A is
-insufficient, you come up with the following representation, which
-makes it possible to model not just the color, but also how much
-longer the current light has before changing: 
+{\bf Problem 5 (40 points).} You've been hired by Nintendo to design
+their next blockbuster game: Dots.  It consists of, well, dots: lots
+and lots of dots, each of which occupies a coordinate in space.  You
+come up with the following data definitions for representing a single
+dot and a collection of dots:
 
 \begin{verbatim}
-;; A Light is one of:
-;; - (make-red Natural)
-;; - (make-yellow Natural)
-;; - (make-green Natural)
-;; Interp: color and remaining duration (in ticks) of a light 
-(define-struct red (count))
-(define-struct yellow (count))
-(define-struct green (count))
+;; A Dots is one of:
+;; - empty
+;; - (cons Dot Dots)
+;; Interp: collection of an arbitrary number of dots
+
+;; A Dot is a (make-posn Number Number)
+;; Interp: a dot's position in space
 \end{verbatim}
-(Recall that a \verb|Natural| is a natural number, i.e. a non-negative
-integer.)
 
 \vspace{1em}
 
 \noindent
-{\bf Problem 6(a).} Write a template for \verb|Light| functions.
+{\bf Problem 5(a) [10 points].} Write templates for \verb|Dot| and
+\verb|Dots| functions.
 
 \begin{SaveVerbatim}{VerbEnv}
   
 SOLUTION:
-  
-(define (light-temp l)
-  (cond [(red? l) (... (red-count l) ...)]
-        [(yellow? l) (... (yellow-count l) ...)]
-        [(green? l) (... (green-count l) ...)]
-        
+
+(define (dot-template d)
+  (... (posn-x d)
+       (posn-y d)
+       ...))
+
+(define (dots-template ds)
+  (cond [(empty? ds) ...]
+        [(cons? ds) (... (dot-template (first ds))
+                         (dots-template (rest ds)) ...)]))
 \end{SaveVerbatim}
 
-\vskip 15em
+\vskip 18em
 
 \censor{\vspace{-15em}}
 \censor{%
@@ -320,13 +282,14 @@ SOLUTION:
 
 
 \noindent
-{\bf Problem 6(b).} Write a stub for the following function:
+{\bf Problem 5(b) [10 points].} Write a stub for the following function:
     
 \begin{verbatim}
-;; tock : Light -> Light
-;; Advance the light by one tick of time
-(check-expect (tock (make-red 10)) (make-red 9))
-(check-expect (tock (make-red 0)) (make-green 10))
+;; nw : Dots -> Dots
+;; Move given dots in the northwest direction one unit
+(check-expect (nw empty) empty)
+(check-expect (nw (cons (make-posn 3 4) empty))
+              (cons (make-posn 4 5) empty))
 \end{verbatim}
 
 
@@ -334,7 +297,7 @@ SOLUTION:
   
 SOLUTION:
 
-(define (tock l) (make-red 0))
+(define (nw ds) empty)
         
 \end{SaveVerbatim}
 
@@ -344,43 +307,31 @@ SOLUTION:
 \newpage
 
 \noindent
-{\bf Problem 7 (20 points).}
+{\bf Problem 5(c) [20 points].}
 %
-Over the summer, you take an internship at the University of
-Maryland's Center for Bioinformatics and Computational Biology (CBCB).
-Your first task deals with computing information about \emph{DNA
-  strands}.  A DNA strand is an arbitrarily long sequence of
-\emph{nucleotides}, which are either: C, G, A, or T.  Design a program
-that, given a DNA strand, computes the number of times the G
-nucleotide occurs in it.  For example, if the strand is AGCTTTGA, your
-program should produce 2.
-
+Design two functions: {\tt dot-flip} reflects a given dot over the
+y-axis, for example, $(3,4)$ becomes $(-3,4)$, and {\tt dots-flip}
+reflects a collection of dots over the y-axis.
 \begin{SaveVerbatim}{VerbEnv}
 
 ;; SOLUTION:
   
-;; A Nucleotide is one of:
-;; - "C"
-;; - "G"
-;; - "A"
-;; - "T"
-;; Interp: DNA nucleotide C,G,A,T.
-
-;; A DNA is one of:
-;; - '()
-;; - (cons Nucleotide DNA)
-;; Interp: a DNA strand of nucleotides
-
-;; count-g : DNA -> Natural
-;; Count the number of occurrence of G in given DNA strand
-(check-expect (count-g '()) 0)
-(check-expect (count-g (cons "A" (cons "G" (cons "G" '())))) 2)
-(define (count-g dna)
-  (cond [(empty? dna) 0]
-        [(cons? dna)
-         (+ (if (string=? (first dna) "G") 1 0)
-            (count-g (rest dna)))]))
-
+;; dot-flip : Dot -> Dot
+;; Flip dot over y-axis
+(check-expect (dot-flip (make-posn 3 4)) (make-posn -3 4))
+(define (dot-flip d)
+  (make-posn (- (posn-x d)) (posn-y d)))
+  
+;; dots-flip : Dots -> Dots
+;; Flip dots over y-axis
+(check-expect (dots-flip empty) empty)
+(check-expect (dots-flip (cons (make-posn 3 4) empty))
+              (cons (make-posn -3 4) empty))
+(define (dots-flip ds)
+  (cond [(empty? ds) empty]
+        [(cons? ds) 
+         (cons (dot-flip (first ds))
+               (dots-flip (rest ds)))]))                   
 \end{SaveVerbatim}
 
 \censor{%
