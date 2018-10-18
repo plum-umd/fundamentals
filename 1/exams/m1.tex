@@ -8,7 +8,7 @@
 \setmainfont{Times New Roman}
 
 \censorruleheight=0ex
-%\StopCensoring
+\StopCensoring
 
 \begin{document}
 
@@ -216,16 +216,16 @@ use the following data definition:
 
 SOLUTION:
 
-;; count : LoN -> Number
-;; Count the number of non-negative numbers in list
-(check-expect (count-non-neg '()) 0)
-(check-expect (count-non-neg (list 1 -2 8 0)) 3)
-(define (count-non-neg lon)
+;; sum-pos : LoN -> Number
+;; Count the number of positive numbers in list
+(check-expect (sum-pos '()) 0)
+(check-expect (sum-pos (list 1 -2 8 0)) 9)
+(define (sum-pos lon)
   (cond [(empty? lon) 0]
         [(cons? lon)
          (if (< (first lon) 0)
-             (count-non-neg (rest lon))
-             (add1 (count-non-neg (rest lon))))]))
+             (sum-pos (rest lon))
+             (+ (first lon) (sum-pos (rest lon))))]))
 \end{SaveVerbatim}
 
 \censor{%
