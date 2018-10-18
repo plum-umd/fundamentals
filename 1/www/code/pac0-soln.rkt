@@ -4,6 +4,9 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 
+;; Lonely PacMan
+;; To play: (main 0)
+
 (define (main _)
   (big-bang GAME0
     [on-draw world-draw]
