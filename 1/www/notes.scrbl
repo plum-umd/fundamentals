@@ -166,6 +166,11 @@ Here is the code I presented in class:
 
 @include-section{note/m2-drills.scrbl}
 
+@section{October 19, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=06c11794-fa58-45ca-bdec-a97e011d9ad9"]
+
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
