@@ -4,7 +4,7 @@
 
 @title[#:style 'unnumbered #:tag "assign7"]{Assignment 7: The Lonely, Obstructed PacMan}
 
-@bold{Due:} Monday, October 24, 11:59:59 PM EST.
+@bold{Due:} Wednesday, October 24, 11:59:59 PM EST.
 
 The following should be completed in cooperation with your latest assigned
 partner. (Partner assignments are listed on
