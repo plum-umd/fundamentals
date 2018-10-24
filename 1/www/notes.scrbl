@@ -170,6 +170,13 @@ Here is the code I presented in class:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=06c11794-fa58-45ca-bdec-a97e011d9ad9"]
 
+@section{October 22, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=99015ba7-bd11-495d-a36a-a9830107a676"]
+
+@section{October 24, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ad6fd078-3ec8-44d3-8445-a983012e8a01"]
 
 @;{
 
