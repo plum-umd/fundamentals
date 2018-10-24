@@ -1,58 +1,187 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "lab14"]{Lab 14: Cleaning Up the Client}
-
-@section[#:style 'unnumbered #:tag "lab14:survey"]{In the First 5 Minutes}
-
-Please complete @link["https://goo.gl/forms/XYHlP632pKd5DZ4D2"]{this quick
-survey}. None of the instructional staff for the course will see any of the
-individual responses until after final grades have been submitted.
-
-@section[#:style 'unnumbered #:tag "lab14:back"]{Back to the Lab}
+@title[#:style 'unnumbered #:tag "lab14"]{Lab 14: Lists qua Filesystem}
 
 Implement this lab with the
-@link["https://docs.racket-lang.org/htdp-langs/intermediate.html"]{ISL}. Require
-the HtDP2e
-@link["https://docs.racket-lang.org/teachpack/2htdpimage.html"]{image} and
-@link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{universe}
-libraries at the top of your definitions: @racketblock[(require 2htdp/image)
-(require 2htdp/universe)]
+@link["https://docs.racket-lang.org/htdp-langs/intermediate.html"]{Intermediate Student
+Language}.
 
 Make sure you follow
 @link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
-Open your current @tt{ChatRoom} implementation from
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/Labs.html"]{labs} 6-8,
-10-13. Make sure you've completed these labs before you continue with this lab
-and save/submit your definitions. We will be extending this program in future
-labs.
-
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab14:ho"]{Looking Back at Lists}
+@section[#:style 'unnumbered #:tag "lab14:dd"]{A List by Any Other Name}
 
-In class you've been learning about higher-order operations on lists. You've
-seen examples of @racket[filter]s (removing even numbers from lists of numbers,
-removing empty strings from lists of words), @racket[map]s (adding 1 to each
-number in a list, drawing each @emph{ChatClient} in the @emph{ChatRoom}), and
-@racket[foldr]s (getting the sum or product of numbers in a list, turning a list
-of characters into a list of words).
+Directories are a bit like lists with some metadata.
 
-@larger{@bold{Ex 1}}: Looking back over the exercises you've completed in labs
-(since @secref{lab9}), list 3 functions that you've designed that can be
-classified as @racket[filter]s, 3 as @racket[map]s, and 3 as
-@racket[foldr]s. Write your answers in a comment, then discuss with another pair
-in your lab to see if your answers agree.
+@#reader scribble/comment-reader (racketblock
+(define-struct file (name content))
+;; A File is a (make-file String String).
+;; Interp: Represents a file with a name and some arbitrary content.
+;;
+(define-struct dir (name contents))
+;; A Directory is a (make-dir String [Listof FileOrDir])
+;; Interp: Represents a named container for an arbitrary amount of files or
+;;         directories.
+;;
+;; A FileOrDir is one of:
+;; - File
+;; - Directory
+;; Interp: Either a file or directory.
+)
 
-@larger{@bold{Ex 2}}: Rewrite any functions you've found in your @emph{ChatRoom}
-implementation that can be expressed as @racket[filter]s or @racket[map]s as
-a @racket[filter] or a @racket[map].
+@larger{@bold{Ex 1}}: Write down the template for each of @emph{File},
+@emph{Directory}, @emph{FileOrDir}, and @emph{[Listof FileOrDir]}. Be sure to
+reference the @tt{file-template} and the @tt{directory-template} in your
+@tt{file-or-dir-template}.
 
-@larger{@bold{Ex 3}}: Rewrite any functions you've found in your @emph{ChatRoom}
-implementation that cannot be expressed as @racket[filter]s or @racket[map]s,
-but can be expressed as a @racket[foldr] as a @racket[foldr]. What is the key
-difference between these operations and those that can be expressed as
-@racket[filter]s or @racket[map]s?
+@larger{@bold{Ex 2}}: Define example files and directories to represent the
+following filesystem structure:
+@verbatim|{
+/
+ DIR0/
+      FILE0
+ DIR1/
+      FILE1
+      DIR2/
+           FILE2
+           FILE3
+           FILE4
+ DIR3/
+}|
+where FILE0 has the following content:
+@verbatim|{To be, or not to be: that is the question}|
+FILE1 has the following content:
+@verbatim|{This above all: to thine own self be true}|
+FILE2 has the following content:
+@verbatim|{It is a tale told by an idiot, full of sound and fury, signifying nothing.}|
+FILE3 has the following content:
+@verbatim|{Some are born great, some achieve greatness, and some have greatness thrust upon 'em.}|
+and FILE4 has no content at all.
+
+To get you started, here are the examples representing the root directory
+@tt{ROOTDIR}, @tt{DIR3}, @tt{DIR0}, @tt{FILE4}, and @tt{FILE0}:
+
+@#reader scribble/comment-reader (racketblock
+(define FILE4 (make-file "FILE4" ""))
+;; (define FILE3 ...)
+;; (define FILE2 ...)
+;; (define FILE1 ...)
+(define FILE0 (make-file "FILE0" "To be, or not to be: that is the question"))
+
+(define DIR3 (make-dir "DIR3" '()))
+;; (define DIR2 ...)
+;; (define DIR1 ...)
+(define DIR0 (make-dir "DIR0" (list FILE0)))
+(define ROOTDIR (make-dir "" (list DIR0 DIR1 DIR3)))
+)
+
+
+@section[#:style 'unnumbered #:tag "lab14:count"]{Counting Files and Directories}
+
+@larger{@bold{Ex 3}}: Design a function @tt{num-children} that returns the
+number of files or directories found directly inside the given directory.
+
+@#reader scribble/comment-reader (racketblock
+(check-expect (num-children ROOTDIR) 3)
+(check-expect (num-children DIR0) 1)
+(check-expect (num-children DIR3) 0)
+)
+
+
+@larger{@bold{Ex 4}}: Design a function @tt{num-descendents} that returns the
+number of files or directories found at any level inside the given directory.
+
+@#reader scribble/comment-reader (racketblock
+(check-expect (num-descendents ROOTDIR) 9)
+(check-expect (num-descendents DIR0) 1)
+(check-expect (num-descendents DIR1) 5)
+)
+
+
+@section[#:style 'unnumbered #:tag "lab14:find"]{Looking for Files and Directories}
+
+Swap @bold{Head} and @bold{Hands}!
+
+@larger{@bold{Ex 5}}: Design a function @tt{file-exists?} that, given a
+directory and a string @tt{name}, returns @racket[#true] if a file
+with the given @tt{name} exists inside the given directory or any of its
+subdirectories.
+
+@larger{@bold{Ex 6}}: Design a function @tt{dir-exists?} that, given a
+directory and a string @tt{name}, returns @racket[#true] if a directory
+with the given @tt{name} exists inside the given directory or any of its
+subdirectories.
+
+@larger{@bold{Ex 7}}: Design a function @tt{file-or-dir-exists?} that, given a
+directory and a string @tt{name}, returns @racket[#true] if a file or directory
+with the given @tt{name} exists inside the given directory or any of its
+subdirectories.
+
+
+@section[#:style 'unnumbered #:tag "lab14:list"]{Listing Files and Directories}
+
+@larger{@bold{Ex 8}}: Design a function @tt{all-file-names} that returns a list
+of file names found inside the given directory and any of its
+subdirectories. The order in which the file names are returned is not
+important.
+
+@larger{@bold{Ex 9}}: Design a function @tt{all-dir-names} that returns a list
+of directory names found inside the given directory and any of its
+subdirectories. The order in which the directory names are returned is not
+important.
+
+@larger{@bold{Ex 10}}: Design a function @tt{all-names} that returns a list of
+all file or directory names found inside the given directory and any of its
+subdirectories. The order in which the file or directory names are returned is
+not important.
+
+
+@section[#:style 'unnumbered #:tag "lab14:look"]{Looking at Files in Directories}
+
+Swap @bold{Head} and @bold{Hands}!
+
+@larger{@bold{Ex 11}}: Design a function @tt{file-size} that returns the number
+of characters inside the content of the given file.
+
+@#reader scribble/comment-reader (racketblock
+(check-expect (file-size FILE4) 0)
+(check-expect (file-size FILE0) 41)
+(check-expect (file-size (make-file "foo" "foo!")) 4)
+)
+
+@larger{@bold{Ex 12}}: Design a function @tt{dir-size} that returns the sum of
+the sizes of all files inside the given directory and its subdirectories.
+
+
+@section[#:style 'unnumbered #:tag "lab14:abs"]{Bonus: Abstract Operations on
+Files in Directories}
+
+These are a bit trickier, but if you follow your templates you shouldn't have
+too much of a problem.
+
+@larger{@bold{Ex 13}}: Design a function @tt{map-files : [File -> X] Directory
+-> [Listof X]} that, given a function @tt{file->x} and a directory, returns a
+list containing the results of applying @tt{file->x} to each file in the given
+directory or any of its subdirectories.
+
+@larger{@bold{Ex 14}}: Design a function @tt{filter-files : [File -> Boolean]
+Directory -> [Listof File]} that, given a function @tt{test?} and a directory,
+returns a list all files in the given directory and any of its subdirectories
+for which @tt{test?} applied to that file is @racket[#true].
+
+@larger{@bold{Ex 15}}: Design a function @tt{fold-files : [File X -> X] X
+Directory -> [Listof X]} that, given a function @tt{combine : File X -> X}, a
+base value @tt{X} and a directory, returns the result of applying @tt{combine} to
+each file and recursive result of @tt{fold-files} in the given directory and any
+of its subdirectories.
+
+@larger{@bold{Ex 16}}: Reimplement the functions @tt{map-files} and
+@tt{filter-files} in terms of @tt{fold-files}.
+
+@colorize["red"]{@bold{Hint}}: If you've never implemented the list operations
+@racket[map] and @racket[filter] in terms of @racket[foldr], do that first!
