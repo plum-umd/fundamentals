@@ -4,14 +4,11 @@
 
 @title[#:style 'unnumbered #:tag "assign8"]{Assignment 8: Trees, forests, and ML}
 
-@bold{Due:} Monday, October 30, 11:59:59 PM EST.
+@bold{Due:} Wednesday, October 31, 11:59:59 PM EST.
 
 The following should be completed in cooperation with your latest
-assigned partner, @bold{which were newly assigned on Oct 23}. (Partner
-assignments are listed on
-@link["https://piazza.com/class/j474gwnsd3619n?cid=294"]{Piazza}.)
-You may not share code for this assignment with anyone but your
-partner.
+assigned partner.  You may not share code for this assignment with
+anyone but your partner.
 
 You must use the design recipe and @secref{style} guidelines to
 receive full credit.
