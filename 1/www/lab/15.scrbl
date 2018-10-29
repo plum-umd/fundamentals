@@ -1,20 +1,20 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "lab17"]{Lab 17: Oobleck}
+@title[#:style 'unnumbered #:tag "lab15"]{Lab 15: Oobleck}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate.html"]{Intermediate Student
 Language}.
 
 Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
+@link["https://cs.umd.edu/class/fall2018/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab17:magicians"]{Royal Magicians}
+@section[#:style 'unnumbered #:tag "lab15:magicians"]{Royal Magicians}
 
 @#reader scribble/comment-reader (racketblock
 ;; A Shuffle is one of:
@@ -61,7 +61,7 @@ modified the signature of @tt{muzzle?} to accept @emph{Any} value?
 Well-named predicates help keep functions on @emph{Shuffle}s intelligible.
 
 
-@section[#:style 'unnumbered #:tag "lab17:mantra"]{Search and Destroy}
+@section[#:style 'unnumbered #:tag "lab15:mantra"]{Search and Destroy}
 
 
 @#reader scribble/comment-reader (racketblock
@@ -127,7 +127,7 @@ you can't express by a plain value type of type @emph{X}?
 templates.
 
 
-@section[#:style 'unnumbered #:tag "lab17:assoc"]{Working on @emph{Muzzle}s}
+@section[#:style 'unnumbered #:tag "lab15:assoc"]{Working on @emph{Muzzle}s}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -156,7 +156,7 @@ and a string @tt{key}. If the @emph{Muzzle} contains a @emph{Muzzle} street with
              (check-expect (muzzle-find MUZ2 "bar") MUZ1)]
 
 
-@section[#:style 'unnumbered #:tag "lab17:json"]{Visualizing @emph{Shuffle}s}
+@section[#:style 'unnumbered #:tag "lab15:json"]{Visualizing @emph{Shuffle}s}
 
 Swap @bold{Head} and @bold{Hands}!
 
