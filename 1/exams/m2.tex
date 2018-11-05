@@ -16,7 +16,7 @@
   {\Large {\bf CMSC 131A, Midterm 2}\\
     \censor{{\bf SOLUTION}} \ \\
     \ \\
-    Fall 2017 \ \\
+    Fall 2018 \ \\
   }
 \end{center}
 
@@ -36,13 +36,12 @@ UID: \verb|__________________________________________|
 \begin{tabular}{| c | c |}
   \hline
   Question & Points \\ \hline \hline
-  1 & 15 \\ \hline
-  2 & 12 \\ \hline
-  3 & 20 \\ \hline
-  4 & 15 \\ \hline
-  5 & 15 \\ \hline
-  6 & 20 \\ \hline\hline
-  Total: & 97\\
+  1 & 10 \\ \hline
+  2 & 15 \\ \hline
+  3 & 15 \\ \hline
+  4 & 20 \\ \hline
+  5 & 20 \\ \hline\hline
+  Total: & 80\\
   \hline
 \end{tabular}
 \end{center}
@@ -84,251 +83,256 @@ write \verb|(add1 3)| $\rightarrow$ \verb|4| instead of
 \newpage
 
 \noindent
-{\bf Problem 1 (15 points).}
+{\bf Problem 1 (10 points).}
 %
-Here are some data definition relevant to representing a dictionary,
-which associates words with the their definitions:
-
+Here is a data definition for representing definitions in a
+dictionary:
 \begin{verbatim}
-;; A Dict is one of:
-;; - '()
-;; - (cons (list String String) Dict)
-;; Interp: a collection of definitions where each element is a 
-;; two-element list of a word (first) and its meaning (second).
-
-;; A Result is one of:
-;; - #false
-;; - String
-;; Interp: represents the result of looking up a word in the
-;; dictionary; #false means not found.
+;; A Defn is a (make-defn String String)
+(define-struct defn (word meaning))
+;; Interp: a word and its definition
+;; Example:
+(make-defn "pair" 
+           "a set of two things used together or regarded as a unit")
 \end{verbatim}
 
-\noindent
-Design the following function:
-
+Design the following function for determining whether one definition
+should come before another in a dictionary.  (Hint: you can use the
+function {\tt string<?} to help.)
 \begin{verbatim}
-;; lookup : String Dict -> Result
-;; Lookup the (first) definition of a word in the dictionary,
-;; produces #false if not found
+;; defn<? : Defn Defn -> Boolean
+;; Does the word defined in d1 come before d2, alphabetically?
+(define (defn<? d1 d2) ...)
 \end{verbatim}
+
 
 \begin{SaveVerbatim}{VerbEnv}
 
 SOLUTION:
 
-(check-expect (lookup "a" '()) #false)
-(check-expect (lookup "a" (list (list "a" "b"))) "b")
-(check-expect (lookup "a" (list (list "c" "b") (list "a" "d"))) "d")
-(define (lookup w d)
-  (cond [(empty? d) #false]
-        [(cons? d)
-         (if (string=? (first (first d)) w)
-             (second (first d))
-             (lookup w (rest d)))]))
+(check-expect (defn<? (make-defn "a" "first") (make-defn "b" "second")) #true)
+(check-expect (defn<? (make-defn "b" "second") (make-defn "a" "first")) #false)
+(define (defn<? d1 d2)
+  (string<? (defn-word d1) (defn-word d2)))
 
 \end{SaveVerbatim}
 
-%\censor{\vspace{-2.5in}}
-\censor{%
-\noindent\BUseVerbatim{VerbEnv}}
-
-\newpage
-
-\noindent
-{\bf Problem 2 (12 points).}
-%
-For each of the following functions, provide the most general signature
-that correctly describes the function:
-
-\begin{alltt}
-;; method : \censor{Number -> Number}
-
-(define (method x)
-  (+ (sqr x) 2))
-
-;; raekwon : \censor{[Listof Number] -> Boolean}
-
-(define (raekwon x)
-  (ormap positive? x))
-
-;; rza : \censor{[Listof String] [Listof Number] -> [Listof Number]}
-
-(define (rza x y)
-  (cond [(empty? x) y]
-        [(cons? x)
-         (cons (string-length (first x))
-               (rza (rest x) y))]))
-
-;; gza : \censor{(String Number -> Number) -> Number}
-
-(define (gza x)
-  (foldr x 0 (list "a" "b" "c")))
-
-;; odb : \censor{(Number -> Number) -> (Number -> Number)}
-
-(define (odb x)
-  (lambda (y)   
-    (/ (- (x (+ y 0.001))
-          (x (- y 0.001)))
-       (* 2 0.001))))
-    
-
-;; ghostface : \censor{[X Y] [Listof X] [X -> Y] -> [Listof Y]}
-
-(define (ghostface x y)
-  (cond [(empty? x) '()]
-        [(cons? x)
-         (cons (y (first x)) 
-               (ghostface (rest x) y))]))
-\end{alltt}
-
-
-\newpage
-
-\noindent
-{\bf Problem 3 (20 points).}
-%
-Design a program called {\tt w-avg} that computes the weighted average
-of a list of numbers and a list of weights.
-
-For example, let's say a class grade is based on two midterms and a
-project where the project is worth twice as much as the midterms.  A
-student who gets an 80 and a 70 on the midterms and a 90 on the
-project would have a weighted average of 82.5: $((1 \times 80) + (1
-\times 70) + (2 \times 90)) / 4$, which can be computed with {\tt
-  (w-avg (list 80 70 90) (list 1 1 2))}.  You should assume the two
-lists have the same length.
-
-
-\begin{SaveVerbatim}{VerbEnv}
-
-
-SOLUTION:
-
-;; w-avg : [Listof Number] [Listof Number] -> Number
-;; Compute the weighted average of a list of numbers and weights
-;; Assume: lists have the same length (and non-empty)
-(check-expect (w-avg (list 70 80 90) (list 1 1 2)) 82.5)
-(define (w-avg lon ws)
-  (/ (w-sum lon ws) 
-     (foldr + 0 ws)))
-
-;; w-sum : [Listof Number] [Listof Number] -> Number
-;; Sum the list of numbers according to given weights
-;; Assume: lists have same length
-(check-expect (w-sum (list 70 80 90) (list 1 1 2)) (+ 70 80 180))
-(define (w-sum lon ws)
-  (cond [(empty? lon) 0]
-        [(cons? lon)
-         (+ (* (first lon) (first ws))
-            (w-sum (rest lon) (rest ws)))]))
-
-;; Alt: define w-total function for denominator
-
-;; w-total : [Listof Number] -> Number
-;; Total a list of weights
-(define (w-total ws)
-  (cond [(empty? ws) 0]
-        [(cons? ws)
-         (+ (first ws) 
-            (w-total (rest ws)))]))
-\end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
 
 
-\newpage 
+\newpage
+
 \noindent
-{\bf Problem 4 (15 points).}
+{\bf Problem 2 (15 points).}
 %
-Here is a parametric data definition for a tree of elements:
+A dictionary can be represented using a structure similar to a binary
+search tree as follows (where {\tt Defn} is defined in problem 1):
 \begin{verbatim}
-;; A [Tree X] is one of:
+;; A BSD (binary search dictionary) is one of:
 ;; - (make-leaf)
-;; - (make-node X [Tree X] [Tree X])
-;; Interp: a binary tree that is either empty (a leaf), or non-empty (a node)
-;; with an element and two sub-trees.
+;; - (make-node d l r), where d is a Defn, l is a BSD, r is a BSD,
+;;      and every definition in l alphabetically comes before d
+;;      and d comes alphabetically before every definition in r
+;; ASSUME: words are defined at most once in a BSD
 (define-struct leaf ())
-(define-struct node (elem left right))
+(define-struct node (val left right))
 \end{verbatim}
-%% {\bf Problem 4(a) (10 points).} Design a function, {\tt tree-sum},
-%% that operates on a binary tree of numbers, {\tt [Tree Number]}, and
-%% produces the sum of all the numbers in the tree.
 
-%% \begin{SaveVerbatim}{VerbEnv}
+Design a function {\tt all-words} that consumes a {\tt BSD} and
+produces a list of all the words (just the words, not their meanings)
+defined in the dictionary, in alphabetic order.
 
-
-%% SOLUTION:
-
-%% ;; tree-sum : [Tree Number] -> Number
-%% ;; Sum all the numbers in the tree
-%% (check-expect (tree-sum (make-leaf)) 0)
-%% (check-expect (tree-sum (make-node 7 (make-node 1 (make-leaf) (make-leaf)) 
-%%                                      (make-leaf)))
-%%               8)
-%% (define (tree-sum bt)
-%%   (cond [(leaf? bt) 0]
-%%         [(node? bt)
-%%          (+ (node-elem bt)
-%%             (tree-sum (node-left bt))
-%%             (tree-sum (node-right bt)))]))
-
-%% \end{SaveVerbatim}
-
-%% \censor{%
-%% \noindent
-%% \BUseVerbatim{VerbEnv}}
-
-
-%% \newpage
-
-\noindent
-%{\bf Problem 4(b) (10 points).}
-Here is a function that produces a list of all the elements in a tree:
-\begin{verbatim}
-;; tree-elems : [X] . [Tree X] -> [Listof X]
-;; Produce a list of all elements in tree going top-down, left-to-right
-(check-expect (tree-elems (make-leaf)) '())
-(check-expect (tree-elems (make-node 7 
-                                     (make-node 9 (make-leaf) (make-leaf))
-                                     (make-node 2 (make-leaf) (make-leaf))))
-              (list 7 9 2))
-(define (tree-elems bt)
-  (cond [(leaf? bt) '()]
-        [(node? bt)
-         (cons (node-elem bt)
-               (append (tree-elems (node-left bt))
-                       (tree-elems (node-right bt))))]))
-\end{verbatim}
-Here is an abstraction function for trees that is similar to
-{\tt foldr} for lists, but works on trees:
-\begin{verbatim}
-;; tree-fold : [X Y] . [X Y Y -> Y] Y [Tree X] -> Y
-;; The fundamental abstraction function for trees
-(define (tree-fold f b bt)
-  (cond [(leaf? bt) b]
-        [(node? bt)
-         (f (node-elem bt)
-            (tree-fold f b (node-left bt))
-            (tree-fold f b (node-right bt)))]))
-\end{verbatim}
-Give an equivalent definition of {\tt tree-elems} in terms of {\tt
-  tree-fold}.  (Just provide the code.)
-
-\vspace{1em}
-\noindent
-[Provide your answer on the next page.]
 
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
-(define (tree-elems bt)
-  (tree-fold (lambda (x l r) (cons x (append l r))) '() bt))
+(define a (make-defn "a" "first"))
+(define b (make-defn "b" "second"))
+(define c (make-defn "c" "third"))
+(define l (make-leaf))
 
+;; all-words : BSD -> [Listof String]
+;; List all words defined in given dictionary in alphabetic order
+(check-expect (all-words l) '())
+(check-expect (all-words (make-node b (make-node a l l) (make-node c l l)))
+              (list "a" "b" "c"))
+(define (all-words bsd)
+  (cond [(leaf? bsd) '()]
+        [(node? bsd)
+         (append (all-words (node-left bsd))
+                 (list (defn-word (node-val bsd)))
+                 (all-words (node-right bsd)))]))
+\end{SaveVerbatim}
+
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+\newpage
+
+
+\noindent
+{\bf Problem 3 (15 points).}
+%
+For each of the following functions, correctly reformulate the
+function in terms of an existing abstraction function.  You may use
+either lambda-expressions or local definitions if needed.
+
+\begin{alltt}
+;; any-zero? : [Listof Number] -> Boolean
+;; Are any of the numbers in given list equal to zero?
+(check-expect (any-zero? '(1 2 3)) #false)
+(check-expect (any-zero? '(1 0 3)) #true)
+(define (any-zero? xs)
+  (cond [(empty? xs) #false]
+        [(cons? xs)
+         (or (zero? (first xs))
+             (any-zero? (rest xs)))]))
+\end{alltt}
+
+
+\vspace{.8in}
+
+\begin{SaveVerbatim}{VerbEnv}
+SOLUTION:
+
+(define (any-zero? xs) (ormap zero? xs))
+
+\end{SaveVerbatim}
+
+
+\censor{%
+\vspace{-.8in}
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\begin{alltt}
+(define DOT (circle 10 "solid" "black"))
+(define MT (empty-scene 200 200))
+
+;; draw-dots : [Listof Posn] -> Image
+;; Draw dots for all given positions on an empty scene.
+(check-expect (draw-dots '()) MT)
+(check-expect (draw-dots (list (make-posn 10 20) (make-posn 20 30)))
+              (place-image DOT 10 20 (place-image DOT 20 30 MT)))
+(define (draw-dots ps)
+  (cond [(empty? ps) MT]
+        [(cons? ps)
+         (place-image DOT
+                      (posn-x (first ps))
+                      (posn-y (first ps))
+                      (draw-dots (rest ps)))]))
+\end{alltt}
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define (draw-dots ps)
+  (foldr (lambda (p img) (place-image DOT (posn-x p) (posn-y p) img))
+         (empty-scene 200 200)
+         ps))
+
+\end{SaveVerbatim}
+
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\newpage
+\noindent
+{\bf Problem 3 (cont).}
+
+\begin{alltt}
+;; remove-short-words : Number [Listof Defn] -> [Listof Defn]
+;; Remove all definitions for words shorter than given length
+(check-expect (remove-short-words 2 (list (make-defn "a" "first") 
+                                          (make-defn "ab" "rest")))
+              (list (make-defn "ab" "rest")))
+(define (remove-short-words len ds)
+  (cond [(empty? ds) '()]
+        [(cons? ds)
+         (if (< (string-length (defn-word (first ds))) len)
+             (remove-short-words len (rest ds))
+             (cons (first ds)
+                   (remove-short-words len (rest ds))))]))
+\end{alltt}
+
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+
+(define (remove-short-words len ds)
+  (filter (lambda (d) (not (< (string-length (defn-word d)) len))) ds))
+
+\end{SaveVerbatim}
+
+
+\censor{%
+\noindent
+\BUseVerbatim{VerbEnv}}
+
+
+\newpage
+
+\noindent
+{\bf Problem 4 (20 points).}
+%
+Design an abstraction of the following two functions and re-create
+the original functions in terms of your abstraction.
+
+\begin{verbatim}
+;; sqr-pos : [Listof Number] -> [Listof Number]
+;; Square each number in the list that is positive, remove the rest
+(check-expect (sqr-pos '(2 -3 4)) '(4 16))
+(define (sqr-pos xs)
+  (cond [(empty? xs) '()]
+        [(cons? xs)
+         (if (positive? (first xs))
+             (cons (sqr (first xs))
+                   (sqr-pos (rest xs)))
+             (sqr-pos (rest xs)))]))
+
+
+;; lowercase-lengths : [Listof String] -> [Listof Number]
+;; Produce a list of lengths for all lowercase strings in given list
+(check-expect (lowercase-lengths '("Hey" "you" "guys")) '(3 4))
+(define (lowercase-lengths xs)
+  (cond [(empty? xs) '()]
+        [(cons? xs)
+         (if (string-lower-case? (first xs))
+             (cons (string-length (first xs))
+                   (lowercase-lengths (rest xs)))
+             (lowercase-lengths (rest xs)))]))
+\end{verbatim}
+
+\begin{SaveVerbatim}{VerbEnv}
+
+SOLUTION:
+;; filter&map : [Listof X] [X -> Boolean] [X -> Y] -> [Listof Y]
+(define (filter&map xs p f)
+  (cond [(empty? xs) '()]
+        [(cons? xs)
+         (if (p (first xs))
+             (cons (f (first xs))
+                   (filter&map (rest xs) p f))
+             (filter&map (rest xs) p f))]))
+
+(define (sqr-pos xs)
+  (filter&map xs positive? sqr))
+
+(define (lowercase-lengths xs)
+  (filter&map xs string-lower-case? string-length))
 \end{SaveVerbatim}
 
 \censor{%
@@ -342,110 +346,62 @@ SOLUTION:
 
 
 \newpage
-\noindent
-{\bf Problem 5 (15 points).}  
-%
-Design a program that takes a list of strings and produces the count
-of strings with length longer than 3 in the list.  For example, if the
-list contains {\tt "a"}, {\tt "dave"}, {\tt "abc"}, and {\tt "fred"},
-the count is 2.  You may assume the {\tt{[Listof String]}} data
-definition is defined.
-%
-For full credit, use list abstraction functions.  For partial credit,
-follow the template for {\tt{[Listof String]}}.
 
+\noindent
+{\bf Problem 5 (20 points).}
+%
+Consider the following data definition (and examples) for representing sentences:
+\begin{verbatim}
+;; A Sentence is a [NEListof String]
+
+(define sent1 (list "a" "dog" "barked"))
+(define sent2 (list "a" "cat" "meowed"))
+\end{verbatim}
+The {\tt [NEListof X]} data definition is used to represent 
+non-empty lists of elements:
+\begin{verbatim}
+;; A [NEListof X] is one of:
+;; - (cons X '())
+;; - (cons X [NEListof X])
+\end{verbatim}
+Given a {\tt Sentence}, a \emph{bigram} is a list of two consecutive
+elements of the sentence. For example, {\tt sent1} has exactly two
+bigrams:
+\begin{verbatim}
+(list "a" "dog")
+(list "dog" "barked")
+\end{verbatim}
+Using the following data definition,
+\begin{verbatim}
+;; a Bigram is a (list String String)
+\end{verbatim}
+design a function {\tt bigrams} which takes a {\tt Sentence} and
+returns a list of {\tt Bigrams}.
 
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
-;; count-3+ : [Listof String] -> Number
-;; Count the number of strings with length more than 3 in given list
-(check-expect (count-3+ '()) 0)
-(check-expect (count-3+ (list "a" "abcd" "fred" "c")) 2)
-(define (count-3+ los)
-  (foldr (lambda (s c) (if (> (string-length s) 3) (add1 c) c)) 0 los))
-
-;; Alts:
-(define (count-3+ los)
-  (local [;; count+ : String Number -> Number
-          ;; Bump count if string has length > 3
-          (define (count+ s c) 
-            (if (> (string-length s) 3) (add1 c) c))]
-    (foldr count+ 0 los))
-
-(define (count-3+ los)
-  (local [;; 3+? : String -> Boolean
-          ;; Does the string have length > 3?
-          (define (3+? s) 
-            (> (string-length s) 3))]
-    (length (filter 3+? los))))
-
-(define (count-3+ los)
-  (length (filter (lambda (s) (> (string-length s) 3)) los)))
+;; bigrams : Sentence -> [Listof Bigram]
+;; List of all adjacent words in a sentence
+(check-expect (bigrams (list "one")) '())
+(check-expect (bigrams sent1)
+              (list (list "a" "dog") (list "dog" "barked")))
+(define (bigrams sent)
+  (cond [(empty? (rest sent)) '()]
+        [else
+         (cons (list (first sent) (second sent))
+               (bigrams (rest sent)))]))
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
-
-
-
 
 \newpage
-
 \noindent
-{\bf Problem 6 (20 points).}
-%
-Here's a data definition for choose-your-own-adventure books:
-\begin{verbatim}
-;; A CYOA is one:
-;; - String
-;; - (make-choice String CYOA CYOA)
-(define-struct choice (q yes no))
-;; Interp: a choose-your-own-adventure book where a string
-;; is a conclusion and a choice is a yes/no question and
-;; the two adventures that follow as a consequnce of the answer.
-\end{verbatim}
-
-\noindent
-Design a function called {\tt ans} that consumes a {\tt CYOA} and a
-{\tt [Listof Boolean]} that represents answers to the yes/no
-questions: {\tt \#true} means yes, {\tt \#false} means no.  The {\tt
-  ans} function produces the {\tt CYOA} adventure that results after
-giving all of the answers in the list.  If the list contains too many
-answers, {\tt ans} just produces the conclusion of the adventure.
-
-
-\begin{SaveVerbatim}{VerbEnv}
-
-
-SOLUTION:
-
-(define a0 "A0")
-(define a1 (make-choice "Q1" "A1" "A2"))
-(define a2 (make-choice "Q2" a0 a1))
-
-;; ans : CYOA [Listof Boolean] -> CYOA
-;; Compute the remaining adventure after using answers from list
-(check-expect (adv a0 (list #true #false)) "A0")
-(check-expect (adv a1 (list #true #false)) "A1")
-(check-expect (adv a2 (list #false #true)) "A1")
-(check-expect (adv a2 (list #false)) a1)
-(define (ans adv loa)
-  (cond [(string? adv) adv]
-        [(empty? loa) adv]
-        [(cons? loa)
-         (if (first loa)
-             (ans (choice-yes adv) (rest adv))
-             (ans (choice-yes adv) (rest adv)))]))
-\end{SaveVerbatim}
-
-\censor{%
-\noindent
-\BUseVerbatim{VerbEnv}}
-
+[Space for problem 5.]
 
 \end{document}
 
