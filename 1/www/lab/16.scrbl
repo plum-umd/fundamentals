@@ -1,22 +1,19 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "lab18"]{Lab 18: Once More with Meaning}
+@title[#:style 'unnumbered #:tag "lab16"]{Lab 16: Once More with Meaning}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate-lam.html"]{Intermediate
 Student Language with Lambda}.
 
-Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
-for the {B,I,A}SL{,+} languages in this class.
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab18:technicians"]{Just Some Other Nonsense}
+@section[#:style 'unnumbered #:tag "lab16:technicians"]{Just Some Other Nonsense}
 
-In @secref{lab17} you implemented operations on @emph{Shuffle}s, @emph{Duffle}s,
+In @secref{lab15} you implemented operations on @emph{Shuffle}s, @emph{Duffle}s,
 @emph{Muzzle}s, and @emph{Muff}s with no understanding of the meaning of those
 data definitions. Thankfully, the structural templates of operations on those
 data are effective regardless of the meaning of that data.
@@ -152,7 +149,7 @@ Make all tests pass.
               "[{\"foo\":\"\"}, \"brightly, brightly, and with beauty\", 42]")
 )
 
-@section[#:style 'unnumbered #:tag "lab18:alist"]{Working with @emph{Asc}s}
+@section[#:style 'unnumbered #:tag "lab16:alist"]{Working with @emph{Asc}s}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -188,7 +185,7 @@ argument in the @tt{either-template}.
 all key/value assocciations with keys @racket[string=?] to @tt{key} removed.
 
 
-@section[#:style 'unnumbered #:tag "lab18:jmap"]{Mapping @emph{Atom}s in
+@section[#:style 'unnumbered #:tag "lab16:jmap"]{Mapping @emph{Atom}s in
 @emph{JSON}}
 
 Swap @bold{Head} and @bold{Hands}!
@@ -251,7 +248,7 @@ atomic values inside @emph{JSON} values.
 terms of the @emph{Atom} mapping functions.
 
 
-@section[#:style 'unnumbered #:tag "lab18:jfilter"]{Filtering @emph{Asc}s}
+@section[#:style 'unnumbered #:tag "lab16:jfilter"]{Filtering @emph{Asc}s}
 
 @bold{Ex 11}: Design a function @tt{foos-are-awful} that, given a @emph{JSON}
 value, returns a new @emph{JSON} with any @emph{Asc} key/value pair with the
