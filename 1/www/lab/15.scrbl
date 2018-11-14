@@ -148,7 +148,8 @@ be found inside a @emph{Muzzle}, it may require a helper function
 @bold{Ex 8}: Design a function @tt{muzzle-find} that is given a @emph{Muzzle}
 and a string @tt{key}. If the @emph{Muzzle} contains a @emph{Muzzle} street with
 @tt{key} in the @tt{oobleck} field, it returns the @emph{Duffle} in the
-@tt{tumble} field. Otherwise, @tt{muzzle-find} returns #false.
+@tt{tumble} field. Otherwise, @tt{muzzle-find} returns #false. (Hint: you may have
+to design a new data definition to handle this choice of outputs).
 
 @racketblock[(check-expect (muzzle-find MUZ0 "foo") #false)
              (check-expect (muzzle-find MUZ1 "bar") #false)
@@ -210,22 +211,21 @@ representating the given @emph{Muff}. The elements should be delimited by
 @racket[","] and surrounded by square braces @racket["[...]"].
 
 @colorize["red"]{Hint}: You will not be able to pass these tests until you've
-finished exercises 12, 13, and 14.
+finished exercises 12 and 13.
 
 @bold{Ex 12}: Design a function @tt{muzzle->strings} that returns a list of
 strings representating the given @emph{Muzzle}. Each @emph{Muzzle} street should
 be converted into a single string, where the @tt{oobleck} and @tt{tumble} fields
 are seperated with a colon @racket[":"], and each @tt{oobleck} wrapped in
-quotes.
+quotes. (Hint: in order to implement this function, begin by pasting in the
+templates for the relevant data definitions; you'll quickly see that you also
+need @tt{duffle->string}, @tt{muff->string}, and @tt{shuffle->string}, and
+@tt{muzzle->string}.) (Hint 2: you can implement @tt{muzzle->string} using
+@tt{muzzle->strings} and @tt{intersperse}).
 
 @racketblock[(check-expect (muzzle->strings MUZ0) '())
              (check-expect (muzzle->strings MUZ1) '("\"foo\":42"))
              (check-expect (muzzle->strings MUZ2)
-                           '("\"bar\":{\"foo\":42\"}" "\"foo\":42"))]
+                           '("\"bar\":{\"foo\":42}" "\"foo\":42"))]
 
-@bold{Ex 13}: Design the function @tt{muzzle->string} that returns a string
-representating the given @emph{Shuffle}. You should be able to implement it
-easily with @tt{muzzle->strings} and @tt{intersperse}.
 
-@bold{Ex 14}: Design the function @tt{shuffle->string} that returns a
-string representating the given @emph{Shuffle}.
