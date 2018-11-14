@@ -147,7 +147,7 @@ be found inside a @emph{Muzzle}, it may require a helper function
 
 @bold{Ex 8}: Design a function @tt{muzzle-find} that is given a @emph{Muzzle}
 and a string @tt{key}. If the @emph{Muzzle} contains a @emph{Muzzle} street with
-@tt{key} in the @tt{oobleck} field, it returns the @emph{Duffle} in the
+@tt{key} in the @tt{oobleck} field, it returns the @emph{Shuffle} in the
 @tt{tumble} field. Otherwise, @tt{muzzle-find} returns #false. (Hint: you may have
 to design a new data definition to handle this choice of outputs).
 
