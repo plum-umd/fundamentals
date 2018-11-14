@@ -102,7 +102,7 @@ template.
 As with @emph{Shuffle}s, we can easily turn @emph{JSON} values into strings by
 following their templates. But the code below has a few bugs...
 
-@bold{Ex 2}: Copy @tt{intersperse} from @secref{lab16} and the functions
+@bold{Ex 2}: Copy @tt{intersperse} from @secref{lab15} and the functions
 @tt{{json,atom,asc}->string} (below) into your @emph{defintions window}. Fix
 the bugs in the code and any other mistakes (including those in signatures).
 Make all tests pass.
