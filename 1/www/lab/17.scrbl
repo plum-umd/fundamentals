@@ -1,19 +1,19 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "lab20"]{Lab 20: The Dragon Fractal}
+@title[#:style 'unnumbered #:tag "lab17"]{Lab 17: The Dragon Fractal}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate-lam.html"]{Intermediate
 Student Language with Lambda}.
 
 Make sure you follow
-@link["https://cs.umd.edu/class/fall2017/cmsc131A/style.html"]{The Style} we use
+@link["https://cs.umd.edu/class/fall2018/cmsc131A/style.html"]{The Style} we use
 for the {B,I,A}SL{,+} languages in this class.
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
-@section[#:style 'unnumbered #:tag "lab20:divergence"]{A Bit Different}
+@section[#:style 'unnumbered #:tag "lab17:divergence"]{A Bit Different}
 
 Almost every function we've written to-date follows some template based on the
 structure of the input data. Today we're going to design a program that is
@@ -30,7 +30,7 @@ pieces into the fractal's @emph{generative} recursion.
 
 @image{img/dragon.gif}
 
-@section[#:style 'unnumbered #:tag "lab20:dd"]{Lines}
+@section[#:style 'unnumbered #:tag "lab17:dd"]{Lines}
 
 @#reader scribble/comment-reader (racketblock
 ;; A Dir is one of "left", "right", "up", or "down".
@@ -86,7 +86,7 @@ points to the left.
           (on-key key))
 )
 
-@section[#:style 'unnumbered #:tag "lab20:drawit"]{Drawing the Fractal}
+@section[#:style 'unnumbered #:tag "lab17:drawit"]{Drawing the Fractal}
 
 Swap @bold{Head} and @bold{Hands}!
 
