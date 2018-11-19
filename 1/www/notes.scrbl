@@ -202,9 +202,17 @@ Here is the code I presented in class:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5309d2df-7720-4089-b81e-a996014d5798"]
 
-@section{November 15, 2018}
+@section{November 14, 2018}
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=03d3e90f-6e75-4dd1-aa93-a998011b466f"]
+
+@section{November 16, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=98669fa3-9381-4363-8a6f-a99a0121adfb"]
+
+@section{November 19, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=636e4a88-e805-4926-a4f8-a99d0116c81f"]
 
 @;{
 
