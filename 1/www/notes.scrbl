@@ -214,6 +214,10 @@ Here is the code I presented in class:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=636e4a88-e805-4926-a4f8-a99d0116c81f"]
 
+@section{November 26, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=61ce4208-1b39-41d7-913f-a9a40117724d"]
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
