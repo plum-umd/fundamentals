@@ -1,7 +1,7 @@
 #lang scribble/manual
 @(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
 
-@title[#:style 'unnumbered #:tag "lab21"]{Lab 21: Generating Fractals}
+@title[#:style 'unnumbered #:tag "lab18"]{Lab 18: Generating Fractals}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate-lam.html"]{Intermediate
@@ -13,7 +13,7 @@ for the {B,I,A}SL{,+} languages in this class.
 
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
-@section[#:style 'unnumbered #:tag "lab21:circles"]{Warm-up with Circles and Spirals}
+@section[#:style 'unnumbered #:tag "lab18:circles"]{Warm-up with Circles and Spirals}
 
 Let's begin by drawing some circles. Before we start, here is a bit of setup
 code:
@@ -78,7 +78,7 @@ image below.
 @image{img/lab21-spiral-1.png}
 
 
-@section[#:style 'unnumbered #:tag "lab21:tree"]{Trees}
+@section[#:style 'unnumbered #:tag "lab18:tree"]{Trees}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -128,7 +128,7 @@ You should be able to easily modify the parameters to get various images.
 @image{img/lab21-tree-3.png}
  
 
-@section[#:style 'unnumbered #:tag "lab21:koch"]{Koch Snowflake}
+@section[#:style 'unnumbered #:tag "lab18:koch"]{Koch Snowflake}
 
 Swap @bold{Head} and @bold{Hands}!
 

@@ -24,9 +24,9 @@ in lectures with helpful assistants around.
 @include-section{lab/15.scrbl}
 @include-section{lab/16.scrbl} @;{took two labs to do}
 @include-section{lab/17.scrbl}
+@include-section{lab/18.scrbl}
 @;{
 @include-section{lab/19.scrbl} @;{skipped}
-@include-section{lab/21.scrbl}
 @include-section{lab/22.scrbl}
 @include-section{lab/23.scrbl}
 @include-section{lab/24.scrbl}
