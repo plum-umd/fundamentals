@@ -4,7 +4,7 @@
 
 @title[#:style 'unnumbered #:tag "assign9"]{Assignment 9: Plotting functions}
 
-@bold{Due:} Wednesday, November 21, 11:59:59 PM EST.
+@bold{Due:} Tuesday, November 27, 11:59:59 PM EST.
 
 @(define-syntax-rule (bslblock . body)
   (codeblock #:keep-lang-line? #f "#lang htdp/bsl" "\n" . body))
