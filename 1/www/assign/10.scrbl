@@ -7,15 +7,13 @@
 
 @title[#:style 'unnumbered #:tag "assign10"]{Assignment 10: Typing Markup}
 
-@bold{Due:} Monday, December 4, 11:59:59 PM EST.
+@bold{Due:} Tuesday, December 4, 11:59:59 PM EST.
 
 @(define-syntax-rule (bslblock . body)
   (codeblock #:keep-lang-line? #f "#lang htdp/bsl" "\n" . body))
 
 The following should be completed in cooperation with your latest
-assigned partner, @bold{which were newly assigned on Oct 23}. (Partner
-assignments are listed on
-@link["https://piazza.com/class/j474gwnsd3619n?cid=294"]{Piazza}.)
+assigned partner.
 You may not share code for this assignment with anyone but your
 partner.
 
