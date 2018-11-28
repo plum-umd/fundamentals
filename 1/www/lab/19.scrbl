@@ -1,7 +1,8 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-intermediate) "helper.rkt")
+@(require scribble/core scribble/examples "helper.rkt"
+          (for-label lang/htdp-intermediate-lambda))
 
-@title[#:style 'unnumbered #:tag "lab19"]{Lab 19: Around & Around We Go}
+@title[#:style 'unnumbered #:tag "lab19"]{Lab 19: Accumulating Numbers}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate-lam.html"]{Intermediate
@@ -14,165 +15,176 @@ for the {B,I,A}SL{,+} languages in this class.
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab19:sigtofun"]{From Signatures to Functions}
+@section[#:style 'unnumbered #:tag "lab19:tedious"]{Busy Work}
 
-A function signature describes a class of functions. Most signatures describe an
-infinite number of functions. The signature @tt{[@emph{Number} ->
-@emph{Boolean}]} includes @racket[even?], @racket[(λ (n) (> n 0))], and @racket[(λ
-(n) (or (= 0 (modulo 5 n)) (even? n)))].
+By the age of 8 Johann Carl Friedrich Gauss was a troublesome student. To stay
+his mewling, his teacher came up with a tedious task for him to perform: adding
+together the numbers 1 through 100. Much to the teacher's chagrin, Gauss
+responded with 5050 after only a moment's thought.
 
-@bold{Ex 1}: Define three functions @tt{ex-1-{1,2,3}} with the signature
-@tt{@emph{String} -> @emph{Number}}.
+Of course, we can easily perform the same task.
 
-@colorize["red"]{@bold{Hint}}: Be careful: the wiseacres lab might want to give
-@racket[(λ (x) 0)] as a function with the signature @tt{@emph{String} ->
-@emph{Number}}. However, the @emph{most general} signature that we can give
-@racket[(λ (x) 0)] is @tt{[@emph{X}] . @emph{X} -> @emph{Number}}, since the
-input @tt{x} is never used as a @emph{String}. Make sure the inputs to
-@tt{ex-1-{1,2,3}} are used as @emph{String}s in your example functions.
+@bold{Ex 1}: Define a function @tt{sum-all} that returns the sum of the natural
+numbers from 1 to the given natural number @tt{n}.  Write it using the standard
+structural template over the natural numbers.
 
-@bold{Ex 2}: Define three functions @tt{ex-2-{1,2,3}} with the signature
+@; ;; sum-all : Natural -> Natural
+@; (define (sum-all n)
+@;   (cond [(zero? n) 0]
+@;         [else (+ n (sum-all (sub1 n)))]))
 
-@tt{@emph{Number} [@emph{Number} -> @emph{Boolean}] -> @emph{String}}.
+Gauss came up with his sum in only a moment. Per the International System of
+Units, a moment is just over 3 seconds. I'm pretty sure we've got him
+beat. Let's test it by timing the execution of @tt{sum-all} on 100.
 
-@bold{Ex 3}: Define two function @tt{ex-3-{1,2}} with the signature
+@examples[#:label #f
+          (eval:alts (time (sum-all 100))
+                     (eval:result @racketresult[5050]
+                                  "cpu time: 0 real time: 1 gc time: 0"))]
 
-@tt{[@emph{X}] . [@emph{Number} -> @emph{X}] -> @emph{X}}.
+Pssh, it only took us a millisecond. Take that Gauss! I bet we can even sum the
+first million numbers in less time than Gauss took for the first hundred.
 
-@bold{Ex 4}: Define two functions @tt{ex-4-{1,2}} with the signature
+@examples[#:label #f
+          (eval:alts (time (sum-all 1000000))
+                     (eval:result @racketresult[500000500000]
+                                  "cpu time: 649 real time: 671 gc time: 162"))]
 
-@tt{[@emph{X} @emph{Y}] . [Listof @emph{X}] [@emph{X} -> @emph{Number}]
-[@emph{Number} -> @emph{Y}] -> [Listof @emph{Y}]}.
+Not bad. But can we do better? Let's look at what @tt{sum-all} is doing when it
+executes.
+
+@bold{Ex 2}: Step through @racket[(sum-all 5)] and in a comment write down the
+full addition expression that executes after all the sum-all terms are
+gone. (There should only be numbers and @racket[+].)
+
+@bold{Ex 3}: Which addition is performed first? Which addition is performed
+last? Write your answer down in a comment.
 
 
-@section[#:style 'unnumbered #:tag "lab19:funtosig"]{From Functions to Signatures}
+@section[#:style 'unnumbered #:tag "lab19:acc"]{In What Direction?}
+
+If you've defined @tt{sum-all} according to the template for the natural
+numbers, the first addition performed is @racket[(+ 1 0)] and the last is
+@racket[(+ 5 10)]. The function @tt{sum-all} adds the naturals up from 1 to 5
+after building the expression: @racketblock[(+ 5 (+ 4 (+ 3 (+ 2 (+ 1 0)))))]
+
+Is it possible to add the numbers from 5 down to 1, you ask? Yes indeed! But we
+need an extra argument to @emph{accumulate} the result as we calculate, so we'll
+call it @tt{sum-all/acc}.
+
+@#reader scribble/comment-reader (racketblock
+;; sum-all/acc : Natural Natural -> Natural
+;; Sum the naturals from n to 1.
+(define (sum-all/acc n a)
+  (cond [(zero? n) a]
+        [else (sum-all/acc (sub1 n) (+ n a))]))
+)
+
+What's the difference here? Rather than building a big expression that is then
+added together like @tt{sum-all}, @tt{sum-all/acc} performs one addition each
+time it recurs and simply returns the result once it reaches zero. Of course, we
+must give an initial value for the accumulator to @tt{sum-all/acc}.
+
+@bold{Ex 4}: What should be the initial value for the accumulator in
+@tt{sum-all/acc}? Define a function @tt{sum-all-down} with the same signature as
+@tt{sum-all}, which gives the given number and correct initial accumulator to
+@tt{sum-all/acc}.
+
+@bold{Ex 5}: Step through @racket[(sum-all-down 5)]. Confirm that it does not
+build a large addition expression while it executes. What additions does it
+perform? Write them down in a comment.
+
+Now what's the point? Let's look at the cost of summing the first million
+numbers using @tt{sum-all-down}.
+
+@examples[#:label #f
+          (eval:alts (time (sum-all-down 1000000))
+                     (eval:result @racketresult[500000500000]
+                                  "cpu time: 80 real time: 80 gc time: 0"))]
+
+@image{img/lab23-sum-all-down-results.jpg}
+
+
+@section[#:style 'unnumbered #:tag "lab19:whoa"]{Whoa}
 
 Swap @bold{Head} and @bold{Hands}!
 
-@bold{Ex 5}: Provide the @emph{most general} signatures for each of the
-following functions. If you are unsure of your answer, ask one of the pairs near
-you. If you are asked about your signature by some other pair, answer only
-"that's what we got", "ours is more general", or "ours is less general"; don't
-show them your solution.
+That beat our old time by nearly an order of magnitude.
+
+And we can sum much larger numbers than the original @tt{sum-all}.
+
+@bold{Ex 6}: Run a bunch of tests to see how large an input causes @tt{sum-all}
+to run out of memory. Try to get @tt{sum-all-down} to run out of memory too.
+
+@bold{Ex 7}: Why do you think @tt{sum-all-down} executes faster than
+@tt{sum-all}? How is it related to the fact that it can sum larger numbers?
+Discuss this with your partner, and feel free to ask other groups as well.
+
+That's just the beginning. Recall the function @tt{fib} from the last lab.
 
 @#reader scribble/comment-reader (racketblock
-;; brillig : 
-(define (brillig x)
-  (= 1 (modulo x 2)))
-
-;; slithy :
-(define (slithy m n)
-  (> (length m) n))
-
-;; outgrabe :
-(define (outgrabe x y)
-  (map x (append y y)))
-
-;; uffish :
-(define (uffish x)
-  (cond [(number? x) (+ x 10)]
-        [(string? x) (string-length x)]))
-
-;; frabjous :
-(define (frabjous a b c)
-  (a (b c)))
-
-;; callooh :
-(define (callooh a b)
-  (a 10 (or (b 0) (b 1))))
-
-;; callay :
-(define (callay q)
-  (frabjous (λ (d) (+ d 42)) q "day"))
+;; fib : Natural -> Natural
+;; Return the nth term in the Fibonacci sequence.
+(define (fib n)
+  (cond [(= 0 n) 0]
+        [(= 1 n) 1]
+        [else (+ (fib (- n 1)) (fib (- n 2)))]))
 )
 
+Note that, like our original @tt{sum-all}, the addition is performed on the
+outside of the recursive calls to @tt{fib}.  This forces ISL+ to remember the
+rest of the work that needs to be performed (add the right recursive call to
+@tt{fib}) while it recurs down the left recursive call. But if we define
+@tt{fib} with an accumulator, there's no need to remember each recursive
+addition.
 
-@section[#:style 'unnumbered #:tag "lab19:absops"]{Abstract Operations
-@emph{Abound}}
+@bold{Ex 8}: Define @tt{fib/acc} with the signature @tt{Natural Natural ->
+Natural}. Consider: what is (1) the proper initial accumulator value and (2)
+what is the proper result in the base cases?
 
-Swap @bold{Head} and @bold{Hands}!
+@colorize["red"]{@bold{Hint}}: Use one of the recursive calls to @tt{fib/acc} as
+the new accumulator value to the other recursive call.
 
-@bold{Note}: You should use abstract list operations in each of the solutions of
-this section.
+@; (define (fib/acc n a)
+@;   (cond [(= 0 n) a]
+@;         [(= 1 n) (+ a 1)]
+@;         [else (fib/acc (- n 1) (fib/acc (- n 2) a))]))
 
-@bold{Ex 6}: Design a function @tt{ex-6} that removes from a list of numbers any
-multiples of 6.
+@examples[#:label #f 
+          (eval:alts (check-expect (time (fib/acc 40 0)) (time (fib 40)))
+                     (eval:result @racketresult[]
+                                  "cpu time: 52417 real time: 52413 gc time: 26
+cpu time: 69273 real time: 69435 gc time: 70
+The test passed!"))]
 
-@bold{Ex 7}: Design a function @tt{ex-7} that, given a @tt{[Listof @emph{X}]}, a
-@emph{String} @tt{pre} and a function @tt{foo : @emph{X} -> @emph{String}},
-returns a list of strings where each @emph{X} value in the given list was
-converted to a string and prepended with @tt{pre}.
-
-@bold{Ex 8}: Design a function @tt{ex-8} that, given a list of student names,
-returns a list of randomly-generated grades between 0 and 100 for those
-students.
+Not as impressive a difference as for @tt{sum-all}, but still a noticeable
+improvement!
 
 
-@section[#:style 'unnumbered #:tag "lab19:handrolled"]{Abstracting Operations}
+@section[#:style 'unnumbered #:tag "lab19:folds"]{Generalizing}
 
-Swap @bold{Head} and @bold{Hands}!
-
-The recursive data definition and template for the natural numbers are as
-follows:
+Like any inductively defined data, natural numbers have a fold that follows the
+structural template. The given operation @tt{f} is applied first on the base
+case result @tt{b} and @racket[1], then that result and @racket[2], and so on,
+so we'll call it @tt{foldu} for "fold-up".
 
 @#reader scribble/comment-reader (racketblock
-;; A @emph{Natural} is one of:
-;; - 0
-;; - (add1 @emph{Natural})
-;; Interp: The non-negative integers.
-
-;; natural-template : @emph{Natural} -> ???
-;; The form of recursive functions over @emph{Natural} numbers.
-(define (natural-template n)
-  (cond [(= 0 n) ...]
-        [else (... n
-                   ...
-                   (natural-template (sub1 n)))]))
+;; foldu : [Natural X -> X] X Natural -> X
+(define (foldu f b n)
+  (cond [(zero? n) b]
+        [else (f n (foldu f b (sub1 n)))]))
 )
 
-@bold{Ex 9}: The following three functions share a similar form over the
-@emph{Natural} numbers. Design an abstraction of @tt{hyp{0,1,2}} named
-@tt{hypN}, then define @tt{hyp0/2}, @tt{hyp1/2}, and @tt{hyp2/2} in terms of
-@tt{hypN}.
+@bold{Ex 9}: Implement @tt{sum-all/up} in terms of @tt{foldu}. Test its
+performance against the original @tt{sum-all}. Does it exhibit the same
+behavior?
 
-@#reader scribble/comment-reader (racketblock
-;; hyp1 : @emph{Number} @emph{Number} -> @emph{Number}
-;; The first hyperoperation over natural numbers.
-(define (hyp1 a n)
-  (cond [(= 0 n) a]
-        [else (add1 (hyp1 a (sub1 n)))]))
+@bold{Ex 10}: Design the function @tt{foldd} with the same signature as
+@tt{foldu}, which instead folds the natural numbers down using an accumulator.
 
-;; hyp2 : @emph{Number} @emph{Number} -> @emph{Number}
-;; The second hyperoperation over natural numbers.
-(define (hyp2 a n)
-  (cond [(= 0 n) a]
-        [else (+ a (hyp2 a (sub1 n)))]))
+@; (define (foldd f a n)
+@;   (cond [(zero? n) a]
+@;         [else (foldd f (f n a) (sub1 n))]))
 
-;; hyp3 : @emph{Number} @emph{Number} -> @emph{Number}
-;; The third hyperoperation over natural numbers.
-(define (hyp3 a n)
-  (cond [(= 0 n) a]
-        [else (* a (hyp3 a (sub1 n)))]))
-)
-
-
-@bold{Ex 10}: Define the fourth
-@link["https://en.wikipedia.org/wiki/Tetration"]{hyperoperation over natural
-numbers} @tt{hyp4 : @emph{Number} @emph{Number} -> @emph{Number}} in terms of
-@tt{hypN}.
-
-@bold{Ex 11}: Design the function @tt{foldu : [X] . [Natural X -> X] X Natural
--> X}. If you get stuck look at the @tt{natural-template} and consider the
- implementation of @tt{foldr} over lists from your notes. Your implementation
-should pass the tests below.
-
-@#reader scribble/comment-reader (racketblock
-(check-expect (foldu cons '() 3) '(3 2 1))
-(check-expect (foldu * 1 5) 120)
-(check-expect (foldu (λ (n s) (string-append (number->string n) " " s))
-                     "0"
-                     10)
-              "10 9 8 7 6 5 4 3 2 1 0")
-)
-
-@bold{Ex 12}: Define the function @tt{hypN/2} in terms of @tt{foldu}.
+@bold{Ex 11}: Implement @tt{sum-all/down} in terms of @tt{foldd}. Test its
+performance against @tt{sum-all-down}. Does it exhibit the same behavior?
