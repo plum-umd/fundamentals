@@ -2,13 +2,16 @@
 @(require scribble/core
 	  scriblib/footnote
           scribble/decode
+          scribble/html-properties
 	  "defns.rkt")
 
 @(define (blockquote . strs)
    (make-nested-flow (make-style "blockquote" '(command))
                      (decode-flow strs)))
 
-@title[@courseno]{: Systematic Program Design I}
+
+
+@title[#:style (style #f (list @js-addition["accessibility.js"])) @courseno]{: Systematic Program Design I}
 
 @emph{Fall, @year}
 

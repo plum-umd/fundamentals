@@ -12,6 +12,7 @@ test: clean
 
 cmsc131A:
 	scribble --htmls ++style extra.css \
+		++extra accessibility.js \
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl

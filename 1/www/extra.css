@@ -17,3 +17,7 @@ visibility:hidden;
 .strike {
     text-decoration: line-through;
 }
+
+.accessibility-link {
+   float: right;
+}
