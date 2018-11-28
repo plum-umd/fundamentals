@@ -42,15 +42,17 @@ not have a testing framework built-in.  So we will be using the
 @racketmodname[rackunit] library.
 
 The following will import @racket[check-equal?], roughly analogous to
-@racket[check-expect] from ISL+, from @racketmodname[rackunit].  We do this
-in the context of a @tt{test} @emph{submodule}, which is the idiomatic way
-of adding tests to Racket and Typed Racket programs:
+@racket[check-expect] from ISL+, from @racketmodname[rackunit].  It
+also @emph{renames} it @racket[check-expect] so that test look almost
+exactly like we used to write.  We do this in the context of a
+@tt{test} @emph{submodule}, which is the idiomatic way of adding tests
+to Racket and Typed Racket programs:
 
 @codeblock|{
   #lang typed/racket
   (module+ test
     (require/typed rackunit
-      [check-equal? (Any Any -> Any)]))
+      [(check-equal? check-expect) (Any Any -> Any)]))
 }|
 
 You can now write functions and tests like this:
@@ -59,8 +61,8 @@ You can now write functions and tests like this:
   (: sqr : (Number -> Number))
   ;; Square the given number.
   (module+ test
-    (check-equal? (sqr 5) 25)
-    (check-equal? (sqr -5) 25))
+    (check-expect (sqr 5) 25)
+    (check-expect (sqr -5) 25))
   (define (sqr x) 
     (* x x))
 }|
