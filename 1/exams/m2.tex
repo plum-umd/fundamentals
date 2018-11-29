@@ -237,7 +237,7 @@ SOLUTION:
 
 (define (draw-dots ps)
   (foldr (lambda (p img) (place-image DOT (posn-x p) (posn-y p) img))
-         (empty-scene 200 200)
+         MT
          ps))
 
 \end{SaveVerbatim}
