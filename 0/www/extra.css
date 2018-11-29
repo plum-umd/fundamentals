@@ -21,3 +21,8 @@ visibility:hidden;
 .accessibility-link {
    float: right;
 }
+
+.tocset td a.tocviewselflink {
+   color: black;
+   text-decoration: underline;
+}
