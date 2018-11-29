@@ -10,8 +10,11 @@
                      (decode-flow strs)))
 
 
+@(define accessible
+   (style #f (list (js-addition "accessibility.js")
+                   (attributes '((lang . "en"))))))
 
-@title[#:style (style #f (list @js-addition["accessibility.js"])) @courseno]{: Systematic Program Design I}
+@title[#:style accessible @courseno]{: Systematic Program Design I}
 
 @emph{Fall, @year}
 
