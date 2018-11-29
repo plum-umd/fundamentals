@@ -4,7 +4,7 @@ dist: trusty
 env:
   global:
     - RACKET_DIR=~/racket
-    - WWW_DIR=/fs/www/class/fall2018
+    - WWW_DIR=/fs/www/class
   matrix:
     - RACKET_VERSION=6.12
 
@@ -26,6 +26,10 @@ script:
    - make 1
    - mv 1 cmsc131A
    - cd ../../
+   - cd 0/www/
+   - make 0
+   - mv 0 cmsc198Q
+   - cd ../../
 #  - cd 2/www/
 #  - raco pkg install https://github.com/dvanhorn/dpc.git#racket-v6.10
 #  - raco link utils/java/
@@ -45,7 +49,9 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR
+    script: 
+      rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/fall2018
+      rsync -rvzp $TRAVIS_BUILD_DIR/0/www/cmsc198Q dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/summer2019
     on:
       branch: master
       condition: $RACKET_VERSION='6.12' # Doesn't seem to work
