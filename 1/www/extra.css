@@ -26,3 +26,7 @@ visibility:hidden;
    color: black;
    text-decoration: underline;
 }
+
+.tocset td a :focus {
+  color: yellow;
+}
