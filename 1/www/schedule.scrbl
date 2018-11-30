@@ -49,12 +49,12 @@
 	       (list @d{Nov 21} @elem{@emph{Thanksgiving break, no class}} 'cont)
 	       (list @d{Nov 23} @elem{@emph{Thanksgiving break, no class}} 'cont)
 	       (list @d{Nov 26} @elem{Accumulating More} @elem{@link["https://htdp.org/2018-01-06/Book/part_six.html#%28part._sec~3adesign-accu%29"]{Designing Accumulator-Style Functions} and @elem{@link["https://htdp.org/2018-01-06/Book/part_six.html#%28part._ch~3amore-accu%29"]{More Uses of Accumulation}}})
-	       (list @d{Nov 28} @elem{TBD} 'cont)
-	       (list @d{Nov 30} @elem{Types, Part I} 'cont) 
-	       (list @d{Dec 3} @elem{Types, Part II} 'cont) 
-	       (list @d{Dec 5} @elem{Objects, Part I} 'cont)
-	       (list @d{Dec 7} @elem{Objects, Part II} 'cont)
-	       (list @d{Dec 10} @elem{Conclusions and Perspective} 'cont))]
+	       (list @d{Nov 28} @elem{Types, Part I} 'cont)
+	       (list @d{Nov 30} @elem{Types, Part II} 'cont) 
+	       (list @d{Dec 3} @elem{Objects, Part I} 'cont)
+	       (list @d{Dec 5} @elem{Objects, Part II} 'cont)
+	       (list @d{Dec 7} @elem{Conclusions and Perspective} 'cont)
+	       (list @d{Dec 10} @elem{Final Review} 'cont))]
 
 
 
