@@ -188,7 +188,7 @@ compute the answer efficiently:
 @section{Graphs}
 
 When we studied graphs we used the follow data representation for
-graphs (@secref{graph-lec}):
+graphs:
 
 @#reader scribble/comment-reader (racketblock
 ;; A Graph is [Listof (cons String [Listof String])]

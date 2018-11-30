@@ -65,7 +65,8 @@ midterm 1} and @link["m1-practice-soln.pdf"]{solution}}
 @item{Drills: @secref{m2-drills}}
 @item{Practice exam: @link["m2-practice.pdf"]{practice
 midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
-@item{Past exam: @link["m2-fall2017.pdf"]{2017 midterm 2} and @link["m2-fall2017-soln.pdf"]{solution}}]
+@item{Past exam: @link["m2-fall2017.pdf"]{2017 midterm 2} and @link["m2-fall2017-soln.pdf"]{solution}}
+@item{This exam: @link["m2-fall2018.pdf"]{2018 midterm 1} and @link["m2-fall2018-soln.pdf"]{solution}}]
 
 @section{Final Exam}
 
@@ -73,5 +74,5 @@ midterm 2} and @link["m2-practice-soln.pdf"]{solution}}
 @item{Readings: @ps9:readings and Chapter 29}
 @item{Drills: @secref{final-drills}}
 @item{Practice exam: @link["f-practice.pdf"]{practice final} and @link["f-practice-soln.pdf"]{solution}}
-@item{Past exams:}
+@item{Past exam: @link["f-fall2017.pdf"]{2017 final} and @link["f-fall2017-soln.pdf"]{solution}}
 ]

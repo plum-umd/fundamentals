@@ -222,6 +222,8 @@ Here is the code I presented in class:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d3632b41-2558-40bc-8d78-a9a601180c18"]
 
+@include-section{note/final-drills.scrbl}
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
@@ -822,8 +824,6 @@ Code:
 
 The client has been filled-in to be a full implementation.  The server
 code is as it was in class.
-
-@include-section{note/final-drills.scrbl}
 
 
 @section{December 11, 2017}
