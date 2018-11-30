@@ -224,6 +224,10 @@ Here is the code I presented in class:
 
 @include-section{note/final-drills.scrbl}
 
+@section{November 30, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=90831cad-78cf-4288-b00a-a9a8011cf677"]
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
