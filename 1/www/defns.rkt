@@ -3,7 +3,7 @@
 
 (define m1-date "Oct 1")
 (define m2-date "Nov 5")
-(define final-date "Dec 14, 8--10 am")
+(define final-date "Dec 13, 4--6 pm (ATL 1113)")
 (define semester "fall")
 (define year "2018")
 (define courseno "CMSC 131A")
