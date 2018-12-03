@@ -2,7 +2,7 @@
 @(require scribble/core scribble/examples "helper.rkt"
           (for-label lang/htdp-intermediate-lambda))
 
-@title[#:style 'unnumbered #:tag "lab24"]{Lab 24: Accumulating Cards}
+@title[#:style 'unnumbered #:tag "20"]{Lab 20: Accumulating Cards}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/intermediate-lam.html"]{Intermediate
@@ -15,7 +15,7 @@ for the {B,I,A}SL{,+} languages in this class.
 Choose the initial @bold{Head} and @bold{Hands}, and get started!
 
 
-@section[#:style 'unnumbered #:tag "lab24:dd"]{Suits, Cards, and Decks}
+@section[#:style 'unnumbered #:tag "20:dd"]{Suits, Cards, and Decks}
 
 @#reader scribble/comment-reader (racketblock
 ;; A Suit is one of: "♠" "♥" "♦" "♣".
@@ -58,7 +58,7 @@ higher card.
 @;                    VALUES))]
 @;     (λ (c1 c2) (< (index-of c1 SORTED) (index-of c2 SORTED)))))
 
-@section[#:style 'unnumbered #:tag "lab24:deal"]{Shuffle Up and Deal}
+@section[#:style 'unnumbered #:tag "20:deal"]{Shuffle Up and Deal}
 
 Swap @bold{Head} and @bold{Hands}!
 
@@ -138,7 +138,7 @@ Example invocations of @tt{deal} and the resulting lists:
 @;     (deal/acc (shuffle DECK) (build-list n (λ (_) '())))))
 
 
-@section[#:style 'unnumbered #:tag "lab24:war"]{This Means @emph{War}}
+@section[#:style 'unnumbered #:tag "20:war"]{This Means @emph{War}}
 
 Swap @bold{Head} and @bold{Hands}!
 

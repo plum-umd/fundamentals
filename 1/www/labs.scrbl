@@ -27,7 +27,7 @@ in lectures with helpful assistants around.
 @include-section{lab/18.scrbl}
 @;include-section{lab/22.scrbl}
 @include-section{lab/19.scrbl}
-@;include-section{lab/24.scrbl}
+@include-section{lab/20.scrbl}
 @;include-section{lab/25.scrbl}
 @;include-section{lab/26.scrbl}
 @;include-section{lab/27.scrbl}
