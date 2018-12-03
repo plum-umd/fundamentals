@@ -16,10 +16,16 @@
 
 @title[#:style accessible @courseno]{: Make Your Own Video Games: An Introduction to Programming and Computing}
 
-@emph{Summer, July 7-26 @year}
+@emph{Summer, July 8-26 @year}
 
-@margin-note{A @link["https://oes.umd.edu/middle-high-school-students/terp-young-scholars"]{Terp Young Scholars} course.}
+@margin-note{A
+@link["https://oes.umd.edu/middle-high-school-students/terp-young-scholars"]{Terp
+Young Scholars} course.}
 
+@image[#:scale 1/2]{img/pacman-chomp.gif}
+
+@include-section{texts.scrbl}
+@include-section{schedule.scrbl}
 
 
 @;{
@@ -111,8 +117,6 @@ subject to change until the start of the semester.
 	       (list @bold{Textbooks} @elem{@link["https://htdp.org/2018-01-06/Book/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
 
 @;include-section{syllabus.scrbl}
-@;include-section{texts.scrbl}
-@;include-section{schedule.scrbl}
 @;include-section{exams.scrbl}
 @;include-section{labs.scrbl}
 @;include-section{assignments.scrbl}
