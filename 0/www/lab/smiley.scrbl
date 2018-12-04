@@ -21,11 +21,11 @@ the-eval))
   #:eval the-eval
   #:hidden  
 
-(define SMILEY-RADIUS 100)
+(define RADIUS 100)
 (define SMILE-FACTOR 8/10)
 (define EYE-FACTOR 1/3)
 
-(define SMILE-SMILEY-RADIUS (* SMILEY-RADIUS SMILE-FACTOR))
+(define SMILE-RADIUS (* RADIUS SMILE-FACTOR))
 
 ;; hspace : Number -> Image
 ;; Create given amount of horizontal space as an image
@@ -45,39 +45,39 @@ the-eval))
 
 ;; Construct expressions that produce each of the following:
 (define HEAD
-  (circle SMILEY-RADIUS "solid" "yellow"))
+  (circle RADIUS "solid" "yellow"))
 
 (define EYE
-  (ellipse (* EYE-FACTOR SMILEY-RADIUS)
-           (* 2 EYE-FACTOR SMILEY-RADIUS)
+  (ellipse (* EYE-FACTOR RADIUS)
+           (* 2 EYE-FACTOR RADIUS)
            "solid"
            "black"))
 
 (define EYES
-  (beside EYE (hspace (* SMILEY-RADIUS EYE-FACTOR)) EYE))
+  (beside EYE (hspace (* RADIUS EYE-FACTOR)) EYE))
 
 (define SMILE-BLACK-CIRCLE
-  (circle SMILE-SMILEY-RADIUS "solid" "black"))
+  (circle SMILE-RADIUS "solid" "black"))
 
 (define SMILE-YELLOW-CIRCLE
-  (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow"))
+  (circle (* 9/10 SMILE-RADIUS) "solid" "yellow"))
 
 (define SMILE
   (bottom-half
-   (overlay (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow")
-            (circle SMILE-SMILEY-RADIUS "solid" "black"))))
+   (overlay (circle (* 9/10 SMILE-RADIUS) "solid" "yellow")
+            (circle SMILE-RADIUS "solid" "black"))))
 
 ;; center-top-pinhole : Image -> Image
 ;; Put pinhole halfway across and at top of given image
 #;(check-expect (center-top-pinhole HEAD)
-              (put-pinhole SMILEY-RADIUS 0 HEAD))
+              (put-pinhole RADIUS 0 HEAD))
 (define (center-top-pinhole i)
   (put-pinhole (/ (image-width i) 2) 0 i))
 
 ;; center-bottom-pinhole : Image -> Image
 ;; Put pinhole halfway across and at bottom of given image
 #;(check-expect (center-bottom-pinhole HEAD)
-              (put-pinhole SMILEY-RADIUS (* 2 SMILEY-RADIUS) HEAD))
+              (put-pinhole RADIUS (* 2 RADIUS) HEAD))
 (define (center-bottom-pinhole i)
   (put-pinhole (/ (image-width i) 2) (image-height i) i))
 ]
@@ -141,9 +141,9 @@ futher subparts:
 @item{the eyes consist of two eyes (with space between
 them): @result[EYE]}
 @item{the smile can be constructed from two circles, overlaying them, and taking the bottom half:
-@result[(circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow")]
-@result[(circle SMILE-SMILEY-RADIUS "solid" "black")]
-@result[(overlay (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow") (circle SMILE-SMILEY-RADIUS "solid" "black"))]
+@result[(circle (* 9/10 SMILE-RADIUS) "solid" "yellow")]
+@result[(circle SMILE-RADIUS "solid" "black")]
+@result[(overlay (circle (* 9/10 SMILE-RADIUS) "solid" "yellow") (circle SMILE-RADIUS "solid" "black"))]
 }
 ]
 
@@ -191,25 +191,25 @@ images:
 
 @exercise{
 
-Define a constant @racket[SMILEY-RADIUS], which determines the radius
+Define a constant @racket[RADIUS], which determines the radius
 of the smiley face.  Reformulate the definitions of @racket[HEAD],
-@racket[EYES], and @racket[SMILE] in terms of @racket[SMILEY-RADIUS].
+@racket[EYES], and @racket[SMILE] in terms of @racket[RADIUS].
 
 Use the following proportions to calculate the sizes of the other
 images:
 
 @itemlist[
 
-@item{The eyes should have a height of 2/3 * @racket[SMILEY-RADIUS],
-width of 1/3 * @racket[SMILEY-RADIUS], and space of 1/3 *
-@racket[SMILEY-RADIUS] between them.}
+@item{The eyes should have a height of 2/3 * @racket[RADIUS],
+width of 1/3 * @racket[RADIUS], and space of 1/3 *
+@racket[RADIUS] between them.}
 
 @item{The smile should be constructed from a black circle that has a
-radius of 8/10 * @racket[SMILE-SMILEY-RADIUS] and a yellow circle that is 9/10
+radius of 8/10 * @racket[SMILE-RADIUS] and a yellow circle that is 9/10
 of that quantity.}
 ]
 
-Make sure that changing the value of @racket[SMILEY-RADIUS] doesn't
+Make sure that changing the value of @racket[RADIUS] doesn't
 break your program and produces a smiley image that is consistently
 scaled up or down.
 }
@@ -229,14 +229,14 @@ Actively read the documentation for @racket[put-pinhole],
 ;; center-top-pinhole : Image -> Image
 ;; Put pinhole halfway across and at top of given image
 (check-expect (center-top-pinhole HEAD)
-              (put-pinhole SMILEY-RADIUS 0 HEAD))
+              (put-pinhole RADIUS 0 HEAD))
 (define (center-top-pinhole i)
   i) ; stub
 
 ;; center-bottom-pinhole : Image -> Image
 ;; Put pinhole halfway across and at bottom of given image
 (check-expect (center-bottom-pinhole HEAD)
-              (put-pinhole SMILEY-RADIUS (* 2 SMILEY-RADIUS) HEAD))
+              (put-pinhole RADIUS (* 2 RADIUS) HEAD))
 (define (center-bottom-pinhole i)
   i) ; stub
 }|
