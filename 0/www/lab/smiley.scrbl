@@ -15,15 +15,17 @@
     (the-eval '(require (prefix-in r: racket)))
 the-eval))
 
+@title{Have a Nice Day!}
+
 @examples[
   #:eval the-eval
   #:hidden  
 
-(define SIZE 100)
+(define SMILEY-RADIUS 100)
 (define SMILE-FACTOR 8/10)
 (define EYE-FACTOR 1/3)
 
-(define SMILE-SIZE (* SIZE SMILE-FACTOR))
+(define SMILE-SMILEY-RADIUS (* SMILEY-RADIUS SMILE-FACTOR))
 
 ;; hspace : Number -> Image
 ;; Create given amount of horizontal space as an image
@@ -43,32 +45,44 @@ the-eval))
 
 ;; Construct expressions that produce each of the following:
 (define HEAD
-  (circle SIZE "solid" "yellow"))
+  (circle SMILEY-RADIUS "solid" "yellow"))
 
 (define EYE
-  (ellipse (* EYE-FACTOR SIZE)
-           (* 2 EYE-FACTOR SIZE)
+  (ellipse (* EYE-FACTOR SMILEY-RADIUS)
+           (* 2 EYE-FACTOR SMILEY-RADIUS)
            "solid"
            "black"))
 
 (define EYES
-  (beside EYE (hspace (* SIZE EYE-FACTOR)) EYE))
+  (beside EYE (hspace (* SMILEY-RADIUS EYE-FACTOR)) EYE))
 
 (define SMILE-BLACK-CIRCLE
-  (circle SMILE-SIZE "solid" "black"))
+  (circle SMILE-SMILEY-RADIUS "solid" "black"))
 
 (define SMILE-YELLOW-CIRCLE
-  (circle (* 9/10 SMILE-SIZE) "solid" "yellow"))
+  (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow"))
 
 (define SMILE
   (bottom-half
-   (overlay (circle (* 9/10 SMILE-SIZE) "solid" "yellow")
-            (circle SMILE-SIZE "solid" "black"))))
+   (overlay (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow")
+            (circle SMILE-SMILEY-RADIUS "solid" "black"))))
+
+;; center-top-pinhole : Image -> Image
+;; Put pinhole halfway across and at top of given image
+#;(check-expect (center-top-pinhole HEAD)
+              (put-pinhole SMILEY-RADIUS 0 HEAD))
+(define (center-top-pinhole i)
+  (put-pinhole (/ (image-width i) 2) 0 i))
+
+;; center-bottom-pinhole : Image -> Image
+;; Put pinhole halfway across and at bottom of given image
+#;(check-expect (center-bottom-pinhole HEAD)
+              (put-pinhole SMILEY-RADIUS (* 2 SMILEY-RADIUS) HEAD))
+(define (center-bottom-pinhole i)
+  (put-pinhole (/ (image-width i) 2) (image-height i) i))
 ]
-    
 
 
-@title{Have a Nice Day!}
 
 Implement this lab with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning Student
@@ -127,9 +141,9 @@ futher subparts:
 @item{the eyes consist of two eyes (with space between
 them): @result[EYE]}
 @item{the smile can be constructed from two circles, overlaying them, and taking the bottom half:
-@result[(circle (* 9/10 SMILE-SIZE) "solid" "yellow")]
-@result[(circle SMILE-SIZE "solid" "black")]
-@result[(overlay (circle (* 9/10 SMILE-SIZE) "solid" "yellow") (circle SMILE-SIZE "solid" "black"))]
+@result[(circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow")]
+@result[(circle SMILE-SMILEY-RADIUS "solid" "black")]
+@result[(overlay (circle (* 9/10 SMILE-SMILEY-RADIUS) "solid" "yellow") (circle SMILE-SMILEY-RADIUS "solid" "black"))]
 }
 ]
 
@@ -191,7 +205,7 @@ width of 1/3 * @racket[SMILEY-RADIUS], and space of 1/3 *
 @racket[SMILEY-RADIUS] between them.}
 
 @item{The smile should be constructed from a black circle that has a
-radius of 8/10 * @racket[SMILE-SIZE] and a yellow circle that is 9/10
+radius of 8/10 * @racket[SMILE-SMILEY-RADIUS] and a yellow circle that is 9/10
 of that quantity.}
 ]
 
@@ -208,9 +222,26 @@ Now it's time to put the pieces together.
 Actively read the documentation for @racket[put-pinhole],
 @racket[clear-pinhole], and @racket[overlay/pinhole].
 
+@exercise{
 
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; center-top-pinhole : Image -> Image
+;; Put pinhole halfway across and at top of given image
+(check-expect (center-top-pinhole HEAD)
+              (put-pinhole SMILEY-RADIUS 0 HEAD))
+(define (center-top-pinhole i)
+  i) ; stub
 
+;; center-bottom-pinhole : Image -> Image
+;; Put pinhole halfway across and at bottom of given image
+(check-expect (center-bottom-pinhole HEAD)
+              (put-pinhole SMILEY-RADIUS (* 2 SMILEY-RADIUS) HEAD))
+(define (center-bottom-pinhole i)
+  i) ; stub
+}|
 
+}
 
 @section[#:style 'unnumbered #:tag "lab2:text"]{Strings and Text}
 
