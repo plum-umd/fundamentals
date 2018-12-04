@@ -184,17 +184,31 @@ of the smiley face.  Reformulate the definitions of @racket[HEAD],
 Use the following proportions to calculate the sizes of the other
 images:
 
-The eyes should have a height of 1/3 * @racket[SMILEY-RADIUS]
-and sho
+@itemlist[
 
+@item{The eyes should have a height of 2/3 * @racket[SMILEY-RADIUS],
+width of 1/3 * @racket[SMILEY-RADIUS], and space of 1/3 *
+@racket[SMILEY-RADIUS] between them.}
 
+@item{The smile should be constructed from a black circle that has a
+radius of 8/10 * @racket[SMILE-SIZE] and a yellow circle that is 9/10
+of that quantity.}
+]
+
+Make sure that changing the value of @racket[SMILEY-RADIUS] doesn't
+break your program and produces a smiley image that is consistently
+scaled up or down.
 }
 
 
 @section{Dancing on a pinhole}
 
+Now it's time to put the pieces together.
+
 Actively read the documentation for @racket[put-pinhole],
 @racket[clear-pinhole], and @racket[overlay/pinhole].
+
+
 
 
 
