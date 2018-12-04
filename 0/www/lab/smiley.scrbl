@@ -45,7 +45,7 @@ the-eval))
 
 ;; Construct expressions that produce each of the following:
 (define HEAD
-  (circle RADIUS "solid" "yellow"))
+  (circle RADIUS "solid" "gold"))
 
 (define EYE
   (ellipse (* EYE-FACTOR RADIUS)
@@ -60,11 +60,11 @@ the-eval))
   (circle SMILE-RADIUS "solid" "black"))
 
 (define SMILE-YELLOW-CIRCLE
-  (circle (* 9/10 SMILE-RADIUS) "solid" "yellow"))
+  (circle (* 9/10 SMILE-RADIUS) "solid" "gold"))
 
 (define SMILE
   (bottom-half
-   (overlay (circle (* 9/10 SMILE-RADIUS) "solid" "yellow")
+   (overlay (circle (* 9/10 SMILE-RADIUS) "solid" "gold")
             (circle SMILE-RADIUS "solid" "black"))))
 
 ;; center-top-pinhole : Image -> Image
@@ -148,9 +148,9 @@ futher subparts:
 @item{the eyes consist of two eyes (with space between
 them): @result[EYE]}
 @item{the smile can be constructed from two circles, overlaying them, and taking the bottom half:
-@result[(circle (* 9/10 SMILE-RADIUS) "solid" "yellow")]
+@result[(circle (* 9/10 SMILE-RADIUS) "solid" "gold")]
 @result[(circle SMILE-RADIUS "solid" "black")]
-@result[(overlay (circle (* 9/10 SMILE-RADIUS) "solid" "yellow") (circle SMILE-RADIUS "solid" "black"))]
+@result[(overlay (circle (* 9/10 SMILE-RADIUS) "solid" "gold") (circle SMILE-RADIUS "solid" "black"))]
 }
 ]
 
