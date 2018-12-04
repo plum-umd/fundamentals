@@ -5,6 +5,7 @@
           (for-label lang/htdp-beginner) 
           (for-label (except-in 2htdp/image image?))
           "helper.rkt" 
+	  "../utils.rkt"
           "../defns.rkt")
 
 @(define the-eval
@@ -132,21 +133,68 @@ them): @result[EYE]}
 }
 ]
 
-Write three expressions that produce each of these images.  Using
-@racket[define], name each of them @racket[HEAD], @racket[EYES], and
-@racket[SMILE], repectively.
+
+@exercise{
+
+To help construct these images, complete the following helper function
+definitions, which have been stubbed for you:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; hspace : Number -> Image
+;; Create given amount of horizontal space as an image
+(check-expect (hspace 10) (rectangle 10 0 "solid" "black"))
+(define (hspace x) 
+  empty-image) ; stub
+
+;; bottom-half : Image -> Image
+;; Crop an image to just it's bottom half
+(check-expect (bottom-half (rectangle 100 60 "solid" "red"))
+              (rectangle 100 30 "solid" "red"))
+(define (bottom-half i) 
+  i) ; stub
+}|
+
+}
 
 
+Now write expressions that produce each of the images show in this lab
+write-up.  You may find @racket[hspace] and @racket[bottom-half]
+useful.
+
+@exercise{
+
+Give three definitions that correctly define the head, eyes, and smile
+images:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define HEAD ...)
+(define EYES ...)
+(define SMILE ...)
+}|
+}
+
+@exercise{
+
+Define a constant @racket[SMILEY-RADIUS], which determines the radius
+of the smiley face.  Reformulate the definitions of @racket[HEAD],
+@racket[EYES], and @racket[SMILE] in terms of @racket[SMILEY-RADIUS].
+
+Use the following proportions to calculate the sizes of the other
+images:
+
+The eyes should have a height of 1/3 * @racket[SMILEY-RADIUS]
+and sho
 
 
+}
 
-Define the following functions, which have been given signatures,
-purpose statements, tests, and stubs:
 
 @section{Dancing on a pinhole}
 
-Read about @racket[put-pinhole], @racket[clear-pinhole], and
-@racket[overlay/pinhole].
+Actively read the documentation for @racket[put-pinhole],
+@racket[clear-pinhole], and @racket[overlay/pinhole].
 
 
 
