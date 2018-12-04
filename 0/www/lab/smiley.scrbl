@@ -10,7 +10,7 @@
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
-    ;(the-eval '(require lang/htdp/intermediate))
+    (the-eval '(require (only-in lang/htdp-intermediate check-expect)))
     (the-eval '(require 2htdp/image))
     (the-eval '(require (prefix-in r: racket)))
 the-eval))
@@ -87,6 +87,48 @@ the-eval))
                    HEAD))
 
 (define SMILEY (clear-pinhole PH-SMILEY))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Section: Functions
+
+;; smiley : Number -> Image
+;; Construct a smiley image of given radius
+;(check-expect (smiley RADIUS) SMILEY)
+(define (smiley r)
+  (clear-pinhole
+   (overlay/pinhole
+    (center-bottom-pinhole (eyes r))
+    (center-top-pinhole (smile r))
+    (center-pinhole (head r)))))
+
+;; eyes : Number -> Image
+;; Construct an eyes image for a smiley of given radius
+;(check-expect (eyes RADIUS) EYES)
+(define (eyes r)
+  (beside (eye r) (hspace (* EYE-FACTOR r)) (eye r)))
+
+;; eye : Number -> Image
+;; Construct a (single) eye image for a smiley of given radius
+;(check-expect (eye RADIUS) EYE)
+(define (eye r)
+  (ellipse (* EYE-FACTOR r)
+           (* 2 EYE-FACTOR r)
+           "solid"
+           "black"))
+
+;; head : Number -> Image
+;; Construct a head image for a smiley of given radius
+;(check-expect (head RADIUS) HEAD)
+(define (head r)
+  (circle r "solid" "gold"))
+
+;; smile : Number -> Image
+;; Construct a smile image for a smiley of given radius
+;(check-expect (smile RADIUS) SMILE)
+(define (smile r)
+  (bottom-half
+   (overlay (circle (* 9/10 (* SMILE-FACTOR r)) "solid" "gold")
+            (circle (* SMILE-FACTOR r) "solid" "black"))))
 ]
 
 
@@ -155,7 +197,7 @@ them): @result[EYE]}
 ]
 
 
-@exercise{
+@exercise["Image helper functions"]{
 
 To help construct these images, complete the following helper function
 definitions, which have been stubbed for you:
@@ -183,7 +225,7 @@ Now write expressions that produce each of the images show in this lab
 write-up.  You may find @racket[hspace] and @racket[bottom-half]
 useful.
 
-@exercise{
+@exercise[@elem{@racket[HEAD], @racket[EYES], and @racket[SMILE]}]{
 
 Give three definitions that correctly define the head, eyes, and smile
 images:
@@ -196,7 +238,7 @@ images:
 }|
 }
 
-@exercise{
+@exercise[@racket[RADIUS]]{
 
 Define a constant @racket[RADIUS], which determines the radius
 of the smiley face.  Reformulate the definitions of @racket[HEAD],
@@ -212,7 +254,7 @@ width of 1/3 * @racket[RADIUS], and space of 1/3 *
 @racket[RADIUS] between them.}
 
 @item{The smile should be constructed from a black circle that has a
-radius of 8/10 * @racket[SMILE-RADIUS] and a yellow circle that is 9/10
+radius of 8/10 * @racket[RADIUS] and a yellow circle that is 9/10
 of that quantity.}
 ]
 
@@ -220,6 +262,9 @@ Make sure that changing the value of @racket[RADIUS] doesn't
 break your program and produces a smiley image that is consistently
 scaled up or down.
 }
+
+Experiment with different values for @racket[RADIUS] and observe the
+results.
 
 
 @section{Dancing on a pinhole}
@@ -245,7 +290,7 @@ Actively read the documentation for @racket[put-pinhole],
 @racket[center-pinhole], @racket[clear-pinhole], and
 @racket[overlay/pinhole].
 
-@exercise{
+@exercise["Pinhole helpers"]{
 
 To help align images, complete the following helper function
 definitions, which have been stubbed for you:
@@ -287,8 +332,239 @@ and
 @result[
 (overlay/pinhole (center-top-pinhole EYES) (center-bottom-pinhole SMILE))].
 
-@exercise{
+@exercise[@racket[SMILEY]]{
 
-Write an expression that produces the smiley image.
+Write an expression that produces the smiley image and define the
+constant @racket[SMILEY] to refer to it.
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define SMILEY ...)
+}|
+
+@examples[
+  #:eval the-eval
+  SMILEY
+]
 }
+
+
+@section{All the Smileys}
+
+Congratulations!  You've solved one instance of the Smiley problem.
+But suppose you wanted to produce two or more Smileys, each with a
+different radius? For example, maybe you want to make something like
+this:
+
+@result[
+(apply beside (map smiley '(10 20 40 80 160)))
+]
+
+In some sense, you have a solution to this problem: you can edit the
+definition of @racket[RADIUS] and run the program to produce each of
+the Smileys involved in the image above.  The problem with this
+solution is you need many programs to solve an instance of the
+problem. 
+
+A much better solution would be to have a single program that solves
+@bold{any} instance of the problem.  To do this, you need a
+@emph{function} that can compute a Smiley image @emph{in terms of some
+given value for the radius}.
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; smiley : Number -> Image
+;; Construct a Smiley of given radius
+}|
+
+@examples[
+  #:eval the-eval
+  (smiley 20)
+  (smiley 40)
+  (smiley 80)
+]
+
+Of course, solving this generalization of the Smiley problem should
+also solve the particular instance of creating a Smiley of radius
+@racket[RADIUS]:
+
+@examples[
+  #:eval the-eval
+  (smiley RADIUS)
+  SMILEY
+]
+
+The definition of @racket[smiley] is going to be very similar to the
+definition of @racket[SMILEY].  In fact, you could start from the
+following stub:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; smiley : Number -> Image
+;; Construct a Smiley of given radius
+(define (smiley r)
+  SMILEY) ; stub
+}|
+
+The definition, like a broken clock, is sometimes right!  In
+particular, @racket[(smiley RADIUS)] produces the correct result, but
+every other input does not.
+
+To see, take a look at your definition of @racket[SMILEY], which
+should involve uses of the constants @racket[RADIUS], @racket[HEAD],
+@racket[EYES], and @racket[SMILE]:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define SMILEY 
+  (... RADIUS ... HEAD ... EYES ... SMILE ...))
+}|
+
+Take the right hand side of this definition and replace
+@racket[SMILEY] in the definition of @racket[smiley]:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; smiley : Number -> Image
+;; Construct a Smiley of given radius
+(define (smiley r)
+  (... RADIUS ... HEAD ... EYES ... SMILE ...))
+}|
+
+Looking at this sketch of the code, it should be clear we want to
+compute things in terms of @racket[r] in place of the constant
+@racket[RADIUS].  The constants @racket[HEAD], @racket[EYES], and
+@racket[SMILE] are also defined in terms of the constant
+@racket[RADIUS], so want to develop functions:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; head : Number -> Image
+;; Construct a head image for a Smiley of given radius
+(define (head r)
+  HEAD) ; stub
+
+;; eyes : Number -> Image
+;; Construct an eyes image for a Smiley of given radius
+(define (eyes r)
+  EYES) ; stub
+
+;; smile : Number -> Image
+;; Construct a smile image for a Smiley of given radius
+(define (smile r)
+  SMILE) ; stub
+}|
+
+The correct code for @racket[smiley] can now be obtained by replacing
+@racket[RADIUS] with @racket[r], and @racket[HEAD] with @racket[(head
+r)], etc.:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define (smiley r)
+  (... r ... (head r) ... (eyes r) ... (smile r) ...))
+}|
+
+You should be able to follow a similar process to obtain correct
+definitions of @racket[head], @racket[eyes], and @racket[smile].  For
+example, in the case of @racket[head], replace @racket[HEAD] with its
+definition:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define (head r)
+  (... RADIUS ...))
+}|
+
+And replace @racket[RADIUS] with @racket[r]:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+(define (head r)
+  (... r ...))
+}|
+
+You can check your work by comparing against known solutions:
+
+@examples[
+  #:eval the-eval
+  (head RADIUS)
+  HEAD
+  (eyes RADIUS)
+  EYES
+  (smile RADIUS)
+  SMILE
+  (smiley RADIUS)
+  SMILEY
+]
+
+And you can cofirm it still works when the radius varies:
+
+@examples[
+  #:eval the-eval
+  (head 20)
+  (head 40)
+  (eyes 20)
+  (eyes 40)
+  (smile 20)
+  (smile 40)
+  (smiley 20)
+  (smiley 40)
+]
+
+Having a function makes it easy to write programs that construct
+several Smileys of varying sizes:
+
+@examples[
+  #:eval the-eval
+  (beside (smiley 20) (smiley 40) (smiley 80))]
+
+
+
+@exercise[@racket[smiley]]{
+
+Complete the following function definitions, which have been stubbed for you:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; smiley : Number -> Image
+;; Construct a smiley image of given radius
+(check-expect (smiley RADIUS) SMILEY)
+(define (smiley r)
+  SMILEY) ; stub
+
+;; eyes : Number -> Image
+;; Construct an eyes image for a smiley of given radius
+(check-expect (eyes RADIUS) EYES)
+(define (eyes r)
+  EYES) ; stub
+
+;; head : Number -> Image
+;; Construct a head image for a smiley of given radius
+(check-expect (head RADIUS) HEAD)
+(define (head r)
+  HEAD) ; stub
+
+;; smile : Number -> Image
+;; Construct a smile image for a smiley of given radius
+(check-expect (smile RADIUS) SMILE)
+(define (smile r)
+  SMILE) ; stub
+}|
+
+}
+
+@exercise["Smiles"]{
+
+Write an expression that creates an image like the one at the beginning of this subsection.
+}
+
+
+
+
+
+
+
+
+
+
 
