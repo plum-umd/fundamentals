@@ -13,6 +13,6 @@
 (define (exercise title . t) 
   (set! *count* (add1 *count*))
   (nested #:style exercise-body-style 
-          (para #:style exercise-style (format "Exercise ~a:" *count*))
+          (para #:style exercise-style (format "Exercise ~a: " *count*) title)
           t))
 
