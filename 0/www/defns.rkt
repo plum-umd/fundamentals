@@ -1,5 +1,6 @@
 #lang racket
 (provide (all-defined-out))
+(require scribble/core scribble/html-properties)
 
 (define semester "summer")
 (define year "2019")
@@ -11,3 +12,7 @@
 (define final-date "Dec 14, 8--10 am")
 (define elms-url "https://myelms.umd.edu/courses/1227887")
 |#
+
+
+(define float-right
+  (style #f (list (attributes '((style . "float: right"))))))

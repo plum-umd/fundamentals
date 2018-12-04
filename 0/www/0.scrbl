@@ -22,7 +22,7 @@
 @link["https://oes.umd.edu/middle-high-school-students/terp-young-scholars"]{Terp
 Young Scholars} course.}
 
-@image[#:scale 1/2 #:style (style #f (list (attributes '((style . "float: right")))))]{img/pacman-chomp.gif}
+@image[#:scale 1/2 #:style float-right]{img/pacman-chomp.gif}
 
 
 @bold{Assumptions:} The course does @emph{not} assume @emph{any} prior
@@ -37,7 +37,7 @@ subject to change until the start of the semester.
 
 @include-section{texts.scrbl}
 @include-section{schedule.scrbl}
-
+@include-section{labs.scrbl}
 
 @;{
 @margin-note*{@emph{Program design} is the study of systematic
