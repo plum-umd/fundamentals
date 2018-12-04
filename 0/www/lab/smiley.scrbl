@@ -80,6 +80,13 @@ the-eval))
               (put-pinhole RADIUS (* 2 RADIUS) HEAD))
 (define (center-bottom-pinhole i)
   (put-pinhole (/ (image-width i) 2) (image-height i) i))
+
+(define PH-SMILEY
+  (overlay/pinhole (center-bottom-pinhole EYES)
+                   (center-top-pinhole SMILE)
+                   HEAD))
+
+(define SMILEY (clear-pinhole PH-SMILEY))
 ]
 
 
@@ -97,7 +104,7 @@ and choosing 'Search in Help Desk for "foo"' menu option. You can also press
 
 @section{Oveview}
 
-@image[#:style float-right]{img/smiley.png}
+@elem[#:style float-right]{@result[SMILEY]}
 
 The goal of this lab is to use the ``arithmetic of images,'' as
 provided by the @racketmodname[2htdp/image] library, to construct an
@@ -219,10 +226,29 @@ scaled up or down.
 
 Now it's time to put the pieces together.
 
+You have already seen how to compose images using operations like
+@racket[above], @racket[beside], and @racket[overlay], but to
+construct the smiley, you'll need more fine-grained control of where
+the peices line up.
+
+@elem[#:style float-right]{@result[PH-SMILEY]}
+
+The image on the right is the smiley with some guide lines added.
+Notice that the eyes and smile are centered horizontally.  Vertically,
+the middle of the head is aligned with the top of the smile and bottom
+of the eyes.
+
+To easily align these images in this way we can use
+@racketmodname[2htdp/image]'s notion of a @emph{pinhole}.
+
 Actively read the documentation for @racket[put-pinhole],
-@racket[clear-pinhole], and @racket[overlay/pinhole].
+@racket[center-pinhole], @racket[clear-pinhole], and
+@racket[overlay/pinhole].
 
 @exercise{
+
+To help align images, complete the following helper function
+definitions, which have been stubbed for you:
 
 @codeblock[#:keep-lang-line? #false]|{
 #lang racket
@@ -240,6 +266,29 @@ Actively read the documentation for @racket[put-pinhole],
 (define (center-bottom-pinhole i)
   i) ; stub
 }|
+}
 
+Experiment with your helper functions and built-in pinhole operations
+to produce each of the following images:
+
+@result[(center-pinhole EYES)], 
+@result[(center-bottom-pinhole EYES)],  
+@result[(center-top-pinhole EYES)], 
+@result[(center-pinhole SMILE)],  
+@result[(center-bottom-pinhole SMILE)], 
+@result[(center-top-pinhole SMILE)],  
+@result[
+(overlay/pinhole (center-bottom-pinhole EYES) (center-top-pinhole SMILE))], 
+@result[
+(overlay/pinhole (center-pinhole EYES) (center-top-pinhole SMILE))], 
+@result[
+(overlay/pinhole (center-top-pinhole EYES) (center-top-pinhole SMILE))], 
+and
+@result[
+(overlay/pinhole (center-top-pinhole EYES) (center-bottom-pinhole SMILE))].
+
+@exercise{
+
+Write an expression that produces the smiley image.
 }
 
