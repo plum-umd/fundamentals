@@ -243,12 +243,3 @@ Actively read the documentation for @racket[put-pinhole],
 
 }
 
-@section[#:style 'unnumbered #:tag "lab2:text"]{Strings and Text}
-
-Your TAs hope to break into the lucrative & high-stakes world of banner making
-and advertising. Unrelated, the theme of today's lab is working with strings,
-text, and images.
-
-@larger{@bold{Ex 1}}: Define a function @tt{greet-tracked-person} that, given the
-string name of some person and a string slogan, returns a string with a
-personalized slogan such as:
