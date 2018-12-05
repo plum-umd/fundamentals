@@ -3,17 +3,39 @@
 
 @title[#:style 'unnumbered]{Schedule}
 
+
+@section{At a glance}
+
+Week 1-3
+
+Exams
+
+What happens each day.  Each week.
+
+@section{Week 1}
+
 @(define (d s) (nonbreaking (bold s)))
 
 @(define (htdp part name)
-   (link (string-append "https://htdp.org/2018-01-06/Book/part_" part) name))
+   (elem "HtDP: "
+     (link (string-append "https://htdp.org/2018-01-06/Book/part_" part) name)))
 
-@tabular[
-  #:style 'boxed 
-  #:sep @hspace[1]
-  #:row-properties '(bottom-border)
-  (list (list @bold{Date} @bold{Topic} @bold{Reading})
-        (list @d{July 8} 
+@(define (docs lang name)
+  (elem "Docs: "
+    (secref name
+            #:tag-prefixes (list lang)
+            #:doc '(lib "scribblings/htdp-langs/htdp-langs.scrbl"))))
+
+@(define (week-table entries)
+  @tabular[
+    #:style 'boxed 
+    #:sep @hspace[1]
+    #:row-properties '(bottom-border)
+    (cons (list @bold{Date} @bold{Topic} @bold{Reading})
+          entries)])
+  
+@week-table[
+  (list (list @d{July 8} 
               @itemlist[
                 @item{Introduction; course overview}
                 @item{Arithmetic of numbers and images}
@@ -21,25 +43,39 @@
               @itemlist[
                 @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
                 @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
-                @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}])
+                @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
+                @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
+                @item{@docs["htdp-beginner" "Booleans"]}
+                @item{@docs["htdp-beginner" "Strings"]}])
 
         (list @d{July 9} 'cont 'cont)
         (list @d{July 10} 'cont 'cont)
         (list @d{July 11} 'cont 'cont)
         (list @d{July 12} 'cont 'cont)
+)]
 
+@section{Week 2}
+
+@week-table[
+(list
         (list @d{July 15} 'cont 'cont)
         (list @d{July 16} 'cont 'cont)
         (list @d{July 17} 'cont 'cont)
         (list @d{July 18} 'cont 'cont)
-        (list @d{July 19} 'cont 'cont)
+        (list @d{July 19} 'cont 'cont))
+]
 
+@section{Week 3}
+
+@week-table[
+(list
         (list @d{July 22} 'cont 'cont)
         (list @d{July 23} 'cont 'cont)
         (list @d{July 24} 'cont 'cont)
         (list @d{July 25} 'cont 'cont)
-        (list @d{July 26} 'cont 'cont)
-  )]
+        (list @d{July 26} 'cont 'cont))
+]
+
 
 
 @;{tabular[#:style 'boxed
@@ -96,3 +132,4 @@
 
 
 }
+
