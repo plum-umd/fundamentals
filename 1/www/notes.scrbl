@@ -228,6 +228,14 @@ Here is the code I presented in class:
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=90831cad-78cf-4288-b00a-a9a8011cf677"]
 
+@section{December 3, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=14a68580-4551-43b6-a52a-a9ac012e0bf8"]
+
+@section{December 5, 2018}
+
+@vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=39f43c47-c369-48e6-a4bc-a9ad0138a7e9"]
+
 @;{
 
 @vidlink["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=35260fd2-a523-4c5a-91ad-247fdf821b1c"]
