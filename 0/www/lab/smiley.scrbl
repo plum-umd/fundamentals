@@ -21,7 +21,7 @@ the-eval))
   #:eval the-eval
   #:hidden  
 
-(define RADIUS 100)
+(define RADIUS 75)
 (define SMILE-FACTOR 8/10)
 (define EYE-FACTOR 1/3)
 
@@ -165,6 +165,7 @@ This problem can be broken into two sub-problems:
 
 @section{Deconstructing happiness}
 
+
 Before you begin, open a DrRacket window and @bold{actively
 read} the documentation for @racket[circle], @racket[ellipse],
 @racket[rectangle], @racket[beside], @racket[overlay],
@@ -196,6 +197,15 @@ them): @result[EYE]}
 }
 ]
 
+@exercise["Simple images"]{
+
+Using @racket[circle], @racket[ellipse], and @racket[overlay], write
+expressions that produce images that look like each of the following:
+
+@result[EYE], @result[HEAD], @result[SMILE-YELLOW-CIRCLE], @result[SMILE-BLACK-CIRCLE],
+and @result[(overlay SMILE-YELLOW-CIRCLE SMILE-BLACK-CIRCLE)].
+
+}
 
 @exercise["Image helper functions"]{
 
