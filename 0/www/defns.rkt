@@ -12,7 +12,3 @@
 (define final-date "Dec 14, 8--10 am")
 (define elms-url "https://myelms.umd.edu/courses/1227887")
 |#
-
-
-(define float-right
-  (style #f (list (attributes '((style . "float: right"))))))

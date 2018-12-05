@@ -3,7 +3,8 @@
 	  scriblib/footnote
           scribble/decode
           scribble/html-properties
-	  "defns.rkt")
+	  "defns.rkt"
+          "utils.rkt")
 
 @(define (blockquote . strs)
    (make-nested-flow (make-style "blockquote" '(command))

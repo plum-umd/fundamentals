@@ -1,5 +1,5 @@
 #lang racket
-(provide exercise)
+(provide exercise float-right)
 (require scribble/base scribble/core scribble/html-properties)
 
 (define exercise-body-style
@@ -16,3 +16,6 @@
           (para #:style exercise-style (format "Exercise ~a: " *count*) title)
           t))
 
+
+(define float-right
+  (style #f (list (attributes '((style . "float: right"))))))
