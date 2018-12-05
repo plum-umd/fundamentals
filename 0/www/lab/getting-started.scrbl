@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
+@(require scribble/core (for-label lang/htdp-beginner) "helper.rkt" "../utils.rkt")
 
 @title{Getting Started}
 
@@ -25,6 +25,14 @@ lab. At the end you'll submit the lab as a pair via the
 @link["https://submit.cs.umd.edu"]{UMD CS Submit Server} so we can keep an eye
 on lab attendance.
 
+
+@section{Install DrRacket}
+
+Download and install DrRacket, part of the Racket platform, available
+for download from
+@link["https://download.racket-lang.org/"]{https://download.racket-lang.org/}.
+
+@panopto-vid["https://umd.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=fca012d7-29a3-4b30-af98-a9ad01537e17"]
 
 @section{Meet DrRacket}
 
