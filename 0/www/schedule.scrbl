@@ -78,6 +78,41 @@ What happens each day.  Each week.
 
 
 
+@section{Week 1: July 8}
+
+@subsection{July 8} 
+
+Topics
+              @itemlist[
+                @item{Introduction; course overview}
+                @item{Arithmetic of numbers and images}
+                @item{Functions and programs}]
+
+Readings
+              @itemlist[
+                @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
+                @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
+                @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
+                @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
+                @item{@docs["htdp-beginner" "Booleans"]}
+                @item{@docs["htdp-beginner" "Strings"]}]
+
+Labs
+
+@itemlist[
+@item{@secref{Getting_Started}}
+@item{@secref{Text_and_Images}}
+]
+
+Videos
+
+@itemlist[
+@item{Installing DrRacket}
+@item{Using the Handin Server}
+@item{The Arithmetics of Programs}
+]
+
+
 @;{tabular[#:style 'boxed
 	 #:sep @hspace[1] 
 	 #:row-properties '(bottom-border)
