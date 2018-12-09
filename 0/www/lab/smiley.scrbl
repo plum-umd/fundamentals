@@ -138,10 +138,10 @@ Implement this lab with the
 Language}. Require the HtDP2e image library at the top of your definitions:
 @racketblock[(require 2htdp/image)]
 
-@colorize["red"]{Hint}: You can search for documentation by right-clicking any
+@;{colorize["red"]{Hint}: You can search for documentation by right-clicking any
 identifier @tt{foo} in the @italic{definitions} or @italic{interactions} windows
 and choosing 'Search in Help Desk for "foo"' menu option. You can also press
-<F1> to search for documentation about any identifier under the cursor.
+<F1> to search for documentation about any identifier under the cursor.}
 
 
 @section{Oveview}
