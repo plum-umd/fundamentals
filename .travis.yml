@@ -51,7 +51,6 @@ deploy:
     skip_cleanup: true
     script:
       rsync -rvzp $TRAVIS_BUILD_DIR/2/www/cmsc132A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/spring2019;
-#     rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/fall2018;
       rsync -rvzp $TRAVIS_BUILD_DIR/0/www/cmsc198Q dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/summer2019
     on:
       branch: master
