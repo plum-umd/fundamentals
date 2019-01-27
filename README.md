@@ -6,8 +6,10 @@ This repository contains the course materials for Systematic Program
 Design I & II offered at the University of Maryland, College Park by
 David Van Horn.
 
-* http://www.cs.umd.edu/class/fall2017/cmsc131A/
-* http://www.cs.umd.edu/class/spring2018/cmsc132A/
+Latest instances of these courses:
+
+* http://www.cs.umd.edu/class/fall2018/cmsc131A/
+* http://www.cs.umd.edu/class/spring2019/cmsc132A/
 
 
 Copyright © 2017 David Van Horn
