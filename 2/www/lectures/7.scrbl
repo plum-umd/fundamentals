@@ -1,321 +1,222 @@
 #lang scribble/manual
-@(require scribble/eval
-          racket/sandbox
-          (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
+@(require (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
           (for-label (except-in class/0 define-struct ... check-expect))
-          (for-label class/universe)
+          scribble/bnf
           "../utils.rkt")
 
-@(define the-eval
-  (let ([the-eval (make-base-eval)])
-    (the-eval '(require (for-syntax racket/base)))
-    (the-eval '(require class/0))
-    (the-eval '(require 2htdp/image))
-    (the-eval '(require (prefix-in r: racket)))
-    (the-eval '(require "lectures/7/lon.rkt"))
-    (the-eval '(require "lectures/7/los.rkt"))
-    (the-eval '(require "lectures/7/lox.rkt"))
-    the-eval))
+@lecture-title[7]{Introducing Java: Syntax and Semantics}
 
-@lecture-title[7]{Parametric Interface Definitions and Methods}
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=41c2986c-d55e-4548-b43f-a8820148000b"]{Video}.
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=48f72fe6-8739-484f-90e0-a8800126c62c"]{Video}.
+@bold{Introducting Java Syntax}
 
-In the last lecture, we developed an interface and implementation for
-lists of numbers:
+You've now seen several programming languages: BSL, ISL, ISL+, and
+@tt{class/0}.  Now time for one more: Java.  Let's start by looking at
+the @emph{syntax}, the way Java programs are written.
 
+Here's a comment in @tt{class/0}:
 @class-block{
-;; A LoN implements:
-;;
-;; length : -> Number
-;; Compute the length of this list of numbers 
-;;   
-;; map : [Number -> Number] -> LoN
-;; Apply given function to each element of this list of numbers
-
-;; A (new empty-lon%) implements LoN
-;; INTERP: Empty list of numbers
-(define-class empty-lon%
-  ;; Compute the length of this empty list of numbers
-  (check-expect (send (new empty-lon%) length) 0)
-  (define (length) 
-    0)
-
-  ;; map : [Number -> Number] -> LoN
-  ;; Apply given function to each element of this empty list of numbers
-  (check-expect (send (new empty-lon%) map add1) (new empty-lon%))
-  (define (map f) 
-    (new empty-lon%)))
-
-;; A (new cons-lon% Number LoN) implements LoN
-;; INTERP: Non-empty list of numbers
-(define-class cons-lon%
-  (fields first rest)
-
-  ;; length : -> Number
-  ;; Compute the length of this non-empty list of numbers
-  (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
-                      length)
-                2)
-  (define (length)
-    (add1 (send (send this rest) length)))
-
- ;; map : [Number -> Number] -> LoN
- ;; Apply given function to each element of this non-empty list of numbers
- (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
-                     map add1)
-               (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
- (define (map f)
-   (new cons-lon% 
-        (f (send this first)) 
-        (send (send this rest) map f))))
+;; Hi there
 }
 
-You could imagine doing a similiar development for lists of strings:
-
-@class-block{
-;; A LoS implements:
-;;
-;; length : -> Number
-;; Compute the length of this of strings
-;;   
-;; map : [String -> String] -> LoS
-;; Apply given function to each element of this list of strings
-
-;; A (new empty-los%) implements LoS
-;; INTERP: Empty list of strings
-(define-class empty-los%
-  ;; Compute the length of this empty list of strings
-  (check-expect (send (new empty-los%) length) 0)
-  (define (length) 0)
-
-  ;; map : [String -> String] -> LoS
-  ;; Apply the given function to each element of this empty list of strings
-  (check-expect (send (new empty-los%) map string-upcase) (new empty-los%))
-  (define (map f) (new empty-los%)))
-
-;; A (new cons-los% String LoS) implements LoS
-;; INTERP: Non-empty list of strings
-(define-class cons-los%
-  (fields first rest)
-
-  ;; length : -> Number
-  ;; Compute the length of this non-empty list of strings
-  (check-expect (send (new cons-los% "a" (new cons-los% "b" (new empty-los%))) 
-                      length)
-                2)
-  (define (length)
-    (add1 (send (send this rest) length)))
-
-  ;; map : [String -> String] -> LoS
-  ;; Apply given function to each element of this non-empty list of strings
-  (check-expect (send (new cons-los% "a" (new cons-los% "b" (new empty-los%))) 
-                      map string-upcase)
-                (new cons-los% "A" (new cons-los% "B" (new empty-los%))))
-  (define (map f)
-    (new cons-los% 
-         (f (send this first)) 
-         (send (send this rest) map f))))
+Here's a comment in Java:
+@java-block{
+// Hi there
 }
 
-
-Of course the obvious thing to observe is that these pairs of programs
-are very very similar.
-
-In fact, the @emph{code} is identical, it's only the signatures that
-differ.  We can see evidence of this by experimenting with the code in
-ways that break the signatures.  Notice that it's possible to
-correctly compute with lists of strings even when they're represented
-using the classes for lists of numbers.
-
-@examples[#:eval the-eval
-(send (new cons-lon% "a" (new cons-lon% "b" (new empty-lon%))) length)
-(send (new cons-lon% "a" (new cons-lon% "b" (new empty-lon%))) 
-      map string-upcase)
-]
-
-This is strong evidence to suggest that @emph{abstraction} is needed
-to avoid the duplication.  Since the differences between these
-programs is not at the level of @emph{values}, but @emph{data
-definitions}, we should do abstraction at this level.  Let's consider
-first the interface definitions:
-
+Here's a block comment in @tt{class/0}:
 @class-block{
-;; A LoN implements:
-;;
-;; length : -> Number
-;; Compute the length of this list of numbers 
-;;   
-;; map : [Number -> Number] -> LoN
-;; Apply given function to each element of this list of numbers
-
-;; A LoS implements:
-;;
-;; length : -> Number
-;; Compute the length of this of strings
-;;   
-;; map : [String -> String] -> LoS
-;; Apply given function to each element of this list of strings
+#| Hi
+   there |#
 }
 
-By applying the abstraction process, we arrive at the following
-@emph{parameterized} interface definition as a first cut:
-
+Java:
 @class-block{
-;; A [Listof X] implements:
-;;
-;; length : -> Number
-;; Compute the length of this list of numbers 
-;;   
-;; map : [X -> X] -> [Listof X]
-;; Apply given function to each element of this list of numbers
+/* Hi
+   there */
 }
 
-We could then revise the data definitions and signatures of the
-classes implementing this interface to arrive a single, re-usable
-program:
-
+A class definition in @tt{class/0}:
 @class-block{
-;; A (new empty%) implements [Listof X]
-;; INTERP: Empty list of Xs
-(define-class empty%
-  ;; Compute the length of this empty list of Xs
-  (check-expect (send (new empty%) length) 0)
-  (define (length) 
-    0)
-
-  ;; map : [X -> X] -> [Listof X]
-  ;; Apply given function to each element of this empty list of Xs
-  (check-expect (send (new empty%) map add1) (new empty%))
-  (define (map f) 
-    (new empty%)))
-
-;; A (new cons% X [Listof X]) implements [Listof X]
-;; INTERP: Non-empty list of Xs
-(define-class cons%
-  (fields first rest)
-
-  ;; length : -> Number
-  ;; Compute the length of this non-empty list of Xs
-  (check-expect (send (new cons% 3 (new cons% 7 (new empty%))) 
-                      length)
-                2)
-  (define (length)
-    (add1 (send (send this rest) length)))
-
-  ;; map : [X -> X] -> [Listof X]
-  ;; Apply given function to each element of this non-empty list of Xs
-  (check-expect (send (new cons% 3 (new cons% 7 (new empty%))) 
-                      map add1)
-                (new cons% 4 (new cons% 8 (new empty%))))
-  (define (map f)
-    (new cons%
-         (f (send this first)) 
-         (send (send this rest) map f))))
+;; A Coord is a (new coord% Integer Integer)
+(define-class coord%
+  (fields x y))
 }
 
-We can now reconstruct our original programs by applying the
-parameteric definitions: @tt{[Listof Number]} and @tt{[Listof
-String]}.  We also make new data definitions by applying @tt{Listof}
-to other things.  For example, here's a computation over a @tt{[Listof
-Boolean]}.
+A class definition in Java:
+@java-block|{
+class Coord {
+  Integer x;
+  Integer y;
+}
+}|
 
-@examples[#:eval the-eval
-(send (new cons% #true (new cons% #false (new empty%))) map not)
-]
+Notice here that the convention for class names in Java is to
+capitalize them.  Also notice that, because Java is a typed language,
+it requires us to specify the type of the fields.  In this case, the
+fields @tt{x} and @tt{y} are both objects belonging to the
+@tt{Integer} class.  So in Java, some of the information that we're
+used to writing down as part of data definitions becomes part of the
+actual program text; not just a comment.
 
-This is a big step forward, but there's an opportunity to do even
-better.  Consider the following.
+The above class definition defines a new class of values, called
+@java{Coord}s.  A @java{Coord} value is an object with an @java{x} and
+@java{y} field, both of which hold @java{Integer} objects.
 
-@examples[#:eval the-eval
-(send (new cons% "a" (new cons% "aa" (new empty%))) map string-length)]
+One thing that Java requires us to write explicitly is a
+@emph{constructor}, whereas @racket[class/0] made the constructors for
+us.  The way constructors work in @racket[class/0] is to say
+@racket[new], a class name, and then give the appropriate number of
+expressions (one for each field); the value of these expressions are
+used to populate the fields of the object.  We can write such a
+constructor in Java by revising the class definition:
 
-This program works fine and makes perfect sense.  It computes a length
-of numbers from a list of strings.  However, it has broken the
-signature of the @tt{map} method since @racket[string-length] does not
-have the signature @tt{String -> String}, which is what's obtained when
-plugging in @tt{String} for @tt{X}.
+@java-block|{
+class Coord {
+  Integer x;
+  Integer y;
 
-This is more evidence that further abstraction is possible.  In
-particular we can loosen the constraints in the signature for
-@tt{map}:
+  Coord(Integer x, Integer y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+}|
 
+This constructor definition says if you call the constructor (we will
+see how in a moment) with two integers, it will populate the fields of
+a @java{Coord} object with the given integers.
+
+To make a @tt{Coord} in @racket[class/0], you write:
 @class-block{
-;; A [Listof X] implements
-;;
-;; map : [X -> Y] -> [Listof Y]
-;; Apply given function to each element of this list of Xs
-;;
-;; ...
+(new coord% 3 4)
 }
 
-Notice that this method signature makes use of two parameters: @tt{X}
-and @tt{Y}.  The @tt{X} parameter is "bound" at the level, @tt{[Listof
-X]}.  The @tt{Y} is implicitly a parameter of the method's signature.
-
-So in an object-oriented setting, these parameters can appear at the
-interface and class level, but also at the method level.
-
-We can do another exercise to write things we've seen before.  Let's
-see what @tt{foldr} looks like:
-
-@class-block{
-;; A [Listof X] implements
-;;
-;; ...
-;;
-;; foldr : [X Y -> Y] Y -> Y
-;; Fold over the elements with the given combining function and base
+To make a @java{Coord} in Java, you write:
+@java-block{
+new Coord(3, 4)
 }
 
-We can make some examples.
+In general, the arguments of the constructor can be arbitrary
+expressions that produce integers, e.g.
+@java-block{
+new Coord(2 + 1, 2 * 2)
+}
 
-@examples[#:eval the-eval
+In @racket[class/0], if you have a @tt{coord%} object @racket[o] and
+want to extract the value in the @tt{x} field, you write:
+@class-block{
+(send o x)
+}
 
-(send (new empty%) foldr + 0)
-(send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
-(send (new empty%) foldr string-append "")
-(send (new cons% "5" (new cons% "3" (new empty%))) foldr string-append "")
-]
+In Java, the notation for @racket[send] is a ``dot'' written between the
+object expression and the field name:
 
-Let's instantiate the template for @tt{foldr} for @racket[cons%].
+@java-block{
+o.x
+}
 
-@filebox[
- (racket cons%)
- @class-block{
-;; foldr : [X Y -> Y] Y -> Y
-;; Fold over this non-empty list of elements with combining function and base
-(define (foldr f b)
-  (send this first) ...
-  (send (send this rest) foldr f b))
-}]
+So for example:
+@java-block{
+new Coord(2 + 1, 2 * 2).x
+}
+would produce @java{3} when run.
 
-Thinking through the examples and templates, we get:
+To add some functionality to @tt{Coord} objects in @racket[class/0],
+we'd write:
+@class-block{
+;; A Coord is a (new coord% Integer Integer)
+(define-class coord%
+  (fields x y)
 
-@filebox[
- (racket empty%)
- @class-block{
-;; foldr : [X Y -> Y] Y -> Y
-;; Fold over this empty list of elements
-(check-expect (send (new empty%) foldr + 0) 0)
-(define (foldr f b) b)
-}]
+  ;; Integer Integer -> Coord
+  (define (move dx dy)
+    (new coord% (+ (send this x) dx) (+ (send this y) dy))))
+}
 
-@filebox[
- (racket cons\%)
- @class-block{
-;; foldr : [X Y -> Y] Y -> Y
-;; Fold over this empty list of elements
-(check-expect (send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
-              8)
-(define (foldr f b)
-  (f (send this first)
-     (send (send this rest) foldr f b)))
-}]
+To write the same thing in Java:
+@java-block|{
+class Coord {
+  Integer x;
+  Integer y;
 
+  Coord(Integer x, Integer y) {
+    this.x = x;
+    this.y = y;
+  }
 
-There's an interesting remaining question: how do we write methods
-that work on specific kinds of lists?  For example, if we wanted to
-write a @tt{sum} method that summed up the elements in a list of
-numbers, how would we do it?  We can't put it into the @tt{[Listof X]}
-interface since it wouldn't work if @tt{X} stood for string.
+  Coord move(Integer dx, Integer dy) {
+    return new Coord(this.x + dx, this.y + dy);
+  }
+}
+}|
+
+There are a few things to note here.  First, all of the peices from
+the @racket[class/0] definition are present, but the signature that
+existed in comments is now part of the code.  The part of the
+signature to the right of the @tt{->} is now to the @emph{left} of the
+method name in Java.  The other thing to note is the use of the
+@java{return} keyword and @java{;} around the expression in the body
+of the method; this is signalling that the method produces whatever
+the expression evaluates to.
+
+Invoking the method uses the send notation similar to accessing a
+field:
+
+@java-block|{
+new Coord(3, 4).move(1, 2)
+}|
+
+The above expression will produce @java{new Coord(4, 6)} when run.
+
+To actually run programs, we will have to either run the programs from
+within a programming environment, like DrRacket but for Java, or use a
+Java @emph{compiler} and run the Java interpreter from the command
+line.  These will be covered in demos in class.
+
+@bold{Grammar: Simplest Java}
+
+Taking a step back, we can characterize the syntax of Java, or at
+least the small bit of Java we've covered so far, with the following
+@emph{grammar}:
+
+@(let ([open @litchar|{{}|]
+       [close @litchar|{}}|])
+   @BNF[(list @nonterm{program}
+              @kleenestar[@nonterm{class-defn}])
+        (list @nonterm{class-defn}
+              @BNF-seq[@litchar{class} @nonterm{class-name} open 
+                          @kleenestar[@nonterm{field-decl}] 
+                          @nonterm{constructor} 
+                          @kleenestar[@nonterm{method-defn}]
+                       close])
+        (list @nonterm{field-decl}
+              @BNF-seq[@nonterm{class-name} @nonterm{field-name} @litchar{;}])
+        (list @nonterm{constructor}
+              @BNF-seq[@nonterm{class-name} @litchar{(} @nonterm{param-list} @litchar{)} open @nonterm{constr-body} close])
+        (list @nonterm{param-list}
+              @BNF-seq[]
+              @BNF-seq[@nonterm{class-name} @nonterm{id} @optional{@litchar{,} @nonterm{param-list}}])
+        (list @nonterm{constr-body}
+              @kleenestar{@nonterm{field-init}})
+        (list @nonterm{field-init}
+              @BNF-seq[@litchar{this} @litchar{.} @nonterm{field-name} @litchar{=} @nonterm{id} @litchar{;}])
+        (list @nonterm{method-defn}
+              @BNF-seq[@nonterm{class-name} @nonterm{meth-name} @litchar{(} @nonterm{param-list} @litchar{)} open
+                         @litchar{return} @nonterm{expr} @litchar{;} 
+                       close])
+        (list @nonterm{expr}
+              @nonterm{number}              
+              @litchar{this}
+              @BNF-seq{@nonterm{expr} @litchar{+} @nonterm{expr}}
+              @BNF-seq{@nonterm{expr} @litchar{*} @nonterm{expr}}
+              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{field-name}}
+              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{meth-name} @litchar{(} @nonterm{arg-list} @litchar{)}})
+        (list @nonterm{arg-list}
+              @BNF-seq[]
+              @BNF-seq[@nonterm{expr} @optional{@litchar{,} @nonterm{arg-list}}])
+        (list @nonterm{class-name} @nonterm{id})
+        (list @nonterm{meth-name} @nonterm{id})
+        (list @nonterm{field-name} @nonterm{id})
+        (list @nonterm{id}
+              @elem{any name except for reserved words like @litchar{class}, @litchar{this}, @litchar{return}, etc.})])

@@ -1,6 +1,6 @@
 #lang scribble/manual
-@(require racket/sandbox
-          scribble/example
+@(require scribble/eval
+          racket/sandbox
           (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
           (for-label (except-in class/0 define-struct ... check-expect))
           (for-label class/universe)
@@ -12,363 +12,310 @@
     (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
     (the-eval '(require (prefix-in r: racket)))
-    (the-eval '(require "lectures/6/lon.rkt"))
+    (the-eval '(require "lectures/7/lon.rkt"))
+    (the-eval '(require "lectures/7/los.rkt"))
+    (the-eval '(require "lectures/7/lox.rkt"))
     the-eval))
 
-@lecture-title[6]{Interface Design: Independent and Extensible}
+@lecture-title[6]{Parametric Interface Definitions and Methods}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0c56edcc-41cd-4f14-94f5-a87e01454892"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=48f72fe6-8739-484f-90e0-a8800126c62c"]{Video}.
 
-In this lecture, we explore the interface-based way of defining objects
-and observe that it enables two important properties of programs:
-
-@itemlist[
-@item{@bold{Representation independence}: programs that use objects
-only according to their interface cannot observe, and therefore cannot
-depend upon, the representation of those objects.  This enables the
-designer of the object to choose the representation in any way they
-see fit.}
-
-@item{@bold{Extensibility}: programs that are designed using
-interfaces can be extended by adding new kinds of objects that
-implement the interface without requiring any changes to existing
-code.  This leads to a kind of modularity and separation of concerns that
-is important in designing and maintaining large software systems.}]
-
-
-Let's consider the alternative characterization of lights not in terms
-of @emph{what they are}, but rather @emph{what they do} that we say in
-@lecref{5}.  A light does two things: it can render as an image
-and it can transition to the next light; hence our @emph{interface
-definition} for a light is:
-
-@class-block{
-;; A Light implements
-;; on-tick : -> Light
-;; Next light after this light.
-;; to-draw : -> Image
-;; Draw this light.
-}
-
-Now it's clear that each of the three light classes define sets of
-objects which are @tt{Light}s, because each implements the methods in
-the @tt{Light} interface, but we can imagine new kinds of
-implementations of the @tt{Light}.  For example, here's a class that
-implements the @tt{Light} interface:
-
-@class-block{
-;; A ModLight is a (new mod-light% Natural)
-;; Interp: 0 = green, 1 = yellow, otherwise red.
-(define-class mod-light%
-  (fields n)
-  ;; on-tick : -> Light
-  ;; Next light after this light.
-  (define (on-tick)
-    (new mod-light% (modulo (add1 (send this n)) 3)))
-
-  ;; draw : -> Image
-  ;; Draw this light.
-  (define (to-draw)
-    (cond [(= (send this n) 0)
-           (circle LIGHT-RADIUS "solid" "green")]
-          [(= (send this n) 1)
-           (circle LIGHT-RADIUS "solid" "yellow")]
-          [else
-           (circle LIGHT-RADIUS "solid" "red")])))
-}
-
-Notice that every @tt{ModLight} is a @tt{Light}.  Moreover, any
-program that is written to use @tt{Light}s will be compatible with any
-implemention of the @tt{Light} interface, regardless of its
-representation. So notice that the world program only assumes that its
-@tt{light} field is a @tt{Light}; this is easy to inspect---the world
-never assumes the light is constructed in a particular way, it just
-calls @racket[on-tick] and @racket[draw].  Which means that if we were
-to start our program off with
-
-@class-block{
-(big-bang (new mod-light% 2))
-}
-
-it would work exactly as before.
-
-We've now developed a new concept, that of an @emph{interface}, which
-is a collection of method signatures.  We say that an object @emph{is}
-an instance of an interface whenever it implements the methods of the
-interface.
-
-The idea of an interface is already hinted at in the concept of a
-union of objects since a function over a union of data is naturally
-written as a method in each class variant of the union.  In other
-words, to be an element of the union, an object must implement all the
-methods defined for the union---the object must implement the union's
-interface.  But interfaces are about more than just unions.  By
-focusing on interfaces, we can see there are two important engineering
-principles that can be distilled even from this small program:
-
-@itemlist[#:style 'ordered
-  @item{Representation independence
-
-As we've seen with the simple world program that contains a light,
-when a program is written to use only the methods specified in an
-interface, then the program is @emph{representation independent} with
-respect to the interface; we can swap out any implementation of the
-interface without changing the behavior of the program.}
-
-  @item{Extensibility
-
-When we write interface-oriented programs, it's easy to see that they
-are @emph{extensible} since we can always design new implementations
-of an interface.  Compare this to the construction-oriented view of
-programs, which defines a set of values once and for all.}]
-
-These points become increasingly important as we design larger and
-larger programs.  Real programs consist of multiple interacting
-components, often written by different people.  Representation
-independence allows us to exchange and refine components with some
-confidence that the whole system will still work after the change.
-Extensibility allows us to add functionality to existing programs
-without having to change the code that's already been written; that's
-good since in a larger project, it may not even be possible to edit a
-component written by somebody else.
-
-Let's look at the extensiblity point in more detail.  Imagine we had
-developed the @tt{Light} data definition and its functionality along
-the lines of @emph{HtDP}.  We would have (we omit @racket[draw] for
-now):
-
-@class-block{
-;; A Light is one of:
-;; - "Red"
-;; - "Green"
-;; - "Yellow"
-
-;; light-tick : Light -> Light
-;; Next light after the given light
-(check-expect (light-tick "Green") "Yellow")
-(check-expect (light-tick "Red") "Green")
-(check-expect (light-tick "Yellow") "Red")
-(define (light-tick l)
-  (cond [(string=? "Red" l) "Green"]
-        [(string=? "Green" l) "Yellow"]
-        [(string=? "Yellow" l) "Red"]))
-}
-
-Now imagine if we wanted to add a new kind of light---perhaps to
-represent a blinking yellow light.  For such lights, let's assume
-the next light is just a blinking yellow light:
-
-@class-block{
-(check-expect (light-tick "BlinkingYellow") "BlinkingYellow")
-}
-
-That's no big deal to implement @emph{if we're allowed to revise
-@racket[light-tick]}---we just add another clause to @racket[light-tick] handle
-@racket["BlinkingYellow"] lights.  But what if we can't?  What if
-@racket[light-tick] were part of a module provided as a library?  Well then
-life is more complicated; we'd have to write a new function, say
-@racket[fancy-tick], that handled blinking lights and used
-@racket[light-tick] for all non-blinking lights.  And while that gets us a
-new function with the desired behavior, that won't do anything for all
-the places the @racket[light-tick] function is used.  If we're able to edit
-the code that uses @racket[light-tick], then we can replace each use of
-@racket[light-tick] with @racket[fancy-tick], but what if we can't...?  Well
-then we're just stuck.  If we cannot change the definition of
-@racket[light-tick] or all the places it is used, then it is not possible to
-extend the behavior of @racket[light-tick].
-
-Now let's compare this situation to one in which the original program
-was developed with objects and interfaces.  In this situation we have
-an interface for lights and several classes, namely @racket[red%],
-@racket[yellow%], and @racket[green%] that implement the @racket[on-tick]
-method.  Now what's involved if we want to add a variant of lights
-that represents a blinking yellow light?  We just need to write a
-class that implements @racket[on-tick]:
-
-@class-block{
-;; Interp: blinking yellow light
-(define-class blinking-yellow%
-  ;; on-tick : -> Light
-  ;; Next light after this blinking yellow light.
-  (check-expect (send (new blinking-yellow%) on-tick)
-                (new blinking-yellow%))
-  (define (next) this))
-}
-
-Notice how we didn't need to edit @racket[red%], @racket[yellow%], or
-@racket[green%] at all!  So if those things are set in stone, that's
-no problem.  Likewise, programs that were written to use the light
-interface will now work even for blinking lights.  We don't need to
-edit any uses of the @racket[on-tick] method in order to make it work for
-blinking lights.  This program is truly extensible.
-
-@margin-note{@bold{Representation independent testing}: Our current
-approach to testing is oriented around the idea of testing for
-structurally equal representations of values.  Testing in a
-representation independent way requires it's own technique, which we
-will see later in the course.}
-
-@section{An Exercise: Developing Lists of Numbers}
-
-A new look at old friend.  Let's look at an object-oriented
-development of a list of numbers, in particular we will start with an
-interface-based view of these lists, meaning we will consider the
-behaviors of a list of numbers (the things we can compute in terms of
-lists of numbers) rather than their structure.
-
-Let's start by picking a couple of computations which can be done in
-terms of a list of numers: @tt{length} and @tt{map}.
+In the last lecture, we developed an interface and implementation for
+lists of numbers:
 
 @class-block{
 ;; A LoN implements:
 ;;
 ;; length : -> Number
 ;; Compute the length of this list of numbers 
-;; 
+;;   
 ;; map : [Number -> Number] -> LoN
-;; Apply the given function to each element of this list of numbers
-}
+;; Apply given function to each element of this list of numbers
 
-Now we have to think about designing an actual representation of a
-list of numnbers.  Here we just follow the same design (albeit with
-objects) as we did last semester, using a recursive union data
-definition:
-
-@class-block{
-;; INTERP: Empty list of numbers
-(define-class empty-lon%)
-
-;; INTERP: Non-empty lists of numbers
-(define-class cons-lon%
-  (fields first rest))
-}
-
-Using this representation, we can implement the @racket[LoN] interface
-by implementing the @tt{length} and @tt{map} methods. 
-
-Let's start with @tt{empty-lon%}.  First we should declare our intention
-that @tt{empty-lon%} objects implement the @tt{LoN} interface:
-
-@class-block{
 ;; A (new empty-lon%) implements LoN
 ;; INTERP: Empty list of numbers
-(define-class empty-lon%)
-}
+(define-class empty-lon%
+  ;; Compute the length of this empty list of numbers
+  (check-expect (send (new empty-lon%) length) 0)
+  (define (length) 
+    0)
 
+  ;; map : [Number -> Number] -> LoN
+  ;; Apply given function to each element of this empty list of numbers
+  (check-expect (send (new empty-lon%) map add1) (new empty-lon%))
+  (define (map f) 
+    (new empty-lon%)))
 
-To fulfill this intention, we must actually define the methods listed
-in the @tt{LoN} interface.
-
-Let's make some examples of what these methods should produce in the
-case of an empty list of numbers.
-
-@examples[#:eval the-eval
-(send (new empty-lon%) length)
-(send (new empty-lon%) map add1)]
-
-Writing the code for both is now obvious given the examples:
-
-@filebox[
- (racket empty-lon%)
- @class-block{
-;; Compute the length of this empty list of numbers
-(check-expect (send (new empty-lon%) length) 0)
-(define (length) 
-  0)
-
-;; map : [Number -> Number] -> LoN
-;; Apply the given function to each element of this empty list of numbers
-(check-expect (send (new empty-lon%) map add1) (new empty-lon%))
-(define (map f) 
-  (new empty-lon%))
-}]
-
-(Notice how the purpose statements are specialized for the particular
-class in which we are defining the methods.)
-
-Moving on to @tt{cons-lon%}, we go through the same steps.  Declare our
-intention that @tt{cons-lon%} implements @tt{LoN} and make examples:
-
-@class-block{
 ;; A (new cons-lon% Number LoN) implements LoN
 ;; INTERP: Non-empty list of numbers
 (define-class cons-lon%
-  (fields first rest))
+  (fields first rest)
+
+  ;; length : -> Number
+  ;; Compute the length of this non-empty list of numbers
+  (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
+                      length)
+                2)
+  (define (length)
+    (add1 (send (send this rest) length)))
+
+ ;; map : [Number -> Number] -> LoN
+ ;; Apply given function to each element of this non-empty list of numbers
+ (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
+                     map add1)
+               (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
+ (define (map f)
+   (new cons-lon% 
+        (f (send this first)) 
+        (send (send this rest) map f))))
 }
 
+You could imagine doing a similiar development for lists of strings:
+
+@class-block{
+;; A LoS implements:
+;;
+;; length : -> Number
+;; Compute the length of this of strings
+;;   
+;; map : [String -> String] -> LoS
+;; Apply given function to each element of this list of strings
+
+;; A (new empty-los%) implements LoS
+;; INTERP: Empty list of strings
+(define-class empty-los%
+  ;; Compute the length of this empty list of strings
+  (check-expect (send (new empty-los%) length) 0)
+  (define (length) 0)
+
+  ;; map : [String -> String] -> LoS
+  ;; Apply the given function to each element of this empty list of strings
+  (check-expect (send (new empty-los%) map string-upcase) (new empty-los%))
+  (define (map f) (new empty-los%)))
+
+;; A (new cons-los% String LoS) implements LoS
+;; INTERP: Non-empty list of strings
+(define-class cons-los%
+  (fields first rest)
+
+  ;; length : -> Number
+  ;; Compute the length of this non-empty list of strings
+  (check-expect (send (new cons-los% "a" (new cons-los% "b" (new empty-los%))) 
+                      length)
+                2)
+  (define (length)
+    (add1 (send (send this rest) length)))
+
+  ;; map : [String -> String] -> LoS
+  ;; Apply given function to each element of this non-empty list of strings
+  (check-expect (send (new cons-los% "a" (new cons-los% "b" (new empty-los%))) 
+                      map string-upcase)
+                (new cons-los% "A" (new cons-los% "B" (new empty-los%))))
+  (define (map f)
+    (new cons-los% 
+         (f (send this first)) 
+         (send (send this rest) map f))))
+}
+
+
+Of course the obvious thing to observe is that these pairs of programs
+are very very similar.
+
+In fact, the @emph{code} is identical, it's only the signatures that
+differ.  We can see evidence of this by experimenting with the code in
+ways that break the signatures.  Notice that it's possible to
+correctly compute with lists of strings even when they're represented
+using the classes for lists of numbers.
+
 @examples[#:eval the-eval
-(send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) length)
-(send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) map add1)
+(send (new cons-lon% "a" (new cons-lon% "b" (new empty-lon%))) length)
+(send (new cons-lon% "a" (new cons-lon% "b" (new empty-lon%))) 
+      map string-upcase)
 ]
 
-Since the @tt{cons-lon%} class contains some data, it is useful to
-consider the template for @tt{cons-lon%} methods:
-@filebox[
- (racket empty-lon%)
- @class-block{
- (define (cons-template ...)
-   (send this first) ...
-   (send (send this rest) cons-template ...))}]
+This is strong evidence to suggest that @emph{abstraction} is needed
+to avoid the duplication.  Since the differences between these
+programs is not at the level of @emph{values}, but @emph{data
+definitions}, we should do abstraction at this level.  Let's consider
+first the interface definitions:
 
-
-Instantiating the template for @tt{length} and @tt{map} and adjusting the parameters, we get:
-
-@filebox[
- (racket empty-lon%)
- @class-block{
- (define (length)
-   (send this first) ...
-   (send (send this rest) length))
-
- (define (map f)
-   (send this first) ...
-   (send (send this rest) map f))
-}]
-
-Combining our knowledge of the examples and the partially filled in
-templates, we can see that @racket[(send this first)] stands for
-@racket[3] and @racket[(send this rest)] stands for @racket[(new cons-lon%
-7 (new empty-lon%))].  Let's make some more examples, based on the list
-contained in the @tt{rest} field.
-
-@examples[#:eval the-eval
-(send (new cons-lon% 7 (new empty-lon%)) length)
-(send (new cons-lon% 7 (new empty-lon%)) map add1)
-]
-
-So in the original example, @tt{(send (send this rest) length)} is @racket[1]
-and @tt{(send (send this rest) map add1)} is @racket[(new cons-lon% 8 (new empty-lon%))].
-
-Our goal in @tt{length} is @racket[2], which can be computed by
-applying @tt{add1} to @racket[(send (send this rest) length)].
-
-Our goal in @tt{map} is @racket[(new cons-lon% 4 (new cons-lon% 8 (new
-empty-lon%)))], which can be computed by applying @tt{f} to @racket[(send
-this first)] and cons that result onto @racket[(send (send this rest)
-map add1)].  We are now in a position to write the code:
-
-@filebox[
- (racket cons-lon%)
- @class-block{
- ;; length : -> Number
- ;; Compute the length of this non-empty list of numbers
- (check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
-                     length)
-               2)
- (define (length)
-   (add1 (send (send this rest) length)))
-
+@class-block{
+;; A LoN implements:
+;;
+;; length : -> Number
+;; Compute the length of this list of numbers 
+;;   
 ;; map : [Number -> Number] -> LoN
-;; Apply given function to each element of this non-empty list of numbers
-(check-expect (send (new cons-lon% 3 (new cons-lon% 7 (new empty-lon%))) 
-                    map add1)
-              (new cons-lon% 4 (new cons-lon% 8 (new empty-lon%))))
-(define (map f)
-  (new cons-lon% 
-       (f (send this first)) 
-       (send (send this rest) map f)))
+;; Apply given function to each element of this list of numbers
+
+;; A LoS implements:
+;;
+;; length : -> Number
+;; Compute the length of this of strings
+;;   
+;; map : [String -> String] -> LoS
+;; Apply given function to each element of this list of strings
+}
+
+By applying the abstraction process, we arrive at the following
+@emph{parameterized} interface definition as a first cut:
+
+@class-block{
+;; A [Listof X] implements:
+;;
+;; length : -> Number
+;; Compute the length of this list of numbers 
+;;   
+;; map : [X -> X] -> [Listof X]
+;; Apply given function to each element of this list of numbers
+}
+
+We could then revise the data definitions and signatures of the
+classes implementing this interface to arrive a single, re-usable
+program:
+
+@class-block{
+;; A (new empty%) implements [Listof X]
+;; INTERP: Empty list of Xs
+(define-class empty%
+  ;; Compute the length of this empty list of Xs
+  (check-expect (send (new empty%) length) 0)
+  (define (length) 
+    0)
+
+  ;; map : [X -> X] -> [Listof X]
+  ;; Apply given function to each element of this empty list of Xs
+  (check-expect (send (new empty%) map add1) (new empty%))
+  (define (map f) 
+    (new empty%)))
+
+;; A (new cons% X [Listof X]) implements [Listof X]
+;; INTERP: Non-empty list of Xs
+(define-class cons%
+  (fields first rest)
+
+  ;; length : -> Number
+  ;; Compute the length of this non-empty list of Xs
+  (check-expect (send (new cons% 3 (new cons% 7 (new empty%))) 
+                      length)
+                2)
+  (define (length)
+    (add1 (send (send this rest) length)))
+
+  ;; map : [X -> X] -> [Listof X]
+  ;; Apply given function to each element of this non-empty list of Xs
+  (check-expect (send (new cons% 3 (new cons% 7 (new empty%))) 
+                      map add1)
+                (new cons% 4 (new cons% 8 (new empty%))))
+  (define (map f)
+    (new cons%
+         (f (send this first)) 
+         (send (send this rest) map f))))
+}
+
+We can now reconstruct our original programs by applying the
+parameteric definitions: @tt{[Listof Number]} and @tt{[Listof
+String]}.  We also make new data definitions by applying @tt{Listof}
+to other things.  For example, here's a computation over a @tt{[Listof
+Boolean]}.
+
+@examples[#:eval the-eval
+(send (new cons% #true (new cons% #false (new empty%))) map not)
+]
+
+This is a big step forward, but there's an opportunity to do even
+better.  Consider the following.
+
+@examples[#:eval the-eval
+(send (new cons% "a" (new cons% "aa" (new empty%))) map string-length)]
+
+This program works fine and makes perfect sense.  It computes a length
+of numbers from a list of strings.  However, it has broken the
+signature of the @tt{map} method since @racket[string-length] does not
+have the signature @tt{String -> String}, which is what's obtained when
+plugging in @tt{String} for @tt{X}.
+
+This is more evidence that further abstraction is possible.  In
+particular we can loosen the constraints in the signature for
+@tt{map}:
+
+@class-block{
+;; A [Listof X] implements
+;;
+;; map : [X -> Y] -> [Listof Y]
+;; Apply given function to each element of this list of Xs
+;;
+;; ...
+}
+
+Notice that this method signature makes use of two parameters: @tt{X}
+and @tt{Y}.  The @tt{X} parameter is "bound" at the level, @tt{[Listof
+X]}.  The @tt{Y} is implicitly a parameter of the method's signature.
+
+So in an object-oriented setting, these parameters can appear at the
+interface and class level, but also at the method level.
+
+We can do another exercise to write things we've seen before.  Let's
+see what @tt{foldr} looks like:
+
+@class-block{
+;; A [Listof X] implements
+;;
+;; ...
+;;
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over the elements with the given combining function and base
+}
+
+We can make some examples.
+
+@examples[#:eval the-eval
+
+(send (new empty%) foldr + 0)
+(send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
+(send (new empty%) foldr string-append "")
+(send (new cons% "5" (new cons% "3" (new empty%))) foldr string-append "")
+]
+
+Let's instantiate the template for @tt{foldr} for @racket[cons%].
+
+@filebox[
+ (racket cons%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this non-empty list of elements with combining function and base
+(define (foldr f b)
+  (send this first) ...
+  (send (send this rest) foldr f b))
+}]
+
+Thinking through the examples and templates, we get:
+
+@filebox[
+ (racket empty%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this empty list of elements
+(check-expect (send (new empty%) foldr + 0) 0)
+(define (foldr f b) b)
+}]
+
+@filebox[
+ (racket cons\%)
+ @class-block{
+;; foldr : [X Y -> Y] Y -> Y
+;; Fold over this empty list of elements
+(check-expect (send (new cons% 5 (new cons% 3 (new empty%))) foldr + 0)
+              8)
+(define (foldr f b)
+  (f (send this first)
+     (send (send this rest) foldr f b)))
 }]
 
 
-We've now accomplished our initial goal.  On your own, work out a
-similar development for lists of strings.
+There's an interesting remaining question: how do we write methods
+that work on specific kinds of lists?  For example, if we wanted to
+write a @tt{sum} method that summed up the elements in a list of
+numbers, how would we do it?  We can't put it into the @tt{[Listof X]}
+interface since it wouldn't work if @tt{X} stood for string.

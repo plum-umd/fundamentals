@@ -6,6 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[19]{Properties of Equality: Reflexive, Symmetric, Transitive, and Total}
+@lecture-title[16]{Properties of Equality: Reflexive, Symmetric, Transitive, and Total}
 
 @link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4a2b80eb-390d-4a79-ad6a-a89e013385fc"]{Video}.

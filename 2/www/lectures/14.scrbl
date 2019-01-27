@@ -6,8 +6,8 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[14]{Abstracting Computation with Function Objects}
+@lecture-title[14]{Function Objects & Parameterized Types; Anonymous Classes & Lambda}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e67a9b1f-5721-406c-9474-a8900139e54a"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b3da5e50-88b6-4b9b-8d42-a893012d6a9a"]{Video}.
 
 TBD.

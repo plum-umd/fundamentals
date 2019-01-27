@@ -6,8 +6,8 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[13]{Parameterized Types and Double Dispatch; Abstracting Values}
+@lecture-title[13]{Abstracting Computation with Function Objects}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=df49bf70-2a44-4778-bdf9-a89001399740"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e67a9b1f-5721-406c-9474-a8900139e54a"]{Video}.
 
 TBD.

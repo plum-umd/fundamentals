@@ -6,9 +6,8 @@
           (for-label class/universe)
           "../utils.rkt")
 
+@lecture-title[10]{Parametric Interfaces in Java}
 
-@lecture-title[10]{Testing in Java}
-
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab5de898-f7fd-4585-a97c-a8870127f3ac"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=714c8802-b4b8-4a52-8c06-a889012917bf"]{Video}.
 
 TBD.

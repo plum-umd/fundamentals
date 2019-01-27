@@ -6,8 +6,6 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[16]{The Fundamental List Abstraction: Fold}
+@lecture-title[16]{University Closed: Wind}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b5238c17-9042-449e-ab0c-a89601694e76"]{Video}.
-
-TBD.
+The university closed due to weather.

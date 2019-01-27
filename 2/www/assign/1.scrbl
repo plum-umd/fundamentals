@@ -10,9 +10,9 @@
 This is assignment is to be completed and submitted individually.  You
 may not work with anyone else.
 
-@bold{Due}: Tuesday, February 6, 11:59:59 PM EST.
+@bold{Due}: Tuesday, February 5, 11:59:59 PM EST.
 
-@(define @Piazza @link["http://piazza.com/umd/spring2018/cmsc132a"]{Piazza})
+@(define @Piazza @link["http://piazza.com/umd/spring2019/cmsc132a"]{Piazza})
 
 @section[#:style 'unnumbered #:tag "assign1:piazza"]{Sign up for Piazza}
 

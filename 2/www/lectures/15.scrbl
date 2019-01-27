@@ -6,8 +6,8 @@
           (for-label class/universe)
           "../utils.rkt")
 
-@lecture-title[15]{Function Objects & Parameterized Types; Anonymous Classes & Lambda}
+@lecture-title[15]{The Fundamental List Abstraction: Fold}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b3da5e50-88b6-4b9b-8d42-a893012d6a9a"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b5238c17-9042-449e-ab0c-a89601694e76"]{Video}.
 
 TBD.

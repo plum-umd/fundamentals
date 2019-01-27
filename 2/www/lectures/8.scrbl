@@ -1,222 +1,203 @@
 #lang scribble/manual
 @(require (for-label (only-in lang/htdp-intermediate-lambda define-struct ... check-expect))
           (for-label (except-in class/0 define-struct ... check-expect))
+          (for-label class/universe)
           scribble/bnf
           "../utils.rkt")
 
-@lecture-title[8]{Introducing Java: Syntax and Semantics}
+@lecture-title[8]{Union, Interfaces, and Lists in Java}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=41c2986c-d55e-4548-b43f-a8820148000b"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=15905f29-3a7a-4f9e-92a6-a88601577373"]{Video}.
 
-@bold{Introducting Java Syntax}
+@bold{An IDE for Java}
 
-You've now seen several programming languages: BSL, ISL, ISL+, and
-@tt{class/0}.  Now time for one more: Java.  Let's start by looking at
-the @emph{syntax}, the way Java programs are written.
+We're going to be using the IntelliJ integrated development
+environment (IDE) to develop and run Java programs.  Like DrRacket, it
+will provide useful features to help us in the process of developing
+programs.
 
-Here's a comment in @tt{class/0}:
+We'll do a short demo in class and in lab.
+
+@bold{Unions in Java: Traffic Lights}
+
+Let's now turn back to modelling information in Java.  So far we've
+seen how to represent compound data such as coordinates.  Another
+common kind of data definition is a @emph{union} data definition.
+Let's look at a very simple union data definition (that we first
+looked at in @racket[class/0]: traffic lights.
+
+We define the union of objects in terms of their interface; the method
+signatures that each variant of the union has in common.  In
+@racket[class/0] this takes the form:
+
 @class-block{
-;; Hi there
+;; A Light implements
+;;
+;; Compute the next traffic light after this one
+;; next : -> Light
 }
 
-Here's a comment in Java:
-@java-block{
-// Hi there
-}
-
-Here's a block comment in @tt{class/0}:
-@class-block{
-#| Hi
-   there |#
-}
-
-Java:
-@class-block{
-/* Hi
-   there */
-}
-
-A class definition in @tt{class/0}:
-@class-block{
-;; A Coord is a (new coord% Integer Integer)
-(define-class coord%
-  (fields x y))
-}
-
-A class definition in Java:
+In Java, this interface definition looks like this:
 @java-block|{
-class Coord {
-  Integer x;
-  Integer y;
+interface Light {
+  // Compute the next traffic light after this one
+  Light onTick();
 }
 }|
 
-Notice here that the convention for class names in Java is to
-capitalize them.  Also notice that, because Java is a typed language,
-it requires us to specify the type of the fields.  In this case, the
-fields @tt{x} and @tt{y} are both objects belonging to the
-@tt{Integer} class.  So in Java, some of the information that we're
-used to writing down as part of data definitions becomes part of the
-actual program text; not just a comment.
-
-The above class definition defines a new class of values, called
-@java{Coord}s.  A @java{Coord} value is an object with an @java{x} and
-@java{y} field, both of which hold @java{Integer} objects.
-
-One thing that Java requires us to write explicitly is a
-@emph{constructor}, whereas @racket[class/0] made the constructors for
-us.  The way constructors work in @racket[class/0] is to say
-@racket[new], a class name, and then give the appropriate number of
-expressions (one for each field); the value of these expressions are
-used to populate the fields of the object.  We can write such a
-constructor in Java by revising the class definition:
+In @racket[class/0], we would define a class and declare it implements
+the interface in a comment.  In Java, we can declare the intention to
+implement the interface as part of the class definition:
 
 @java-block|{
-class Coord {
-  Integer x;
-  Integer y;
+class Red implements Light {
+  Red() {}
+}
+}|
 
-  Coord(Integer x, Integer y) {
-    this.x = x;
-    this.y = y;
+@bold{Nullary Constructor by Default.}  Note the @java{Red}
+constructor takes no arguments and does nothing, which is what we want
+since there are no fields in the @java{Red} class.  As a side note: we
+can omit this @emph{nullary} constructor, since it is the default
+constructor Java will use if no constructor is defined.
+
+@java-block|{
+class Red implements Light {}
+}|
+
+Now, this class @emph{says} that it implements the @java{Light}
+interface, but so far it has not actually defined the @java{next}
+method as required by the @java{Light} interface.
+
+The Java type system will catch this error for us.  If you tried to
+compile this program as-is, there would be a compile-time error:
+
+@centered{Error: Red is not abstract and does not override abstract
+method next() in Light.}
+
+In the IDE, this static error is often indicated with a red squiggly
+underlining of the class definition.
+
+Let's make a stub for @java{next} method:
+
+@java-block|{
+class Red implements Light {
+  // Compute the next traffic light after this red light
+  Light next() {
+    return this;
   }
 }
 }|
 
-This constructor definition says if you call the constructor (we will
-see how in a moment) with two integers, it will populate the fields of
-a @java{Coord} object with the given integers.
-
-To make a @tt{Coord} in @racket[class/0], you write:
-@class-block{
-(new coord% 3 4)
-}
-
-To make a @java{Coord} in Java, you write:
-@java-block{
-new Coord(3, 4)
-}
-
-In general, the arguments of the constructor can be arbitrary
-expressions that produce integers, e.g.
-@java-block{
-new Coord(2 + 1, 2 * 2)
-}
-
-In @racket[class/0], if you have a @tt{coord%} object @racket[o] and
-want to extract the value in the @tt{x} field, you write:
-@class-block{
-(send o x)
-}
-
-In Java, the notation for @racket[send] is a ``dot'' written between the
-object expression and the field name:
-
-@java-block{
-o.x
-}
-
-So for example:
-@java-block{
-new Coord(2 + 1, 2 * 2).x
-}
-would produce @java{3} when run.
-
-To add some functionality to @tt{Coord} objects in @racket[class/0],
-we'd write:
-@class-block{
-;; A Coord is a (new coord% Integer Integer)
-(define-class coord%
-  (fields x y)
-
-  ;; Integer Integer -> Coord
-  (define (move dx dy)
-    (new coord% (+ (send this x) dx) (+ (send this y) dy))))
-}
-
-To write the same thing in Java:
+@bold{Visibility modifiers.}  As a small wrinkle, we need to place a
+@emph{visibility modifier} on this method indicating that the method
+can be invoked from outside of the methods in this class:
 @java-block|{
-class Coord {
-  Integer x;
-  Integer y;
-
-  Coord(Integer x, Integer y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  Coord move(Integer dx, Integer dy) {
-    return new Coord(this.x + dx, this.y + dy);
+class Red implements Light {
+  // Compute the next traffic light after this red light
+  public Light next() {
+    return this;
   }
 }
 }|
 
-There are a few things to note here.  First, all of the peices from
-the @racket[class/0] definition are present, but the signature that
-existed in comments is now part of the code.  The part of the
-signature to the right of the @tt{->} is now to the @emph{left} of the
-method name in Java.  The other thing to note is the use of the
-@java{return} keyword and @java{;} around the expression in the body
-of the method; this is signalling that the method produces whatever
-the expression evaluates to.
+This @java{public} keyword is the visibility modifier.  Using it here
+indicates that @java{next} can be called from outside of the
+@java{Red} class, which is (implicitly) what's required by the
+interface.  The are also visibility modifiers @java{private} and
+@java{protected}.  We will mostly ignore visibility issues for now and
+assume that methods are public and fields are private.  We will add
+modifiers when needed to make programs type-check.  For more details,
+see the
+@link["https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html"]{Oracle
+tutorial}.
 
-Invoking the method uses the send notation similar to accessing a
-field:
-
+We can define the other variants of @java{Light}, with method stubs:
 @java-block|{
-new Coord(3, 4).move(1, 2)
+class Red implements Light {
+  // Compute the next traffic light after this red light
+  public Light next() {
+    return this;
+  }
+}
+
+class Yellow implements Light {
+  // Compute the next traffic light after this yellow light
+  public Light next() {
+    return this;
+  }
+}
+
+class Green implements Light {
+  // Compute the next traffic light after this green light
+  public Light next() {
+    return this;
+  }
+}
 }|
 
-The above expression will produce @java{new Coord(4, 6)} when run.
+Thinking through some examples, it's easy to come up with the correct
+code for the method definitions:
 
-To actually run programs, we will have to either run the programs from
-within a programming environment, like DrRacket but for Java, or use a
-Java @emph{compiler} and run the Java interpreter from the command
-line.  These will be covered in demos in class.
+@java-block|{
+class Red implements Light {
+  // Compute the next traffic light after this red light
+  public Light next() {
+    return new Green();
+  }
+}
 
-@bold{Grammar: Simplest Java}
+class Yellow implements Light {
+  // Compute the next traffic light after this yellow light
+  public Light next() {
+    return new Red();
+  }
+}
 
-Taking a step back, we can characterize the syntax of Java, or at
-least the small bit of Java we've covered so far, with the following
-@emph{grammar}:
+class Green implements Light {
+  // Compute the next traffic light after this green light
+  public Light next() {
+    return new Yellow();
+  }
+}
+}|
+
+So now we've seen our first union data definition in Java.
+
+@bold{Grammar: Java with Interfaces}
+
+The grammar of Java programs has grown some now.  In particular a
+program now consists of some number of class @emph{or interface}
+definitions.  Since a set of objects may be defined as either a class
+or interface, we use @nonterm{type-name} to range over things defined
+as classes or interfaces.  The grammar is also updated to have
+optional visibility modifiers on method definitions.  Here are the
+revised parts of the grammar (only):
 
 @(let ([open @litchar|{{}|]
        [close @litchar|{}}|])
    @BNF[(list @nonterm{program}
-              @kleenestar[@nonterm{class-defn}])
-        (list @nonterm{class-defn}
-              @BNF-seq[@litchar{class} @nonterm{class-name} open 
-                          @kleenestar[@nonterm{field-decl}] 
-                          @nonterm{constructor} 
-                          @kleenestar[@nonterm{method-defn}]
-                       close])
+              @kleenestar[@nonterm{class-or-intf-defn}])
+        (list @nonterm{class-or-intf-defn}
+              @nonterm{class-defn}
+              @nonterm{intf-defn})
+        (list @nonterm{intf-defn}
+              @BNF-seq[@litchar{interface} @nonterm{int-name} open @nonterm{method-sigs} close])
         (list @nonterm{field-decl}
-              @BNF-seq[@nonterm{class-name} @nonterm{field-name} @litchar{;}])
-        (list @nonterm{constructor}
-              @BNF-seq[@nonterm{class-name} @litchar{(} @nonterm{param-list} @litchar{)} open @nonterm{constr-body} close])
-        (list @nonterm{param-list}
+              @BNF-seq[@nonterm{type-name} @nonterm{field-name} @litchar{;}])
+        (list @nonterm{method-sigs}
               @BNF-seq[]
-              @BNF-seq[@nonterm{class-name} @nonterm{id} @optional{@litchar{,} @nonterm{param-list}}])
-        (list @nonterm{constr-body}
-              @kleenestar{@nonterm{field-init}})
-        (list @nonterm{field-init}
-              @BNF-seq[@litchar{this} @litchar{.} @nonterm{field-name} @litchar{=} @nonterm{id} @litchar{;}])
+              @BNF-seq[@nonterm{method-sig} @litchar{;} @nonterm{method-sigs}])
+        (list @nonterm{method-sig}
+              @BNF-seq[@nonterm{type-name} @nonterm{meth-name} @litchar{(} @nonterm{param-list} @litchar{)}])
         (list @nonterm{method-defn}
-              @BNF-seq[@nonterm{class-name} @nonterm{meth-name} @litchar{(} @nonterm{param-list} @litchar{)} open
+              @BNF-seq[@optional{@nonterm{vis-modifier}} @nonterm{method-sig} open
                          @litchar{return} @nonterm{expr} @litchar{;} 
                        close])
-        (list @nonterm{expr}
-              @nonterm{number}              
-              @litchar{this}
-              @BNF-seq{@nonterm{expr} @litchar{+} @nonterm{expr}}
-              @BNF-seq{@nonterm{expr} @litchar{*} @nonterm{expr}}
-              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{field-name}}
-              @BNF-seq{@nonterm{expr} @litchar{.} @nonterm{meth-name} @litchar{(} @nonterm{arg-list} @litchar{)}})
-        (list @nonterm{arg-list}
-              @BNF-seq[]
-              @BNF-seq[@nonterm{expr} @optional{@litchar{,} @nonterm{arg-list}}])
-        (list @nonterm{class-name} @nonterm{id})
-        (list @nonterm{meth-name} @nonterm{id})
-        (list @nonterm{field-name} @nonterm{id})
-        (list @nonterm{id}
-              @elem{any name except for reserved words like @litchar{class}, @litchar{this}, @litchar{return}, etc.})])
+        (list @nonterm{vis-modifier} @litchar{public} @litchar{private})
+        (list @nonterm{type-name} @nonterm{class-name} @nonterm{intf-name})
+        (list @nonterm{intf-name} @nonterm{id})])
+
+@bold{Recursive Unions in Java: Lists}
+
+TBD

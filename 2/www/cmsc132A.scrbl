@@ -56,8 +56,8 @@ subject to change until the start of the semester.
 @tabular[#:style 'boxed
          #:sep @hspace[1]
 	 #:row-properties '(top)
-		 (list (list @bold{Location} @elem{1115 @CSI})
-	       (list @bold{Time} @elem{MWF 12:00pm--12:50pm})
+		 (list (list @bold{Location} @elem{2207 IRB})
+	       (list @bold{Time} @elem{MWF 11:00pm--11:50pm})
 	       (list @bold{Midterm 1} @elem{@m1-date, in class})
 	       (list @bold{Midterm 2} @elem{@m2-date, in class})
                (list @bold{Final exam} @elem{@final-date})
@@ -67,16 +67,12 @@ subject to change until the start of the semester.
 @tabular[#:style 'boxed 
          #:row-properties '(bottom-border ())
 	 (list (list @bold{Staff} 'cont 'cont)
-	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail} (@"@cs.umd.edu")})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn")
-         (list "Nicholas Labich" @elem{1112 @AVW} "labichn")
-         (list "Samuel Barham" @elem{1112 @AVW} "sbarham")
-         (list "Cameron Moy" @elem{1112 @AVW} "camoy")
-         (list "Austin Bourgerie" @elem{1112 @AVW} "abourg")
-         (list "Thomas Harris" @elem{1112 @AVW} "tharris")
-	 (list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung")
-	 (list "Jack Qian" @elem{1112 @AVW} "jqian"))]
+	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}})
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu")
+	 (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu")
+	 (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu"))]
 
+@;{
 @tabular[#:style 'boxed
          #:row-properties '(bottom-border ())
          (list (list @bold{Office hours} 'cont 'cont)
@@ -109,7 +105,7 @@ subject to change until the start of the semester.
 	       (list 'nbsp "Piazza on-call" "Cameron")
 	       (list @bold{Sunday} 'cont 'cont)
 	       (list 'nbsp "Piazza on-call" "Rachael"))]
-               
+}            
 
 
 @include-section{syllabus.scrbl}

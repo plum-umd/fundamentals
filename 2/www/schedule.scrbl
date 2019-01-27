@@ -4,6 +4,9 @@
 
 @title[#:style 'unnumbered]{Schedule}
 
+With the exception of midterms and exams, this schedule is subject to
+change as the semester progresses.
+
 @(define (augment-week week last-numbered-lec)
   (foldl
    (λ(entry acc)
@@ -86,30 +89,31 @@
 
 
 @(define calendar
-   '(((1 24) (1 26) (1 29) (labs))
-     ((1 31) (2 2) (2 5) (labs "1"))
-     ((2 7) (2 9) (2 12) (labs))
-     ((2 14) (2 16) (2 19) (labs))
-     ((2 21) (2 23) (2 26) (labs))
-     ((2 28) (3 2) (3 5) (labs))
-     ((3 7 "Midterm 1") (3 9) (3 12) (labs))
-     ((3 14) (3 16) (3 19 "No Class: Spring break") (labs))
-     ((3 21 "No Class: Spring break") (3 23 "No Class: Spring break") (3 26) (labs))
-     ((3 28) (3 30) (4 2) (labs))
-     ((4 4) (4 6) (4 9) (labs))
-     ((4 11) (4 13) (4 16) (labs))
-     ((4 18) (4 20) (4 23) (labs))
-     ((4 25 "Midterm 2") (4 27) (4 30) (labs))
-     ((5 2) (5 4) (5 7) (labs))
-     ((5 9) (labs))
-
+   '(((1 28) (labs "1") (1 30) (labs "2") (2 1))
+     ((2 4) (labs "3") (2 6) (labs "4") (2 8))
+     ((2 11) (labs "5") (2 13) (labs "6") (2 15))
+     ((2 18) (labs "7") (2 20) (labs "8") (2 22))
+     ((2 25) (labs "9") (2 27) (labs "10") (3 1))
+     ((3 4) (labs "11") (3 6) (labs "12") (3 8 "Midterm 1"))
+     ((3 11) (labs "13") (3 13) (labs "14") (3 15))
+     ((3 18  "No Class: Spring break")
+      (3 20  "No Class: Spring break")
+      (3 22  "No Class: Spring break"))
+     ((3 25) (labs "15") (3 27) (labs "16") (3 29))
+     ((4 1) (labs "17") (4 3) (labs "18") (4 5))
+     ((4 8) (labs "19") (4 10) (labs "20") (4 12))
+     ((4 15) (labs "21") (4 17) (labs "22") (4 19 "Midterm 2"))
+     ((4 22) (labs "23") (4 24) (4 26))
+     ((4 29) (5 1) (5 3))
+     ((5 6) (5 8) (5 10))
+     ((5 13))    
 ))
 
 @(define syllabus
-   `((1  "Designing Data: Simple classes, classes with containment")
-     (2  "Designing unions of classes; self-reference")
-     (3  "")
-     ,@(build-list 40 (λ (i) (list (+ i 4) "")))
+   `(;(1  "Designing Data: Simple classes, classes with containment")
+     ;(2  "Designing unions of classes; self-reference")
+     ;(3  "")
+     ,@(build-list 43 (λ (i) (list i "")))
      #|
      (4  "Methods for unions of classes and classes with self-reference")
      (5  "Designing methods for complex class hierarchies")

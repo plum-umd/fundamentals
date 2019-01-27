@@ -8,362 +8,141 @@
 
 @(define the-eval
   (let ([the-eval (make-base-eval)])
+    (the-eval '(require (for-syntax racket/base)))
     (the-eval '(require class/0))
     (the-eval '(require 2htdp/image))
+    (the-eval '(require (prefix-in r: racket)))
+    (the-eval '(require "lectures/5/light.rkt"))
     the-eval))
 
-@lecture-title[4]{Classes of Objects: Data Definitions}
+@lecture-title[4]{Classes of Objects: Interface Definitions}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bbc1eeb2-0e02-44fa-9d6b-a8790149bc02"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=388ce64b-fd31-4948-bbaa-a87b01296113"]{Video}.
 
-One of the most important lessons of @emph{How to Design Programs} is
-that the structure of code follows the structure of the data it
-operates on, which means that the structure of your code can be
-derived @emph{systematically} from your data definitions.  In this
-chapter, we see how to apply the design recipe to design data
-represented using classes as well as operations implemented as methods
-in these classes.
+In this lecture, we take an alternative perspective on defining sets
+of objects; we can characterize objects not just by their
+construction, as done with a data definition, but also by the methods
+they support.  We call this characterization an interface definition.
+As we'll see, designing to interfaces leads to generic and extensible
+programs.
 
-We've seen various kinds of data definitions:
-@itemlist[#:style 'ordered
-@item{Atomic: numbers, images, strings, ...}
-@item{Compound: structures, posns, ...}
-@item{Enumerations: colors, key events, ...}
-@item{Unions: atoms, ...}
-@item{Recursive unions: trees, lists, matryoshka dolls, s-expressions, ...}
-@item{Functions: infinite sets, sequences, ...}]
-
-Each of these kinds of data definitions can be realized with objects.
-In this chapter, we'll examine how each the first five are implemented
-with a class-based design.  We'll return to representing functions
-later.
-
-@section{Atomic and Compound Data}
-
-In @lecref{1}, we've already seen how to represent compound data as an
-object.  We can do the same for atomic data by considering like a
-structure with one field; a design we might've consider superfluous
-last semester, but which makes sense once we combine data and
-functionality into objects.
-
-Stepping back, we can see that the way to represent some fixed number
-@emph{N} of data is with a class with @emph{N} fields.  For example, a
-position can be represented by a pair (@emph{x},@emph{y}) of real
-numbers:
+Let's take another look at the @tt{Light} data definition we developed
+in @lecref{4}.  We came up with the following data definition:
 
 @class-block{
-;; A Posn is (new coord% Real Real)
-(define-class coord%
-  (fields x y))
-}
-
-Methods can compute with any given arguments and the object that
-calling the method, thus the template for a @racket[coord%] method is:
-
-@class-block{
-;; coord%-method : Z ... -> ???
-(define (coord%-method z ...)
-  (... (send this x) (send this y) z ...))
-}
-
-Here we see that our template lists the available parts of the
-@racket[coord%] object, in particular the two fields @racket[x] and
-@racket[y].
-
-@section{Enumerations}
-
-An @deftech{enumeration} is a data definition for a finite set of
-possibilities.  For example, we can represent a traffic light like the
-ones on Baltimore Avenue with a finite set of strings, as we did in
-SPD I:
-
-@class-block{
-;; A Light is one of:
-;; - "Red"
-;; - "Green"
-;; - "Yellow"
-}
-
-Following the design recipe, we can construct the template for
-functions on @tt{Light}s:
-
-@class-block{
-;; light-function : Light -> ???
-(define (light-function l)
-  (cond [(string=? "Red" l) ...]
-        [(string=? "Green" l) ...]
-        [(string=? "Yellow" l) ...]))
-}
-
-Finally, we can define functions over @tt{Light}s, following the template.  
-@class-block{
-;; next : Light -> Light
-;; Next light after the given light
-(check-expect (next "Green") "Yellow")
-(check-expect (next "Red") "Green")
-(check-expect (next "Yellow") "Red")
-(define (next l)
-  (cond [(string=? "Red" l) "Green"]
-        [(string=? "Green" l) "Yellow"]
-        [(string=? "Yellow" l) "Red"]))
-}
-
-That's all well and good for a function-oriented design, but we want
-to design this using classes, methods, and objects.
-
-
-There are two obvious possibilities.  First, we could create a
-@racket[light%] class, with a field holding a @racket[Light].
-However, this fails to use classes and objects to their full
-potential.  Instead, we will design a class for each state the traffic
-light can be in.  Each of the three classes will have their own
-implementation of the @racket[next] method, producing the appropriate
-@tt{Light}.
-
-@codeblock{
-#lang class/0
 ;; A Light is one of:
 ;; - (new red%)
 ;; - (new green%)
 ;; - (new yellow%)
+}
+
+We started with a @racket[on-tick] method that computes the successor for
+each light.  Let's also add a @racket[to-draw] method and then build a
+@racket[big-bang] animation for a traffic light.
+
+@codeblock{
+#lang class/0
+(require 2htdp/image)
+(define LIGHT-RADIUS 20)
 
 (define-class red%
-  ;; next : -> Light
+  ;; on-tick : -> Light
   ;; Next light after red
-  (check-expect (send (new red%) next) (new green%))
-  (define (next)
-    (new green%)))
+  (check-expect (send (new red%) on-tick) (new green%))
+  (define (on-tick)
+    (new green%))
+
+  ;; to-draw : -> Image
+  ;; Draw this red light
+  (check-expect (send (new red%) to-draw)
+                (circle LIGHT-RADIUS "solid" "red"))
+  (define (to-draw)
+    (circle LIGHT-RADIUS "solid" "red")))
 
 (define-class green%
-  ;; next : -> Light
+  ;; on-tick : -> Light
   ;; Next light after green
-  (check-expect (send (new green%) next) (new yellow%))
-  (define (next)
-    (new yellow%)))
+  (check-expect (send (new green%) on-tick) (new yellow%))
+  (define (on-tick)
+    (new yellow%))
+
+  ;; to-draw : -> Image
+  ;; Draw this green light
+  (check-expect (send (new green%) to-draw)
+                (circle LIGHT-RADIUS "solid" "green"))
+  (define (to-draw)
+    (circle LIGHT-RADIUS "solid" "green")))
 
 (define-class yellow%
-  ;; next : -> Light
+  ;; on-tick : -> Light
   ;; Next light after yellow
-  (check-expect (send (new yellow%) next) (new red%))
-  (define (next)
-    (new red%)))
+  (check-expect (send (new yellow%) on-tick) (new red%))
+  (define (on-tick)
+    (new red%))
+
+  ;; to-draw : -> Image
+  ;; Draw this yellow light
+  (check-expect (send (new yellow%) to-draw)
+                (circle LIGHT-RADIUS "solid" "yellow"))
+  (define (to-draw)
+    (circle LIGHT-RADIUS "solid" "yellow")))
 }
 
-If you have a @tt{Light}, @racket[L], how do you get the next light?
+We can now create and view lights:
 
-@racket[(send L next)]
+@interaction[#:eval the-eval
+(send (new green%) to-draw)
+(send (new yellow%) to-draw)
+(send (new red%) to-draw)
+]
 
-Note that there is no use of @racket[cond] in this program, although
-the previous design using functions needed a @racket[cond] because the
-@racket[next] function has to determine @emph{what kind of light is
-the given light}.  However in the object-oriented version there's no
-use of a @racket[cond] because we ask an object to call a method; each
-kind of light has a different @racket[next] method that knows how to
-compute the appropriate next light.  Notice how the purpose statements
-are revised to reflect knowledge based on the class the method is in;
-for example, the @racket[next] method of @racket[yellow%] knows that
-this light is yellow.
-
-
-@section{Unions and Recursive Unions}
-
-@deftech{Unions} are a generalization of enumerations to represent
-infinite families of data.  We saw simple (non-recursive) unions in
-@lecref{2}, but let's consider recursive unions now.  One example is
-@emph{binary trees}, which can contain arbitrary other data as
-elements.  We'll now look at how to model binary trees of numbers,
-such as:
-
-@verbatim[#:indent 2]{
-          7         6              8  
-                   / \            / \ 
-                  8   4          2   1
-                     / \ 
-                    3   2}
-
-How would we represent this with classes and objects?
-
-@codeblock{
-#lang class/0
-;;   +- - - - - - - - - - - - - - +
-;;   | +- - - - - - - - - - - - + |
-;;   V V                        | |
-;; A BT is one of:              | |
-;; - (new leaf% Number)         | |
-;; - (new node% Number BT BT)   | |
-;;                     |  +- - -+ |
-;;                     +- - - - --+
-(define-class leaf%
-  (fields number))
-
-(define-class node%
-  (fields number left right))
-
-(define ex1 (new leaf% 7))
-(define ex2 (new node% 6
-                 (new leaf% 8)
-                 (new node% 4
-                      (new leaf% 3)
-                      (new leaf% 2))))
-(define ex3 (new node% 8
-                 (new leaf% 2)
-                 (new leaf% 1)))
-}
-
-We then want to design a method @racket[count] which produces the
-number of numbers stored in a @tt{BT}.  
-
-Here are our examples:
+To create an animation we can make the following @racket[big-bang] program:
 
 @class-block{
-(check-expect (send ex1 count) 1)
-(check-expect (send ex2 count) 5)
-(check-expect (send ex3 count) 3)
+(require class/universe)
+(big-bang (new red%))
 }
 
-Next, we write down the
-templates for methods of our two classes.
+At this point, let's take a step back and ask the question: @emph{what
+is essential to being a light?}  Our data definition gives us one
+perspective, which is that for a value to be a light, that value must
+have been constructed with either @racket[(new red%)], @racket[(new
+yellow%)], or @racket[(new green%)].  But from the world's
+perspective, what matters is not how lights are constructed, but
+rather what can lights compute.  All the world does is call methods on
+the light it contains, namely the @racket[on-tick] and @racket[to-draw]
+methods.  We can rest assured that the light object understands the
+@racket[on-tick] and @racket[to-draw] messages because, by definition, a
+light must be one of @racket[(new red%)], @racket[(new yellow%)], or
+@racket[(new green%)], and each of these classes defines @racket[on-tick]
+and @racket[to-draw] methods.  But it's possible we could relax the
+definition of what it means to be a light by just saying what methods
+an object must implement in order to be considered a light.  We can
+thus take a constructor-agnostic view of objects by defining a set of
+objects in terms of the methods they understand.  We call a set of
+method signatures (i.e., name, contract, and purpose statement) an
+@emph{interface}.
 
-The template for @racket[leaf%]:
+Let's consider an alternative characterization of lights not in
+terms of @emph{what they are}, but rather @emph{what they do}.
+Well a light does two things: it can render as an image and it can 
+transition to the next light; hence our @emph{interface definition}
+for a light is:
 
-@filebox[
- (racket leaf%)
- @class-block{
-  ;; count : -> Number
-  ;; count the number of numbers in this leaf
-  (define (count)
-    (... (send this number) ...))}]
-
-The template for @racket[node%]:
-
-@filebox[
- (racket node%)
- @class-block{
-  ;; count : -> Number
-  ;; count the number of numbers in this node
-  (define (count)
-    (send this number) ...
-    (send (send this left) count) ...
-    (send (send this right) count) ...)}]
-
-Now we provide a definition of the @racket[count] method for each of
-our classes.
-
-@filebox[
- (racket leaf%)
- @class-block{
-  ;; count : -> Number
-  ;; count the number of numbers in this leaf
-  (define (count)
-    1)}]
-
-@filebox[
- (racket node%)
- @class-block{
-  ;; count : -> Number
-  ;; count the number of numbers in this node
-  (define (count)
-    (+ 1
-       (send (send this left) count)
-       (send (send this right) count)))}]
-
-Next, we want to write the @racket[double] function, which takes a
-number and produces two copies of the @tt{BT} with the given number at
-the top.  Here is a straightforward implementation for @racket[leaf%]:
-
-@filebox[
-(racket leaf%)
 @class-block{
- ;; double : Number -> BT
- ;; double this leaf and put the number on top
- (define (double n)
-   (new node%
-        n
-        (new leaf% (send this number))
-        (new leaf% (send this number))))}]
-
-Note that @racket[(new leaf% (send this number))] is just constructing a
-new @racket[leaf%] object just like the one we started with.
-Fortunately, we have a way of referring to ourselves, using the
-identifier @racket[this].  We can thus write the method as:
-
-@filebox[
- (racket leaf%)
- @class-block{
-  ;; double : Number -> BT
-  ;; double this leaf and put the number on top
-  (define (double n)
-    (new node% n this this))}]
-
-For @racket[node%], the method is very similar:
-@margin-note{Since these two methods are so similar, you may wonder if
-they can be abstracted to avoid duplication.  We will see how to do
-this in a subsequent class.}
-
-@filebox[
- (racket node%)
- @class-block{
-  ;; double : Number -> BT
-  ;; double this node and put the number on top
-  (define (double n)
-    (new node% n this this))}]
-
-The full @tt{BT} code is now:
-@codeblock{
-#lang class/0
-;;   +- - - - - - - - - - - - - - +
-;;   | +- - - - - - - - - - - - + |
-;;   V V                        | |
-;; A BT is one of:              | |
-;; - (new leaf% Number)         | |
-;; - (new node% Number BT BT)   | |
-;;                     |  +- - -+ |
-;;                     +- - - - --+
-(define-class leaf%
-  (fields number)
-  ;; count : -> Number
-  ;; count the number of numbers in this leaf
-  (define (count)
-    1)
-
-  ;; double : Number -> BT
-  ;; double the leaf and put the number on top
-  (define (double n)
-    (new node% n this this)))
-
-(define-class node%
-  (fields number left right)
-  ;; count : -> Number
-  ;; count the number of numbers in this node
-  (define (count)
-    (+ 1
-       (send (send this left) count)
-       (send (send this right) count)))
-
-  ;; double : Number -> BT
-  ;; double the node and put the number on top
-  (define (double n)
-    (new node% n this this)))
-
-(define ex1 (new leaf% 7))
-(define ex2 (new node% 6
-                 (new leaf% 8)
-                 (new node% 4
-                      (new leaf% 3)
-                      (new leaf% 2))))
-(define ex3 (new node% 8
-                 (new leaf% 2)
-                 (new leaf% 1)))
-
-(check-expect (send ex1 count) 1)
-(check-expect (send ex2 count) 5)
-(check-expect (send ex3 count) 3)
-
-(check-expect (send ex1 double 5)
-              (new node% 5 ex1 ex1))
-(check-expect (send ex3 double 0)
-              (new node% 0 ex3 ex3))
+;; A Light implements
+;; on-tick : -> Light
+;; Next light after this light.
+;; to-draw : -> Image
+;; Draw this light.
 }
 
-@;include-section{02/more-rocket.scrbl}
-@;include-section{02/exercises.scrbl}
+Now it's clear that each of the three light classes define sets of
+objects which are @tt{Light}s, because each implements the methods in
+the @tt{Light} interface, but we can imagine new kinds of
+implementations of the @tt{Light} interface that are not 
+the light classes we've considered so far.
+
+In the next lecture, we'll explore some consquences of designing in
+terms of interface definitions intead of data definitions.
+

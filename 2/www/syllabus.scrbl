@@ -62,9 +62,9 @@ announcements, deadlines, policies, etc.
 Your final course grade will be determined according to the following
 percentages:
 
-@(define grades:m1 (list @elem{Midterm 1, @m1-date} "12%"))
-@(define grades:m2 (list @elem{Midterm 2, @m2-date} "12%"))
-@(define grades:f  (list @elem{Final Exam, @final-date} "24%"))
+@(define grades:m1 (list @elem{Midterm 1, @m1-date} "15%"))
+@(define grades:m2 (list @elem{Midterm 2, @m2-date} "15%"))
+@(define grades:f  (list @elem{Final Exam, @final-date} "25%"))
 
 @(define (make-grade-component-table . entries)
   @tabular[#:style 'boxed
@@ -81,8 +81,7 @@ percentages:
   (list "Problem Sets" "40%")
   @grades:m1
   @grades:m2
-  (list @elem{In-class Quizzes}    "6%")
-  (list @elem{Clicker Quizzes}     "6%")
+  (list @elem{In-class Quizzes}    "5%")
   grades:f]
 	 
 
