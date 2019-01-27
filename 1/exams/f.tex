@@ -8,7 +8,7 @@
 \setmainfont{Times New Roman}
 
 \censorruleheight=0ex
-\StopCensoring
+%\StopCensoring
 
 \begin{document}
 
@@ -16,7 +16,7 @@
   {\Large {\bf CMSC 131A, Final Exam}\\
     \censor{{\bf SOLUTION}} \ \\
     \ \\
-    Fall 2017 \ \\
+    Fall 2018 \ \\
   }
 \end{center}
 
@@ -96,10 +96,10 @@ parameter), or ``constant'' for replacing a constant with its value.
 
 \begin{verbatim}
 (define S 1)
-(define (q z)
-  (cond [(< 4 z) (+ z S)]
-        [else 9]))
-(q 8)
+(define (w p) (< S p))
+
+(cond [(w 9) (* 8 2)]
+      [else 9])
 \end{verbatim}
 
 
@@ -107,17 +107,17 @@ parameter), or ``constant'' for replacing a constant with its value.
 
 SOLUTION:
 
-(q 8)                                --[plug]-->
-^^^^^
-(cond [(< 4 8) (+ 8 S)] [else 9])    --[arith]-->
+(cond [(w 9) (* 8 2)] [else 9])      --[plug]-->
+       ^^^^^
+(cond [(< S 9) (* 8 2)] [else 9])    --[const]-->
+          ^
+(cond [(< 1 9) (* 8 2)] [else 9])    --[arith]-->
        ^^^^^^^
-(cond [#true (+ 8 S)] [else 9])      --[cond]-->
+(cond [#true (* 8 2)] [else 9])      --[cond]-->
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(+ 8 S)                              --[const]-->
-     ^
-(+ 8 1)                              --[arith]-->
+(* 8 2)                              --[arith]-->
 ^^^^^^^
-9
+16
 \end{SaveVerbatim}
 
 \censor{%
@@ -133,18 +133,16 @@ function it creates.  For each function, classify it as being either a
 constructor, accessor, or predicate.
 
 \begin{verbatim}
-(define-struct qt (nw ne se sw))
+(define-struct roger (waters rabbit))
 \end{verbatim}
 
 \begin{SaveVerbatim}{VerbEnv}  
 SOLUTION:
 
-- make-qt  : Constructor
-- qt-nw    : Accessor
-- qt-ne    : Accessor
-- qt-se    : Accessor
-- qt-sw    : Accessor
-- qt?      : Predicate
+- make-roger   : Constructor
+- roger-waters : Accessor
+- roger-rabbit : Accessor
+- roger?       : Predicate
 \end{SaveVerbatim}
 
 \censor{%
@@ -156,48 +154,47 @@ SOLUTION:
 \noindent
 {\bf Problem 3 (15 points).}
 %
-Consider the following data definition (and examples) for representing sentences:
+Imagine designing the following two functions.  Now design an
+abstraction of both and define each original function in terms of that
+abstraction.  (It's not necessary to give the ``unabstracted''
+definitions unless it's helpful to you.)
 \begin{verbatim}
-;; A Sentence is a [NEListof String]
+;; find-even : [Listof Number] -> [Maybe Number]
+;; Find first even number, if there is one (or #false)
+(check-expect (find-even '(1 2 3 4)) 2)
+(check-expect (find-even '(1 3 5)) #false)
 
-(define sent1 (list "a" "dog" "barked"))
-(define sent2 (list "a" "cat" "meowed"))
+;; find-long : [Listof String] -> [Maybe String]
+;; Find first string longer than 5 letters, if there is one (or #false)
+(check-expect (find-long '("a" "really" "long")) "really")
+(check-expect (find-long '("a" "b" "c")) #false)
 \end{verbatim}
-Recall the following data definition of {\tt [NEListof X]}:
+Recall that {\tt [Maybe X]} is defined as:
 \begin{verbatim}
-;; A [NEListof X] is one of:
-;; - (cons X '())
-;; - (cons X [NEListof X])
+;; A [Maybe X] is one of:
+;; - X
+;; - #false
 \end{verbatim}
-Given a {\tt Sentence}, a \emph{bigram} is a list of two consecutive
-elements of the sentence. For example, {\tt sent1} has exactly two
-bigrams:
-\begin{verbatim}
-(list "a" "dog")
-(list "dog" "barked")
-\end{verbatim}
-Using the following data definition,
-\begin{verbatim}
-;; a Bigram is a (list String String)
-\end{verbatim}
-design a function {\tt bigrams} which takes a {\tt Sentence} and
-returns a list of {\tt Bigrams}.
 
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
-;; bigrams : Sentence -> [Listof Bigram]
-;; List of all adjacent words in a sentence
-(check-expect (bigrams (list "one")) '())
-(check-expect (bigrams sent1)
-              (list (list "a" "dog") (list "dog" "barked")))
-(define (bigrams sent)
-  (cond [(empty? (rest sent)) '()]
-        [else
-         (cons (list (first sent) (second sent))
-               (bigrams (rest sent)))]))
+;; find : [Listof X] [X -> Boolean] -> [Maybe X]
+;; Find first element satisfying the predicate, if there is one (or #false)
+(define (find lon pred)
+  (cond [(empty? lon) #false]
+        [(cons? lon)
+         (cond [(pred (first lon)) (first lon)]
+               [else (find-even (rest lon))])]))
+
+
+(define (find-even lon)
+  (find lon even?))
+
+(define (find-long los)
+  (find los (lambda (s) (> (string-length s) 5))))
 \end{SaveVerbatim}
 
 %\censor{\vspace{-2.5in}}
@@ -207,54 +204,36 @@ SOLUTION:
 
 \newpage
 
+[Space for problem 3.]
+
+
+\newpage
+
 \noindent
 {\bf Problem 4 (15 points).}
 %
-Here is a program that, given a sentence (see problem 3), computes a
-two element list consisting of the minimal and maximal words according
-to alphabetic ordering ({\tt string<?}).
-
+Here is a data definition for binary trees:
 \begin{verbatim}
-;; min-and-max : Sentence -> (list String String)
-;; Produces the min and max words in the sentence.
-(check-expect (min-and-max (list "the" "zoo" "has" "aardvarks"))
-              (list "aardvarks" "zoo"))
-(define (min-and-max s)
-  (cond [(empty? (rest s)) (list (first s) (first s))]
-        [else
-         (local [(define w (first s))
-                 (define m+m (min-and-max (rest s)))]
-            (cond [(string<? w (first m+m))
-                   (list w (second m+m))]
-                  [(string<? (second m+m) w)
-                   (list (first m+m) w)]
-                  [else m+m]))]))
+;; A [BT X] is one of:
+;; - (make-leaf)
+;; - (make-node X [BT X] [BT X])
+(define-struct node (val left right))
+(define-struct leaf ())
 \end{verbatim}
-Redesign this program to use an accumulator-based helper function with
-two accumulators: the mininmal and maximal elements of the sentence
-seen so far.
-
+Design a function that consumes a binary tree of strings and
+constructs a single string that results from concating the strings
+in left to val to right order.  For example:
+\begin{verbatim}
+(define l (make-leaf))
+(define t (make-node "b" (make-node "a" l l) (make-node "c" l l)))
+\end{verbatim}
+The function should produce {\tt "abc"} on {\tt t}.
 
 \begin{SaveVerbatim}{VerbEnv}
 
 
 SOLUTION:
 
-(define (min-and-max s)
-  (min-and-max/a (rest s) (first s) (first s)))
-
-;; min-and-max/a : [Listof String] String String -> (list String String)
-;; Accumulator: min and max element seen so far
-(define (min-and-max/a s min max)
-  (cond [(empty? s) (list min max)]
-        [(cons? s)
-         (local [(define w (first s))]
-           (cond [(string<? w min) 
-                  (min-and-max/a (rest s) w max)]
-                 [(string<? max w)
-                  (min-and-max/a (rest s) min w)]
-                 [else
-                  (min-and-max/a (rest s) min max)]))]))
 \end{SaveVerbatim}
 
 \censor{%
@@ -262,22 +241,55 @@ SOLUTION:
 \BUseVerbatim{VerbEnv}}
 
 
-\newpage
+%% Using an accumulator-based design, design the program {\tt to10} that
+%% converts a list of digits into its correspdonding number.  The
+%% elements are listed in order of most to least significance,
+%% so for example, {\tt (to10 '(9 1 2 3))} should produce 9123.
+%% \begin{verbatim}
+%% ;; A Digit is a Natural in [0,9]
 
-[Space for problem 4.]
+%% ;; to10 : [Listof Digit] -> Number
+%% ;; Convert digits (in order of most to least significance) to a number
+%% (check-expect (to10 '(1 2 3)) 123)
+%% (check-expect (to10 '(7 2 8)) 728)
+%% \end{verbatim}
+%% Here is a hint, 728 can be computed as {\tt (+ 8 (* 10 (+ 2 (* 10 (+ 7 0)))))}.
+%% A design that does not use an accumulator will receive only partial credit.
+
+%% \begin{SaveVerbatim}{VerbEnv}
+
+
+%% SOLUTION:
+
+%% (define (to10 lod)
+%%   (local [(define (to10/a lod a)
+%%             (cond [(empty? lod) a]
+%%                   [(cons? lod)
+%%                    (to10/a (rest lod)
+%%                            (+ (first lod)
+%%                               (* 10 a)))]))]                              
+%%     (to10/a lod 0)))
+%% \end{SaveVerbatim}
+
+%% \censor{%
+%% \noindent
+%% \BUseVerbatim{VerbEnv}}
+
 
 
 \newpage 
 \noindent
 {\bf Problem 5 (15 points).}
 %
-Design the following program for determining if two sentences (see problem 3) are equal,
-meaning they are lists of the same length with the same elements (in the same order):
+Design the following variant of {\tt map} that takes a binary function
+and \emph{two} lists that are assumed to be of equal length and
+produces list of results formed by applying the function to the
+elements of each list.  Only tests are given, you have to come up with
+the rest:
 \begin{verbatim}
-;; sent=? : Sentence Sentence -> Boolean
-;; Are the two sentences the same?
+(check-expect (2map < '(1 4 3) '(3 1 2)) '(#true #false #false))
+(check-expect (2map string-ith '("fred" "wilma") '(1 0)) '("r" "w"))
 \end{verbatim}
-(You may not use {\tt equal?} in the design of this program.)
 
 
 \begin{SaveVerbatim}{VerbEnv}
@@ -285,20 +297,14 @@ meaning they are lists of the same length with the same elements (in the same or
 
 SOLUTION:
 
-;; sent=? : Sentence Sentence -> Boolean
-;; Are the two sentences equal?
-(check-expect (sent=? (list "one") (list "one")) #true)
-(check-expect (sent=? (list "one") (list "two")) #false)
-(check-expect (sent=? (list "one") (list "one" "two")) #false)
-(check-expect (sent=? (list "one" "two") (list "one" "two")) #true)
-(define (sent=? s1 s2)
-  (cond [(empty? (rest s1))
-         (and (empty? (rest s2))
-              (string=? (first s1) (first s2)))]
-        [else
-         (and (not (empty? (rest s2)))
-              (string=? (first s1) (first s2))
-              (sent=? (rest s1) (rest s2)))]))
+;; 2map : [X Y -> Z] [Listof X] [Listof Y] -> [Listof Z]
+;; Binary variant of map
+;; ASSUME: lists are equal length
+(define (2map f xs ys)
+  (cond [(empty? xs) '()]
+        [(cons? xs)
+         (cons (f (first xs) (first ys))
+               (2map f (rest xs) (rest ys)))]))
 \end{SaveVerbatim}
 
 \censor{%
@@ -313,7 +319,8 @@ SOLUTION:
 %
 During your internship at the University of Maryland's Center for
 Bioinformatics and Computational Biology (CBCB), you're asked to
-design a program for computing the \emph{reverse complement} of DNA strands.
+improve code written by last year's intern.  That intern designed a
+program for computing the \emph{reverse complement} of DNA strands.
 %
 A DNA strand is an arbitrarily long sequence of bases, which are
 either: C, G, A, or T.  A and T are complements of each other, as are
@@ -321,15 +328,8 @@ C and G.  The reverse complement of a DNA strand is formed by
 reversing the strand and taking the complement of each symbol.  For
 example, the reverse complement of AAAACCCGGT is ACCGGGTTTT.
 %
-Design a program that, given a DNA strand, computes its reverse complement.
-
-
-
-\begin{SaveVerbatim}{VerbEnv}
-
-
-SOLUTION:
-
+Last year's intern came up with the following:
+\begin{verbatim}
 ;; A DNA is a [Listof Base]
 ;; A Base is one of: "A", "C", "G", "T"
 ;; Interp: DNA is a sequence of nucleotide bases
@@ -352,6 +352,31 @@ SOLUTION:
         [(string=? b "T") "A"]
         [(string=? b "C") "G"]
         [(string=? b "G") "C"]))
+\end{verbatim}
+You notice that {\tt rev-comp} traverses the DNA sequence twice, once
+with {\tt map} and once with {\tt reverse}.  Improve this design by
+revising {\tt rev-comp} to use an accumulator to traverse the DNA
+sequence just once.
+
+\newpage
+
+\noindent
+[Space for problem 6.]
+
+\begin{SaveVerbatim}{VerbEnv}
+
+
+SOLUTION:
+
+(define (rev-comp dna)
+  (local [;; DNA DNA -> DNA
+          ;; ACCUM: the reverse complement of the sequence so far
+          (define (rev-comp/a dna rcomp)
+            (cond [(empty? dna) rcomp]
+                  [(cons? dna)
+                   (rev-comp/a (rest dna)
+                               (cons (comp (first dna)) rcomp))]))]
+     (rev-comp/a dna '())))                      
 \end{SaveVerbatim}
 
 \censor{%
@@ -366,12 +391,12 @@ SOLUTION:
 \noindent
 {\bf Problem 7 (15 points).} Design a program that takes two
 strings and counts how many times the first string occurs within the
-second.
+second, {\bf including possibly overlapping occurences}.
 For example,
 \begin{itemize}
 \item {\tt "ho"} occurs three times in {\tt "ho ho ho"}, while
-\item {\tt "ho ho"} occurs once in {\tt "ho ho ho"} (notice that occurences
-  cannot overlap).
+\item {\tt "ho ho"} occurs {\bf twice} in {\tt "ho ho ho"} (notice that occurences
+  overlap on the middle {\tt "ho"}).
 \end{itemize}
 You may assume the first string is non-empty.
 %
@@ -386,17 +411,17 @@ It may be helpful to use the {\tt substring} function.  Recall: {\tt
 SOLUTION:
 
 ;; occurs : String String -> Natural
-;; Count (non-overlapping) occurences of first string in second
+;; Count (possibly overlapping) occurences of first string in second
 ;; Assume: first string is non-empty
-;; Termination: because s1 is non-empty, each recursive call is on a strictly
+;; Termination: each recursive call is on a strictly
 ;; smaller s2, therefore eventually reaching first cond clause (trivial case).
 (check-expect (occurs "ho" "ho ho ho") 3)
-(check-expect (occurs "ho ho" "ho ho ho") 1)
+(check-expect (occurs "ho ho" "ho ho ho") 2)
 (define (occurs s1 s2)
   (local [(define s1-len (string-length s1))]
     (cond [(< (string-length s2) s1-len) 0]
           [(string=? s1 (substring s2 0 s1-len))
-           (add1 (occurs s1 (substring s2 s1-len)))]
+           (add1 (occurs s1 (substring s2 1)))]
           [else
            (occurs s1 (substring s2 1))])))
 \end{SaveVerbatim}
