@@ -22,19 +22,19 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script:
-   - cd 1/www/
-   - make 1
-   - mv 1 cmsc131A
-   - cd ../../
    - cd 0/www/
    - make 0
    - mv 0 cmsc198Q
    - cd ../../
-#  - cd 2/www/
-#  - raco pkg install https://github.com/dvanhorn/dpc.git#racket-v6.10
-#  - raco link utils/java/
-#  - make cmsc132A
+#  - cd 1/www/
+#  - make 1
+#  - mv 1 cmsc131A
 #  - cd ../../
+   - cd 2/www/
+   - raco pkg install https://github.com/dvanhorn/dpc.git#racket-v6.10
+   - raco link utils/java/
+   - make cmsc132A
+   - cd ../../
 
 addons:
   ssh_known_hosts: junkfood.cs.umd.edu
@@ -49,8 +49,9 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: 
-      rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/fall2018;
+    script:
+      rsync -rvzp $TRAVIS_BUILD_DIR/2/www/cmsc132A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/spring2019;
+#     rsync -rvzp $TRAVIS_BUILD_DIR/1/www/cmsc131A dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/fall2018;
       rsync -rvzp $TRAVIS_BUILD_DIR/0/www/cmsc198Q dvanhorn@junkfood.cs.umd.edu:$WWW_DIR/summer2019
     on:
       branch: master
