@@ -9,14 +9,14 @@ reading.
 
 @itemlist[
 
-@item{@link["http://www.ccs.neu.edu/home/matthias/HtDP2e/index.html"]{How
+@item{@link["https://htdp.org/2018-01-06/Book/"]{How
 to Design Programs, Second Edition (On-line Draft)} by Felleisen,
 Findler, Flatt, Krishnamurthi.  MIT Press.
 
 
 }
 
-@item{@link["http://www.ccs.neu.edu/home/matthias/htdc.html"]{How to
+@item{@link["http://felleisen.org/matthias/HtDC/htdc.pdf"]{How to
 Design Classes}, Felleisen, Findler, Flatt, Gray, Krishnamurthi, and
 Proulx. Draft, 2008.}
 
