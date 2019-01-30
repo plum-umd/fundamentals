@@ -3,8 +3,8 @@
 
 @lecture-title[1]{The Essence of Objects}
 
-
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=50a9a419-9c7f-4d0e-ae65-a87400f8b95a"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f534f504-6f4a-4eae-9818-a9e500fbec05"]{Video 2019}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=50a9a419-9c7f-4d0e-ae65-a87400f8b95a"]{Video 2018}.
 
 One of the key concepts behind so-called @deftech{object-oriented
 programming} (OOP) is the notion of an @deftech{object}.  An object is
