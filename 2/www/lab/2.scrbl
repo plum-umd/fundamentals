@@ -38,6 +38,10 @@ If you encounter issues during the installation be sure to delete all
 text from the text area before you press "Install", @emph{even if you
 do not see any text}. Call a TA over if you continue to have issues.
 
+@section[#:tag "lab2:lab1"]{Finish off Lab 1}
+
+Make sure you finish all of @labref{1}, particularly the last problem.
+
 @section[#:tag "lab2:ex"]{Finger exercises}
 
 In the following exercises you'll find simple programs that follow the
