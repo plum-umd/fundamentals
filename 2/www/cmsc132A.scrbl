@@ -72,41 +72,22 @@ subject to change until the start of the semester.
 	 (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu")
 	 (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu"))]
 
-@;{
+
 @tabular[#:style 'boxed
          #:row-properties '(bottom-border ())
          (list (list @bold{Office hours} 'cont 'cont)
                (list @bold{Monday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Austin")
-               (list 'nbsp "1-2pm" "Thomas")
-               (list "" "2-3pm" "Sam")
-               (list "" "4-5pm" "Rachael")
+	       (list "3-4pm" "1112 AVW" "William")
+               (list "4-5pm" "2207 IRB" "In Lab")
 	       (list @bold{Tuesday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Nick")
-               (list "" "10-11am" "Austin")
-	       (list "" "11am-12pm" "Thomas")
-	       (list "" "12:30-2pm" "Jack")
-	       (list "" "2-3:30pm" "Cameron")
-	       (list "" "4-6" "Nick")
+               (list "2-3pm" "1112 AVW" "Deena")
 	       (list @bold{Wednesday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Jack")
-	       (list "" "1-2pm" "Thomas")
-	       (list "" "2-3pm" "Sam")
-	       (list "" "4-5:30pm" "David")
+               (list "1-2pm" "1112 AVW" "Deena")
+	       (list "4-5pm" "2207 IRB" "In Lab")
 	       (list @bold{Thursday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Thomas")
-	       (list "" "12:30-2pm" "Jack")
-	       (list "" "2-4pm" "Rachael")
+	       (list "4-5pm" "1112 AVW" "William")
 	       (list @bold{Friday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Sam")
-	       (list "" "10:30am-12pm" "Cameron")
-	       (list "" "1-3pm" "Austin")
-	       (list @bold{Saturday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Cameron")
-	       (list @bold{Sunday} 'cont 'cont)
-	       (list 'nbsp "Piazza on-call" "Rachael"))]
-}            
-
+	       (list "3439 AVW" "2-3pm" "David"))]
 
 @include-section{syllabus.scrbl}
 @include-section{texts.scrbl}
