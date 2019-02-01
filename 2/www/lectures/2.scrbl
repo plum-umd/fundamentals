@@ -3,7 +3,8 @@
 
 @lecture-title[2]{Unions of Objects}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=351c2c35-6a2b-4999-82f1-a8740134139f"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7f1c24e0-d7e2-4e12-90aa-a9e70106af57"]{Video 2019}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=351c2c35-6a2b-4999-82f1-a8740134139f"]{Video 2018}.
 
 We've already seen the fundamental idea of objects, that an object is
 the pairing together of data and functionality.  Over the next few
