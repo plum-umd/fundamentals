@@ -6,9 +6,7 @@
 
 @section[#:style 'unnumbered #:tag "lab3:intro"]{Introduction}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{newly assigned
-partner}.
+You’ll work in this lab in ad-hoc pairs. Find a partner and get started.
 
 The two of you will work as a team to solve problems. At any time, one of you
 will be the @bold{Head} and the other will be the @bold{Hands}. The @bold{Head}
