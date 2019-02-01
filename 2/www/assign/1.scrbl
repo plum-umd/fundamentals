@@ -51,7 +51,7 @@ Here is a program for modelling the state of rocket ship that launches
 from the bottom of the screen.
 
 @#reader scribble/comment-reader (racketblock
-;; A Rocket is positive number
+;; A Rocket is a non-negative real number
 ;; Interp: units of time that have passed since launch
 
 ;; Uniform acceleration of Rocket in pixels per unit^2 of time
