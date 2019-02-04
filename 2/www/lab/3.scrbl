@@ -27,6 +27,6 @@ Reimplement the @link["snake.rkt"]{Snake Game} in the @tt{class/0}
 language.
 
 Please note: you'll need to implement a class-based @tt{[Listof X]}
-rather than using the built-in lists, as in the previous two labs. Put
-some thought into which data definitions should remain the same and
-which should be reorganized, especially the unions.
+rather than using the built-in lists. Put some thought into which data
+definitions should remain the same and which should be reorganized,
+especially the unions.
