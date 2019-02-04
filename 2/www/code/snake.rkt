@@ -4,6 +4,7 @@
 
 ;; main : Game -> Game
 ;; Run the snake game using `big-bang' given the initial world state.
+#;
 (define (main g)
   (big-bang g                          ; (Game)
             [to-draw   draw-game]      ; (Game -> Image)
@@ -12,7 +13,88 @@
             [stop-when stop-game]))    ; (Game -> Boolean)
 
 (require 2htdp/image)
-(require 2htdp/universe)
+;(require 2htdp/universe)
+(require class/universe)
+
+;; A Game is a (new game% Snake)
+(define-class game%
+  (fields snake #;food)
+
+  ;; to-draw : -> Image
+  (define (to-draw)
+    (send (send this snake) draw-on MT))
+
+  ;; on-tick : -> Game
+  (define (on-tick) this)
+
+  ;; on-key : KeyEvent -> Game
+  (define (on-key ke) this)
+
+  ;; stop-when : -> Boolean
+  (define (stop-when) #false))
+
+;; A Snake is a (new snake% Seg [Listof Seg] Dir)
+(define-class snake%
+  (fields head tail dir)
+
+  ;; draw-on : Scene -> Scene
+  ;; Draw this snake on the given scene
+  (define (draw-on scn)
+    (send (send this head) draw-on
+          (send (send this tail) draw-on scn))))
+
+;; A Food is a ...
+(define-class food%
+  (fields ))
+
+;; A Seg is a (new seg% Int Int)
+(define-class seg%
+  (fields x y)
+
+  ;; draw-on : Scene -> Scene
+  ;; Draws this segment on the given scene
+  (define (draw-on scn)
+     (place-image (square BLOCK-SCALE "solid" SEGCOLOR)
+               (* (+ 1 (send this x)) BLOCK-SCALE)
+               (* (+ 1 (send this y)) BLOCK-SCALE)
+               scn)))
+               
+
+;; A Dir is one of:
+;; - (new up%)
+;; - (new down%)
+;; - (new left%)
+;; - (new right%)
+
+(define-class up%)
+(define-class down%)
+(define-class left%)
+(define-class right%)
+
+;; A ListofSeg is one of:
+;; - (new empty%)
+;; - (new cons% Seg ListofSeg)
+
+(define-class empty%
+
+  ;; draw-on : Scene -> Scene
+  ;; Draw this empty list of segments on the given scene
+  (define (draw-on scn) scn))
+  
+(define-class cons%
+  (fields first rest)
+
+  ;; draw-on : Scene -> Scene
+  ;; Draw this non-empty list of segments on the given scene
+  (define (draw-on scn)
+    (send (send this first) draw-on
+          (send (send this rest) draw-on scn))))
+
+
+     
+
+
+  
 
 ;; A Food is a (make-posn Int Int)
 ;; Interp: the location of a block of food in the game.
@@ -169,7 +251,7 @@
 (check-expect (eating? SNAKE2 FOOD2) #false)
 
 ;; seg-food=? : Seg Food -> Boolean
-;; Is the given segment at the same coordinate as given food?
+;; Is the given segment at the same coordinate as given food
 (define (seg-food=? s f)
   (and (= (posn-x s) (posn-x f))
        (= (posn-y s) (posn-y f))))
