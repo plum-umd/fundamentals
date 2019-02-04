@@ -1,6 +1,18 @@
-;; The first three lines of this file were inserted by DrRacket. They record metadata
-;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname snake-complete) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+#lang class/0
+
+;; Run (main GAME0) to play.
+
+;; main : Game -> Game
+;; Run the snake game using `big-bang' given the initial world state.
+(define (main g)
+  (big-bang g                          ; (Game)
+            [to-draw   draw-game]      ; (Game -> Image)
+            [on-tick   tock-game 1/4]  ; (Game -> Game)
+            [on-key    keyh-game]      ; (Game KeyEvent -> Game)
+            [stop-when stop-game       ; (Game -> Boolean)
+                       game-over]))    ; (Game -> Image)
+
+
 
 
 (require 2htdp/image)
@@ -67,14 +79,14 @@
   (... (segs-template (snake-segs s)) ... 
        (dir-template (snake-dir s)) ...))
 
-;; A Game is a (make-game Snake ListofFood)
+;; A Game is a (make-game Snake Food)
 ;; Interp: the WorldState of the snake game.
-(define-struct game (snake foods))
+(define-struct game (snake food))
 
 ;; game-template : Game -> ???
 (define (game-template g)
   (... (snake-template (game-snake g)) ...
-       (foods-template (game-foods g)) ...))
+       (food-template (game-food g)) ...))
 
 ;; A Block is a (make-posn Int Int)
 ;; Interp: the smallest unit of measure on the game board.
@@ -99,35 +111,21 @@
 (define FOOD1 (make-posn 2 2))
 (define FOOD2 (make-posn 3 2))
 
-(define FOODS0 '())
-(define FOODS1 (cons FOOD0 FOODS0))
-(define FOODS2 (cons FOOD1 FOODS1))
-(define FOODS3 (cons FOOD2 FOODS2))
-
-(define GAME0 (make-game SNAKE0 FOODS0))
+(define GAME0 (make-game SNAKE0 FOOD0))
 ;; eating on next turn:
-(define GAME1 (make-game SNAKE1 FOODS1))
-(define GAME2 (make-game SNAKE2 FOODS2))
+(define GAME1 (make-game SNAKE1 FOOD0))
+(define GAME2 (make-game SNAKE2 FOOD2))
 ;; collision with self:
 (define GAMEOVER0 (make-game (make-snake (list* (make-posn 0 0)
                                                 (make-posn 1 0)
                                                 SEGS2)
                                          "left")
-                             FOODS3))
+                             FOOD2))
 ;; collision with wall:
 (define GAMEOVER1 (make-game (make-snake (cons (make-posn -1 0) SEGS0) "left")
-                             FOODS2))
+                             FOOD2))
 
 
-;; main : Game -> Game
-;; Run the snake game using `big-bang' given the initial world state.
-(define (main g)
-  (big-bang g                          ; (Game)
-            [to-draw   draw-game]      ; (Game -> Image)
-            [on-tick   tock-game 1/4]  ; (Game -> Game)
-            [on-key    keyh-game]      ; (Game KeyEvent -> Game)
-            [stop-when stop-game       ; (Game -> Boolean)
-                       game-over]))    ; (Game -> Image)
 (define BLOCK-SCALE 10) ; Block -> Pixel scale
 (define MTW 40)   ; Game board width  (# blocks)
 (define MTH 30)   ; Game board height (# blocks)
@@ -162,17 +160,17 @@
 ;; Render the snake game as an image.
 (define (draw-game g)
   (draw-blocks-on (snake-segs (game-snake g)) SEGCOLOR
-                  (draw-blocks-on (game-foods g) FOODCOLOR MT)))
+                  (draw-block-on (game-food g) FOODCOLOR MT)))
 
 
-;; eating? : Snake ListofFood -> Boolean
+;; eating? : Snake Food -> Boolean
 ;; Is the snake eating food in the next state?
 (define (eating? s fs)
-  (member? (next-head s) fs))
+  (equal? (next-head s) fs))
 
-(check-expect (eating? SNAKE0 FOODS0) #false)
-(check-expect (eating? SNAKE1 FOODS1) #true)
-(check-expect (eating? SNAKE2 FOODS2) #false)
+(check-expect (eating? SNAKE0 FOOD0) #false)
+(check-expect (eating? SNAKE1 FOOD0) #true)
+(check-expect (eating? SNAKE2 FOOD2) #false)
 
 ;; current-head : Snake -> Seg
 ;; Return the head segment of the given snake.
@@ -204,18 +202,6 @@
                                             (posn-y (current-head SNAKE1))))
 (check-expect (next-head SNAKE2) (make-posn (posn-x (current-head SNAKE2))
                                             (- (posn-y (current-head SNAKE2)) 1)))
-
-;; next-snake : Snake ListofFood -> Snake
-;; Create the next snake given the last snake and the existing food.
-(define (next-snake s fs)
-  (cond [(eating? s fs) (grow-snake s)]
-        [else (move-snake s)]))
-(check-expect (next-snake SNAKE0 FOODS0)
-              (make-snake (list SEG1) DIR0))
-(check-expect (next-snake SNAKE1 FOODS1) (make-snake SEGS2 DIR1))
-(check-expect (next-snake SNAKE2 FOODS2)
-              (make-snake (list (make-posn 1 0) (make-posn 1 1) (make-posn 0 1))
-                          DIR2))
 
 ;; move-snake : Snake -> Snake
 ;; Creates a new snake with the next head and the last segment removed.
@@ -251,23 +237,13 @@
 (check-expect (remove-last SEGS2) (list (make-posn 1 1) (make-posn 0 1)))
 
 
-;; maybe-add-food : Snake ListofFood -> ListofFood
-;; Add food under the tail of the snake about FOOD-FREQ⁻¹ often.
-(define FOOD-FREQ 5)
-(define (maybe-add-food s fs)
-  (cond [(= 0 (random FOOD-FREQ))
-         (cons (return-last (snake-segs s)) fs)]
-        [else fs]))
+;; maybe-add-food : Any -> Food
+;; Create food somewhere on board.
+(define (random-food _)
+  (make-posn (random MTW) (random MTH)))
 
-(check-random (maybe-add-food SNAKE0 FOODS0)
-              (cond [(= 0 (random FOOD-FREQ)) (cons SEG0 FOODS0)]
-                    [else FOODS0]))
-(check-random (maybe-add-food SNAKE1 FOODS1)
-              (cond [(= 0 (random FOOD-FREQ)) (cons SEG0 FOODS1)]
-                    [else FOODS1]))
-(check-random (maybe-add-food SNAKE2 FOODS2)
-              (cond [(= 0 (random FOOD-FREQ)) (cons SEG0 FOODS2)]
-                    [else FOODS2]))
+(check-random (random-food '_)
+              (make-posn (random MTW) (random MTH)))
 
 ;; return-last : NELoSeg -> Seg
 ;; Returns the last element.
@@ -279,30 +255,29 @@
 (check-expect (return-last SEGS1) SEG0)
 (check-expect (return-last (reverse SEGS2)) SEG2)
 
-;; next-foods : Snake ListofFood -> ListofFood
-(define (next-foods s fs)
-  (maybe-add-food s (remove (next-head s) fs)))
-
-(check-random (next-foods SNAKE0 FOODS0)
-              (maybe-add-food SNAKE0 (remove (next-head SNAKE0) FOODS0)))
-(check-random (next-foods SNAKE1 FOODS1)
-              (maybe-add-food SNAKE1 (remove (next-head SNAKE1) FOODS1)))
-(check-random (next-foods SNAKE2 FOODS2)
-              (maybe-add-food SNAKE2 (remove (next-head SNAKE2) FOODS2)))
-
 ;; tock-game : Game -> Game
 ;; Change the state of the snake game after one clock tick.
 (define (tock-game g)
-  (make-game (next-snake (game-snake g) (game-foods g))
-             (next-foods (game-snake g) (game-foods g))))
+  (cond [(eating? (game-snake g) (game-food g)) (eat&grow g)]
+        [else (make-game (move-snake (game-snake g))
+                         (game-food g))]))
 
-(check-random (tock-game GAME0) ; not eating
-              (make-game (move-snake SNAKE0) (maybe-add-food SNAKE0 FOODS0)))
+;; eat&grow : Game -> Game
+;; Eat the current food, grow the snake, and generate new food.
+(define (eat&grow g)
+  (make-game (grow-snake (game-snake g))
+             (random-food '_)))
+
+
+(check-expect (tock-game GAME0) ; not eating
+              (make-game (move-snake SNAKE0)
+                         (game-food GAME0)))
 (check-random (tock-game GAME1) ; eating
               (make-game (grow-snake SNAKE1)
-                         (maybe-add-food SNAKE1 (remove (next-head SNAKE1) FOODS1))))
+                         (random-food '_)))
 (check-random (tock-game GAME2) ; not eating
-              (make-game (move-snake SNAKE2) (maybe-add-food SNAKE2 FOODS2)))
+              (make-game (move-snake SNAKE2)
+                         (game-food GAME2)))
 
 
 ;; on-board? : Seg -> Boolean
@@ -379,14 +354,14 @@
   (cond [(or (string=? ke "left") (string=? ke "right")
              (string=? ke "down") (string=? ke "up"))
          (make-game (make-snake (snake-segs (game-snake g)) ke)
-                    (game-foods g))]
+                    (game-food g))]
         [else g]))
 
 (check-expect (keyh-game GAME0 "right")
-              (make-game (make-snake SEGS0 "right") FOODS0))
+              (make-game (make-snake SEGS0 "right") FOOD0))
 (check-expect (keyh-game GAME1 "left")
-              (make-game (make-snake SEGS1 "left") FOODS1))
+              (make-game (make-snake SEGS1 "left") FOOD0))
 (check-expect (keyh-game GAME2 "down")
-              (make-game (make-snake SEGS2 "down") FOODS2))
+              (make-game (make-snake SEGS2 "down") FOOD2))
 
 
