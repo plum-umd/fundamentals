@@ -9,11 +9,7 @@
             [to-draw   draw-game]      ; (Game -> Image)
             [on-tick   tock-game 1/4]  ; (Game -> Game)
             [on-key    keyh-game]      ; (Game KeyEvent -> Game)
-            [stop-when stop-game       ; (Game -> Boolean)
-                       game-over]))    ; (Game -> Image)
-
-
-
+            [stop-when stop-game]))    ; (Game -> Boolean)
 
 (require 2htdp/image)
 (require 2htdp/universe)
@@ -166,11 +162,17 @@
 ;; eating? : Snake Food -> Boolean
 ;; Is the snake eating food in the next state?
 (define (eating? s fs)
-  (equal? (next-head s) fs))
+  (seg-food=? (next-head s) fs))
 
 (check-expect (eating? SNAKE0 FOOD0) #false)
 (check-expect (eating? SNAKE1 FOOD0) #true)
 (check-expect (eating? SNAKE2 FOOD2) #false)
+
+;; seg-food=? : Seg Food -> Boolean
+;; Is the given segment at the same coordinate as given food?
+(define (seg-food=? s f)
+  (and (= (posn-x s) (posn-x f))
+       (= (posn-y s) (posn-y f))))
 
 ;; current-head : Snake -> Seg
 ;; Return the head segment of the given snake.
@@ -245,16 +247,6 @@
 (check-random (random-food '_)
               (make-posn (random MTW) (random MTH)))
 
-;; return-last : NELoSeg -> Seg
-;; Returns the last element.
-(define (return-last ss)
-  (cond [(empty? (rest ss)) (first ss)]
-        [else (return-last (rest ss))]))
-
-(check-expect (return-last SEGS0) SEG0)
-(check-expect (return-last SEGS1) SEG0)
-(check-expect (return-last (reverse SEGS2)) SEG2)
-
 ;; tock-game : Game -> Game
 ;; Change the state of the snake game after one clock tick.
 (define (tock-game g)
@@ -302,44 +294,6 @@
   (or (member? (current-head (game-snake g))
                (rest (snake-segs (game-snake g))))
       (not (on-board? (current-head (game-snake g))))))
-
-;; game-score : Game -> Natural
-;; Calculate the score of the game as the number of snake segments.
-(define (game-score g)
-  (length (snake-segs (game-snake g))))
-
-(check-expect (game-score GAME0) 1)
-(check-expect (game-score GAME1) 2)
-(check-expect (game-score GAME2) 3)
-
-(define GAMEOVER-SIZE 32)
-(define GAMEOVER-COLOR "red")
-(define GAMEOVER-MSG "Final score: ")
-
-;; game-over : Game -> Image
-;; Display the score once we stop the world.
-(define (game-over g)
-  (overlay (text (string-append GAMEOVER-MSG
-                                (number->string (game-score g)))
-                 GAMEOVER-SIZE
-                 GAMEOVER-COLOR)
-           (draw-game g)))
-
-(check-expect (game-over GAME0)
-              (overlay (text (string-append GAMEOVER-MSG "1")
-                             GAMEOVER-SIZE
-                             GAMEOVER-COLOR)
-                       (draw-game GAME0)))
-(check-expect (game-over GAME1)
-              (overlay (text (string-append GAMEOVER-MSG "2")
-                             GAMEOVER-SIZE
-                             GAMEOVER-COLOR)
-                       (draw-game GAME1)))
-(check-expect (game-over GAME2)
-              (overlay (text (string-append GAMEOVER-MSG "3")
-                             GAMEOVER-SIZE
-                             GAMEOVER-COLOR)
-                       (draw-game GAME2)))
 
 (check-expect (stop-game GAME0) #false)
 (check-expect (stop-game GAME1) #false)
