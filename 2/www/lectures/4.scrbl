@@ -17,7 +17,8 @@
 
 @lecture-title[4]{Classes of Objects: Interface Definitions}
 
-@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=388ce64b-fd31-4948-bbaa-a87b01296113"]{Video}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f4dcf9f9-ed0d-4073-8896-a9ea0117fc46"]{Video 2019}.
+@link["https://umd.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=388ce64b-fd31-4948-bbaa-a87b01296113"]{Video 2018}.
 
 In this lecture, we take an alternative perspective on defining sets
 of objects; we can characterize objects not just by their
