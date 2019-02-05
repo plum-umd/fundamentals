@@ -7,19 +7,17 @@
 
 @assn-title[2]{The Object of the Game}
 
-This is assignment is to be completed and submitted with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{partner}.  You
-may not work with anyone other than your assigned partner.
+This is assignment is to be completed and submitted individually. You
+may not work with anyone else.
 
-@bold{Due}: Tuesday, February 13, 11:59:59 PM EST.
+@bold{Due}: Tuesday, February 12, 11:59:59 PM EST.
 
-For this assignment, you must re-write a significant @racket[big-bang]
-game from last semester to use the @racket[class/0] language.  For
-full credit, your solution should be designed using classes and
-objects.
+For this assignment, you must re-write a significant existing
+@racket[big-bang] game.  For full credit, your solution should be
+designed using classes and objects.
 
 The game you will re-design is the simplified Space Invaders game as
-written by Austin and David.  The code is
+written by Austin and David in Fall 2017.  The code is
 @link["http://www.cs.umd.edu/class/fall2017/cmsc131A/invader-shots-dvanhorn-abourg.rkt"]{here}.
 The code should be all you need, but there is a
 @link["http://www.cs.umd.edu/class/fall2017/cmsc131A/Notes.html#%28part._.Pair_programming_.Space_.Invaders_with_shots%29"]{video}
@@ -52,7 +50,7 @@ that they work with @racket[big-bang].}
 ]
 
 
-@section[#:style 'unnumbered #:tag "assign1:submit"]{Submission}
+@section[#:style 'unnumbered #:tag "assign2:submit"]{Submission}
 
 Use @tt{submit.cs.umd.edu} to submit your solution as a single file
 called @tt{assign2.rkt}.  Either partner may submit a solution and we
