@@ -6,9 +6,8 @@
 
 @section[#:style 'unnumbered #:tag "lab4:intro"]{Hello, Java}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{assigned
-partner}. Help each other get up and running with IntelliJ and Java.
+You'll work in this lab with an ad-hoc partner. Help each other get up
+and running with IntelliJ and Java.
 
 Our goal for today's lab is to begin compiling and running Java
 programs using IntelliJ.
@@ -21,8 +20,8 @@ different for each of your machines. Help your partner if you already
 have the JDK installed.
 
 First,
-@link["http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html"]{download
-and install} the proper JDK for your platform.
+@link["https://www.oracle.com/technetwork/java/javase/downloads/index.html"]{download
+and install} the proper JDK for your platform (you should use Java SE 11.0.2).
 
 
 @section[#:tag "lab4:intellij"]{IntelliJ}
@@ -44,3 +43,18 @@ any issues.
     }
   }
 }|
+
+
+@section[#:tag "lab4:lab1"]{Distances, Speeds, and Times in Java: Lab 1 Redux}
+
+The goal for remainder of today's lab is to re-implement the first lab
+(@labref{1}) in Java. If you've already completed lab 1 you're in
+luck--the translation from @tt{class/0} should be straightforward.
+
+You should translate tests to Java comments; we'll introduce a
+@tt{check-expect} style testing mechanism next week.
+
+@section[#:tag "lab4:submit"]{Submit}
+
+Submit a single Java file that contains all your work from today's lab.
+

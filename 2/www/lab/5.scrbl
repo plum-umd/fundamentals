@@ -18,11 +18,26 @@ you switch off during the lab to make sure each of you get practice
 problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
-@section[#:tag "lab5:lab1"]{Lab 1 Redux}
 
-Our goal for today's lab is to re-implement the first lab (@labref{1})
-in Java. If you've already completed lab 1 you're in luck--the
-translation from @tt{class/0} should be straightforward.
+@section[#:tag "lab6:world"]{Drawing Images with JavaLib}
 
-You should translate tests to Java comments; we'll introduce a
-@tt{check-expect} style testing mechanism next week.
+In DrRacket, we used the library @tt{htdp/image} to draw images. In
+Java, we'll use JavaLib's images. We used the library
+@tt{htdp/universe} to draw animate our worlds. In Java, we'll use
+JavaLib's Functional Worlds.
+
+The documentation for the images and functional world library can be
+found
+@link["https://course.ccs.neu.edu/cs2510sp17/image-doc.html"]{here}.
+
+These libraries are included in the @link["Lab6.zip"]{project skeleton}.
+
+
+@section[#:tag "lab6:problem"]{A Falling Ball}
+
+Our goal in this lab is to create a simple world with a falling
+ball. The ball should be initialized with a random X and Y velocity
+and should fall at a rate of 9.8 pixels per second. The project
+skeleton gives you an outline of the tasks you need to complete to get
+this program up and running.
+
