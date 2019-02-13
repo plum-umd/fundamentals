@@ -1,4 +1,4 @@
-// Authors: partner1, partner2
+// Authors: name
 // Assignment 3
 
 package edu.umd.cmsc132A;
