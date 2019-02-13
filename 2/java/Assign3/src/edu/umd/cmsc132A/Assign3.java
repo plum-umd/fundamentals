@@ -1,4 +1,4 @@
-// Authors: name
+// Author: DirectoryID
 // Assignment 3
 
 package edu.umd.cmsc132A;
