@@ -7,13 +7,10 @@
 
 @assn-title[3]{To Java with Class}
 
-This is assignment is to be completed and submitted with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{partner}.  You
-may not work with anyone other than your assigned partner.
+This is assignment is to be completed and submitted individually. You
+may not work with anyone else.
 
-@bold{Due}: Tuesday, February 20, 11:59:59 PM EST.
-
-@(define @Piazza @link["http://piazza.com/umd/spring2018/cmsc132a"]{Piazza})
+@bold{Due}: Tuesday, February 19, 11:59:59 PM EST.
 
 @section[#:style 'unnumbered #:tag "assign3:java"]{Install Java and IntelliJ}
 
@@ -35,7 +32,7 @@ directory and select it.
 This should open up the project and place you inside the
 @tt{Assign3.java} file.  The first thing you should do is edit the
 authors line (which should be selected when you open the project) to
-be your and your partner's directory ID.
+be your directory ID.
 
 The project has a "Test" configuration in the top right corner.  Press
 the "Run" (green triangle) button to run the test suite.  You should
@@ -43,10 +40,8 @@ see 4 tests pass, confirming everything is set up properly.
 
 @section{Data Definitions and Methods in Java}
 
-Revisit your solution to @assnref{1}.  Since you and your partner
-solved the problem independently, you may make use of either of your
-solutions.  You may also use the following reference solution:
-@tt{@link["assign1-soln.rkt"]{assign1-soln.rkt}}.
+Revisit your solution to @assnref{1}.  You may also use the following
+reference solution: @tt{@link["assign1-soln.rkt"]{assign1-soln.rkt}}.
 
 Your task is to redesign a solution to assignment 1 in Java.  A
 solution for the first problem is already included in the code given
