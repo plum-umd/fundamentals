@@ -82,7 +82,7 @@ subject to change until the start of the semester.
 	       (list @bold{Tuesday} 'cont 'cont)
                (list "2-3pm" "1112 AVW" "Deena")
 	       (list @bold{Wednesday} 'cont 'cont)
-               (list "1-2pm" "1112 AVW" "Deena")
+               (list "2-3pm" "1112 AVW" "Deena")
 	       (list "4-5pm" "2207 IRB" "In Lab")
 	       (list @bold{Thursday} 'cont 'cont)
 	       (list "4-5pm" "1112 AVW" "William")
