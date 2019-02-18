@@ -6,17 +6,14 @@
 
 @section[#:style 'unnumbered #:tag "lab6:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{assigned
-partner}. Help each other get up and running with IntelliJ and Java
-(@labref{4}). The two of you will work as a team to solve problems. At
-any time, one of you will be the @bold{Head} and the other will be the
-@bold{Hands}. The @bold{Head} does the thinking and the @bold{Hands}
-does the typing. @bold{Hands} type only what the @bold{Head} tells
-them to, but you're free to discuss any issues that pop up. We'll have
-you switch off during the lab to make sure each of you get practice
-problem solving, dealing with syntax, and getting finger exercises on
-the keyboard.
+Work in ad-hoc pairs.  The two of you will work as a team to solve
+problems. At any time, one of you will be the @bold{Head} and the
+other will be the @bold{Hands}. The @bold{Head} does the thinking and
+the @bold{Hands} does the typing. @bold{Hands} type only what the
+@bold{Head} tells them to, but you're free to discuss any issues that
+pop up. We'll have you switch off during the lab to make sure each of
+you get practice problem solving, dealing with syntax, and getting
+finger exercises on the keyboard.
 
 @section[#:tag "lab6:init"]{Project Skeleton}
 
