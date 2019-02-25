@@ -2,26 +2,27 @@ package edu.umd.cmsc132A;
 
 import tester.*;
 
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
-
 public class Lab12 {}
 
 // This interface doesn't need to change.
 interface IJson {
-    Boolean equals(Json that);
+    // Is this document structurally the same as given document?
+    Boolean isSame(IJson that);
+
+    // Is this document structurally the same as given JInt?
+    Boolean isSameJInt(JInt that);
 }
 
-// Ex 1:
+// Common code for all IJson classes
 abstract class Json implements IJson {
 
-    public Boolean isEqual(JInt ji) {
+    public Boolean isSameJInt(JInt ji) {
         return false;
     }
 
 }
 
-/* A Json is one of:
+/* A IJson is one of:
  * - new JInt(Integer)
  * - new JStr(String)
  * - Assoc
@@ -35,12 +36,11 @@ class JInt extends Json {
         this.i = i;
     }
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
+    public Boolean isSame(IJson j) {
+        return j.isSame(this);
     }
 
-    // Ex 2:
-    public Boolean isEqual(JInt ji) {
+    public Boolean isSameJInt(JInt ji) {
         return false;
     }
 }
@@ -51,13 +51,8 @@ class JStr extends Json {
         this.s = s;
     }
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
-    }
-
-    // Ex 2:
-    public Boolean isEqual(JStr js) {
-        return false;
+    public Boolean isSame(IJson j) {
+        return j.isSame(this);
     }
 }
 
@@ -69,32 +64,13 @@ class JStr extends Json {
 
 abstract class LoJson extends Json {
     public abstract Integer length();
-    public abstract Boolean forAll(Predicate<Json> p);
-    public abstract Boolean exists(Predicate<Json> p);
 }
 
 class Mt extends LoJson {
     Mt(){}
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
-    }
-
-    // Ex 2:
-    public Boolean isEqual(Mt mt) {
-        return false;
-    }
-
     public Integer length() {
         return 0;
-    }
-
-    public Boolean exists(Predicate<Json> p) {
-        return false;
-    }
-
-    public Boolean forAll(Predicate<Json> p) {
-        return true;
     }
 }
 
@@ -107,25 +83,8 @@ class Cons extends LoJson {
         this.rest = rest;
     }
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
-    }
-
-    // Ex 2:
-    public Boolean isEqual(Cons c) {
-        return false;
-    }
-
     public Integer length() {
         return 1 + this.rest.length();
-    }
-
-    public Boolean exists(Predicate<Json> p) {
-        return p.test(this.first) || this.rest.exists(p);
-    }
-
-    public Boolean forAll(Predicate<Json> p) {
-        return p.test(this.first) && this.rest.forAll(p);
     }
 }
 
@@ -137,34 +96,13 @@ class Cons extends LoJson {
 
 abstract class Assoc extends Json {
     public abstract Integer length();
-
-    public abstract Boolean forAll(BiPredicate<String, Json> p);
-
-    public abstract Boolean exists(BiPredicate<String, Json> p);
 }
 
 class MtAssoc extends Assoc {
     MtAssoc(){}
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
-    }
-
-    // Ex 2:
-    public Boolean isEqual(MtAssoc mta) {
-        return false;
-    }
-
     public Integer length() {
         return 0;
-    }
-
-    public Boolean exists(BiPredicate<String, Json> p) {
-        return false;
-    }
-
-    public Boolean forAll(BiPredicate<String, Json> p) {
-        return true;
     }
 }
 
@@ -179,25 +117,8 @@ class ConsAssoc extends Assoc {
         this.rest = rest;
     }
 
-    public Boolean equals(Json j) {
-        return j.isEqual(this);
-    }
-
-    // Ex 2:
-    public Boolean isEqual(ConsAssoc c) {
-      return false;
-    }
-
     public Integer length() {
         return 1 + this.rest.length();
-    }
-
-    public Boolean exists(BiPredicate<String, Json> p) {
-        return p.test(this.key, this.value) || this.rest.exists(p);
-    }
-
-    public Boolean forAll(BiPredicate<String, Json> p) {
-        return p.test(this.key, this.value) && this.rest.forAll(p);
     }
 }
 
@@ -210,21 +131,21 @@ class Main {
     Json sbar = new JStr("bar");
 
     Boolean testInt(Tester t) {
-        return t.checkExpect(i0.equals(i42), false)
-                && t.checkExpect(i42.equals(sfoo), false)
-                && t.checkExpect(i0.equals(lc2), false)
-                && t.checkExpect(i42.equals(i42), true)
-                && t.checkExpect(i42.equals(new JInt(42)), true)
-                && t.checkExpect(new JInt(42).equals(i42), true);
+        return t.checkExpect(i0.isSame(i42), false)
+                && t.checkExpect(i42.isSame(sfoo), false)
+                && t.checkExpect(i0.isSame(lc2), false)
+                && t.checkExpect(i42.isSame(i42), true)
+                && t.checkExpect(i42.isSame(new JInt(42)), true)
+                && t.checkExpect(new JInt(42).isSame(i42), true);
     }
 
     Boolean testStr(Tester t) {
-        return t.checkExpect(sfoo.equals(sbar), false)
-                && t.checkExpect(sbar.equals(sfoo), false)
-                && t.checkExpect(sbar.equals(lc2), false)
-                && t.checkExpect(sfoo.equals(sfoo), true)
-                && t.checkExpect(sfoo.equals(new JStr("foo")), true)
-                && t.checkExpect(new JStr("foo").equals(sfoo), true);
+        return t.checkExpect(sfoo.isSame(sbar), false)
+                && t.checkExpect(sbar.isSame(sfoo), false)
+                && t.checkExpect(sbar.isSame(lc2), false)
+                && t.checkExpect(sfoo.isSame(sfoo), true)
+                && t.checkExpect(sfoo.isSame(new JStr("foo")), true)
+                && t.checkExpect(new JStr("foo").isSame(sfoo), true);
     }
 
     LoJson mt = new Mt();
@@ -234,18 +155,18 @@ class Main {
     LoJson cl2 = new Cons(sfoo, cl1);
 
     Boolean testList(Tester t) {
-        return t.checkExpect(mt.equals(sfoo), false)
-                && t.checkExpect(lc1.equals(i0), false)
-                && t.checkExpect(cl2.equals(ac2), false)
-                && t.checkExpect(mt.equals(mt), true)
-                && t.checkExpect(mt.equals(new Mt()), true)
-                && t.checkExpect(new Mt().equals(mt), true)
-                && t.checkExpect(lc2.equals(lc2), true)
-                && t.checkExpect(lc2.equals(new Cons(i0, new Cons(sfoo, mt))),
+        return t.checkExpect(mt.isSame(sfoo), false)
+                && t.checkExpect(lc1.isSame(i0), false)
+                && t.checkExpect(cl2.isSame(ac2), false)
+                && t.checkExpect(mt.isSame(mt), true)
+                && t.checkExpect(mt.isSame(new Mt()), true)
+                && t.checkExpect(new Mt().isSame(mt), true)
+                && t.checkExpect(lc2.isSame(lc2), true)
+                && t.checkExpect(lc2.isSame(new Cons(i0, new Cons(sfoo, mt))),
                 true)
-                && t.checkExpect(new Cons(i0, new Cons(sfoo, mt)).equals(lc2),
+                && t.checkExpect(new Cons(i0, new Cons(sfoo, mt)).isSame(lc2),
                 true)
-                && t.checkExpect(lc1.equals(new Cons(sfoo, new Cons(sfoo, mt))),
+                && t.checkExpect(lc1.isSame(new Cons(sfoo, new Cons(sfoo, mt))),
                 false);
     }
 
@@ -258,20 +179,20 @@ class Main {
     Assoc ac2 = new ConsAssoc(k0, i0, ac1);
 
     Boolean testAssoc(Tester t) {
-        return t.checkExpect(mta.equals(sfoo), false)
-                && t.checkExpect(ac1.equals(i0), false)
-                && t.checkExpect(ca2.equals(lc2), false)
-                && t.checkExpect(mta.equals(mta), true)
-                && t.checkExpect(mta.equals(new MtAssoc()), true)
-                && t.checkExpect(new MtAssoc().equals(mta), true)
-                && t.checkExpect(ca2.equals(ca2), true)
-                && t.checkExpect(ca2.equals(new ConsAssoc(k1, sbar,
+        return t.checkExpect(mta.isSame(sfoo), false)
+                && t.checkExpect(ac1.isSame(i0), false)
+                && t.checkExpect(ca2.isSame(lc2), false)
+                && t.checkExpect(mta.isSame(mta), true)
+                && t.checkExpect(mta.isSame(new MtAssoc()), true)
+                && t.checkExpect(new MtAssoc().isSame(mta), true)
+                && t.checkExpect(ca2.isSame(ca2), true)
+                && t.checkExpect(ca2.isSame(new ConsAssoc(k1, sbar,
                         new ConsAssoc(k0, i0, mta))),
                 true)
                 && t.checkExpect(new ConsAssoc(k1, sbar,
-                        new ConsAssoc(k0, i0, mta)).equals(ca2),
+                        new ConsAssoc(k0, i0, mta)).isSame(ca2),
                 true)
-                && t.checkExpect(ca1.equals(new ConsAssoc(k0, i0,
+                && t.checkExpect(ca1.isSame(new ConsAssoc(k0, i0,
                         new ConsAssoc(k0, i0, mta))),
                 false);
     }
