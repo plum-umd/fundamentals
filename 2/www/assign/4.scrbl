@@ -7,13 +7,10 @@
 
 @assn-title[4]{A Game in Java}
 
-This is assignment is to be completed and submitted with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=27"]{partner}.  You
-may not work with anyone other than your assigned partner.
+This is assignment is to be completed and submitted individually. You
+may not work with anyone else.
 
-@bold{Due}: Tuesday, March 13, 11:59:59 PM EST.
-
-@(define @Piazza @link["http://piazza.com/umd/spring2018/cmsc132a"]{Piazza})
+@bold{Due}: Tuesday, March 5, 11:59:59 PM EST.
 
 @section[#:style 'unnumbered #:tag "assign4:download"]{Download the assignment project}
 
