@@ -26,7 +26,7 @@ directory and select it.
 This should open up the project and place you inside the
 @tt{Assign4.java} file.  The first thing you should do is edit the
 authors line (which should be selected when you open the project) to
-be your and your partner's directory ID.
+be your directory ID.
 
 The project has a "Test" configuration in the top right corner.  Press
 the "Run" (green triangle) button to run the test suite.  You should
