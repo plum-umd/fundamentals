@@ -1,5 +1,3 @@
-open module Lab9 {
+open module Assign1 {
     requires tester;
-    requires javalib;
-    requires java.desktop;
 }

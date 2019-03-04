@@ -1,302 +1,452 @@
-// Authors: partner1, partner2
-// Lab 9
-
 package edu.umd.cmsc132A;
 
 import tester.Tester;
-import javalib.worldimages.*;
-import javalib.funworld.*;
-import java.awt.Color;
-import java.util.function.*;
-import java.util.Random;
-import java.util.function.IntUnaryOperator;
 
-public class Lab9 { /* Intentionally blank; leave blank */ }
-
-// An interface for simple Balls
-interface IBall {
-  WorldImage draw();  // draw an image of the ball
-  Posn location();    // create a posn of the ball's location
-  IBall tick();       // create the ball from the next tick of the clock
-  IBall jump();     // create the ball after bouncing it up a bit
-  Boolean isOutside();  // is this ball past the left or right edge of the scene?
-  Boolean isCrashed();  // is this ball colliding with the bottom of the scene?
-  Boolean isBounced();  // is this ball bouncing off the ceiling
-  Boolean collide(IBall other);  // is this ball colliding with the given ball?
+public class Lab9 {
+    // Intentionally blank; leave blank
 }
 
-// Ball class
-class Ball implements IBall {
-  static Integer RADIUS = 20;  // the radius of all balls
-  static Integer JUMP = 10;  // the amount of velocity added by a jump
-  Integer x;   // the X pixel location of this ball
-  Integer y;   // the Y pixel location of this ball
-  Integer vx;  // the velocity of the ball on the X axis
-  Integer vy;  // the velocity of the ball on the Y axis
-  Color color;
+class Pair<X,Y> {
+    X left;
+    Y right;
 
-  // Default color (red) constructor
-  Ball(Integer x, Integer y, Integer vx, Integer vy) {
-    this(x, y, vx, vy, Color.RED);
-  }
-
-  // Arbitrary color constructor
-  Ball(Integer x, Integer y, Integer vx, Integer vy, Color color) {
-    this.x = x;
-    this.y = y;
-    this.vx = vx;
-    this.vy = vy;
-    this.color = color;
-  }
-
-  // Draw this ball as a solid, CircleImage
-  public WorldImage draw() {
-    return new CircleImage(RADIUS, OutlineMode.SOLID, color);
-  }
-
-  // Return a posn location of this ball
-  public Posn location() {
-    return new Posn(this.x, this.y);
-  }
-
-  // Has this ball crashed into the bottom of the scene?
-  public Boolean isCrashed() {
-    return this.y + RADIUS > BallWorld.HEIGHT;
-  }
-
-  // Has this ball crashed into the top of the scene?
-  public Boolean isBounced() {
-    return this.y - RADIUS < 0;
-  }
-
-  // Is this ball to the left or right of the scene?
-  public Boolean isOutside() {
-    return this.x - RADIUS > BallWorld.WIDTH ||
-            this.x + RADIUS < 0;
-  }
-
-  // Is this ball colliding with the given ball?
-  public Boolean collide(IBall other) {
-    Posn that = other.location();
-    return Math.hypot(this.x - that.x, this.y - that.y) <= 2*RADIUS;
-  }
-
-  // Exercise 3:
-  private Ball modifyVY(Function<Integer, Integer> f) {
-    return this;
-  }
-
-  // Return a new ball with its vertical velocity negated
-  private Ball bounce() {
-    /* Exercise 4: */
-    Integer vyBounce = -this.vy;
-    return new Ball(this.x + this.vx,
-                    this.y + vyBounce,
-                    this.vx,
-                    vyBounce,
-                    this.color);
-  }
-
-  // Return a new ball accelerated upward by JUMP px/tick
-  public Ball jump() {
-    /* Exercise 4: */
-    Integer vyJump = this.vy - JUMP;
-    return new Ball(this.x + this.vx,
-                    this.y + vyJump,
-                    this.vx,
-                    vyJump,
-                    this.color);
-  }
-
-  // Return the next ball
-  public Ball tick() {
-    if (isBounced() || isCrashed()) {
-      return this.bounce();
-    } else {
-      /* Exercise 4: */
-      Integer vyGrav = Math.round(9.8f * BallWorld.TICKRATE + vy);
-      return new Ball(this.x + this.vx,
-              this.y + vyGrav,
-              this.vx,
-              vyGrav,
-              this.color);
+    Pair(X left, Y right) {
+        this.left = left;
+        this.right = right;
     }
-  }
-}
 
-// An interface for lists of balls
-interface ListOfBall {
-  ListOfBall tick();                   // tick all the balls in the list
-  ListOfBall append(ListOfBall that);  // append that list to the end of this list
-  Boolean isEmpty();                   // true only if this list is empty
-  Boolean exists(Predicate<IBall> p);  // true if any element of the list satisfies p
-  WorldScene draw(WorldScene scene);   // draw all the balls on the given scene
-}
-
-class EmptyLoB implements ListOfBall {
-  EmptyLoB(){}
-
-  public ListOfBall tick() {
-    return new EmptyLoB();
-  }
-
-  // Exercise 1:
-  // Append that list of balls to the end of this list of balls
-  public ListOfBall append(ListOfBall that) {
-    return this;
-  }
-
-  // Returns true only if this list is empty
-  public Boolean isEmpty() { return true; }
-
-  // Exercise 2:
-  // Returns true only if some element of this list satisfies p.
-  public Boolean exists(Predicate<IBall> p) {
-    return false;
-  }
-
-  // Draw this list of balls on the given scene
-  public WorldScene draw(WorldScene scene) {
-    return scene;
-  }
-}
-
-class ConsLoB implements ListOfBall {
-  IBall first;
-  ListOfBall rest;
-
-  ConsLoB(IBall first, ListOfBall rest) {
-    this.first = first;
-    this.rest = rest;
-  }
-
-  // Tick all the balls in the given list
-  public ListOfBall tick() {
-    if (this.first.isOutside()) {
-      return this.rest.tick();
-    } else {
-      return new ConsLoB(this.first.tick(), this.rest.tick());
+    // Swap the elements in this pair
+    Pair<Y,X> swap() {
+        return new Pair<>(this.right, this.left);
     }
-  }
+}
 
-  // Exercise 1:
-  // Append that list of balls to the end of this list of balls
-  public ListOfBall append(ListOfBall that) {
-    return this;
-  }
+interface LoInteger {
+    // Sum this list of integers
+    Integer sum();
 
-  // Returns true only if this list of balls is empty
-  public Boolean isEmpty() {
-    return false;
-  }
+    // Add 1 to each element of this list
+    LoInteger addOne();
 
-  // Exercise 2:
-  // Returns true only if some element of this list satisfies p.
-  public Boolean exists(Predicate<IBall> p) {
-    return false;
-  }
+    // Add 5 to each element of this list
+    LoInteger addFive();
 
-  // Draw this list of balls on the given scene
-  public WorldScene draw(WorldScene scene) {
-    Posn p = first.location();
-    return rest.draw(scene).placeImageXY(first.draw(), p.x, p.y);
-  }
+    // Add n to each element of this list
+    LoInteger addN(Integer n);
+
+    // Keep even elements of this list
+    LoInteger keepEven();
+
+    // Does this list contain 5?
+    Boolean containsFive();
+
+    // Does this list contain something larger than 8?
+    Boolean containsBiggerThanEight();
+
+    // Does this list contain an element for which w.test(x) produces true?
+    Boolean contains(Predicate<Integer> w);
 }
 
 
-// The Bouncy Ball world.
-// There is no need to change this class definition to complete the lab.
-class BallWorld extends World {
-  static Random r = new Random();  // the random number generator
-  static Integer WIDTH = 640;      // the width of the scene
-  static Integer HEIGHT = 480;     // the height of the scene
-  static Integer FONTSIZE = 48;    // the font size of the score
-  static Float TICKRATE = 0.1f;    // the tick rate (seconds per tick)
-
-  Integer score;         // the number of obstacles that have been generated
-  IBall bouncy;          // the bouncy ball
-  ListOfBall obstacles;  // the obstacle balls
-
-  BallWorld() {
-    this(0,
-            new Ball(WIDTH / 3, HEIGHT / 2, 0, 0, Color.GREEN),
-            new EmptyLoB());
-  }
-
-  BallWorld(Integer score, IBall bouncy, ListOfBall obstacles) {
-    this.score = score;
-    this.bouncy = bouncy;
-    this.obstacles = obstacles;
-  }
-
-  // Bounce the bouncy ball if the user hits the spacebar
-  public World onKeyEvent(String key) {
-    if (" ".equals(key)) {
-      return new BallWorld(score, bouncy.jump(), obstacles);
-    } else {
-      return this;
+abstract class ALoInteger implements LoInteger {
+    public LoInteger addOne() {
+        return this.addN(1);
     }
-  }
 
-  // Generate one or zero random obstacle balls
-  private ListOfBall randomObstacle() {
-    if (r.nextInt((int) Math.round(TICKRATE * 100)) == 0) {
-      Integer x = WIDTH - Ball.RADIUS;
-      Integer y = r.nextInt(HEIGHT - 2*Ball.RADIUS) + Ball.RADIUS;
-      Integer vx = r.nextInt(Ball.JUMP) + Ball.JUMP;
-      Integer vy = r.nextInt(Ball.JUMP);
-      Ball obst = new Ball(x, y, -vx, vy);
-      return new ConsLoB(obst, new EmptyLoB());
-    } else {
-      return new EmptyLoB();
+    public LoInteger addFive() {
+        return this.addN(5);
     }
-  }
 
-  // Tick this world's balls,
-  // ending the game if bouncy hits the floor or an obstacle
-  public World onTick() {
-    if (bouncy.isCrashed()) {
-      return this.endOfWorld("Crashed! Game Over!");
-    } else if (obstacles.exists((b) -> bouncy.collide(b))) {
-      return this.endOfWorld("Hit! Game Over!");
-    } else {
-      ListOfBall maybe = randomObstacle();
-      Integer newScore = maybe.isEmpty() ? score : score+1;
-      return new BallWorld(newScore, bouncy.tick(), maybe.append(obstacles).tick());
+    public Boolean containsFive() {
+        return this.contains(new EqualsFive());
     }
-  }
 
-  // Make an empty scene with the score in the middle
-  private WorldScene makeScore() {
-     WorldImage score =
-             new TextImage(Integer.toString(this.score),
-                     FONTSIZE,
-                     Color.BLUE);
-     WorldScene scene = new WorldScene(WIDTH, HEIGHT);
-     return scene.placeImageXY(score, WIDTH / 2, HEIGHT / 2);
-  }
+    public Boolean containsBiggerThanEight() {
+        return this.contains(new BiggerThanEight());
+    }
 
-  // Place bouncy and the obstacle balls on the scene
-  public WorldScene makeScene() {
-    ListOfBall allBalls = new ConsLoB(bouncy, obstacles);
-    return allBalls.draw(makeScore());
-  }
+}
 
-  // Render the final scene
-  public WorldScene lastScene(String msg) {
-    WorldScene scene = makeScene();
-    WorldImage gameOver = new TextImage(msg, FONTSIZE, Color.RED);
-    return scene.placeImageXY(gameOver, WIDTH / 2, HEIGHT / 3);
-  }
+class EmptyLoInteger extends ALoInteger {
+    public Integer sum() { return 0; }
+    public LoInteger addN(Integer n) { return this; }
+    public LoInteger keepEven() { return this; }
+    public Boolean contains(Predicate<Integer> w) { return false; }
+}
+
+class ConsLoInteger extends ALoInteger {
+    Integer first;
+    LoInteger rest;
+    ConsLoInteger(Integer first, LoInteger rest) {
+        this.first = first;
+        this.rest = rest;
+    }
+
+    public Integer sum() {
+        return this.first + this.rest.sum();
+    }
+
+    public LoInteger addN(Integer n) {
+        return new ConsLoInteger(n + this.first, this.rest.addN(n));
+    }
+
+    public LoInteger keepEven() {
+        /*
+        if ((this.first % 2) == 0) {
+            return new ConsLoInteger(this.first, this.rest.keepEven());
+        } else {
+            return this.rest.keepEven();
+        }
+        */
+
+        return ((this.first % 2) == 0) ?
+            new ConsLoInteger(this.first, this.rest.keepEven()) :
+            this.rest.keepEven();
+    }
+
+    public Boolean contains(Predicate<Integer> w) {
+        return (w.test(this.first)) || this.rest.contains(w);
+    }
+}
+
+// Interp: a predicate on values of type T
+interface Predicate<T> {
+    Boolean test(T t);
+}
+
+// Interp: a function from Xs to Ys
+interface Function<Fred,Wilma> {
+    Wilma apply(Fred x);
+}
+
+class AddOne implements Function<Integer,Integer> {
+    public Integer apply(Integer i) {
+        return i+1;
+    }
+}
+
+
+class StringLength implements Function<String,Integer> {
+    public Integer apply(String s) {
+        return s.length();
+    }
+}
+
+class MoveDiagonal implements Function<Pair<Integer,Integer>, Pair<Integer,Integer>> {
+    public Pair<Integer,Integer> apply(Pair<Integer,Integer> p) {
+        return new Pair<>(p.left + 1, p.right + 1);
+    }
+}
+
+class Swap<X,Y> implements Function<Pair<X,Y>, Pair<Y,X>> {
+    public Pair<Y,X> apply(Pair<X,Y> p) {
+        return new Pair<>(p.right, p.left);
+    }
+}
+
+
+
+// Interp: a predicate recognizing strings less than 100 characters
+class ShortString implements Predicate<String> {
+    public Boolean test(String s) {
+        return s.length() < 100;
+    }
+}
+
+// Interp: a predicate recognizing the integer 5
+class EqualsFive implements Predicate<Integer> {
+    public Boolean test(Integer i) {
+        return i == 5;
+    }
+}
+
+// Interp: a predicate recognizing integers greater than 8
+class BiggerThanEight implements Predicate<Integer> {
+    public Boolean test(Integer i) {
+        return i > 8;
+    }
+}
+
+interface Lo<X> {
+
+    // Lo<Integer> specific methods:
+
+    // Sum this list of integers
+    // Integer sum();
+
+    // Add 1 to each element of this list
+    // Lo<Integer> addOne();
+
+    // Keep even elements of this list
+    // Lo<Integer> keepEven();
+
+    // Does this list contain 5?
+    // Boolean containsFive();
+
+    Boolean ormap(Predicate<X> p);
+
+    Boolean andmap(Predicate<X> p);
+
+    // map : [Listof X] [X -> Y] -> [Listof Y]
+    <Y> Lo<Y> map(Function<X,Y> f);
+
+    // Add given element to the front of this list
+    Lo<X> cons(X x);
+
+    // Count the number of elements in this list
+    Integer length();
+
+    // Reverse the elements of this list
+    Lo<X> rev();
+
+    // Reverse the elements of this list and append with a.
+    // INVARIANT: this.revAcc(a) == this.rev().app(a)
+    Lo<X> revAcc(Lo<X> a);
+
+    // Append this list and the given list
+    Lo<X> app(Lo<X> that);
+
+    // Zip together this list and given list into a list of pairs
+    // Ending with whichever list is short
+    <Y> Lo<Pair<X,Y>> zip(Lo<Y> ys);
+
+    // Zip together this list and given cons into a list of pairs
+    <Y> Lo<Pair<Y,X>> zipCons(Cons<Y> c);
+
+}
+
+abstract class ALo<X> implements Lo<X> {
+    public Lo<X> cons(X x) { return new Cons<X>(x, this); }
+}
+
+class Empty<X> extends ALo<X> {
+
+    public <Y> Lo<Y> map(Function<X,Y> f) {
+        return new Empty<>();
+    }
+
+    public Boolean ormap(Predicate<X> p) {
+        return false;
+    }
+
+    public Boolean andmap(Predicate<X> p) {
+        return true;
+    }
+
+    public Integer length() {
+        return 0;
+    }
+
+    public Lo<X> rev() {
+        return this;
+    }
+
+    // Reverse the elements of this empty list and append with a.
+    // INVARIANT: this.revAcc(a) == this.rev().app(a)
+    public Lo<X> revAcc(Lo<X> a) {
+        return a;
+    }
+
+    // Append this empty list and the given list
+    public Lo<X> app(Lo<X> that) {
+        return that;
+    }
+
+    public <Y> Lo<Pair<X,Y>> zip(Lo<Y> ys) {
+        return new Empty<>();
+    }
+
+    public <Y> Lo<Pair<Y,X>> zipCons(Cons<Y> c) {
+        return new Empty<>();
+    }
+}
+
+class Cons<X> extends ALo<X> {
+    X first;
+    Lo<X> rest;
+
+    Cons(X first, Lo<X> rest) {
+        this.first = first;
+        this.rest = rest;
+    }
+
+    public <Y> Lo<Y> map(Function<X,Y> f) {
+        return new Cons<>(f.apply(this.first),
+                this.rest.map(f));
+    }
+
+    public Boolean ormap(Predicate<X> p) {
+        return p.test(this.first) || this.rest.ormap(p);
+    }
+
+    public Boolean andmap(Predicate<X> p) {
+        return p.test(this.first) && this.rest.ormap(p);
+    }
+
+    /*
+    public Integer sum() {
+        return this.first + this.rest.sum();
+    }
+    */
+
+    // Compute the length of this non-empty list.
+    public Integer length() {
+        return 1 + this.rest.length();
+    }
+
+    // Reverse the elements of this non-empty list.
+    public Lo<X> rev() {
+        return this.revAcc(new Empty<X>());
+    }
+
+    // Reverse the elements of this non-empty list and append with a.
+    // INVARIANT: this.revAcc(a) == this.rev().app(a)
+    public Lo<X> revAcc(Lo<X> a) {
+        return this.rest.revAcc(new Cons<>(this.first, a));
+    }
+
+    // Append this empty list and the given list
+    public Lo<X> app(Lo<X> that) {
+        return new Cons<>(this.first, this.rest.app(that));
+    }
+
+
+    public <Y> Lo<Pair<Y,X>> zipCons(Cons<Y> ys) {
+        return new Cons<Pair<Y,X>>(new Pair<>(ys.first, this.first),
+                ys.rest.zip(this.rest));
+    }
+
+    public <Y> Lo<Pair<X,Y>> zip(Lo<Y> ys) {
+        return ys.zipCons(this);
+    }
 }
 
 //-----------------------------------------------------------------------------
-// Main
+// Tests
 
-// You can ignore this, it just gets bigBang up and running
-class Main {
-  Boolean testBallWorld(Tester t) {
-    BallWorld w = new BallWorld();
-    return w.bigBang(BallWorld.WIDTH, BallWorld.HEIGHT, BallWorld.TICKRATE);
-  }
+class Tests {
+
+    Lo<Integer> l1 = new Cons<>(1, new Cons<>(2, new Cons<>(3, new Empty<>())));
+    Lo<String> l2 = new Cons<>("1", new Cons<>("2", new Cons<>("3", new Empty<>())));
+
+
+    Boolean testLo(Tester t) {
+
+        Lo<Integer> l0 = new Empty<>();
+        Lo<Integer> l1 = l0.cons(3).cons(2).cons(1);
+        Lo<Integer> l2 = l0.cons(3).cons(5).cons(1);
+
+        /*
+        class Sq implements Function<Integer,Integer> {
+            public Integer apply(Integer i) {
+                return i*i;
+            }
+        }
+        */
+
+        /*
+        Function<Integer,Integer> sq =
+                new Function<Integer, Integer>() {
+                    public Integer apply(Integer i) {
+                        return i*i;
+                    }
+                };
+                */
+
+        Function<Integer,Integer> sq = (i -> i*i); // (define sq (lambda (i) (* i i))
+
+        t.checkExpect(l0.map(i -> i+1), l0);
+        t.checkExpect(l1.map(i -> i+1), l0.cons(4).cons(3).cons(2));
+
+        t.checkExpect(l0.map(i -> i*i), l0);
+        t.checkExpect(l1.map(i -> i*i), l0.cons(9).cons(4).cons(1));
+
+
+
+
+
+        /*
+        t.checkExpect(l0.filter(new EqualsFive()), l0);
+        t.checkExpect(l2.filter(new EqualsFive()), mt.cons(5));
+         */
+
+        return true;
+    }
+
+
+    Boolean testLoInteger(Tester t) {
+
+        LoInteger mt = new EmptyLoInteger();
+        LoInteger l1 = new ConsLoInteger(1, new ConsLoInteger(2, new ConsLoInteger(3, mt)));
+        LoInteger l2 = new ConsLoInteger(1, new ConsLoInteger(5, new ConsLoInteger(3, mt)));
+        LoInteger l3 = new ConsLoInteger(1, new ConsLoInteger(15, new ConsLoInteger(3, mt)));
+
+        t.checkExpect(mt.sum(), 0);
+        t.checkExpect(mt.addOne(), mt);
+        t.checkExpect(mt.keepEven(), mt);
+        t.checkExpect(mt.containsFive(), false);
+
+        t.checkExpect(l1.sum(), 6);
+        t.checkExpect(l1.addOne(),
+                new ConsLoInteger(2, new ConsLoInteger(3, new ConsLoInteger(4, mt))));
+        t.checkExpect(l1.addFive(),
+                new ConsLoInteger(6, new ConsLoInteger(7, new ConsLoInteger(8, mt))));
+        t.checkExpect(l1.keepEven(), new ConsLoInteger(2, mt));
+        t.checkExpect(l1.containsFive(), false);
+
+        t.checkExpect(l2.sum(), 9);
+        t.checkExpect(l2.addOne(),
+                new ConsLoInteger(2, new ConsLoInteger(6, new ConsLoInteger(4, mt))));
+        t.checkExpect(l2.keepEven(), mt);
+        t.checkExpect(l2.containsFive(), true);
+
+
+        t.checkExpect(l2.contains(i -> i == 5), true);
+        t.checkExpect(l1.contains(i -> i == 5), false);
+
+        t.checkExpect(l2.contains(new BiggerThanEight()), false);
+        t.checkExpect(l1.contains(new BiggerThanEight()), false);
+        t.checkExpect(l3.contains(new BiggerThanEight()), true);
+
+
+        return true;
+    }
+
+    Boolean testZip(Tester t) {
+        return t.checkExpect(l1.zip(l1),
+                new Cons<>(new Pair<>(1,1),
+                        new Cons<>(new Pair<>(2,2),
+                            new Cons<>(new Pair<>(3, 3),
+                                    new Empty<>())))) &&
+                t.checkExpect(l1.zip(l2),
+                        new Cons<>(new Pair<>(1,"1"),
+                                new Cons<>(new Pair<>(2,"2"),
+                                        new Cons<>(new Pair<>(3, "3"),
+                                                new Empty<>()))));
+    }
+
+
+    Boolean testApp(Tester t) {
+        return t.checkExpect(l1.app(l1),
+                new Cons<>(1, new Cons<>(2, new Cons<>(3, l1))));
+    }
+
+    Boolean testRev(Tester t) {
+        return t.checkExpect(l1.rev(), new Cons<>(3, new Cons<>(2, new Cons<>(1, new Empty<>()))));
+    }
+
+    Boolean testLength(Tester t) {
+
+        Lo<Integer> myloi = new Cons<>(5, new Cons<>(4, new Cons<>(2, new Empty<>())));
+
+        return t.checkExpect(myloi.length(), 3);
+
+    }
+
+    Boolean testSwap(Tester t) {
+        return t.checkExpect(new Pair<Integer,String>(3, "wilma").swap(),
+                new Pair<String,Integer>("wilma", 3))
+                && t.checkExpect(new Pair<String,String>("fred", "wilma").swap(),
+                    new Pair<String,String>("wilma", "fred"));
+    }
 }
