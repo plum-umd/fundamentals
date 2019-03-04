@@ -87,7 +87,7 @@ subject to change until the start of the semester.
 	       (list @bold{Thursday} 'cont 'cont)
 	       (list "4-5pm" "1112 AVW" "William")
 	       (list @bold{Friday} 'cont 'cont)
-	       (list "3439 AVW" "1-2pm" "David"))]
+	       (list "3439 AVW" "3-4pm" "David"))]
 
 @include-section{syllabus.scrbl}
 @include-section{texts.scrbl}
