@@ -32,6 +32,8 @@ You've now seen how to implement @tt{map}.  Go for the gold and add
 You will need to define a new interface for representing binary
 functions, i.e. functions that consume two inputs.
 
+If you need a reminder on what @tt{foldr} does, see the @link["https://docs.racket-lang.org/htdp-langs/intermediate.html#%28def._htdp-intermediate._%28%28lib._lang%2Fhtdp-intermediate..rkt%29._foldr%29%29"]{ISL docs}.
+
 @section[#:tag "lab9:usefold"]{Use foldr for everything}
 
 Once you have @tt{foldr} defined and it is working, define an abstract
