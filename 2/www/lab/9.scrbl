@@ -34,6 +34,23 @@ functions, i.e. functions that consume two inputs.
 
 @section[#:tag "lab9:usefold"]{Use foldr for everything}
 
-TBD.
+Once you have @tt{foldr} defined and it is working, define an abstract
+class for @tt{Lo<X>}.  For any exisiting method that can be defined in
+terms of @tt{foldr}, such as @tt{map}, come up with a definition of
+the method that uses @tt{foldr} and place it in the abstract class.
+Be sure to test everything to make sure you haven't introduced any bugs.
+
+@section[#:tag "lab9:filter"]{Add filter}
+
+Add a @tt{filter} method that takes a predicate and produces a list of
+elements that satisfies the predicate.  You can start by defining
+@tt{filter} in the @tt{Empty} and @tt{Cons} class, but after you have
+a working, tested solution, try implementing @tt{filter} in terms of
+@tt{foldr} and putting it in the abstract class.
+
+@section[#:style 'unnumbered #:tag "lab9:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
+
 
 
