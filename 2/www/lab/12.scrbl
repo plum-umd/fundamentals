@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[13]{Dispatching Visitors}
+@lab-title[12]{Dispatching Visitors}
 
-@section[#:style 'unnumbered #:tag "lab13:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab12:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with ad-hoc partners.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -22,7 +21,7 @@ You should start this lab with @link["Lab13.zip"]{this project
 skeleton}. Unzip the file into your IdeaProjects directory and open it
 with IntelliJ to get started.
 
-@section[#:style 'unnumbered #:tag "lab13:case"]{Recall}
+@section[#:style 'unnumbered #:tag "lab12:case"]{Recall}
 
 Operations on union data definitions often require case analysis. Last
 semester, we handled all cases in one place. For example:
@@ -57,7 +56,7 @@ interface IList {
   Integer sum();
 }
 
-class IntMt implements IList {
+class IntEmpty implements IList {
   public Integer sum() { return 0; }
 }
 
@@ -75,7 +74,7 @@ class IntCons implements IList {
   }
 }
 ...
-IList il0 = new IntMt();
+IList il0 = new IntEmpty();
 IList il1 = new IntCons(1, il0);
 IList il2 = new IntCons(2, il1);
 IList il3 = new IntCons(3, il2);
@@ -89,28 +88,28 @@ boolean testIListSum(Tester t) {
 
 If we want to implement new operations on @tt{IList}s, we would add a
 method signature to the interface and implement that method in both
-the @tt{IntMt} and @tt{IntCons} classes. Easy.
+the @tt{IntEmpty} and @tt{IntCons} classes. Easy.
 
 
-@section[#:style 'unnumbered #:tag "lab13:problem"]{The Problem}
+@section[#:style 'unnumbered #:tag "lab12:problem"]{The Problem}
 
 How do we add operations to a library that we can't modify?
 
 We're all tired of writing the same old @tt{List} interface and
-@tt{Cons}, @tt{Mt} classes. We should just write one and make it
+@tt{Cons}, @tt{Empty} classes. We should just write one and make it
 into a library that we can use forever and never touch again.
 
 We can't always predict which operations we'll need on @tt{List}s. In
 this lab you'll learn the @emph{visitor pattern}: a general
 way to add arbitrary operations to a fixed set of related classes
-(e.g. @tt{Mt} and @tt{Cons}).
+(e.g. @tt{Empty} and @tt{Cons}).
 
 
-@section[#:style 'unnumbered #:tag "lab13:solution"]{The Solution}
+@section[#:style 'unnumbered #:tag "lab12:solution"]{The Solution}
 
-In @labref{11}, we learned how to implement case analysis for
-classes using @emph{double-dispatch}. To solve our operation extension
-woes, we'll use the same trick in a more general form.
+We have learned how to implement case analysis for classes using
+@emph{double-dispatch}. To solve our operation extension woes, we'll
+use the same trick in a more general form.
 
 Any operation on lists must handle empty and non-empty lists. The
 @tt{ListVisitor} interface has a @tt{visit} method for each branch of
@@ -118,8 +117,8 @@ the union on which we're operating.
 
 @verbatim|{
 interface ListVisitor<T, U> {
-  U visitMt(Mt<T> empty);     // Handle empty lists
-  U visitCons(Cons<T> cons);  // Handle non-empty lists
+  U visitEmpty();                      // Handle empty lists
+  U visitCons(T first, List<T> rest);  // Handle non-empty lists
 }
 }|
 
@@ -135,9 +134,9 @@ interface List<T> {
   <U> U accept(ListVisitor<T, U> visitor);
 }
 
-class Mt<T> implements List<T> {
+class Empty<T> implements List<T> {
   public <U> U accept(ListVisitor<T, U> visitor) {
-    return visitor.visitMt(this);
+    return visitor.visitEmpty();
   }
 }
 
@@ -151,7 +150,7 @@ class Cons<T> implements List<T> {
   }
 
   public <U> U accept(ListVisitor<T, U> visitor) {
-    return visitor.visitCons(this);
+    return visitor.visitCons(this.first, this.rest);
   }
 }
 }|
@@ -161,23 +160,23 @@ We can easily implement list-sum as a @tt{ListVisitor}.
 @verbatim|{
 class ListSum implements ListVisitor<Integer, Integer> {
 
-  public Integer visitMt(Mt<Integer> empty) {
+  public Integer visitEmpty() {
     return 0;
   }
 
-  public Integer visitCons(Cons<Integer> cons) {
-    return cons.first + cons.rest.accept(this);
+  public Integer visitCons(Integer first, List<Integer> rest) {
+    return first + rest.accept(this);
   }
 
 }
 }|
 
-When @tt{ListSum} visits an @tt{Mt} list it returns 0; when it visits
+When @tt{ListSum} visits an @tt{Empty} list it returns 0; when it visits
 a @tt{Cons} list it returns the sum of the first recursive result of
 the rest accepting the @tt{ListSum} visitor.
 
 
-@section[#:style 'unnumbered #:tag "lab13:listops"]{List operations}
+@section[#:style 'unnumbered #:tag "lab12:listops"]{List operations}
 
 You're going to design a number of simple list operations as
 @tt{ListVisitor}s.
@@ -194,7 +193,7 @@ work on lists with elements of any type @tt{T} and return the new
 added to the end of the list, but we can't modify the visiting
 methods' signatures. Try making a @tt{ListAppend} constructor that
 accepts the suffix and holds on to it in a field until it gets used in
-@tt{visitMt}.
+@tt{visitEmpty}.
 
 @bold{Ex 3}: Design @tt{ListNth} as a @tt{ListVisitor}. It should work
 on lists with elements of any type @tt{T} and return the @tt{n}th
@@ -212,7 +211,7 @@ implementation or give @tt{ListReverse} a constructor with an
 accumulating argument.
 
 
-@section[#:style 'unnumbered #:tag "lab13:btvisitor"]{Visiting binary trees}
+@section[#:style 'unnumbered #:tag "lab12:btvisitor"]{Visiting binary trees}
 
 Now that we've had some practice writing visiting operations on
 @tt{List}s, you're ready to implement your own visitor pattern for
@@ -250,7 +249,7 @@ arbitrary return types.
 and methods if you run into issues.
 
 
-@section[#:style 'unnumbered #:tag "lab13:btops"]{Binary tree operations}
+@section[#:style 'unnumbered #:tag "lab12:btops"]{Binary tree operations}
 
 @bold{Ex 7}: Design @tt{BTSum} as a @tt{BTVisitor}. It should work on
 binary trees of @tt{Integer}s and return the @tt{Integer} sum of all
@@ -280,3 +279,7 @@ For example:
 //     1   3
 //    / \ / \
 }|
+
+@section[#:style 'unnumbered #:tag "lab12:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
