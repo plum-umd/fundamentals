@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[14]{Counting on State}
+@lab-title[13]{Counting on State}
 
-@section[#:style 'unnumbered #:tag "lab14:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab13:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with ad-hoc partners.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -18,15 +17,16 @@ switch off during the lab to make sure each of you get practice
 problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
-You should start this lab with @link["Lab14.zip"]{this project
+You should start this lab with @link["Lab13.zip"]{this project
 skeleton}. Unzip the file into your IdeaProjects directory and open it
 with IntelliJ to get started.
 
-@section[#:style 'unnumbered #:tag "lab14:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab13:recall"]{Recall}
 
-We created a data definition for a stateful counter in the
-@link["https://www.cs.umd.edu/class/fall2017/cmsc131A/lab28.html"]{
-last lab} of last semester. This is what it looked like:
+Here is an idea from an
+@link["https://www.cs.umd.edu/class/fall2017/cmsc131A/lab28.html"]{old
+lab} from 131A that creates a data definition for a stateful
+counter. This is what it looked like:
 
 @isl-block{
 ;; A Command is one of:
@@ -138,7 +138,7 @@ In the rest of this lab, we'll look at how Java classes encapsulate
 state and how we can @bold{mutate} that state without creating new
 objects.
 
-@section[#:style 'unnumbered #:tag "lab14:butreally"]{A
+@section[#:style 'unnumbered #:tag "lab13:butreally"]{A
 @emph{FunCounter}}
 
 Note how the function @tt{SillyCounter.messageToCounter} models the
@@ -187,7 +187,7 @@ boolean testFun(Tester t) {
 @bold{Ex 6}: Should the fifth test pass? Is @tt{count0b} the same as
 @tt{fun0b.getCount}?
 
-@section[#:style 'unnumbered #:tag "lab14:imp"]{Removing another step}
+@section[#:style 'unnumbered #:tag "lab13:imp"]{Removing another step}
 
 Great! Our tests all worked as expected, and we've simplified the
 @emph{Counter} from last semester into a simple Java object. This may
@@ -235,7 +235,7 @@ similar to @tt{FunCounter}, except it mutates the field @tt{count} in
 the @tt{next} and @tt{reset} methods.
 
 
-@section[#:style 'unnumbered #:tag "lab14:ohno"]{So what changed?}
+@section[#:style 'unnumbered #:tag "lab13:ohno"]{So what changed?}
 
 Alright, let's make sure everything in our @tt{ImpCounter} works as
 expected.
@@ -280,7 +280,7 @@ boolean testImp(Tester t) {
 Now, run the tests if you have yet to do so.
 
 
-@section[#:style 'unnumbered #:tag "lab14:void"]{A different signature}
+@section[#:style 'unnumbered #:tag "lab13:void"]{A different signature}
 
 Yikes! The first and last tests pass, but none of the others do! The
 problem can be seen here:
@@ -327,3 +327,7 @@ from @tt{ImpCounter.{next, reset}}.
 @tt{MCounter} interface. Update the test suite to reflect those
 changes. Do the modified signatures make the code and its behavior
 more obvious to you and your partner?
+
+@section[#:style 'unnumbered #:tag "lab13:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
