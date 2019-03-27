@@ -7,13 +7,10 @@
 
 @assn-title[5]{Maps, Sets, MultiSets}
 
-This is assignment is to be completed and submitted with your new
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{partner}.  You
-may not work with anyone other than your assigned partner.
+This is assignment is to be completed and submitted individually. You
+may not work with anyone else.
 
-@bold{Due}: Tuesday, April 3, 11:59:59 PM EST.
-
-@(define @Piazza @link["http://piazza.com/umd/spring2018/cmsc132a"]{Piazza})
+@bold{Due}: Tuesday, April 2, 11:59:59 PM EST.
 
 @section[#:style 'unnumbered #:tag "assign5:download"]{Download the assignment project}
 

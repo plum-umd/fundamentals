@@ -2,9 +2,9 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[15]{State in Worlds}
+@lab-title[14]{State in Worlds}
 
-@section[#:style 'unnumbered #:tag "lab15:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab14:intro"]{Intro}
 
 You'll work in this lab with your
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
@@ -22,7 +22,7 @@ You can start this lab with @link["Lab15.zip"]{this project skeleton}
 or your own completed implementation of @labref{9}.
 
 
-@section[#:style 'unnumbered #:tag "lab15:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab14:recall"]{Recall}
 
 In @labref{9} we made a simple game with a bouncy ball.
 
@@ -39,7 +39,7 @@ not by creating new worlds from scratch but by @emph{mutating} the
 already present world.
 
 
-@section[#:style 'unnumbered #:tag "lab15:impworld"]{Imperative Worlds}
+@section[#:style 'unnumbered #:tag "lab14:impworld"]{Imperative Worlds}
 
 We've provided you a working copy of the bouncy ball game. Once you've
 opened the project skeleton (or made a copy of your own lab 9), import

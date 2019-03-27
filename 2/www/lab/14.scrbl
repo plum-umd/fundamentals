@@ -2,9 +2,9 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[16]{Cyclic Lists}
+@lab-title[14]{Cyclic Lists}
 
-@section[#:style 'unnumbered #:tag "lab16:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab14:intro"]{Intro}
 
 You'll work in this lab with your
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
@@ -24,7 +24,7 @@ skeleton}. In it you'll find an IntelliJ project with two Java files:
 during this lab.
 
 
-@section[#:style 'unnumbered #:tag "lab16:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab14:recall"]{Recall}
 
 We've been learning about mutable and cyclic data structures in
 lecture. In this lab we're going to focus on writing operations on
@@ -54,7 +54,7 @@ operations on lists that look like the following:
 }|
 
 
-@section[#:style 'unnumbered #:tag "lab16:aside"]{First, A Note on Equality}
+@section[#:style 'unnumbered #:tag "lab14:aside"]{First, A Note on Equality}
 
 Equality is a subtle subject in computer science. Most of you have
 probably noticed that Java includes two main equality operations: the
@@ -62,7 +62,7 @@ probably noticed that Java includes two main equality operations: the
 you would expect or hope.
 
 @bold{Ex 1}: Do you expect this test to pass or fail? Uncomment this
-test in @tt{Lab16.java} after you've talked it over with your partner.
+test in @tt{Lab14.java} after you've talked it over with your partner.
 
 @verbatim|{
 Integer one = 1;
@@ -87,14 +87,14 @@ Knowing whether two objects are referentially equal can be useful, for
 example, when trying to identify a cycle in a list.
 
 
-@section[#:style 'unnumbered #:tag "lab16:iscyclic"]{Identifying Cycles}
+@section[#:style 'unnumbered #:tag "lab14:iscyclic"]{Identifying Cycles}
 
 The list implementation in @tt{Listof.java} implements a few
 operations that work fine on regular lists. However, these operations
 will loop forever if we try to apply them to cyclic lists.
 
 @bold{Ex 3}: Uncomment and run the four tests on the cyclic list in
-@tt{Lab16.java} to confirm they loop forever.
+@tt{Lab14.java} to confirm they loop forever.
 
 In @tt{Listof.java} you'll see the already implemented methods
 @tt{isCyclic} and @tt{isCyclicHelper}.
@@ -129,7 +129,7 @@ cycle. In the @tt{Cons} case, the method @tt{isCyclic} passes
 head of the list again, we know we have a cyclic list.
 
 
-@section[#:style 'unnumbered #:tag "lab16:ops"]{Operations on Cyclic Lists}
+@section[#:style 'unnumbered #:tag "lab14:ops"]{Operations on Cyclic Lists}
 
 Each of these operations already work on non-cyclic lists. Extend them
 with a helper method that maintains a pointer to the head of the list
@@ -146,3 +146,7 @@ ensure termination for cyclic lists.
 
 @bold{Ex 7}: Reimplement the methods @tt{length}, @tt{contains} using
 @tt{foldr} to ensure termination for cyclic lists.
+
+@section[#:style 'unnumbered #:tag "lab14:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
