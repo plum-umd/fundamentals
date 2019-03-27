@@ -6,8 +6,7 @@
 
 @section[#:style 'unnumbered #:tag "lab14:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with your ad-hoc partner.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
