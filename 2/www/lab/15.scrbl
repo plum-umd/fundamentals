@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[17]{Mutable Lists}
+@lab-title[15]{Mutable Lists}
 
-@section[#:style 'unnumbered #:tag "lab17:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab15:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with your ad-hoc partner.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -19,12 +18,13 @@ problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
 You can start this lab with @link["Lab17.zip"]{this project
-skeleton}.
+skeleton}. (Yes, the file is named lab 17, but this is the right lab
+material.)
 
 
-@section[#:style 'unnumbered #:tag "lab17:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab15:recall"]{Recall}
 
-In @labref{16} we learned how to handle cycles with specialized helper
+In @labref{14} we learned how to handle cycles with specialized helper
 methods that keep track of the head of a list. Unfortunately, the
 normally elegant list operations grew a bit of cruft in the process;
 our interface was littered with helper methods that we did not want
@@ -35,7 +35,7 @@ lists}, and we'll learn a new technique that will help hide these
 kinds of implementation details.
 
 
-@section[#:style 'unnumbered #:tag "lab17:contact"]{A List of Contacts}
+@section[#:style 'unnumbered #:tag "lab15:contact"]{A List of Contacts}
 
 Your phone's contacts can be modeled as a mutable list of objects with
 names and phone numbers. Each contact itself is quite simple:
@@ -79,7 +79,7 @@ The new feature we need is the ability to remove old contacts from
 this list (as we burn bridges over time), so let's get started!
 
 
-@section[#:style 'unnumbered #:tag "lab17:remove"]{Removing from Lists}
+@section[#:style 'unnumbered #:tag "lab15:remove"]{Removing from Lists}
 
 Removing a contact from the list is a bit tricky. We need to search
 through the contact list until we find the @tt{Contact} to remove, but
@@ -136,7 +136,7 @@ list. The argument @tt{prev} should always point to the previous
 this design: which is it?
 
 
-@section[#:style 'unnumbered #:tag "lab17:sentinel"]{A New Start}
+@section[#:style 'unnumbered #:tag "lab15:sentinel"]{A New Start}
 
 As you noticed in @bold{Ex 4}, it's not possible to remove the first
 contact in the list because there is no previous @tt{Cons} cell to
@@ -222,7 +222,7 @@ void initData() {
 }
 }|
 
-@section[#:style 'unnumbered #:tag "lab17:wrapper"]{Wrapping Up}
+@section[#:style 'unnumbered #:tag "lab15:wrapper"]{Wrapping Up}
 
 It's great that our tests pass, but a few issues remain.
 
