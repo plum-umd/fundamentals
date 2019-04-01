@@ -246,3 +246,7 @@ exposing the implementation details of the @tt{Sentinel} or
 @tt{removeHelper}.
 
 @bold{Ex 9}: Fix up the tests to operate on your new @tt{MutableList}.
+
+@section[#:style 'unnumbered #:tag "lab15:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
