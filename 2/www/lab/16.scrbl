@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[18]{Social Graphs}
+@lab-title[16]{Social Graphs}
 
-@section[#:style 'unnumbered #:tag "lab18:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab16:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with your ad-hoc partner.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -19,10 +18,10 @@ problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
 You can start this lab with @link["Lab18.zip"]{this project
-skeleton}.
+skeleton}.  (Yes, it's called lab 18.)
 
 
-@section[#:style 'unnumbered #:tag "lab18:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab16:recall"]{Recall}
 
 In @labref{16} we learned how to handle cycles in simple lists.
 
@@ -31,7 +30,7 @@ these cycles, we'll practice writing accumulating operations over a
 graph of buddies.
 
 
-@section[#:style 'unnumbered #:tag "lab18:people"]{A Person with Buddies}
+@section[#:style 'unnumbered #:tag "lab16:people"]{A Person with Buddies}
 
 This lab focuses on a small group of friends named Alice, Bob, Carol,
 Donald, and Ester. Each person has a name a few people they consider
@@ -67,7 +66,7 @@ such that the five friends are initialized with the buddies given in
 the above graph.
 
 
-@section[#:style 'unnumbered #:tag "lab18:dops"]{Direct Buddies}
+@section[#:style 'unnumbered #:tag "lab16:dops"]{Direct Buddies}
 
 We call the people listed in some @tt{Person}'s buddies the
 @emph{direct buddies}. The buddies of your buddies are @emph{indirect
@@ -88,7 +87,7 @@ and @tt{that} person. Write at least one test for each of our example
 people.
 
 
-@section[#:style 'unnumbered #:tag "lab18:eops"]{Extended Buddies}
+@section[#:style 'unnumbered #:tag "lab16:eops"]{Extended Buddies}
 
 If we're throwing a party, we need to invite our buddies, their
 buddies, and their buddies' buddies, etc. We call the set of all
@@ -104,3 +103,7 @@ the number of extended buddies that would be invited to a party thrown
 by this person. Note: the party technically includes this person, so
 make sure not to leave them out when calculating the @tt{partyCount}!
 Write a test for each of our example people.
+
+@section[#:style 'unnumbered #:tag "lab15:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
