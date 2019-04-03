@@ -10,7 +10,7 @@
 @include-section{assign/3.scrbl}
 @include-section{assign/4.scrbl}
 @include-section{assign/5.scrbl}
-@;include-section{assign/6.scrbl}
+@include-section{assign/6.scrbl}
 @;include-section{assign/7.scrbl}
 
 

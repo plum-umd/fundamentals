@@ -7,20 +7,10 @@
 
 @assn-title[6]{Tests, BSTs, and Efficient Maps with Comparable Keys}
 
-UPDATES:
+This is assignment is to be completed and submitted individually. You
+may not work with anyone else.
 
-@itemlist[
-@item{We have released the source code for assignment 5 tests so that you can see what tests you're failing on the submit server.}
-@item{We removed a stub for the @tt{findComp} method that is not needed.}
-]
-
-This is assignment is to be completed and submitted with your new
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{partner}.  You
-may not work with anyone other than your assigned partner.
-
-@bold{Due}: Thursday, April 12, 11:59:59 PM EST.
-
-@(define @Piazza @link["http://piazza.com/umd/spring2018/cmsc132a"]{Piazza})
+@bold{Due}: Tuesday, April 9, 11:59:59 PM EST.
 
 @section{Revising a Library of Data structures}
 
@@ -29,17 +19,16 @@ for maps, sets, and multisets.
 
 @subsection{Passing the Test Suite}
 
-On the submit server, you will now find a test suite that is run when
-you submit your code.  You can see past results for assignment 5 and
-you will see new results for every submission of assignment 6.  To get
-full credit on this assignment, you must pass all of the test suite
-tests (this is necessary for full credit, but not sufficient; you must
-also submit well-designed code.)
+Here is a test suite for your solution to assignment 5:
+@link["Assign5.java"]{@tt{Assign5.java}}.  You can add it to your
+project and run it on your own code to see how your implementation
+stacks up.
 
-You can find the complete test suite here:
-@link["Assign5.java"]{@tt{Assign5.java}}.  You can either add it to
-your project and run it on your own code or use it to determine what
-is being tested when you see something fail on the submit server.
+
+To get full credit on this assignment, you must pass all of the test
+suite tests (this is necessary for full credit, but not sufficient;
+you must also submit well-designed code.)
+
 
 @subsection{Adding @tt{BST}s and @tt{MapComp}s}
 
@@ -77,7 +66,7 @@ data representation given to you.  You may add any methods you need,
 but again, do not change or remove anything from the interface.
 
 Note that the @tt{map} and @tt{mapMono} methods will be discussed on
-Monday, so you may want to hold off on attempting them.
+Wednesday.
 
 @section[#:style 'unnumbered #:tag "assign6:submit"]{Submission}
 
