@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[19]{Stacks of Stuff}
+@lab-title[17]{Stacks of Stuff}
 
-@section[#:style 'unnumbered #:tag "lab19:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab17:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with your ad-hoc partner.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -22,7 +21,7 @@ You can start this lab with @link["Lab19.zip"]{this project
 skeleton}.
 
 
-@section[#:style 'unnumbered #:tag "lab19:simple"]{A Simple Stack}
+@section[#:style 'unnumbered #:tag "lab17:simple"]{A Simple Stack}
 
 A @emph{stack} is a simple data structure much like a list. We can
 @tt{push} new elements on to the top of the stack and we can @tt{pop}
@@ -58,7 +57,7 @@ operation to the underlying list.
 @bold{Ex 3}: Implement @tt{Stackof.height} using
 @tt{Stackof.foldr}. All the stack tests should pass.
 
-@section[#:style 'unnumbered #:tag "lab19:complex"]{Stack with Constraints}
+@section[#:style 'unnumbered #:tag "lab17:complex"]{Stack with Constraints}
 
 We can add constraints about what kinds of elements may be pushed on
 top of the stack. Recall the interface
@@ -88,3 +87,7 @@ other elements.
 @tt{Comparable} (e.g. a person with a name in alphabetical
 order). Write a test similar to @tt{testOrdPushPop} to confirm that
 the order is respected by @tt{OrdStackof}.
+
+@section[#:style 'unnumbered #:tag "lab15:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
