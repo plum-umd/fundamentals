@@ -2,9 +2,9 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[23]{Iterating Again & Again & Again ...}
+@lab-title[18]{Iterating Again & Again & Again ...}
 
-@section[#:style 'unnumbered #:tag "lab23:intro"]{Intro}
+@section[#:style 'unnumbered #:tag "lab18:intro"]{Intro}
 
 You'll work in this lab with your
 @link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
@@ -22,7 +22,7 @@ You should start this lab with @link["Lab23.zip"]{this project
 skeleton}.
 
 
-@section[#:style 'unnumbered #:tag "lab23:recall"]{Recall}
+@section[#:style 'unnumbered #:tag "lab18:recall"]{Recall}
 
 We've seen many ways of iterating through data in this course. The
 fundamental list function @tt{foldr} allows us to transform lists into
@@ -60,7 +60,7 @@ These iterating operators are all slightly different, but should be
 able to be used to perform the same tasks. We'll test that out today!
 
 
-@section[#:style 'unnumbered #:tag "lab23:sum"]{Summing a list of numbers}
+@section[#:style 'unnumbered #:tag "lab18:sum"]{Summing a list of numbers}
 
 Summing numbers is one of the simplest tasks we've performed this
 semester, so it'll be a nice warm-up for us.
@@ -79,7 +79,7 @@ index via @tt{Listof.nth}.
 numbers.
 
 
-@section[#:style 'unnumbered #:tag "lab23:exists"]{Does such a string exist?}
+@section[#:style 'unnumbered #:tag "lab18:exists"]{Does such a string exist?}
 
 We also can check for the existence of a string satisfying some
 predicate inside a list of strings. The @tt{exists} method already
@@ -101,7 +101,7 @@ satisfying the given predicates.
 satisfying the given predicates.
 
 
-@section[#:style 'unnumbered #:tag "lab23:rev"]{Reversing a List}
+@section[#:style 'unnumbered #:tag "lab18:rev"]{Reversing a List}
 
 We can reverse a list with the method @tt{reverse}, or we can use
 loops and temporary variables.
@@ -117,7 +117,7 @@ list using @tt{foldr} than it is using the looping constructs. Why is
 that? Is there another list abstraction that would work better?
 
 
-@section[#:style 'unnumbered #:tag "lab23:avg"]{Average of a List}
+@section[#:style 'unnumbered #:tag "lab18:avg"]{Average of a List}
 
 Calculating an average using loops is a bit tricker, since we need to
 update the average for each number as we go.
@@ -135,7 +135,7 @@ of a list of numbers.
 of a list of numbers.
 
 
-@section[#:style 'unnumbered #:tag "lab23:fizzbuzz"]{Fizz Buzz}
+@section[#:style 'unnumbered #:tag "lab18:fizzbuzz"]{Fizz Buzz}
 
 Fizz Buzz is a classic programming problem: the goal is to create a
 list of numbers from 1 to 100, where each number divisible by 3 is
