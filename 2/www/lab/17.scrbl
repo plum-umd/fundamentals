@@ -88,6 +88,6 @@ other elements.
 order). Write a test similar to @tt{testOrdPushPop} to confirm that
 the order is respected by @tt{OrdStackof}.
 
-@section[#:style 'unnumbered #:tag "lab15:submit"]{Submission}
+@section[#:style 'unnumbered #:tag "lab17:submit"]{Submission}
 
 Submit a zip file of your work at the end of lab.

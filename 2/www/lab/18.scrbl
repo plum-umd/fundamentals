@@ -6,8 +6,7 @@
 
 @section[#:style 'unnumbered #:tag "lab18:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with ad-hoc partners.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -153,3 +152,7 @@ to 100.
 
 @bold{Ex 5d}: Use a @tt{while} loop to create the fizz buzz list from
 1 to 100.
+
+@section[#:style 'unnumbered #:tag "lab18:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.
