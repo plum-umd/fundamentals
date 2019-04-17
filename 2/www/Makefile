@@ -65,6 +65,7 @@ cmsc132A:
 		../java/Lab23.zip \
 		../java/classcode1.zip \
 		../java/classcode2.zip \
+		../java/Lab9.java \
 		$(course)/
 
 clean:
