@@ -39,9 +39,11 @@ cmsc132A:
 		zip Lab21 -r Lab21 ; \
 		zip Lab22 -r Lab22 ; \
 		zip Lab23 -r Lab23 ; \
+		zip Lec2 -r Lec2 ; \
 		zip classcode1 -r classcode1 ; \
 		zip classcode2 -r classcode2
 	cp ../java/Assign3.zip \
+		../java/Lec2.zip \
 		../java/Assign4.zip \
 		../java/Assign5.zip \
 		../java/Assign7.zip \
