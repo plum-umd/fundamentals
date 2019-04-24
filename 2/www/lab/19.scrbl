@@ -42,7 +42,7 @@ When looking something up, just like before, you must compute the
 appropriate index, but now you must scan through the list looking for
 a key that is equal.
 
-When put something in, just like before, you must compute the
+When you put something in, just like before, you must compute the
 appropriate index, but now you must scan through the list looking for
 a key that is equal.  If you find one, you should update the value.
 If you don't, you should grow the list with the new key value pair.
