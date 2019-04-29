@@ -44,7 +44,7 @@ If false, construct a counter-example: a program that will end up with more than
 @section[#:style 'unnumbered #:tag "lab20:put"]{How long does a put take?}
 
 How long does the @tt{put} method take when there is no need for a @tt{resize}?
-How long does it take when there is a @tt{reset}?
+How long does it take when there is a @tt{resize}?
 
 Is @tt{put} guaranteed to terminate, i.e. can you write a program such
 that doing a @tt{put} runs forever?  If yes, make an argument for why.
