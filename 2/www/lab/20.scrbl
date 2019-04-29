@@ -2,12 +2,11 @@
 @(require scribble/core (for-label lang/htdp-beginner 2htdp/universe) "helper.rkt")
 @(require "../utils.rkt")
 
-@lab-title[20]{Stacks of Hanoi}
+@lab-title[20]{Resizing Hash tables}
 
 @section[#:style 'unnumbered #:tag "lab20:intro"]{Intro}
 
-You'll work in this lab with your
-@link["https://piazza.com/class/jcspfhewmdn41y?cid=108"]{lab partners}.
+You'll work in this lab with ad-hoc partners.
 
 The two of you will work as a team to solve problems. At any time, one
 of you will be the @bold{Head} and the other will be the
@@ -18,62 +17,60 @@ switch off during the lab to make sure each of you get practice
 problem solving, dealing with syntax, and getting finger exercises on
 the keyboard.
 
-You should start this lab with @link["Lab20.zip"]{this project
+You should start this lab with @link["Lec2.zip"]{this project
 skeleton}.
 
 
-@section[#:style 'unnumbered #:tag "lab20:tower"]{Tower of Hanoi}
+@section[#:style 'unnumbered #:tag "lab20:recall"]{Recall}
 
-The @link["https://en.wikipedia.org/wiki/Tower_of_Hanoi"]{Tower of
-Hanoi} is
-@link["https://upload.wikimedia.org/wikipedia/commons/6/60/Tower_of_Hanoi_4.gif"]{simple
-puzzle}. There are three posts: the leftmost starts with a stack of
-rings ordered in ascending width. The goal is to move the rings from
-the leftmost to another post.
+We saw in lecture how to build a hash table implementation that
+correctly deals with hash collisions.  Toward the end, we talked about
+resizing hash tables to maintain a bound on the number of hash
+collisions in a table.
 
-The rules of the game:
+Starting from the code from lecture, do the following.
 
-@itemlist[
+@section[#:style 'unnumbered #:tag "lab20:bounds"]{Do we have a bound?}
 
-  @item{Only one ring can be moved at a time.}
+Consider the code we wrote in class.  Is it true that the code as
+written maintains an invariant that the size of every @tt{ListTable}
+is less than the @tt{bound}?
 
-  @item{Only the topmost ring of any tower can be moved.}
+If true, why is it true?  (Make an argument to convince your partner.)
 
-  @item{Each ring can only be placed on a larger ring.}
+If false, construct a counter-example: a program that will end up with more than
+@tt{bound} entries in a @tt{ListTable}.
 
-]
+@section[#:style 'unnumbered #:tag "lab20:put"]{How long does a put take?}
 
-We're going to implement this game using ordered stacks in an
-imperative world. The partially finished @tt{Hanoi implementing World}
-is given in @tt{Lab20.java}.
+How long does the @tt{put} method take when there is no need for a @tt{resize}?
+How long does it take when there is a @tt{reset}?
 
-The classes found in @tt{Listof.java} and @tt{Stackof.java} are mostly
-unchanged from @labref{19}. The given classes @tt{Ring} and @tt{Tower}
-are simple and need not be changed. Look them over to understand their
-purpose.
+Is @tt{put} guaranteed to terminate, i.e. can you write a program such
+that doing a @tt{put} runs forever?  If yes, make an argument for why.
+If no, make a program that runs forever when doing a @tt{put}.
 
-@bold{Ex 1}: Implement the method @tt{Hanoi.moveRing}. Remember, you
-can only make the move if the tower @tt{from} has a ring and the
-topmost ring on the tower @tt{to} has either no ring or a larger ring.
-@bold{Hint}: A good design starts by creating the method @tt{Boolean
-OrdStackof.canPush(X x)}, which returns true if the element @tt{x} can
-be pushed onto @tt{this} ordered stack (leaving the stack unchanged).
+@section[#:style 'unnumbered #:tag "lab20:timing"]{Evaluating performance}
 
-@bold{Ex 2}: The definition of @tt{canPush} looks a lot like @tt{void
-OrdStackof.push(X x)}; reimplement @tt{push} to use @tt{canPush} if
-you haven't already.
+Here's a crude way to measure the amount of time it takes to run a method:
+@verbatim|{
+long startTime = System.nanoTime();
+methodToTime();
+long endTime = System.nanoTime();
 
-@bold{Ex 3}: Implement the game logic in @tt{Hanoi.onMouseClicked}. In
-our game, we first select some source tower (with a ring on it) by
-clicking it, then click on the tower to which we will move the topmost
-ring of the source. The translation between the mouse event and the
-tower that was clicked is already given. You only need to implement
-the game logic to select source and destination towers.
+long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+}|
 
-@bold{Ex 4}: The current @tt{Hanoi} class has a hardcoded number of
-rings: 3. Generalize the class to work for an arbitrary number of
-rings.
+Design a method that takes a table and inserts a given number of
+randomly generated key value pairs.  (You can use
+@tt{Random.nextInt()} to get a random integer.)
 
-@bold{Ex 5}: The current @tt{Hanoi} class has a hardcoded number of
-towers: 3. Generalize the class to work for an arbitrary number of
-towers.
+Use this method and the above approach to timing to compare the
+performance of inserting and looking up elements in both
+@tt{ListTable}s and @tt{HashTable}s with 100, 1000, 10000, and 1000000
+elements.
+
+
+@section[#:style 'unnumbered #:tag "lab20:submit"]{Submission}
+
+Submit a zip file of your work at the end of lab.

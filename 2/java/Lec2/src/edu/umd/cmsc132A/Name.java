@@ -70,7 +70,6 @@ class Name extends Object  implements Comparable<Name> {
 
 
     public int hashCode() {
-
         return this.first.length() + this.last.length();
     }
 

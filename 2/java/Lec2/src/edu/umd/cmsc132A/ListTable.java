@@ -1,5 +1,6 @@
 package edu.umd.cmsc132A;
 
+import java.util.Iterator;
 import java.util.Optional;
 
 import tester.Tester;
@@ -42,6 +43,13 @@ public class ListTable<K,V> implements Table<K,V> {
     // Clear out this table
     public void clear() {
         this.entries = new Empty<>();
+    }
+
+    // Compute the number of elements in this table
+    public Integer size() { return this.entries.length(); }
+
+    public Iterator<Pair<K,V>> iterator() {
+        return this.entries.iterator();
     }
 }
 

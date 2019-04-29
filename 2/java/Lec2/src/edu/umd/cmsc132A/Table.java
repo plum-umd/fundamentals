@@ -2,7 +2,7 @@ package edu.umd.cmsc132A;
 
 import java.util.Optional;
 
-public interface Table<K,V> {
+public interface Table<K,V> extends Iterable<Pair<K,V>> {
 
     // Lookup key in this table
     Optional<V> lookup(K key);
@@ -20,4 +20,7 @@ public interface Table<K,V> {
 
     // Clear out this table
     void clear();
+
+    // Compute the number of elements in this table
+    Integer size();
 }
