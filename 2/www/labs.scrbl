@@ -28,6 +28,6 @@ in lectures with helpful assistants around.
 @include-section{lab/18.scrbl}
 @include-section{lab/19.scrbl}
 @include-section{lab/20.scrbl}
-@;include-section{lab/21.scrbl}
+@include-section{lab/21.scrbl}
 @;include-section{lab/22.scrbl}
 @;include-section{lab/23.scrbl}
