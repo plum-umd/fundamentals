@@ -17,59 +17,52 @@
 
 @title[#:style accessible @courseno]{: Make Your Own Video Games: An Introduction to Programming and Computing}
 
-@emph{Summer, July 8-26 @year}
+@image[#:scale 1/2 #:style float-right]{img/pacman-chomp.gif}
 
-@margin-note{A
+@emph{Summer, July 8-26 @year, A
 @link["https://oes.umd.edu/middle-high-school-students/terp-young-scholars"]{Terp
 Young Scholars} course.}
 
-@image[#:scale 1/2 #:style float-right]{img/pacman-chomp.gif}
+@emph{Lectures: Weekdays 10:00am--1:00pm, 2207 @IRB}
 
+@emph{Professor: @link["https://www.cs.umd.edu/~dvanhorn/"]{David Van Horn}}
 
-@bold{Assumptions:} The course does @emph{not} assume @emph{any} prior
-programming experience. It is therefore suitable for all students who
-wish to explore the intellectual ideas of computer science. It does
-assume familiarity with (high school) arithmetic and algebra, and it
-demands curiosity, self-discipline, and willingness to work with
-others.
-
-@bold{Disclaimer:} All information on this web page is tentative and
-subject to change until the start of the semester.
-
-@include-section{texts.scrbl}
-@include-section{schedule.scrbl}
-@include-section{labs.scrbl}
-
-@;{
-@margin-note*{@emph{Program design} is the study of systematic
-thought, planning, and universally useful problem-solving skills
-applied in the setting of programming and computation.}
 
 @courseno is an introduction to computing and programming. Its major
 goal is to introduce students to the principles of systematic problem
-solving through programming and the basic rules of computation.
+solving through programming and the basic rules of computation. It
+helps students engage in systematic thought, planning, and universally
+useful problem-solving skills applied in the setting of programming
+and computation.
 
-@margin-note*{@bold{Caveat:} Note that @courseno is being offered on
-a trial basis as an alternative introductory course sequence.  If you
-take @courseno you @emph{must} take CMSC 132A as a subsequent course.
-This course @emph{will not} prepare you for the traditional CMSC 132
-(no "A") course.  However, students who complete the 131A-132A
-sequence will be fully prepared for all subsequent courses that list
-131-132 as prerequisites.}
+@;{
+@tabular[#:style 'boxed
+         #:sep @hspace[1]
+	 #:row-properties '(top)
+	 (list (list @bold{Location} @elem{2207 @IRB})
+               (list @bold{Time} @elem{Weekdays, 10:00am--1:00pm}))]
 
-By the end of the course, majors in computer science will have a sense
-for difference between a programmer and a well-trained software
-developer. Students from all majors will have a sense of the
-complexities involved in developing solid software (highly useful in
-case they ever collaborate with such professionals) and they ought to
-be able to use the principles of programming to solve many
-non-computational problems in a systematic manner.
+@tabular[#:style 'boxed 
+         #:row-properties '(bottom-border ())
+	 (list (list @bold{Staff} 'cont 'cont 'cont)
+	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}} @elem{@bold{Hours}})
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{5250 @IRB} "dvanhorn@cs.umd.edu" "3:30-5:30PM Mon")
+         ;(list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu" "10-11AM Mon, Wed")
+         ;(list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu" "1-3PM Fri")
+         ;(list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
+	 ;(list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
+         ;(list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
+         ;(list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu" "1-3PM Wed")
+	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
+         ;(list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu" "10AM-12PM Tues")
+         ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
+         #;(list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
+}
 
-Masterful programmers design programs the way Jacques Pépin makes an
-omellete: with systematic technique, honed creativity, and a strong
-aesthetic (``There's the Wrong Way and Jacques Pépin’s Way,''
-@hyperlink["http://www.nytimes.com/2011/10/19/dining/jacques-pepin-demonstrates-cooking-techniques.html"]{New
-York Times, Oct. 18, 2011}).
+After taking this course, students will have a sense of the
+complexities involved in developing software and ought to be able to
+use the principles of programming to solve many non-computational
+problems in a systematic manner.
 
 This course exposes students to the fundamental techniques of program
 design: ``an approach to the creation of software that relies on
@@ -83,29 +76,23 @@ student of design ``will still pick up universally useful
 problem-solving skills, experience a deeply creative activity, and
 learn to appreciate a new form of aesthetic.''
 
+@bold{Assumptions:} The course does @emph{not} assume @emph{any} prior
+programming experience. It is therefore suitable for all students who
+wish to explore the intellectual ideas of computer science. It does
+assume familiarity with (high school) arithmetic and algebra, and it
+demands curiosity, self-discipline, and willingness to work with
+others.
 
+@bold{Disclaimer:} All information on this web page is tentative and
+subject to change until the start of the semester.
 
-@(define (bldg abbr)
-   (link (string-append "http://www.umd.edu/CampusMaps/bld_detail.cfm?bld_code=" abbr) abbr))
-@(define AVW "AVW")
-@(define CSI "CSI")
+@(define IRB (link "https://maps.google.com/maps?q=BRENDAN+IRIBE+CENTER%2c+College+Park%2c+MD&z=18" "IRB"))
 
-@tabular[#:style 'boxed 
-         #:row-properties '(bottom-border ())
-	 (list (list @bold{Staff} 'cont 'cont 'cont)
-	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}} @elem{@bold{Hours}})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{3439 @AVW} "dvanhorn@cs.umd.edu" "3:30-5:30PM Mon")
-         (list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu" "10-11AM Mon, Wed")
-         (list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu" "1-3PM Fri")
-         ;(list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
-	 ;(list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
-         ;(list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
-         (list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu" "1-3PM Wed")
-	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
-         (list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu" "10AM-12PM Tues")
-         ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
-         #;(list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
+@include-section{texts.scrbl}
+@include-section{schedule.scrbl}
+@include-section{labs.scrbl}
 
+@;{
 
 @tabular[#:style 'boxed
          #:sep @hspace[1]
