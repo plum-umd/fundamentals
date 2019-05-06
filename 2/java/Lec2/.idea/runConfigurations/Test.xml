@@ -2,7 +2,7 @@
   <configuration default="false" name="Test" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="tester.Main" />
     <module name="Lec2" />
-    <option name="PROGRAM_PARAMETERS" value="edu.umd.cmsc132A.TestTable" />
+    <option name="PROGRAM_PARAMETERS" value="edu.umd.cmsc132A.TestRaLo" />
     <option name="VM_PARAMETERS" value="--add-modules Assign1" />
     <method v="2">
       <option name="Make" enabled="true" />

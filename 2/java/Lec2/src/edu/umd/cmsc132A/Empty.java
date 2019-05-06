@@ -9,6 +9,9 @@ import java.util.function.Predicate;
 
 class Empty<X> extends ALo<X> {
 
+    public X get(Integer i) {
+        throw new RuntimeException("Index to large for this list");
+    }
 
     public Lo<X> sort(Comparator<X> c) {
         return this;

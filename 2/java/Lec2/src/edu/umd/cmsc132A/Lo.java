@@ -1,52 +1,5 @@
 package edu.umd.cmsc132A;
 
-// For some object o and p, assume they obey the laws of equals and hashCode
-
-// 1. If o.hashCode() == p.hashCode(),
-// what does o.equals(p) produce?
-// - true
-// - false
-// - cannot determine
-
-// 2. If o.equals(p) is false,
-// what does o.hashCode() == p.hashCode() produce?
-// - true
-// - false
-// - cannot determine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Optional;
@@ -57,12 +10,27 @@ import java.util.function.Predicate;
 
 interface Lo<X> extends Iterable<X> {
 
+    // Add given element to the front of this list
+    Lo<X> cons(X x);
+
+    // Get the first element if there is one
+    Optional<X> first();
+
+    // Get the rest of the list if there is one
+    Optional<Lo<X>> rest();
+
+    // Get the ith element of this list
+    X get(Integer i);
+
+
+
+
+
     // Produce an iterator for the elements of this list
     Iterator<X> iterator();
 
     // Does this list contain that element?
     Boolean contains(X that);
-
 
     // Sort the elements of this list in ascending order according to c.
     Lo<X> sort(Comparator<X> c);
@@ -71,11 +39,7 @@ interface Lo<X> extends Iterable<X> {
     // ASSUME: this list is sorted according to c
     Lo<X> insert(Comparator<X> c, X x);
 
-    // Get the first element if there is one
-    Optional<X> first();
 
-    // Get the rest of the list if there is one
-    Optional<Lo<X>> rest();
 
     // Accept a given visitor and compute with this list
     <R> R accept(LoVisitor<X, R> v);
@@ -103,9 +67,6 @@ interface Lo<X> extends Iterable<X> {
 
     // Run given command on each element in this list
     void foreach(Consumer<X> f);
-
-    // Add given element to the front of this list
-    Lo<X> cons(X x);
 
     // Count the number of elements in this list
     Integer length();

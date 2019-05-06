@@ -16,6 +16,10 @@ class Cons<X> extends ALo<X> {
         this.rest = rest;
     }
 
+    public X get(Integer i) {
+        return i == 0 ? this.first : this.rest.get(i - 1);
+    }
+
     public Lo<X> sort(Comparator<X> c) {
         return this.rest.sort(c).insert(c, this.first);
     }
