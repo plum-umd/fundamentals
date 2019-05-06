@@ -11,23 +11,28 @@ interface TreeVisitor<X, R> {
 interface Tree<X> extends Iterable<X> {
     <R> R accept(TreeVisitor<X, R> visitor);
 
-    // Produce pre- and in-order iterators
-    Iterator<X> iteratorPreOrder();
+    // Produce post- and in-order iterators
+    Iterator<X> iteratorPostOrder();
     Iterator<X> iteratorInOrder();
+    Iterator<X> iteratorPreOrder();
 }
 
-abstract class ATree<X> {
+abstract class ATree<X> implements Tree<X> {
     // Produce in-order iterator by default
     public Iterator<X> iterator() {
-        return this.iteratorInOrder();
+        return this.iteratorPreOrder();
     }
 
     public Iterator<X> iteratorInOrder() {
         return null; // stubbed.
     }
 
-    public Iterator<X> iteratorPreOrder() {
+    public Iterator<X> iteratorPostOrder() {
         return null; // stubbed
+    }
+
+    public Iterator<X> iteratorPreOrder() {
+        return new PreOrderIterator<>(this);
     }
 }
 
@@ -52,6 +57,83 @@ class Node<X> extends ATree<X> {
         return visitor.visitNode(this);
     }
 }
+
+// Implements a pre-order traversal of a binary tree
+class PreOrderIterator<X> implements Iterator<X> {
+
+    Tree<X> curr;
+    Listof<Node<X>> rights;
+
+    PreOrderIterator(Tree<X> curr) {
+        this.curr = curr;
+        this.rights = new Empty<>();
+    }
+
+    public X next() {
+
+        return this.curr.accept(new TreeVisitor<X, X>() {
+            public X visitLeaf(Leaf<X> leaf) {
+                return rights.accept(new ListVisitor<Node<X>, X>() {
+                    public X visitEmpty(Empty<Node<X>> mt) {
+                        throw new RuntimeException("No next element");
+                    }
+
+                    public X visitCons(Cons<Node<X>> cons) {
+                        curr = cons.first.left;
+                        rights = // ...if cons.first.right is a leaf, rights, otherwise cons cons.first.right on...
+                           cons.first.right.accept(new TreeVisitor<X, Listof<Node<X>>>() {
+                               public Listof<Node<X>> visitLeaf(Leaf<X> leaf) {
+                                   return cons.rest;
+                               }
+
+                               public Listof<Node<X>> visitNode(Node<X> node) {
+                                   return new Cons<>(node, cons.rest);
+                               }
+                           });
+                        return cons.first.value;
+                    }
+                });
+            }
+
+            public X visitNode(Node<X> node) {
+                curr = node.left;
+                rights = node.right.accept(new TreeVisitor<X, Listof<Node<X>>>() {
+                    public Listof<Node<X>> visitLeaf(Leaf<X> leaf) {
+                        return rights;
+                    }
+
+                    public Listof<Node<X>> visitNode(Node<X> node) {
+                        return new Cons<>(node, rights);
+                    }
+                });
+                return node.value;
+            }
+        });
+    }
+
+    public boolean hasNext() {
+        // there's a next item if curr is a node
+        // or rights is non-empty.
+        return this.curr.accept(new TreeVisitor<>() {
+            public Boolean visitLeaf(Leaf<X> leaf) {
+                return rights.accept(new ListVisitor<>() {
+                    public Boolean visitEmpty(Empty<Node<X>> mt) {
+                        return false;
+                    }
+
+                    public Boolean visitCons(Cons<Node<X>> cons) {
+                        return true;
+                    }
+                }) ;
+            }
+
+            public Boolean visitNode(Node<X> node) {
+                return true;
+            }
+        });
+    }
+}
+
 
 
 

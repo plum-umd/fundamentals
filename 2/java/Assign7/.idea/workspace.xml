@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0afcfb93-6c51-4e7d-b88f-7e9247cefa44" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../Assign4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Assign4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java" afterDir="false" />
@@ -11,9 +10,12 @@
       <change beforePath="$PROJECT_DIR$/../Lab9/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lab9/Lab9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/Lab9.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lab9/src/edu/umd/cmsc132A/Lab9.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab9/src/edu/umd/cmsc132A/Lab9.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lec2/.idea/runConfigurations/Test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lec2/.idea/runConfigurations/Test.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lec2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lec2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/assign/7.scrbl" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/assign/7.scrbl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/assignments.scrbl" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/assignments.scrbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Cons.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Cons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Empty.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Empty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Lo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lec2/src/edu/umd/cmsc132A/Lo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../www/lab/22.scrbl" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/lab/22.scrbl" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,22 +26,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1188">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="333">
+              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
               <folding>
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#532#533#0" expanded="true" />
-                <element signature="e#571#572#0" expanded="true" />
-                <element signature="e#620#621#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-                <element signature="e#346#347#0" expanded="true" />
-                <element signature="e#392#393#0" expanded="true" />
-                <element signature="e#1103#1104#0" expanded="true" />
-                <element signature="e#1149#1150#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#1835#1836#0" expanded="true" />
+                <element signature="e#1893#1894#0" expanded="true" />
+                <element signature="e#2366#2367#0" expanded="true" />
+                <element signature="e#2447#2448#0" expanded="true" />
+                <element signature="e#2569#2570#0" expanded="true" />
+                <element signature="e#2650#2651#0" expanded="true" />
+                <element signature="e#2995#2996#0" expanded="true" />
+                <element signature="e#3054#3055#0" expanded="true" />
+                <element signature="e#3096#3097#0" expanded="true" />
+                <element signature="e#3152#3153#0" expanded="true" />
+                <element signature="e#2808#2809#0" expanded="true" />
+                <element signature="e#2868#2869#0" expanded="true" />
+                <element signature="e#2936#2937#0" expanded="true" />
+                <element signature="e#2995#2996#0" expanded="true" />
+                <element signature="e#3084#3085#0" expanded="true" />
+                <element signature="e#3127#3128#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state relative-caret-position="614">
+              <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Listof.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+            <state relative-caret-position="-16">
+              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
               <folding>
                 <element signature="e#532#533#0" expanded="true" />
                 <element signature="e#579#580#0" expanded="true" />
@@ -103,6 +113,7 @@
       <find>new NLR</find>
       <find>nlr</find>
       <find>NLRNext</find>
+      <find>preorder</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,16 +134,15 @@
         <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Alt.java" />
         <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Listof.java" />
         <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Zipper.java" />
-        <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java" />
         <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java" />
+        <option value="$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2373" />
-    <option name="y" value="-1791" />
-    <option name="width" value="1781" />
-    <option name="height" value="1465" />
+    <option name="y" value="23" />
+    <option name="width" value="1909" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -140,6 +150,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -163,13 +174,6 @@
               <item name="Assign7" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="cmsc132A" type="462c0819:PsiDirectoryNode" />
-              <item name="Listof.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="TreeTraversal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assign7" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="cmsc132A" type="462c0819:PsiDirectoryNode" />
               <item name="Test.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
@@ -183,7 +187,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -243,9 +246,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2373" y="-1791" width="1781" height="1465" extended-state="0" />
+    <frame x="0" y="23" width="1909" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13053478" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1006963" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -254,7 +258,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49842438" weight="0.19810633" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49842438" visible="true" weight="0.19689119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -262,8 +266,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50157565" side_tool="true" weight="0.21199587" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49929577" weight="0.3286445" />
-      <window_info anchor="right" id="Maven" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49929577" weight="0.3284974" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -272,6 +275,7 @@
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Maven" order="8" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -305,39 +309,10 @@
     <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Triple.java" />
     <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Alt.java" />
     <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Zipper.java" />
-    <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#346#347#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Listof.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+        <state relative-caret-position="-16">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
             <element signature="e#532#533#0" expanded="true" />
             <element signature="e#579#580#0" expanded="true" />
@@ -353,6 +328,43 @@
             <element signature="e#1356#1357#0" expanded="true" />
             <element signature="e#1503#1504#0" expanded="true" />
             <element signature="e#1594#1595#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umd/cmsc132A/Tree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#1835#1836#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2366#2367#0" expanded="true" />
+            <element signature="e#2447#2448#0" expanded="true" />
+            <element signature="e#2569#2570#0" expanded="true" />
+            <element signature="e#2650#2651#0" expanded="true" />
+            <element signature="e#2995#2996#0" expanded="true" />
+            <element signature="e#3054#3055#0" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3152#3153#0" expanded="true" />
+            <element signature="e#2808#2809#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
+            <element signature="e#2936#2937#0" expanded="true" />
+            <element signature="e#2995#2996#0" expanded="true" />
+            <element signature="e#3084#3085#0" expanded="true" />
+            <element signature="e#3127#3128#0" expanded="true" />
           </folding>
         </state>
       </provider>
