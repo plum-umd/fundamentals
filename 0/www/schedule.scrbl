@@ -76,14 +76,19 @@ What happens each day.  Each week.
         @itemlist[@item{Composition}
                   @item{Trees}]
         @itemlist[@item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
-                  @item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
                   @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary}}]))]
 
 @section{Week 2}
 
 @week-table[
 (list
-        (list @d{July 15} 'cont 'cont)
+        (list
+         @d{July 15}
+         @itemlist[@item{Midterm 1}
+                   @item{Abstraction}]
+         @itemlist[@item{@htdp["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}
+                   @item{@htdp["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
+                   @item{@htdp["three.html#(part._ch~3a3use)"]{Using Abstractions}}])
         (list @d{July 16} 'cont 'cont)
         (list @d{July 17} 'cont 'cont)
         (list @d{July 18} 'cont 'cont)
@@ -94,7 +99,10 @@ What happens each day.  Each week.
 
 @week-table[
 (list
-        (list @d{July 22} 'cont 'cont)
+        (list
+         @d{July 22}
+         @itemlist[@item{Midterm 2}]
+         'cont)
         (list @d{July 23} 'cont 'cont)
         (list @d{July 24} 'cont 'cont)
         (list @d{July 25} 'cont 'cont)
