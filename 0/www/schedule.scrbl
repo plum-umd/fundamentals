@@ -26,6 +26,7 @@ What happens each day.  Each week.
             #:tag-prefixes (list lang)
             #:doc '(lib "scribblings/htdp-langs/htdp-langs.scrbl"))))
 
+
 @(define (week-table entries)
   @tabular[
     #:style 'boxed 
@@ -35,24 +36,48 @@ What happens each day.  Each week.
           entries)])
   
 @week-table[
-  (list (list @d{July 8} 
-              @itemlist[
-                @item{Introduction; course overview}
-                @item{Arithmetic of numbers and images}
-                @item{Functions and programs}]
-              @itemlist[
-                @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
-                @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
-                @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
-                @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
-                @item{@docs["htdp-beginner" "Booleans"]}
-                @item{@docs["htdp-beginner" "Strings"]}])
-
-        (list @d{July 9} 'cont 'cont)
-        (list @d{July 10} 'cont 'cont)
-        (list @d{July 11} 'cont 'cont)
-        (list @d{July 12} 'cont 'cont)
-)]
+ (list (list
+        @d{July 8} 
+        @itemlist[@item{Introduction; course overview}
+                  @item{Arithmetic of numbers and images}
+                  @item{Functions and programs}
+                  @item{Animations}]
+        @itemlist[@item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
+                  @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
+                  @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
+                  @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
+                  @item{@docs["htdp-beginner" "Booleans"]}
+                  @item{@docs["htdp-beginner" "Strings"]}])       
+       (list
+        @d{July 9}
+        @itemlist[@item{Design recipe}
+                  @item{World programs}]
+        @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
+                  @item{@htdp["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
+                  @item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpimage-guide.html"]{Image guide}}])
+       (list
+        @d{July 10} 
+        @itemlist[@item{Intervals, enumerations, and itemizations}
+                  @item{Structures}
+                  @item{Itemizations, revisited}]
+        @itemlist[@item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}
+                  @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
+                  @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary}}
+                  @item{@docs["htdp-beginner" "Posns"]}])
+       (list
+        @d{July 11}
+        @itemlist[@item{Self-referential Data}
+                  @item{Lists}]
+        @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}
+                  @item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
+                  @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
+       (list
+        @d{July 12}
+        @itemlist[@item{Composition}
+                  @item{Trees}]
+        @itemlist[@item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
+                  @item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
+                  @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary}}]))]
 
 @section{Week 2}
 
