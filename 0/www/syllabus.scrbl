@@ -72,22 +72,29 @@ percentages:
 @make-grade-component-table[
   (list "Assignments" "30%")
   (list "Exercises" "20%")
-  (list @elem{Quizzes/surveys}    "10%")
+  (list @elem{Quizzes & surveys}    "10%")
   @grades:m1
   @grades:m2
   grades:f]
 	 
 
-@section{Assignments}
+@section[#:tag "syllabus-assignments"]{Assignments}
 
-There will be @bold{three} weekly programming assignments, due each Friday
+There will be @bold{three} weekly programming @secref{Assignments}, due each Friday
 at 11:59pm EST.
 
-@section{Exercises}
+@section[#:tag "syllabus-exercises"]{Exercises}
 
-There will be @bold{twelve} daily exercises, due each Monday,
+There will be @bold{twelve} daily @secref{Exercises}, due each Monday,
 Tuesday, Wednesday, and Thursday at 11:59pm.
 
+@section[#:tag "syllabus-quiz"]{Quizzes & surveys}
+
+There will be @bold{many} quizzes and surveys.  Some will be done
+online, some will be on paper.  Quizzes are graded on a binary scale
+(either full or no credit).  Completed surveys receive full credit.
+Instructors reserve the right to reject survey responses that are not
+considered thoughtful.
 
 @section{Laptops in class}
 

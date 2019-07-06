@@ -81,8 +81,10 @@ subject to change until the start of the semester.
 @(define IRB (link "https://maps.google.com/maps?q=BRENDAN+IRIBE+CENTER%2c+College+Park%2c+MD&z=18" "IRB"))
 
 @include-section{syllabus.scrbl}
-@include-section{texts.scrbl}
 @include-section{schedule.scrbl}
+@include-section{texts.scrbl}
+@include-section{assignments.scrbl}
+@include-section{exercises.scrbl}
 @include-section{labs.scrbl}
 
 @;{

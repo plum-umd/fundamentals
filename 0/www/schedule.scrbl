@@ -46,36 +46,44 @@ There are daily readings from the HtDP book and the documentation.
 @week-table[
  (list (list
         @d{July 8} 
-        @itemlist[@item{Introduction; course overview}
-                  @item{Arithmetic of numbers and images}
-                  @item{Functions and programs}
-                  ]
-        @itemlist[@item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
-                  @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
-                  @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
-                  @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
-                  @item{@docs["htdp-beginner" "Booleans"]}
-                  @item{@docs["htdp-beginner" "Strings"]}])       
+        @itemlist[
+          @item{Introduction; course overview}
+          @item{Arithmetic of numbers and images}
+          @item{Functions and programs}
+          @item{Due: @secref{ex1}}]
+        @itemlist[
+          @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
+          @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
+          @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
+          @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
+          @item{@docs["htdp-beginner" "Booleans"]}
+          @item{@docs["htdp-beginner" "Strings"]}])       
        (list
         @d{July 9}
-        @itemlist[@item{Animations}
-                  @item{Design recipe}
-                  @item{Intervals, enumerations, and itemizations}
-                  ]
+        @itemlist[
+          @item{Animations}
+          @item{Design recipe}
+          @item{Intervals, enumerations, and itemizations}
+          @item{Due: @secref{ex2}}]
         @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
                   @item{@htdp["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
-
                   @item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpimage-guide.html"]{Image guide}}])
        (list
         @d{July 10} 
-        @itemlist[@item{Structures}
-                  @item{Itemizations, revisited}]
-        @itemlist[@item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
-                  @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary (Part I)}}
-                  @item{@docs["htdp-beginner" "Posns"]}])
+        @itemlist[
+          @item{Structures}
+          @item{Itemizations, revisited}
+          @item{Due: @secref{ex3}}]
+        @itemlist[
+          @item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                
+          @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
+          @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary (Part I)}}
+          @item{@docs["htdp-beginner" "Posns"]}])
        (list
         @d{July 11}
-        @itemlist[@item{World programs}]
+        @itemlist[
+          @item{World programs}
+          @item{Due: @secref{ex4}}]
         @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
                   
                   ])
@@ -83,7 +91,7 @@ There are daily readings from the HtDP book and the documentation.
         @d{July 12}
         @itemlist[@item{Midterm 1}
                   @item{Lists}
-                  @item{Due: Assignment 1}]
+                  @item{Due: @secref{assign1}}]
         @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}]))]
 
 @section{Week 2}
@@ -92,16 +100,18 @@ There are daily readings from the HtDP book and the documentation.
 (list
         (list
          @d{July 15}
-         @itemlist[@item{Moar lists}
-                   @item{Self-referential Data}
-                   ]
+         @itemlist[
+           @item{Moar lists}
+           @item{Self-referential Data}
+           @item{Due: @secref{ex5}}]
          @itemlist[@item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
                   @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
 
         (list @d{July 16}
               @itemlist[
                 @item{Composition}
-                @item{Abstraction}]
+                @item{Abstraction}
+                @item{Due: @secref{ex6}}]
               @itemlist[
                 @item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
                 @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary (Part II)}}
@@ -110,14 +120,16 @@ There are daily readings from the HtDP book and the documentation.
         (list @d{July 17} 
               @itemlist[
                 @item{Designing abstractions}
-                @item{Using abstractions}]
+                @item{Using abstractions}
+                @item{Due: @secref{ex7}}]
               @itemlist[
                    @item{@htdp["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
                    @item{@htdp["three.html#(part._ch~3a3use)"]{Using Abstractions}}])
 
         (list @d{July 18}
               @itemlist[
-                @item{Lambda, lambda, lambda}]
+                @item{Lambda, lambda, lambda}
+                @item{Due: @secref{ex8}}]
               @itemlist[
                 @item{@htdp["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
                 @item{@htdp["three.html#(part._ch~3asummary3)"]{Summary (Part III)}}])
@@ -125,8 +137,8 @@ There are daily readings from the HtDP book and the documentation.
         (list @d{July 19} 
               @itemlist[
                 @item{Midterm 2}
-                @item{Due: Assignment 2}
-                @item{S-Expressions}]
+                @item{S-Expressions}
+                @item{Due: @secref{assign2}}]
               @itemlist[@item{@htdp["part_four.html#(part._ch~3apoetry-sexp)"]{The Poetry of S-expressions}}]))]
 
 @section{Week 3}
@@ -135,17 +147,28 @@ There are daily readings from the HtDP book and the documentation.
 (list
         (list
          @d{July 22}
-         'cont
+         @itemlist[
+           @item{Due: @secref{ex9}}]
          'cont)
-        (list @d{July 23} 'cont 'cont)
-        (list @d{July 24} 'cont 'cont)
-        (list @d{July 25} 'cont 'cont)
+
+        (list @d{July 23}
+             @itemlist[
+               @item{Due: @secref{ex10}}]
+             'cont)
+        (list @d{July 24} 
+             @itemlist[
+               @item{Due: @secref{ex11}}]
+             'cont)
+        (list @d{July 25} 
+             @itemlist[
+               @item{Due: @secref{ex12}}]
+             'cont)
         (list @d{July 26} 
               @itemlist[
                 @item{Final Exam} 
                 @item{Perspectives}
-                @item{Due: Assignment 2}]
-              'cont))
+                @item{Due: @secref{assign3}}]
+              @itemlist[@item{@link["https://www.nostarch.com/realmofracket"]{Realm of Racket} (suggested)}]))
 ]
 
 
