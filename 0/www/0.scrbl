@@ -41,23 +41,15 @@ and computation.
 	 #:row-properties '(top)
 	 (list (list @bold{Location} @elem{2207 @IRB})
                (list @bold{Time} @elem{Weekdays, 10:00am--1:00pm}))]
+}
 
 @tabular[#:style 'boxed 
          #:row-properties '(bottom-border ())
 	 (list (list @bold{Staff} 'cont 'cont 'cont)
 	       (list @bold{Name} @bold{Office} @elem{@bold{E-mail}} @elem{@bold{Hours}})
-	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{5250 @IRB} "dvanhorn@cs.umd.edu" "3:30-5:30PM Mon")
-         ;(list "Samuel Barham" @elem{1112 @AVW} "sbarham@cs.umd.edu" "10-11AM Mon, Wed")
-         ;(list "William Daseking" @elem{1112 @AVW} "wdasekin@terpmail.umd.edu" "1-3PM Fri")
-         ;(list "Aaron Eline" @elem{1112 @AVW} "aeline@terpmail.umd.edu")
-	 ;(list "Alex Hsieh" @elem{1112 @AVW} "alex53632@outlook.com")
-         ;(list "Cameron Moy" @elem{1112 @AVW} "camoy@cs.umd.edu")
-         ;(list "Deena Postol" @elem{1112 @AVW} " dpostol@umd.edu" "1-3PM Wed")
-	 ;(list "Xinlu Shen" @elem{1112 @AVW} "xinlu.shen@yahoo.com")
-         ;(list "Fikko Soenanta" @elem{1112 @AVW} "fsoenant@terpmail.umd.edu" "10AM-12PM Tues")
-         ;(list "Rachael Zehrung" @elem{1112 @AVW} "rzehrung@cs.umd.edu")
-         #;(list "Beatrix Tran" @elem{1112 @AVW} "btrix8@terpmail.umd.edu" "1:30-3:30PM Mon"))]
-}
+	       (list @link["https://www.cs.umd.edu/~dvanhorn"]{David Van Horn} @elem{5250 @IRB} "dvanhorn@cs.umd.edu" "By appt.")
+         (list "Samuel Howard" @elem{2207 @IRB} "showard7@umd.edu" "2-3PM Weekdays")
+         (list "Angela Lamb" @elem{2207 @IRB} "alamb123@umd.edu" "9-10AM Weekdays"))]
 
 After taking this course, students will have a sense of the
 complexities involved in developing software and ought to be able to
@@ -88,6 +80,7 @@ subject to change until the start of the semester.
 
 @(define IRB (link "https://maps.google.com/maps?q=BRENDAN+IRIBE+CENTER%2c+College+Park%2c+MD&z=18" "IRB"))
 
+@include-section{syllabus.scrbl}
 @include-section{texts.scrbl}
 @include-section{schedule.scrbl}
 @include-section{labs.scrbl}
@@ -105,7 +98,7 @@ subject to change until the start of the semester.
 	       ;(list @nonbreaking{@bold{Final Exam}} @elem{@link["http://www.registrar.umd.edu/current/registration/exam%20tables%20spring.html"]{Monday, May 16, 10:30-12:30pm}, 1122 CSI})
 	       (list @bold{Textbooks} @elem{@link["https://htdp.org/2018-01-06/Book/"]{@emph{How to Design Programs}, 2nd edition}, Felleisen, et al.}))]
 
-@;include-section{syllabus.scrbl}
+
 @;include-section{exams.scrbl}
 @;include-section{labs.scrbl}
 @;include-section{assignments.scrbl}

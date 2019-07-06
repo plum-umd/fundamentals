@@ -6,11 +6,19 @@
 
 @section{At a glance}
 
-Week 1-3
+There are three weeks of class.
 
-Exams
+Every class consists of lecture and lab.
 
-What happens each day.  Each week.
+There are exams at the beginning of class every Friday.
+
+There are assignments due at the end of every Friday.
+
+There are exercises due every weekday except Friday.
+
+There are daily surveys and quizes.
+
+There are daily readings from the HtDP book and the documentation.
 
 @section{Week 1}
 
@@ -41,7 +49,7 @@ What happens each day.  Each week.
         @itemlist[@item{Introduction; course overview}
                   @item{Arithmetic of numbers and images}
                   @item{Functions and programs}
-                  @item{Animations}]
+                  ]
         @itemlist[@item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
                   @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
                   @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
@@ -50,33 +58,33 @@ What happens each day.  Each week.
                   @item{@docs["htdp-beginner" "Strings"]}])       
        (list
         @d{July 9}
-        @itemlist[@item{Design recipe}
-                  @item{World programs}]
+        @itemlist[@item{Animations}
+                  @item{Design recipe}
+                  @item{Intervals, enumerations, and itemizations}
+                  ]
         @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
                   @item{@htdp["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
+
                   @item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpimage-guide.html"]{Image guide}}])
        (list
         @d{July 10} 
-        @itemlist[@item{Intervals, enumerations, and itemizations}
-                  @item{Structures}
+        @itemlist[@item{Structures}
                   @item{Itemizations, revisited}]
-        @itemlist[@item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}
-                  @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
-                  @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary}}
+        @itemlist[@item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
+                  @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary (Part I)}}
                   @item{@docs["htdp-beginner" "Posns"]}])
        (list
         @d{July 11}
-        @itemlist[@item{Self-referential Data}
-                  @item{Lists}]
-        @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}
-                  @item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
-                  @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
+        @itemlist[@item{World programs}]
+        @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
+                  
+                  ])
        (list
         @d{July 12}
-        @itemlist[@item{Composition}
-                  @item{Trees}]
-        @itemlist[@item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
-                  @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary}}]))]
+        @itemlist[@item{Midterm 1}
+                  @item{Lists}
+                  @item{Due: Assignment 1}]
+        @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}]))]
 
 @section{Week 2}
 
@@ -84,16 +92,42 @@ What happens each day.  Each week.
 (list
         (list
          @d{July 15}
-         @itemlist[@item{Midterm 1}
-                   @item{Abstraction}]
-         @itemlist[@item{@htdp["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}
+         @itemlist[@item{Moar lists}
+                   @item{Self-referential Data}
+                   ]
+         @itemlist[@item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
+                  @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
+
+        (list @d{July 16}
+              @itemlist[
+                @item{Composition}
+                @item{Abstraction}]
+              @itemlist[
+                @item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
+                @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary (Part II)}}
+                @item{@htdp["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}])                   
+
+        (list @d{July 17} 
+              @itemlist[
+                @item{Designing abstractions}
+                @item{Using abstractions}]
+              @itemlist[
                    @item{@htdp["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
                    @item{@htdp["three.html#(part._ch~3a3use)"]{Using Abstractions}}])
-        (list @d{July 16} 'cont 'cont)
-        (list @d{July 17} 'cont 'cont)
-        (list @d{July 18} 'cont 'cont)
-        (list @d{July 19} 'cont 'cont))
-]
+
+        (list @d{July 18}
+              @itemlist[
+                @item{Lambda, lambda, lambda}]
+              @itemlist[
+                @item{@htdp["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
+                @item{@htdp["three.html#(part._ch~3asummary3)"]{Summary (Part III)}}])
+
+        (list @d{July 19} 
+              @itemlist[
+                @item{Midterm 2}
+                @item{Due: Assignment 2}
+                @item{S-Expressions}]
+              @itemlist[@item{@htdp["part_four.html#(part._ch~3apoetry-sexp)"]{The Poetry of S-expressions}}]))]
 
 @section{Week 3}
 
@@ -101,49 +135,19 @@ What happens each day.  Each week.
 (list
         (list
          @d{July 22}
-         @itemlist[@item{Midterm 2}]
+         'cont
          'cont)
         (list @d{July 23} 'cont 'cont)
         (list @d{July 24} 'cont 'cont)
         (list @d{July 25} 'cont 'cont)
-        (list @d{July 26} 'cont 'cont))
-]
-
-
-
-@section{Week 1: July 8}
-
-@subsection{July 8} 
-
-Topics
+        (list @d{July 26} 
               @itemlist[
-                @item{Introduction; course overview}
-                @item{Arithmetic of numbers and images}
-                @item{Functions and programs}]
-
-Readings
-              @itemlist[
-                @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
-                @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
-                @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
-                @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
-                @item{@docs["htdp-beginner" "Booleans"]}
-                @item{@docs["htdp-beginner" "Strings"]}]
-
-Labs
-
-@itemlist[
-@item{@secref{Getting_Started}}
-@item{@secref{Text_and_Images}}
+                @item{Final Exam} 
+                @item{Perspectives}
+                @item{Due: Assignment 2}]
+              'cont))
 ]
 
-Videos
-
-@itemlist[
-@item{Installing DrRacket}
-@item{Using the Handin Server}
-@item{The Arithmetics of Programs}
-]
 
 
 @;{tabular[#:style 'boxed

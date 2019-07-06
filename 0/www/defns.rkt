@@ -6,9 +6,9 @@
 (define year "2019")
 (define courseno "CMSC 198Q")
 
-#|
-(define m1-date "Oct 1")
-(define m2-date "Nov 5")
-(define final-date "Dec 14, 8--10 am")
-(define elms-url "https://myelms.umd.edu/courses/1227887")
-|#
+
+(define m1-date "July 12, 10-11am")
+(define m2-date "July 19, 10-11am")
+(define final-date "July 26, 10am-noon")
+(define elms-url "https://umd.instructure.com/courses/1271124")
+
