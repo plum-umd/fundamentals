@@ -50,6 +50,7 @@ There are daily readings from the HtDP book and the documentation.
           @item{Introduction; course overview}
           @item{Arithmetic of numbers and images}
           @item{Functions and programs}
+          @item{@secref{lab1}}
           @item{Due: @secref{ex1}}]
         @itemlist[
           @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
