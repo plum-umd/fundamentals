@@ -13,6 +13,7 @@ $(course):
 		++xref-in setup/xref load-collections-xref \
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl
+	cp code/* $(course)/
 
 clean:
 	rm -rf $(course)
