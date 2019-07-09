@@ -64,8 +64,8 @@ There are daily readings from the HtDP book and the documentation.
         @d{July 9}
         @itemlist[
           @item{Conditionals}
-          @item{Design recipe}
-          @item{Intervals, enumerations, and itemizations}
+          @item{Constants}
+	  @item{Big-bang}
           @item{@secref{lab2}}
           @item{Due: @secref{ex2}}]
         @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
@@ -74,6 +74,8 @@ There are daily readings from the HtDP book and the documentation.
        (list
         @d{July 10} 
         @itemlist[
+          @item{Design recipe}
+          @item{Intervals, enumerations, and itemizations}
           @item{Structures}
           @item{Itemizations, revisited}
           @item{Due: @secref{ex3}}]
@@ -85,7 +87,7 @@ There are daily readings from the HtDP book and the documentation.
        (list
         @d{July 11}
         @itemlist[
-          @item{World programs}
+          @item{Review}
           @item{Due: @secref{ex4}}]
         @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
                   
