@@ -50,6 +50,7 @@ There are daily readings from the HtDP book and the documentation.
           @item{Introduction; course overview}
           @item{Arithmetic of numbers and images}
           @item{Functions and programs}
+          @item{Animations}
           @item{@secref{lab1}}
           @item{Due: @secref{ex1}}]
         @itemlist[
@@ -62,9 +63,10 @@ There are daily readings from the HtDP book and the documentation.
        (list
         @d{July 9}
         @itemlist[
-          @item{Animations}
+          @item{Conditionals}
           @item{Design recipe}
           @item{Intervals, enumerations, and itemizations}
+          @item{@secref{lab2}}
           @item{Due: @secref{ex2}}]
         @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
                   @item{@htdp["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
