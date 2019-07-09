@@ -1,5 +1,5 @@
 #lang racket
-(provide exercise float-right panopto-vid make-exercise)
+(provide exercise float-right panopto-vid make-exercise make-exerciser)
 (require scribble/base scribble/core scribble/html-properties)
 
 (define exercise-body-style
@@ -8,14 +8,16 @@
 (define exercise-style
   (make-style "Exercise" null))
 
-(define (make-exercise)
+(define (make-exerciser prefix)
   (define *count* 0)
   (define (exercise title . t) 
     (set! *count* (add1 *count*))
     (nested #:style exercise-body-style 
-            (para #:style exercise-style (format "Exercise ~a: " *count*) title)
+            (para #:style exercise-style (format "~a ~a: " prefix *count*) title)
             t))
   exercise)
+
+(define (make-exercise) (make-exerciser "Exercise"))
 
 (define exercise (make-exercise))
 

@@ -3,7 +3,7 @@
 
 @title[#:style 'unnumbered #:tag "lab1"]{Lab 1: Getting Started}
 
-@(define ex (make-exercise))
+@(define ex (make-exerciser "Lab problem"))
 
 
 @section{Introduction(s)}

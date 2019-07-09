@@ -13,16 +13,17 @@
   (let ([the-eval (make-base-eval)])
     (the-eval '(require (only-in lang/htdp-intermediate check-expect)))
     (the-eval '(require 2htdp/image))
-    (the-eval '(require (only-in lang/htdp-beginner identity)))
+    (the-eval '(require (only-in lang/htdp-beginner identity string-whitespace?)))
     (the-eval '(require (prefix-in r: racket)))
 the-eval))
 
 
 
 
+
 @title[#:style 'unnumbered #:tag "lab2"]{Lab 2: A World of Fun}
 
-@(define ex (make-exercise))
+@(define ex (make-exerciser "Lab problem"))
 
 
 @section[#:tag "lab2intro"]{Introduction(s)}
@@ -145,19 +146,101 @@ as a result any value it's given as an argument.
 While @racket[identity] may seem like a useless function, it serves a handy role here
 as a placeholder for an @racket[on-tick] event handler function.
 
-To complete this labb, you will to replace @racket[identity] with a
+To complete this lab, you will to replace @racket[identity] with a
 function of your own design that causes the current string to
 deteriorate one letter and restart once all letters are gone.
 
-To accomplish this, we suggest writing @bold{two} functions.  One
-takes a string and replaces some randomly selected position of the
-string with a space.  The second takes a string, determines if it
-consists only of whitespace (i.e. all spaces) and if so, produces
-@racket[MSG], otherwise it uses the first function to deteriorate.
+To accomplish this, we suggest writing @bold{three} functions.  The
+first takes a string and an index (a nonnegative integer between 0 and
+the length of the string) and replace whatever is at that index with a
+space.  The second takes a string and replace a random spot in the
+string with a space (Hint: use the first function to help.)  The third
+takes a string, determines if it consists only of whitespace (i.e. all
+spaces) and if so, produces @racket[MSG], otherwise it uses the second
+function to random replace a spot with a space.
 
 Some functions worth knowing about to complete this lab:
 @racket[random], @racket[string-whitespace?], @racket[substring],
 @racket[string-append], @racket[string-length].  Read the
 documentation for these functions, try out some examples, then try to
 solve the rest of this lab.
+
+@examples[
+  #:eval the-eval
+  #:hidden
+
+(define MSG "Truth never perishes")
+
+(define (space-at s i)
+  (string-append (substring s 0 i)
+                 " "
+                 (substring s (add1 i))))
+
+(define (space-at-random s)
+  (space-at s (random (string-length s))))
+
+(define (deteriorate s)
+  (cond [(string-whitespace? s) MSG]
+        [else (space-at-random s)]))
+]
+
+@ex["Replace with space at index"]{
+
+Define a function @racket[space-at] that takes a string and index and replace whatever letter is 
+at that index in the string with @racket[" "].
+
+@examples[
+#:eval the-eval
+(space-at "Scooby" 0)
+(space-at "Scooby" 5)
+(space-at "Scooby" 2)
+]
+
+}
+
+@ex["Replace with space at random index"]{
+
+Define a function @racket[space-at-random] that takes a string and
+replaces whatever a random place in the string with @racket[" "].
+
+
+@examples[
+#:eval the-eval
+(space-at-random "Scooby")
+(space-at-random "Scooby")
+(space-at-random "Scooby" )
+
+(space-at-random (space-at-random (space-at-random "Scooby")))
+]
+
+
+}
+
+@ex["Start over if all whitespace"]{
+
+Define a function @racket[deteriorate] that takes a string.  If the
+string consists only of whitespace, then it produces @racket[MSG].
+Otherwise it replaces a random spot in the string with @racket[" "].
+
+@examples[
+#:eval the-eval
+(deteriorate "Scooby")
+(deteriorate "      ")
+]
+
+
+}
+
+
+Once you have a working solution for these functions, you can modify
+your @racket[main] function to replace @racket[identity] with
+@racket[deteriorate] and see what happens.
+
+@ex["Try it out"]{
+
+Modify @racket[main] to use @racket[deteriorate] and run an example to
+see your code in action.
+
+}
+
 
