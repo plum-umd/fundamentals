@@ -186,7 +186,7 @@ This problem can be broken into two sub-problems:
 Note: You're solution doesn't have to be identical to this one, but it
 should have all the same essential elements arranged in a similar
 manner.  Your solution should also not involve any copy/pasted images.
-Everything should be constructing using the operations of
+Everything should be constructed using the operations of
 @racketmodname[2htdp/image].
 
 @section{Deconstructing happiness}
