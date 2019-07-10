@@ -14,6 +14,7 @@ $(course):
 		--redirect-main http://docs.racket-lang.org/ \
 		$(course).scrbl
 	cp code/* $(course)/
+	cp exams/* $(course)/
 
 clean:
 	rm -rf $(course)
