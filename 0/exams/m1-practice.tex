@@ -25,10 +25,7 @@
 \noindent
 NAME:\verb|________________________________________________________|
 
-\vspace{2em}
 
-\noindent
-UID: \verb|__________________________________________|
 
 \vspace{2em}
 
@@ -39,9 +36,9 @@ UID: \verb|__________________________________________|
   1 & 10 \\ \hline
   2 & 10 \\ \hline
   3 & 15 \\ \hline
-  4 & 15 \\ \hline
-  5 & 40 \\ \hline
-  Total: & 90\\
+  4 & 10 \\ \hline
+  5 & 20 \\ \hline
+  Total: & 65\\
   \hline
 \end{tabular}
 \end{center}
@@ -49,7 +46,7 @@ UID: \verb|__________________________________________|
 \noindent
 This test is open-book, open-notes, but you may not use any computing
 device other than your brain and may not communicate with anyone.
-You have 50 minutes to complete the test.
+You have 60 minutes to complete the test.
 
 \vskip 1em
 
@@ -187,10 +184,17 @@ openings:
 SOLUTION:
 
 (define (dear p)
-  (string-append "Dear " (title-abbrv (person-title p)) " " (person-last p) ":"))
+  (string-append "Dear " 
+                 (title-abbrv (person-title p)) 
+                 " " 
+                 (person-last p) 
+                 ":"))
 
 ;; title-string : Title -> String
 ;; Render title as a string abbreviation
+(check-expect (title-abbrv "d") "Dr.")
+(check-expect (title-abbrv "r") "Mr.")
+(check-expect (title-abbrv "s") "Ms.")
 (define (title-abbrv t)
   (cond [(string=? t "d") "Dr."]
         [(string=? t "r") "Mr."]
@@ -203,179 +207,104 @@ SOLUTION:
 
 \newpage
 \noindent
-{\bf Problem 4 (15 points).}  
+{\bf Problem 4 (10 points).}
 %
-Design a program that takes a list of numbers and produces the sum of
-positive numbers in the list.  For example, if the list contains 3, 4,
--1, 0, -2, and 5, the sum of positive numbers (3+4+5) is 12.  You may
-use the following data definition:
-
+Do you ever mispell words like ``peice'' or ``acheive'' (which are
+correctly spelled ``piece'' and ``achieve'')?  Turns out a lot of
+people make \emph{transposition} errors like this when typing.  Based
+on this insight, you decide to make a next generation messaging app
+that helps users by giving them a \emph{transpose} operation.  The
+idea is that as a user types, they can place their cursor between two
+letters that need to be transposed and invoke {\tt transpose}.  To
+implement this feature, you define the following function for
+transposing letters at a given position in a string that has at
+least 2 letters in it:
 \begin{verbatim}
-;; A LoN (list of numbers) is one of:
-;; - '()
-;; - (cons Number LoN)
-;; Interp: an arbitrarily long list of numbers
+;; transpose : String Index -> String
+;; Transpose characters at left and right of index i.
+;; Assumes string has length >= 2 and 1<=i, i+1<=length.
+(check-expect (transpose "ab" 1) "ba")
+(check-expect (transpose "peice" 2) "piece")
+(check-expect (transpose "student's" 8) "students'")
+(define (transpose s i) ...)
 \end{verbatim}
 
+\noindent
+Give a correct definition for \verb|transpose|.  (You only need to
+provide code, not the design steps.)
 
 \begin{SaveVerbatim}{VerbEnv}
 
 SOLUTION:
-
-;; sum-pos : LoN -> Number
-;; Count the number of positive numbers in list
-(check-expect (sum-pos '()) 0)
-(check-expect (sum-pos (list 1 -2 8 0)) 9)
-(define (sum-pos lon)
-  (cond [(empty? lon) 0]
-        [(cons? lon)
-         (if (< (first lon) 0)
-             (sum-pos (rest lon))
-             (+ (first lon) (sum-pos (rest lon))))]))
+  
+(define (transpose s i)
+  (string-append (substring s 0 (sub1 i))
+                 (substring s i (add1 i))
+                 (substring s (sub1 i) i)
+                 (substring s (add1 i))))
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
 
-
-
 \newpage
-
 \noindent
-{\bf Problem 5 (40 points).} You've been hired by Nintendo to design
-their next blockbuster game: Dots.  It consists of, well, dots: lots
-and lots of dots, each of which occupies a coordinate in space.  You
-come up with the following data definitions for representing a single
-dot and a collection of dots:
+{\bf Problem 5 (20 points).}  Growing tired of Bug, you
+decide to build a new video game.  Part of the game consists of flying
+billiard balls that move in straight lines at varying velocities until
+hitting other balls or bouncing off walls and other obstacles.  After
+making some sketches, you decide on the following data representation
+for billiard balls:
 
 \begin{verbatim}
-;; A Dots is one of:
-;; - empty
-;; - (cons Dot Dots)
-;; Interp: collection of an arbitrary number of dots
+;; A BB is a:
+;; (make-bb Color 
+;;          (make-posn Integer Integer) 
+;;          (make-vel Integer Integer))
 
-;; A Dot is a (make-posn Number Number)
-;; Interp: a dot's position in space
+;; A Color is one of:
+;; - "red"
+;; - "yellow"
+;; - "green"
+
+(define-struct bb (color center vel))
+(define-struct vel (deltax deltay))
 \end{verbatim}
+The interpretation of a \verb|BB| is that the color is the color of
+the ball, the \verb|posn| is the location of the center of the ball,
+and the \verb|vel| structure describes the ball's velocity as a change
+along the $x$-axis (\verb|deltax|) and $y$-axis (\verb|deltay|) in one
+clock tick.
 
-\vspace{1em}
+\vskip 1em
 
 \noindent
-{\bf Problem 5(a) [10 points].} Write templates for \verb|Dot| and
-\verb|Dots| functions.
+Design a function called \verb|tock : BB -> BB| that calculates where
+a given billiard ball will be, based on its velocity, after one tick
+of the clock and assuming it does not encounter any obstacle.
 
 \begin{SaveVerbatim}{VerbEnv}
-  
+
 SOLUTION:
-
-(define (dot-template d)
-  (... (posn-x d)
-       (posn-y d)
-       ...))
-
-(define (dots-template ds)
-  (cond [(empty? ds) ...]
-        [(cons? ds) (... (dot-template (first ds))
-                         (dots-template (rest ds)) ...)]))
-\end{SaveVerbatim}
-
-\vskip 18em
-
-\censor{\vspace{-15em}}
-\censor{%
-\noindent\BUseVerbatim{VerbEnv}}
-
-
-\noindent
-{\bf Problem 5(b) [10 points].} Write a stub for the following function:
-    
-\begin{verbatim}
-;; nw : Dots -> Dots
-;; Move given dots in the northwest direction one unit
-(check-expect (nw empty) empty)
-(check-expect (nw (cons (make-posn 3 4) empty))
-              (cons (make-posn 4 5) empty))
-\end{verbatim}
-
-
-\begin{SaveVerbatim}{VerbEnv}
   
-SOLUTION:
-
-(define (nw ds) empty)
-        
-\end{SaveVerbatim}
-
-\censor{%
-\noindent\BUseVerbatim{VerbEnv}}
-
-\newpage
-
-\noindent
-{\bf Problem 5(c) [20 points].}
-%
-Design two functions: {\tt dot-flip} reflects a given dot over the
-y-axis, for example, $(3,4)$ becomes $(-3,4)$, and {\tt dots-flip}
-reflects a collection of dots over the y-axis.
-\begin{SaveVerbatim}{VerbEnv}
-
-;; SOLUTION:
-  
-;; dot-flip : Dot -> Dot
-;; Flip dot over y-axis
-(check-expect (dot-flip (make-posn 3 4)) (make-posn -3 4))
-(define (dot-flip d)
-  (make-posn (- (posn-x d)) (posn-y d)))
-  
-;; dots-flip : Dots -> Dots
-;; Flip dots over y-axis
-(check-expect (dots-flip empty) empty)
-(check-expect (dots-flip (cons (make-posn 3 4) empty))
-              (cons (make-posn -3 4) empty))
-(define (dots-flip ds)
-  (cond [(empty? ds) empty]
-        [(cons? ds) 
-         (cons (dot-flip (first ds))
-               (dots-flip (rest ds)))]))                   
+;; tock : BB -> BB
+;; Move ball one tick based on velocity
+(check-expect (tock (make-bb "red" (make-posn 2 5) (make-vel 1 -2)))
+              (make-bb "red" (make-posn 3 3) (make-vel 1 -2)))
+(define (tock bb)
+  (make-bb (bb-color bb)
+           (make-posn (+ (posn-x (bb-center bb))
+                         (vel-deltax (bb-vel bb)))
+                      (+ (posn-y (bb-center bb))
+                         (vel-deltay (bb-vel bb))))
+           (bb-vel bb)))
 \end{SaveVerbatim}
 
 \censor{%
 \noindent
 \BUseVerbatim{VerbEnv}}
-  
-\newpage
 
-\noindent
-[Extra space, should you need it.]
-
-
-%% Design a program that consumes an arbitrarily large collection of
-%% numbers and produces the count of non-negative numbers in the
-%% collection.
-
-%% \begin{SaveVerbatim}{VerbEnv}
-
-%% SOLUTION:
-
-%% ;; A LoN (list of numbers) is one of:
-%% ;; - '()
-%% ;; - (cons Number LoN)
-
-%% ;; count-non-neg : LoN -> Natural
-%% ;; Count the number of non-negative numbers in the given list.
-%% (check-expect (count-non-neg '()) 0)
-%% (check-expect (count-non-neg (cons -1 (cons 1 (cons -2 '())))) 1)
-%% (define (count-non-neg lon)
-%%   (cond [(empty? lon) 0]
-%%         [(cons? lon) 
-%%          (+ (if (<= 0 (first lon)) 1 0)
-%%             (count-non-neg (rest lon)))]))
-%% \end{SaveVerbatim}
-
-%% \censor{%
-%% \noindent
-%% \BUseVerbatim{VerbEnv}}
 
 \end{document}
 
