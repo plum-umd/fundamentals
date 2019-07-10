@@ -71,8 +71,9 @@ Make sure the top of the file contains the following, with your name filled in:
 The goal of this exercise is to practice
 @itemlist[
 @item{(1) making an interactive,
-event-driven program and}
-@item{(2) using the ``design recipe'' for
+event-driven program,}
+@item{(2) using compound data (i.e. structures),}
+@item{(3) using the ``design recipe'' for
 systematic problem solving.}
 ]
 
