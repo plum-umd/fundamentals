@@ -116,7 +116,7 @@ brings us to the design of our data definition:
 
 @codeblock[#:keep-lang-line? #false]|{
 #lang racket
-;; A Chip is a (make-chip Integer Boolean PositiveNumber)
+;; A Chip is a (make-chip Integer Boolean PositiveInteger)
 (define-struct chip (x right? speed))
 ;; Interpretation: 
 ;; x: distance from center of Chip to left side of screen (in px)
