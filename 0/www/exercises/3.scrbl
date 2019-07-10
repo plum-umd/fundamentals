@@ -47,11 +47,10 @@ Implement these exercises with the
 @link["https://docs.racket-lang.org/htdp-langs/beginner.html"]{Beginning
 Student Language}. Require the HtDP2e image and universe libraries at
 the top of your definitions: 
+
 @racketblock[
 (require 2htdp/image)
 (require 2htdp/universe)]
-
-
 
 @section[#:tag "ex3:submit"]{Directions for submitting}
 
@@ -82,8 +81,8 @@ systematic problem solving.}
 The goal of this exercise set is to make an interactive program that
 let's the user control a small avatar that can move horizontally on a
 screen.  The avatar, which we will affectionately refer to as "Chip,
-the Cheap Sheep," or simply "Chip."  @image[#:scale 3/4 #:style
-float-right]{img/chip.gif} Chip moves horizontally, either left or
+the Cheap Sheep," or simply "Chip,"  @image[#:scale 3/4 #:style
+float-right]{img/chip.gif} moves horizontally, either left or
 right.  Chip's direction is controlled by the left and right arrow
 keys on the keyboard.  Chip can also go faster or slower (in the
 current direction of travel) with the up and down arrow keys.
@@ -142,9 +141,9 @@ These tasks can help us generate a wishlist of function signatures:
 
 @codeblock[#:keep-lang-line? #false]|{
 #lang racket
-;; chip-display : Chip -> Image
+;; chip-draw : Chip -> Image
 ;; Display a Chip on a scene
-(define (chip-display c) ...)
+(define (chip-draw c) ...)
 
 ;; chip-move : Chip -> Chip
 ;; Move a Chip according to its direction and speed
