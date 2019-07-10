@@ -8,7 +8,9 @@
 @title[#:style 'unnumbered #:tag "assign1"]{Assignment 1: Bug}
 
 
-@bold{Due}: Friday, July 12, 11:59:59 PM EST.
+@bold{Due}: Sunday, July 14, 11:59:59 PM EST.
+
+@bold{NOTE:} This due date has been pushed back 48 hours.
 
 @image[#:scale 1/2 #:style float-right]{img/bug-fast.gif}
 

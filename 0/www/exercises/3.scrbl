@@ -37,7 +37,9 @@ the-eval))
 
 @title[#:style 'unnumbered #:tag "ex3"]{Exercise 3}
 
-@bold{Due}: Wednesday, July 10, 11:59:59 PM EST.
+@bold{Due}: Thursday, July 11, 11:59:59 PM EST. 
+
+@bold{NOTE:} this due date has been pushed back 24 hours.
 
 @(define ex (make-exerciser "Problem"))
 
