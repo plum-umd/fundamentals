@@ -78,6 +78,7 @@ There are daily readings from the HtDP book and the documentation.
           @item{Intervals, enumerations, and itemizations}
           @item{Structures}
           @item{Itemizations, revisited}
+          @item{@secref{lab3}}
           @item{Due: @secref{ex3}}]
         @itemlist[
           @item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                
@@ -88,6 +89,7 @@ There are daily readings from the HtDP book and the documentation.
         @d{July 11}
         @itemlist[
           @item{Review}
+         @item{@secref{lab4}}
           @item{Due: @secref{ex4}}]
         @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
                   
