@@ -10,8 +10,8 @@ in lectures with helpful assistants around.
 @include-section{labs/1.scrbl}
 @include-section{labs/2.scrbl}
 @include-section{labs/3.scrbl}
-@;{
 @include-section{labs/4.scrbl}
+@;{
 @include-section{labs/5.scrbl}
 @include-section{labs/6.scrbl}
 @include-section{labs/7.scrbl}
