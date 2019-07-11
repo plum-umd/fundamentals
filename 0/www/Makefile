@@ -15,6 +15,7 @@ $(course):
 		$(course).scrbl
 	cp code/* $(course)/
 	cp exams/* $(course)/
+	cp img/chip*png $(course)/
 
 clean:
 	rm -rf $(course)

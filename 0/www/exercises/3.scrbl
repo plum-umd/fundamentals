@@ -25,10 +25,10 @@ the-eval))
   #:eval the-eval
   #:hidden  
 
-(define CHIP1 (bitmap "img/chip0-trans.png"))
-(define CHIP2 (bitmap "img/chip1-trans.png"))
-(define CHIP3 (bitmap "img/chip2-trans.png"))
-(define CHIP4 (bitmap "img/chip3-trans.png"))
+(define CHIP1 (bitmap "img/chip1.png"))
+(define CHIP2 (bitmap "img/chip2.png"))
+(define CHIP3 (bitmap "img/chip3.png"))
+(define CHIP4 (bitmap "img/chip4.png"))
 
 ]
 
@@ -392,10 +392,13 @@ first complication: the image of Chip should reflect Chip's
 directionality.  We will still ignore the complication of making Chip
 appear to run.
 
+@margin-note{Copy/pasting will not produce good results here.  You can
+download and insert the Chip image here:
+@link["chip1.png"]{chip1.png}.}
+
 Use the following image for Chip: @result[CHIP1].  In order to show
 Chip moving in the other direction, use @racket[flip-horizontal] to
 compute a right-facing Chip.
-
 
 Comment out your first version of @racket[chip-draw] and redesign this
 more sophisticated version.
@@ -422,6 +425,13 @@ the tests you've written.
 }
 
 Try out your refined program with @racket[(main 0)].
+
+@margin-note{Copy/pasting will not produce good results here.  You can
+download and insert the Chip images here:
+@link["chip1.png"]{chip1.png},
+@link["chip1.png"]{chip2.png},
+@link["chip1.png"]{chip3.png}, and
+@link["chip1.png"]{chip4.png}.}
 
 Finally, let's finish the exercise by removing our simplifying
 assumptions.  In order to make Chip appear animated, use the following
