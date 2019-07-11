@@ -19,6 +19,8 @@
     (the-eval '(require (prefix-in r: racket)))
 the-eval))
 
+@(define exercise (make-exerciser "Problem"))
+
 @;title{Have a Nice Day!}
 
 @examples[
