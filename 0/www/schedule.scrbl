@@ -1,5 +1,5 @@
 #lang scribble/manual
-@(require scribble/core racket/list)
+@(require scribble/core racket/list "utils.rkt")
 
 @title[#:style 'unnumbered]{Schedule}
 
@@ -78,8 +78,7 @@ There are daily readings from the HtDP book and the documentation.
           @item{Intervals, enumerations, and itemizations}
           @item{Structures}
           @item{Itemizations, revisited}
-          @item{@secref{lab3}}
-          @item{Due: @secref{ex3}}]
+          @item{@secref{lab3}}]
         @itemlist[
           @item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                
           @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
@@ -90,13 +89,13 @@ There are daily readings from the HtDP book and the documentation.
         @itemlist[
           @item{Review}
          @item{@secref{lab4}}
-          @item{Due: @secref{ex4}}]
+          @item{Due: @secref{ex3}}]
         @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
                   
                   ])
        (list
         @d{July 12}
-        @itemlist[@item{Midterm 1}
+        @itemlist[@item{@strike{Midterm 1}}
                   @item{Lists}
                   @item{Due: @secref{assign1}}]
         @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}]))]
@@ -110,7 +109,7 @@ There are daily readings from the HtDP book and the documentation.
          @itemlist[
            @item{Moar lists}
            @item{Self-referential Data}
-           @item{Due: @secref{ex5}}]
+           @item{Due: @secref{ex4}}]
          @itemlist[@item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
                   @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
 
@@ -118,7 +117,7 @@ There are daily readings from the HtDP book and the documentation.
               @itemlist[
                 @item{Composition}
                 @item{Abstraction}
-                @item{Due: @secref{ex6}}]
+                @item{Due: @secref{ex5}}]
               @itemlist[
                 @item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
                 @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary (Part II)}}
@@ -128,7 +127,7 @@ There are daily readings from the HtDP book and the documentation.
               @itemlist[
                 @item{Designing abstractions}
                 @item{Using abstractions}
-                @item{Due: @secref{ex7}}]
+                @item{Due: @secref{ex6}}]
               @itemlist[
                    @item{@htdp["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
                    @item{@htdp["three.html#(part._ch~3a3use)"]{Using Abstractions}}])
@@ -136,7 +135,7 @@ There are daily readings from the HtDP book and the documentation.
         (list @d{July 18}
               @itemlist[
                 @item{Lambda, lambda, lambda}
-                @item{Due: @secref{ex8}}]
+                @item{Due: @secref{ex7}}]
               @itemlist[
                 @item{@htdp["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
                 @item{@htdp["three.html#(part._ch~3asummary3)"]{Summary (Part III)}}])
@@ -155,20 +154,20 @@ There are daily readings from the HtDP book and the documentation.
         (list
          @d{July 22}
          @itemlist[
-           @item{Due: @secref{ex9}}]
+           @item{Due: @secref{ex8}}]
          'cont)
 
         (list @d{July 23}
              @itemlist[
-               @item{Due: @secref{ex10}}]
+               @item{Due: @secref{ex9}}]
              'cont)
         (list @d{July 24} 
              @itemlist[
-               @item{Due: @secref{ex11}}]
+               @item{Due: @secref{ex10}}]
              'cont)
         (list @d{July 25} 
              @itemlist[
-               @item{Due: @secref{ex12}}]
+               @item{Due: @secref{ex11}}]
              'cont)
         (list @d{July 26} 
               @itemlist[

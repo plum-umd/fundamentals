@@ -1,5 +1,5 @@
 #lang racket
-(provide exercise float-right panopto-vid make-exercise make-exerciser)
+(provide exercise float-right panopto-vid make-exercise make-exerciser strike)
 (require scribble/base scribble/core scribble/html-properties)
 
 (define exercise-body-style
@@ -24,6 +24,11 @@
 
 (define float-right
   (style #f (list (attributes '((style . "float: right"))))))
+
+(define (strike e)
+  (elem #:style (style #f (list (attributes '((style . "text-decoration: line-through"))))) 
+        e))
+
 
 ;; Embed a public panopto video into page
 (define (panopto-vid src)
