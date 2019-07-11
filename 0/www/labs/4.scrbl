@@ -3,7 +3,7 @@
           scribble/examples
           racket/sandbox
           (for-label lang/htdp-beginner) 
-          (for-label (except-in 2htdp/image image?))
+          (for-label (except-in 2htdp/image image?) 2htdp/universe)
           ;"helper.rkt" 
 	  "../utils.rkt"
           "../defns.rkt")
@@ -279,4 +279,58 @@ Design the function @tt{txt-transpose : Line -> Line}.
 @racket[(txt-transpose #,(result (small "" "Rip Torn")))] ⟹  @result[(small "" "Rip Torn")]
 
 }
+
+@section{Bonus}
+
+If you've done the first part of the lab and would like to go further,
+you can try your hand at buiding the line editor.  This is not
+required; it's just here in case you're looking for more to do.
+
+The functions above implement much of the functionality needed in a
+text line editor.  Now you'll need to put the peices together, using
+the @racketmodname[2htdp/image] and @racketmodname[2htdp/universe]
+libraries to create the editor.
+
+Here is a @racket[main] function that consumes a string and launches a
+world program where the state of the world is represented as a
+@tt{Line}:
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; String -> Line
+;; Launch a line editor starting with given string and cursor on left
+(define (main s)
+  (big-bang (make-txt "" s)
+    [on-key editor-key]
+    [to-draw editor-draw]))
+}|
+
+The program should respond to keyboard events and will need a function
+for displaying the current line, with an indication of where the
+cursor is.
+
+So you will need to define two functions:
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; editor-key : Line KeyEvent -> Line
+;; editor-draw : Line -> Image
+}|
+
+The editor should respond to the following key events:
+
+@itemlist[
+
+@item{@racket["\b"]: delete one character to the left of the cursor, if there is one,}
+@item{@racket["left"]: moves cursor left, if possible,}
+@item{@racket["right"]: moves cursor right, if possible,}
+@item{@racket["up"]: moves cursor to start of line,}
+@item{@racket["down"]: moves cursor to end of line,}
+@item{@racket["f1"] (function key 1): transposes letter before and after cursor, if possible,}
+@item{@racket["f2"] (function key 2): deletes text after cursor,}
+@item{@racket["f3"] (function key 3): deletes text before cursor, and}
+@item{any length 1 string (except @racket["\b"] and @racket["\r"]) is
+inserted to the left of cursor.} 
+
+]
+
 
