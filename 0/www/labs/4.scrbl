@@ -141,15 +141,15 @@ Design the function @tt{txt-length : Line -> Number}.
 
 @ex[@racket[txt-string]]{
 
-Design the function @tt{txt-string : Line -> Number}.
+Design the function @tt{txt-string : Line -> String}.
 
-@racket[(txt-length #,(result (small "" "")))] ⟹  @result[""]
+@racket[(txt-string #,(result (small "" "")))] ⟹  @result[""]
 
-@racket[(txt-length #,(result (small "Rip Torn" "")))] ⟹  @result["Rip Torn"]
+@racket[(txt-string #,(result (small "Rip Torn" "")))] ⟹  @result["Rip Torn"]
 
-@racket[(txt-length #,(result (small "" "Rip Torn")))] ⟹  @result["Rip Torn"]
+@racket[(txt-string #,(result (small "" "Rip Torn")))] ⟹  @result["Rip Torn"]
 
-@racket[(txt-length #,(result (small "Rip" " Torn")))] ⟹  @result["Rip Torn"]
+@racket[(txt-string #,(result (small "Rip" " Torn")))] ⟹  @result["Rip Torn"]
 
 }
 
