@@ -429,9 +429,9 @@ Try out your refined program with @racket[(main 0)].
 @margin-note{Copy/pasting will not produce good results here.  You can
 download and insert the Chip images here:
 @link["chip1.png"]{chip1.png},
-@link["chip1.png"]{chip2.png},
-@link["chip1.png"]{chip3.png}, and
-@link["chip1.png"]{chip4.png}.}
+@link["chip2.png"]{chip2.png},
+@link["chip3.png"]{chip3.png}, and
+@link["chip4.png"]{chip4.png}.}
 
 Finally, let's finish the exercise by removing our simplifying
 assumptions.  In order to make Chip appear animated, use the following
