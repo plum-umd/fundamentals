@@ -280,7 +280,7 @@ Design the function @tt{txt-transpose : Line -> Line}.
 
 }
 
-@section{Bonus}
+@section[#:tag "lab4:bonus"]{Bonus}
 
 If you've done the first part of the lab and would like to go further,
 you can try your hand at buiding the line editor.  This is not
@@ -334,3 +334,8 @@ inserted to the left of cursor.}
 ]
 
 
+@ex[@elem{@racket[editor-key] and @racket[editor-draw]}]{
+
+Design the functions @racket[editor-key] and @racket[editor-draw].
+
+}

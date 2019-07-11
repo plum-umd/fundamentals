@@ -47,7 +47,7 @@ In this lab, you'll practice writing functions and building simple
 world programs using the @bold{design recipe} for systematic
 computational problem solving.
 
-@section{A simple interactive program}
+@section{Making progress}
 
 @secref{lab2} introduced you to the world of @racket[big-bang]
 programs.  However, fundamentally, the program you wrote was just a
@@ -139,9 +139,15 @@ things do not work as intended.
 
 }
 
+@section{Wait a minute...}
 
 Now consider adding the ability for the user to pause and unpause the
-progress by pressing any key.
+progress by pressing the space bar.
+
+Here's an idea for how to represent a paused progress bar: use
+negative numbers to mean progress is paused.  So for example, the
+interpretation of @racket[-25] is that 25% progress has been made, but
+progress is paused.
 
 To handle key events, we need to add another clause to our
 @racket[big-bang] and will need to design another function.
@@ -159,9 +165,29 @@ To handle key events, we need to add another clause to our
     [on-key progress-pause]))
 }|
 
+@ex["Revise"]{
 
 Revisit problems 1-6 with this revised description of the program.
 
-Finally, consider yet another design revision where only pressing the
-space-key pauses and unpauses progress.  Revise as necessary.
+}
 
+Can you think of anything deficient about this representation?  In
+particular, is this representation @emph{adequate} to represent all
+possible states of a progress bar, or is there information that is
+unrepresentable?
+
+
+@section[#:tag "lab3:bonus"]{Bonus}
+
+If you've made it through the rest of the lab and are looking for
+something more to do, consider the question posed at the end of the
+previous section.  Read up on structures and re-design the data
+representation of progress bars to use a compound structure to
+represent the state of a progress bar with @bold{two} pieces of data:
+the percentage complete and a boolean indicating whether paused.
+
+@ex["Revise (again)"]{
+
+Revisit problems 1-6 with this revised data representation.
+
+}
