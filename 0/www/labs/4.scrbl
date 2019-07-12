@@ -75,6 +75,7 @@ computational problem solving.
 
 In this lab, you will write the core functions that are part of a very
 simple text editor for a single line of text (this could be part of a
+@image[#:scale 1 #:style float-right]{img/txt.gif}
 messaging app, a search bar, an SMS application, etc.).  This program
 lets a user type in a line of text and move a cursor around and edit
 that text.
