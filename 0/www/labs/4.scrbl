@@ -126,20 +126,6 @@ You will need to copy the data definition from above in to the top of
 your file.
 
 
-@ex[@racket[txt-length]]{
-
-Design the function @tt{txt-length : Line -> Number}.
-
-@racket[(txt-length #,(result (small "" "")))] ⟹  @result[0]
-
-@racket[(txt-length #,(result (small "Rip Torn" "")))] ⟹  @result[8]
-
-@racket[(txt-length #,(result (small "" "Rip Torn")))] ⟹  @result[8]
-
-@racket[(txt-length #,(result (small "Rip" " Torn")))] ⟹  @result[8]
-
-}
-
 @ex[@racket[txt-string]]{
 
 Design the function @tt{txt-string : Line -> String}.
@@ -155,59 +141,17 @@ Design the function @tt{txt-string : Line -> String}.
 }
 
 
-@ex[@racket[txt-insert]]{
+@ex[@racket[txt-length]]{
 
-Design the function @tt{txt-insert : Line String -> Line}.
+Design the function @tt{txt-length : Line -> Number}.
 
-@racket[(txt-insert #,(result (small "" "")) "R")] ⟹  @result[(small "R" "")]
+@racket[(txt-length #,(result (small "" "")))] ⟹  @result[0]
 
-@racket[(txt-insert #,(result (small "Rip Tor" "")) "n")] ⟹  @result[(small "Rip Torn" "")]
+@racket[(txt-length #,(result (small "Rip Torn" "")))] ⟹  @result[8]
 
-@racket[(txt-insert #,(result (small "Rip T" "rn")) "o")] ⟹  @result[(small "Rip To" "rn")]
+@racket[(txt-length #,(result (small "" "Rip Torn")))] ⟹  @result[8]
 
-}
-
-
-@ex[@racket[txt-forward]]{
-
-Design the function @tt{txt-forward : Line -> Line}.
-
-@racket[(txt-forward #,(result (small "" "")))] ⟹  @result[(small "" "")]
-
-@racket[(txt-forward #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Torn" "")]
-
-@racket[(txt-forward #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip Tor" "n")]
-
-@racket[(txt-forward #,(result (small "" "Rip Torn")))] ⟹  @result[(small "R" "ip Torn")]
-
-}
-
-
-@ex[@racket[txt-backward]]{
-
-Design the function @tt{txt-backward : Line -> Line}.
-
-@racket[(txt-backward #,(result (small "" "")))] ⟹  @result[(small "" "")]
-
-@racket[(txt-backward #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Tor" "n")]
-
-@racket[(txt-backward #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip T" "orn")]
-
-@racket[(txt-backward #,(result (small "" "Rip Torn")))] ⟹  @result[(small "" "Rip Torn")]
-
-}
-
-@ex[@racket[txt-backspace]]{
-
-Design the function @tt{txt-backspace : Line -> Line}.
-
-@racket[(txt-backspace #,(result (small "" "")))] ⟹  @result[(small "" "")]
-
-@racket[(txt-backspace #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Tor" "")]
-
-@racket[(txt-backspace #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip T" "rn")]
-
-@racket[(txt-backspace #,(result (small "" "Rip Torn")))] ⟹  @result[(small "" "Rip Torn")]
+@racket[(txt-length #,(result (small "Rip" " Torn")))] ⟹  @result[8]
 
 }
 
@@ -264,6 +208,92 @@ Design the function @tt{txt-end : Line -> Line}.
 @racket[(txt-end #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip Torn" "")]
 
 @racket[(txt-end #,(result (small "" "Rip Torn")))] ⟹  @result[(small "Rip Torn" "")]
+
+}
+
+
+@ex[@racket[txt-insert]]{
+
+Design the function @tt{txt-insert : Line String -> Line}.
+
+@racket[(txt-insert #,(result (small "" "")) "R")] ⟹  @result[(small "R" "")]
+
+@racket[(txt-insert #,(result (small "Rip Tor" "")) "n")] ⟹  @result[(small "Rip Torn" "")]
+
+@racket[(txt-insert #,(result (small "Rip T" "rn")) "o")] ⟹  @result[(small "Rip To" "rn")]
+
+}
+
+
+For the next set of functions, a small set of functions @emph{may} be
+useful.  Finish their design based on their given signature and
+purpose statements.  They each consume a non-empty string.  (Do not
+worry about what happens if the string is empty.)
+
+@ex["Helpers"]{
+
+@codeblock[#:keep-lang-line? #false]|{
+#lang racket
+;; String -> String
+;; Produce the first character
+(define (string-first s) ...)
+
+;; String -> String
+;; Produce all but the first character
+(define (string-drop-first s) ...)
+
+;; String -> String
+;; Produce the last character
+(define (string-last s) ...)
+
+;; String -> String
+;; Produce all but the last character
+(define (string-drop-last s) ...)
+}|
+}
+
+And now for the rest of the line operations.
+
+@ex[@racket[txt-forward]]{
+
+Design the function @tt{txt-forward : Line -> Line}.
+
+@racket[(txt-forward #,(result (small "" "")))] ⟹  @result[(small "" "")]
+
+@racket[(txt-forward #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Torn" "")]
+
+@racket[(txt-forward #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip Tor" "n")]
+
+@racket[(txt-forward #,(result (small "" "Rip Torn")))] ⟹  @result[(small "R" "ip Torn")]
+
+}
+
+
+@ex[@racket[txt-backward]]{
+
+Design the function @tt{txt-backward : Line -> Line}.
+
+@racket[(txt-backward #,(result (small "" "")))] ⟹  @result[(small "" "")]
+
+@racket[(txt-backward #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Tor" "n")]
+
+@racket[(txt-backward #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip T" "orn")]
+
+@racket[(txt-backward #,(result (small "" "Rip Torn")))] ⟹  @result[(small "" "Rip Torn")]
+
+}
+
+@ex[@racket[txt-backspace]]{
+
+Design the function @tt{txt-backspace : Line -> Line}.
+
+@racket[(txt-backspace #,(result (small "" "")))] ⟹  @result[(small "" "")]
+
+@racket[(txt-backspace #,(result (small "Rip Torn" "")))] ⟹  @result[(small "Rip Tor" "")]
+
+@racket[(txt-backspace #,(result (small "Rip To" "rn")))] ⟹  @result[(small "Rip T" "rn")]
+
+@racket[(txt-backspace #,(result (small "" "Rip Torn")))] ⟹  @result[(small "" "Rip Torn")]
 
 }
 
