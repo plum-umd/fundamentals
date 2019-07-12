@@ -10,7 +10,5 @@
 
 @title[#:style 'unnumbered #:tag "ex8"]{Exercise 8}
 
-@bold{Due}: Thursday, July 18, 11:59:59 PM EST.
-
-This exercise will be released July 18.
+@bold{Due}: TBD.
 

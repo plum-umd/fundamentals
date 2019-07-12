@@ -54,8 +54,7 @@ etc.
 Your final course grade will be determined according to the following
 percentages:
 
-@(define grades:m1 (list @elem{Midterm 1, @m1-date} "10%"))
-@(define grades:m2 (list @elem{Midterm 2, @m2-date} "10%"))
+@(define grades:m1 (list @elem{Midterm, @m1-date} "10%"))
 @(define grades:f  (list @elem{Final Exam, @final-date} "20%"))
 
 @(define (make-grade-component-table . entries)
@@ -66,15 +65,13 @@ percentages:
 @(define exam-table
   @make-grade-component-table[
     @grades:m1
-    @grades:m2
     @grades:f])
 
 @make-grade-component-table[
   (list "Assignments" "30%")
-  (list "Exercises" "20%")
-  (list @elem{Quizzes & surveys}    "10%")
+  (list "Exercises" "25%")
+  (list @elem{Quizzes & surveys}    "15%")
   @grades:m1
-  @grades:m2
   grades:f]
 	 
 
@@ -85,7 +82,7 @@ at 11:59pm EST.
 
 @section[#:tag "syllabus-exercises"]{Exercises}
 
-There will be @bold{twelve} daily @secref{Exercises}, due each Monday,
+There will be @bold{nine} daily or semi-daily @secref{Exercises}, due each Monday,
 Tuesday, Wednesday, and Thursday at 11:59pm.
 
 @section[#:tag "syllabus-quiz"]{Quizzes & surveys}
@@ -159,11 +156,10 @@ writing at least @bold{2 days} in advance and the student includes
 documentation that shows the absence qualifies as excused; @bold{a
 self-signed note} is not sufficient as exams are Major Scheduled
 Grading Events. For this class, such events are the final exam, and
-the two midterms, which will be given in class on the following dates:
+the midterm, which will be given in class on the following dates:
 
 @itemlist[
-  @item{Midterm 1: @bold{@m1-date}}
-  @item{Midterm 2: @bold{@m2-date}}
+  @item{Midterm: @bold{@m1-date}}
   @item{Final Exam: @bold{@final-date}}]
 
 The final exam is scheduled according to the University Registrar.

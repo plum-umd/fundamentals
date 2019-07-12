@@ -7,6 +7,6 @@
 @title[#:style 'unnumbered #:tag "assign2"]{Assignment 2: Snek}
 
 
-@bold{Due}: Friday, July 19, 11:59:59 PM EST.
+@bold{Due}: Sunday, July 21, 11:59:59 PM EST.
 
 This exercise will be released July 13.

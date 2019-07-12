@@ -10,11 +10,11 @@ There are three weeks of class.
 
 Every class consists of lecture and lab.
 
-There are exams at the beginning of class every Friday.
+There are exams at the mid-point and end-point of the course.
 
 There are assignments due at the end of every Friday.
 
-There are exercises due every weekday except Friday.
+There are exercises due every weekday except Friday (and some other exceptions).
 
 There are daily surveys and quizes.
 
@@ -24,9 +24,12 @@ There are daily readings from the HtDP book and the documentation.
 
 @(define (d s) (nonbreaking (bold s)))
 
-@(define (htdp part name)
+@(define (htdp f name)
    (elem "HtDP: "
-     (link (string-append "https://htdp.org/2018-01-06/Book/part_" part) name)))
+     (link (string-append "https://htdp.org/2018-01-06/Book/" f) name)))
+
+@(define (htdp-part part name)
+   (htdp (string-append "part_" part) name))
 
 @(define (docs lang name)
   (elem "Docs: "
@@ -54,9 +57,9 @@ There are daily readings from the HtDP book and the documentation.
           @item{@secref{lab1}}
           @item{Due: @secref{ex1}}]
         @itemlist[
-          @item{@htdp["preface.html"]{Preface}, through "Skills that Transfer"}
-          @item{@htdp["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
-          @item{@htdp["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
+          @item{@htdp-part["preface.html"]{Preface}, through "Skills that Transfer"}
+          @item{@htdp-part["one.html#%28part._ch~3abasic-arithmetic%29"]{Arithmetic}}
+          @item{@htdp-part["one.html#%28part._ch~3afuncs-progs%29"]{Functions and Programs}}
           @item{@docs["htdp-beginner" "Numbers__Integers__Rationals__Reals__Complex__Exacts__Inexacts"]}
           @item{@docs["htdp-beginner" "Booleans"]}
           @item{@docs["htdp-beginner" "Strings"]}])       
@@ -68,37 +71,43 @@ There are daily readings from the HtDP book and the documentation.
 	  @item{Big-bang}
           @item{@secref{lab2}}
           @item{Due: @secref{ex2}}]
-        @itemlist[@item{@htdp["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
-                  @item{@htdp["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
+        @itemlist[
+                  @item{@htdp-part["one.html#(part._ch~3aintervals-enums)"]{Intervals, Enumerations, and Itemizations}}
                   @item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpimage-guide.html"]{Image guide}}])
        (list
         @d{July 10} 
         @itemlist[
           @item{Design recipe}
-          @item{Intervals, enumerations, and itemizations}
-          @item{Structures}
-          @item{Itemizations, revisited}
           @item{@secref{lab3}}]
         @itemlist[
-          @item{@htdp["one.html#(part._ch~3astructure)"]{Adding Structure}}                                
-          @item{@htdp["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
-          @item{@htdp["one.html#(part._ch~3asummary1)"]{Summary (Part I)}}
-          @item{@docs["htdp-beginner" "Posns"]}])
+          @item{@htdp-part["one.html#(part._ch~3ahtdp)"]{How to Design Programs}}
+          @item{@htdp-part["one.html#(part._ch~3astructure)"]{Adding Structure}}                                
+          @item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}])
        (list
         @d{July 11}
         @itemlist[
-          @item{Review}
-         @item{@secref{lab4}}
+          @item{Structures}
+          @item{@secref{lab4}}
           @item{Due: @secref{ex3}}]
-        @itemlist[@item{Docs: @link["https://docs.racket-lang.org/teachpack/2htdpuniverse.html"]{Worlds}}
-                  
+        @itemlist[
+          @item{@docs["htdp-beginner" "Posns"]}
                   ])
        (list
         @d{July 12}
-        @itemlist[@item{@strike{Midterm 1}}
-                  @item{Lists}
-                  @item{Due: @secref{assign1}}]
-        @itemlist[@item{@htdp["two.html#(part._ch~3alists1)"]{Lists}}]))]
+        @itemlist[
+          @item{Week in Review}
+          @item{Intervals, enumerations, and itemizations}]
+        @itemlist[
+          @item{@htdp-part["one.html#(part._ch~3amix)"]{Itemizations and Structures}}
+          @item{@htdp-part["one.html#(part._ch~3asummary1)"]{Summary (Part I)}}
+          @item{@htdp["i1-2.html"]{Intermezzo 1: Beginning Student Language}}
+          ])
+
+       (list
+        @d{July 14}
+        @itemlist[
+          @item{Due: @secref{assign1}}]
+        'cont))]
 
 @section{Week 2}
 
@@ -107,67 +116,77 @@ There are daily readings from the HtDP book and the documentation.
         (list
          @d{July 15}
          @itemlist[
-           @item{Moar lists}
-           @item{Self-referential Data}
+           @item{Lists}
            @item{Due: @secref{ex4}}]
-         @itemlist[@item{@htdp["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
-                  @item{@htdp["two.html#(part._ch~3alists2)"]{More on Lists}}])
+         @itemlist[
+           @item{@htdp-part["two.html#(part._ch~3alists1)"]{Lists}}
+           ])
 
-        (list @d{July 16}
-              @itemlist[
-                @item{Composition}
-                @item{Abstraction}
-                @item{Due: @secref{ex5}}]
-              @itemlist[
-                @item{@htdp["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
-                @item{@htdp["two.html#(part._ch~3asummary2)"]{Summary (Part II)}}
-                @item{@htdp["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}])                   
+        (list 
+         @d{July 16}
+         @itemlist[
+           @item{Moar lists}]
+         @itemlist[
+           @item{@htdp-part["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
+           @item{@htdp-part["two.html#(part._ch~3alists2)"]{More on Lists}}])                   
 
         (list @d{July 17} 
               @itemlist[
-                @item{Designing abstractions}
-                @item{Using abstractions}
-                @item{Due: @secref{ex6}}]
+                @item{Midterm exam}
+                @item{Self-referential Data}
+                @item{Composition}
+                @item{Due: @secref{ex5}}]
               @itemlist[
-                   @item{@htdp["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
-                   @item{@htdp["three.html#(part._ch~3a3use)"]{Using Abstractions}}])
+                @item{@htdp-part["two.html#(part._ch~3alist-sort)"]{Design by Composition}}
+                @item{@htdp-part["two.html#(part._ch~3asummary2)"]{Summary (Part II)}}
+                ])
 
         (list @d{July 18}
               @itemlist[
-                @item{Lambda, lambda, lambda}
-                @item{Due: @secref{ex7}}]
+                @item{Designing abstractions}
+                @item{Due: @secref{ex6}}]
               @itemlist[
-                @item{@htdp["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
-                @item{@htdp["three.html#(part._ch~3asummary3)"]{Summary (Part III)}}])
+                @item{@htdp-part["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}
+                @item{@htdp-part["three.html#(part._ch~3aabstract)"]{Designing Abstractions}}
+                ])
 
         (list @d{July 19} 
               @itemlist[
-                @item{Midterm 2}
-                @item{S-Expressions}
-                @item{Due: @secref{assign2}}]
-              @itemlist[@item{@htdp["part_four.html#(part._ch~3apoetry-sexp)"]{The Poetry of S-expressions}}]))]
+                @item{Using abstractions}
+                ]
+              @itemlist[
+                @item{@htdp-part["three.html#(part._ch~3a3use)"]{Using Abstractions}}
+                ])
+
+        (list @d{July 21}
+              @itemlist[@item{Due: @secref{assign2}}] 'cont))]
 
 @section{Week 3}
 
 @week-table[
-(list
-        (list
+  (list (list
          @d{July 22}
          @itemlist[
-           @item{Due: @secref{ex8}}]
-         'cont)
+           @item{Lambda, lambda, lambda}
+           @item{Due: @secref{ex7}}]
+         @itemlist[
+           @item{@htdp-part["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
+           @item{@htdp-part["three.html#(part._ch~3asummary3)"]{Summary (Part III)}}])
 
-        (list @d{July 23}
+        (list 
+          @d{July 23}
+          @itemlist[
+            @item{S-Expressions}
+            @item{Due: @secref{ex8}}]
+          @itemlist[            
+            @item{@htdp-part["part_four.html#(part._ch~3apoetry-sexp)"]{The Poetry of S-expressions}}])
+
+        (list @d{July 24} 
              @itemlist[
                @item{Due: @secref{ex9}}]
              'cont)
-        (list @d{July 24} 
-             @itemlist[
-               @item{Due: @secref{ex10}}]
-             'cont)
         (list @d{July 25} 
-             @itemlist[
-               @item{Due: @secref{ex11}}]
+	      @itemlist[@item{Review}]
              'cont)
         (list @d{July 26} 
               @itemlist[

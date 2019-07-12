@@ -18,5 +18,3 @@ individually and submitted on @link[elms-url]{ELMS}.
 @include-section{exercises/7.scrbl}
 @include-section{exercises/8.scrbl}
 @include-section{exercises/9.scrbl}
-@include-section{exercises/10.scrbl}
-@include-section{exercises/11.scrbl}
