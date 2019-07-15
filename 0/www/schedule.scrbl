@@ -117,6 +117,7 @@ There are daily readings from the HtDP book and the documentation.
          @d{July 15}
          @itemlist[
            @item{Lists}
+	   @item{@secref{lab5}}
            @item{Due: @secref{ex4}}]
          @itemlist[
            @item{@htdp-part["two.html#(part._ch~3alists1)"]{Lists}}
