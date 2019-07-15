@@ -139,3 +139,10 @@ and retirement savings are deducted; this is the amount an employee
 
 }
 
+@ex[@racket[annual-gross]]{
+
+Design the function @racket[annual-gross] which computes a given
+employee's gross pay for a one year period.
+
+}
+
