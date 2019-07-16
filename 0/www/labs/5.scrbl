@@ -45,7 +45,7 @@ the-eval))
 
 
 
-@title[#:style 'unnumbered #:tag "lab5"]{Lab 4: Stop and Smell the Sheep}
+@title[#:style 'unnumbered #:tag "lab5"]{Lab 5: Stop and Smell the Sheep}
 
 @(define ex (make-exerciser "Lab problem"))
 
