@@ -126,7 +126,9 @@ There are daily readings from the HtDP book and the documentation.
         (list 
          @d{July 16}
          @itemlist[
-           @item{Moar lists}]
+           @item{Moar lists}
+	   @item{@secref{lab6}}
+           @item{Review}]
          @itemlist[
            @item{@htdp-part["two.html#(part._ch~3adesign-lists)"]{Designing with Self-Referential Data Definitions}}
            @item{@htdp-part["two.html#(part._ch~3alists2)"]{More on Lists}}])                   
