@@ -136,6 +136,7 @@ There are daily readings from the HtDP book and the documentation.
         (list @d{July 17} 
               @itemlist[
                 @item{Midterm exam}
+   	        @item{@secref{lab7}}
                 @item{Self-referential Data}
                 @item{Composition}
                 @item{Due: @secref{ex5}}]
