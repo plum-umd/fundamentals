@@ -38,6 +38,9 @@ consulting the solution and then check your work against the solution
 and drill on any areas that need improvement.
 
 @itemize[
-@item{Practice midterm 1: @link["m1-practice.pdf"]{practice
+@item{Practice midterm: @link["m1-practice.pdf"]{practice
 exam} and @link["m1-practice-soln.pdf"]{solution}}
+
+@item{Midterm: @link["m1.pdf"]{exam} and @link["m1-soln.pdf"]{solution}}
+
 ]
