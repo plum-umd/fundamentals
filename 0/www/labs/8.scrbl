@@ -89,10 +89,15 @@ This suggests the following data definition for representing files and directori
 ;; Interp: Represents a file with a name and some arbitrary content.
 ;;
 (define-struct dir (name contents))
-;; A Directory is a (make-dir String [Listof FileOrDir])
+;; A Directory is a (make-dir String LoFileOrDir))
 ;; Interp: Represents a named container for an arbitrary amount of files or
 ;;         directories.
 ;;
+
+;; A LoFileOrDir is one of:
+;; - '()
+;; - (cons FileOrDir LoFileOrDir)
+
 ;; A FileOrDir is one of:
 ;; - File
 ;; - Directory
@@ -102,7 +107,7 @@ This suggests the following data definition for representing files and directori
 @ex["Templates"]{
 
 Write down the template for each of @emph{File},
-@emph{Directory}, @emph{FileOrDir}, and @emph{[Listof FileOrDir]}. Be sure to
+@emph{Directory}, @emph{FileOrDir}, and @emph{[LoFileOrDir}. Be sure to
 reference the @tt{file-template} and the @tt{directory-template} in your
 @tt{file-or-dir-template}.
 
