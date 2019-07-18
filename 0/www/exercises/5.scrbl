@@ -10,7 +10,7 @@
 
 @title[#:style 'unnumbered #:tag "ex5"]{Exercise 5}
 
-@bold{Due}: Wednesday, July 16, 11:59:59 PM EST. 
+@bold{Due}: Wednesday, July 17, 11:59:59 PM EST. 
 
 @(define ex (make-exerciser "Problem"))
 
