@@ -137,7 +137,6 @@ There are daily readings from the HtDP book and the documentation.
               @itemlist[
                 @item{Midterm exam}
    	        @item{@secref{lab7}}
-                @item{Self-referential Data}
                 @item{Composition}
                 @item{Due: @secref{ex5}}]
               @itemlist[
@@ -147,7 +146,8 @@ There are daily readings from the HtDP book and the documentation.
 
         (list @d{July 18}
               @itemlist[
-                @item{Designing abstractions}
+                @item{Self-referential Data (Beyond Lists)}
+   	        @item{@secref{lab8}}
                 @item{Due: @secref{ex6}}]
               @itemlist[
                 @item{@htdp-part["three.html#(part._ch~3add-similarities)"]{Similarities Everywhere}}
@@ -156,6 +156,7 @@ There are daily readings from the HtDP book and the documentation.
 
         (list @d{July 19} 
               @itemlist[
+                @item{Designing abstractions}
                 @item{Using abstractions}
                 ]
               @itemlist[
