@@ -15,8 +15,8 @@ in lectures with helpful assistants around.
 @include-section{labs/6.scrbl}
 @include-section{labs/7.scrbl}
 @include-section{labs/8.scrbl}
-@;{
 @include-section{labs/9.scrbl}
+@;{
 @include-section{labs/10.scrbl}
 @include-section{labs/11.scrbl}
 @include-section{labs/12.scrbl}

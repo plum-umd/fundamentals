@@ -156,8 +156,9 @@ There are daily readings from the HtDP book and the documentation.
 
         (list @d{July 19} 
               @itemlist[
-                @item{Designing abstractions}
-                @item{Using abstractions}
+                @item{Week in Review}
+		@item{Abstractions}
+   	        @item{@secref{lab9}}
                 ]
               @itemlist[
                 @item{@htdp-part["three.html#(part._ch~3a3use)"]{Using Abstractions}}
@@ -172,6 +173,8 @@ There are daily readings from the HtDP book and the documentation.
   (list (list
          @d{July 22}
          @itemlist[
+           @item{Designing abstractions}
+           @item{Using abstractions}
            @item{Lambda, lambda, lambda}
            @item{Due: @secref{ex7}}]
          @itemlist[
