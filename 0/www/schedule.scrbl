@@ -176,6 +176,7 @@ There are daily readings from the HtDP book and the documentation.
            @item{Designing abstractions}
            @item{Using abstractions}
            @item{Lambda, lambda, lambda}
+   	   @item{@secref{lab10}}
            @item{Due: @secref{ex7}}]
          @itemlist[
            @item{@htdp-part["three.html#(part._ch~3a3lambda)"]{Nameless Functions}}
