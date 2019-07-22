@@ -125,7 +125,7 @@ these functions should be straightforward).
 (check-expect (lon-all-positive? '()) #true)
 (check-expect (lon-all-positive? (list 7 1 4)) #true)
 (check-expect (lon-all-positive? (list 7 0 4)) #false)
-(define (lon-all-odd? lon)
+(define (lon-all-positive? lon)
   (cond [(empty? lon) ...]
         [(cons? lon)
          (... (first lon)
