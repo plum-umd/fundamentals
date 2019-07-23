@@ -1,4 +1,4 @@
-#lang scribble/manual
+;#lang scribble/manual
 @(require scribble/core 
           scribble/examples
           racket/sandbox
@@ -23,7 +23,7 @@ Student Language}.
 Please read and follow these intructions carefully.  You should submit
 a @bold{single} file named @tt{ex4.rkt} on @link[elms-url]{ELMS}.  You
 may submit many times, but each submission should be one file called
-@tt{ex4.rkt}.  You may lose points for not following these
+@tt{ex7.rkt}.  You may lose points for not following these
 instructions.
 
 Make sure the top of the file contains the following, with your name filled in:
