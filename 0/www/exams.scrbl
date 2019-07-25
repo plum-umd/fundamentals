@@ -43,4 +43,6 @@ exam} and @link["m1-practice-soln.pdf"]{solution}}
 
 @item{Midterm: @link["m1.pdf"]{exam} and @link["m1-soln.pdf"]{solution}}
 
+@item{Practice final: @link["f-practice.pdf"]{practice final exam} and @link["f-practice-soln.pdf"]{solution}}
+
 ]
