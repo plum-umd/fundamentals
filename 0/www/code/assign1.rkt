@@ -61,7 +61,7 @@
   g)
 
 ;; game-advance : Game -> Game
-;; Adance the bug, maybe eating the food
+;; Advance the bug, maybe eating the food
 (define (game-advance g)
   ; stub
   g)
