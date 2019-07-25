@@ -1,4 +1,5 @@
-# Fundamentals 0: Make Your Own Video Games: An Introduction to Programming and Computing
+# Make Your Own Video Games
+## An Introduction to Programming and Computing
 
 This repository contains the course materials, including the class web
 page, exams, labs, and assignments for Make Your Own Video Games: An
