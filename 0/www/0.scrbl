@@ -87,6 +87,7 @@ subject to change until the start of the semester.
 @include-section{exercises.scrbl}
 @include-section{labs.scrbl}
 @include-section{exams.scrbl}
+@include-section{catharsis.scrbl}
 
 @;{
 
