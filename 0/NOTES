@@ -10,16 +10,19 @@ Every exercise needs to be pared down.
 In the beginning, you've got to drill drill drill.
 
 Exercise 2: smiley should be two exercises.  Part I is up to pinholes.
-Part II is after pinholes.
+Part II is after pinholes.  Even better: rewrite and simplify to avoid
+pinholes.
 
 There needs to be 1-2 more exercises between 1 and 2 that drill on
 expressions and syntax.
 
 Need to do the "circles of evaluation" thing to teach people syntax.
 
-Need to have clearer requirements about computing equipment.
+Need to have clearer requirements about computing equipment before
+class starts.
 
-People should buy the book if the exams are going to be open notes.
+People should buy the book if the exams are going to be open notes,
+so make sure bookstore has it.
 
 Fewer exams.
 
@@ -58,4 +61,56 @@ Make a slideshow program.
 Need some GIFs for Hangman lab, Space Invader lab, and Snek
 assignment.
 
+Add more illustration on snake motion in assignment 2.
+
+Write up lab materials on universe games we did in lecture.
+
+The Sneks program can be the culmination of assignment 1 and 2 and
+universe.
+
+Next time (perspectives from the end): 
+
+* I think the idea here, in retrospect, is to give students exposure
+  to college-level material, but with out the college-level
+  evaluation.  Should also be more fun, collaborative, and interactive
+  that this year's version.
+
+* grade exercises based on effort.  Submitting something should get
+  you most or all of the points.  Leave it up to students to decide
+  whether to do the work or not.  Relieves stress on students, while
+  giving plenty of material for students who want to go deep.
+  Relieves work of TAs.
+
+* add take home quizes that are just drills.  Ideally students can do
+  them in 30 minutes or less and check their work before submitting,
+  so it should be easy points for them and forces them to drill.
+
+* give assignment 3 (final project) on the first day.  Let students
+  work on it from the beginning.
+
+* final project should be due the night before the last class.  The
+  last class should have an hour of demos, an hour of gaming, and a
+  wrap-up.  Make it fun.  Include parents.
+
+* make lectures more clinic like: less lecturing (with more
+  supplemental material outside of class).  Could do team-based work.
+  Each table is a team (and tables are rotated).  Each team works on a
+  different piece of something that can be put together to make a
+  larger program.  <-- This would be really cool, and seems doable by
+  taking existing games, distributing functions to teams, perhaps with
+  black box solutions to the other teams' functions.  Could have
+  module on bb testing.  This lets students focus on something small
+  while still building something bigger.
+
+* do something to incentivize the reading (reading summary quizes?)
+
+* don't have a final exam.  Use the final project as the final exam.
+
+* use two exercises for assignment revisions.  (I did at the end, but
+  it should happen sooner.)  Making it happen soon after assignment is
+  due requires quick turn around on assignment grading.  This let's us
+  be thorough in critique and students learn by fixing it up.
+
+* make it clear that assignment 1 is graded on use of design recipe.
+  (It's tight because DR is a few lectures in.)
 
